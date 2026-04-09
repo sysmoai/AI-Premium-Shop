@@ -204,6 +204,42 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "AI Premium Shop",
+      "url": "https://aipremiumshop.com",
+      "logo": "https://aipremiumshop.com/images/brand/aips-logo.png",
+      "foundingDate": "2022",
+      "description": "Bangladesh's most trusted source for premium AI subscriptions. ChatGPT, Claude, Midjourney, and 30+ tools with local payment via bKash and Nagad.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+8801865385348",
+        "contactType": "sales",
+        "availableLanguage": "English",
+        "contactOption": "TollFree"
+      },
+      "sameAs": [
+        "https://www.facebook.com/aipremiumshopbd",
+        "https://www.instagram.com/aipremiumshop/",
+        "https://www.linkedin.com/showcase/aipremiumshop/"
+      ]
+    };
+    let script = document.getElementById("org-jsonld") as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement("script");
+      script.id = "org-jsonld";
+      script.type = "application/ld+json";
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(schema);
+    return () => {
+      const el = document.getElementById("org-jsonld");
+      if (el) el.remove();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
 

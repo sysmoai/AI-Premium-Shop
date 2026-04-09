@@ -147,9 +147,53 @@ All sections are isolated components for clarity and performance.
 - **Mobile drawer**: All category pages, Bundles, Pricing, About, FAQ — all client-side navigate
 - **Footer (homepage)**: All links updated to real pages (no more `href="#"`)
 
-### Known Phase 4 Work
+### Phase 4 SEO Pages (All Live)
 
-- SEO pages: /blog, guide pages, comparison pages
-- SSR / SSG (currently client-side SPA — page source shows React root only)
+**12 new pages + technical SEO — all complete.**
+
+#### Guide Pages (6)
+| URL | Audience |
+|-----|----------|
+| `/best-ai-for-students` | Students |
+| `/best-ai-for-freelancers` | Freelancers |
+| `/best-ai-for-creators` | Content Creators |
+| `/best-ai-for-business` | Business Owners |
+| `/best-ai-for-developers` | Developers |
+| `/best-ai-for-job-seekers` | Job Seekers |
+
+Template: Hero → Why AI → Recommended Tools (ranked) → Start Here → 4 FAQs → CTA
+
+#### Comparison Pages (3)
+| URL | Products Compared |
+|-----|-------------------|
+| `/chatgpt-vs-claude` | ChatGPT vs Claude |
+| `/chatgpt-vs-gemini` | ChatGPT vs Google AI Pro |
+| `/copilot-vs-cursor` | GitHub Copilot vs Cursor |
+
+Template: Side-by-side table with ✓/✗ + text → Verdict → Order CTAs
+
+#### Budget Pages (3)
+| URL | Price Filter |
+|-----|-------------|
+| `/ai-under-500` | Products ≤ BDT 500 (8 tools) |
+| `/ai-under-1000` | Products ≤ BDT 1,000 (25 tools) |
+| `/ai-under-3000` | Products ≤ BDT 3,000 (31 tools) |
+
+Template: Stats → Filtered product grid → Next tier link → CTA
+
+#### Technical SEO
+- `public/robots.txt` — Allow all, points to sitemap
+- `public/sitemap.xml` — All 31 URLs, priorities 1.0→0.4, lastmod 2026-04-09
+- Organization JSON-LD schema on homepage (injected via useEffect)
+- FAQPage JSON-LD schema on /faq page (12 questions, injected via useEffect)
+
+#### New Components
+- `GuidePage.tsx` — Config-driven guide page (6 guides share one component)
+- `ComparisonPage.tsx` — Config-driven comparison page (3 comparisons share one component)
+- `BudgetPage.tsx` — Price-filtered product listing page
+
+### Known Phase 5 Work
+- Visual polish + launch prep
+- SSR / SSG (currently client-side SPA)
 - Individual product pages with dedicated URLs
 - Search functionality

@@ -1,0 +1,263 @@
+=== PHASE 4: SEO GUIDE PAGES + COMPARISON PAGES + TECHNICAL SEO ===
+
+CONTEXT:
+- Phases 1-3 DONE: Homepage + 14 core pages built
+- All content 100% English. Top 1% quality.
+- This phase builds high-value SEO landing pages that capture search traffic
+- Every page needs: unique title, meta description, WhatsApp CTA, header/footer
+
+
+=== PART A: TARGET GROUP GUIDE PAGES (6 pages) ===
+
+These are SEO landing pages for people searching "best AI tools for [role]".
+Each page recommends specific products from our catalog for that audience.
+
+Template for ALL guide pages:
+- Hero: pain-point headline specific to this group
+- "Why AI matters for [role]" section (3-4 sentences)
+- Recommended tools table: rank products for this group with reasons
+- "Start here" recommendation with the cheapest entry option
+- Bundle upsell if applicable
+- FAQ: 4 questions specific to this group
+- CTA: WhatsApp order
+
+
+--- PAGE 1: /best-ai-for-students ---
+Title: "Best AI Tools for Students in Bangladesh 2026 | AI Premium Shop"
+H1: "Best AI Tools for Students"
+Subtitle: "Write better papers. Study smarter. Ace your exams."
+
+Recommended tools:
+1. Google AI Pro — BDT 500/mo — "Best value. Deep Research for papers, 2TB storage, works with Gmail and Google Docs. 83% off."
+2. ChatGPT Plus Shared — BDT 350/mo — "Cheapest way to access GPT-5.4. Great for assignments, essays, and code."
+3. Perplexity Pro Shared — BDT 599/mo — "AI research engine with real citations. Perfect for thesis and academic papers."
+4. Student Essentials Bundle — BDT 449 — "Starter pack with basic AI tools for study."
+
+FAQ:
+Q: "Is AI allowed for university assignments?"
+A: "AI is a study tool, like a calculator. Use it to research, draft, and learn — but always submit your own work. Most universities allow AI as a research aid."
+
+Q: "Which is cheaper — ChatGPT or Google AI Pro?"
+A: "ChatGPT Plus Shared is BDT 350. Google AI Pro is BDT 500 but includes 2TB storage, Workspace AI, and more features. Google AI Pro is better value."
+
+Q: "Can I use these for coding assignments?"
+A: "Yes. Both ChatGPT and Google AI Pro can write, debug, and explain code in any programming language."
+
+Q: "Do I need a credit card?"
+A: "No. Pay with bKash or Nagad. No international card needed."
+
+
+--- PAGE 2: /best-ai-for-freelancers ---
+Title: "Best AI Tools for Freelancers in Bangladesh 2026 | AI Premium Shop"
+H1: "Best AI Tools for Freelancers"
+Subtitle: "Win more clients. Deliver faster. Earn more."
+
+Recommended tools:
+1. ChatGPT Plus Premium Shared — BDT 950/mo — "Write proposals, emails, and content 10x faster. Higher stability than starter."
+2. Claude Pro Premium Shared — BDT 1,495/mo — "#1 ranked AI for writing quality. Extended thinking for complex projects."
+3. Midjourney Standard Shared — BDT 1,199/mo — "Create client graphics, thumbnails, mockups. Unlimited images."
+4. GitHub Copilot Pro — BDT 1,495/mo — "For developer freelancers. Code 50% faster."
+5. Freelancer Bundle — BDT 3,999 — "Writing + design tools at a package discount."
+
+Key message: "Freelancers who use AI earn 44% more on average (Upwork 2025 Report). The tools pay for themselves."
+
+
+--- PAGE 3: /best-ai-for-creators ---
+Title: "Best AI Tools for Content Creators in Bangladesh 2026 | AI Premium Shop"
+H1: "Best AI Tools for Content Creators"
+Subtitle: "Create faster. Edit smarter. Grow your audience."
+
+Recommended tools:
+1. ChatGPT Plus Premium Shared — BDT 950/mo — "Scripts, captions, content calendars, hooks — all in minutes."
+2. Midjourney Standard Shared — BDT 1,199/mo — "AI thumbnails and graphics without hiring a designer."
+3. ElevenLabs Starter — BDT 748/mo — "AI voiceovers for videos. Clone your own voice."
+4. Suno AI Pro — BDT 1,495/mo — "Create background music and jingles. No copyright issues."
+5. Runway Standard — BDT 1,794/mo — "AI video generation. B-roll, transitions, effects."
+
+
+--- PAGE 4: /best-ai-for-business ---
+Title: "Best AI Tools for Business Owners in Bangladesh 2026 | AI Premium Shop"
+H1: "Best AI Tools for Business Owners"
+Subtitle: "Automate operations. Cut costs. Scale faster."
+
+Recommended tools:
+1. ChatGPT Business Starter Shared — BDT 699/mo — "Team AI assistant with admin controls. Unlimited GPT-5.4."
+2. Google AI Pro — BDT 500/mo — "Gmail AI, Google Docs AI, Sheets AI — everything your team already uses."
+3. Notion Business — BDT 800/mo — "AI workspace for docs, projects, and team collaboration."
+4. Manus AI — BDT 2,500/mo — "Autonomous AI agent. Handles research, reports, and analysis."
+5. Business Package — BDT 15,000 — "Full AI stack with team setup and onboarding."
+
+
+--- PAGE 5: /best-ai-for-developers ---
+Title: "Best AI Coding Tools for Developers in Bangladesh 2026 | AI Premium Shop"
+H1: "Best AI Tools for Developers"
+Subtitle: "Code faster. Debug instantly. Ship on time."
+
+Recommended tools:
+1. GitHub Copilot Pro — BDT 1,495/mo — "Unlimited code completions. Works in VS Code, JetBrains. Industry standard."
+2. Cursor Pro — BDT 2,990/mo — "AI-native editor with agent mode. Used by OpenAI and Stripe."
+3. Claude Pro Personal — BDT 2,990/mo — "#1 ranked AI. Claude Code terminal for complex debugging."
+4. ChatGPT Pro Premium Shared — BDT 22,000/mo — "Unlimited GPT-5.4 Pro + Sora video. For power users."
+
+
+--- PAGE 6: /best-ai-for-job-seekers ---
+Title: "Best AI Tools for Job Seekers in Bangladesh 2026 | AI Premium Shop"
+H1: "Best AI Tools for Job Seekers"
+Subtitle: "Build a winning CV. Ace interviews. Land the job."
+
+Recommended tools:
+1. ChatGPT Plus Shared — BDT 350/mo — "Write professional CVs, cover letters, and LinkedIn posts in minutes."
+2. Google AI Pro — BDT 500/mo — "Gmail AI for job applications. Google Docs for CV formatting."
+3. Perplexity Pro Shared — BDT 599/mo — "Research companies before interviews. Get industry insights with citations."
+
+
+=== PART B: COMPARISON PAGES (3 pages) ===
+
+--- PAGE 7: /chatgpt-vs-claude ---
+Title: "ChatGPT vs Claude — Which AI Should You Buy? Bangladesh 2026"
+H1: "ChatGPT vs Claude — Which One Is Right for You?"
+
+Comparison table:
+| Feature | ChatGPT (OpenAI) | Claude (Anthropic) |
+| Best for | All-rounder: code, images, search, agents | Writing, reasoning, long documents |
+| Top model | GPT-5.4 | Opus 4.6 (#1 on Arena) |
+| Image generation | Yes (DALL-E) | No |
+| Video generation | Yes (Sora, Pro only) | No |
+| Code assistant | Codex agent | Claude Code terminal |
+| Context window | 128K tokens | 200K-1M tokens |
+| Shared price | From BDT 350/mo | From BDT 599/mo |
+| Personal price | BDT 2,990/mo | BDT 2,990/mo |
+
+Verdict:
+"Choose ChatGPT if you want an all-in-one tool that does everything — text, images, video, code, and agents. Choose Claude if you need the best writing quality, longest documents, or most advanced reasoning."
+
+CTAs: "Order ChatGPT" + "Order Claude" → WhatsApp
+
+
+--- PAGE 8: /chatgpt-vs-gemini ---
+Title: "ChatGPT vs Google AI Pro — Comparison Bangladesh 2026"
+H1: "ChatGPT vs Google AI Pro — Which Should You Choose?"
+
+Key comparison:
+| Feature | ChatGPT Plus | Google AI Pro |
+| Price (AIPS) | BDT 350 (shared) | BDT 500 (personal) |
+| Account type | Shared | Your own Gmail |
+| AI Model | GPT-5.4 | Gemini 3.1 Pro |
+| Storage | None | 2TB Google Drive |
+| Workspace AI | No | Gmail, Docs, Sheets, Slides |
+| Savings vs direct | 88% | 83% |
+
+Verdict:
+"Google AI Pro at BDT 500 is the best value in our catalog — you get a personal account (not shared), 2TB storage, and AI in every Google app. ChatGPT at BDT 350 is cheaper but shared. For students and professionals who use Google Workspace, Google AI Pro is the clear winner."
+
+
+--- PAGE 9: /copilot-vs-cursor ---
+Title: "GitHub Copilot vs Cursor — Best AI Coding Tool 2026"
+H1: "GitHub Copilot vs Cursor — Which AI Code Tool Should You Use?"
+
+| Feature | GitHub Copilot Pro | Cursor Pro |
+| Price | BDT 1,495/mo | BDT 2,990/mo |
+| Works in | VS Code, JetBrains, Neovim | Cursor editor (VS Code fork) |
+| Agent mode | Cloud agents | Full autonomous agent |
+| Models | GPT-5.4, Claude | All frontier models |
+| Best for | IDE integration | AI-native full-project coding |
+
+Verdict:
+"Copilot is better if you want AI inside your existing editor. Cursor is better if you want the most powerful AI coding experience with agent mode. Many developers use both."
+
+
+=== PART C: BUDGET PAGES (3 pages) ===
+
+--- PAGE 10: /ai-under-500 ---
+Title: "AI Tools Under BDT 500/month — Bangladesh | AI Premium Shop"
+H1: "AI Tools Under BDT 500"
+Subtitle: "Premium AI at student-friendly prices."
+
+Products: filter products.json where price <= 500
+- ChatGPT Plus Shared — BDT 350
+- Student Essentials — BDT 449
+- Google AI Pro — BDT 500
+
+"Next step up: See tools under BDT 1,000" → link to /ai-under-1000
+
+
+--- PAGE 11: /ai-under-1000 ---
+Title: "AI Tools Under BDT 1,000/month — Bangladesh"
+H1: "AI Tools Under BDT 1,000"
+
+Products: filter where price <= 1000
+Includes: ChatGPT Plus Shared, Google AI Pro, Claude Pro Shared, Perplexity Shared,
+ChatGPT Business Shared, ElevenLabs Starter, Notion Business, University Pro
+
+
+--- PAGE 12: /ai-under-3000 ---
+Title: "AI Tools Under BDT 3,000/month — Bangladesh"
+H1: "AI Tools Under BDT 3,000"
+
+Products: filter where price <= 3000
+Includes all personal accounts at BDT 2,990: ChatGPT Plus, Claude Pro, Perplexity Pro,
+Ideogram Plus, Cursor Pro, plus all shared and budget options.
+
+
+=== PART D: TECHNICAL SEO ===
+
+1. SITEMAP
+Create /sitemap.xml that dynamically lists ALL pages:
+- / (homepage)
+- /products
+- /ai-assistant, /ai-image, /ai-video, /ai-voice-music, /ai-code, /ai-workspace, /bundles
+- /best-ai-for-students, /best-ai-for-freelancers, /best-ai-for-creators,
+  /best-ai-for-business, /best-ai-for-developers, /best-ai-for-job-seekers
+- /chatgpt-vs-claude, /chatgpt-vs-gemini, /copilot-vs-cursor
+- /ai-under-500, /ai-under-1000, /ai-under-3000
+- /about, /contact, /faq, /pricing, /refund-policy, /terms
+Set lastmod to today. Priority: 1.0 homepage, 0.9 products, 0.8 categories, 0.7 guides.
+Return Content-Type: application/xml
+
+2. ROBOTS.TXT
+Create /robots.txt:
+User-agent: *
+Allow: /
+Sitemap: https://aipremiumshop.com/sitemap.xml
+
+3. STRUCTURED DATA (on homepage)
+Add JSON-LD Organization schema:
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AI Premium Shop",
+  "url": "https://aipremiumshop.com",
+  "logo": "https://aipremiumshop.com/images/brand/aips-logo.svg",
+  "foundingDate": "2022",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+8801865385348",
+    "contactType": "sales",
+    "availableLanguage": "English"
+  },
+  "sameAs": [
+    "https://www.facebook.com/aipremiumshopbd",
+    "https://www.instagram.com/aipremiumshop/",
+    "https://www.linkedin.com/showcase/aipremiumshop/"
+  ]
+}
+
+4. FAQ SCHEMA (on /faq page)
+Add FAQPage JSON-LD schema with all 12 questions.
+
+
+=== VERIFICATION ===
+[ ] 6 guide pages load with correct product recommendations
+[ ] 3 comparison pages load with comparison tables
+[ ] 3 budget pages load with filtered products
+[ ] /sitemap.xml returns valid XML with all page URLs
+[ ] /robots.txt returns correctly
+[ ] JSON-LD schema present on homepage (check view source)
+[ ] FAQ schema present on /faq page
+[ ] All new pages have consistent header, footer, WhatsApp CTA
+[ ] All links between pages work (no 404s)
+[ ] 100% English on all pages
+
+Tell me when done. Phase 5 (visual polish + launch prep) comes next.
+
+=== END PHASE 4 ===

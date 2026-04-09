@@ -1,0 +1,58 @@
+[
+  {
+    "id": "assistant",
+    "displayName": "AI Assistant & Chat",
+    "industrySubtitle": "ChatGPT, Claude, Gemini",
+    "icon": "MessageSquare",
+    "from": 350,
+    "count": 12
+  },
+  {
+    "id": "image",
+    "displayName": "AI Image & Design",
+    "industrySubtitle": "Midjourney, Ideogram, Canva",
+    "icon": "Image",
+    "from": 800,
+    "count": 8
+  },
+  {
+    "id": "video",
+    "displayName": "AI Video",
+    "industrySubtitle": "Runway, Sora, Kling",
+    "icon": "Video",
+    "from": 1200,
+    "count": 5
+  },
+  {
+    "id": "voice",
+    "displayName": "AI Voice & Music",
+    "industrySubtitle": "ElevenLabs, Suno, Udio",
+    "icon": "Music",
+    "from": 800,
+    "count": 6
+  },
+  {
+    "id": "code",
+    "displayName": "AI Code & Dev",
+    "industrySubtitle": "GitHub Copilot, Cursor, Windsurf",
+    "icon": "Code2",
+    "from": 1100,
+    "count": 7
+  },
+  {
+    "id": "workspace",
+    "displayName": "AI Workspace",
+    "industrySubtitle": "Notion AI, Grammarly, Perplexity",
+    "icon": "Layout",
+    "from": 400,
+    "count": 8
+  },
+  {
+    "id": "bundles",
+    "displayName": "Bundles",
+    "industrySubtitle": "Multiple tools, one price",
+    "icon": "Package",
+    "from": 1500,
+    "count": 4
+  }
+]

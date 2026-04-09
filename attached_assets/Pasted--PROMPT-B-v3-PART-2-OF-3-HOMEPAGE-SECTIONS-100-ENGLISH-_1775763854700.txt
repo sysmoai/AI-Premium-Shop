@@ -1,0 +1,245 @@
+=== PROMPT B v3 — PART 2 OF 3: HOMEPAGE SECTIONS (100% ENGLISH) ===
+
+Replace the ENTIRE homepage with these 10 sections.
+All content in English. Top 1% quality. Apple clarity + Shopify friendliness.
+Use Framer Motion animations from Eldora UI. Mobile-first.
+
+
+--- SECTION 1: HERO (Above the fold) ---
+Background: gradient navy-900 to navy-800
+
+Headline (large, WHITE #FFFFFF per Figma H1 spec, Inter Semibold 600, 40px/48px):
+"What Takes You 3 Hours — AI Does in 15 Minutes."
+NOTE: H1 = White per Figma. Gold is reserved for H3 subheadings only.
+
+Subheadline (white, smaller):
+"49 premium AI tools. Local payment via bKash and Nagad. Starting at just BDT 350/month."
+
+Animated rotating text (Framer Motion, cycles every 3 seconds):
+- "Assignment deadline? → AI finishes it in 30 minutes"
+- "No clients on Upwork? → AI writes winning proposals in 2 minutes"
+- "Content creation burnout? → AI makes you 10x faster"
+- "Running your business alone? → AI Agents handle it 24/7"
+- "Can't land a job? → AI builds your CV and preps your interview"
+- "Coding all night? → AI Copilot writes 50% of your code"
+
+Trust badges (4 inline with icons):
+1,200+ Customers · Since 2022 · 30-Day Warranty · 5-Min Response
+
+Dual CTA:
+Primary (gradient button: linear-gradient #ec4899 pink → #f97316 orange, per Figma CTA spec):
+"Order on WhatsApp" → https://wa.me/8801865385348
+Secondary (ghost/outline with white border): "Which AI is right for me? →" → scrolls to segment cards
+
+Payment badges row: bKash · Nagad · Rocket · Bank Transfer · Binance
+
+
+--- SECTION 2: "FIND YOUR SOLUTION" — 6 PAIN-POINT CARDS ---
+Heading (White, H2 style per Figma): "Every Problem Has an AI Solution"
+Subheading: "Find yours below."
+
+6 cards in grid (3x2 desktop, 1-col mobile).
+Each: icon + headline + 3 bullet pains + solution + price badge + CTA
+
+Card 1 — Students:
+Icon: graduation cap
+Headline: "Falling Behind in Your Studies?"
+Pains:
+- Assignment deadlines keep slipping
+- Research papers are overwhelming — especially in English
+- Exam prep feels scattered and disorganized
+Solution: "AI handles study notes, assignments, and research — in 30 minutes flat."
+Price: "From BDT 350/mo"
+CTA: "See Student Solutions →" → #
+
+Card 2 — Freelancers:
+Icon: laptop
+Headline: "No Clients? Slow Deliveries?"
+Pains:
+- Can't write proposals that win on Upwork or Fiverr
+- Takes 2-3 days to deliver — competitors do it in 2 hours
+- No international card to buy premium AI tools
+Solution: "AI writes proposals in 2 minutes. Delivers 50% faster. Pay with bKash."
+Price: "From BDT 350/mo"
+CTA: "See Freelancer Solutions →" → #
+
+Card 3 — Content Creators:
+Icon: video camera
+Headline: "Out of Ideas? Tired of Editing?"
+Pains:
+- Script writing eats hours of your day
+- Hiring designers for every thumbnail gets expensive
+- Background music keeps getting copyright strikes
+Solution: "AI script in 2 min. AI thumbnail in 1 min. AI music — zero copyright issues."
+Price: "From BDT 350/mo"
+CTA: "See Creator Solutions →" → #
+
+Card 4 — Business Owners:
+Icon: briefcase
+Headline: "Still Doing Everything Manually?"
+Pains:
+- Slow customer replies are costing you sales
+- Marketing content costs lakhs at agencies
+- You're burning out trying to manage everything alone
+Solution: "AI Agents handle sales, support, and content — one system, zero burnout."
+Price: "From BDT 500/mo"
+CTA: "See Business Solutions →" → #
+
+Card 5 — Job Seekers:
+Icon: search
+Headline: "Not Getting Hired?"
+Pains:
+- Your CV isn't getting shortlisted
+- Interview nerves are holding you back
+- Not sure which skills to learn in the AI era
+Solution: "AI builds a professional CV in 5 minutes. Mock interviews. Skill roadmap."
+Price: "From BDT 350/mo"
+CTA: "See Job Seeker Solutions →" → #
+
+Card 6 — Developers:
+Icon: code
+Headline: "Coding Until 3 AM?"
+Pains:
+- Hours lost debugging
+- Client project deadlines keep slipping
+- No time to learn new frameworks
+Solution: "AI Copilot — code 50% faster. Instant bug fixes. Every language supported."
+Price: "From BDT 1,495/mo"
+CTA: "See Developer Solutions →" → #
+
+Styling: navy-800 bg, gold-500 border on hover with glow, rounded-lg
+
+
+--- SECTION 3: AI AGENTS — "THE 2026 GAME CHANGER" ---
+Heading (White, H2 style): "AI Agents Now Work For You — 24/7"
+Subheading: "This isn't just chat anymore. In 2026, AI researches, codes, sends emails, and builds reports — autonomously."
+
+4 use case cards (horizontal scroll on mobile):
+1. Freelancers: "AI Agents write your proposals, do the research, and deliver first drafts — even while you sleep."
+2. Students: "AI Agents find research sources, write summaries, and format citations — autonomously."
+3. Business: "AI Agents reply to customers, process orders, and generate reports — around the clock."
+4. Developers: "Codex and Claude Code understand your entire codebase — they fix bugs and build features on their own."
+
+Stat banner: "Freelancers who use AI earn 44% more on average. — Upwork 2025 Report"
+
+CTAs:
+"Explore AI Agent Tools →" → #
+"Book a 1:1 AI Setup Session — BDT 799" → WhatsApp
+
+
+--- SECTION 4: SPECIAL OFFERS + BEST SELLERS ---
+Heading: "Special Offers"
+
+2 offer cards side by side:
+Card 1: Google AI Pro BDT 500/mo — Badge: "83% Off"
+"Official price BDT 2,990. You pay just BDT 500. Gemini 3.1 Pro, Deep Research, 2TB storage, AI agents."
+CTA: "Order Now →" → WhatsApp
+
+Card 2: Notion Business BDT 800/mo — Badge: "73% Off"
+"Official price BDT 2,990. You pay just BDT 800. Notion AI included, teamspaces, SSO."
+CTA: "Order Now →" → WhatsApp
+
+Then:
+Heading: "Best Sellers"
+6 product cards (low to high price):
+1. ChatGPT Plus BDT 350 — badge: "Best Seller"
+2. Google AI Pro BDT 500 — badge: "83% Off"
+3. ChatGPT Business BDT 699
+4. Midjourney BDT 1,199 — badge: "Popular"
+5. Claude Premium Shared BDT 1,495
+6. GitHub Copilot BDT 1,495
+
+Each card: brand color accent + name + price + badge + "Order" CTA → WhatsApp with pre-filled message
+
+
+--- SECTION 5: BROWSE BY CATEGORY (7 cards) ---
+Heading: "Browse by Category"
+7 cards from categories.json: icon + displayName + industrySubtitle + "from BDT X" + product count
+
+
+--- SECTION 6: "WHY AI PREMIUM SHOP?" ---
+Heading (White, H2): "Why 1,200+ Customers Choose Us"
+
+Comparison table:
+| Tool | Direct Purchase | With AIPS | You Save |
+| ChatGPT Plus | BDT 2,990/mo | BDT 350/mo | 88% |
+| Google AI Pro | BDT 2,990/mo | BDT 500/mo | 83% |
+| Notion Business | BDT 2,990/mo | BDT 800/mo | 73% |
+
+Below: "No international credit card needed. Pay with bKash or Nagad. Delivered in minutes."
+
+4 value pillars:
+1. Instant Delivery — "Shared: 5-30 min. Personal: 2-4 hours."
+2. Local Payment — "bKash, Nagad, Rocket, Bank Transfer, Binance. No international card."
+3. 30-Day Warranty — "Any issue? We replace it. No questions asked."
+4. 1:1 AI Coaching — "We don't just sell tools. We teach you how to use them. BDT 799/hr."
+
+Differentiator text (centered, gold accent):
+"Other sellers just hand you a login. We give you the tool, the training, and the workflow. Buying AI without knowing how to use it is a waste of money. We set it up for YOUR work."
+
+
+--- SECTION 7: HOW IT WORKS (4 steps) ---
+Heading: "How to Order"
+1. "Choose your AI tool"
+2. "Pay via bKash, Nagad, or Rocket"
+3. "Receive access — Shared: 5-30 min, Personal: 2-4 hours"
+4. "Get support on WhatsApp within 5 minutes. Free setup help included."
+CTA (gradient button pink→orange): "Get Started Now →" → WhatsApp
+
+
+--- SECTION 8: TESTIMONIALS ---
+Heading: "Trusted by 1,200+ Customers Across Bangladesh"
+3 cards:
+1. "Got ChatGPT Plus for just BDT 350. Delivered in 10 minutes. Incredible service." — Rafiq, Student
+2. "AI doubled my freelancing income. I buy all my tools from AIPS." — Nusrat, Freelancer
+3. "Automated our customer support with ChatGPT Business. Game changer." — Kamal, Business Owner
+
+
+--- SECTION 9: FAQ (8 questions, accordion) ---
+Heading: "Frequently Asked Questions"
+
+Q1: "Is a shared account safe to use?"
+A: "Yes. You get full access to premium features. However, 2-7 people share the same subscription. For full privacy, we recommend a personal account."
+
+Q2: "How fast is delivery?"
+A: "Shared accounts: 5-30 minutes. Personal accounts: 2-4 hours. The clock starts after payment is confirmed on WhatsApp."
+
+Q3: "What payment methods do you accept?"
+A: "bKash, Nagad, Rocket, Bank Transfer, and Binance (crypto). No international credit card needed."
+
+Q4: "What is your refund policy?"
+A: "Refunds are available within 15 minutes of delivery if there's a service mismatch. Tool and subscription fees are non-refundable."
+
+Q5: "Is this official and legal?"
+A: "Yes. We provide official, verified subscriptions. No hacked or unauthorized access."
+
+Q6: "I'm new to AI. Where should I start?"
+A: "Students: ChatGPT Plus Shared at BDT 350 or Google AI Pro at BDT 500. Freelancers: ChatGPT Premium Shared at BDT 950. Business: ChatGPT Business at BDT 699."
+
+Q7: "What's the difference between Shared and Personal?"
+A: "Shared: Lower price, 2-7 users share the account. Personal: Your own account, full privacy, all features, premium experience."
+
+Q8: "What can AI actually do?"
+A: "Write content, generate code, conduct research, create images, produce videos, clone voices, compose music, automate tasks — almost anything. Each AI tool specializes in different areas."
+
+
+--- SECTION 10: FINAL CTA + FOOTER ---
+Final CTA section:
+Heading: "Start Today — From Just BDT 350"
+Subtext: "Join 1,200+ customers who trust AI Premium Shop."
+CTA (gradient button pink→orange): "Order on WhatsApp" → https://wa.me/8801865385348
+
+Footer (3 columns per Figma spec):
+Col 1 - Products: AI Assistant and Chat, AI Image and Design, AI Video, AI Voice and Music, AI Code and Dev, AI Workspace, Bundles, All Products
+Col 2 - Best AI For: Students, Freelancers, Content Creators, Business Owners, Job Seekers, Developers, Designers, Marketers, E-commerce
+Col 3 - Company: About, Contact, Pricing, Compare Tools
+Col 4 - Support: FAQ, How to Order, Refund Policy, Terms, WhatsApp, Community
+
+Payment badges: bKash, Nagad, Rocket, Bank, Binance
+Copyright: 2022-2026 AI Premium Shop, Dhaka, Bangladesh
+Social: Facebook, Instagram, LinkedIn
+
+Floating WhatsApp button: green circle, bottom-right, pulse animation, always visible
+Mobile sticky bottom bar: "From BDT 350/mo" + green "Order Now" button, shows after scrolling past hero
+
+=== END PART 2 ===

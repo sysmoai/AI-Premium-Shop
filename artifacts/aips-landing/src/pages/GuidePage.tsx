@@ -196,7 +196,7 @@ const GUIDES: Record<string, GuideConfig> = {
     tools: [
       { rank: 1, name: "GitHub Copilot — Individual", price: "BDT 600/mo", reason: "Unlimited code completions. Works in VS Code, JetBrains, Neovim. Industry standard.", badge: "Industry Standard", color: "#6e40c9" },
       { rank: 2, name: "Cursor — Pro Plan", price: "BDT 1,100/mo", reason: "AI-native editor with agent mode. Used by engineers at OpenAI, Stripe, and Figma.", badge: "AI-Native Editor", color: "#3b82f6" },
-      { rank: 3, name: "Windsurf — Pro Plan", price: "BDT 900/mo", reason: "Agentic coding that understands your entire codebase. Cheaper alternative to Cursor.", badge: "Agentic", color: "#0891b2" },
+      { rank: 3, name: "Tabnine — Pro Plan", price: "BDT 600/mo", reason: "Private AI code completion — runs on your machine with no code leaving your environment. Secure option.", badge: "Private AI", color: "#0891b2" },
       { rank: 4, name: "Claude Pro — Private Account", price: "BDT 750/mo", reason: "#1 ranked AI for reasoning. Claude Code terminal for complex debugging and architecture decisions.", badge: "For Reasoning", color: "#d97706" },
     ],
     startHere: {

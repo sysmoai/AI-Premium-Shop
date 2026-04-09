@@ -99,7 +99,7 @@ const COMPARISONS: Record<string, CompConfig> = {
       { feature: "AIPS price", a: "BDT 600/mo", b: "BDT 1,100/mo" },
       { feature: "Works in", a: "VS Code, JetBrains, Neovim, Visual Studio", b: "Cursor editor (VS Code fork)" },
       { feature: "Agent mode", a: "Cloud agents (limited)", b: "Full autonomous agent mode" },
-      { feature: "AI models", a: "GPT-5.4, Claude 3.5, Gemini", b: "All frontier models" },
+      { feature: "AI models", a: "GPT-5.4, Claude Opus 4.6, Gemini", b: "All frontier models" },
       { feature: "Codebase indexing", a: "Partial", b: "Full codebase understanding" },
       { feature: "Chat with code", a: true, b: true },
       { feature: "Code completion", a: true, b: true },

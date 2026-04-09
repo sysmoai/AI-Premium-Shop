@@ -192,8 +192,39 @@ Template: Stats → Filtered product grid → Next tier link → CTA
 - `ComparisonPage.tsx` — Config-driven comparison page (3 comparisons share one component)
 - `BudgetPage.tsx` — Price-filtered product listing page
 
-### Known Phase 5 Work
-- Visual polish + launch prep
+### Phase 6 — Product Catalogue Rebuild & Content Accuracy (COMPLETE)
+
+**49 products total** across 7 categories. `products.json` is the single source of truth for ProductsPage and PricingPage.
+
+#### Product Category Counts (updated)
+| Category | Count |
+|----------|-------|
+| AI Assistant & Chat | 15 |
+| AI Image & Design | 7 |
+| AI Video | 3 |
+| AI Voice & Music | 6 |
+| AI Code & Dev Tools | 6 |
+| AI Workspace | 5 |
+| Bundles | 7 |
+
+#### Removed Brands (8)
+Canva Pro, Krea AI, Adobe Firefly, Windsurf, Bolt.new, Lovable, Pika, Grammarly Pro
+
+#### Added Products (26 new)
+Includes bundles, HeyGen, Udio, v0.dev, Replit, Tabnine, Gamma, Otter.ai, Writesonic, and expanded ChatGPT/Claude/Copilot/Midjourney tiers
+
+#### Content Updated
+- `CategoryPage.tsx`: All 6 categories updated — subtitles, descriptions, FAQs, metaDescriptions use only current products
+- `GuidePage.tsx` (developers): Windsurf → Tabnine Pro at BDT 600
+- `ComparisonPage.tsx`: "Claude 3.5" → "Claude Opus 4.6"
+- `Home.tsx`: PRODUCT_CATEGORIES counts match new totals
+
+#### Visual Upgrades
+- `HeroSection.tsx`: Animated dot-grid background (Framer Motion, scrolls upward at 4s/cycle, mask-faded at top & bottom)
+- All section cards already have hover lift via whileHover
+- All sections use whileInView scroll-triggered fade-ins
+
+### Known Future Work
 - SSR / SSG (currently client-side SPA)
 - Individual product pages with dedicated URLs
 - Search functionality

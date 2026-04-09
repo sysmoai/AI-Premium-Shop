@@ -38,14 +38,27 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
       className="relative min-h-screen flex flex-col items-center justify-center text-center pt-28 pb-20 px-4 overflow-hidden"
       style={{ background: "linear-gradient(160deg, #0a0e27 0%, #151b3d 50%, #0a0e27 100%)" }}
     >
+      {/* Animated dot grid */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        animate={{ backgroundPositionY: ["0px", "28px"] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          maskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.6) 85%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.6) 85%, transparent 100%)",
+        }}
+      />
+
       {/* Ambient glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full blur-3xl"
-          style={{ background: "radial-gradient(ellipse, rgba(244,185,66,0.06) 0%, transparent 70%)" }} />
+          style={{ background: "radial-gradient(ellipse, rgba(244,185,66,0.07) 0%, transparent 70%)" }} />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(236,72,153,0.07) 0%, transparent 70%)" }} />
+          style={{ background: "radial-gradient(circle, rgba(236,72,153,0.08) 0%, transparent 70%)" }} />
         <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 70%)" }} />
+          style={{ background: "radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%)" }} />
       </div>
 
       <div className="relative z-10 max-w-4xl w-full">

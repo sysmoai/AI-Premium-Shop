@@ -1,0 +1,184 @@
+=== PHASE 6: CRITICAL FIX — PRODUCT SYNC + PRICE CORRECTION + VISUAL UPGRADE ===
+
+CONTEXT:
+- The website looks great structurally, but the PRODUCT DATA is wrong
+- The site is showing products and prices that were NOT in our official /data/products.json
+- This prompt forces the site to use ONLY products from /data/products.json
+- It also adds visual upgrades to match the quality level of sites like replit.com
+
+THIS IS THE HIGHEST PRIORITY FIX. Do not skip any step.
+
+
+=== PART A: FORCE PRODUCT DATA FROM products.json ===
+
+The /products page, /pricing page, and ALL category pages must render
+products ONLY from /data/products.json. No hardcoded product data anywhere.
+
+STEP 1: Verify /data/products.json exists and has 49 products.
+Run this check: count the products array. It should have exactly 49 items.
+If it has fewer, the file was not properly created in Phase 1.
+If the file is missing or wrong, recreate it from the data I provided in Phase 1.
+
+STEP 2: Remove ALL hardcoded product data from components.
+Search the entire codebase for any hardcoded product arrays, price values,
+or product objects that are NOT imported from /data/products.json.
+Common places to check:
+- /pages/products.tsx or /app/products/page.tsx
+- /pages/pricing.tsx or /app/pricing/page.tsx
+- /pages/ai-assistant.tsx (and all category pages)
+- /components/ProductCard.tsx
+- /components/ProductGrid.tsx
+- Any file with hardcoded price values like 400, 700, 750, 550, 600, 900, 1100
+
+DELETE all hardcoded product arrays. Replace with:
+import productsData from '@/data/products.json';
+const products = productsData.products;
+
+STEP 3: Fix category pages to filter from products.json.
+Each category page must:
+- Import products from /data/products.json
+- Filter: products.filter(p => p.category === 'ai-assistant') (or the relevant category)
+- Sort by price ascending
+- Render using the product card component
+
+STEP 4: Fix /pricing page to render ALL 49 products from products.json.
+The pricing table must show every product, sorted by price.
+Columns: Product Name | Brand | Access Type | Price (BDT) | Delivery | Order CTA
+
+STEP 5: Fix /products page to render all 49 products grouped by category.
+
+STEP 6: Fix homepage Best Sellers to use correct products and prices:
+1. ChatGPT Plus Starter Shared — BDT 350 (badge: Best Seller)
+2. Google AI Pro — BDT 500 (badge: 83% Off)
+3. ChatGPT Business Starter Shared — BDT 699
+4. Midjourney Standard Shared — BDT 1,199 (badge: Popular)
+5. Claude Pro Premium Shared — BDT 1,495
+6. GitHub Copilot Pro — BDT 1,495
+
+STEP 7: Fix homepage Special Offers:
+- Google AI Pro: BDT 500/mo (official BDT 2,990) — 83% Off
+- Notion Business: BDT 800/mo (official BDT 2,990) — 73% Off
+
+STEP 8: Fix model names across the ENTIRE site:
+- Replace ALL "GPT-4o" with "GPT-5.4"
+- Replace ALL "GPT-4" with "GPT-5.4"
+- Replace ALL "Claude 3.5 Sonnet" with "Claude Opus 4.6"
+- Replace ALL "Claude 3 Opus" with "Claude Opus 4.6"
+- Replace ALL "Gemini 1.5 Pro" with "Gemini 3.1 Pro"
+- Do a global search-and-replace across all files
+
+STEP 9: Remove products NOT in products.json.
+These products should NOT appear anywhere on the site because they are
+not in our official catalog (we cannot sell what we don't have):
+- Canva Pro (remove)
+- Krea AI (remove)
+- Adobe Firefly (remove)
+- Windsurf (remove)
+- Bolt.new (remove)
+- Lovable (remove)
+- Pika (remove)
+- Grammarly Pro (remove)
+
+If removing these makes a category page empty or thin, that's OK.
+We only show products we can actually deliver.
+
+
+=== PART B: VISUAL UPGRADE — REPLIT.COM QUALITY ===
+
+The site structure is great. Now upgrade the visual quality to match
+modern SaaS sites like replit.com. Focus on these specific improvements:
+
+1. HERO SECTION UPGRADE:
+   - Add a subtle animated gradient background (navy-900 to purple-500 at 10% opacity)
+   - Add floating particle or grid dots animation behind the hero text (very subtle)
+   - Make the headline larger on desktop (48px minimum, ideally 56px)
+   - Add a subtle glow effect behind the rotating text ticker
+   - The CTA buttons should have a hover animation (slight scale + glow)
+
+2. CARD ANIMATIONS:
+   - Product cards: add hover lift effect (translateY -4px) with shadow increase
+   - Segment pain-point cards: add border glow animation on hover (gold-500 glow)
+   - Category cards: add subtle scale on hover (1.02)
+   - Use Framer Motion for all card entrance animations (stagger children)
+
+3. SECTION TRANSITIONS:
+   - Add fade-in-up animation as each section scrolls into view
+   - Use Framer Motion whileInView with threshold 0.2
+   - Stagger children elements within each section
+
+4. TRUST BADGES:
+   - Add a subtle count-up animation for the numbers (1,200+ counts up from 0)
+   - Add icon animations (pulse on the shield, etc.)
+
+5. COMPARISON TABLE UPGRADE:
+   - Add alternating row colors (navy-800 and navy-900)
+   - Highlight the "You Save" column in green
+   - Add a "savings" badge that pulses
+
+6. TESTIMONIAL CARDS:
+   - Add quotation mark icon (large, faded gold)
+   - Add a subtle card rotation on hover (1-2 degrees)
+
+7. FOOTER:
+   - Add a gradient divider line above the footer (gold-500 to purple-500)
+   - Add hover effects on footer links (gold-500 color on hover)
+
+8. PAGE TRANSITIONS:
+   - Add smooth page transitions when navigating between pages
+   - Use Framer Motion AnimatePresence for route changes
+
+9. LOADING STATE:
+   - Add a minimal loading spinner or skeleton for product grids
+   - Show a branded loading screen on initial page load
+
+10. SCROLL EFFECTS:
+    - Navbar: add background opacity change on scroll (transparent at top, solid on scroll)
+    - Back-to-top button: show after scrolling 500px, smooth scroll to top
+
+
+=== PART C: IMAGE PLACEHOLDERS ===
+
+Since we don't have product images yet, create visually appealing
+placeholder cards using the brand color of each product:
+
+- Each product card should show a gradient background using the product's brandColor
+- Show the first letter of the brand name as a large watermark (80px, 10% opacity)
+- Example: ChatGPT card = green gradient (#10a37f) with large "C" watermark
+- This looks professional even without real images
+
+For category cards on the homepage:
+- Use icon + gradient background per category
+- AI Assistant: brain icon + green gradient
+- AI Image: palette icon + purple gradient
+- AI Video: video icon + pink gradient
+- AI Voice: mic icon + orange gradient
+- AI Code: code icon + blue gradient
+- AI Workspace: layout icon + teal gradient
+- Bundles: package icon + gold gradient
+
+
+=== VERIFICATION ===
+
+After implementing, verify:
+[ ] /products shows exactly 49 products (not 31)
+[ ] /pricing table shows exactly 49 rows
+[ ] All prices match products.json exactly
+[ ] ChatGPT Plus Shared = BDT 350 (not 350 for shared, not 700 for personal)
+[ ] Claude Pro Shared = BDT 599 (NOT 400)
+[ ] Google AI Pro = BDT 500 (NOT 400)
+[ ] Notion Business = BDT 800 (NOT 550)
+[ ] GitHub Copilot = BDT 1,495 (NOT 600)
+[ ] Cursor Pro = BDT 2,990 (NOT 1,100)
+[ ] No Canva, Krea, Adobe Firefly, Windsurf, Bolt, Lovable, Pika, or Grammarly products
+[ ] All model names updated: GPT-5.4, Opus 4.6, Gemini 3.1 Pro
+[ ] Hero has animated gradient background
+[ ] Cards have hover animations
+[ ] Sections fade in on scroll
+[ ] Product cards show brand-colored gradients
+[ ] Page transitions are smooth
+[ ] Navbar changes opacity on scroll
+
+List the total product count on /products and /pricing after fixing.
+It must be exactly 49.
+
+=== END PHASE 6 ===

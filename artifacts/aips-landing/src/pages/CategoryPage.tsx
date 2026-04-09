@@ -32,8 +32,8 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     accent: "#10a37f",
     faqs: [
       { q: "What's the difference between Shared and Personal accounts?", a: "Shared accounts are cost-effective: you access the same plan as other users (no chat history sharing). Personal accounts are yours alone — full privacy, custom settings, and no usage limits from others." },
-      { q: "Which AI assistant is best for students in Bangladesh?", a: "ChatGPT Plus Shared (BDT 350) is the best starter. For more demanding work, Claude Pro Shared (BDT 400) offers the best writing and analysis at an affordable price." },
-      { q: "Can I switch models after ordering?", a: "Yes — you get access to all models within your plan. ChatGPT Plus includes GPT-4o, GPT-4, and DALL-E. Claude Pro includes all Claude models." },
+      { q: "Which AI assistant is best for students in Bangladesh?", a: "ChatGPT Plus Shared (BDT 350) is the best starter. For more demanding work, Claude Pro Shared (BDT 599) offers the best writing and analysis — ranked #1 on Chatbot Arena." },
+      { q: "Can I switch models after ordering?", a: "Yes — you get access to all models within your plan. ChatGPT Plus includes GPT-5.4, image generation, web search, and AI agents. Claude Pro includes all Claude models including Opus 4.6." },
       { q: "How fast is delivery?", a: "Most AI assistant accounts are delivered within 5–30 minutes of payment confirmation, even at midnight." },
     ],
     related: [
@@ -51,16 +51,16 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-image": {
     id: "ai-image",
     displayName: "AI Image & Design",
-    subtitle: "Midjourney, Ideogram, Adobe Firefly, Canva Pro",
+    subtitle: "Midjourney, Ideogram, Leonardo AI — text-to-image",
     description:
-      "Create stunning visuals with AI. Generate images from text, edit photos, and design graphics. Midjourney for artistic quality, Ideogram for perfect text rendering, Adobe Firefly for Photoshop integration, and Canva Pro for complete design workflows. All available in Bangladesh via bKash.",
+      "Create stunning visuals with AI. Generate images from text prompts, design logos, and produce photorealistic graphics. Midjourney for artistic quality, Ideogram for perfect text rendering, Leonardo AI for 3D and motion. All available in Bangladesh via bKash — no international card needed.",
     metaDescription:
-      "Buy Midjourney, Ideogram, Adobe Firefly, Canva Pro in Bangladesh. Starting BDT 450. Pay with bKash. 30-day warranty.",
+      "Buy Midjourney, Ideogram, Leonardo AI in Bangladesh. AI image generation from BDT 450. Pay with bKash. 30-day warranty.",
     accent: "#8b5cf6",
     faqs: [
       { q: "Which AI image tool is best for logo design?", a: "Ideogram is the best for logos and text-heavy designs — it renders text perfectly inside images. For artistic or photorealistic images, Midjourney Standard Plan is the top choice." },
-      { q: "Can I use these images commercially?", a: "Adobe Firefly is trained on licensed content and is 100% commercially safe. Midjourney Standard+ includes stealth mode. Always review each platform's commercial terms." },
-      { q: "Is Canva Pro different from Canva with AI?", a: "Canva Pro includes Magic Write (AI writing), Magic Design, background remover, and 100M+ premium assets. The free plan has limited AI features. Canva Pro unlocks everything." },
+      { q: "Can I use these images commercially?", a: "Midjourney Standard+ plans include stealth mode and commercial licensing rights. Ideogram Pro images can be used commercially. Leonardo AI Apprentice also includes commercial use. Always review each platform's full licensing terms." },
+      { q: "What makes Ideogram different from Midjourney?", a: "Ideogram excels at rendering text accurately inside images — perfect for logos, posters, and typography. Midjourney creates more artistic, painterly images. Leonardo AI specializes in 3D textures and motion effects. They serve different creative needs." },
       { q: "How many images can I generate per month?", a: "Midjourney Basic: 200 fast images. Standard: 15hr fast GPU (roughly 900+ images) + unlimited relaxed. Ideogram Basic: 400 priority + unlimited slower generation." },
     ],
     related: [
@@ -77,17 +77,17 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-video": {
     id: "ai-video",
     displayName: "AI Video",
-    subtitle: "Runway, Pika — text-to-video & image-to-video",
+    subtitle: "Runway, HeyGen — text-to-video & AI avatars",
     description:
-      "Generate and edit videos with AI. Text-to-video, image-to-video, 4K upscaling, and motion effects. Runway ML is the leading platform used by filmmakers worldwide. Pika 2.2 creates stunning short-form content for social media — all accessible in Bangladesh with bKash payment.",
+      "Generate and edit videos with AI. Text-to-video, image-to-video, 4K upscaling, and AI avatar creation. Runway Gen-4 is the leading platform used by filmmakers worldwide. HeyGen creates professional talking-head videos with AI avatars in 15+ languages — all accessible in Bangladesh with bKash payment.",
     metaDescription:
-      "Buy Runway ML, Pika in Bangladesh. AI video generation from BDT 900. Pay with bKash or Nagad. 30-day warranty.",
+      "Buy Runway, HeyGen in Bangladesh. AI video generation from BDT 1,495. Pay with bKash or Nagad. 30-day warranty.",
     accent: "#ec4899",
     faqs: [
-      { q: "What can I make with Runway?", a: "Runway Gen-2 creates video from text prompts or reference images, applies motion effects, removes backgrounds from video, and provides advanced editing tools used by professional video editors." },
-      { q: "How long are the videos generated?", a: "Runway Standard generates up to 4-second clips per generation. Pika Pro generates 3–5 second clips. You can chain multiple clips for longer videos." },
+      { q: "What can I make with Runway?", a: "Runway Gen-4 creates video from text prompts or reference images, applies motion effects, removes backgrounds from video, and provides advanced editing tools used by professional filmmakers and video editors." },
+      { q: "What is HeyGen and who is it for?", a: "HeyGen creates AI avatar videos — professional talking-head videos where a digital avatar speaks your script in 15+ languages. Perfect for YouTube, product demos, and multilingual content without recording yourself." },
       { q: "Is AI video good enough for client work?", a: "For social media, concept visualization, and mood boards — yes. For broadcast commercial work, AI video is a complement to traditional production, not a replacement." },
-      { q: "How fast is delivery?", a: "Runway and Pika accounts are delivered within 30–60 minutes after payment confirmation." },
+      { q: "How fast is delivery?", a: "Runway and HeyGen accounts are delivered within 30–60 minutes after payment confirmation." },
     ],
     related: [
       { label: "AI Image & Design", href: "/ai-image" },
@@ -127,15 +127,15 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-code": {
     id: "ai-code",
     displayName: "AI Code & Dev Tools",
-    subtitle: "GitHub Copilot, Cursor, Windsurf, Lovable, Bolt",
+    subtitle: "GitHub Copilot, Cursor, Tabnine, v0.dev, Replit",
     description:
-      "Code faster with AI pair programming. GitHub Copilot integrates directly into your IDE. Cursor is the AI-native editor trusted by teams at OpenAI, Stripe, and Figma. Windsurf's agentic approach understands your entire codebase. Lovable and Bolt build full-stack apps from plain English descriptions.",
+      "Code faster with AI pair programming. GitHub Copilot integrates directly into your IDE. Cursor is the AI-native editor trusted by teams at OpenAI, Stripe, and Figma. Tabnine runs privately on your machine. v0.dev generates complete React UIs from text. Replit's agent builds full-stack apps — all available in Bangladesh via bKash.",
     metaDescription:
-      "Buy GitHub Copilot, Cursor, Windsurf in Bangladesh. AI coding tools from BDT 600. Pay with bKash. 30-day warranty.",
+      "Buy GitHub Copilot, Cursor, Tabnine in Bangladesh. AI coding tools from BDT 600. Pay with bKash. 30-day warranty.",
     accent: "#06b6d4",
     faqs: [
       { q: "GitHub Copilot vs Cursor — which is better?", a: "GitHub Copilot integrates into your existing IDE (VS Code, JetBrains, Vim). Cursor is a standalone AI-first IDE built on VS Code. Cursor is more powerful for AI-driven development; Copilot is more convenient if you already use a specific IDE." },
-      { q: "Can beginners use these tools?", a: "Yes — Lovable and Bolt are specifically built for non-developers. You describe what you want in English and the AI builds the full app. GitHub Copilot and Cursor are best for developers who already code." },
+      { q: "Can beginners use these tools?", a: "Yes — Replit's agent and v0.dev are built for non-developers. You describe what you want in English and the AI builds the full app or UI. GitHub Copilot and Cursor are best for developers who already code." },
       { q: "Does Cursor work with any programming language?", a: "Cursor supports all major languages: Python, JavaScript, TypeScript, Go, Rust, Java, C++, and more. It indexes your entire codebase for context-aware completions." },
       { q: "How fast is delivery?", a: "All AI code tools are delivered within 30–60 minutes of payment. Some like GitHub Copilot require a few steps to activate on your account." },
     ],
@@ -152,17 +152,17 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-workspace": {
     id: "ai-workspace",
     displayName: "AI Workspace",
-    subtitle: "Notion AI, Grammarly — productivity & writing",
+    subtitle: "Notion AI, Gamma, Otter.ai, Writesonic — productivity",
     description:
-      "AI-powered productivity and collaboration for teams and individuals. Notion Plus includes AI writing, summarization, and database features in one workspace. Grammarly Pro delivers advanced grammar correction, tone suggestions, and GrammarlyGO generative writing across every platform you use — in Bangladesh via bKash.",
+      "AI-powered productivity and collaboration for teams and individuals. Notion includes AI writing, summarization, and database features. Gamma generates pitch decks from one line of text. Otter.ai transcribes meetings automatically. Writesonic handles SEO content and blog posts — all available in Bangladesh via bKash.",
     metaDescription:
-      "Buy Notion AI, Grammarly Pro in Bangladesh. AI workspace tools from BDT 550. Pay with bKash. 30-day warranty.",
+      "Buy Notion AI, Gamma, Otter.ai, Writesonic in Bangladesh. AI workspace tools from BDT 500. Pay with bKash. 30-day warranty.",
     accent: "#f4b942",
     faqs: [
       { q: "What does Notion AI add over regular Notion?", a: "Notion AI can write pages from prompts, summarize long documents, translate content, fill databases automatically, and answer questions about your workspace. It's integrated directly into your workflow." },
-      { q: "Does Grammarly work in Bengali?", a: "Grammarly is optimized for English. It works in the browser, Google Docs, Microsoft Office, and most writing apps. For English content — emails, reports, social posts — Grammarly Pro is excellent." },
-      { q: "Can I share a Notion workspace with my team?", a: "Notion Plus supports up to 10 guests on personal plans. We set up the account for you so you can invite collaborators immediately." },
-      { q: "How fast is delivery?", a: "Notion and Grammarly accounts are delivered within 30–60 minutes after payment confirmation." },
+      { q: "What is Gamma and how is it different from Notion?", a: "Gamma generates beautifully designed presentations, docs, and websites from a single text prompt. Notion is for organizing notes, projects, and databases. They complement each other well — Gamma for presentations, Notion for ongoing work management." },
+      { q: "Can Otter.ai transcribe Bangla meetings?", a: "Otter.ai is currently optimized for English. It works best for English-language meetings on Zoom, Google Meet, and Teams. For bilingual teams that use English professionally, it significantly reduces meeting follow-up time." },
+      { q: "How fast is delivery?", a: "Notion, Gamma, and Otter.ai accounts are delivered within 30–60 minutes after payment confirmation. Writesonic is usually within 30 minutes." },
     ],
     related: [
       { label: "AI Assistant & Chat", href: "/ai-assistant" },

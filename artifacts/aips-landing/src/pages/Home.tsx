@@ -34,12 +34,12 @@ import { FinalCTASection } from "@/sections/FinalCTASection";
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
 const PRODUCT_CATEGORIES = [
-  { label: "AI Assistant & Chat", count: 11, Icon: MessageSquare, color: "#10a37f", href: "/ai-assistant" },
-  { label: "AI Image & Design", count: 8, Icon: Image, color: "#ec4899", href: "/ai-image" },
-  { label: "AI Video", count: 2, Icon: Video, color: "#8b5cf6", href: "/ai-video" },
-  { label: "AI Voice & Music", count: 3, Icon: Music, color: "#f97316", href: "/ai-voice-music" },
-  { label: "AI Code & Dev Tools", count: 5, Icon: Code2, color: "#06b6d4", href: "/ai-code" },
-  { label: "AI Workspace", count: 2, Icon: Layout, color: "#f4b942", href: "/ai-workspace" },
+  { label: "AI Assistant & Chat", count: 15, Icon: MessageSquare, color: "#10a37f", href: "/ai-assistant" },
+  { label: "AI Image & Design", count: 7, Icon: Image, color: "#ec4899", href: "/ai-image" },
+  { label: "AI Video", count: 3, Icon: Video, color: "#8b5cf6", href: "/ai-video" },
+  { label: "AI Voice & Music", count: 6, Icon: Music, color: "#f97316", href: "/ai-voice-music" },
+  { label: "AI Code & Dev Tools", count: 6, Icon: Code2, color: "#06b6d4", href: "/ai-code" },
+  { label: "AI Workspace", count: 5, Icon: Layout, color: "#f4b942", href: "/ai-workspace" },
 ];
 
 const SECONDARY_NAV = [

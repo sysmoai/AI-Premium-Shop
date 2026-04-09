@@ -1,9 +1,52 @@
 {
   "name": "AI Premium Shop",
   "shortName": "AIPS",
+  "tagline": "Premium AI Tools in Bangladesh — From BDT 350/month",
+  "positioning": "Don't just buy AI tools — learn to use them for YOUR work with 1:1 live support.",
   "domain": "aipremiumshop.com",
-  "tagline": "Premium AI Subscriptions at Your Fingertips",
-  "description": "Bangladesh's #1 source for premium AI tool subscriptions — ChatGPT, Claude, Midjourney, and more.",
-  "whatsapp": "https://wa.me/8801865385348",
-  "products": []
+  "url": "https://aipremiumshop.com",
+  "owner": "Emon Hossain",
+  "foundedYear": 2022,
+  "customersServed": "1,200+",
+  "market": "Bangladesh",
+  "currency": "BDT",
+  "currencySymbol": "৳",
+  "deliveryHours": "10 AM - Midnight BST",
+  "avgResponseTime": "<5 minutes",
+  "contact": {
+    "whatsapp": "+8801865385348",
+    "whatsappLink": "https://wa.me/8801865385348",
+    "whatsappCommunity": "https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc",
+    "whatsappChannel": "https://whatsapp.com/channel/0029VatCUtC72WTpSObAQF3O",
+    "facebook": "https://www.facebook.com/aipremiumshopbd",
+    "messenger": "https://m.me/aipremiumshopbd",
+    "instagram": "https://www.instagram.com/aipremiumshop/",
+    "linkedin": "https://www.linkedin.com/showcase/aipremiumshop/",
+    "email": "support@aipremiumshop.com",
+    "bkashPaymentLink": "https://shop.bkash.com/page-power-tools01714672094/paymentlink"
+  },
+  "theme": {
+    "bgPrimary": "#0a0e27",
+    "bgSecondary": "#151b3d",
+    "gold": "#f4b942",
+    "success": "#10b981",
+    "purple": "#8b5cf6",
+    "textPrimary": "#FFFFFF",
+    "textSecondary": "#c9ceda",
+    "whatsappGreen": "#25d366",
+    "cardBorder": "rgba(244, 185, 66, 0.2)"
+  },
+  "trustBadges": [
+    {"text": "1,200+ Customers", "icon": "users"},
+    {"text": "Since 2022", "icon": "calendar"},
+    {"text": "30-Day Warranty", "icon": "shield"},
+    {"text": "5-Min Response", "icon": "message-circle"}
+  ],
+  "paymentMethods": [
+    {"name": "bKash", "color": "#e2136e"},
+    {"name": "Nagad", "color": "#f6921e"},
+    {"name": "Rocket", "color": "#8b2f97"},
+    {"name": "Bank Transfer", "color": "#1a5276"},
+    {"name": "Binance", "color": "#f0b90b"}
+  ]
 }

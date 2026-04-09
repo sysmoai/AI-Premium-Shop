@@ -1,28 +1,29 @@
 import { useEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Link } from "wouter";
-import { 
-  SiOpenai, 
-  SiAnthropic, 
-  SiGooglegemini, 
-  SiGithubcopilot, 
-  SiNotion 
+import { motion, AnimatePresence, type Variants } from "framer-motion";
+import {
+  SiOpenai,
+  SiAnthropic,
+  SiGithubcopilot,
+  SiNotion,
+  SiGoogle,
+  SiGithub,
 } from "react-icons/si";
-import { 
-  MessageSquare, 
-  Sparkles, 
-  Zap, 
-  ShieldCheck, 
-  Clock, 
+import {
+  Users,
+  Calendar,
+  Shield,
+  MessageCircle,
+  Zap,
   CheckCircle2,
-  ChevronRight,
+  ArrowRight,
+  Star,
   Menu,
-  X
+  X,
+  ChevronRight,
 } from "lucide-react";
-import { HeroSection } from "@/components/HeroSection";
-import { TrustBadges } from "@/components/TrustBadges";
-import { PaymentBadges } from "@/components/PaymentBadges";
+import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
 import { FAQSection } from "@/components/FAQSection";
+import { PaymentBadges } from "@/components/PaymentBadges";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
@@ -30,472 +31,750 @@ const AI_TOOLS = [
   {
     id: "chatgpt",
     name: "ChatGPT Plus",
-    description: "Access GPT-4, DALL·E 3, and advanced data analysis.",
-    price: "৳2,499",
+    tagline: "GPT-4o · Shared",
+    price: 350,
     icon: SiOpenai,
     color: "#10a37f",
-    popular: true,
+    badge: "Best Seller",
+  },
+  {
+    id: "chatgpt-private",
+    name: "ChatGPT Plus",
+    tagline: "GPT-4o · Private",
+    price: 700,
+    icon: SiOpenai,
+    color: "#10a37f",
+    badge: "Most Popular",
   },
   {
     id: "claude",
     name: "Claude Pro",
-    description: "Anthropic's most capable model with 100K context window.",
-    price: "৳2,499",
+    tagline: "Sonnet 3.5 · Shared",
+    price: 400,
     icon: SiAnthropic,
     color: "#d97706",
+    badge: "Top Rated",
   },
   {
-    id: "midjourney",
-    name: "Midjourney",
-    description: "Create stunning AI art with the standard or pro plan.",
-    price: "৳1,499",
-    icon: Sparkles,
-    color: "#8b5cf6",
-  },
-  {
-    id: "perplexity",
-    name: "Perplexity Pro",
-    description: "The ultimate AI search engine with Copilot.",
-    price: "৳1,999",
-    icon: Zap,
-    color: "#20b2aa",
+    id: "claude-private",
+    name: "Claude Pro",
+    tagline: "Sonnet 3.5 · Private",
+    price: 750,
+    icon: SiAnthropic,
+    color: "#d97706",
+    badge: null,
   },
   {
     id: "gemini",
     name: "Gemini Advanced",
-    description: "Google's most capable AI model for complex tasks.",
-    price: "৳2,199",
-    icon: SiGooglegemini,
+    tagline: "1.5 Pro · Private",
+    price: 750,
+    icon: SiGoogle,
     color: "#4285f4",
+    badge: null,
   },
   {
     id: "copilot",
     name: "GitHub Copilot",
-    description: "Your AI pair programmer. Code faster and better.",
-    price: "৳1,299",
+    tagline: "Individual · Private",
+    price: 600,
     icon: SiGithubcopilot,
-    color: "#e2e8f0",
+    color: "#6e40c9",
+    badge: "For Devs",
   },
   {
     id: "notion",
     name: "Notion AI",
-    description: "Write better, think bigger directly in your workspace.",
-    price: "৳999",
+    tagline: "Plus Plan · Private",
+    price: 550,
     icon: SiNotion,
     color: "#ffffff",
-  }
+    badge: null,
+  },
+  {
+    id: "cursor",
+    name: "Cursor Pro",
+    tagline: "AI Code Editor",
+    price: 1100,
+    icon: SiGithub,
+    color: "#3b82f6",
+    badge: "Hot",
+  },
 ];
 
-const WORK_STEPS = [
+const STEPS = [
   {
-    title: "Choose Your Plan",
-    description: "Select the AI tool and subscription plan that fits your needs.",
+    number: "01",
+    title: "Browse & Choose",
+    description: "Browse our full catalog of premium AI tools. Pick the plan that fits your budget and workflow.",
+    icon: Star,
+  },
+  {
+    number: "02",
+    title: "Message on WhatsApp",
+    description: "Contact us directly on WhatsApp. We respond in under 5 minutes during service hours.",
+    icon: MessageCircle,
+  },
+  {
+    number: "03",
+    title: "Pay Locally",
+    description: "Pay securely via bKash, Nagad, Rocket, or Bank Transfer. No international card needed.",
     icon: CheckCircle2,
   },
   {
-    title: "Contact via WhatsApp",
-    description: "Message us directly to confirm availability and get payment details.",
-    icon: MessageSquare,
+    number: "04",
+    title: "Instant Delivery",
+    description: "Receive your account credentials within 1 hour. We support you through setup.",
+    icon: Zap,
+  },
+];
+
+const TRUST_ITEMS = [
+  { icon: Users, value: "1,200+", label: "Customers Served" },
+  { icon: Calendar, value: "Since 2022", label: "Trusted & Established" },
+  { icon: Shield, value: "30 Days", label: "Replacement Warranty" },
+  { icon: MessageCircle, value: "<5 Min", label: "Response Time" },
+];
+
+const WHY_US = [
+  {
+    title: "No International Card Needed",
+    description: "Pay in BDT with bKash, Nagad, or Rocket. No Visa or Mastercard required.",
   },
   {
-    title: "Get Instant Delivery",
-    description: "Make the payment via bKash/Nagad/Rocket and receive your account within 1 hour.",
-    icon: Zap,
-  }
+    title: "1:1 Live Setup Support",
+    description: "We don't just send credentials. We help you get started and make the most of your tools.",
+  },
+  {
+    title: "Lowest Prices in Bangladesh",
+    description: "Premium accounts starting from ৳350/month — a fraction of the official USD price.",
+  },
+  {
+    title: "30-Day Replacement Warranty",
+    description: "If your account has any issues during the subscription period, we replace it immediately.",
+  },
+  {
+    title: "Fast, Reliable Delivery",
+    description: "Most orders delivered within 30 minutes. Service available 10 AM to Midnight BST.",
+  },
+  {
+    title: "Verified & Trusted Since 2022",
+    description: "Over 1,200 satisfied customers across Bangladesh with a 4.9-star track record.",
+  },
 ];
 
 const FAQS = [
   {
-    question: "How long does it take to get the account?",
-    answer: "Delivery is usually instant, but guaranteed within 1 hour after payment confirmation."
+    question: "How long does delivery take?",
+    answer: "Most accounts are delivered within 5–30 minutes after payment confirmation. In rare cases, delivery can take up to 1 hour. We are available 10 AM to Midnight BST.",
   },
   {
-    question: "Is this a shared or private account?",
-    answer: "We offer both shared (budget-friendly) and private accounts. You can choose based on your preference."
+    question: "Are these shared or private accounts?",
+    answer: "We offer both. Shared accounts are budget-friendly and work great for most users. Private accounts give you full solo access with no limitations. Product listings clearly indicate the type.",
   },
   {
     question: "What payment methods do you accept?",
-    answer: "We accept bKash, Nagad, Rocket, and direct Bank Transfer."
+    answer: "We accept bKash, Nagad, Rocket, and Bank Transfer. No international card or PayPal required.",
   },
   {
-    question: "What if my account stops working?",
-    answer: "We provide full warranty for the duration of your subscription. If any issues occur, we will replace or fix the account immediately."
+    question: "What happens if my account stops working?",
+    answer: "We provide a 30-day replacement warranty on all products. If there is any issue with your account during the subscription period, we will replace it at no extra cost.",
   },
   {
-    question: "Can I renew the same account next month?",
-    answer: "Yes! You can renew the same account by paying before your subscription expires."
-  }
+    question: "Can I renew the same account?",
+    answer: "Yes. Simply message us on WhatsApp before your subscription expires and we will arrange renewal. Many of our customers have been renewing with us since 2022.",
+  },
+  {
+    question: "Is this legal and safe?",
+    answer: "Yes. We purchase official subscriptions and resell access in compliance with platform terms. Your device and data are not at risk. We have served 1,200+ customers safely since 2022.",
+  },
 ];
 
+const containerVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0, 0, 0.2, 1] } },
+};
+
 export default function Home() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-foreground font-sans selection:bg-teal-500/30">
-      {/* Navigation */}
-      <header 
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b ${
-          isScrolled ? "bg-[#0a0a0a]/80 backdrop-blur-md border-white/10 py-3" : "bg-transparent border-transparent py-5"
-        }`}
-      >
-        <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-teal-gradient flex items-center justify-center glow-teal transition-transform group-hover:scale-105">
-              <Zap className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold tracking-tight text-white">AIPS</span>
-          </Link>
+    <div className="min-h-screen bg-navy-900 text-white" style={{ backgroundColor: "#0a0e27" }}>
 
-          {/* Desktop Nav */}
+      {/* ── NAVBAR ── */}
+      <header
+        data-testid="navbar"
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+          scrolled ? "navbar-bg border-b border-white/10 py-3" : "bg-transparent py-5"
+        }`}
+        style={{ height: scrolled ? undefined : 80 }}
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-full">
+          <a href="/" aria-label="AI Premium Shop Home">
+            <PrimaryBrandLogo size="medium" layout="horizontal" />
+          </a>
+
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#tools" className="text-sm font-medium text-slate-300 hover:text-teal-400 transition-colors">Tools</a>
-            <a href="#how-it-works" className="text-sm font-medium text-slate-300 hover:text-teal-400 transition-colors">How it Works</a>
-            <a href="#why-us" className="text-sm font-medium text-slate-300 hover:text-teal-400 transition-colors">Why Us</a>
-            <a href="#faq" className="text-sm font-medium text-slate-300 hover:text-teal-400 transition-colors">FAQ</a>
+            {["Tools", "How It Works", "Why Us", "FAQ"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                className="text-sm font-medium transition-colors"
+                style={{ color: "#c9ceda" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#f4b942")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#c9ceda")}
+              >
+                {item}
+              </a>
+            ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-4">
-            <a 
+          <div className="hidden md:flex items-center gap-3">
+            <a
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-teal-600 hover:bg-teal-500 text-white font-semibold transition-all glow-teal hover:-translate-y-0.5"
+              data-testid="navbar-cta"
+              className="btn-cta px-5 py-2.5 rounded-xl text-sm flex items-center gap-2"
             >
-              <MessageSquare className="w-4 h-4" />
-              <span>Contact Us</span>
+              <MessageCircle className="w-4 h-4" />
+              Order on WhatsApp
             </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button 
-            className="md:hidden text-slate-300 hover:text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          <button
+            className="md:hidden text-white p-1"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Nav */}
-        {mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/10 py-4 px-4 flex flex-col gap-4 shadow-2xl"
-          >
-            <a href="#tools" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium text-slate-300 p-2 hover:bg-white/5 rounded-lg">Tools</a>
-            <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium text-slate-300 p-2 hover:bg-white/5 rounded-lg">How it Works</a>
-            <a href="#why-us" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium text-slate-300 p-2 hover:bg-white/5 rounded-lg">Why Us</a>
-            <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium text-slate-300 p-2 hover:bg-white/5 rounded-lg">FAQ</a>
-            <a 
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-teal-600 text-white font-semibold mt-2"
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              className="md:hidden absolute top-full left-0 right-0 border-b border-white/10 py-4 px-6 flex flex-col gap-4"
+              style={{ backgroundColor: "rgba(10, 14, 39, 0.97)" }}
             >
-              <MessageSquare className="w-4 h-4" />
-              <span>Contact via WhatsApp</span>
-            </a>
-          </motion.div>
-        )}
-      </header>
-
-      <main>
-        {/* Hero Section */}
-        <HeroSection 
-          title="The Future is Here. Get Premium AI Today."
-          subtitle="Bangladesh's most trusted source for ChatGPT Plus, Claude Pro, Midjourney, and more. Delivered within 1 hour, paid via bKash/Nagad."
-          badge="⚡ 10,000+ Happy Customers"
-          ctaPrimary={{ label: "View All Tools", href: "#tools" }}
-          ctaSecondary={{ label: "Contact via WhatsApp", href: WHATSAPP_LINK }}
-          className="pt-32 pb-20 md:pt-48 md:pb-32"
-        >
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mt-12 flex flex-col items-center gap-6"
-          >
-            <PaymentBadges label="Secure local payments" className="justify-center" />
-          </motion.div>
-        </HeroSection>
-
-        {/* Tools Showcase */}
-        <section id="tools" className="py-24 relative z-10">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="text-center mb-16">
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-3xl md:text-5xl font-bold mb-4"
-              >
-                Premium <span className="text-teal-gradient">AI Subscriptions</span>
-              </motion.h2>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-slate-400 max-w-2xl mx-auto text-lg"
-              >
-                Supercharge your workflow with the world's most powerful AI tools. Shared and private accounts available.
-              </motion.p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {AI_TOOLS.map((tool, index) => (
-                <motion.div
-                  key={tool.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  className="card-glass p-6 rounded-2xl border border-white/5 relative overflow-hidden group hover:border-white/15 transition-all duration-300"
+              {["Tools", "How It Works", "Why Us", "FAQ"].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-base font-medium py-2"
+                  style={{ color: "#c9ceda" }}
                 >
-                  <div 
-                    className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
-                    style={{ background: tool.color }}
-                  />
-                  
-                  {tool.popular && (
-                    <div className="absolute top-4 right-4 bg-teal-500/20 text-teal-400 border border-teal-500/30 text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
-                      Most Popular
-                    </div>
-                  )}
-
-                  <div className="flex items-start gap-4 mb-4">
-                    <div 
-                      className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#1a1a2e] border border-white/10 shadow-lg"
-                    >
-                      <tool.icon className="w-6 h-6" style={{ color: tool.color }} />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white">{tool.name}</h3>
-                      <div className="text-sm font-semibold text-teal-400 mt-1">From {tool.price}/mo</div>
-                    </div>
-                  </div>
-                  
-                  <p className="text-slate-400 text-sm mb-6 h-10">
-                    {tool.description}
-                  </p>
-                  
-                  <a
-                    href={WHATSAPP_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium transition-colors"
-                  >
-                    <span>Buy via WhatsApp</span>
-                    <ChevronRight className="w-4 h-4 opacity-50 group-hover:translate-x-1 group-hover:opacity-100 transition-all" />
-                  </a>
-                </motion.div>
+                  {item}
+                </a>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section id="how-it-works" className="py-24 bg-[#0a0a0a] relative border-y border-white/5">
-          <div className="absolute inset-0 bg-aips-gradient opacity-30 pointer-events-none" />
-          <div className="container mx-auto px-4 md:px-6 relative z-10">
-            <div className="text-center mb-16">
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-3xl md:text-5xl font-bold mb-4"
-              >
-                How It Works
-              </motion.h2>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-slate-400 max-w-2xl mx-auto text-lg"
-              >
-                Get your premium AI subscription running in just three simple steps. No credit card required.
-              </motion.p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto relative">
-              {/* Connector line for desktop */}
-              <div className="hidden md:block absolute top-8 left-1/6 right-1/6 h-[2px] bg-gradient-to-r from-transparent via-teal-500/30 to-transparent z-0" />
-              
-              {WORK_STEPS.map((step, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.15 }}
-                  className="relative z-10 flex flex-col items-center text-center group"
-                >
-                  <div className="w-16 h-16 rounded-full bg-[#1a1a2e] border-2 border-white/10 flex items-center justify-center mb-6 group-hover:border-teal-500/50 group-hover:glow-teal transition-all duration-500 relative">
-                    <step.icon className="w-7 h-7 text-teal-400" />
-                    <div className="absolute -bottom-2 -right-2 w-6 h-6 rounded-full bg-teal-500 text-[#0a0a0a] text-xs font-bold flex items-center justify-center shadow-lg">
-                      {index + 1}
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-                  <p className="text-slate-400">{step.description}</p>
-                </motion.div>
-              ))}
-            </div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="mt-16 flex justify-center"
-            >
-              <a 
+              <a
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-lg transition-all glow-purple hover:-translate-y-1"
+                className="btn-cta px-5 py-3 rounded-xl text-sm text-center mt-2"
               >
-                <MessageSquare className="w-5 h-5" />
-                <span>Start Now via WhatsApp</span>
+                Order on WhatsApp
+              </a>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+
+      <main>
+        {/* ── HERO ── */}
+        <section
+          className="relative min-h-screen flex flex-col items-center justify-center text-center pt-24 pb-20 px-4 overflow-hidden"
+        >
+          {/* Background gradients */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full blur-3xl"
+              style={{ background: "radial-gradient(ellipse, rgba(244,185,66,0.08) 0%, transparent 70%)" }}
+            />
+            <div
+              className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl"
+              style={{ background: "radial-gradient(circle, rgba(236,72,153,0.07) 0%, transparent 70%)" }}
+            />
+            <div
+              className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full blur-3xl"
+              style={{ background: "radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%)" }}
+            />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10 max-w-4xl"
+          >
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8 text-sm font-medium"
+              style={{ borderColor: "rgba(244,185,66,0.35)", color: "#f4b942", backgroundColor: "rgba(244,185,66,0.08)" }}
+            >
+              <Star className="w-3.5 h-3.5 fill-current" />
+              Trusted by 1,200+ customers since 2022
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              className="text-4xl md:text-6xl lg:text-7xl font-semibold text-white leading-tight mb-6"
+            >
+              Premium AI Tools
+              <br />
+              <span className="text-cta-gradient">Starting at ৳350/month</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.22 }}
+              className="text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+              style={{ color: "#c9ceda" }}
+            >
+              ChatGPT Plus, Claude Pro, Midjourney, and 30+ more — delivered in Bangladesh
+              within 1 hour, paid via bKash or Nagad.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-14"
+            >
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="hero-cta-primary"
+                className="btn-cta glow-cta px-8 py-4 rounded-xl text-base flex items-center gap-2"
+              >
+                <MessageCircle className="w-5 h-5" />
+                Order on WhatsApp
+              </a>
+              <a
+                href="#tools"
+                data-testid="hero-cta-secondary"
+                className="btn-ghost-cta px-8 py-4 rounded-xl text-base flex items-center gap-2"
+              >
+                Browse All Tools
+                <ChevronRight className="w-4 h-4" />
+              </a>
+            </motion.div>
+
+            {/* Payment badges */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex justify-center"
+            >
+              <PaymentBadges label="Pay with" className="justify-center" />
+            </motion.div>
+          </motion.div>
+
+          {/* Trust bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="relative z-10 mt-16 w-full max-w-4xl mx-auto"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {TRUST_ITEMS.map((item) => (
+                <div
+                  key={item.label}
+                  className="card-glass rounded-xl py-4 px-5 text-center"
+                >
+                  <item.icon className="w-5 h-5 mx-auto mb-2 text-gold" style={{ color: "#f4b942" }} />
+                  <div className="text-lg font-semibold text-white">{item.value}</div>
+                  <div className="text-xs mt-0.5" style={{ color: "#c9ceda" }}>{item.label}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </section>
+
+        {/* ── TOOLS SHOWCASE ── */}
+        <section id="tools" className="py-24 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="text-sm font-semibold uppercase tracking-widest mb-3"
+                style={{ color: "#f4b942" }}
+              >
+                Our Catalog
+              </motion.p>
+              <motion.h2
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-3xl md:text-5xl font-semibold text-white mb-4"
+              >
+                Premium AI Subscriptions
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-lg max-w-xl mx-auto"
+                style={{ color: "#c9ceda" }}
+              >
+                All tools delivered in BDT. No international card. No hassle.
+              </motion.p>
+            </div>
+
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+            >
+              {AI_TOOLS.map((tool) => (
+                <motion.div
+                  key={tool.id}
+                  variants={itemVariants}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="card-navy relative flex flex-col"
+                  data-testid={`card-tool-${tool.id}`}
+                  style={{ width: "100%", maxWidth: 320 }}
+                >
+                  {tool.badge && (
+                    <span
+                      className="absolute -top-3 left-4 text-xs font-semibold px-3 py-1 rounded-full"
+                      style={{ background: "linear-gradient(135deg, #ec4899, #f97316)", color: "#fff" }}
+                    >
+                      {tool.badge}
+                    </span>
+                  )}
+
+                  <div className="flex items-center gap-3 mb-4">
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center"
+                      style={{ backgroundColor: tool.color + "22", border: `1px solid ${tool.color}44` }}
+                    >
+                      <tool.icon style={{ color: tool.color, fontSize: 20 }} />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white text-base leading-tight">{tool.name}</div>
+                      <div className="text-xs" style={{ color: "#c9ceda" }}>{tool.tagline}</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-end justify-between mt-auto pt-4 border-t border-white/10">
+                    <div>
+                      <span className="text-2xl font-semibold text-white">৳{tool.price}</span>
+                      <span className="text-xs ml-1" style={{ color: "#c9ceda" }}>/month</span>
+                    </div>
+                    <a
+                      href={WHATSAPP_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-cta text-xs px-4 py-2 rounded-lg flex items-center gap-1"
+                    >
+                      Order
+                      <ArrowRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mt-12"
+            >
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ghost-cta px-8 py-3.5 rounded-xl text-sm inline-flex items-center gap-2"
+              >
+                See All 30+ Tools on WhatsApp
+                <ChevronRight className="w-4 h-4" />
               </a>
             </motion.div>
           </div>
         </section>
 
-        {/* Why Us / Trust Section */}
-        <section id="why-us" className="py-24 relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none" />
-          
-          <div className="container mx-auto px-4 md:px-6 relative z-10">
-            <div className="max-w-4xl mx-auto text-center mb-16">
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+        {/* ── HOW IT WORKS ── */}
+        <section
+          id="how-it-works"
+          className="py-24 px-4"
+          style={{ backgroundColor: "#151b3d" }}
+        >
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="text-3xl md:text-5xl font-bold mb-6"
+                className="text-sm font-semibold uppercase tracking-widest mb-3"
+                style={{ color: "#f4b942" }}
               >
-                Why Choose <span className="text-teal-gradient">AIPS?</span>
-              </motion.h2>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-slate-400 text-lg mb-10"
-              >
-                We've built a reputation for reliability, speed, and excellent customer support in Bangladesh.
+                Simple Process
               </motion.p>
-              
-              <TrustBadges className="scale-110 mb-12" />
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+              <motion.h2
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="card-glass p-8 rounded-2xl border border-white/5 flex gap-5"
+                className="text-3xl md:text-4xl font-semibold text-white"
               >
-                <div className="w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center shrink-0">
-                  <Clock className="w-6 h-6 text-teal-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Lightning Fast Delivery</h3>
-                  <p className="text-slate-400">No waiting around. 95% of our orders are delivered within 15-30 minutes after payment verification.</p>
-                </div>
-              </motion.div>
-              
-              <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="card-glass p-8 rounded-2xl border border-white/5 flex gap-5"
-              >
-                <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0">
-                  <ShieldCheck className="w-6 h-6 text-purple-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Full Warranty</h3>
-                  <p className="text-slate-400">If your account faces any issues during your subscription period, we replace or fix it completely free.</p>
-                </div>
-              </motion.div>
+                Get Started in 4 Steps
+              </motion.h2>
             </div>
-          </div>
-        </section>
 
-        {/* FAQ Section */}
-        <section id="faq" className="py-24 bg-[#0a0a0a] border-t border-white/5">
-          <FAQSection items={FAQS} className="!py-0" />
-        </section>
-      </main>
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
+              {STEPS.map((step) => (
+                <motion.div
+                  key={step.number}
+                  variants={itemVariants}
+                  className="flex flex-col items-center text-center"
+                >
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 glow-gold"
+                    style={{ backgroundColor: "rgba(244,185,66,0.1)", border: "1px solid rgba(244,185,66,0.3)" }}
+                  >
+                    <step.icon className="w-6 h-6" style={{ color: "#f4b942" }} />
+                  </div>
+                  <div className="text-xs font-bold mb-1" style={{ color: "#f4b942", letterSpacing: "0.1em" }}>
+                    {step.number}
+                  </div>
+                  <h3 className="text-base font-semibold text-white mb-2">{step.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{step.description}</p>
+                </motion.div>
+              ))}
+            </motion.div>
 
-      {/* Footer */}
-      <footer className="border-t border-white/10 bg-[#050505] pt-16 pb-8">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            <div className="md:col-span-2">
-              <Link href="/" className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-teal-gradient flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-2xl font-bold tracking-tight text-white">AIPS</span>
-              </Link>
-              <p className="text-slate-400 mb-6 max-w-sm">
-                Bangladesh's #1 source for premium AI tool subscriptions. Accessible, affordable, and delivered instantly.
-              </p>
-              <PaymentBadges label="Accepted" />
-            </div>
-            
-            <div>
-              <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
-              <ul className="space-y-3">
-                <li><a href="#tools" className="text-slate-400 hover:text-teal-400 transition-colors">AI Tools</a></li>
-                <li><a href="#how-it-works" className="text-slate-400 hover:text-teal-400 transition-colors">How it Works</a></li>
-                <li><a href="#why-us" className="text-slate-400 hover:text-teal-400 transition-colors">Why Choose Us</a></li>
-                <li><a href="#faq" className="text-slate-400 hover:text-teal-400 transition-colors">FAQ</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Contact</h4>
-              <p className="text-slate-400 mb-4">
-                Need help or ready to buy? Reach out to us directly.
-              </p>
-              <a 
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mt-14"
+            >
+              <a
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#25d366]/10 text-[#25d366] hover:bg-[#25d366]/20 font-medium transition-colors border border-[#25d366]/20"
+                data-testid="howitworks-cta"
+                className="btn-cta glow-cta px-8 py-4 rounded-xl text-base inline-flex items-center gap-2"
               >
-                <MessageSquare className="w-4 h-4" />
-                <span>WhatsApp Us</span>
+                <MessageCircle className="w-5 h-5" />
+                Place Your Order Now
               </a>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ── WHY US ── */}
+        <section id="why-us" className="py-24 px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="text-sm font-semibold uppercase tracking-widest mb-3"
+                style={{ color: "#f4b942" }}
+              >
+                Why Choose AIPS
+              </motion.p>
+              <motion.h2
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-3xl md:text-4xl font-semibold text-white"
+              >
+                Built for Bangladesh. Trusted Since 2022.
+              </motion.h2>
+            </div>
+
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+            >
+              {WHY_US.map((item) => (
+                <motion.div
+                  key={item.title}
+                  variants={itemVariants}
+                  className="card-navy"
+                >
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center mb-4"
+                    style={{ backgroundColor: "rgba(244,185,66,0.15)" }}
+                  >
+                    <CheckCircle2 className="w-4 h-4" style={{ color: "#f4b942" }} />
+                  </div>
+                  <h3 className="text-base font-semibold mb-2 text-white">{item.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{item.description}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ── PAYMENT ── */}
+        <section
+          className="py-16 px-4 border-y border-white/10"
+          style={{ backgroundColor: "#151b3d" }}
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-sm font-semibold uppercase tracking-widest mb-6"
+              style={{ color: "#f4b942" }}
+            >
+              Accepted Payment Methods
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex justify-center"
+            >
+              <PaymentBadges label="" className="justify-center flex-wrap gap-3" />
+            </motion.div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-sm mt-6"
+              style={{ color: "#c9ceda" }}
+            >
+              All transactions in BDT. No international card, no PayPal, no hassle.
+            </motion.p>
+          </div>
+        </section>
+
+        {/* ── FAQ ── */}
+        <section id="faq">
+          <FAQSection items={FAQS} title="Frequently Asked Questions" />
+        </section>
+
+        {/* ── CTA BANNER ── */}
+        <section className="py-20 px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="card-navy rounded-2xl py-14 px-8"
+              style={{ borderColor: "rgba(244,185,66,0.3)" }}
+            >
+              <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+                Ready to Get Started?
+              </h2>
+              <p className="text-base mb-8 max-w-lg mx-auto" style={{ color: "#c9ceda" }}>
+                Message us on WhatsApp and we will help you pick the right plan.
+                Most orders are delivered within 30 minutes.
+              </p>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="footer-cta"
+                className="btn-cta glow-cta px-10 py-4 rounded-xl text-base inline-flex items-center gap-2"
+              >
+                <MessageCircle className="w-5 h-5" />
+                Order on WhatsApp Now
+              </a>
+            </motion.div>
+          </div>
+        </section>
+      </main>
+
+      {/* ── FOOTER ── */}
+      <footer
+        className="py-12 px-4 border-t border-white/10"
+        style={{ backgroundColor: "#080c1f" }}
+      >
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
+            <div>
+              <PrimaryBrandLogo size="small" layout="horizontal" />
+              <p className="text-sm mt-3 max-w-xs" style={{ color: "#c9ceda" }}>
+                Premium AI subscriptions in Bangladesh. Fast delivery. Local payment. Real support.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-8 text-sm" style={{ color: "#c9ceda" }}>
+              <div>
+                <div className="font-semibold text-white mb-3">Contact</div>
+                <div className="space-y-2">
+                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors">WhatsApp</a>
+                  <a href="https://www.facebook.com/aipremiumshopbd" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors">Facebook</a>
+                  <a href="mailto:support@aipremiumshop.com" className="block hover:text-white transition-colors">Email</a>
+                </div>
+              </div>
+              <div>
+                <div className="font-semibold text-white mb-3">Popular</div>
+                <div className="space-y-2">
+                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors">ChatGPT Plus</a>
+                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors">Claude Pro</a>
+                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors">GitHub Copilot</a>
+                </div>
+              </div>
+              <div>
+                <div className="font-semibold text-white mb-3">Service</div>
+                <div className="space-y-2">
+                  <span className="block" style={{ color: "#c9ceda" }}>10 AM – Midnight BST</span>
+                  <span className="block" style={{ color: "#c9ceda" }}>Response &lt;5 minutes</span>
+                  <span className="block" style={{ color: "#c9ceda" }}>30-Day Warranty</span>
+                </div>
+              </div>
             </div>
           </div>
-          
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
-            <p>© {new Date().getFullYear()} AI Premium Shop (AIPS). All rights reserved.</p>
-            <div className="flex items-center gap-4">
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            </div>
+
+          <div
+            className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"
+            style={{ color: "#c9ceda" }}
+          >
+            <span>© {new Date().getFullYear()} AI Premium Shop. All rights reserved.</span>
+            <span>Bangladesh · aipremiumshop.com</span>
           </div>
         </div>
       </footer>
+
     </div>
   );
 }

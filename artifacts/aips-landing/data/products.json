@@ -13,7 +13,14 @@
       "accessType": "shared",
       "badge": "Best Seller",
       "description": "Budget-friendly shared ChatGPT Plus. Access GPT-4o for text, code, vision, web search, DALL-E image generation, and AI agents. Delivered in 5–30 minutes.",
-      "capabilities": ["text", "code", "vision", "web-search", "image-generation", "agents"],
+      "capabilities": [
+        "text",
+        "code",
+        "vision",
+        "web-search",
+        "image-generation",
+        "agents"
+      ],
       "deliveryMinutes": "5–30",
       "warrantyDays": 30
     },
@@ -30,7 +37,15 @@
       "accessType": "private",
       "badge": "Most Popular",
       "description": "Your own private ChatGPT Plus account. Full GPT-4o access, custom instructions, plugins, and no sharing. Perfect for professionals.",
-      "capabilities": ["text", "code", "vision", "web-search", "image-generation", "agents", "custom-gpts"],
+      "capabilities": [
+        "text",
+        "code",
+        "vision",
+        "web-search",
+        "image-generation",
+        "agents",
+        "custom-gpts"
+      ],
       "deliveryMinutes": "5–30",
       "warrantyDays": 30
     },
@@ -47,7 +62,15 @@
       "accessType": "private",
       "badge": "For Teams",
       "description": "ChatGPT Team plan with higher message limits, admin controls, and data privacy. Ideal for small businesses.",
-      "capabilities": ["text", "code", "vision", "web-search", "image-generation", "agents", "admin-controls"],
+      "capabilities": [
+        "text",
+        "code",
+        "vision",
+        "web-search",
+        "image-generation",
+        "agents",
+        "admin-controls"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -64,7 +87,13 @@
       "accessType": "shared",
       "badge": "Top Rated",
       "description": "Access Claude 3.5 Sonnet and Claude 3 Opus — Anthropic's most capable models. Excellent for long documents, coding, and analysis with a 200K token context window.",
-      "capabilities": ["text", "code", "analysis", "long-context", "vision"],
+      "capabilities": [
+        "text",
+        "code",
+        "analysis",
+        "long-context",
+        "vision"
+      ],
       "deliveryMinutes": "5–30",
       "warrantyDays": 30
     },
@@ -81,7 +110,14 @@
       "accessType": "private",
       "badge": null,
       "description": "Your own private Claude Pro account. Full access to all Claude models with priority availability and the highest rate limits.",
-      "capabilities": ["text", "code", "analysis", "long-context", "vision", "projects"],
+      "capabilities": [
+        "text",
+        "code",
+        "analysis",
+        "long-context",
+        "vision",
+        "projects"
+      ],
       "deliveryMinutes": "5–30",
       "warrantyDays": 30
     },
@@ -89,7 +125,7 @@
       "id": "midjourney-basic",
       "name": "Midjourney — Basic Plan",
       "slug": "midjourney-basic-bangladesh",
-      "category": "image-generation",
+      "category": "ai-image",
       "brand": "Midjourney",
       "brandColor": "#8b5cf6",
       "price": 450,
@@ -98,7 +134,11 @@
       "accessType": "private",
       "badge": null,
       "description": "Generate stunning AI art with 200 image credits/month. Perfect for creative professionals and designers.",
-      "capabilities": ["image-generation", "upscaling", "variations"],
+      "capabilities": [
+        "image-generation",
+        "upscaling",
+        "variations"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -106,7 +146,7 @@
       "id": "midjourney-standard",
       "name": "Midjourney — Standard Plan",
       "slug": "midjourney-standard-bangladesh",
-      "category": "image-generation",
+      "category": "ai-image",
       "brand": "Midjourney",
       "brandColor": "#8b5cf6",
       "price": 900,
@@ -115,7 +155,13 @@
       "accessType": "private",
       "badge": "Best Value",
       "description": "15 hours fast GPU time, unlimited relaxed generations, and stealth mode. The go-to plan for serious creative work.",
-      "capabilities": ["image-generation", "upscaling", "variations", "stealth-mode", "unlimited-relaxed"],
+      "capabilities": [
+        "image-generation",
+        "upscaling",
+        "variations",
+        "stealth-mode",
+        "unlimited-relaxed"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -123,7 +169,7 @@
       "id": "midjourney-pro",
       "name": "Midjourney — Pro Plan",
       "slug": "midjourney-pro-bangladesh",
-      "category": "image-generation",
+      "category": "ai-image",
       "brand": "Midjourney",
       "brandColor": "#8b5cf6",
       "price": 1800,
@@ -132,7 +178,14 @@
       "accessType": "private",
       "badge": null,
       "description": "30 hours fast GPU time, stealth mode, and full creative control. Built for agencies and power users.",
-      "capabilities": ["image-generation", "upscaling", "variations", "stealth-mode", "unlimited-relaxed", "priority"],
+      "capabilities": [
+        "image-generation",
+        "upscaling",
+        "variations",
+        "stealth-mode",
+        "unlimited-relaxed",
+        "priority"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -140,7 +193,7 @@
       "id": "perplexity-pro-shared",
       "name": "Perplexity Pro — Shared",
       "slug": "perplexity-pro-bangladesh",
-      "category": "ai-search",
+      "category": "ai-assistant",
       "brand": "Perplexity",
       "brandColor": "#20b2aa",
       "price": 400,
@@ -149,7 +202,12 @@
       "accessType": "shared",
       "badge": null,
       "description": "Real-time AI-powered web search with sourced answers. Access Claude, GPT-4, and Gemini for deeper research.",
-      "capabilities": ["web-search", "research", "multi-llm", "file-upload"],
+      "capabilities": [
+        "web-search",
+        "research",
+        "multi-llm",
+        "file-upload"
+      ],
       "deliveryMinutes": "5–30",
       "warrantyDays": 30
     },
@@ -157,7 +215,7 @@
       "id": "perplexity-pro-private",
       "name": "Perplexity Pro — Private",
       "slug": "perplexity-pro-private-bangladesh",
-      "category": "ai-search",
+      "category": "ai-assistant",
       "brand": "Perplexity",
       "brandColor": "#20b2aa",
       "price": 750,
@@ -166,7 +224,13 @@
       "accessType": "private",
       "badge": null,
       "description": "Your own Perplexity Pro account. Unlimited Pro searches, API access, and the ability to upload your own files.",
-      "capabilities": ["web-search", "research", "multi-llm", "file-upload", "api"],
+      "capabilities": [
+        "web-search",
+        "research",
+        "multi-llm",
+        "file-upload",
+        "api"
+      ],
       "deliveryMinutes": "5–30",
       "warrantyDays": 30
     },
@@ -183,7 +247,13 @@
       "accessType": "shared",
       "badge": null,
       "description": "Google's most capable AI with Gemini 1.5 Pro. 1 million token context window, multi-modal input, and deep integration with Google Workspace.",
-      "capabilities": ["text", "code", "vision", "long-context", "google-workspace"],
+      "capabilities": [
+        "text",
+        "code",
+        "vision",
+        "long-context",
+        "google-workspace"
+      ],
       "deliveryMinutes": "5–30",
       "warrantyDays": 30
     },
@@ -200,7 +270,14 @@
       "accessType": "private",
       "badge": null,
       "description": "Your own Gemini Advanced account with full access to Gemini 1.5 Pro, Google One 2TB storage, and Google Workspace AI features.",
-      "capabilities": ["text", "code", "vision", "long-context", "google-workspace", "storage"],
+      "capabilities": [
+        "text",
+        "code",
+        "vision",
+        "long-context",
+        "google-workspace",
+        "storage"
+      ],
       "deliveryMinutes": "5–30",
       "warrantyDays": 30
     },
@@ -208,7 +285,7 @@
       "id": "github-copilot-individual",
       "name": "GitHub Copilot — Individual",
       "slug": "github-copilot-bangladesh",
-      "category": "developer-tools",
+      "category": "ai-code",
       "brand": "GitHub Copilot",
       "brandColor": "#6e40c9",
       "price": 600,
@@ -217,7 +294,13 @@
       "accessType": "private",
       "badge": "For Developers",
       "description": "The AI coding assistant that auto-completes code, explains bugs, and writes tests. Works in VS Code, JetBrains, Vim, and more.",
-      "capabilities": ["code-completion", "chat", "multi-ide", "tests", "explanations"],
+      "capabilities": [
+        "code-completion",
+        "chat",
+        "multi-ide",
+        "tests",
+        "explanations"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -225,7 +308,7 @@
       "id": "notion-ai-plus",
       "name": "Notion AI — Plus Plan",
       "slug": "notion-ai-bangladesh",
-      "category": "productivity",
+      "category": "ai-workspace",
       "brand": "Notion",
       "brandColor": "#000000",
       "price": 550,
@@ -234,7 +317,13 @@
       "accessType": "private",
       "badge": null,
       "description": "Notion Plus with full AI features — write, summarize, translate, and brainstorm directly inside your workspace.",
-      "capabilities": ["writing", "summarization", "translation", "databases", "ai-blocks"],
+      "capabilities": [
+        "writing",
+        "summarization",
+        "translation",
+        "databases",
+        "ai-blocks"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -242,7 +331,7 @@
       "id": "ideogram-basic",
       "name": "Ideogram — Basic Plan",
       "slug": "ideogram-bangladesh",
-      "category": "image-generation",
+      "category": "ai-image",
       "brand": "Ideogram",
       "brandColor": "#6366f1",
       "price": 450,
@@ -251,7 +340,12 @@
       "accessType": "private",
       "badge": "New",
       "description": "Generate images with perfect text rendering. Ideogram specializes in creating realistic images with accurate, readable text — great for logos, posters, and social graphics.",
-      "capabilities": ["image-generation", "text-in-image", "styles", "upscaling"],
+      "capabilities": [
+        "image-generation",
+        "text-in-image",
+        "styles",
+        "upscaling"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -259,7 +353,7 @@
       "id": "ideogram-plus",
       "name": "Ideogram — Plus Plan",
       "slug": "ideogram-plus-bangladesh",
-      "category": "image-generation",
+      "category": "ai-image",
       "brand": "Ideogram",
       "brandColor": "#6366f1",
       "price": 900,
@@ -268,7 +362,13 @@
       "accessType": "private",
       "badge": null,
       "description": "Enhanced Ideogram with more monthly credits, faster generation, and priority access. Perfect for content creators and marketers.",
-      "capabilities": ["image-generation", "text-in-image", "styles", "upscaling", "priority"],
+      "capabilities": [
+        "image-generation",
+        "text-in-image",
+        "styles",
+        "upscaling",
+        "priority"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -276,7 +376,7 @@
       "id": "suno-pro",
       "name": "Suno AI — Pro Plan",
       "slug": "suno-ai-bangladesh",
-      "category": "audio-generation",
+      "category": "ai-voice-music",
       "brand": "Suno",
       "brandColor": "#f59e0b",
       "price": 500,
@@ -285,7 +385,12 @@
       "accessType": "private",
       "badge": null,
       "description": "Generate full songs with vocals, instruments, and lyrics using AI. Create unique music for videos, games, and personal projects.",
-      "capabilities": ["music-generation", "vocals", "custom-lyrics", "commercial-use"],
+      "capabilities": [
+        "music-generation",
+        "vocals",
+        "custom-lyrics",
+        "commercial-use"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -293,7 +398,7 @@
       "id": "runway-standard",
       "name": "Runway — Standard Plan",
       "slug": "runway-ml-bangladesh",
-      "category": "video-generation",
+      "category": "ai-video",
       "brand": "Runway",
       "brandColor": "#ec4899",
       "price": 1100,
@@ -302,7 +407,12 @@
       "accessType": "private",
       "badge": null,
       "description": "AI video generation with Gen-2. Create cinematic video from text or image prompts, and use advanced editing tools for professional results.",
-      "capabilities": ["video-generation", "text-to-video", "image-to-video", "editing"],
+      "capabilities": [
+        "video-generation",
+        "text-to-video",
+        "image-to-video",
+        "editing"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -310,7 +420,7 @@
       "id": "elevenlabs-starter",
       "name": "ElevenLabs — Starter Plan",
       "slug": "elevenlabs-bangladesh",
-      "category": "audio-generation",
+      "category": "ai-voice-music",
       "brand": "ElevenLabs",
       "brandColor": "#f97316",
       "price": 550,
@@ -319,7 +429,12 @@
       "accessType": "private",
       "badge": null,
       "description": "Ultra-realistic AI voice cloning and text-to-speech. Create voice-overs, audiobooks, and multilingual content with over 29 languages supported.",
-      "capabilities": ["text-to-speech", "voice-cloning", "multilingual", "api"],
+      "capabilities": [
+        "text-to-speech",
+        "voice-cloning",
+        "multilingual",
+        "api"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -327,7 +442,7 @@
       "id": "elevenlabs-creator",
       "name": "ElevenLabs — Creator Plan",
       "slug": "elevenlabs-creator-bangladesh",
-      "category": "audio-generation",
+      "category": "ai-voice-music",
       "brand": "ElevenLabs",
       "brandColor": "#f97316",
       "price": 1200,
@@ -336,7 +451,13 @@
       "accessType": "private",
       "badge": null,
       "description": "100,000 characters/month with professional voice cloning. Ideal for YouTubers, podcasters, and content agencies.",
-      "capabilities": ["text-to-speech", "voice-cloning", "multilingual", "api", "professional-voices"],
+      "capabilities": [
+        "text-to-speech",
+        "voice-cloning",
+        "multilingual",
+        "api",
+        "professional-voices"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -344,7 +465,7 @@
       "id": "adobe-firefly-premium",
       "name": "Adobe Firefly — Premium",
       "slug": "adobe-firefly-bangladesh",
-      "category": "image-generation",
+      "category": "ai-image",
       "brand": "Adobe",
       "brandColor": "#ef4444",
       "price": 800,
@@ -353,7 +474,12 @@
       "accessType": "private",
       "badge": null,
       "description": "Adobe's commercially-safe generative AI. Create and edit images with generative fill, text-to-image, and AI effects inside Photoshop and Illustrator.",
-      "capabilities": ["image-generation", "generative-fill", "commercially-safe", "photoshop-integration"],
+      "capabilities": [
+        "image-generation",
+        "generative-fill",
+        "commercially-safe",
+        "photoshop-integration"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -361,7 +487,7 @@
       "id": "canva-pro",
       "name": "Canva Pro — with AI",
       "slug": "canva-pro-bangladesh",
-      "category": "design",
+      "category": "ai-image",
       "brand": "Canva",
       "brandColor": "#06c4d9",
       "price": 500,
@@ -370,7 +496,13 @@
       "accessType": "private",
       "badge": null,
       "description": "Canva Pro with full AI design tools — Magic Write, Magic Design, background remover, brand kit, and 100M+ premium assets.",
-      "capabilities": ["design", "ai-writing", "background-remover", "brand-kit", "templates"],
+      "capabilities": [
+        "design",
+        "ai-writing",
+        "background-remover",
+        "brand-kit",
+        "templates"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -378,7 +510,7 @@
       "id": "pika-pro",
       "name": "Pika — Pro Plan",
       "slug": "pika-bangladesh",
-      "category": "video-generation",
+      "category": "ai-video",
       "brand": "Pika",
       "brandColor": "#a855f7",
       "price": 900,
@@ -387,7 +519,12 @@
       "accessType": "private",
       "badge": null,
       "description": "Create stunning short videos from text and images with Pika's 2.2 model. Great for social media content and short-form storytelling.",
-      "capabilities": ["video-generation", "text-to-video", "image-to-video", "motion-effects"],
+      "capabilities": [
+        "video-generation",
+        "text-to-video",
+        "image-to-video",
+        "motion-effects"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -395,7 +532,7 @@
       "id": "grammarly-pro",
       "name": "Grammarly Pro — Annual",
       "slug": "grammarly-pro-bangladesh",
-      "category": "writing",
+      "category": "ai-workspace",
       "brand": "Grammarly",
       "brandColor": "#15c39a",
       "price": 650,
@@ -404,7 +541,13 @@
       "accessType": "private",
       "badge": null,
       "description": "Advanced AI writing assistant with grammar correction, tone suggestions, plagiarism checker, and full GrammarlyGO generative writing features.",
-      "capabilities": ["grammar", "tone-adjustment", "plagiarism-check", "ai-writing", "browser-extension"],
+      "capabilities": [
+        "grammar",
+        "tone-adjustment",
+        "plagiarism-check",
+        "ai-writing",
+        "browser-extension"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -412,7 +555,7 @@
       "id": "cursor-pro",
       "name": "Cursor — Pro Plan",
       "slug": "cursor-ai-bangladesh",
-      "category": "developer-tools",
+      "category": "ai-code",
       "brand": "Cursor",
       "brandColor": "#3b82f6",
       "price": 1100,
@@ -421,7 +564,13 @@
       "accessType": "private",
       "badge": "Hot",
       "description": "The AI-first code editor built on VS Code. Cursor Pro gives you 500 fast requests/month with GPT-4 and Claude, plus unlimited slow completions.",
-      "capabilities": ["code-completion", "chat", "multi-model", "codebase-indexing", "auto-debug"],
+      "capabilities": [
+        "code-completion",
+        "chat",
+        "multi-model",
+        "codebase-indexing",
+        "auto-debug"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -429,7 +578,7 @@
       "id": "windsurf-pro",
       "name": "Windsurf — Pro Plan",
       "slug": "windsurf-ai-bangladesh",
-      "category": "developer-tools",
+      "category": "ai-code",
       "brand": "Windsurf",
       "brandColor": "#0891b2",
       "price": 900,
@@ -438,7 +587,12 @@
       "accessType": "private",
       "badge": null,
       "description": "The agentic AI code editor that understands and acts on your entire codebase. Windsurf Pro includes faster models and more monthly credits.",
-      "capabilities": ["code-completion", "agentic", "codebase-indexing", "multi-model"],
+      "capabilities": [
+        "code-completion",
+        "agentic",
+        "codebase-indexing",
+        "multi-model"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -455,7 +609,13 @@
       "accessType": "private",
       "badge": null,
       "description": "xAI's Grok with real-time X/Twitter data access, image generation with Aurora, and early access to new features.",
-      "capabilities": ["text", "code", "real-time-data", "image-generation", "vision"],
+      "capabilities": [
+        "text",
+        "code",
+        "real-time-data",
+        "image-generation",
+        "vision"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -463,7 +623,7 @@
       "id": "krea-ai-standard",
       "name": "Krea AI — Standard",
       "slug": "krea-ai-bangladesh",
-      "category": "image-generation",
+      "category": "ai-image",
       "brand": "Krea",
       "brandColor": "#ec4899",
       "price": 750,
@@ -472,7 +632,12 @@
       "accessType": "private",
       "badge": null,
       "description": "Real-time AI image generation with style transfer and visual enhancement. Excellent for brand design, concept art, and product imagery.",
-      "capabilities": ["image-generation", "real-time", "style-transfer", "enhancement"],
+      "capabilities": [
+        "image-generation",
+        "real-time",
+        "style-transfer",
+        "enhancement"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -480,7 +645,7 @@
       "id": "lovable-starter",
       "name": "Lovable — Starter Plan",
       "slug": "lovable-bangladesh",
-      "category": "developer-tools",
+      "category": "ai-code",
       "brand": "Lovable",
       "brandColor": "#f97316",
       "price": 1000,
@@ -489,7 +654,13 @@
       "accessType": "private",
       "badge": "New",
       "description": "Build full-stack web apps just by chatting. Lovable generates production-ready React apps with a backend — no code required.",
-      "capabilities": ["app-generation", "react", "backend", "deployment", "no-code"],
+      "capabilities": [
+        "app-generation",
+        "react",
+        "backend",
+        "deployment",
+        "no-code"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -497,7 +668,7 @@
       "id": "bolt-pro",
       "name": "Bolt.new — Pro Plan",
       "slug": "bolt-new-bangladesh",
-      "category": "developer-tools",
+      "category": "ai-code",
       "brand": "Bolt",
       "brandColor": "#6366f1",
       "price": 900,
@@ -506,7 +677,12 @@
       "accessType": "private",
       "badge": null,
       "description": "AI-powered full-stack app builder in the browser. Bolt.new Pro gives you more tokens, Claude Sonnet access, and one-click deployment.",
-      "capabilities": ["app-generation", "multi-framework", "deployment", "ai-driven"],
+      "capabilities": [
+        "app-generation",
+        "multi-framework",
+        "deployment",
+        "ai-driven"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     },
@@ -523,7 +699,15 @@
       "accessType": "private",
       "badge": "Power User",
       "description": "Claude Max with 5x more usage than Pro. Access Claude's most powerful models for heavy professional workloads.",
-      "capabilities": ["text", "code", "analysis", "long-context", "vision", "projects", "high-limits"],
+      "capabilities": [
+        "text",
+        "code",
+        "analysis",
+        "long-context",
+        "vision",
+        "projects",
+        "high-limits"
+      ],
       "deliveryMinutes": "30–60",
       "warrantyDays": 30
     }

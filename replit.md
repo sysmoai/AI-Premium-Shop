@@ -28,7 +28,7 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 
 ## Artifacts
 
-### AIPS - AI Premium Shop (`artifacts/aips-landing`) — PHASE 1 COMPLETE
+### AIPS - AI Premium Shop (`artifacts/aips-landing`) — PHASE 3 COMPLETE
 
 - **Type**: React + Vite (marketing landing page, SPA)
 - **Preview Path**: `/`
@@ -102,11 +102,54 @@ All sections are isolated components for clarity and performance.
 - All CTAs link to: `https://wa.me/8801865385348`
 - No fake numbers: "1,200+" customers (not 10,000+), no "4.9/5" rating
 
-### Known Phase 2 Work
+### Phase 3 Inner Pages (All Live)
 
-- Bundles / Pricing / Support pages (currently `href="#"`)
-- Mega menu for Products dropdown
+**Routing**: wouter SPA routing. All 14 routes registered in `src/App.tsx`.
+
+| URL | Page | Component |
+|-----|------|-----------|
+| `/products` | All Products (filtered, sorted) | `ProductsPage.tsx` |
+| `/ai-assistant` | AI Assistant & Chat | `CategoryPage.tsx` |
+| `/ai-image` | AI Image & Design | `CategoryPage.tsx` |
+| `/ai-video` | AI Video | `CategoryPage.tsx` |
+| `/ai-voice-music` | AI Voice & Music | `CategoryPage.tsx` |
+| `/ai-code` | AI Code & Dev Tools | `CategoryPage.tsx` |
+| `/ai-workspace` | AI Workspace | `CategoryPage.tsx` |
+| `/bundles` | Bundles & Packages | `CategoryPage.tsx` |
+| `/about` | About | `AboutPage.tsx` |
+| `/contact` | Contact | `ContactPage.tsx` |
+| `/faq` | FAQ (12 questions) | `FAQPage.tsx` |
+| `/pricing` | Pricing table (sortable, filterable) | `PricingPage.tsx` |
+| `/refund-policy` | Refund & Replacement Policy | `RefundPolicyPage.tsx` |
+| `/terms` | Terms of Service | `TermsPage.tsx` |
+
+### Shared Infrastructure (Phase 3)
+
+- `Navbar.tsx` — Shared navbar for inner pages (always solid, Products dropdown with real links)
+- `PageFooter.tsx` — Standalone footer with real navigation links
+- `PageLayout.tsx` — Wraps `Navbar + children + PageFooter + FloatingWhatsApp`
+- `SEOHead.tsx` — useEffect-based per-page title/meta updater
+
+### Data (Updated Phase 3)
+
+- `products.json` — 31 products, category IDs remapped to match page slugs:
+  - `image-generation`, `design` → `ai-image`
+  - `developer-tools` → `ai-code`
+  - `productivity`, `writing` → `ai-workspace`
+  - `audio-generation` → `ai-voice-music`
+  - `video-generation` → `ai-video`
+  - `ai-search` → `ai-assistant`
+- `categories.json` — Updated with accurate product counts
+
+### Navigation (Phase 3)
+
+- **Desktop**: Logo | Products dropdown → real category pages | Pricing | About | FAQ | Green "Order Now"
+- **Mobile drawer**: All category pages, Bundles, Pricing, About, FAQ — all client-side navigate
+- **Footer (homepage)**: All links updated to real pages (no more `href="#"`)
+
+### Known Phase 4 Work
+
+- SEO pages: /blog, guide pages, comparison pages
 - SSR / SSG (currently client-side SPA — page source shows React root only)
-- Full product catalog page with `data/products.json` integration
-- Individual product pages
-- WhatsApp pre-filled messages per product
+- Individual product pages with dedicated URLs
+- Search functionality

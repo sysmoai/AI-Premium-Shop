@@ -1,0 +1,253 @@
+=== PHASE 3: CORE PAGES + NAVIGATION UPGRADE ===
+
+CONTEXT:
+- Phase 2 is DONE: Homepage has 10 sections, all working
+- products.json has 49 products, brand.json has correct data
+- This phase builds the remaining essential pages
+- ALL content in English. Top 1% quality. No Bangla.
+- Every page must have: WhatsApp CTA, payment badges, footer, SEO meta
+- Mobile-first. SSR/SSG.
+
+
+=== PAGE 1: ALL PRODUCTS (/products) ===
+
+URL: /products
+Title tag: "All AI Tools — 49 Premium Subscriptions | AI Premium Shop Bangladesh"
+Meta: "Browse 49 premium AI subscriptions from BDT 350. ChatGPT, Claude, Midjourney, Copilot and more. Pay with bKash. Delivered in minutes."
+
+Layout:
+- H1: "All AI Tools"
+- Subtitle: "49 premium subscriptions. Local payment. Fast delivery."
+- Filter bar: Category dropdown | Access Type (Shared/Personal) | Sort by Price
+- Product grid: render ALL products from products.json
+  Each card shows: brand color accent, product name, price, tier badge (Shared/Personal),
+  delivery SLA, "Order" CTA button linking to WhatsApp with pre-filled message
+- Group products by category with category headers
+- Show product count per category
+- Bottom CTA: "Need help choosing? Message us on WhatsApp"
+
+
+=== PAGE 2-8: CATEGORY PAGES (7 pages) ===
+
+Create these 7 category pages. Each follows the SAME template:
+
+Template for each category page:
+- URL: use slug from categories.json (e.g., /ai-assistant)
+- H1: category displayName (e.g., "AI Assistant & Chat")
+- Subtitle: industrySubtitle from categories.json
+- Description: 2-3 sentences about what this category covers, written professionally
+- Product grid: filter products.json where category matches this page's category ID
+  Show ALL products in this category, sorted by price low-to-high
+  Each card: name, price, tier, access type badge, delivery SLA, WhatsApp CTA
+- "Not sure which plan?" section with brief Shared vs Personal explainer
+- Related categories: link to 2-3 other category pages
+- FAQ: 3-4 category-specific questions
+- CTA: WhatsApp order button
+
+Category pages to create:
+1. /ai-assistant — "AI Assistant & Chat" — filter category=ai-assistant
+2. /ai-image — "AI Image & Design" — filter category=ai-image
+3. /ai-video — "AI Video" — filter category=ai-video
+4. /ai-voice-music — "AI Voice & Music" — filter category=ai-voice-music
+5. /ai-code — "AI Code & Dev Tools" — filter category=ai-code
+6. /ai-workspace — "AI Workspace" — filter category=ai-workspace
+7. /bundles — "Bundles & Packages" — filter category=bundles
+
+Category-specific descriptions (use these):
+
+/ai-assistant:
+"The world's most powerful AI assistants. Write, code, research, create images, and automate tasks. From ChatGPT and Claude to Gemini and Perplexity — find your perfect AI partner."
+
+/ai-image:
+"Create stunning visuals with AI. Generate images from text, edit photos, and design graphics. Midjourney for artistic quality, Ideogram for perfect text rendering."
+
+/ai-video:
+"Generate and edit videos with AI. Text-to-video, image-to-video, 4K upscaling, and motion effects. Runway is the leading platform used by filmmakers worldwide."
+
+/ai-voice-music:
+"Clone voices, generate speech, and create music with AI. ElevenLabs for human-quality voiceovers. Suno for complete AI-generated songs in any genre."
+
+/ai-code:
+"Code faster with AI pair programming. GitHub Copilot integrates into your IDE. Cursor is the AI-native editor used by teams at OpenAI, Stripe, and Figma."
+
+/ai-workspace:
+"AI-powered productivity and collaboration. Notion Business with AI included. Manus AI for autonomous task delegation — research, analysis, and reporting."
+
+/bundles:
+"Save more with curated AI tool bundles. Designed for students, freelancers, and businesses. Multiple premium tools at a discounted package price."
+
+
+=== PAGE 9: ABOUT (/about) ===
+
+URL: /about
+Title: "About AI Premium Shop — Bangladesh's Trusted AI Subscription Provider"
+
+Content:
+- H1: "About AI Premium Shop"
+- Story section:
+  "Founded in 2022, AI Premium Shop is Bangladesh's most trusted source for premium AI
+  tool subscriptions. We started with a simple idea: make the world's best AI tools
+  accessible to everyone in Bangladesh — without needing an international credit card.
+  
+  Today, we serve over 1,200 customers across the country. Students, freelancers,
+  content creators, developers, and business owners trust us to deliver authentic AI
+  subscriptions quickly, affordably, and with real human support."
+
+- What We Offer:
+  "49 premium AI tools from 13 leading brands including ChatGPT, Claude, Midjourney,
+  GitHub Copilot, Runway, ElevenLabs, and more. Shared and personal accounts available.
+  Prices start at just BDT 350 per month."
+
+- Our Difference:
+  "We don't just sell subscriptions. We provide 1:1 AI coaching to help you actually
+  use these tools for your specific work. Whether you're a student writing a thesis
+  or a business owner automating customer support — we set it up for you."
+
+- Numbers: 1,200+ customers | 49 tools | 13 brands | Since 2022 | 5-min response
+- Contact: WhatsApp, Facebook, Instagram, LinkedIn, Email
+- CTA: "Ready to get started? Order on WhatsApp"
+
+
+=== PAGE 10: CONTACT (/contact) ===
+
+URL: /contact
+Title: "Contact AI Premium Shop — Order via WhatsApp"
+
+Content:
+- H1: "Contact Us"
+- Primary: "The fastest way to reach us is WhatsApp. We respond in under 5 minutes."
+- WhatsApp button (large, prominent): https://wa.me/8801865385348
+- Other channels:
+  - Facebook: facebook.com/aipremiumshopbd
+  - Instagram: @aipremiumshop
+  - LinkedIn: linkedin.com/showcase/aipremiumshop
+  - Email: support@aipremiumshop.com
+- Service hours: 10 AM to Midnight BST, 7 days a week
+- Payment info: bKash, Nagad, Rocket, Bank Transfer, Binance
+
+
+=== PAGE 11: FAQ (/faq) ===
+
+URL: /faq
+Title: "FAQ — AI Subscriptions Bangladesh | AI Premium Shop"
+
+Content: Expand to 12+ questions. Include ALL 8 from homepage PLUS these:
+
+Q9: "How do I place an order?"
+A: "Message us on WhatsApp at +880 1865-385348. Tell us which tool you want. We'll confirm availability, send payment details, and deliver your account after payment."
+
+Q10: "Can I upgrade from Shared to Personal later?"
+A: "Yes. Just message us on WhatsApp and we'll help you upgrade. You only pay the price difference for the remaining period."
+
+Q11: "Do you offer monthly subscriptions only?"
+A: "Most plans are monthly. Notion Business also has a 6-month option at BDT 4,800. We're adding more long-term plans soon."
+
+Q12: "What AI tool is best for my work?"
+A: "It depends on your needs. Students: start with ChatGPT Plus Shared (BDT 350) or Google AI Pro (BDT 500). Freelancers: ChatGPT Premium Shared (BDT 950). Developers: GitHub Copilot (BDT 1,495) or Cursor (BDT 2,990). Business: ChatGPT Business (BDT 699). Not sure? Message us on WhatsApp and we'll recommend the perfect tool."
+
+
+=== PAGE 12: REFUND POLICY (/refund-policy) ===
+
+URL: /refund-policy
+Title: "Refund & Replacement Policy | AI Premium Shop"
+
+Content:
+- H1: "Refund & Replacement Policy"
+- 30-Day Replacement Warranty: "If your account experiences any issues during
+  the subscription period, we replace it at no extra cost."
+- Refund eligibility: "Refunds are available within 15 minutes of delivery
+  if the service does not match what was ordered."
+- Non-refundable: "Subscription fees for tools already activated, no-show
+  on scheduled sessions, and cases where incorrect information was provided."
+- How to request: "Message us on WhatsApp within the eligible timeframe.
+  Include your order details and the issue you're experiencing."
+- CEO review: "Refund requests above BDT 5,000 are reviewed by the founder."
+
+
+=== PAGE 13: TERMS (/terms) ===
+
+URL: /terms
+Title: "Terms of Service | AI Premium Shop"
+
+Content:
+- Standard e-commerce terms covering: service description, payment terms,
+  delivery expectations, account usage rules, warranty scope, limitation
+  of liability, and dispute resolution.
+- Keep it professional, clear, and concise.
+- Mention: "AI Premium Shop provides access to third-party AI subscriptions.
+  We are not affiliated with or endorsed by OpenAI, Anthropic, Google, or
+  any other AI provider. All trademarks belong to their respective owners."
+
+
+=== PAGE 14: PRICING (/pricing) ===
+
+URL: /pricing
+Title: "AI Subscription Pricing Bangladesh 2026 — All Plans Compared | AI Premium Shop"
+
+Content:
+- H1: "All AI Subscription Prices — Bangladesh 2026"
+- Subtitle: "Compare every plan. Find the right tool at the right price."
+- Full pricing table: render ALL 49 products from products.json
+  Columns: Product Name | Brand | Access Type | Price (BDT) | Official USD | Delivery
+  Sortable by price, filterable by category and access type
+- "How our pricing works" section:
+  "When you buy directly from AI providers, you need an international credit card
+  and pay in USD. Example: ChatGPT Plus costs $20/mo = BDT 2,990 with bank fees.
+  With AI Premium Shop, you pay BDT 350 for shared access or BDT 2,990 for a
+  personal account — using bKash or Nagad. No international card needed."
+- Comparison highlight: Direct vs AIPS (same table from homepage)
+- CTA: "Ready to order? WhatsApp us"
+
+
+=== NAVIGATION UPDATE ===
+
+Update the desktop navbar to:
+Logo | Products dropdown | Pricing | About | FAQ | [Order on WhatsApp] button
+
+Products dropdown should now link to real pages:
+- AI Assistant & Chat → /ai-assistant
+- AI Image & Design → /ai-image
+- AI Video → /ai-video
+- AI Voice & Music → /ai-voice-music
+- AI Code & Dev Tools → /ai-code
+- AI Workspace → /ai-workspace
+- Bundles → /bundles
+- Divider
+- All 49 Products → /products
+
+Also update footer links to point to real pages:
+- About → /about
+- Contact → /contact
+- Pricing → /pricing
+- FAQ → /faq
+- Refund Policy → /refund-policy
+- Terms → /terms
+
+
+=== SEO FOR ALL NEW PAGES ===
+
+Every new page must have:
+- Unique <title> tag (provided above for each page)
+- Unique meta description
+- Canonical URL: https://aipremiumshop.com/[slug]
+- og:title, og:description, og:url, og:site_name
+- Consistent header/footer/WhatsApp button from homepage
+
+
+=== VERIFICATION ===
+
+After building, verify:
+[ ] /products page shows all products from products.json
+[ ] All 7 category pages load with correct filtered products
+[ ] /about, /contact, /faq, /refund-policy, /terms, /pricing pages exist
+[ ] Navigation dropdown links to real category pages
+[ ] Footer links work (not # anymore)
+[ ] Every page has WhatsApp CTA
+[ ] Every page has consistent header and footer
+[ ] All content is 100% English
+[ ] No broken links
+[ ] Mobile-responsive on all pages
+
+Tell me when all pages are built. Phase 4 (SEO pages + guide pages) comes next.
+
+=== END PHASE 3 ===

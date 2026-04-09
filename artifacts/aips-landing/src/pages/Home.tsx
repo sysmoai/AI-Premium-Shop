@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from "wouter";
 import {
   Menu,
   X,
@@ -33,18 +34,18 @@ import { FinalCTASection } from "@/sections/FinalCTASection";
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
 const PRODUCT_CATEGORIES = [
-  { label: "AI Assistant & Chat", count: 21, Icon: MessageSquare, color: "#10a37f" },
-  { label: "AI Image & Design", count: 8, Icon: Image, color: "#ec4899" },
-  { label: "AI Video", count: 3, Icon: Video, color: "#8b5cf6" },
-  { label: "AI Voice & Music", count: 5, Icon: Music, color: "#f97316" },
-  { label: "AI Code & Dev Tools", count: 4, Icon: Code2, color: "#06b6d4" },
-  { label: "AI Workspace", count: 3, Icon: Layout, color: "#f4b942" },
+  { label: "AI Assistant & Chat", count: 11, Icon: MessageSquare, color: "#10a37f", href: "/ai-assistant" },
+  { label: "AI Image & Design", count: 8, Icon: Image, color: "#ec4899", href: "/ai-image" },
+  { label: "AI Video", count: 2, Icon: Video, color: "#8b5cf6", href: "/ai-video" },
+  { label: "AI Voice & Music", count: 3, Icon: Music, color: "#f97316", href: "/ai-voice-music" },
+  { label: "AI Code & Dev Tools", count: 5, Icon: Code2, color: "#06b6d4", href: "/ai-code" },
+  { label: "AI Workspace", count: 2, Icon: Layout, color: "#f4b942", href: "/ai-workspace" },
 ];
 
 const SECONDARY_NAV = [
-  { label: "Bundles", href: "#" }, // Phase 2
-  { label: "Pricing", href: "#" }, // Phase 2
-  { label: "Support", href: "#" }, // Phase 2
+  { label: "Bundles", href: "/bundles" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "About", href: "/about" },
 ];
 
 const MOBILE_DRAWER_LINKS = [
@@ -52,10 +53,10 @@ const MOBILE_DRAWER_LINKS = [
   { label: "Solutions", href: "#pain-points" },
   { label: "Best Sellers", href: "#offers" },
   { label: "Why Us", href: "#why-us" },
-  { label: "Bundles", href: "#" }, // Phase 2
-  { label: "Pricing", href: "#" }, // Phase 2
-  { label: "Support", href: "#" }, // Phase 2
-  { label: "FAQ", href: "#faq" },
+  { label: "Bundles", href: "/bundles" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "About", href: "/about" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 const FAQS = [
@@ -103,6 +104,7 @@ const FAQS = [
 
 function ProductsDropdown() {
   const [open, setOpen] = useState(false);
+  const [, navigate] = useLocation();
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleEnter = () => {
@@ -148,7 +150,8 @@ function ProductsDropdown() {
               {PRODUCT_CATEGORIES.map((cat) => (
                 <a
                   key={cat.label}
-                  href="#categories"
+                  href={cat.href}
+                  onClick={(e) => { e.preventDefault(); navigate(cat.href); setOpen(false); }}
                   className="flex items-center gap-3 px-3 py-2.5 rounded-xl group transition-colors hover:bg-white/5"
                 >
                   <div
@@ -169,17 +172,15 @@ function ProductsDropdown() {
                 </a>
               ))}
 
-              {/* Divider */}
               <div className="h-px mx-3 my-2" style={{ backgroundColor: "rgba(255,255,255,0.08)" }} />
 
               <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/products"
+                onClick={(e) => { e.preventDefault(); navigate("/products"); setOpen(false); }}
                 className="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-white/5 transition-colors group"
               >
                 <span className="text-sm font-semibold" style={{ color: "#f4b942" }}>
-                  All 49 Products
+                  All Products
                 </span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" style={{ color: "#f4b942" }} />
               </a>
@@ -195,6 +196,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
+  const [, navigate] = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -227,6 +229,7 @@ export default function Home() {
               <a
                 key={link.label}
                 href={link.href}
+                onClick={(e) => { e.preventDefault(); navigate(link.href); }}
                 className="text-sm font-medium transition-colors"
                 style={{ color: "#c9ceda" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#f4b942")}
@@ -301,8 +304,8 @@ export default function Home() {
                 {PRODUCT_CATEGORIES.map((cat) => (
                   <a
                     key={cat.label}
-                    href="#categories"
-                    onClick={() => setMenuOpen(false)}
+                    href={cat.href}
+                    onClick={(e) => { e.preventDefault(); navigate(cat.href); setMenuOpen(false); }}
                     className="flex items-center gap-3 px-2 py-2.5 rounded-lg hover:bg-white/5 transition-colors"
                   >
                     <div
@@ -319,11 +322,14 @@ export default function Home() {
                 <div className="h-px my-3" style={{ backgroundColor: "rgba(255,255,255,0.08)" }} />
 
                 {/* Secondary links */}
-                {MOBILE_DRAWER_LINKS.filter(l => ["Bundles", "Pricing", "Support", "FAQ"].includes(l.label)).map((link) => (
+                {MOBILE_DRAWER_LINKS.filter(l => ["Bundles", "Pricing", "About", "FAQ"].includes(l.label)).map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={(e) => {
+                      if (!link.href.startsWith("#")) { e.preventDefault(); navigate(link.href); }
+                      setMenuOpen(false);
+                    }}
                     className="px-2 py-2.5 text-sm font-medium rounded-lg hover:bg-white/5 transition-colors"
                     style={{ color: "#c9ceda" }}
                   >

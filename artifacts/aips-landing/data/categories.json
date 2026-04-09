@@ -1,58 +1,72 @@
 [
   {
-    "id": "assistant",
+    "id": "ai-assistant",
+    "slug": "ai-assistant",
     "displayName": "AI Assistant & Chat",
-    "industrySubtitle": "ChatGPT, Claude, Gemini",
+    "industrySubtitle": "ChatGPT, Claude, Gemini, Grok",
     "icon": "MessageSquare",
     "from": 350,
-    "count": 12
+    "count": 11,
+    "description": "The world's most powerful AI assistants. Write, code, research, create images, and automate tasks. From ChatGPT and Claude to Gemini and Perplexity — find your perfect AI partner."
   },
   {
-    "id": "image",
+    "id": "ai-image",
+    "slug": "ai-image",
     "displayName": "AI Image & Design",
     "industrySubtitle": "Midjourney, Ideogram, Canva",
     "icon": "Image",
-    "from": 800,
-    "count": 8
+    "from": 450,
+    "count": 8,
+    "description": "Create stunning visuals with AI. Generate images from text, edit photos, and design graphics. Midjourney for artistic quality, Ideogram for perfect text rendering."
   },
   {
-    "id": "video",
+    "id": "ai-video",
+    "slug": "ai-video",
     "displayName": "AI Video",
-    "industrySubtitle": "Runway, Sora, Kling",
+    "industrySubtitle": "Runway, Pika",
     "icon": "Video",
-    "from": 1200,
-    "count": 5
+    "from": 900,
+    "count": 2,
+    "description": "Generate and edit videos with AI. Text-to-video, image-to-video, 4K upscaling, and motion effects. Runway is the leading platform used by filmmakers worldwide."
   },
   {
-    "id": "voice",
+    "id": "ai-voice-music",
+    "slug": "ai-voice-music",
     "displayName": "AI Voice & Music",
-    "industrySubtitle": "ElevenLabs, Suno, Udio",
+    "industrySubtitle": "ElevenLabs, Suno",
     "icon": "Music",
-    "from": 800,
-    "count": 6
+    "from": 500,
+    "count": 3,
+    "description": "Clone voices, generate speech, and create music with AI. ElevenLabs for human-quality voiceovers. Suno for complete AI-generated songs in any genre."
   },
   {
-    "id": "code",
-    "displayName": "AI Code & Dev",
+    "id": "ai-code",
+    "slug": "ai-code",
+    "displayName": "AI Code & Dev Tools",
     "industrySubtitle": "GitHub Copilot, Cursor, Windsurf",
     "icon": "Code2",
-    "from": 1100,
-    "count": 7
+    "from": 600,
+    "count": 5,
+    "description": "Code faster with AI pair programming. GitHub Copilot integrates into your IDE. Cursor is the AI-native editor used by teams at OpenAI, Stripe, and Figma."
   },
   {
-    "id": "workspace",
+    "id": "ai-workspace",
+    "slug": "ai-workspace",
     "displayName": "AI Workspace",
-    "industrySubtitle": "Notion AI, Grammarly, Perplexity",
+    "industrySubtitle": "Notion AI, Grammarly",
     "icon": "Layout",
-    "from": 400,
-    "count": 8
+    "from": 550,
+    "count": 2,
+    "description": "AI-powered productivity and collaboration. Notion Business with AI included. Grammarly for flawless professional writing across every platform."
   },
   {
     "id": "bundles",
-    "displayName": "Bundles",
+    "slug": "bundles",
+    "displayName": "Bundles & Packages",
     "industrySubtitle": "Multiple tools, one price",
     "icon": "Package",
-    "from": 1500,
-    "count": 4
+    "from": 999,
+    "count": 0,
+    "description": "Save more with curated AI tool bundles. Designed for students, freelancers, and businesses. Multiple premium tools at a discounted package price."
   }
 ]

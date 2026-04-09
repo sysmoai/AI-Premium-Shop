@@ -1,48 +1,58 @@
+import { useEffect } from "react";
+
 interface SEOHeadProps {
-  title?: string;
+  title: string;
   description?: string;
-  keywords?: string;
-  ogImage?: string;
-  ogType?: string;
   canonical?: string;
-  schema?: object;
+  ogUrl?: string;
 }
 
+const SITE_NAME = "AI Premium Shop";
+const DEFAULT_DESC =
+  "Bangladesh's most trusted AI subscription shop. ChatGPT Plus from BDT 350, Google AI Pro BDT 500. Pay with bKash or Nagad. Delivered in minutes. 1,200+ happy customers.";
+
 export function SEOHead({
-  title = "AI Premium Shop — Premium AI Subscriptions in Bangladesh",
-  description = "Bangladesh's #1 source for premium AI subscriptions. Get ChatGPT Plus, Claude Pro, Midjourney, and more at unbeatable prices. Fast delivery, secure payment via bKash, Nagad, Rocket.",
-  keywords = "AI subscription Bangladesh, ChatGPT Plus Bangladesh, Claude Pro Bangladesh, Midjourney Bangladesh, AI tools cheap, bKash payment AI",
-  ogImage = "/images/og/og-default.jpg",
-  ogType = "website",
+  title,
+  description = DEFAULT_DESC,
   canonical,
-  schema,
+  ogUrl,
 }: SEOHeadProps) {
-  const fullTitle = title.includes("AI Premium Shop") ? title : `${title} | AI Premium Shop`;
+  const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+  const canonicalUrl = canonical ?? (ogUrl ?? "https://aipremiumshop.com/");
 
-  return (
-    <>
-      <title>{fullTitle}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      {canonical && <link rel="canonical" href={canonical} />}
+  useEffect(() => {
+    document.title = fullTitle;
 
-      <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage} />
-      <meta property="og:type" content={ogType} />
-      <meta property="og:site_name" content="AI Premium Shop" />
+    const setMeta = (sel: string, content: string) => {
+      let el = document.querySelector(sel);
+      if (!el) {
+        el = document.createElement("meta");
+        const [, attr, val] = sel.match(/\[(\w+[\w:]+)="([^"]+)"\]/) ?? [];
+        if (attr && val) {
+          (el as HTMLMetaElement).setAttribute(attr, val);
+          document.head.appendChild(el);
+        }
+      }
+      (el as HTMLMetaElement).setAttribute("content", content);
+    };
 
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
+    setMeta('meta[name="description"]', description);
+    setMeta('meta[property="og:title"]', fullTitle);
+    setMeta('meta[property="og:description"]', description);
+    setMeta('meta[property="og:url"]', canonicalUrl);
 
-      {schema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      )}
-    </>
-  );
+    let canon = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!canon) {
+      canon = document.createElement("link");
+      canon.setAttribute("rel", "canonical");
+      document.head.appendChild(canon);
+    }
+    canon.setAttribute("href", canonicalUrl);
+
+    return () => {
+      document.title = "AI Premium Shop";
+    };
+  }, [fullTitle, description, canonicalUrl]);
+
+  return null;
 }

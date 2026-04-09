@@ -28,6 +28,7 @@ interface CompConfig {
   verdict: string;
   verdictA: string;
   verdictB: string;
+  relatedGuides: { label: string; href: string }[];
 }
 
 const COMPARISONS: Record<string, CompConfig> = {
@@ -53,6 +54,11 @@ const COMPARISONS: Record<string, CompConfig> = {
     verdict: "Both are world-class AI tools available at Bangladesh prices. Your choice depends on your primary use case.",
     verdictA: "Choose ChatGPT if you want an all-in-one tool that does everything — text, images, web search, code, and agents. It's also the cheapest option at BDT 350.",
     verdictB: "Choose Claude if you need the best writing quality, the longest document analysis (1M token context), or the most advanced reasoning. Claude is ranked #1 on the independent Chatbot Arena benchmark.",
+    relatedGuides: [
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
+      { label: "Best AI for Business", href: "/best-ai-for-business" },
+    ],
   },
   "chatgpt-vs-gemini": {
     title: "ChatGPT vs Google AI Pro — Comparison Bangladesh 2026 | AI Premium Shop",
@@ -76,6 +82,11 @@ const COMPARISONS: Record<string, CompConfig> = {
     verdict: "Both are excellent — the right choice depends on your existing tools and workflow.",
     verdictA: "Choose ChatGPT if you want the cheapest AI option (BDT 350) and primarily need AI for writing, coding, and chatting. Best for students on a tight budget.",
     verdictB: "Google AI Pro at BDT 500 is the best-value tool in our catalog. You get a personal account (not shared), 2TB storage, and AI built into Gmail, Docs, Sheets, and Slides. For anyone who uses Google Workspace daily, this is the clear winner.",
+    relatedGuides: [
+      { label: "Best AI for Students", href: "/best-ai-for-students" },
+      { label: "Best AI for Business", href: "/best-ai-for-business" },
+      { label: "Best AI for Job Seekers", href: "/best-ai-for-job-seekers" },
+    ],
   },
   "copilot-vs-cursor": {
     title: "GitHub Copilot vs Cursor — Best AI Coding Tool 2026 | AI Premium Shop",
@@ -99,6 +110,10 @@ const COMPARISONS: Record<string, CompConfig> = {
     verdict: "Both tools make you a faster developer. The right choice depends on how much you want to change your workflow.",
     verdictA: "Choose GitHub Copilot if you want AI assistance inside your existing editor without changing anything. It plugs into VS Code or JetBrains and starts helping immediately. Best starting point for most developers.",
     verdictB: "Choose Cursor if you want the most powerful AI coding experience available. Its agent mode can write entire features autonomously. Many professional developers at top tech companies have switched to Cursor as their primary editor.",
+    relatedGuides: [
+      { label: "Best AI for Developers", href: "/best-ai-for-developers" },
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+    ],
   },
 };
 
@@ -217,7 +232,7 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
               Not sure? Ask us
             </a>
           </div>
-          <div className="mt-6 pt-6 border-t border-white/10">
+          <div className="mt-6 pt-6 border-t border-white/10 flex flex-wrap items-center gap-4 justify-center">
             <Link href="/products"
               className="inline-flex items-center gap-1 text-sm hover:opacity-80 transition-opacity"
               style={{ color: "#c9ceda" }}>
@@ -226,6 +241,25 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
             </Link>
           </div>
         </motion.div>
+
+        {comp.relatedGuides.length > 0 && (
+          <motion.div custom={5} variants={fadeUp} initial="hidden" animate="visible"
+            className="mt-8 p-6 rounded-2xl border border-white/10"
+            style={{ backgroundColor: "#151b3d" }}>
+            <h3 className="font-semibold text-white mb-1">Role-specific guides</h3>
+            <p className="text-sm mb-4" style={{ color: "#c9ceda" }}>See which tool our experts recommend for your use case.</p>
+            <div className="flex flex-wrap gap-3">
+              {comp.relatedGuides.map((g) => (
+                <Link key={g.href} href={g.href}
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border hover:opacity-80 transition-opacity"
+                  style={{ backgroundColor: "#f4b94212", borderColor: "#f4b94230", color: "#f4b942", minHeight: "44px" }}>
+                  {g.label}
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </div>
     </PageLayout>
   );

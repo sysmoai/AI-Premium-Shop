@@ -187,6 +187,17 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
             style={{ backgroundColor: "rgba(10,14,39,0.98)" }}
           >
             <div className="px-5 py-5 flex flex-col gap-1">
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold mb-3 hover:opacity-90 transition-opacity"
+                style={{ backgroundColor: "#25d366", color: "#fff", minHeight: "44px" }}
+                onClick={() => setMenuOpen(false)}
+              >
+                <MessageCircle className="w-4 h-4" />
+                Order on WhatsApp
+              </a>
               <div className="text-xs font-semibold uppercase tracking-widest mb-2 px-2" style={{ color: "#f4b942" }}>Products</div>
               {PRODUCT_CATEGORIES.map((cat) => (
                 <a
@@ -214,16 +225,6 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
                   {l.label}
                 </a>
               ))}
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 px-5 py-3 rounded-xl text-sm font-semibold text-center hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: "#25d366", color: "#fff" }}
-                onClick={() => setMenuOpen(false)}
-              >
-                Order Now
-              </a>
             </div>
           </motion.div>
         )}

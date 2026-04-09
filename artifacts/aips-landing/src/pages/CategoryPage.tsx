@@ -17,6 +17,7 @@ interface CategoryConfig {
   accent: string;
   faqs: { q: string; a: string }[];
   related: { label: string; href: string }[];
+  guides: { label: string; href: string }[];
 }
 
 const CATEGORIES: Record<string, CategoryConfig> = {
@@ -40,6 +41,12 @@ const CATEGORIES: Record<string, CategoryConfig> = {
       { label: "AI Code & Dev Tools", href: "/ai-code" },
       { label: "AI Workspace", href: "/ai-workspace" },
     ],
+    guides: [
+      { label: "Best AI for Students", href: "/best-ai-for-students" },
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+      { label: "Best AI for Business", href: "/best-ai-for-business" },
+      { label: "Best AI for Job Seekers", href: "/best-ai-for-job-seekers" },
+    ],
   },
   "ai-image": {
     id: "ai-image",
@@ -60,6 +67,11 @@ const CATEGORIES: Record<string, CategoryConfig> = {
       { label: "AI Video", href: "/ai-video" },
       { label: "AI Voice & Music", href: "/ai-voice-music" },
       { label: "AI Assistant & Chat", href: "/ai-assistant" },
+    ],
+    guides: [
+      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+      { label: "Best AI for Business", href: "/best-ai-for-business" },
     ],
   },
   "ai-video": {
@@ -82,6 +94,10 @@ const CATEGORIES: Record<string, CategoryConfig> = {
       { label: "AI Voice & Music", href: "/ai-voice-music" },
       { label: "AI Assistant & Chat", href: "/ai-assistant" },
     ],
+    guides: [
+      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+    ],
   },
   "ai-voice-music": {
     id: "ai-voice-music",
@@ -102,6 +118,10 @@ const CATEGORIES: Record<string, CategoryConfig> = {
       { label: "AI Video", href: "/ai-video" },
       { label: "AI Image & Design", href: "/ai-image" },
       { label: "AI Assistant & Chat", href: "/ai-assistant" },
+    ],
+    guides: [
+      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
     ],
   },
   "ai-code": {
@@ -124,6 +144,10 @@ const CATEGORIES: Record<string, CategoryConfig> = {
       { label: "AI Assistant & Chat", href: "/ai-assistant" },
       { label: "All Products", href: "/products" },
     ],
+    guides: [
+      { label: "Best AI for Developers", href: "/best-ai-for-developers" },
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+    ],
   },
   "ai-workspace": {
     id: "ai-workspace",
@@ -145,6 +169,11 @@ const CATEGORIES: Record<string, CategoryConfig> = {
       { label: "AI Code & Dev Tools", href: "/ai-code" },
       { label: "All Products", href: "/products" },
     ],
+    guides: [
+      { label: "Best AI for Business", href: "/best-ai-for-business" },
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+      { label: "Best AI for Students", href: "/best-ai-for-students" },
+    ],
   },
   "bundles": {
     id: "bundles",
@@ -165,6 +194,12 @@ const CATEGORIES: Record<string, CategoryConfig> = {
       { label: "AI Assistant & Chat", href: "/ai-assistant" },
       { label: "AI Image & Design", href: "/ai-image" },
       { label: "All Products", href: "/products" },
+    ],
+    guides: [
+      { label: "Best AI for Students", href: "/best-ai-for-students" },
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
+      { label: "Best AI for Business", href: "/best-ai-for-business" },
     ],
   },
 };
@@ -364,20 +399,38 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
           </div>
         </div>
 
-        <div className="mb-14">
+        <div className="mb-10">
           <h3 className="font-semibold text-white mb-4">Browse other categories</h3>
           <div className="flex flex-wrap gap-3">
             {config.related.map((rel) => (
               <a key={rel.label} href={rel.href}
                 onClick={(e) => { e.preventDefault(); navigate(rel.href); }}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 text-sm hover:border-white/30 transition-colors"
-                style={{ color: "#c9ceda" }}>
+                style={{ color: "#c9ceda", minHeight: "44px" }}>
                 {rel.label}
                 <ChevronRight className="w-3.5 h-3.5" />
               </a>
             ))}
           </div>
         </div>
+
+        {config.guides.length > 0 && (
+          <div className="mb-14 p-6 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
+            <h3 className="font-semibold text-white mb-1">Who is this for?</h3>
+            <p className="text-sm mb-4" style={{ color: "#c9ceda" }}>See our role-specific guides for tailored recommendations.</p>
+            <div className="flex flex-wrap gap-3">
+              {config.guides.map((g) => (
+                <a key={g.href} href={g.href}
+                  onClick={(e) => { e.preventDefault(); navigate(g.href); }}
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium hover:opacity-80 transition-opacity border"
+                  style={{ backgroundColor: "#f4b94212", borderColor: "#f4b94230", color: "#f4b942", minHeight: "44px" }}>
+                  {g.label}
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="p-8 rounded-2xl text-center border border-white/10" style={{ backgroundColor: "#151b3d" }}>
           <p className="font-semibold text-white text-lg mb-2">Ready to get started?</p>

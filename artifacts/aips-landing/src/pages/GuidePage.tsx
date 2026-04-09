@@ -41,6 +41,8 @@ interface GuideConfig {
   faqs: FAQ[];
   accentColor: string;
   emoji: string;
+  alsoRead: { label: string; href: string }[];
+  comparison?: { label: string; href: string };
 }
 
 const GUIDES: Record<string, GuideConfig> = {
@@ -71,6 +73,11 @@ const GUIDES: Record<string, GuideConfig> = {
     ],
     accentColor: "#4285f4",
     emoji: "🎓",
+    alsoRead: [
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+      { label: "Best AI for Job Seekers", href: "/best-ai-for-job-seekers" },
+    ],
+    comparison: { label: "ChatGPT vs Google Gemini — which is better for study?", href: "/chatgpt-vs-gemini" },
   },
   freelancers: {
     slug: "best-ai-for-freelancers",
@@ -101,6 +108,11 @@ const GUIDES: Record<string, GuideConfig> = {
     ],
     accentColor: "#10a37f",
     emoji: "💼",
+    alsoRead: [
+      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
+      { label: "Best AI for Business", href: "/best-ai-for-business" },
+    ],
+    comparison: { label: "ChatGPT vs Claude — which writes better proposals?", href: "/chatgpt-vs-claude" },
   },
   creators: {
     slug: "best-ai-for-creators",
@@ -131,6 +143,11 @@ const GUIDES: Record<string, GuideConfig> = {
     ],
     accentColor: "#ec4899",
     emoji: "🎬",
+    alsoRead: [
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+      { label: "Best AI for Business", href: "/best-ai-for-business" },
+    ],
+    comparison: { label: "ChatGPT vs Claude — best AI for creative work", href: "/chatgpt-vs-claude" },
   },
   business: {
     slug: "best-ai-for-business",
@@ -160,6 +177,11 @@ const GUIDES: Record<string, GuideConfig> = {
     ],
     accentColor: "#4285f4",
     emoji: "🏢",
+    alsoRead: [
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+      { label: "Best AI for Developers", href: "/best-ai-for-developers" },
+    ],
+    comparison: { label: "ChatGPT vs Google Gemini for business use", href: "/chatgpt-vs-gemini" },
   },
   developers: {
     slug: "best-ai-for-developers",
@@ -190,6 +212,11 @@ const GUIDES: Record<string, GuideConfig> = {
     ],
     accentColor: "#6e40c9",
     emoji: "💻",
+    alsoRead: [
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
+    ],
+    comparison: { label: "GitHub Copilot vs Cursor — full comparison", href: "/copilot-vs-cursor" },
   },
   "job-seekers": {
     slug: "best-ai-for-job-seekers",
@@ -218,6 +245,11 @@ const GUIDES: Record<string, GuideConfig> = {
     ],
     accentColor: "#20b2aa",
     emoji: "🎯",
+    alsoRead: [
+      { label: "Best AI for Students", href: "/best-ai-for-students" },
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+    ],
+    comparison: { label: "ChatGPT vs Google Gemini — which is easier to start with?", href: "/chatgpt-vs-gemini" },
   },
 };
 
@@ -369,6 +401,33 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
             {guide.faqs.map((faq, i) => <FAQItem key={i} faq={faq} index={i} />)}
           </div>
         </motion.div>
+
+        {/* Also Read */}
+        {(guide.alsoRead.length > 0 || guide.comparison) && (
+          <motion.div custom={guide.tools.length + 6} variants={fadeUp} initial="hidden" animate="visible"
+            className="p-6 rounded-2xl border border-white/10 mb-10"
+            style={{ backgroundColor: "#151b3d" }}>
+            <h3 className="font-semibold text-white mb-4">Also read</h3>
+            <div className="flex flex-col gap-2">
+              {guide.alsoRead.map((item) => (
+                <Link key={item.href} href={item.href}
+                  className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity"
+                  style={{ color: "#f4b942" }}>
+                  <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
+                  {item.label}
+                </Link>
+              ))}
+              {guide.comparison && (
+                <Link href={guide.comparison.href}
+                  className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity"
+                  style={{ color: "#c9ceda" }}>
+                  <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
+                  {guide.comparison.label}
+                </Link>
+              )}
+            </div>
+          </motion.div>
+        )}
 
         {/* Final CTA */}
         <motion.div custom={guide.tools.length + 7} variants={fadeUp} initial="hidden" animate="visible"

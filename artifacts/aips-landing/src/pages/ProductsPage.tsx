@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, Filter, ArrowUpDown } from "lucide-react";
+import { MessageCircle, Filter, ArrowUpDown, ChevronRight } from "lucide-react";
+import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import productsData from "../../data/products.json";
@@ -190,7 +191,11 @@ export default function ProductsPage() {
             {CATEGORY_ORDER.filter((cat) => (grouped[cat] ?? []).length > 0).map((cat) => (
               <div key={cat}>
                 <div className="flex items-center gap-3 mb-6">
-                  <h2 className="text-xl font-bold text-white">{CATEGORY_LABELS[cat]}</h2>
+                  <Link href={`/${cat}`}
+                    className="text-xl font-bold text-white hover:opacity-80 transition-opacity flex items-center gap-1.5">
+                    {CATEGORY_LABELS[cat]}
+                    <ChevronRight className="w-4 h-4" style={{ color: "#f4b942" }} />
+                  </Link>
                   <span
                     className="text-xs px-2 py-0.5 rounded-full"
                     style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}
@@ -216,8 +221,30 @@ export default function ProductsPage() {
           </div>
         )}
 
+        <div className="mt-16 p-6 rounded-2xl border border-white/10 mb-8" style={{ backgroundColor: "#151b3d" }}>
+          <h2 className="text-lg font-bold text-white mb-1">Not sure where to start?</h2>
+          <p className="text-sm mb-5" style={{ color: "#c9ceda" }}>Browse our role-specific guides to find the best AI tools for your needs.</p>
+          <div className="flex flex-wrap gap-3">
+            {[
+              { label: "Best AI for Students", href: "/best-ai-for-students" },
+              { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+              { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
+              { label: "Best AI for Business", href: "/best-ai-for-business" },
+              { label: "Best AI for Developers", href: "/best-ai-for-developers" },
+              { label: "Best AI for Job Seekers", href: "/best-ai-for-job-seekers" },
+            ].map((g) => (
+              <Link key={g.href} href={g.href}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: "#f4b94212", borderColor: "#f4b94230", color: "#f4b942", minHeight: "44px" }}>
+                {g.label}
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Link>
+            ))}
+          </div>
+        </div>
+
         <div
-          className="mt-16 p-8 rounded-2xl text-center border border-white/10"
+          className="p-8 rounded-2xl text-center border border-white/10"
           style={{ backgroundColor: "#151b3d" }}
         >
           <p className="font-semibold text-white text-lg mb-2">Not sure which tool is right for you?</p>

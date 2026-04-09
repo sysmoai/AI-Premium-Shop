@@ -1,0 +1,155 @@
+=== PHASE 5: VISUAL POLISH + PERFORMANCE + LAUNCH PREP (FINAL) ===
+
+CONTEXT:
+- Phases 1-4 DONE: Homepage + 26 core pages + 12 SEO pages + sitemap + schema
+- This is the FINAL phase before launch
+- Focus: polish, performance, cross-linking, mobile UX, and launch checklist
+
+
+=== PART A: INTERNAL LINKING ===
+
+Add cross-links between pages so users and Google can discover all content:
+
+1. On EVERY category page, add at bottom:
+   - "Related categories" section linking to 2-3 other category pages
+   - "Best AI For" section linking to relevant guide pages
+     Example: /ai-code page should link to /best-ai-for-developers
+
+2. On EVERY guide page, add at bottom:
+   - "Also read" section linking to 2-3 other guide pages
+   - Link to relevant comparison page
+     Example: /best-ai-for-developers links to /copilot-vs-cursor
+
+3. On EVERY comparison page, add:
+   - Links to both products' category pages
+   - Link to relevant guide page
+   - "See all products" link to /products
+
+4. On EVERY budget page, add:
+   - Links to next budget tier (under-500 links to under-1000, etc.)
+   - Link to /products for full catalog
+   - Link to relevant guide pages
+
+5. On /products page:
+   - Each category header links to the category page
+   - Add "Best AI For" section at bottom linking all 6 guide pages
+
+
+=== PART B: MOBILE UX POLISH ===
+
+1. Mobile sticky bottom bar on ALL pages (not just homepage):
+   Left: "From BDT 350/mo"
+   Right: Green gradient "Order Now" button
+   Height: 60px, z-index: 40
+   Show after scrolling 200px down
+   Hide on /contact page (already has WhatsApp prominently)
+
+2. Mobile hamburger menu must include:
+   - All 7 category links
+   - Pricing link
+   - About link
+   - FAQ link
+   - "Order on WhatsApp" button at top (highlighted)
+
+3. Touch targets: ensure ALL buttons and links are at least 44x44px
+
+4. Product cards on mobile: stack to single column, full width
+
+5. Comparison tables on mobile: horizontal scroll with sticky first column
+
+
+=== PART C: PERFORMANCE OPTIMIZATION ===
+
+1. Lazy load all images below the fold
+2. Add loading="lazy" and width/height attributes to prevent CLS
+3. Minimize JavaScript bundle — code-split by route
+4. Cache static assets (images, fonts) with 30-day max-age headers
+5. Preload Inter font to avoid FOIT
+6. Target: Largest Contentful Paint < 2.5 seconds
+
+
+=== PART D: 404 PAGE ===
+
+Create a custom 404 page:
+- H1: "Page Not Found"
+- Subtext: "The page you're looking for doesn't exist or has moved."
+- Links: "Go to Homepage" | "Browse All Products" | "Contact Us on WhatsApp"
+- Same header/footer as all other pages
+
+
+=== PART E: FINAL QUALITY CHECKS ===
+
+Go through EVERY page on the site and verify:
+
+1. CONTENT QUALITY:
+   [ ] All text is 100% English — zero Bangla
+   [ ] No Lorem Ipsum or placeholder text anywhere
+   [ ] No "coming soon" or "TODO" text visible to users
+   [ ] All prices match products.json exactly
+   [ ] Trust data says "1,200+" — no fake numbers
+   [ ] Copy reads professionally — no typos, no awkward phrasing
+
+2. FUNCTIONALITY:
+   [ ] All WhatsApp links open wa.me/8801865385348
+   [ ] All WhatsApp product links have pre-filled messages
+   [ ] Navigation dropdown works on desktop and mobile
+   [ ] Footer links all point to real pages (no # links)
+   [ ] 404 page works for invalid URLs
+   [ ] Sitemap.xml returns valid XML
+   [ ] Robots.txt is accessible
+
+3. VISUAL:
+   [ ] Background is Navy-900 (#0a0e27) on all pages
+   [ ] Cards use Navy-800 (#151b3d) background
+   [ ] Gold (#f4b942) used for H3 and accents only
+   [ ] CTA buttons use pink-to-orange gradient
+   [ ] WhatsApp floating button visible on all pages
+   [ ] Payment badges visible in footer on all pages
+   [ ] Logo appears in navbar (or gold text fallback)
+
+4. MOBILE:
+   [ ] Every page is fully responsive
+   [ ] Sticky bottom bar appears on scroll
+   [ ] No horizontal overflow on any page
+   [ ] Tables scroll horizontally on mobile
+   [ ] Touch targets are 44px minimum
+
+5. SEO:
+   [ ] Every page has unique <title> tag
+   [ ] Every page has unique meta description
+   [ ] Every page has canonical URL
+   [ ] Homepage has Organization JSON-LD
+   [ ] FAQ page has FAQPage JSON-LD
+   [ ] Sitemap lists all 30+ pages
+   [ ] No duplicate title tags
+
+
+=== PART F: PAGE COUNT VERIFICATION ===
+
+The complete site should now have these pages:
+
+Homepage: / (1)
+Products: /products (1)
+Categories: /ai-assistant, /ai-image, /ai-video, /ai-voice-music, /ai-code, /ai-workspace, /bundles (7)
+Guides: /best-ai-for-students, /best-ai-for-freelancers, /best-ai-for-creators, /best-ai-for-business, /best-ai-for-developers, /best-ai-for-job-seekers (6)
+Comparisons: /chatgpt-vs-claude, /chatgpt-vs-gemini, /copilot-vs-cursor (3)
+Budget: /ai-under-500, /ai-under-1000, /ai-under-3000 (3)
+Utility: /about, /contact, /faq, /pricing, /refund-policy, /terms (6)
+404: custom 404 page (1)
+
+TOTAL: 28 pages + sitemap.xml + robots.txt
+
+List ALL working URLs when done so I can verify each one.
+
+
+=== LAUNCH READINESS ===
+
+After all checks pass, the site is ready for:
+1. Custom domain connection (aipremiumshop.com)
+2. Google Search Console verification
+3. Sitemap submission to GSC
+4. Social media announcement
+
+Tell me: "All 28 pages built. All checks passed. Ready for launch."
+
+=== END PHASE 5 — FINAL ===

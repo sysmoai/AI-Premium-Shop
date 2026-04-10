@@ -1,22 +1,24 @@
 import { motion, type Variants } from "framer-motion";
-import { Search, CreditCard, Package, MessageCircle } from "lucide-react";
+import { ShoppingCart, CreditCard, Package, MessageCircle } from "lucide-react";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
 const STEPS = [
   {
     number: "01",
-    Icon: Search,
+    Icon: ShoppingCart,
     title: "Choose Your AI Tool",
     description: "Browse our catalog of 57 premium AI tools and pick the one that fits your work and budget.",
     color: "#f4b942",
+    gradientTo: "#f97316",
   },
   {
     number: "02",
     Icon: CreditCard,
     title: "Pay via bKash, Nagad, or Rocket",
     description: "Send payment with local mobile banking. No international card, no PayPal, no hassle.",
-    color: "#10a37f",
+    color: "#ec4899",
+    gradientTo: "#f97316",
   },
   {
     number: "03",
@@ -24,13 +26,15 @@ const STEPS = [
     title: "Receive Access Fast",
     description: "Shared accounts: 5–30 minutes. Personal accounts: 2–4 hours. Delivery starts after payment confirmation.",
     color: "#3b82f6",
+    gradientTo: "#8b5cf6",
   },
   {
     number: "04",
     Icon: MessageCircle,
     title: "Get Support on WhatsApp",
     description: "We respond in under 5 minutes. Free setup help is always included. No extra charge.",
-    color: "#ec4899",
+    color: "#10a37f",
+    gradientTo: "#06b6d4",
   },
 ];
 
@@ -77,22 +81,46 @@ export function HowItWorksSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14"
+          className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14"
         >
+          {/* Connecting dashes between steps (desktop only) */}
+          <div className="absolute top-10 left-0 right-0 hidden lg:flex items-center px-[12.5%]" aria-hidden="true">
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                className="flex-1 mx-4"
+                style={{
+                  borderTop: "2px dashed rgba(255,255,255,0.15)",
+                  marginTop: 0,
+                }}
+              />
+            ))}
+          </div>
+
           {STEPS.map((step) => (
             <motion.div
               key={step.number}
               variants={itemVariants}
-              className="flex flex-col items-center text-center"
+              className="flex flex-col items-center text-center relative"
             >
+              {/* Circle with icon */}
               <div
-                className="relative w-16 h-16 rounded-2xl flex items-center justify-center mb-5"
-                style={{ backgroundColor: step.color + "18", border: `1px solid ${step.color}45` }}
+                className="relative w-20 h-20 rounded-full flex items-center justify-center mb-5 z-10"
+                style={{
+                  background: `linear-gradient(135deg, ${step.color}22, ${step.gradientTo}18)`,
+                  border: `2px solid ${step.color}50`,
+                  boxShadow: `0 0 24px ${step.color}20`,
+                }}
               >
-                <step.Icon className="w-7 h-7" style={{ color: step.color }} />
+                <step.Icon className="w-8 h-8" style={{ color: step.color }} />
+                {/* Step number badge */}
                 <div
-                  className="absolute -top-3 -right-3 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
-                  style={{ backgroundColor: step.color, color: "#0a0e27" }}
+                  className="absolute -top-2 -right-2 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold z-10"
+                  style={{
+                    background: `linear-gradient(135deg, ${step.color}, ${step.gradientTo})`,
+                    color: "#0a0e27",
+                    boxShadow: `0 2px 8px ${step.color}60`,
+                  }}
                 >
                   {step.number}
                 </div>

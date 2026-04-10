@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronRight, MessageCircle, TrendingUp } from "lucide-react";
+import { ChevronRight, MessageCircle, TrendingUp, Bot } from "lucide-react";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 const SETUP_LINK = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20book%20a%201%3A1%20AI%20Setup%20Session";
@@ -35,10 +35,21 @@ export function AIAgentsSection() {
   return (
     <section
       id="ai-agents"
-      className="py-24 px-4"
+      className="py-24 px-4 relative overflow-hidden"
       style={{ background: "linear-gradient(135deg, #151b3d 0%, #0a0e27 100%)" }}
     >
-      <div className="max-w-6xl mx-auto">
+      {/* Grid pattern background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(139,92,246,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.04) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-14">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -70,7 +81,7 @@ export function AIAgentsSection() {
           </motion.p>
         </div>
 
-        {/* Use case cards — horizontal scroll on mobile */}
+        {/* Use case cards */}
         <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-4 md:overflow-visible md:pb-0 mb-12">
           {USE_CASES.map((uc, i) => (
             <motion.div
@@ -79,14 +90,28 @@ export function AIAgentsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.45 }}
-              className="rounded-2xl p-6 flex-shrink-0 snap-center border border-white/10"
-              style={{ backgroundColor: "rgba(255,255,255,0.03)", minWidth: 260 }}
+              whileHover={{ y: -4, boxShadow: `0 8px 28px ${uc.color}25` }}
+              className="group rounded-2xl p-5 flex-shrink-0 snap-center border border-white/10 transition-all duration-300"
+              style={{
+                backgroundColor: "rgba(255,255,255,0.03)",
+                minWidth: 240,
+                borderLeft: `3px solid ${uc.color}`,
+              }}
             >
-              <div
-                className="text-xs font-semibold uppercase tracking-widest mb-3 px-2.5 py-1 rounded-full inline-block"
-                style={{ color: uc.color, backgroundColor: uc.color + "18" }}
-              >
-                {uc.label}
+              {/* Bot icon + label */}
+              <div className="flex items-center gap-2 mb-3">
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: uc.color + "18" }}
+                >
+                  <Bot className="w-4 h-4" style={{ color: uc.color }} />
+                </div>
+                <span
+                  className="text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full"
+                  style={{ color: uc.color, backgroundColor: uc.color + "18" }}
+                >
+                  {uc.label}
+                </span>
               </div>
               <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
                 {uc.text}
@@ -100,14 +125,24 @@ export function AIAgentsSection() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl p-6 mb-10 text-center border"
-          style={{ backgroundColor: "rgba(244,185,66,0.05)", borderColor: "rgba(244,185,66,0.2)" }}
+          className="rounded-2xl p-6 mb-10 border"
+          style={{
+            backgroundColor: "rgba(139,92,246,0.07)",
+            borderColor: "rgba(139,92,246,0.3)",
+            borderLeft: "4px solid #8b5cf6",
+          }}
         >
-          <TrendingUp className="w-6 h-6 mx-auto mb-3" style={{ color: "#f4b942" }} />
-          <p className="text-lg font-semibold text-white mb-1">
-            "Freelancers who use AI earn 44% more on average."
-          </p>
-          <p className="text-sm" style={{ color: "#c9ceda" }}>— Upwork 2025 Report</p>
+          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center text-center sm:text-left">
+            <TrendingUp className="w-8 h-8 flex-shrink-0" style={{ color: "#8b5cf6" }} />
+            <div>
+              <p className="text-lg font-semibold text-white">
+                Freelancers who use AI earn{" "}
+                <span style={{ color: "#f4b942", fontSize: "1.4em" }}>44%</span>{" "}
+                more on average.
+              </p>
+              <p className="text-sm" style={{ color: "#c9ceda" }}>— Upwork 2025 Report</p>
+            </div>
+          </div>
         </motion.div>
 
         {/* CTAs */}

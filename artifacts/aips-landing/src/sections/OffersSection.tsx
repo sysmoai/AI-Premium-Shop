@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Tag } from "lucide-react";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
@@ -16,6 +16,8 @@ const SPECIAL_OFFERS = [
     description:
       "Gemini 3.1 Pro, Deep Research, 2TB storage, AI agents. Official price BDT 2,990.",
     color: "#4285f4",
+    glowClass: "glow-offer-blue",
+    glowAnimation: "glow-pulse-blue 2.5s ease-in-out infinite",
   },
   {
     id: "notion-business",
@@ -25,7 +27,9 @@ const SPECIAL_OFFERS = [
     badge: "73% Off",
     description:
       "Notion AI included, teamspaces, SSO. Official price BDT 2,990.",
-    color: "#ffffff",
+    color: "#e5e7eb",
+    glowClass: "glow-offer-dark",
+    glowAnimation: "glow-pulse-dark 2.5s ease-in-out infinite",
   },
 ];
 
@@ -34,7 +38,7 @@ const BEST_SELLERS = [
   { id: "perplexity-pro-shared", name: "Perplexity Pro Shared", price: 350, badge: null, color: "#20b2aa", msg: "Hi, I want Perplexity Pro Shared (৳350/mo)" },
   { id: "google-ai-pro-bs", name: "Google AI Pro", price: 500, badge: "83% Off", color: "#4285f4", msg: "Hi, I want Google AI Pro (৳500/mo)" },
   { id: "chatgpt-business", name: "ChatGPT Business Starter Shared", price: 699, badge: null, color: "#10a37f", msg: "Hi, I want ChatGPT Business Starter Shared (৳699/mo)" },
-  { id: "midjourney", name: "Midjourney Standard Shared", price: 1199, badge: "Popular", color: "#1a1a2e", msg: "Hi, I want Midjourney Standard Shared (৳1,199/mo)" },
+  { id: "midjourney", name: "Midjourney Standard Shared", price: 1199, badge: "Popular", color: "#8b5cf6", msg: "Hi, I want Midjourney Standard Shared (৳1,199/mo)" },
   { id: "claude-premium", name: "Claude Pro Premium Shared", price: 1495, badge: null, color: "#d97706", msg: "Hi, I want Claude Pro Premium Shared (৳1,495/mo)" },
 ];
 
@@ -78,24 +82,63 @@ export function OffersSection() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="relative rounded-2xl p-6 border border-white/10"
-                style={{ backgroundColor: "rgba(10,14,39,0.7)" }}
+                className="relative rounded-2xl p-6 overflow-hidden"
+                style={{
+                  backgroundColor: "rgba(10,14,39,0.85)",
+                  animation: offer.glowAnimation,
+                }}
               >
-                {/* Discount badge */}
+                {/* "Limited Time" corner ribbon */}
+                <div
+                  className="absolute top-0 left-0 overflow-hidden"
+                  style={{ width: 90, height: 90 }}
+                  aria-hidden="true"
+                >
+                  <div
+                    className="absolute flex items-center justify-center text-xs font-bold"
+                    style={{
+                      background: "linear-gradient(135deg, #f4b942, #f97316)",
+                      color: "#0a0e27",
+                      width: 120,
+                      height: 28,
+                      top: 20,
+                      left: -30,
+                      transform: "rotate(-45deg)",
+                      fontSize: 10,
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    LIMITED TIME
+                  </div>
+                </div>
+
+                {/* Discount badge with pulse */}
                 <span
                   className="absolute -top-3 right-5 text-sm font-bold px-4 py-1.5 rounded-full"
-                  style={{ background: "linear-gradient(135deg, #ec4899, #f97316)", color: "#fff" }}
+                  style={{
+                    background: "linear-gradient(135deg, #ec4899, #f97316)",
+                    color: "#fff",
+                    animation: "badge-pulse 2s ease-in-out infinite",
+                  }}
                 >
                   {offer.badge}
                 </span>
 
-                <div className="mb-4">
+                <div className="mb-4 mt-2">
                   <div className="flex items-baseline gap-3 mb-1">
                     <span className="text-3xl font-semibold text-white">৳{offer.price}</span>
-                    <span className="text-base line-through" style={{ color: "#c9ceda" }}>৳{offer.officialPrice}</span>
+                    <span
+                      className="text-base line-through"
+                      style={{ color: "#ef4444" }}
+                    >
+                      ৳{offer.officialPrice}
+                    </span>
                     <span className="text-xs" style={{ color: "#c9ceda" }}>/month</span>
                   </div>
-                  <h3 className="text-lg font-semibold" style={{ color: offer.color === "#ffffff" ? "#e5e7eb" : offer.color }}>
+                  <h3
+                    className="text-lg font-semibold"
+                    style={{ color: offer.color === "#e5e7eb" ? offer.color : offer.color }}
+                  >
                     {offer.name}
                   </h3>
                 </div>
@@ -169,7 +212,10 @@ export function OffersSection() {
                     />
                     <span className="font-medium text-white text-sm">{product.name}</span>
                   </div>
-                  <div className="text-xl font-semibold mt-1 text-white">৳{product.price}<span className="text-xs font-normal ml-1" style={{ color: "#c9ceda" }}>/mo</span></div>
+                  <div className="text-xl font-semibold mt-1 text-white">
+                    ৳{product.price}
+                    <span className="text-xs font-normal ml-1" style={{ color: "#c9ceda" }}>/mo</span>
+                  </div>
                 </div>
 
                 <a

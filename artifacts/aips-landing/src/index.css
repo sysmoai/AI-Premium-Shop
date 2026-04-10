@@ -397,6 +397,48 @@
   }
 }
 
+/* Brand marquee scroll animation */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Offer card glow pulse */
+@keyframes glow-pulse-blue {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(66,133,244,0.3), 0 0 24px rgba(66,133,244,0.15); }
+  50% { box-shadow: 0 0 0 1px rgba(66,133,244,0.6), 0 0 40px rgba(66,133,244,0.3); }
+}
+
+@keyframes glow-pulse-dark {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 0 20px rgba(255,255,255,0.05); }
+  50% { box-shadow: 0 0 0 1px rgba(255,255,255,0.25), 0 0 32px rgba(255,255,255,0.12); }
+}
+
+/* Floating card stack animation */
+@keyframes float-card {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Discount badge pulse */
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* Connecting step dash */
+@keyframes dash-flow {
+  from { stroke-dashoffset: 20; }
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none !important; }
+  .glow-offer-blue, .glow-offer-dark { animation: none !important; }
+  .float-card-stack { animation: none !important; }
+  .badge-pulse { animation: none !important; }
+}
+
 @keyframes aurora-drift-1 {
   0%, 100% { transform: translate(0, 0) scale(1); }
   25% { transform: translate(-50px, 40px) scale(1.06); }

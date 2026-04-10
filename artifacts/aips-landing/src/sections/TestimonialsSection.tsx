@@ -10,6 +10,7 @@ const TESTIMONIALS = [
     initials: "R",
     gradientFrom: "#3b82f6",
     gradientTo: "#8b5cf6",
+    borderColor: "#3b82f6",
   },
   {
     id: 2,
@@ -19,6 +20,7 @@ const TESTIMONIALS = [
     initials: "N",
     gradientFrom: "#10a37f",
     gradientTo: "#06b6d4",
+    borderColor: "#10a37f",
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const TESTIMONIALS = [
     initials: "K",
     gradientFrom: "#f97316",
     gradientTo: "#ec4899",
+    borderColor: "#f97316",
   },
 ];
 
@@ -69,27 +72,29 @@ export function TestimonialsSection() {
           </motion.h2>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
-        >
+        {/* Mobile: horizontal snap scroll; Desktop: grid */}
+        <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-3 md:overflow-visible md:pb-0">
           {TESTIMONIALS.map((t) => (
             <motion.div
               key={t.id}
               variants={itemVariants}
-              whileHover={{ y: -4, boxShadow: `0 12px 32px rgba(0,0,0,0.3)` }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              whileHover={{ y: -4, boxShadow: `0 12px 32px ${t.borderColor}25` }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="relative rounded-2xl p-6 border border-white/10 flex flex-col"
-              style={{ backgroundColor: "rgba(10,14,39,0.5)" }}
+              className="relative rounded-2xl p-6 border border-white/10 flex flex-col flex-shrink-0 snap-center md:flex-shrink"
+              style={{
+                backgroundColor: "rgba(10,14,39,0.5)",
+                borderLeft: `3px solid ${t.borderColor}`,
+                minWidth: 280,
+              }}
               data-testid={`testimonial-${t.id}`}
             >
               {/* Large quote mark */}
               <div
-                className="absolute top-4 left-5 text-5xl font-serif leading-none select-none pointer-events-none"
-                style={{ color: `${t.gradientFrom}22`, fontFamily: "Georgia, serif" }}
+                className="absolute top-4 left-5 text-6xl font-serif leading-none select-none pointer-events-none"
+                style={{ color: `${t.gradientFrom}20`, fontFamily: "Georgia, serif", lineHeight: 1 }}
                 aria-hidden="true"
               >
                 &ldquo;
@@ -121,12 +126,17 @@ export function TestimonialsSection() {
                 </div>
                 <div>
                   <div className="font-semibold text-white text-sm">{t.name}</div>
-                  <div className="text-xs" style={{ color: "#c9ceda" }}>{t.role}</div>
+                  <div
+                    className="text-xs px-2 py-0.5 rounded-full inline-block mt-0.5"
+                    style={{ backgroundColor: t.borderColor + "20", color: t.borderColor }}
+                  >
+                    {t.role}
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,0 +1,268 @@
+# FINAL Replit Prompt — Complete Everything + Visual Polish (Paste NOW)
+
+<aside>
+🚀
+
+**THE FINAL REPLIT PROMPT — Finish the website completely**
+
+Date: 2026-04-10 · Paste this into Replit Agent
+
+**What this does:** Creates all remaining brand pages + fixes navbar + adds visual effects + makes it launch-ready
+
+**After this, the website is DONE and ready to deploy to [aipremiumshop.com](http://aipremiumshop.com)**
+
+</aside>
+
+---
+
+## PART 1: CREATE ALL MISSING BRAND PAGES
+
+```
+Several brand pages still return 404. Create ALL of these using the same template as /claude-pro-bangladesh (which works perfectly).
+
+For each page:
+- Read product data from products.json (already in /data/products.json)
+- Filter by brandSlug to get the right products
+- Use the existing brand page template/component
+- Include: H1 with price, all plan cards, How to Order, FAQ, breadcrumb, footer
+- SSR/SSG so Google can index
+
+Pages that need to be created (check each — skip if it already works):
+
+/chatgpt-plus-bangladesh — brandSlug "chatgpt-plans-bangladesh", filter slug containing "plus"
+  Plans: Starter Shared BDT 350, Premium Shared BDT 950, Personal BDT 2,990
+
+/chatgpt-business-bangladesh — brandSlug "chatgpt-plans-bangladesh", filter slug containing "business"
+  Plans: Starter Shared BDT 699, Premium Shared BDT 1,299, Personal BDT 3,990
+
+/chatgpt-pro-bangladesh — brandSlug "chatgpt-plans-bangladesh", filter slug containing "pro" (not "plus")
+  Plans: Premium Shared BDT 4,500, Personal BDT 29,900
+
+/chatgpt-go-bangladesh — filter id "chatgpt-go-personal"
+  Plans: Personal BDT 1,196
+
+/chatgpt-plans-bangladesh — HUB page showing ALL 9 ChatGPT products
+  Include a comparison section: Plus vs Business vs Pro feature matrix
+
+/gemini-advanced-bangladesh — filter brand "Google"
+  Plans: Personal BDT 500 with "83% Off" badge
+
+/supergrok-bangladesh — filter brand "Grok"
+  Plans: Lite BDT 1,495, Standard BDT 3,990
+
+/perplexity-pro-bangladesh — filter brand "Perplexity"
+  Plans: Shared BDT 350, Personal BDT 2,990, Max BDT 29,900
+
+/midjourney-bangladesh — filter brand "Midjourney"
+  Plans: 6 products from Shared BDT 1,199 to Mega BDT 17,940
+
+/ideogram-bangladesh — filter brand "Ideogram"
+  Plans: Plus BDT 2,990, Pro BDT 8,970
+
+/leonardo-ai-bangladesh — filter brand "Leonardo AI"
+  Plans: Shared BDT 599
+
+/runway-bangladesh — filter brand "Runway"
+  Plans: Standard BDT 1,794, Pro BDT 4,186, Unlimited BDT 11,362
+
+/heygen-bangladesh — filter brand "HeyGen"
+  Plans: Creator Shared BDT 1,499
+
+/elevenlabs-bangladesh — filter brand "ElevenLabs"
+  Plans: Starter BDT 748, Creator BDT 3,289, Pro BDT 14,802
+
+/suno-ai-bangladesh — filter brand "Suno"
+  Plans: Pro BDT 1,495, Premier BDT 3,990
+
+/udio-bangladesh — filter brand "Udio"
+  Plans: Pro Shared BDT 499
+
+/github-copilot-bangladesh — filter brand "GitHub"
+  Plans: Pro BDT 1,495, Pro+ BDT 5,831
+
+/cursor-bangladesh — filter brand "Cursor"
+  Plans: Pro BDT 2,990, Pro+ BDT 8,970
+
+/v0-dev-bangladesh — filter brand "v0.dev"
+  Plans: Pro Shared BDT 999
+
+/replit-bangladesh — filter brand "Replit"
+  Plans: Core BDT 500 (Special Deal badge)
+
+/notion-business-bangladesh — filter brand "Notion"
+  Plans: Monthly BDT 800 (73% Off), 6-Month BDT 4,800
+
+/manus-ai-bangladesh — filter brand "Manus"
+  Plans: Personal BDT 2,500
+
+/writesonic-bangladesh — filter brand "Writesonic"
+  Plans: Individual Shared BDT 799
+
+/gamma-bangladesh — filter brand "Gamma"
+  Plans: Plus Shared BDT 399
+
+/otter-ai-bangladesh — filter brand "Otter.ai"
+  Plans: Pro Shared BDT 799
+
+IMPORTANT: The best approach is to create a dynamic route like /[brandSlug]/page.tsx that reads from products.json. This way ALL brand pages work automatically without creating 25 separate files. The /claude-pro-bangladesh page already works — replicate that pattern for all brands.
+```
+
+---
+
+## PART 2: FIX REMAINING HOMEPAGE ISSUES
+
+```
+1. NAVBAR FIX: The navbar still has layout issues. Ensure:
+   - All nav items (Products, Blog, Bundles, Pricing, About) are on ONE horizontal line
+   - Use: display: flex; align-items: center; gap: 32px;
+   - Logo left, nav items center, Order Now button right
+   - No wrapping at 1024px+ viewport width
+   - Mobile (<768px): collapse to hamburger menu
+
+2. CATEGORY CARD LINKS: Verify the 8 "Browse by Category" cards on homepage 
+   link to actual pages (NOT WhatsApp):
+   - AI Assistant & Chat → /ai-assistant
+   - AI Image & Design → /ai-image
+   - AI Video → /ai-video
+   - AI Voice & Music → /ai-voice-music
+   - AI Code & Dev Tools → /ai-code
+   - AI Workspace → /ai-workspace
+   - AI Writing & SEO → /ai-writing
+   - Bundles & Packages → /bundles
+
+3. PERPLEXITY PRICE FIX: On /best-ai-for-students page, Perplexity Pro Shared 
+   shows "BDT 400/mo". Change to "BDT 350/mo" (CEO confirmed price).
+
+4. BUNDLES CARD: Check if "from ৳449 from ৳449" duplicate is fixed. 
+   Should show "from ৳449" once only.
+```
+
+---
+
+## PART 3: VISUAL POLISH (Make it beautiful)
+
+```
+Add these visual enhancements to make the site feel premium and polished:
+
+1. HERO BACKGROUND: Add a subtle animated gradient background to the homepage hero section.
+   Use CSS animation or Framer Motion (already installed).
+   Colors: Start with Navy-900 (#0a0e27), add subtle moving glow effects using:
+   - Gold (#f4b942) at 10% opacity
+   - Purple (#8b5cf6) at 8% opacity  
+   - Pink (#ec4899) at 5% opacity
+   Animation: Slow 15-second loop, gentle movement. Like an aurora borealis.
+   Must NOT slow down page load. Use CSS gradients, not images.
+
+2. PRODUCT CARD HOVER EFFECTS:
+   - On hover: transform: scale(1.02); transition: 0.2s;
+   - Add a subtle border glow using the product's brand color
+   - The Order button should brighten on hover
+
+3. CATEGORY CARD HOVER:
+   - Subtle lift effect: translateY(-4px) + shadow increase
+   - Transition: 0.2s ease
+
+4. CTA BUTTON ANIMATIONS:
+   - All gradient CTA buttons: on hover, shift the gradient slightly
+   - Add a subtle pulse animation to the floating WhatsApp button
+   - The WhatsApp button should have a small "Chat with us" tooltip on hover
+
+5. TRUST BADGES ANIMATION:
+   - The 4 trust badges (1,200+ Customers, Since 2022, etc.) should have 
+     a count-up animation when they scroll into view
+   - Use Intersection Observer + simple counter animation
+   - "1,200+" counts from 0 to 1200 in ~2 seconds
+
+6. FAQ ANIMATION:
+   - Smooth accordion open/close with height transition (not instant)
+   - Use max-height or Framer Motion AnimatePresence
+
+7. NAVBAR SCROLL EFFECT:
+   - On scroll down: navbar gets slightly more opaque background
+   - backdrop-filter: blur(12px) when scrolled
+   - Transition: 0.3s
+
+8. SECTION ENTRANCE ANIMATIONS:
+   - Each major homepage section fades in + slides up slightly as user scrolls to it
+   - Use Intersection Observer + CSS: opacity 0 → 1, translateY(20px) → 0
+   - Stagger children by 100ms for lists/grids
+   - Keep it subtle — 0.5s duration, ease-out
+
+9. PAYMENT BADGE STYLING:
+   - The payment method badges in footer and hero should be styled pills:
+   - bKash: background #e2136e, white text
+   - Nagad: background #f6921e, white text
+   - Rocket: background #8b2f97, white text
+   - Bank Transfer: background #1a5276, white text
+   - Binance: background #f0b90b, dark text
+   - Border-radius: 6px, padding: 4px 12px, font-size: 13px
+
+10. TESTIMONIAL CARDS:
+    - Add a subtle quote mark (") icon in the top-left of each testimonial card
+    - The initial letter circle should have a gradient background matching brand colors
+    - Cards should have a very subtle border: 1px solid rgba(255,255,255,0.1)
+
+All animations must be:
+- Subtle (not flashy or distracting)
+- Fast (200-500ms max)
+- Performance-friendly (use transform/opacity, not layout properties)
+- Disabled for users who prefer reduced motion (prefers-reduced-motion media query)
+```
+
+---
+
+## PART 4: SEO PAGES (Create if missing)
+
+```
+Create these pages if they don't exist yet:
+
+COMPARISON PAGES:
+/chatgpt-vs-claude — Feature comparison table, price comparison, verdict, both CTAs
+/chatgpt-vs-gemini — Same format
+/copilot-vs-cursor — Same format
+
+BUDGET PAGES:
+/ai-under-500 — Grid of all products under BDT 500
+/ai-under-1000 — Grid of all products under BDT 1,000
+/ai-under-3000 — Grid of all products under BDT 3,000
+
+/support page:
+- WhatsApp as primary contact (prominent)
+- 1:1 AI Coaching info: BDT 799/hr
+- Service hours: 10 AM - Midnight BST, 7 days
+- WhatsApp Community join link: https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc
+- FAQ section
+```
+
+---
+
+## PART 5: FINAL CHECKS
+
+```
+After all changes, verify:
+- [ ] Every brand page loads (no 404s)
+- [ ] Navbar is clean single line on desktop
+- [ ] Mobile hamburger menu works
+- [ ] Hero has animated gradient background
+- [ ] Product cards have hover effects
+- [ ] Trust badges animate on scroll
+- [ ] FAQ accordion is smooth
+- [ ] /sitemap.xml includes all new pages
+- [ ] No "Loading..." on any page
+- [ ] All prices match products.json
+- [ ] 100% English — no Bangla
+- [ ] WhatsApp floating button has pulse animation
+- [ ] Page loads fast (< 3 seconds)
+```
+
+---
+
+## RULES (Non-negotiable)
+
+1. All prices from products.json ONLY
+2. 100% English
+3. Trust data: "1,200+ Customers" and "Since 2022" only
+4. WhatsApp CTA on every page
+5. SSR/SSG for all pages
+6. Brand colors: Navy-900 #0a0e27, Gold #f4b942, White #FFFFFF
+7. Pre-filled WhatsApp messages on all Order buttons

@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const paymentMethods = [
-  { name: "bKash", color: "#e2136e" },
-  { name: "Nagad", color: "#f6921e" },
-  { name: "Rocket", color: "#8b2f97" },
-  { name: "Bank Transfer", color: "#1a5276" },
-  { name: "Binance", color: "#f0b90b" },
+  { name: "bKash", bg: "#e2136e", text: "#fff" },
+  { name: "Nagad", bg: "#f6921e", text: "#fff" },
+  { name: "Rocket", bg: "#8b2f97", text: "#fff" },
+  { name: "Bank Transfer", bg: "#1a5276", text: "#fff" },
+  { name: "Binance", bg: "#f0b90b", text: "#1a1a1a" },
 ];
 
 interface PaymentBadgesProps {
@@ -16,7 +16,7 @@ interface PaymentBadgesProps {
 
 export function PaymentBadges({ className, label = "We Accept" }: PaymentBadgesProps) {
   return (
-    <div className={cn("flex flex-wrap items-center gap-3", className)}>
+    <div className={cn("flex flex-wrap items-center gap-2.5", className)}>
       {label && (
         <span className="text-sm" style={{ color: "#c9ceda" }}>{label}:</span>
       )}
@@ -27,12 +27,12 @@ export function PaymentBadges({ className, label = "We Accept" }: PaymentBadgesP
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ delay: i * 0.05 }}
           viewport={{ once: true }}
-          whileHover={{ y: -2 }}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold"
+          whileHover={{ y: -2, scale: 1.04 }}
+          className="px-3 py-1 rounded-md text-xs font-semibold"
           style={{
-            borderColor: method.color + "40",
-            backgroundColor: method.color + "18",
-            color: method.color,
+            backgroundColor: method.bg,
+            color: method.text,
+            borderRadius: "6px",
           }}
           title={method.name}
         >

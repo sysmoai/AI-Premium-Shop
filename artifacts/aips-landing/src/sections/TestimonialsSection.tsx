@@ -4,30 +4,30 @@ import { Star } from "lucide-react";
 const TESTIMONIALS = [
   {
     id: 1,
-    quote:
-      "Got ChatGPT Plus for just BDT 350. Delivered in 10 minutes. Incredible service.",
+    quote: "Got ChatGPT Plus for just BDT 350. Delivered in 10 minutes. Incredible service.",
     name: "Rafiq",
     role: "Student",
     initials: "R",
-    color: "#3b82f6",
+    gradientFrom: "#3b82f6",
+    gradientTo: "#8b5cf6",
   },
   {
     id: 2,
-    quote:
-      "AI doubled my freelancing income. I buy all my tools from AIPS.",
+    quote: "AI doubled my freelancing income. I buy all my tools from AIPS.",
     name: "Nusrat",
     role: "Freelancer",
     initials: "N",
-    color: "#10a37f",
+    gradientFrom: "#10a37f",
+    gradientTo: "#06b6d4",
   },
   {
     id: 3,
-    quote:
-      "Automated our customer support with ChatGPT Business. Game changer.",
+    quote: "Automated our customer support with ChatGPT Business. Game changer.",
     name: "Kamal",
     role: "Business Owner",
     initials: "K",
-    color: "#f97316",
+    gradientFrom: "#f97316",
+    gradientTo: "#ec4899",
   },
 ];
 
@@ -80,29 +80,42 @@ export function TestimonialsSection() {
             <motion.div
               key={t.id}
               variants={itemVariants}
-              whileHover={{ y: -4 }}
+              whileHover={{ y: -4, boxShadow: `0 12px 32px rgba(0,0,0,0.3)` }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="rounded-2xl p-6 border border-white/10 flex flex-col"
+              className="relative rounded-2xl p-6 border border-white/10 flex flex-col"
               style={{ backgroundColor: "rgba(10,14,39,0.5)" }}
               data-testid={`testimonial-${t.id}`}
             >
+              {/* Large quote mark */}
+              <div
+                className="absolute top-4 left-5 text-5xl font-serif leading-none select-none pointer-events-none"
+                style={{ color: `${t.gradientFrom}22`, fontFamily: "Georgia, serif" }}
+                aria-hidden="true"
+              >
+                &ldquo;
+              </div>
+
               {/* Stars */}
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1 mb-4 relative z-10">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-current" style={{ color: "#f4b942" }} />
                 ))}
               </div>
 
               {/* Quote */}
-              <blockquote className="text-base leading-relaxed mb-6 flex-1" style={{ color: "#e5e7eb" }}>
+              <blockquote className="text-base leading-relaxed mb-6 flex-1 relative z-10" style={{ color: "#e5e7eb" }}>
                 "{t.quote}"
               </blockquote>
 
               {/* Author */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 relative z-10">
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
-                  style={{ backgroundColor: t.color + "25", color: t.color, border: `1px solid ${t.color}50` }}
+                  style={{
+                    background: `linear-gradient(135deg, ${t.gradientFrom}, ${t.gradientTo})`,
+                    color: "#fff",
+                    boxShadow: `0 0 14px ${t.gradientFrom}50`,
+                  }}
                 >
                   {t.initials}
                 </div>

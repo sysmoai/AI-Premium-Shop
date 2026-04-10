@@ -5,7 +5,7 @@ import { SEOHead } from "@/components/SEOHead";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 const WHATSAPP_ORDER = "https://wa.me/8801865385348?text=Hi%2C%20I%20need%20support%20with%20my%20AI%20subscription";
-const COMMUNITY = "https://chat.whatsapp.com/aipremiumshopbd";
+const COMMUNITY = "https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc";
 
 const FAQS = [
   {

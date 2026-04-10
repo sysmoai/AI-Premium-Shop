@@ -362,4 +362,54 @@
   .border.active-elevate-2:not(.no-active-interaction-elevate)::after {
     inset: -1px;
   }
+
+  /* Aurora glow animations for hero section */
+  .hero-glow-1 {
+    animation: aurora-drift-1 18s ease-in-out infinite;
+    will-change: transform;
+  }
+  .hero-glow-2 {
+    animation: aurora-drift-2 22s ease-in-out infinite;
+    will-change: transform;
+  }
+  .hero-glow-3 {
+    animation: aurora-drift-3 16s ease-in-out infinite;
+    will-change: transform;
+  }
+  .hero-glow-4 {
+    animation: aurora-drift-4 26s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-glow-1, .hero-glow-2, .hero-glow-3, .hero-glow-4 {
+      animation: none;
+    }
+  }
+}
+
+@keyframes aurora-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-50px, 40px) scale(1.06); }
+  50% { transform: translate(30px, -30px) scale(0.96); }
+  75% { transform: translate(60px, 20px) scale(1.03); }
+}
+
+@keyframes aurora-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  30% { transform: translate(60px, -50px) scale(1.1); }
+  60% { transform: translate(-40px, 30px) scale(0.92); }
+  80% { transform: translate(20px, 50px) scale(1.05); }
+}
+
+@keyframes aurora-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-30px, -40px) scale(1.08); }
+  70% { transform: translate(50px, 20px) scale(0.94); }
+}
+
+@keyframes aurora-drift-4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  35% { transform: translate(-60px, 30px) scale(1.12); }
+  65% { transform: translate(40px, -40px) scale(0.9); }
 }

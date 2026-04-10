@@ -1,5 +1,5 @@
-import { useEffect, useState, forwardRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState, useRef, forwardRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { MessageCircle, ChevronRight, Star, Users, Calendar, Shield } from "lucide-react";
 import { PaymentBadges } from "@/components/PaymentBadges";
 
@@ -14,12 +14,53 @@ const ROTATING_LINES = [
   { problem: "Coding all night?", solution: "AI Copilot writes 50% of your code" },
 ];
 
-const TRUST_ITEMS = [
-  { icon: Users, value: "1,200+", label: "Customers" },
-  { icon: Calendar, value: "Since 2022", label: "Established" },
-  { icon: Shield, value: "30 Days", label: "Warranty" },
-  { icon: MessageCircle, value: "5-Min", label: "Response" },
-];
+function useCountUp(target: number, duration = 2000, enabled = true) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!enabled) return;
+    let start: number | null = null;
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(ease * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    const raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [target, duration, enabled]);
+  return count;
+}
+
+function TrustBadge({
+  icon: Icon,
+  label,
+  staticValue,
+  countTo,
+  suffix,
+}: {
+  icon: React.ElementType;
+  label: string;
+  staticValue?: string;
+  countTo?: number;
+  suffix?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const count = useCountUp(countTo ?? 0, 2000, !!(countTo && inView));
+
+  return (
+    <div ref={ref} className="card-glass rounded-xl py-4 px-4 text-center">
+      <Icon className="w-4 h-4 mx-auto mb-1.5" style={{ color: "#f4b942" }} />
+      <div className="text-base font-semibold text-white">
+        {countTo
+          ? `${count.toLocaleString()}${suffix ?? "+"}`
+          : staticValue}
+      </div>
+      <div className="text-xs mt-0.5" style={{ color: "#c9ceda" }}>{label}</div>
+    </div>
+  );
+}
 
 export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -51,14 +92,24 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
         }}
       />
 
-      {/* Ambient glows */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full blur-3xl"
-          style={{ background: "radial-gradient(ellipse, rgba(244,185,66,0.07) 0%, transparent 70%)" }} />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(236,72,153,0.08) 0%, transparent 70%)" }} />
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%)" }} />
+      {/* Aurora animated glows */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full blur-3xl hero-glow-1"
+          style={{ background: "radial-gradient(ellipse, rgba(244,185,66,0.09) 0%, transparent 70%)" }}
+        />
+        <div
+          className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl hero-glow-2"
+          style={{ background: "radial-gradient(circle, rgba(236,72,153,0.10) 0%, transparent 70%)" }}
+        />
+        <div
+          className="absolute top-1/3 left-1/4 w-72 h-72 rounded-full blur-3xl hero-glow-3"
+          style={{ background: "radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)" }}
+        />
+        <div
+          className="absolute top-2/3 right-1/3 w-56 h-56 rounded-full blur-3xl hero-glow-4"
+          style={{ background: "radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%)" }}
+        />
       </div>
 
       <div className="relative z-10 max-w-4xl w-full">
@@ -166,7 +217,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
         </motion.div>
       </div>
 
-      {/* Trust badges bar */}
+      {/* Trust badges bar with count-up */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -174,16 +225,10 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
         className="relative z-10 mt-16 w-full max-w-3xl mx-auto"
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {TRUST_ITEMS.map((item) => (
-            <div
-              key={item.label}
-              className="card-glass rounded-xl py-4 px-4 text-center"
-            >
-              <item.icon className="w-4 h-4 mx-auto mb-1.5" style={{ color: "#f4b942" }} />
-              <div className="text-base font-semibold text-white">{item.value}</div>
-              <div className="text-xs mt-0.5" style={{ color: "#c9ceda" }}>{item.label}</div>
-            </div>
-          ))}
+          <TrustBadge icon={Users} label="Customers" countTo={1200} suffix="+" />
+          <TrustBadge icon={Calendar} label="Established" staticValue="Since 2022" />
+          <TrustBadge icon={Shield} label="Warranty" countTo={30} suffix=" Days" />
+          <TrustBadge icon={MessageCircle} label="Response" staticValue="5-Min" />
         </div>
       </motion.div>
     </section>

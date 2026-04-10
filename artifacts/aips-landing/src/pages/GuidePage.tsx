@@ -58,7 +58,7 @@ const GUIDES: Record<string, GuideConfig> = {
     tools: [
       { rank: 1, name: "Google AI Pro", price: "BDT 500/mo", reason: "Best value. Deep Research for papers, 2TB storage, works with Gmail and Google Docs. 83% off official price.", badge: "Best Value", color: "#4285f4" },
       { rank: 2, name: "ChatGPT Plus — Starter Shared", price: "BDT 350/mo", reason: "Cheapest way to access GPT-5.4. Great for assignments, essays, coding, and exam prep.", badge: "Cheapest", color: "#10a37f" },
-      { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 400/mo", reason: "AI research engine with real citations and source links. Perfect for thesis and academic papers.", badge: "For Research", color: "#20b2aa" },
+      { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 350/mo", reason: "AI research engine with real citations and source links. Perfect for thesis and academic papers.", badge: "For Research", color: "#20b2aa" },
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
@@ -230,7 +230,7 @@ const GUIDES: Record<string, GuideConfig> = {
     tools: [
       { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 350/mo", reason: "Write professional CVs, cover letters, and LinkedIn summaries in minutes. Most affordable option.", badge: "Start Here", color: "#10a37f" },
       { rank: 2, name: "Google AI Pro", price: "BDT 500/mo", reason: "Gmail AI for job applications. Google Docs AI for CV formatting. 2TB storage included.", badge: "Best Value", color: "#4285f4" },
-      { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 400/mo", reason: "Research companies before interviews. Get industry insights with citations and sources.", badge: "For Research", color: "#20b2aa" },
+      { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 350/mo", reason: "Research companies before interviews. Get industry insights with citations and sources.", badge: "For Research", color: "#20b2aa" },
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",

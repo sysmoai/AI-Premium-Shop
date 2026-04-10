@@ -209,17 +209,26 @@
 @layer utilities {
   /* CTA gradient — pink to orange */
   .btn-cta {
-    background: linear-gradient(135deg, #ec4899, #f97316);
+    background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
+    background-size: 200% 200%;
+    background-position: 0% 50%;
     color: #FFFFFF;
     font-weight: 600;
-    transition: opacity 0.2s, transform 0.2s;
+    transition: background-position 0.35s ease, transform 0.2s, box-shadow 0.2s;
   }
   .btn-cta:hover {
-    opacity: 0.92;
+    background-position: 100% 50%;
     transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(236, 72, 153, 0.35);
   }
   .btn-cta:active {
     transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-cta {
+      transition: none;
+    }
   }
 
   /* Ghost CTA */

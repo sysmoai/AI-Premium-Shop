@@ -510,8 +510,11 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                     initial={{ opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35, delay: i * 0.07 }}
-                    className="relative rounded-2xl border border-white/10 flex flex-col overflow-hidden"
-                    style={{ backgroundColor: "#151b3d" }}
+                    whileHover={{ y: -3, boxShadow: `0 8px 32px ${meta.accentColor}30`, scale: 1.02 }}
+                    className="relative rounded-2xl border border-white/10 flex flex-col overflow-hidden cursor-pointer"
+                    style={{ backgroundColor: "#151b3d", transition: "border-color 0.2s" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.borderColor = meta.accentColor + "50")}
+                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)")}
                   >
                     <div className="h-1 w-full" style={{ backgroundColor: meta.accentColor }} />
                     <div className="p-5 flex flex-col flex-1 gap-3">
@@ -550,8 +553,11 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                           )}
                         </div>
                         <a href={waLink} target="_blank" rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
-                          style={{ backgroundColor: "#25d366", color: "#fff" }}>
+                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200"
+                          style={{ backgroundColor: "#25d366", color: "#fff" }}
+                          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#22c55e"; (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1.05)"; }}
+                          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#25d366"; (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"; }}
+                        >
                           <MessageCircle className="w-4 h-4" />
                           Order
                         </a>

@@ -1,0 +1,225 @@
+## FIX 1: NAVBAR / HEADER (CRITICAL — Currently messy)
+
+The navbar layout is broken. "Products" appears alone on one line, then "Blog Bundles Pricing About" are bunched together. Fix the navbar to be a clean, professional horizontal bar.
+
+```
+Fix the website navbar/header layout. Currently it looks messy with items not aligned properly.
+
+The navbar should be a SINGLE horizontal bar with this exact layout:
+
+Desktop (1440px, 80px height, Navy-900 #0a0e27 at 90% opacity + backdrop-blur-12px):
+
+Left: AIPS Logo (text "AI PREMIUM SHOP" or logo image)
+Center: Products ▾ | Blog | Bundles | Pricing | About  
+Right: [Order Now] button (gradient pink-to-orange, links to WhatsApp)
+
+Spacing: Even spacing between all nav items. Use flexbox with gap.
+All items on ONE line — no wrapping, no stacking.
+Font: Inter 400, 16px, White #FFFFFF
+"Products" should have a dropdown arrow (▾) and open a mega menu on hover/click.
+"Order Now" button: Gradient from #ec4899 to #f97316, rounded, bold text.
+
+Mobile (< 768px):
+Left: Logo
+Right: Hamburger menu icon (☰) + WhatsApp icon (💬)
+Hamburger opens a side drawer with all nav items stacked vertically.
+WhatsApp icon always visible, links to wa.me/8801865385348
+
+Make sure:
+- No items overlap or bunch together
+- Sticky on scroll (position: sticky, top: 0, z-index: 50)
+- Clean, professional look like replit.com or vercel.com navbar
+- Test at 1440px, 1024px, 768px, and 375px widths
+```
+
+---
+
+## FIX 2: CREATE BRAND PAGES (CRITICAL — All return 404)
+
+Individual brand pages like /chatgpt-plus-bangladesh don't exist. Create them.
+
+```
+Create individual brand/product pages for EVERY brand in the catalog.
+These pages currently return 404 and need to be built.
+
+Use this template for each brand page:
+- H1: "[Brand Name] Bangladesh — From ৳[lowest price]/mo"
+- Brand description paragraph
+- ALL plans for this brand as product cards (from products.json, filtered by brandSlug)
+- Each card: name, price, tier badge (Shared/Personal), description, delivery SLA, WhatsApp CTA
+- "Shared vs Personal" explainer section
+- FAQ section (4-5 brand-specific questions)
+- "Popular with" tags linking to guide pages
+- Related brands section
+- WhatsApp CTA at bottom
+- Breadcrumb: Home > [Category] > [Brand]
+- SEO: unique title tag + meta description + Product schema JSON-LD
+
+Create these brand pages:
+
+/chatgpt-plus-bangladesh — Filter products where brandSlug = "chatgpt-plans-bangladesh" AND slug contains "plus"
+  Show: Starter Shared ৳350, Premium Shared ৳950, Personal ৳2,990
+
+/chatgpt-business-bangladesh — Filter brandSlug = "chatgpt-plans-bangladesh" AND slug contains "business"
+  Show: Starter Shared ৳699, Premium Shared ৳1,299, Personal ৳3,990
+
+/chatgpt-pro-bangladesh — Filter brandSlug = "chatgpt-plans-bangladesh" AND slug contains "pro"
+  Show: Premium Shared ৳4,500, Personal ৳29,900
+
+/chatgpt-go-bangladesh — Show: Personal ৳1,196
+
+/chatgpt-plans-bangladesh — HUB PAGE showing ALL ChatGPT plans (9 products)
+  This is the main ChatGPT page with Plus vs Business vs Pro comparison.
+
+/claude-pro-bangladesh — ALL Claude plans (6 products)
+  Show: Shared ৳599, Premium Shared ৳1,495, Personal ৳2,990, Max 5x ৳14,950, Max 20x ৳29,900, Team ৳3,990
+
+/gemini-advanced-bangladesh — Show: Google AI Pro ৳500 with 83% Off badge
+
+/supergrok-bangladesh — Show: Lite ৳1,495, Standard ৳3,990
+
+/perplexity-pro-bangladesh — Show: Shared ৳350, Personal ৳2,990, Max ৳29,900
+
+/midjourney-bangladesh — ALL Midjourney plans (6 products)
+  Show: Shared ৳1,199 to Mega ৳17,940
+
+/ideogram-bangladesh — Show: Plus ৳2,990, Pro ৳8,970
+
+/leonardo-ai-bangladesh — Show: Shared ৳599
+
+/runway-bangladesh — Show: Standard ৳1,794, Pro ৳4,186, Unlimited ৳11,362
+
+/heygen-bangladesh — Show: Creator Shared ৳1,499
+
+/elevenlabs-bangladesh — Show: Starter ৳748, Creator ৳3,289, Pro ৳14,802
+
+/suno-ai-bangladesh — Show: Pro ৳1,495, Premier ৳3,990
+
+/udio-bangladesh — Show: Pro Shared ৳499
+
+/github-copilot-bangladesh — Show: Pro ৳1,495, Pro+ ৳5,831
+
+/cursor-bangladesh — Show: Pro ৳2,990, Pro+ ৳8,970
+
+/v0-dev-bangladesh — Show: Pro Shared ৳999
+
+/replit-bangladesh — Show: Core ৳500 with Special Deal badge
+
+/notion-business-bangladesh — Show: Monthly ৳800, 6-Month ৳4,800
+
+/manus-ai-bangladesh — Show: Personal ৳2,500
+
+/writesonic-bangladesh — Show: Individual Shared ৳799
+
+/gamma-bangladesh — Show: Plus Shared ৳399
+
+/otter-ai-bangladesh — Show: Pro Shared ৳799
+
+All prices MUST come from products.json. Do NOT invent prices.
+Every page must be SSR (server-side rendered) so Google can index it.
+```
+
+---
+
+## FIX 3: HOMEPAGE CATEGORY CARD LINKS
+
+```
+On the homepage, the 8 "Browse by Category" cards currently ALL link to 
+wa.me/8801865385348. Change them to link to actual category pages:
+
+- AI Assistant & Chat → /ai-assistant
+- AI Image & Design → /ai-image
+- AI Video → /ai-video
+- AI Voice & Music → /ai-voice-music
+- AI Code & Dev Tools → /ai-code
+- AI Workspace → /ai-workspace
+- AI Writing & SEO → /ai-writing
+- Bundles & Packages → /bundles
+```
+
+---
+
+## FIX 4: HOMEPAGE TARGET GROUP CARD LINKS
+
+```
+On the homepage, the 6 pain-point segment cards ("See Student Solutions", 
+"See Freelancer Solutions", etc.) currently ALL link to WhatsApp.
+Change them to link to guide pages:
+
+- "See Student Solutions" → /best-ai-for-students
+- "See Freelancer Solutions" → /best-ai-for-freelancers
+- "See Creator Solutions" → /best-ai-for-creators
+- "See Business Solutions" → /best-ai-for-business
+- "See Job Seeker Solutions" → /best-ai-for-job-seekers
+- "See Developer Solutions" → /best-ai-for-developers
+
+If these guide pages don't exist yet, create them with:
+- Pain-point headline
+- Top 3-5 recommended tools with prices (from products.json)
+- Bundle upsell
+- FAQ section
+- WhatsApp CTA
+- Breadcrumb: Home > Best AI For > [Segment]
+```
+
+---
+
+## FIX 5: SEO PAGES (Create if missing)
+
+```
+Create these pages if they don't already exist:
+
+COMPARISON PAGES:
+/chatgpt-vs-claude — Side-by-side comparison with feature table, price table, verdict
+/chatgpt-vs-gemini — Same format
+/copilot-vs-cursor — Same format
+
+BUDGET PAGES:
+/ai-under-500 — Show all products under BDT 500 (ChatGPT ৳350, Perplexity ৳350, Gamma ৳399, Student Essentials ৳449, Udio ৳499, Google AI ৳500, Replit ৳500)
+/ai-under-1000 — All products under BDT 1,000
+/ai-under-3000 — All products under BDT 3,000
+
+Each page: product grid filtered by price, WhatsApp CTA, "upgrade when ready" section.
+```
+
+---
+
+## FIX 6: MINOR FIXES
+
+```
+1. Fix "1 tools" → "1 tool" on the AI Writing & SEO category card (singular)
+
+2. Add 1 more FAQ to homepage to get to 8 total:
+   Q: "I'm new to AI — which tool should I start with?"
+   A: "Start with ChatGPT Plus Starter Shared (BDT 350/mo). It's our most popular 
+   plan and covers writing, coding, research, and image generation. Most beginners 
+   find it's all they need. If you're unsure, message us on WhatsApp and we'll 
+   recommend the best tool for your specific work in 2 minutes."
+
+3. On the Bundles category card, it shows "from ৳449 from ৳449" (duplicated). 
+   Fix to show just "from ৳449" once.
+
+4. Add /support page if it doesn't exist:
+   - WhatsApp contact (primary)
+   - 1:1 AI Coaching info (BDT 799/hr)
+   - Service hours: 10 AM - Midnight BST
+   - WhatsApp Community link
+   - FAQ
+```
+
+---
+
+## VERIFICATION AFTER ALL FIXES
+
+After applying all fixes, verify:
+
+- [ ]  Navbar is clean, single line, professional on desktop AND mobile
+- [ ]  /chatgpt-plus-bangladesh loads with correct prices (৳350, ৳950, ৳2,990)
+- [ ]  /claude-pro-bangladesh loads with correct prices
+- [ ]  Homepage category cards link to /ai-assistant, /ai-image, etc. (NOT WhatsApp)
+- [ ]  Homepage segment cards link to /best-ai-for-students, etc. (NOT WhatsApp)
+- [ ]  "1 tools" is now "1 tool"
+- [ ]  "from ৳449 from ৳449" is now "from ৳449"
+- [ ]  8 FAQ questions on homepage
+- [ ]  All brand pages have correct prices from products.json
+- [ ]  Mobile navbar works with hamburger menu

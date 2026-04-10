@@ -1,0 +1,202 @@
+import { motion } from "framer-motion";
+import { MessageCircle, Clock, Users, HelpCircle, ChevronRight, Star } from "lucide-react";
+import { PageLayout } from "@/components/PageLayout";
+import { SEOHead } from "@/components/SEOHead";
+
+const WHATSAPP = "https://wa.me/8801865385348";
+const WHATSAPP_ORDER = "https://wa.me/8801865385348?text=Hi%2C%20I%20need%20support%20with%20my%20AI%20subscription";
+const COMMUNITY = "https://chat.whatsapp.com/aipremiumshopbd";
+
+const FAQS = [
+  {
+    q: "I ordered but haven't received my account yet. What should I do?",
+    a: "Message us on WhatsApp with your order details (which product, payment amount, and transaction screenshot). Shared accounts are delivered within 5–30 minutes; personal accounts within 2–4 hours. If you're past these windows, message us immediately.",
+  },
+  {
+    q: "My account stopped working. What's the warranty?",
+    a: "All orders include a 30-day warranty. If your account stops working within 30 days, message us on WhatsApp and we'll replace it at no extra charge within the delivery timeframe.",
+  },
+  {
+    q: "Can I upgrade from Shared to Personal?",
+    a: "Yes. Pay the price difference and we'll set up your personal account. Message us on WhatsApp with your current plan details.",
+  },
+  {
+    q: "What is 1:1 AI Coaching?",
+    a: "1:1 AI Coaching is a personalised session where an AIPS expert shows you exactly how to use AI tools for your specific work — writing, coding, image generation, or automation. Sessions are 1 hour at ৳799. Message us to book.",
+  },
+  {
+    q: "Do you have a WhatsApp Community?",
+    a: "Yes! Join our WhatsApp Community to get AI tips, product updates, exclusive discount codes, and connect with 1,200+ AI users in Bangladesh.",
+  },
+  {
+    q: "What payment methods do you support?",
+    a: "bKash, Nagad, Rocket, Bank Transfer, and Binance (USDT). No international credit card needed.",
+  },
+];
+
+export default function SupportPage() {
+  return (
+    <PageLayout>
+      <SEOHead
+        title="Support — AI Premium Shop Bangladesh"
+        description="Get support for your AI subscriptions. WhatsApp: +880 1865-385348. 10 AM to Midnight BST, 7 days a week. 30-day warranty on all orders."
+        canonical="https://aipremiumshop.com/support"
+      />
+
+      <section className="max-w-4xl mx-auto px-4 md:px-8 py-14">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-10"
+        >
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#f4b942" }}>Help Center</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">Support</h1>
+          <p className="text-lg max-w-xl" style={{ color: "#c9ceda" }}>
+            We're here 10 AM to Midnight BST, 7 days a week. WhatsApp is the fastest way to reach us.
+          </p>
+        </motion.div>
+
+        {/* Primary CTA */}
+        <motion.a
+          href={WHATSAPP_ORDER}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl text-lg font-bold hover:opacity-90 transition-opacity mb-8"
+          style={{ backgroundColor: "#25d366", color: "#fff" }}
+        >
+          <MessageCircle className="w-6 h-6" />
+          Message Support on WhatsApp — +880 1865-385348
+        </motion.a>
+
+        {/* Info cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.15 }}
+            className="p-5 rounded-2xl border border-white/10"
+            style={{ backgroundColor: "#151b3d" }}
+          >
+            <Clock className="w-5 h-5 mb-3" style={{ color: "#f4b942" }} />
+            <div className="font-bold text-white mb-1 text-sm">Service Hours</div>
+            <div className="text-xs" style={{ color: "#c9ceda" }}>10 AM – Midnight BST</div>
+            <div className="text-xs" style={{ color: "#c9ceda" }}>7 days a week</div>
+            <div className="text-xs mt-2 font-medium" style={{ color: "#25d366" }}>WhatsApp: under 5 min</div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="p-5 rounded-2xl border border-white/10"
+            style={{ backgroundColor: "#151b3d" }}
+          >
+            <div className="text-lg mb-3">🛡</div>
+            <div className="font-bold text-white mb-1 text-sm">30-Day Warranty</div>
+            <div className="text-xs" style={{ color: "#c9ceda" }}>All orders covered</div>
+            <div className="text-xs" style={{ color: "#c9ceda" }}>Free replacement if needed</div>
+            <div className="text-xs mt-2 font-medium" style={{ color: "#f4b942" }}>No questions asked</div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.25 }}
+            className="p-5 rounded-2xl border border-white/10"
+            style={{ backgroundColor: "#151b3d" }}
+          >
+            <Users className="w-5 h-5 mb-3" style={{ color: "#3b82f6" }} />
+            <div className="font-bold text-white mb-1 text-sm">Community</div>
+            <div className="text-xs" style={{ color: "#c9ceda" }}>1,200+ members</div>
+            <div className="text-xs" style={{ color: "#c9ceda" }}>AI tips & discount codes</div>
+            <a
+              href={COMMUNITY}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs mt-2 font-medium flex items-center gap-1 hover:opacity-80 transition-opacity"
+              style={{ color: "#3b82f6" }}
+            >
+              Join WhatsApp Community
+              <ChevronRight className="w-3 h-3" />
+            </a>
+          </motion.div>
+        </div>
+
+        {/* 1:1 AI Coaching */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 p-6 md:p-8 rounded-2xl border border-yellow-400/30"
+          style={{ backgroundColor: "#151b3d" }}
+        >
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
+              style={{ backgroundColor: "rgba(244,185,66,0.15)" }}>
+              <Star className="w-6 h-6" style={{ color: "#f4b942" }} />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-2 flex-wrap">
+                <h2 className="text-xl font-bold text-white">1:1 AI Coaching</h2>
+                <span className="text-sm font-bold px-3 py-1 rounded-full"
+                  style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}>
+                  ৳799 / hour
+                </span>
+              </div>
+              <p className="text-sm mb-4 leading-relaxed" style={{ color: "#c9ceda" }}>
+                Get a personalised 1-hour session with an AIPS AI expert. We show you exactly how to use ChatGPT, Midjourney, Claude, or any AI tool for your specific work. Freelancers, students, business owners, and developers all benefit from a single focused session.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-5">
+                {["ChatGPT for writing", "Midjourney for design", "Cursor for coding", "AI workflow automation", "Prompt engineering"].map((t) => (
+                  <span key={t} className="text-xs px-2 py-1 rounded-lg"
+                    style={{ backgroundColor: "rgba(244,185,66,0.08)", color: "#c9ceda", border: "1px solid rgba(244,185,66,0.15)" }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={`${WHATSAPP}?text=Hi%2C%20I%27d%20like%20to%20book%20a%201%3A1%20AI%20Coaching%20session%20(BDT%20799%2Fhr)`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
+                style={{ background: "linear-gradient(135deg, #ec4899, #f97316)", color: "#fff" }}
+              >
+                <MessageCircle className="w-4 h-4" />
+                Book a Coaching Session
+              </a>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* FAQ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="flex items-center gap-2 mb-6">
+            <HelpCircle className="w-5 h-5" style={{ color: "#f4b942" }} />
+            <h2 className="text-xl font-bold text-white">Frequently Asked Questions</h2>
+          </div>
+          <div className="space-y-3">
+            {FAQS.map((faq, i) => (
+              <details key={i} className="group rounded-xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
+                <summary className="flex items-center justify-between p-5 cursor-pointer font-semibold text-white text-sm">
+                  {faq.q}
+                  <ChevronRight className="w-4 h-4 flex-shrink-0 transition-transform group-open:rotate-90" style={{ color: "#f4b942" }} />
+                </summary>
+                <div className="px-5 pb-5 text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{faq.a}</div>
+              </details>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+    </PageLayout>
+  );
+}

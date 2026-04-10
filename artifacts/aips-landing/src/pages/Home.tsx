@@ -89,9 +89,9 @@ const FAQS = [
       "Yes. We provide official, verified subscriptions. No hacked or unauthorized access.",
   },
   {
-    question: "I'm new to AI. Where should I start?",
+    question: "I'm new to AI — which tool should I start with?",
     answer:
-      "Students: ChatGPT Plus Shared at BDT 350 or Google AI Pro at BDT 500. Freelancers: ChatGPT Premium Shared at BDT 950. Business: ChatGPT Business at BDT 699.",
+      "Start with ChatGPT Plus Starter Shared (BDT 350/mo). It's our most popular plan and covers writing, coding, research, and image generation. Most beginners find it's all they need. If you're unsure, message us on WhatsApp and we'll recommend the best tool for your specific work in 2 minutes.",
   },
   {
     question: "What's the difference between Shared and Personal?",
@@ -112,11 +112,11 @@ const MEGA_COLUMNS = [
     color: "#10a37f",
     href: "/ai-assistant",
     brands: [
-      { name: "ChatGPT Plus", from: "৳350", href: "/ai-assistant", badge: "⭐" },
-      { name: "Claude Pro", from: "৳599", href: "/ai-assistant" },
-      { name: "Google AI Pro", from: "৳500", href: "/ai-assistant", badge: "🔥" },
-      { name: "Grok / SuperGrok", from: "৳1,495", href: "/ai-assistant" },
-      { name: "Perplexity Pro", from: "৳350", href: "/ai-assistant" },
+      { name: "ChatGPT Plus", from: "৳350", href: "/chatgpt-plus-bangladesh", badge: "⭐" },
+      { name: "Claude Pro", from: "৳599", href: "/claude-pro-bangladesh" },
+      { name: "Google AI Pro", from: "৳500", href: "/gemini-advanced-bangladesh", badge: "🔥" },
+      { name: "Grok / SuperGrok", from: "৳1,495", href: "/supergrok-bangladesh" },
+      { name: "Perplexity Pro", from: "৳350", href: "/perplexity-pro-bangladesh" },
     ],
   },
   {
@@ -125,13 +125,13 @@ const MEGA_COLUMNS = [
     color: "#ec4899",
     href: "/ai-image",
     brands: [
-      { name: "Midjourney", from: "৳1,199", href: "/ai-image", badge: "⭐" },
+      { name: "Midjourney", from: "৳1,199", href: "/midjourney-bangladesh", badge: "⭐" },
       { name: "Leonardo AI", from: "৳599", href: "/leonardo-ai-bangladesh" },
-      { name: "Ideogram", from: "৳2,990", href: "/ai-image" },
-      { name: "Runway", from: "৳1,794", href: "/ai-video" },
+      { name: "Ideogram", from: "৳2,990", href: "/ideogram-bangladesh" },
+      { name: "Runway", from: "৳1,794", href: "/runway-bangladesh" },
       { name: "HeyGen", from: "৳1,499", href: "/heygen-bangladesh" },
-      { name: "ElevenLabs", from: "৳748", href: "/ai-voice-music" },
-      { name: "Suno AI", from: "৳1,495", href: "/ai-voice-music" },
+      { name: "ElevenLabs", from: "৳748", href: "/elevenlabs-bangladesh" },
+      { name: "Suno AI", from: "৳1,495", href: "/suno-ai-bangladesh" },
       { name: "Udio", from: "৳499", href: "/udio-bangladesh" },
     ],
   },
@@ -141,11 +141,11 @@ const MEGA_COLUMNS = [
     color: "#06b6d4",
     href: "/ai-code",
     brands: [
-      { name: "GitHub Copilot", from: "৳1,495", href: "/ai-code", badge: "⭐" },
-      { name: "Cursor Pro", from: "৳2,990", href: "/ai-code" },
+      { name: "GitHub Copilot", from: "৳1,495", href: "/github-copilot-bangladesh", badge: "⭐" },
+      { name: "Cursor Pro", from: "৳2,990", href: "/cursor-bangladesh" },
       { name: "v0.dev", from: "৳999", href: "/v0-dev-bangladesh" },
       { name: "Replit Core", from: "৳500", href: "/replit-bangladesh", badge: "🔥" },
-      { name: "Notion Business", from: "৳800", href: "/ai-workspace", badge: "🔥" },
+      { name: "Notion Business", from: "৳800", href: "/notion-business-bangladesh", badge: "🔥" },
       { name: "Otter.ai", from: "৳799", href: "/otter-ai-bangladesh" },
       { name: "Gamma", from: "৳399", href: "/gamma-bangladesh" },
       { name: "Writesonic", from: "৳799", href: "/writesonic-bangladesh" },
@@ -364,7 +364,7 @@ export default function Home() {
             rel="noopener noreferrer"
             data-testid="navbar-cta"
             className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-opacity hover:opacity-90 flex-shrink-0"
-            style={{ backgroundColor: "#25d366", color: "#fff" }}
+            style={{ background: "linear-gradient(135deg, #ec4899, #f97316)", color: "#fff" }}
           >
             <MessageCircle className="w-4 h-4" />
             Order Now

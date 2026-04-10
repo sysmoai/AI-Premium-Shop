@@ -1,9 +1,8 @@
 import { motion, type Variants } from "framer-motion";
 import { ChevronRight, MessageSquare, Image, Video, Music, Code2, Layout, Package, PenTool } from "lucide-react";
+import { useLocation } from "wouter";
 import categories from "../../data/categories.json";
 import type { LucideIcon } from "lucide-react";
-
-const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
 const ICON_MAP: Record<string, LucideIcon> = {
   MessageSquare,
@@ -29,6 +28,8 @@ const itemVariants: Variants = {
 };
 
 export function CategorySection() {
+  const [, navigate] = useLocation();
+
   return (
     <section
       id="categories"
@@ -69,13 +70,12 @@ export function CategorySection() {
             return (
               <motion.a
                 key={cat.id}
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/${cat.slug}`}
+                onClick={(e) => { e.preventDefault(); navigate(`/${cat.slug}`); }}
                 variants={itemVariants}
                 whileHover={{ y: -4, boxShadow: `0 8px 32px ${color}22` }}
                 transition={{ type: "spring", stiffness: 280, damping: 22 }}
-                className="group rounded-2xl p-5 border border-white/10 flex flex-col gap-3 transition-all duration-300"
+                className="group rounded-2xl p-5 border border-white/10 flex flex-col gap-3 transition-all duration-300 cursor-pointer"
                 style={{ backgroundColor: "#151b3d" }}
                 data-testid={`category-${cat.id}`}
               >
@@ -97,7 +97,7 @@ export function CategorySection() {
                   <div>
                     <span className="text-sm font-semibold text-white">from ৳{cat.from}</span>
                     <span className="text-xs ml-1.5 px-1.5 py-0.5 rounded" style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#c9ceda" }}>
-                      {cat.count} tools
+                      {cat.count} {cat.count === 1 ? "tool" : "tools"}
                     </span>
                   </div>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" style={{ color }} />

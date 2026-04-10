@@ -158,7 +158,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
           rel="noopener noreferrer"
           data-testid="navbar-cta"
           className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity flex-shrink-0"
-          style={{ backgroundColor: "#25d366", color: "#fff" }}
+          style={{ background: "linear-gradient(135deg, #ec4899, #f97316)", color: "#fff" }}
         >
           <MessageCircle className="w-4 h-4" />
           Order Now

@@ -28,7 +28,7 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 
 ## Artifacts
 
-### AIPS - AI Premium Shop (`artifacts/aips-landing`) — PHASE 3 COMPLETE
+### AIPS - AI Premium Shop (`artifacts/aips-landing`) — PHASE 8 COMPLETE
 
 - **Type**: React + Vite (marketing landing page, SPA)
 - **Preview Path**: `/`
@@ -40,7 +40,7 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 - **Background**: navy-900 `#0a0e27`, navy-800 `#151b3d`
 - **Gold accent**: `#f4b942` (H3 subheadings, icons, highlights)
 - **CTA gradient**: `linear-gradient(135deg, #ec4899, #f97316)` (pink → orange)
-- **Order Now button**: WhatsApp green `#25d366`
+- **Order Now button (navbar/CTA)**: gradient `linear-gradient(135deg, #ec4899, #f97316)` — WhatsApp action buttons stay green `#25d366`
 - **Muted text**: `#c9ceda`
 - **Font**: Inter only (400, 500, 600, 700)
 - **Logo**: PNG at `/public/images/brand/aips-logo.png` (500×500), via `PrimaryBrandLogo` component

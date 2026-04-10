@@ -8,8 +8,7 @@ import {
   Code2,
   ChevronRight,
 } from "lucide-react";
-
-const WHATSAPP_LINK = "https://wa.me/8801865385348";
+import { useLocation } from "wouter";
 
 const CARDS = [
   {
@@ -26,6 +25,7 @@ const CARDS = [
       "AI handles study notes, assignments, and research — in 30 minutes flat.",
     price: "From BDT 350/mo",
     cta: "See Student Solutions",
+    href: "/best-ai-for-students",
   },
   {
     id: "freelancers",
@@ -41,6 +41,7 @@ const CARDS = [
       "AI writes proposals in 2 minutes. Delivers 50% faster. Pay with bKash.",
     price: "From BDT 350/mo",
     cta: "See Freelancer Solutions",
+    href: "/best-ai-for-freelancers",
   },
   {
     id: "creators",
@@ -56,6 +57,7 @@ const CARDS = [
       "AI script in 2 min. AI thumbnail in 1 min. AI music — zero copyright issues.",
     price: "From BDT 350/mo",
     cta: "See Creator Solutions",
+    href: "/best-ai-for-creators",
   },
   {
     id: "business",
@@ -71,6 +73,7 @@ const CARDS = [
       "AI Agents handle sales, support, and content — one system, zero burnout.",
     price: "From BDT 500/mo",
     cta: "See Business Solutions",
+    href: "/best-ai-for-business",
   },
   {
     id: "jobseekers",
@@ -86,6 +89,7 @@ const CARDS = [
       "AI builds a professional CV in 5 minutes. Mock interviews. Skill roadmap.",
     price: "From BDT 350/mo",
     cta: "See Job Seeker Solutions",
+    href: "/best-ai-for-job-seekers",
   },
   {
     id: "developers",
@@ -101,6 +105,7 @@ const CARDS = [
       "AI Copilot — code 50% faster. Instant bug fixes. Every language supported.",
     price: "From BDT 1,495/mo",
     cta: "See Developer Solutions",
+    href: "/best-ai-for-developers",
   },
 ];
 
@@ -115,6 +120,8 @@ const cardVariants: Variants = {
 };
 
 export function PainPointSection() {
+  const [, navigate] = useLocation();
+
   return (
     <section
       id="pain-points"
@@ -169,13 +176,11 @@ export function PainPointSection() {
               style={{ backgroundColor: "#151b3d" }}
               data-testid={`pain-card-${card.id}`}
             >
-              {/* Hover glow border */}
               <div
                 className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                 style={{ border: `1.5px solid ${card.color}55`, inset: 0 }}
               />
 
-              {/* Icon */}
               <div
                 className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
                 style={{ backgroundColor: card.color + "1a", border: `1px solid ${card.color}40` }}
@@ -187,7 +192,6 @@ export function PainPointSection() {
                 {card.headline}
               </h3>
 
-              {/* Pain points */}
               <ul className="space-y-2 mb-5">
                 {card.pains.map((pain) => (
                   <li key={pain} className="flex items-start gap-2 text-sm" style={{ color: "#c9ceda" }}>
@@ -197,7 +201,6 @@ export function PainPointSection() {
                 ))}
               </ul>
 
-              {/* Solution box */}
               <div
                 className="rounded-xl px-4 py-3 mb-5 text-sm leading-relaxed"
                 style={{ backgroundColor: card.color + "12", borderLeft: `3px solid ${card.color}` }}
@@ -214,9 +217,8 @@ export function PainPointSection() {
                   {card.price}
                 </span>
                 <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={card.href}
+                  onClick={(e) => { e.preventDefault(); navigate(card.href); }}
                   className="text-sm font-medium flex items-center gap-1 transition-colors"
                   style={{ color: card.color }}
                   onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.8")}

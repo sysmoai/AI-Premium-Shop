@@ -18,6 +18,7 @@ import BudgetPage from "@/pages/BudgetPage";
 import BlogPage from "@/pages/BlogPage";
 import BlogPostPage from "@/pages/BlogPostPage";
 import BrandPage from "@/pages/BrandPage";
+import SupportPage from "@/pages/SupportPage";
 
 const queryClient = new QueryClient();
 
@@ -39,15 +40,45 @@ function Router() {
       <Route path="/ai-writing">{() => <CategoryPage categoryId="ai-writing" />}</Route>
       <Route path="/bundles">{() => <CategoryPage categoryId="bundles" />}</Route>
 
-      {/* Brand pages (8 new) */}
+      {/* Brand pages — ChatGPT */}
+      <Route path="/chatgpt-plans-bangladesh">{() => <BrandPage brandSlug="chatgpt-plans-bangladesh" />}</Route>
+      <Route path="/chatgpt-plus-bangladesh">{() => <BrandPage brandSlug="chatgpt-plus-bangladesh" />}</Route>
+      <Route path="/chatgpt-business-bangladesh">{() => <BrandPage brandSlug="chatgpt-business-bangladesh" />}</Route>
+      <Route path="/chatgpt-pro-bangladesh">{() => <BrandPage brandSlug="chatgpt-pro-bangladesh" />}</Route>
+      <Route path="/chatgpt-go-bangladesh">{() => <BrandPage brandSlug="chatgpt-go-bangladesh" />}</Route>
+
+      {/* Brand pages — AI Assistants */}
+      <Route path="/claude-pro-bangladesh">{() => <BrandPage brandSlug="claude-pro-bangladesh" />}</Route>
+      <Route path="/gemini-advanced-bangladesh">{() => <BrandPage brandSlug="gemini-advanced-bangladesh" />}</Route>
+      <Route path="/supergrok-bangladesh">{() => <BrandPage brandSlug="supergrok-bangladesh" />}</Route>
+      <Route path="/perplexity-pro-bangladesh">{() => <BrandPage brandSlug="perplexity-pro-bangladesh" />}</Route>
+
+      {/* Brand pages — AI Image & Video */}
+      <Route path="/midjourney-bangladesh">{() => <BrandPage brandSlug="midjourney-bangladesh" />}</Route>
+      <Route path="/ideogram-bangladesh">{() => <BrandPage brandSlug="ideogram-bangladesh" />}</Route>
+      <Route path="/runway-bangladesh">{() => <BrandPage brandSlug="runway-bangladesh" />}</Route>
       <Route path="/leonardo-ai-bangladesh">{() => <BrandPage brandSlug="leonardo-ai-bangladesh" />}</Route>
-      <Route path="/udio-bangladesh">{() => <BrandPage brandSlug="udio-bangladesh" />}</Route>
       <Route path="/heygen-bangladesh">{() => <BrandPage brandSlug="heygen-bangladesh" />}</Route>
-      <Route path="/otter-ai-bangladesh">{() => <BrandPage brandSlug="otter-ai-bangladesh" />}</Route>
-      <Route path="/writesonic-bangladesh">{() => <BrandPage brandSlug="writesonic-bangladesh" />}</Route>
-      <Route path="/gamma-bangladesh">{() => <BrandPage brandSlug="gamma-bangladesh" />}</Route>
+
+      {/* Brand pages — AI Voice & Music */}
+      <Route path="/elevenlabs-bangladesh">{() => <BrandPage brandSlug="elevenlabs-bangladesh" />}</Route>
+      <Route path="/suno-ai-bangladesh">{() => <BrandPage brandSlug="suno-ai-bangladesh" />}</Route>
+      <Route path="/udio-bangladesh">{() => <BrandPage brandSlug="udio-bangladesh" />}</Route>
+
+      {/* Brand pages — AI Code & Dev */}
+      <Route path="/github-copilot-bangladesh">{() => <BrandPage brandSlug="github-copilot-bangladesh" />}</Route>
+      <Route path="/cursor-bangladesh">{() => <BrandPage brandSlug="cursor-bangladesh" />}</Route>
       <Route path="/v0-dev-bangladesh">{() => <BrandPage brandSlug="v0-dev-bangladesh" />}</Route>
       <Route path="/replit-bangladesh">{() => <BrandPage brandSlug="replit-bangladesh" />}</Route>
+
+      {/* Brand pages — AI Workspace */}
+      <Route path="/notion-business-bangladesh">{() => <BrandPage brandSlug="notion-business-bangladesh" />}</Route>
+      <Route path="/manus-ai-bangladesh">{() => <BrandPage brandSlug="manus-ai-bangladesh" />}</Route>
+      <Route path="/otter-ai-bangladesh">{() => <BrandPage brandSlug="otter-ai-bangladesh" />}</Route>
+      <Route path="/gamma-bangladesh">{() => <BrandPage brandSlug="gamma-bangladesh" />}</Route>
+
+      {/* Brand pages — AI Writing */}
+      <Route path="/writesonic-bangladesh">{() => <BrandPage brandSlug="writesonic-bangladesh" />}</Route>
 
       {/* Blog */}
       <Route path="/blog" component={BlogPage} />
@@ -76,6 +107,7 @@ function Router() {
       <Route path="/contact" component={ContactPage} />
       <Route path="/faq" component={FAQPage} />
       <Route path="/pricing" component={PricingPage} />
+      <Route path="/support" component={SupportPage} />
       <Route path="/refund-policy" component={RefundPolicyPage} />
       <Route path="/terms" component={TermsPage} />
 

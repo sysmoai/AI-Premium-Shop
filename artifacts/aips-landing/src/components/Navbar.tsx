@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu, X, MessageCircle, Search,
   ChevronDown, ChevronRight,
-  MessageSquare, Image, Video, Music, Code2, Layout, Package,
+  MessageSquare, Image, Video, Music, Code2, Layout, PenTool,
 } from "lucide-react";
 import { useLocation } from "wouter";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
@@ -11,19 +11,20 @@ import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
 const PRODUCT_CATEGORIES = [
-  { label: "AI Assistant & Chat", count: 11, Icon: MessageSquare, color: "#10a37f", href: "/ai-assistant" },
-  { label: "AI Image & Design", count: 8, Icon: Image, color: "#ec4899", href: "/ai-image" },
-  { label: "AI Video", count: 2, Icon: Video, color: "#8b5cf6", href: "/ai-video" },
-  { label: "AI Voice & Music", count: 3, Icon: Music, color: "#f97316", href: "/ai-voice-music" },
-  { label: "AI Code & Dev Tools", count: 5, Icon: Code2, color: "#06b6d4", href: "/ai-code" },
-  { label: "AI Workspace", count: 2, Icon: Layout, color: "#f4b942", href: "/ai-workspace" },
-  { label: "Bundles & Packages", count: 0, Icon: Package, color: "#e11d48", href: "/bundles" },
+  { label: "AI Assistant & Chat", count: 21, Icon: MessageSquare, color: "#10a37f", href: "/ai-assistant" },
+  { label: "AI Image & Design", count: 9, Icon: Image, color: "#ec4899", href: "/ai-image" },
+  { label: "AI Video", count: 4, Icon: Video, color: "#8b5cf6", href: "/ai-video" },
+  { label: "AI Voice & Music", count: 6, Icon: Music, color: "#f97316", href: "/ai-voice-music" },
+  { label: "AI Code & Dev Tools", count: 6, Icon: Code2, color: "#06b6d4", href: "/ai-code" },
+  { label: "AI Workspace", count: 5, Icon: Layout, color: "#f4b942", href: "/ai-workspace" },
+  { label: "AI Writing & SEO", count: 1, Icon: PenTool, color: "#a78bfa", href: "/ai-writing" },
 ];
 
 const MAIN_NAV = [
+  { label: "Blog", href: "/blog" },
+  { label: "Bundles", href: "/bundles" },
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
-  { label: "FAQ", href: "/faq" },
 ];
 
 function ProductsDropdown() {

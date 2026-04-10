@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, Facebook, Instagram, Linkedin, Mail, Clock } from "lucide-react";
+import { MessageCircle, Facebook, Instagram, Linkedin, Mail, Clock, CheckCircle } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { PaymentBadges } from "@/components/PaymentBadges";
@@ -50,7 +51,43 @@ const CHANNELS = [
   },
 ];
 
+const AI_TOOLS = [
+  "ChatGPT Plus / Pro",
+  "Claude Pro",
+  "Google AI Pro",
+  "Midjourney",
+  "GitHub Copilot",
+  "Cursor Pro",
+  "ElevenLabs",
+  "Suno AI",
+  "Runway",
+  "Notion Business",
+  "Other / Not sure",
+];
+
+const INQUIRY_TYPES = ["Order Inquiry", "Technical Support", "Bundle Pricing", "General Question", "Partnership"];
+
 export default function ContactPage() {
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    tool: "",
+    inquiry: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const text = `New contact form submission:\n\nName: ${form.name}\nPhone: ${form.phone}\nTool interested in: ${form.tool}\nInquiry type: ${form.inquiry}\nMessage: ${form.message}`;
+    window.open(`${WHATSAPP}?text=${encodeURIComponent(text)}`, "_blank");
+    setSubmitted(true);
+  };
+
   return (
     <PageLayout>
       <SEOHead
@@ -118,6 +155,141 @@ export default function ContactPage() {
           ))}
         </div>
 
+        {/* Contact Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 p-6 md:p-8 rounded-2xl border border-white/10"
+          style={{ backgroundColor: "#151b3d" }}
+        >
+          <h2 className="text-xl font-bold text-white mb-2">Send us a message</h2>
+          <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>
+            Fill out the form and we&apos;ll open WhatsApp with your message pre-filled. Or just message us directly.
+          </p>
+
+          {submitted ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-10"
+            >
+              <CheckCircle className="w-12 h-12 mx-auto mb-4" style={{ color: "#25d366" }} />
+              <h3 className="text-xl font-bold text-white mb-2">WhatsApp opened!</h3>
+              <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>
+                Your message has been pre-filled. Just tap Send in WhatsApp and we&apos;ll reply within 5 minutes.
+              </p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="text-sm hover:opacity-80 transition-opacity"
+                style={{ color: "#f4b942" }}
+              >
+                Send another message
+              </button>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-white mb-1.5">
+                    Your Name <span style={{ color: "#f4b942" }}>*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="e.g. Rahim Hossain"
+                    className="w-full rounded-xl px-4 py-3 text-sm border border-white/10 focus:outline-none focus:border-yellow-400 transition-colors"
+                    style={{ backgroundColor: "#0a0e27", color: "#fff" }}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-white mb-1.5">
+                    Phone / WhatsApp <span style={{ color: "#f4b942" }}>*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    value={form.phone}
+                    onChange={handleChange}
+                    placeholder="e.g. 01700-000000"
+                    className="w-full rounded-xl px-4 py-3 text-sm border border-white/10 focus:outline-none focus:border-yellow-400 transition-colors"
+                    style={{ backgroundColor: "#0a0e27", color: "#fff" }}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-white mb-1.5">AI Tool Interested In</label>
+                  <select
+                    name="tool"
+                    value={form.tool}
+                    onChange={handleChange}
+                    className="w-full rounded-xl px-4 py-3 text-sm border border-white/10 focus:outline-none focus:border-yellow-400 transition-colors"
+                    style={{ backgroundColor: "#0a0e27", color: form.tool ? "#fff" : "#c9ceda" }}
+                  >
+                    <option value="" style={{ color: "#c9ceda" }}>Select a tool (optional)</option>
+                    {AI_TOOLS.map((t) => (
+                      <option key={t} value={t} style={{ color: "#fff" }}>{t}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-white mb-1.5">
+                    Inquiry Type <span style={{ color: "#f4b942" }}>*</span>
+                  </label>
+                  <select
+                    name="inquiry"
+                    required
+                    value={form.inquiry}
+                    onChange={handleChange}
+                    className="w-full rounded-xl px-4 py-3 text-sm border border-white/10 focus:outline-none focus:border-yellow-400 transition-colors"
+                    style={{ backgroundColor: "#0a0e27", color: form.inquiry ? "#fff" : "#c9ceda" }}
+                  >
+                    <option value="" style={{ color: "#c9ceda" }}>Select inquiry type</option>
+                    {INQUIRY_TYPES.map((t) => (
+                      <option key={t} value={t} style={{ color: "#fff" }}>{t}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-white mb-1.5">
+                  Message <span style={{ color: "#f4b942" }}>*</span>
+                </label>
+                <textarea
+                  name="message"
+                  required
+                  rows={4}
+                  value={form.message}
+                  onChange={handleChange}
+                  placeholder="Tell us what you need — which tool, how you'll use it, any questions about pricing or setup..."
+                  className="w-full rounded-xl px-4 py-3 text-sm border border-white/10 focus:outline-none focus:border-yellow-400 transition-colors resize-none"
+                  style={{ backgroundColor: "#0a0e27", color: "#fff" }}
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-base hover:opacity-90 transition-opacity"
+                style={{ backgroundColor: "#25d366", color: "#fff", minHeight: "52px" }}
+              >
+                <MessageCircle className="w-5 h-5" />
+                Send via WhatsApp
+              </button>
+              <p className="text-xs text-center" style={{ color: "#c9ceda" }}>
+                This will open WhatsApp with your message pre-filled. We respond in under 5 minutes.
+              </p>
+            </form>
+          )}
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -138,30 +310,6 @@ export default function ContactPage() {
             <p className="text-sm mb-3" style={{ color: "#c9ceda" }}>We accept all local and international payment methods:</p>
             <PaymentBadges label="" className="justify-start" />
           </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="p-8 rounded-2xl text-center border border-white/10"
-          style={{ backgroundColor: "#151b3d" }}
-        >
-          <p className="font-semibold text-white text-lg mb-2">Ready to place an order?</p>
-          <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>
-            Tell us which tool you want. We confirm availability, send payment details, and deliver your account — all over WhatsApp.
-          </p>
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#25d366", color: "#fff" }}
-          >
-            <MessageCircle className="w-5 h-5" />
-            Start Ordering
-          </a>
         </motion.div>
       </section>
     </PageLayout>

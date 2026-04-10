@@ -17,10 +17,11 @@ const CATEGORY_LABELS: Record<string, string> = {
   "ai-voice-music": "AI Voice & Music",
   "ai-code": "AI Code & Dev Tools",
   "ai-workspace": "AI Workspace",
+  "ai-writing": "AI Writing & SEO",
   "bundles": "Bundles & Packages",
 };
 
-const CATEGORY_ORDER = ["ai-assistant", "ai-image", "ai-code", "ai-voice-music", "ai-video", "ai-workspace", "bundles"];
+const CATEGORY_ORDER = ["ai-assistant", "ai-image", "ai-code", "ai-voice-music", "ai-video", "ai-workspace", "ai-writing", "bundles"];
 
 type SortKey = "price-asc" | "price-desc" | "name";
 
@@ -31,17 +32,18 @@ interface Product {
   brandColor: string;
   category: string;
   price: number;
-  officialUSD: number;
+  officialUSD: number | null;
   tier: string;
   accessType: string;
-  badge: string | null;
+  badge?: string;
   description: string;
-  deliveryMinutes: string;
-  warrantyDays: number;
+  deliverySLA: string;
+  whatsappMsg?: string;
+  featured?: boolean;
 }
 
 function ProductCard({ p }: { p: Product }) {
-  const waLink = `${WHATSAPP}?text=${encodeURIComponent(`Hi, I want to order ${p.name} (BDT ${p.price})`)}`;
+  const waLink = `${WHATSAPP}?text=${encodeURIComponent(p.whatsappMsg ?? `Hi, I want to order ${p.name} (BDT ${p.price})`)}`;
   return (
     <motion.div
       initial={{ opacity: 0, y: 14 }}
@@ -81,14 +83,14 @@ function ProductCard({ p }: { p: Product }) {
           >
             {p.accessType === "shared" ? "Shared" : "Personal"}
           </span>
-          <span className="text-xs" style={{ color: "#c9ceda" }}>⚡ {p.deliveryMinutes} min</span>
-          <span className="text-xs" style={{ color: "#c9ceda" }}>🛡 {p.warrantyDays}d warranty</span>
+          <span className="text-xs" style={{ color: "#c9ceda" }}>⚡ {p.deliverySLA}</span>
+          <span className="text-xs" style={{ color: "#c9ceda" }}>🛡 30-day warranty</span>
         </div>
 
         <div className="flex items-center justify-between mt-1">
           <div>
             <div className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT {p.price.toLocaleString()}</div>
-            <div className="text-xs" style={{ color: "#c9ceda" }}>${p.officialUSD}/mo officially</div>
+            {p.officialUSD != null && <div className="text-xs" style={{ color: "#c9ceda" }}>${p.officialUSD}/mo officially</div>}
           </div>
           <a
             href={waLink}

@@ -15,6 +15,9 @@ import TermsPage from "@/pages/TermsPage";
 import GuidePage from "@/pages/GuidePage";
 import ComparisonPage from "@/pages/ComparisonPage";
 import BudgetPage from "@/pages/BudgetPage";
+import BlogPage from "@/pages/BlogPage";
+import BlogPostPage from "@/pages/BlogPostPage";
+import BrandPage from "@/pages/BrandPage";
 
 const queryClient = new QueryClient();
 
@@ -33,7 +36,22 @@ function Router() {
       <Route path="/ai-voice-music">{() => <CategoryPage categoryId="ai-voice-music" />}</Route>
       <Route path="/ai-code">{() => <CategoryPage categoryId="ai-code" />}</Route>
       <Route path="/ai-workspace">{() => <CategoryPage categoryId="ai-workspace" />}</Route>
+      <Route path="/ai-writing">{() => <CategoryPage categoryId="ai-writing" />}</Route>
       <Route path="/bundles">{() => <CategoryPage categoryId="bundles" />}</Route>
+
+      {/* Brand pages (8 new) */}
+      <Route path="/leonardo-ai-bangladesh">{() => <BrandPage brandSlug="leonardo-ai-bangladesh" />}</Route>
+      <Route path="/udio-bangladesh">{() => <BrandPage brandSlug="udio-bangladesh" />}</Route>
+      <Route path="/heygen-bangladesh">{() => <BrandPage brandSlug="heygen-bangladesh" />}</Route>
+      <Route path="/otter-ai-bangladesh">{() => <BrandPage brandSlug="otter-ai-bangladesh" />}</Route>
+      <Route path="/writesonic-bangladesh">{() => <BrandPage brandSlug="writesonic-bangladesh" />}</Route>
+      <Route path="/gamma-bangladesh">{() => <BrandPage brandSlug="gamma-bangladesh" />}</Route>
+      <Route path="/v0-dev-bangladesh">{() => <BrandPage brandSlug="v0-dev-bangladesh" />}</Route>
+      <Route path="/replit-bangladesh">{() => <BrandPage brandSlug="replit-bangladesh" />}</Route>
+
+      {/* Blog */}
+      <Route path="/blog" component={BlogPage} />
+      <Route path="/blog/:slug">{(params) => <BlogPostPage postSlug={params.slug} />}</Route>
 
       {/* Guide pages */}
       <Route path="/best-ai-for-students">{() => <GuidePage guideKey="students" />}</Route>

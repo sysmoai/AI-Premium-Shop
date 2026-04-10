@@ -1,5 +1,5 @@
 import { motion, type Variants } from "framer-motion";
-import { ChevronRight, MessageSquare, Image, Video, Music, Code2, Layout, Package } from "lucide-react";
+import { ChevronRight, MessageSquare, Image, Video, Music, Code2, Layout, Package, PenTool } from "lucide-react";
 import categories from "../../data/categories.json";
 import type { LucideIcon } from "lucide-react";
 
@@ -13,9 +13,10 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Code2,
   Layout,
   Package,
+  PenTool,
 };
 
-const COLORS = ["#10a37f", "#ec4899", "#8b5cf6", "#f97316", "#06b6d4", "#f4b942", "#e11d48"];
+const COLORS = ["#10a37f", "#ec4899", "#8b5cf6", "#f97316", "#06b6d4", "#f4b942", "#6366f1", "#e11d48"];
 
 const containerVariants: Variants = {
   hidden: {},
@@ -43,7 +44,7 @@ export function CategorySection() {
             className="text-sm font-semibold uppercase tracking-widest mb-3"
             style={{ color: "#f4b942" }}
           >
-            49 Tools
+            57 Tools
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}

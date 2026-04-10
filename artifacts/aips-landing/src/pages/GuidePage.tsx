@@ -93,7 +93,7 @@ const GUIDES: Record<string, GuideConfig> = {
       { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 950/mo", reason: "Write proposals, emails, and content 10x faster. Higher stability than starter plan.", badge: "Top Pick", color: "#10a37f" },
       { rank: 2, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "#1 ranked AI for writing quality. Extended thinking for complex client projects.", badge: "Best Writing", color: "#d97706" },
       { rank: 3, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Create client graphics, thumbnails, and mockups. Unlimited image generation.", badge: "For Design", color: "#8b5cf6" },
-      { rank: 4, name: "GitHub Copilot — Individual", price: "BDT 600/mo", reason: "For developer freelancers. Code 50% faster. Works in VS Code and JetBrains.", badge: "For Devs", color: "#6e40c9" },
+      { rank: 4, name: "GitHub Copilot Pro — Individual", price: "BDT 1,495/mo", reason: "For developer freelancers. Code 50% faster. Works in VS Code and JetBrains.", badge: "For Devs", color: "#6e40c9" },
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
@@ -126,9 +126,9 @@ const GUIDES: Record<string, GuideConfig> = {
     tools: [
       { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 950/mo", reason: "Scripts, captions, content calendars, viral hooks — all in minutes.", badge: "For Scripts", color: "#10a37f" },
       { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "AI thumbnails and graphics without hiring a designer. Unlimited generations.", badge: "For Thumbnails", color: "#8b5cf6" },
-      { rank: 3, name: "ElevenLabs — Starter Plan", price: "BDT 550/mo", reason: "Ultra-realistic AI voiceovers. Clone your own voice. Supports 29 languages.", badge: "For Voiceovers", color: "#f97316" },
-      { rank: 4, name: "Suno AI — Pro Plan", price: "BDT 500/mo", reason: "Create background music and jingles with no copyright issues. Commercial use included.", badge: "For Music", color: "#f59e0b" },
-      { rank: 5, name: "Runway — Standard Plan", price: "BDT 1,100/mo", reason: "AI video generation. B-roll, transitions, cinematic effects from text prompts.", badge: "For Video", color: "#ec4899" },
+      { rank: 3, name: "ElevenLabs — Starter Plan", price: "BDT 748/mo", reason: "Ultra-realistic AI voiceovers. Clone your own voice. Supports 29 languages.", badge: "For Voiceovers", color: "#f97316" },
+      { rank: 4, name: "Suno AI — Pro Plan", price: "BDT 1,495/mo", reason: "Create background music and jingles with no copyright issues. Commercial use included.", badge: "For Music", color: "#f59e0b" },
+      { rank: 5, name: "Runway — Standard Plan", price: "BDT 1,794/mo", reason: "AI video generation. B-roll, transitions, cinematic effects from text prompts.", badge: "For Video", color: "#ec4899" },
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
@@ -194,14 +194,14 @@ const GUIDES: Record<string, GuideConfig> = {
     whyText: "AI coding assistants have changed what's possible for individual developers. GitHub Copilot reduces coding time by 55% according to GitHub's own research. Cursor's agent mode can write entire features from a single prompt. Claude Code can debug complex multi-file issues that would take hours manually. Developers who invest in AI tools are shipping products faster, catching bugs earlier, and competing with teams twice their size.",
     statLine: "GitHub Copilot reduces coding time by 55% — GitHub Developer Productivity Report",
     tools: [
-      { rank: 1, name: "GitHub Copilot — Individual", price: "BDT 600/mo", reason: "Unlimited code completions. Works in VS Code, JetBrains, Neovim. Industry standard.", badge: "Industry Standard", color: "#6e40c9" },
-      { rank: 2, name: "Cursor — Pro Plan", price: "BDT 1,100/mo", reason: "AI-native editor with agent mode. Used by engineers at OpenAI, Stripe, and Figma.", badge: "AI-Native Editor", color: "#3b82f6" },
-      { rank: 3, name: "Tabnine — Pro Plan", price: "BDT 600/mo", reason: "Private AI code completion — runs on your machine with no code leaving your environment. Secure option.", badge: "Private AI", color: "#0891b2" },
-      { rank: 4, name: "Claude Pro — Private Account", price: "BDT 750/mo", reason: "#1 ranked AI for reasoning. Claude Code terminal for complex debugging and architecture decisions.", badge: "For Reasoning", color: "#d97706" },
+      { rank: 1, name: "GitHub Copilot Pro", price: "BDT 1,495/mo", reason: "Unlimited code completions. Works in VS Code, JetBrains, Neovim. Industry standard.", badge: "Industry Standard", color: "#6e40c9" },
+      { rank: 2, name: "Cursor Pro", price: "BDT 2,990/mo", reason: "AI-native editor with agent mode. Used by engineers at OpenAI, Stripe, and Figma.", badge: "AI-Native Editor", color: "#3b82f6" },
+      { rank: 3, name: "Claude Pro — Personal", price: "BDT 2,990/mo", reason: "#1 ranked AI for reasoning. Claude Code terminal for complex debugging and architecture decisions.", badge: "For Reasoning", color: "#d97706" },
+      { rank: 4, name: "v0.dev Pro — Shared", price: "BDT 999/mo", reason: "AI web app builder by Vercel. Build UIs, apps, and sites from prompts and deploy instantly.", badge: "UI Builder", color: "#111827" },
     ],
     startHere: {
-      name: "GitHub Copilot — Individual",
-      price: "BDT 600/mo",
+      name: "GitHub Copilot Pro",
+      price: "BDT 1,495/mo",
       reason: "The safest starting point. Works inside your existing IDE (VS Code or JetBrains) with zero workflow changes. Industry-proven, with access to GPT-5.4 and Claude models.",
     },
     faqs: [

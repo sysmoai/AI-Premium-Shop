@@ -30,12 +30,12 @@ const SPECIAL_OFFERS = [
 ];
 
 const BEST_SELLERS = [
-  { id: "chatgpt-plus", name: "ChatGPT Plus", price: 350, badge: "Best Seller", color: "#10a37f" },
-  { id: "google-ai-pro-bs", name: "Google AI Pro", price: 500, badge: "83% Off", color: "#4285f4" },
-  { id: "chatgpt-business", name: "ChatGPT Business", price: 699, badge: null, color: "#10a37f" },
-  { id: "midjourney", name: "Midjourney", price: 1199, badge: "Popular", color: "#e11d48" },
-  { id: "claude-premium", name: "Claude Premium Shared", price: 1495, badge: null, color: "#d97706" },
-  { id: "github-copilot-bs", name: "GitHub Copilot", price: 1495, badge: null, color: "#6e40c9" },
+  { id: "chatgpt-plus-starter", name: "ChatGPT Plus Starter Shared", price: 350, badge: "Best Seller", color: "#10a37f", msg: "Hi, I want ChatGPT Plus Starter Shared (৳350/mo)" },
+  { id: "perplexity-pro-shared", name: "Perplexity Pro Shared", price: 350, badge: null, color: "#20b2aa", msg: "Hi, I want Perplexity Pro Shared (৳350/mo)" },
+  { id: "google-ai-pro-bs", name: "Google AI Pro", price: 500, badge: "83% Off", color: "#4285f4", msg: "Hi, I want Google AI Pro (৳500/mo)" },
+  { id: "chatgpt-business", name: "ChatGPT Business Starter Shared", price: 699, badge: null, color: "#10a37f", msg: "Hi, I want ChatGPT Business Starter Shared (৳699/mo)" },
+  { id: "midjourney", name: "Midjourney Standard Shared", price: 1199, badge: "Popular", color: "#1a1a2e", msg: "Hi, I want Midjourney Standard Shared (৳1,199/mo)" },
+  { id: "claude-premium", name: "Claude Pro Premium Shared", price: 1495, badge: null, color: "#d97706", msg: "Hi, I want Claude Pro Premium Shared (৳1,495/mo)" },
 ];
 
 export function OffersSection() {
@@ -173,7 +173,7 @@ export function OffersSection() {
                 </div>
 
                 <a
-                  href={makeOrderLink(product.name)}
+                  href={`https://wa.me/8801865385348?text=${encodeURIComponent(product.msg)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-cta text-xs px-4 py-2.5 rounded-lg flex items-center gap-1 flex-shrink-0"

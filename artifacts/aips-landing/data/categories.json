@@ -3,70 +3,80 @@
     "id": "ai-assistant",
     "slug": "ai-assistant",
     "displayName": "AI Assistant & Chat",
-    "industrySubtitle": "ChatGPT, Claude, Gemini, Grok",
+    "industrySubtitle": "ChatGPT, Claude, Gemini, Grok, Perplexity",
     "icon": "MessageSquare",
     "from": 350,
-    "count": 11,
+    "count": 21,
     "description": "The world's most powerful AI assistants. Write, code, research, create images, and automate tasks. From ChatGPT and Claude to Gemini and Perplexity — find your perfect AI partner."
   },
   {
     "id": "ai-image",
     "slug": "ai-image",
     "displayName": "AI Image & Design",
-    "industrySubtitle": "Midjourney, Ideogram, Canva",
+    "industrySubtitle": "Midjourney, Ideogram, Leonardo AI",
     "icon": "Image",
-    "from": 450,
-    "count": 8,
-    "description": "Create stunning visuals with AI. Generate images from text, edit photos, and design graphics. Midjourney for artistic quality, Ideogram for perfect text rendering."
+    "from": 599,
+    "count": 9,
+    "description": "Create stunning visuals with AI. Generate images from text, edit photos, and design graphics. Midjourney for artistic quality, Ideogram for perfect text rendering, Leonardo AI for 3D and motion."
   },
   {
     "id": "ai-video",
     "slug": "ai-video",
     "displayName": "AI Video",
-    "industrySubtitle": "Runway, Pika",
+    "industrySubtitle": "Runway, HeyGen — video & AI avatars",
     "icon": "Video",
-    "from": 900,
-    "count": 2,
-    "description": "Generate and edit videos with AI. Text-to-video, image-to-video, 4K upscaling, and motion effects. Runway is the leading platform used by filmmakers worldwide."
+    "from": 1499,
+    "count": 4,
+    "description": "Generate and edit videos with AI. Text-to-video, image-to-video, 4K upscaling, and AI avatar creation. Runway Gen-4 and HeyGen are the leading platforms for video and avatar creation."
   },
   {
     "id": "ai-voice-music",
     "slug": "ai-voice-music",
     "displayName": "AI Voice & Music",
-    "industrySubtitle": "ElevenLabs, Suno",
+    "industrySubtitle": "ElevenLabs, Suno, Udio",
     "icon": "Music",
-    "from": 500,
-    "count": 3,
-    "description": "Clone voices, generate speech, and create music with AI. ElevenLabs for human-quality voiceovers. Suno for complete AI-generated songs in any genre."
+    "from": 499,
+    "count": 6,
+    "description": "Clone voices, generate speech, and create music with AI. ElevenLabs for human-quality voiceovers. Suno for complete AI-generated songs in any genre. Udio for fast music creation."
   },
   {
     "id": "ai-code",
     "slug": "ai-code",
     "displayName": "AI Code & Dev Tools",
-    "industrySubtitle": "GitHub Copilot, Cursor, Windsurf",
+    "industrySubtitle": "GitHub Copilot, Cursor, v0.dev, Replit",
     "icon": "Code2",
-    "from": 600,
-    "count": 5,
-    "description": "Code faster with AI pair programming. GitHub Copilot integrates into your IDE. Cursor is the AI-native editor used by teams at OpenAI, Stripe, and Figma."
+    "from": 500,
+    "count": 6,
+    "description": "Code faster with AI pair programming. GitHub Copilot integrates into your IDE. Cursor is the AI-native editor used by teams at OpenAI, Stripe, and Figma. v0.dev builds UIs from prompts."
   },
   {
     "id": "ai-workspace",
     "slug": "ai-workspace",
     "displayName": "AI Workspace",
-    "industrySubtitle": "Notion AI, Grammarly",
+    "industrySubtitle": "Notion, Manus, Otter.ai, Gamma",
     "icon": "Layout",
-    "from": 550,
-    "count": 2,
-    "description": "AI-powered productivity and collaboration. Notion Business with AI included. Grammarly for flawless professional writing across every platform."
+    "from": 399,
+    "count": 5,
+    "description": "AI-powered productivity and collaboration. Notion Business with AI included. Manus AI for autonomous agents. Otter.ai for meeting transcription. Gamma for AI presentations."
+  },
+  {
+    "id": "ai-writing",
+    "slug": "ai-writing",
+    "displayName": "AI Writing & SEO",
+    "industrySubtitle": "Writesonic — AI content & SEO",
+    "icon": "PenTool",
+    "from": 799,
+    "count": 1,
+    "description": "AI-powered content writing and SEO tools. Writesonic Individual for blog writing, SEO content, marketing copy, and social media posts. Outrank competitors with AI-optimized content."
   },
   {
     "id": "bundles",
     "slug": "bundles",
     "displayName": "Bundles & Packages",
-    "industrySubtitle": "Multiple tools, one price",
+    "industrySubtitle": "Curated AI stacks from ৳449",
     "icon": "Package",
-    "from": 999,
-    "count": 0,
-    "description": "Save more with curated AI tool bundles. Designed for students, freelancers, and businesses. Multiple premium tools at a discounted package price."
+    "from": 449,
+    "count": 5,
+    "description": "Save more with curated AI tool bundles. Designed for students, freelancers, and businesses. Multiple premium tools at a discounted package price. Includes setup and onboarding."
   }
 ]

@@ -91,12 +91,12 @@ const COMPARISONS: Record<string, CompConfig> = {
   "copilot-vs-cursor": {
     title: "GitHub Copilot vs Cursor — Best AI Coding Tool 2026 | AI Premium Shop",
     h1: "GitHub Copilot vs Cursor — Which AI Code Tool Should You Use?",
-    metaDescription: "GitHub Copilot vs Cursor comparison Bangladesh 2026. Copilot at BDT 600 vs Cursor Pro at BDT 1,100. Which AI coding tool is right for you?",
+    metaDescription: "GitHub Copilot vs Cursor comparison Bangladesh 2026. Copilot at BDT 1,495 vs Cursor Pro at BDT 2,990. Which AI coding tool is right for you?",
     canonical: "https://aipremiumshop.com/copilot-vs-cursor",
     productA: { name: "GitHub Copilot Pro", color: "#6e40c9", orderText: "Order Copilot" },
     productB: { name: "Cursor Pro", color: "#3b82f6", orderText: "Order Cursor" },
     rows: [
-      { feature: "AIPS price", a: "BDT 600/mo", b: "BDT 1,100/mo" },
+      { feature: "AIPS price", a: "BDT 1,495/mo", b: "BDT 2,990/mo" },
       { feature: "Works in", a: "VS Code, JetBrains, Neovim, Visual Studio", b: "Cursor editor (VS Code fork)" },
       { feature: "Agent mode", a: "Cloud agents (limited)", b: "Full autonomous agent mode" },
       { feature: "AI models", a: "GPT-5.4, Claude Opus 4.6, Gemini", b: "All frontier models" },

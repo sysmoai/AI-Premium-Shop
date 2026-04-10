@@ -1,0 +1,311 @@
+# Phase 7 — Product Data Sync + Blog + Contact Form (Paste into Replit)
+
+<aside>
+🔧
+
+**PHASE 7 — CRITICAL DATA FIX + NEW FEATURES**
+
+Date: 2026-04-10 · Paste this ENTIRE prompt into Replit Agent
+
+**What this does:** Fixes ALL wrong prices, removes unauthorized products, adds 8 new products, restores 22 missing products, adds blog + contact form
+
+**IMPORTANT:** products.json below is the SINGLE SOURCE OF TRUTH. Do NOT invent products or prices. Every product on the website MUST come from this file.
+
+</aside>
+
+---
+
+## STEP 1: Replace /data/products.json
+
+**DELETE the entire current products.json and replace with this exact file. Do NOT modify any prices or add any products not in this list.**
+
+```json
+{
+  "products": [
+    {"id":"chatgpt-plus-starter-shared","name":"ChatGPT Plus — Starter Shared","slug":"chatgpt-plus-bangladesh","brand":"ChatGPT","brandSlug":"chatgpt-plans-bangladesh","provider":"OpenAI","brandColor":"#10a37f","category":"ai-assistant","price":350,"officialUSD":20,"tier":"Starter Shared","accessType":"shared","badge":"Best Seller","description":"Budget-friendly shared ChatGPT Plus. GPT-5 series for text, code, vision, search, DALL-E, AI agents.","capabilities":["text","code","vision","search","image-gen","agents"],"deliverySLA":"5-30 min","featured":true,"whatsappMsg":"Hi, I want ChatGPT Plus Starter Shared (৳350/mo)","status":"Active"},
+    {"id":"chatgpt-plus-premium-shared","name":"ChatGPT Plus — Premium Shared","slug":"chatgpt-plus-bangladesh","brand":"ChatGPT","brandSlug":"chatgpt-plans-bangladesh","provider":"OpenAI","brandColor":"#10a37f","category":"ai-assistant","price":950,"officialUSD":20,"tier":"Premium Shared","accessType":"shared","description":"Premium shared ChatGPT Plus. 2-3 users max, higher stability. Full GPT-5 multimodal.","capabilities":["text","code","vision","search","image-gen","agents"],"deliverySLA":"5-15 min","featured":true,"whatsappMsg":"Hi, I want ChatGPT Plus Premium Shared (৳950/mo)","status":"Active"},
+    {"id":"chatgpt-plus-personal","name":"ChatGPT Plus — Personal","slug":"chatgpt-plus-bangladesh","brand":"ChatGPT","brandSlug":"chatgpt-plans-bangladesh","provider":"OpenAI","brandColor":"#10a37f","category":"ai-assistant","price":2990,"officialUSD":20,"tier":"Personal","accessType":"personal","description":"Full personal ChatGPT Plus. GPT-5.4 thinking, DALL-E, deep research, agent mode, Codex, custom GPTs.","capabilities":["text","code","vision","document","search","image-gen","agents"],"deliverySLA":"2-4 hours","featured":true,"whatsappMsg":"Hi, I want ChatGPT Plus Personal (৳2,990/mo)","status":"Active"},
+    {"id":"chatgpt-go-personal","name":"ChatGPT Go — Personal","slug":"chatgpt-go-bangladesh","brand":"ChatGPT","brandSlug":"chatgpt-plans-bangladesh","provider":"OpenAI","brandColor":"#10a37f","category":"ai-assistant","price":1196,"officialUSD":8,"tier":"Go","accessType":"personal","description":"ChatGPT Go — official $8/mo plan. GPT-5, image gen, deep research, agent mode. May show ads.","capabilities":["text","code","vision","search","image-gen","agents"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want ChatGPT Go Personal (৳1,196/mo)","status":"Active"},
+    {"id":"chatgpt-business-starter-shared","name":"ChatGPT Business — Starter Shared","slug":"chatgpt-business-bangladesh","brand":"ChatGPT","brandSlug":"chatgpt-plans-bangladesh","provider":"OpenAI","brandColor":"#10a37f","category":"ai-assistant","price":699,"officialUSD":25,"tier":"Starter Shared","accessType":"shared","description":"Shared ChatGPT Business seat. Team workspace, admin controls, unlimited GPT-5, Codex agent.","capabilities":["text","code","vision","document","search","image-gen","agents"],"deliverySLA":"5-30 min","featured":true,"whatsappMsg":"Hi, I want ChatGPT Business Starter Shared (৳699/mo)","status":"Active"},
+    {"id":"chatgpt-business-premium-shared","name":"ChatGPT Business — Premium Shared","slug":"chatgpt-business-bangladesh","brand":"ChatGPT","brandSlug":"chatgpt-plans-bangladesh","provider":"OpenAI","brandColor":"#10a37f","category":"ai-assistant","price":1299,"officialUSD":25,"tier":"Premium Shared","accessType":"shared","description":"Premium shared ChatGPT Business. Fewer users, higher stability. Unlimited GPT-5, deep research, Codex.","capabilities":["text","code","vision","document","search","image-gen","agents"],"deliverySLA":"5-15 min","featured":false,"whatsappMsg":"Hi, I want ChatGPT Business Premium Shared (৳1,299/mo)","status":"Active"},
+    {"id":"chatgpt-business-personal","name":"ChatGPT Business — Personal","slug":"chatgpt-business-bangladesh","brand":"ChatGPT","brandSlug":"chatgpt-plans-bangladesh","provider":"OpenAI","brandColor":"#10a37f","category":"ai-assistant","price":3990,"officialUSD":30,"tier":"Personal","accessType":"personal","description":"Dedicated ChatGPT Business seat. Full admin control, data privacy, unlimited GPT-5, Codex agent.","capabilities":["text","code","vision","document","search","image-gen","agents"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want ChatGPT Business Personal (৳3,990/mo)","status":"Active"},
+    {"id":"chatgpt-pro-premium-shared","name":"ChatGPT Pro — Premium Shared","slug":"chatgpt-pro-bangladesh","brand":"ChatGPT","brandSlug":"chatgpt-plans-bangladesh","provider":"OpenAI","brandColor":"#10a37f","category":"ai-assistant","price":4500,"officialUSD":200,"tier":"Premium Shared","accessType":"shared","description":"Shared ChatGPT Pro. Unlimited GPT-5.4 Pro mode, Sora video, unlimited deep research, highest performance.","capabilities":["text","code","vision","document","search","image-gen","video-gen","agents"],"deliverySLA":"2-12 hours","featured":true,"whatsappMsg":"Hi, I want ChatGPT Pro Premium Shared (৳4,500/mo)","status":"Active"},
+    {"id":"chatgpt-pro-personal","name":"ChatGPT Pro — Personal","slug":"chatgpt-pro-bangladesh","brand":"ChatGPT","brandSlug":"chatgpt-plans-bangladesh","provider":"OpenAI","brandColor":"#10a37f","category":"ai-assistant","price":29900,"officialUSD":200,"tier":"Personal","accessType":"personal","description":"Full ChatGPT Pro. Unlimited GPT-5.4 Pro, Sora video, deep research, agents, earliest access to new features.","capabilities":["text","code","vision","document","search","image-gen","video-gen","agents"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want ChatGPT Pro Personal (৳29,900/mo)","status":"Active"},
+    {"id":"claude-pro-shared","name":"Claude Pro — Shared","slug":"claude-pro-bangladesh","brand":"Claude","brandSlug":"claude-pro-bangladesh","provider":"Anthropic","brandColor":"#d97706","category":"ai-assistant","price":599,"officialUSD":20,"tier":"Shared","accessType":"shared","description":"Shared Claude Pro. Opus 4.6 & Sonnet for advanced reasoning, writing, coding, vision, extended thinking.","capabilities":["text","code","vision","document","agents"],"deliverySLA":"5-30 min","featured":false,"whatsappMsg":"Hi, I want Claude Pro Shared (৳599/mo)","status":"Active"},
+    {"id":"claude-pro-premium-shared","name":"Claude Pro — Premium Shared","slug":"claude-pro-bangladesh","brand":"Claude","brandSlug":"claude-pro-bangladesh","provider":"Anthropic","brandColor":"#d97706","category":"ai-assistant","price":1495,"officialUSD":20,"tier":"Premium Shared","accessType":"shared","description":"Premium shared Claude Pro. Higher reliability, fewer users. Opus 4.6, Claude Code, MCP integrations.","capabilities":["text","code","vision","document","agents"],"deliverySLA":"5-15 min","featured":true,"whatsappMsg":"Hi, I want Claude Pro Premium Shared (৳1,495/mo)","status":"Active"},
+    {"id":"claude-pro-personal","name":"Claude Pro — Personal","slug":"claude-pro-bangladesh","brand":"Claude","brandSlug":"claude-pro-bangladesh","provider":"Anthropic","brandColor":"#d97706","category":"ai-assistant","price":2990,"officialUSD":20,"tier":"Personal","accessType":"personal","description":"Full personal Claude Pro. All models incl. Opus 4.6, extended thinking, Claude Code, 200K context.","capabilities":["text","code","vision","document","agents"],"deliverySLA":"2-4 hours","featured":true,"whatsappMsg":"Hi, I want Claude Pro Personal (৳2,990/mo)","status":"Active"},
+    {"id":"claude-max-5x","name":"Claude Max 5x — Personal","slug":"claude-pro-bangladesh","brand":"Claude","brandSlug":"claude-pro-bangladesh","provider":"Anthropic","brandColor":"#d97706","category":"ai-assistant","price":14950,"officialUSD":100,"tier":"Max 5x","accessType":"personal","description":"Claude Max 5x. 5× Pro limits, 1M token context, persistent memory, priority access.","capabilities":["text","code","vision","document","agents"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Claude Max 5x (৳14,950/mo)","status":"Active"},
+    {"id":"claude-max-20x","name":"Claude Max 20x — Personal","slug":"claude-pro-bangladesh","brand":"Claude","brandSlug":"claude-pro-bangladesh","provider":"Anthropic","brandColor":"#d97706","category":"ai-assistant","price":29900,"officialUSD":200,"tier":"Max 20x","accessType":"personal","description":"Claude Max 20x. 20× Pro limits, highest Claude Code limits, priority access, early features.","capabilities":["text","code","vision","document","agents"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Claude Max 20x (৳29,900/mo)","status":"Active"},
+    {"id":"claude-team-personal","name":"Claude Team — Personal Seat","slug":"claude-pro-bangladesh","brand":"Claude","brandSlug":"claude-pro-bangladesh","provider":"Anthropic","brandColor":"#d97706","category":"ai-assistant","price":3990,"officialUSD":30,"tier":"Team","accessType":"personal","description":"Claude Team seat. All Pro features + admin controls, collaboration, shared projects, central billing.","capabilities":["text","code","vision","document","agents"],"deliverySLA":"2-12 hours","featured":false,"whatsappMsg":"Hi, I want Claude Team (৳3,990/seat/mo)","status":"Active"},
+    {"id":"google-ai-pro-personal","name":"Google AI Pro (Gemini Advanced) — Personal","slug":"gemini-advanced-bangladesh","brand":"Google","brandSlug":"gemini-advanced-bangladesh","provider":"Google","brandColor":"#4285f4","category":"ai-assistant","price":500,"officialUSD":19.99,"tier":"Personal","accessType":"personal","badge":"83% Off","description":"AIPS SPECIAL — ৳500 only (official ৳2,990). Full Google AI Pro on YOUR Gmail. Gemini 3.1 Pro, Deep Research, image gen, video gen, AI agents, 2TB storage.","capabilities":["text","code","vision","document","search","image-gen","video-gen","agents","workspace"],"deliverySLA":"5-15 min","featured":true,"whatsappMsg":"Hi, I want Google AI Pro (৳500/mo)","status":"Active"},
+    {"id":"supergrok-lite-personal","name":"SuperGrok Lite — Personal","slug":"supergrok-bangladesh","brand":"Grok","brandSlug":"supergrok-bangladesh","provider":"xAI","brandColor":"#000000","category":"ai-assistant","price":1495,"officialUSD":10,"tier":"Lite","accessType":"personal","description":"SuperGrok Lite. Grok 4, AI image & video gen, 2× longer chat, AI agent.","capabilities":["text","code","vision","search","image-gen","video-gen","agents"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want SuperGrok Lite (৳1,495/mo)","status":"Active"},
+    {"id":"supergrok-personal","name":"SuperGrok — Personal","slug":"supergrok-bangladesh","brand":"Grok","brandSlug":"supergrok-bangladesh","provider":"xAI","brandColor":"#000000","category":"ai-assistant","price":3990,"officialUSD":30,"tier":"Standard","accessType":"personal","description":"Full SuperGrok. Grok 4.1 unlimited, DeepSearch, HD images & 30s video, 4× AI agents, real-time X data.","capabilities":["text","code","vision","search","image-gen","video-gen","agents"],"deliverySLA":"2-4 hours","featured":true,"whatsappMsg":"Hi, I want SuperGrok (৳3,990/mo)","status":"Active"},
+    {"id":"perplexity-pro-shared","name":"Perplexity Pro — Shared","slug":"perplexity-pro-bangladesh","brand":"Perplexity","brandSlug":"perplexity-pro-bangladesh","provider":"Perplexity","brandColor":"#20b2aa","category":"ai-assistant","price":350,"officialUSD":20,"tier":"Shared","accessType":"shared","description":"Shared Perplexity Pro. AI-powered deep research with citations. 300+ Pro searches/day.","capabilities":["text","search","document"],"deliverySLA":"5-15 min","featured":true,"whatsappMsg":"Hi, I want Perplexity Pro Shared (৳350/mo)","status":"Active"},
+    {"id":"perplexity-pro-personal","name":"Perplexity Pro — Personal","slug":"perplexity-pro-bangladesh","brand":"Perplexity","brandSlug":"perplexity-pro-bangladesh","provider":"Perplexity","brandColor":"#20b2aa","category":"ai-assistant","price":2990,"officialUSD":20,"tier":"Personal","accessType":"personal","description":"Full Perplexity Pro. 300+ Pro searches/day, choose AI models, deep research, file uploads.","capabilities":["text","search","document"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Perplexity Pro Personal (৳2,990/mo)","status":"Active"},
+    {"id":"perplexity-max-personal","name":"Perplexity Max — Personal","slug":"perplexity-pro-bangladesh","brand":"Perplexity","brandSlug":"perplexity-pro-bangladesh","provider":"Perplexity","brandColor":"#20b2aa","category":"ai-assistant","price":29900,"officialUSD":200,"tier":"Max","accessType":"personal","description":"Perplexity Max. Unlimited deep research, best AI reasoning models, massive data handling.","capabilities":["text","search","document"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Perplexity Max (৳29,900/mo)","status":"Active"},
+    {"id":"midjourney-std-shared","name":"Midjourney Standard — Shared","slug":"midjourney-bangladesh","brand":"Midjourney","brandSlug":"midjourney-bangladesh","provider":"Midjourney","brandColor":"#000000","category":"ai-image","price":1199,"officialUSD":30,"tier":"Shared","accessType":"shared","badge":"Best Seller","description":"Shared Midjourney Standard. 15hr fast GPU, unlimited relax mode, image + video gen.","capabilities":["image-gen","video-gen"],"deliverySLA":"5-30 min","featured":true,"whatsappMsg":"Hi, I want Midjourney Standard Shared (৳1,199/mo)","status":"Active"},
+    {"id":"midjourney-std-premium-shared","name":"Midjourney Standard — Premium Shared","slug":"midjourney-bangladesh","brand":"Midjourney","brandSlug":"midjourney-bangladesh","provider":"Midjourney","brandColor":"#000000","category":"ai-image","price":2399,"officialUSD":30,"tier":"Premium Shared","accessType":"shared","description":"Premium shared Midjourney Standard. Fewer users (3 max), higher availability.","capabilities":["image-gen","video-gen"],"deliverySLA":"5-15 min","featured":false,"whatsappMsg":"Hi, I want Midjourney Standard Premium Shared (৳2,399/mo)","status":"Active"},
+    {"id":"midjourney-std-personal","name":"Midjourney Standard — Personal","slug":"midjourney-bangladesh","brand":"Midjourney","brandSlug":"midjourney-bangladesh","provider":"Midjourney","brandColor":"#000000","category":"ai-image","price":3990,"officialUSD":30,"tier":"Personal","accessType":"personal","description":"Full personal Midjourney Standard. Own account, 15hr fast GPU, unlimited relax, commercial rights.","capabilities":["image-gen","video-gen"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Midjourney Standard Personal (৳3,990/mo)","status":"Active"},
+    {"id":"midjourney-pro-shared","name":"Midjourney Pro — Shared","slug":"midjourney-bangladesh","brand":"Midjourney","brandSlug":"midjourney-bangladesh","provider":"Midjourney","brandColor":"#000000","category":"ai-image","price":4788,"officialUSD":60,"tier":"Pro Shared","accessType":"shared","description":"Shared Midjourney Pro. 30hr fast GPU, stealth mode, 12 concurrent jobs, HD video.","capabilities":["image-gen","image-edit","video-gen"],"deliverySLA":"5-30 min","featured":false,"whatsappMsg":"Hi, I want Midjourney Pro Shared (৳4,788/mo)","status":"Active"},
+    {"id":"midjourney-pro-personal","name":"Midjourney Pro — Personal","slug":"midjourney-bangladesh","brand":"Midjourney","brandSlug":"midjourney-bangladesh","provider":"Midjourney","brandColor":"#000000","category":"ai-image","price":8970,"officialUSD":60,"tier":"Pro","accessType":"personal","description":"Full Midjourney Pro. 30hr fast GPU, stealth mode, HD video, commercial rights.","capabilities":["image-gen","image-edit","video-gen"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Midjourney Pro Personal (৳8,970/mo)","status":"Active"},
+    {"id":"midjourney-mega-personal","name":"Midjourney Mega — Personal","slug":"midjourney-bangladesh","brand":"Midjourney","brandSlug":"midjourney-bangladesh","provider":"Midjourney","brandColor":"#000000","category":"ai-image","price":17940,"officialUSD":120,"tier":"Mega","accessType":"personal","description":"Midjourney Mega. 60hr fast GPU, all features. For high-volume studios.","capabilities":["image-gen","image-edit","video-gen"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Midjourney Mega (৳17,940/mo)","status":"Active"},
+    {"id":"ideogram-plus-personal","name":"Ideogram Plus — Personal","slug":"ideogram-bangladesh","brand":"Ideogram","brandSlug":"ideogram-bangladesh","provider":"Ideogram","brandColor":"#6366f1","category":"ai-image","price":2990,"officialUSD":20,"tier":"Plus","accessType":"personal","description":"Ideogram Plus. Best AI text rendering. 1000 priority credits/mo, unlimited slow.","capabilities":["image-gen","image-edit"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Ideogram Plus (৳2,990/mo)","status":"Active"},
+    {"id":"ideogram-pro-personal","name":"Ideogram Pro — Personal","slug":"ideogram-bangladesh","brand":"Ideogram","brandSlug":"ideogram-bangladesh","provider":"Ideogram","brandColor":"#6366f1","category":"ai-image","price":8970,"officialUSD":60,"tier":"Pro","accessType":"personal","description":"Ideogram Pro. 3500 priority credits/mo, batch generation. For designers and agencies.","capabilities":["image-gen","image-edit"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Ideogram Pro (৳8,970/mo)","status":"Active"},
+    {"id":"leonardo-ai-shared","name":"Leonardo AI — Shared","slug":"leonardo-ai-bangladesh","brand":"Leonardo AI","brandSlug":"leonardo-ai-bangladesh","provider":"Leonardo AI","brandColor":"#7c3aed","category":"ai-image","price":599,"officialUSD":12,"tier":"Shared","accessType":"shared","description":"Shared Leonardo AI Apprentice. 8,500 tokens/mo, private generations, full commercial rights. AI image generation.","capabilities":["image-gen","image-edit"],"deliverySLA":"5-30 min","featured":false,"whatsappMsg":"Hi, I want Leonardo AI Shared (৳599/mo)","status":"Active"},
+    {"id":"runway-std-personal","name":"Runway Standard — Personal","slug":"runway-bangladesh","brand":"Runway","brandSlug":"runway-bangladesh","provider":"Runway","brandColor":"#000000","category":"ai-video","price":1794,"officialUSD":12,"tier":"Standard","accessType":"personal","badge":"Best Seller","description":"Runway Standard. 625 credits/mo, Gen-4 video, image gen, 4K upscale.","capabilities":["video-gen","video-edit","image-gen"],"deliverySLA":"2-4 hours","featured":true,"whatsappMsg":"Hi, I want Runway Standard (৳1,794/mo)","status":"Active"},
+    {"id":"runway-pro-personal","name":"Runway Pro — Personal","slug":"runway-bangladesh","brand":"Runway","brandSlug":"runway-bangladesh","provider":"Runway","brandColor":"#000000","category":"ai-video","price":4186,"officialUSD":28,"tier":"Pro","accessType":"personal","description":"Runway Pro. 2250 credits/mo, Gen-4 unlimited turbo, 4K export, watermark-free.","capabilities":["video-gen","video-edit","image-gen"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Runway Pro (৳4,186/mo)","status":"Active"},
+    {"id":"runway-unlimited-personal","name":"Runway Unlimited — Personal","slug":"runway-bangladesh","brand":"Runway","brandSlug":"runway-bangladesh","provider":"Runway","brandColor":"#000000","category":"ai-video","price":11362,"officialUSD":76,"tier":"Unlimited","accessType":"personal","description":"Runway Unlimited. Unlimited Gen-4 generations, all features, maximum performance.","capabilities":["video-gen","video-edit","image-gen"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Runway Unlimited (৳11,362/mo)","status":"Active"},
+    {"id":"heygen-creator-shared","name":"HeyGen Creator — Shared","slug":"heygen-bangladesh","brand":"HeyGen","brandSlug":"heygen-bangladesh","provider":"HeyGen","brandColor":"#6366f1","category":"ai-video","price":1499,"officialUSD":29,"tier":"Shared","accessType":"shared","description":"Shared HeyGen Creator. AI avatar videos, 700+ stock avatars, voice cloning, 175+ languages. Unlimited videos.","capabilities":["video-gen","voice"],"deliverySLA":"5-30 min","featured":false,"whatsappMsg":"Hi, I want HeyGen Creator Shared (৳1,499/mo)","status":"Active"},
+    {"id":"elevenlabs-starter-personal","name":"ElevenLabs Starter — Personal","slug":"elevenlabs-bangladesh","brand":"ElevenLabs","brandSlug":"elevenlabs-bangladesh","provider":"ElevenLabs","brandColor":"#000000","category":"ai-voice-music","price":748,"officialUSD":5,"tier":"Starter","accessType":"personal","description":"ElevenLabs Starter. 30K characters TTS/mo, instant voice cloning, commercial license.","capabilities":["voice"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want ElevenLabs Starter (৳748/mo)","status":"Active"},
+    {"id":"elevenlabs-creator-personal","name":"ElevenLabs Creator — Personal","slug":"elevenlabs-bangladesh","brand":"ElevenLabs","brandSlug":"elevenlabs-bangladesh","provider":"ElevenLabs","brandColor":"#000000","category":"ai-voice-music","price":3289,"officialUSD":22,"tier":"Creator","accessType":"personal","description":"ElevenLabs Creator. 100K characters/mo, professional voice cloning, 192kbps audio.","capabilities":["voice"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want ElevenLabs Creator (৳3,289/mo)","status":"Active"},
+    {"id":"elevenlabs-pro-personal","name":"ElevenLabs Pro — Personal","slug":"elevenlabs-bangladesh","brand":"ElevenLabs","brandSlug":"elevenlabs-bangladesh","provider":"ElevenLabs","brandColor":"#000000","category":"ai-voice-music","price":14802,"officialUSD":99,"tier":"Pro","accessType":"personal","description":"ElevenLabs Pro. 500K characters/mo, 44.1kHz PCM audio, all features, priority support.","capabilities":["voice"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want ElevenLabs Pro (৳14,802/mo)","status":"Active"},
+    {"id":"suno-pro-personal","name":"Suno AI Pro — Personal","slug":"suno-ai-bangladesh","brand":"Suno","brandSlug":"suno-ai-bangladesh","provider":"Suno","brandColor":"#000000","category":"ai-voice-music","price":1495,"officialUSD":10,"tier":"Pro","accessType":"personal","badge":"Best Seller","description":"Suno AI Pro. 2500 credits/mo (~500 songs), v5.5 model, commercial rights.","capabilities":["music"],"deliverySLA":"2-4 hours","featured":true,"whatsappMsg":"Hi, I want Suno AI Pro (৳1,495/mo)","status":"Active"},
+    {"id":"suno-premier-personal","name":"Suno AI Premier — Personal","slug":"suno-ai-bangladesh","brand":"Suno","brandSlug":"suno-ai-bangladesh","provider":"Suno","brandColor":"#000000","category":"ai-voice-music","price":3990,"officialUSD":30,"tier":"Premier","accessType":"personal","description":"Suno AI Premier. 10000 credits/mo (~2000 songs), Suno Studio, highest quality.","capabilities":["music"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Suno AI Premier (৳3,990/mo)","status":"Active"},
+    {"id":"udio-pro-shared","name":"Udio Pro — Shared","slug":"udio-bangladesh","brand":"Udio","brandSlug":"udio-bangladesh","provider":"Udio","brandColor":"#ec4899","category":"ai-voice-music","price":499,"officialUSD":10,"tier":"Shared","accessType":"shared","description":"Shared Udio Pro. 1200 credits/mo, generate up to 8 songs at once, all features. AI music creation.","capabilities":["music"],"deliverySLA":"5-30 min","featured":false,"whatsappMsg":"Hi, I want Udio Pro Shared (৳499/mo)","status":"Active"},
+    {"id":"github-copilot-pro-personal","name":"GitHub Copilot Pro — Personal","slug":"github-copilot-bangladesh","brand":"GitHub","brandSlug":"github-copilot-bangladesh","provider":"GitHub","brandColor":"#6e40c9","category":"ai-code","price":1495,"officialUSD":10,"tier":"Pro","accessType":"personal","badge":"Best Seller","description":"GitHub Copilot Pro. Unlimited code completions, 300 premium requests/mo, Claude/GPT-5 models.","capabilities":["code"],"deliverySLA":"2-4 hours","featured":true,"whatsappMsg":"Hi, I want GitHub Copilot Pro (৳1,495/mo)","status":"Active"},
+    {"id":"github-copilot-proplus-personal","name":"GitHub Copilot Pro+ — Personal","slug":"github-copilot-bangladesh","brand":"GitHub","brandSlug":"github-copilot-bangladesh","provider":"GitHub","brandColor":"#6e40c9","category":"ai-code","price":5831,"officialUSD":39,"tier":"Pro+","accessType":"personal","description":"GitHub Copilot Pro+. 1500 premium requests/mo (5× Pro), highest model access.","capabilities":["code"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want GitHub Copilot Pro+ (৳5,831/mo)","status":"Active"},
+    {"id":"cursor-pro-personal","name":"Cursor Pro — Personal","slug":"cursor-bangladesh","brand":"Cursor","brandSlug":"cursor-bangladesh","provider":"Cursor","brandColor":"#000000","category":"ai-code","price":2990,"officialUSD":20,"tier":"Pro","accessType":"personal","badge":"Best Seller","description":"Cursor Pro AI code editor. Claude, GPT-5, Gemini models. Unlimited completions, cloud agents.","capabilities":["code","agents"],"deliverySLA":"2-4 hours","featured":true,"whatsappMsg":"Hi, I want Cursor Pro (৳2,990/mo)","status":"Active"},
+    {"id":"cursor-proplus-personal","name":"Cursor Pro+ — Personal","slug":"cursor-bangladesh","brand":"Cursor","brandSlug":"cursor-bangladesh","provider":"Cursor","brandColor":"#000000","category":"ai-code","price":8970,"officialUSD":60,"tier":"Pro+","accessType":"personal","description":"Cursor Pro+. 3× usage credits, all frontier models. For heavy AI-native developers.","capabilities":["code","agents"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Cursor Pro+ (৳8,970/mo)","status":"Active"},
+    {"id":"v0-dev-shared","name":"v0.dev Pro — Shared","slug":"v0-dev-bangladesh","brand":"v0.dev","brandSlug":"v0-dev-bangladesh","provider":"Vercel","brandColor":"#000000","category":"ai-code","price":999,"officialUSD":20,"tier":"Shared","accessType":"shared","description":"Shared v0.dev Pro. AI web app builder by Vercel. Build apps and sites with AI prompts. Deploy instantly.","capabilities":["code","agents"],"deliverySLA":"5-30 min","featured":false,"whatsappMsg":"Hi, I want v0.dev Pro Shared (৳999/mo)","status":"Active"},
+    {"id":"replit-core-personal","name":"Replit Core — Personal","slug":"replit-bangladesh","brand":"Replit","brandSlug":"replit-bangladesh","provider":"Replit","brandColor":"#f26207","category":"ai-code","price":500,"officialUSD":20,"tier":"Core","accessType":"personal","badge":"Special Deal","description":"AIPS SPECIAL — Replit Core at ৳500. Cloud IDE with AI Agent, deploy and host apps. Build anything with AI.","capabilities":["code","agents"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Replit Core (৳500/mo)","status":"Active"},
+    {"id":"notion-business-monthly","name":"Notion Business — Monthly","slug":"notion-business-bangladesh","brand":"Notion","brandSlug":"notion-business-bangladesh","provider":"Notion","brandColor":"#000000","category":"ai-workspace","price":800,"officialUSD":20,"tier":"Monthly","accessType":"personal","badge":"73% Off","description":"Official Notion Business Plan. Notion AI included, teamspaces, SSO, 90-day history.","capabilities":["workspace","text","agents"],"deliverySLA":"2-4 hours","featured":true,"whatsappMsg":"Hi, I want Notion Business Monthly (৳800/mo)","status":"Active"},
+    {"id":"notion-business-6m","name":"Notion Business — 6 Month Plan","slug":"notion-business-bangladesh","brand":"Notion","brandSlug":"notion-business-bangladesh","provider":"Notion","brandColor":"#000000","category":"ai-workspace","price":4800,"officialUSD":120,"tier":"6-Month","accessType":"personal","description":"Notion Business 6-month plan. ৳4,800 one-time (৳800/mo). No monthly renewal hassle.","capabilities":["workspace","text","agents"],"deliverySLA":"2-4 hours","featured":true,"whatsappMsg":"Hi, I want Notion Business 6-Month (৳4,800)","status":"Active"},
+    {"id":"manus-ai-personal","name":"Manus AI — Personal","slug":"manus-ai-bangladesh","brand":"Manus","brandSlug":"manus-ai-bangladesh","provider":"Manus","brandColor":"#000000","category":"ai-workspace","price":2500,"officialUSD":null,"tier":"Standard","accessType":"personal","description":"Manus AI autonomous agent. Research, data analysis, report generation, web automation.","capabilities":["agents","text","code","search"],"deliverySLA":"2-12 hours","featured":false,"whatsappMsg":"Hi, I want Manus AI (৳2,500/mo)","status":"Active"},
+    {"id":"otter-ai-shared","name":"Otter.ai Pro — Shared","slug":"otter-ai-bangladesh","brand":"Otter.ai","brandSlug":"otter-ai-bangladesh","provider":"Otter.ai","brandColor":"#3b82f6","category":"ai-workspace","price":799,"officialUSD":16.99,"tier":"Shared","accessType":"shared","description":"Shared Otter.ai Pro. AI meeting transcription, summaries, action items. 6000 min/mo.","capabilities":["text","workspace"],"deliverySLA":"5-30 min","featured":false,"whatsappMsg":"Hi, I want Otter.ai Pro Shared (৳799/mo)","status":"Active"},
+    {"id":"gamma-plus-shared","name":"Gamma Plus — Shared","slug":"gamma-bangladesh","brand":"Gamma","brandSlug":"gamma-bangladesh","provider":"Gamma","brandColor":"#8b5cf6","category":"ai-workspace","price":399,"officialUSD":8,"tier":"Shared","accessType":"shared","description":"Shared Gamma Plus. AI presentations, docs, websites. Remove branding, advanced AI image models.","capabilities":["text","workspace"],"deliverySLA":"5-30 min","featured":false,"whatsappMsg":"Hi, I want Gamma Plus Shared (৳399/mo)","status":"Active"},
+    {"id":"writesonic-shared","name":"Writesonic Individual — Shared","slug":"writesonic-bangladesh","brand":"Writesonic","brandSlug":"writesonic-bangladesh","provider":"Writesonic","brandColor":"#6366f1","category":"ai-writing","price":799,"officialUSD":16,"tier":"Shared","accessType":"shared","description":"Shared Writesonic Individual. AI SEO content writing, 100 credits/mo, GPT-4o access.","capabilities":["text","search"],"deliverySLA":"5-30 min","featured":false,"whatsappMsg":"Hi, I want Writesonic Shared (৳799/mo)","status":"Active"},
+    {"id":"student-essentials","name":"Student Essentials Package","slug":"student-package-bangladesh","brand":"AIPS","brandSlug":"bundles","provider":"AIPS","brandColor":"#f4b942","category":"bundles","price":449,"officialUSD":null,"tier":"Essentials","accessType":"bundle","description":"AI bundle for students. ChatGPT Shared + AI setup guide. Perfect starting point.","capabilities":["text","code"],"deliverySLA":"5-30 min","featured":false,"whatsappMsg":"Hi, I want Student Essentials Package (৳449)","status":"Active"},
+    {"id":"university-pro","name":"University Pro Package","slug":"student-package-bangladesh","brand":"AIPS","brandSlug":"bundles","provider":"AIPS","brandColor":"#f4b942","category":"bundles","price":899,"officialUSD":null,"tier":"Pro","accessType":"bundle","description":"Advanced AI bundle for university students. ChatGPT Premium + Perplexity. Save ৳650.","capabilities":["text","code","search"],"deliverySLA":"5-30 min","featured":false,"whatsappMsg":"Hi, I want University Pro Package (৳899)","status":"Active"},
+    {"id":"freelancer-bundle","name":"Freelancer Bundle","slug":"freelancer-bundle-bangladesh","brand":"AIPS","brandSlug":"bundles","provider":"AIPS","brandColor":"#f4b942","category":"bundles","price":3999,"officialUSD":null,"tier":"Bundle","accessType":"bundle","description":"AI toolkit for freelancers. ChatGPT Personal + Midjourney + Perplexity. Save ৳789.","capabilities":["text","code","image-gen"],"deliverySLA":"2-4 hours","featured":false,"whatsappMsg":"Hi, I want Freelancer Bundle (৳3,999)","status":"Active"},
+    {"id":"business-package","name":"Business Package","slug":"business-package-bangladesh","brand":"AIPS","brandSlug":"bundles","provider":"AIPS","brandColor":"#f4b942","category":"bundles","price":15000,"officialUSD":null,"tier":"Business","accessType":"bundle","description":"Full AI stack for businesses. ChatGPT Biz + Google AI + Notion + Midjourney + Claude + 2hr setup.","capabilities":["text","code","image-gen","workspace"],"deliverySLA":"2-12 hours","featured":false,"whatsappMsg":"Hi, I want Business Package (৳15,000)","status":"Active"},
+    {"id":"b2b-implementation","name":"B2B Implementation Service","slug":"b2b-implementation-bangladesh","brand":"AIPS","brandSlug":"bundles","provider":"AIPS","brandColor":"#f4b942","category":"bundles","price":25000,"officialUSD":null,"tier":"Enterprise","accessType":"service","description":"Full AI implementation for B2B. Custom setup, 5hr training, workflow automation, 30-day support.","capabilities":["text","code","workspace","agents"],"deliverySLA":"Custom","featured":false,"whatsappMsg":"Hi, I want B2B Implementation (৳25,000)","status":"Active"}
+  ],
+  "categories": [
+    {"id":"ai-assistant","displayName":"AI Assistant & Chat","industrySubtitle":"Multimodal AI Platforms — LLM, Vision, Agents","icon":"brain","slug":"/ai-assistant","brands":["ChatGPT","Claude","Google","Grok","Perplexity"]},
+    {"id":"ai-image","displayName":"AI Image & Design","industrySubtitle":"AI Image Generation & Editing","icon":"palette","slug":"/ai-image","brands":["Midjourney","Ideogram","Leonardo AI"]},
+    {"id":"ai-video","displayName":"AI Video","industrySubtitle":"AI Video Generation, Editing & Avatars","icon":"video","slug":"/ai-video","brands":["Runway","HeyGen"]},
+    {"id":"ai-voice-music","displayName":"AI Voice & Music","industrySubtitle":"Text-to-Speech, Voice Cloning, AI Music","icon":"mic","slug":"/ai-voice-music","brands":["ElevenLabs","Suno","Udio"]},
+    {"id":"ai-code","displayName":"AI Code & Dev Tools","industrySubtitle":"AI Pair Programming, Code Generation & App Building","icon":"code","slug":"/ai-code","brands":["GitHub","Cursor","v0.dev","Replit"]},
+    {"id":"ai-workspace","displayName":"AI Workspace","industrySubtitle":"AI Productivity, Docs, Meetings & Autonomous Agents","icon":"layout","slug":"/ai-workspace","brands":["Notion","Manus","Otter.ai","Gamma"]},
+    {"id":"ai-writing","displayName":"AI Writing & SEO","industrySubtitle":"AI Content Writing, SEO & Marketing Copy","icon":"pen-tool","slug":"/ai-writing","brands":["Writesonic"]},
+    {"id":"bundles","displayName":"Bundles & Packages","industrySubtitle":"Curated AI Tool Packs for Your Needs","icon":"package","slug":"/bundles","brands":["AIPS"]}
+  ]
+}
+```
+
+**TOTAL: 57 products across 8 categories. This is the ONLY source of truth. Do NOT add any products not in this file.**
+
+---
+
+## STEP 2: Remove Tabnine
+
+If a Tabnine product page or product card exists anywhere on the site, remove it completely. Tabnine is enterprise-only ($39/user/mo) and has been removed from the catalog.
+
+---
+
+## STEP 3: Update All Product Pages
+
+After replacing products.json, rebuild ALL product pages, category pages, pricing page, and homepage sections that display products. Every price must come from the products.json file above.
+
+**Key price fixes to verify:**
+
+- ChatGPT Plus Personal = ৳2,990 (NOT ৳1,495)
+- Claude Pro Personal = ৳2,990 (NOT ৳1,500)
+- ChatGPT Pro Premium Shared = ৳4,500 (NOT ৳22,000 or ৳3,990)
+- ChatGPT Pro Personal = ৳29,900 (NOT ৳3,990)
+- Claude Max 5x = ৳14,950 (NOT ৳2,200)
+- Claude Max 20x = ৳29,900 (NOT ৳2,200)
+- ElevenLabs Starter = ৳748 (NOT ৳550)
+- Suno AI Pro = ৳1,495 (NOT ৳500)
+- Perplexity Pro Shared = ৳350 (NOT ৳400 or ৳599)
+
+---
+
+## STEP 4: Add New Product Pages
+
+Create pages for these 8 new products. Follow the same page template as existing products:
+
+1. **/leonardo-ai-bangladesh** — Leonardo AI Shared ৳599
+2. **/udio-bangladesh** — Udio Pro Shared ৳499
+3. **/heygen-bangladesh** — HeyGen Creator Shared ৳1,499
+4. **/otter-ai-bangladesh** — [Otter.ai](http://Otter.ai) Pro Shared ৳799
+5. **/writesonic-bangladesh** — Writesonic Individual Shared ৳799
+6. **/gamma-bangladesh** — Gamma Plus Shared ৳399
+7. **/v0-dev-bangladesh** — [v0.dev](http://v0.dev) Pro Shared ৳999
+8. **/replit-bangladesh** — Replit Core ৳500 (Special Deal badge)
+
+Each page must have: H1 with price + brand color accent + features + delivery SLA + How to Order + WhatsApp CTA + FAQ (5+ questions) + breadcrumb + Product schema JSON-LD.
+
+---
+
+## STEP 5: Update Category Pages
+
+Update these category pages to include new brands:
+
+- **/ai-image** — Add Leonardo AI (৳599)
+- **/ai-video** — Add HeyGen (৳1,499)
+- **/ai-voice-music** — Add Udio (৳499)
+- **/ai-code** — Add [v0.dev](http://v0.dev) (৳999) and Replit Core (৳500)
+- **/ai-workspace** — Add [Otter.ai](http://Otter.ai) (৳799) and Gamma (৳399)
+- Create new **/ai-writing** category page for Writesonic (৳799)
+
+---
+
+## STEP 6: Update Mega Menu Navigation
+
+Update the Products mega menu to include all new brands with starting prices:
+
+```
+🧠 AI Assistant & Chat    🎨 AI Creative Studio
+ChatGPT ⭐ from ৳350      Midjourney from ৳1,199
+Claude from ৳599          Leonardo AI from ৳599
+Google Gemini ৳500 🔥     Ideogram from ৳2,990
+Grok from ৳1,495          Runway from ৳1,794
+Perplexity from ৳350      HeyGen from ৳1,499
+                          ElevenLabs from ৳748
+                          Suno AI from ৳1,495
+                          Udio from ৳499
+
+💻 AI Professional        📦 Quick Links
+GitHub Copilot ৳1,495     🔥 Special Offers
+Cursor from ৳2,990        📦 Bundles from ৳449
+v0.dev from ৳999          💰 Pricing & Compare
+Replit Core ৳500 🔥       📋 All 57 Products →
+Notion ৳800 🔥            📝 Blog
+Manus AI ৳2,500           🎓 Best AI for Students
+Otter.ai from ৳799        💼 Best AI for Business
+Gamma from ৳399
+Writesonic from ৳799
+```
+
+---
+
+## STEP 7: Add Blog Section
+
+Create a `/blog` page with:
+
+- Blog grid layout (3 columns desktop, 1 column mobile)
+- Each blog post card shows: title, excerpt, date, category tag, read time
+- Add link to Blog in the navbar (between Pricing and Support)
+- Add link to Blog in the footer under Company column
+
+Create these 5 initial blog posts:
+
+### Post 1: `/blog/how-to-buy-chatgpt-bangladesh`
+
+**Title:** "How to Buy ChatGPT in Bangladesh — Complete Guide (2026)"
+
+**Content:** Step-by-step guide. Payment methods (bKash, Nagad). Shared vs Personal explained. Delivery times. FAQ. WhatsApp CTA.
+
+### Post 2: `/blog/chatgpt-plus-vs-business-vs-pro`
+
+**Title:** "ChatGPT Plus vs Business vs Pro — Which Plan Should You Choose?"
+
+**Content:** Feature comparison table. Price comparison. Use case scenarios per segment. Recommendation engine.
+
+### Post 3: `/blog/best-ai-tools-freelancers-bangladesh`
+
+**Title:** "Best AI Tools for Freelancers in Bangladesh (2026)"
+
+**Content:** Top 5 tools ranked. How each helps with proposals, delivery, client work. Bundle recommendation.
+
+### Post 4: `/blog/shared-vs-personal-ai-accounts`
+
+**Title:** "Shared vs Personal AI Accounts — What's the Difference?"
+
+**Content:** How shared works. Safety. Rules. When to upgrade. Price comparison table.
+
+### Post 5: `/blog/ai-saves-time-students-bangladesh`
+
+**Title:** "How AI Saves 10+ Hours Per Week for Bangladesh Students"
+
+**Content:** Assignment writing. Research. Exam prep. Study notes. Tool recommendations. Student bundle CTA.
+
+Each post must have:
+
+- Proper SEO title and meta description
+- Internal links to relevant product pages
+- WhatsApp CTA at the bottom
+- FAQPage schema for any FAQ sections
+- Author: "AI Premium Shop Team"
+- Professional English copy — top 1% quality
+
+---
+
+## STEP 8: Add Contact Form
+
+Update the `/contact` page to include a contact form:
+
+**Form fields:**
+
+1. **Name** (text, required)
+2. **WhatsApp Number** (tel, required, placeholder: +880...)
+3. **What do you need?** (dropdown: AI Subscription / Bundle / 1:1 AI Coaching / Custom Request / Other)
+4. **Budget Range** (dropdown: Under ৳500 / ৳500-৳2,000 / ৳2,000-৳5,000 / ৳5,000-৳15,000 / ৳15,000+)
+5. **Message** (textarea, optional)
+
+**On submit:**
+
+- Show success message: "Thank you! We'll contact you on WhatsApp within 5 minutes during business hours (10 AM - Midnight BST)."
+- Store submissions in a simple admin-viewable format (local storage or simple API endpoint)
+
+Keep the existing WhatsApp CTA prominent above the form.
+
+---
+
+## STEP 9: Homepage Updates
+
+### Best Sellers Section — Update to these 6 products (sorted by price):
+
+1. ChatGPT Plus Starter Shared — ৳350 ⭐ Best Seller
+2. Perplexity Pro Shared — ৳350
+3. Google AI Pro — ৳500 🔥 83% Off
+4. ChatGPT Business Starter Shared — ৳699
+5. Midjourney Standard Shared — ৳1,199
+6. Claude Pro Premium Shared — ৳1,495
+
+### Special Offers Section — Keep:
+
+- Google AI Pro ৳500 (83% Off)
+- Notion Business ৳800 (73% Off)
+
+### Browse by Category — Update to 8 categories (was 7):
+
+Add "AI Writing & SEO" category card.
+
+### Product count — Update everywhere from "49 products" to "57 products"
+
+---
+
+## STEP 10: Verification Checklist
+
+After completing all steps, verify:
+
+- [ ]  products.json has exactly 57 products
+- [ ]  No product on the website has a price not in products.json
+- [ ]  Tabnine is completely removed
+- [ ]  All 8 new product pages exist and render correctly
+- [ ]  All 8 category pages show correct brands and products
+- [ ]  Mega menu shows all brands with correct starting prices
+- [ ]  Homepage Best Sellers shows correct 6 products
+- [ ]  Blog page exists at /blog with 5 posts
+- [ ]  Contact form works on /contact page
+- [ ]  Every product CTA opens WhatsApp with pre-filled message
+- [ ]  Mobile: hamburger menu, sticky bottom bar, floating WhatsApp all work
+- [ ]  sitemap.xml includes all new pages
+- [ ]  No "Coming Soon", "TODO", or placeholder text anywhere
+- [ ]  All text is 100% English — no Bangla
+- [ ]  Trust data: "1,200+ Customers" and "Since 2022" only — never inflated
+
+---
+
+## ⚠️ CRITICAL RULES
+
+1. **products.json is the ONLY source of truth** — do NOT create products not in this file
+2. **Do NOT guess or invent prices** — every price comes from the JSON
+3. **100% English** — no Bangla on the website
+4. **Never fake trust data** — only "1,200+ Customers" and "Since 2022"
+5. **WhatsApp CTA on every page** — within 1 scroll
+6. **SSR/SSG for all pages** — Googlebot must see content, not "Loading..."
+7. **Figma brand system** — Navy-900 #0a0e27, Gold #f4b942, White #FFFFFF, Gray #c9ceda
+8. **Pre-filled WhatsApp messages** — every product CTA uses the whatsappMsg from products.json

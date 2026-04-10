@@ -194,35 +194,26 @@ Template: Stats → Filtered product grid → Next tier link → CTA
 
 ### Phase 6 — Product Catalogue Rebuild & Content Accuracy (COMPLETE)
 
-**49 products total** across 7 categories. `products.json` is the single source of truth for ProductsPage and PricingPage.
+**57 products total** across 8 categories. `products.json` is the single source of truth for ProductsPage and PricingPage.
 
 #### Product Category Counts (updated)
 | Category | Count |
 |----------|-------|
-| AI Assistant & Chat | 15 |
-| AI Image & Design | 7 |
-| AI Video | 3 |
+| AI Assistant & Chat | 21 |
+| AI Image & Design | 9 |
+| AI Video | 4 |
 | AI Voice & Music | 6 |
 | AI Code & Dev Tools | 6 |
 | AI Workspace | 5 |
-| Bundles | 7 |
+| AI Writing & SEO | 1 |
+| Bundles | ~9 |
+| **Total** | **57** |
 
-#### Removed Brands (8)
-Canva Pro, Krea AI, Adobe Firefly, Windsurf, Bolt.new, Lovable, Pika, Grammarly Pro
-
-#### Added Products (26 new)
-Includes bundles, HeyGen, Udio, v0.dev, Replit, Tabnine, Gamma, Otter.ai, Writesonic, and expanded ChatGPT/Claude/Copilot/Midjourney tiers
-
-#### Content Updated
-- `CategoryPage.tsx`: All 6 categories updated — subtitles, descriptions, FAQs, metaDescriptions use only current products
-- `GuidePage.tsx` (developers): Windsurf → Tabnine Pro at BDT 600
-- `ComparisonPage.tsx`: "Claude 3.5" → "Claude Opus 4.6"
-- `Home.tsx`: PRODUCT_CATEGORIES counts match new totals
-
-#### Visual Upgrades
-- `HeroSection.tsx`: Animated dot-grid background (Framer Motion, scrolls upward at 4s/cycle, mask-faded at top & bottom)
-- All section cards already have hover lift via whileHover
-- All sections use whileInView scroll-triggered fade-ins
+#### Phase 8 Changes (April 10, 2026)
+- `Navbar.tsx`: Added AI Writing & SEO (PenTool, purple) to products dropdown; added Blog + Bundles to MAIN_NAV; updated all category counts to match 57-product schema
+- `CategoryPage.tsx`: ai-code subtitle/description/meta updated — Tabnine removed, replaced with v0.dev/Replit focus; ai-workspace subtitle/description updated — Writesonic removed, replaced with Manus AI
+- `ContactPage.tsx`: Full rebuild — 5-field WhatsApp form (name, phone, tool dropdown, inquiry type, message), success state, social channel cards, service hours/payment info cards
+- `sitemap.xml`: Added /ai-writing, /blog, all 5 blog post URLs, 8 new brand pages (/leonardo-ai, /udio, /heygen, /otter-ai, /writesonic, /gamma, /v0-dev, /replit), /comparison
 
 ### Known Future Work
 - SSR / SSG (currently client-side SPA)

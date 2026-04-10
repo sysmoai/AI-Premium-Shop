@@ -127,11 +127,11 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-code": {
     id: "ai-code",
     displayName: "AI Code & Dev Tools",
-    subtitle: "GitHub Copilot, Cursor, Tabnine, v0.dev, Replit",
+    subtitle: "GitHub Copilot, Cursor, v0.dev, Replit",
     description:
-      "Code faster with AI pair programming. GitHub Copilot integrates directly into your IDE. Cursor is the AI-native editor trusted by teams at OpenAI, Stripe, and Figma. Tabnine runs privately on your machine. v0.dev generates complete React UIs from text. Replit's agent builds full-stack apps — all available in Bangladesh via bKash.",
+      "Code faster with AI pair programming. GitHub Copilot Pro integrates directly into VS Code, JetBrains, and Neovim. Cursor is the AI-native editor trusted by teams at OpenAI, Stripe, and Figma. v0.dev generates complete React UIs from text. Replit's agent builds full-stack apps — all available in Bangladesh via bKash from ৳500/month.",
     metaDescription:
-      "Buy GitHub Copilot, Cursor, Tabnine in Bangladesh. AI coding tools from BDT 600. Pay with bKash. 30-day warranty.",
+      "Buy GitHub Copilot, Cursor Pro, v0.dev, Replit in Bangladesh. AI coding tools from BDT 500. Pay with bKash. 30-day warranty.",
     accent: "#06b6d4",
     faqs: [
       { q: "GitHub Copilot vs Cursor — which is better?", a: "GitHub Copilot integrates into your existing IDE (VS Code, JetBrains, Vim). Cursor is a standalone AI-first IDE built on VS Code. Cursor is more powerful for AI-driven development; Copilot is more convenient if you already use a specific IDE." },
@@ -152,17 +152,17 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-workspace": {
     id: "ai-workspace",
     displayName: "AI Workspace",
-    subtitle: "Notion AI, Gamma, Otter.ai, Writesonic — productivity",
+    subtitle: "Notion, Manus AI, Otter.ai, Gamma — productivity",
     description:
-      "AI-powered productivity and collaboration for teams and individuals. Notion includes AI writing, summarization, and database features. Gamma generates pitch decks from one line of text. Otter.ai transcribes meetings automatically. Writesonic handles SEO content and blog posts — all available in Bangladesh via bKash.",
+      "AI-powered productivity and collaboration for teams and individuals. Notion Business includes AI writing, summarization, and database features. Manus AI is an autonomous research and automation agent. Gamma generates beautiful presentations from one sentence. Otter.ai transcribes meetings automatically — all available in Bangladesh via bKash.",
     metaDescription:
-      "Buy Notion AI, Gamma, Otter.ai, Writesonic in Bangladesh. AI workspace tools from BDT 500. Pay with bKash. 30-day warranty.",
+      "Buy Notion Business, Gamma, Otter.ai, Manus AI in Bangladesh. AI workspace tools from BDT 399. Pay with bKash. 30-day warranty.",
     accent: "#f4b942",
     faqs: [
       { q: "What does Notion AI add over regular Notion?", a: "Notion AI can write pages from prompts, summarize long documents, translate content, fill databases automatically, and answer questions about your workspace. It's integrated directly into your workflow." },
       { q: "What is Gamma and how is it different from Notion?", a: "Gamma generates beautifully designed presentations, docs, and websites from a single text prompt. Notion is for organizing notes, projects, and databases. They complement each other well — Gamma for presentations, Notion for ongoing work management." },
       { q: "Can Otter.ai transcribe Bangla meetings?", a: "Otter.ai is currently optimized for English. It works best for English-language meetings on Zoom, Google Meet, and Teams. For bilingual teams that use English professionally, it significantly reduces meeting follow-up time." },
-      { q: "How fast is delivery?", a: "Notion, Gamma, and Otter.ai accounts are delivered within 30–60 minutes after payment confirmation. Writesonic is usually within 30 minutes." },
+      { q: "How fast is delivery?", a: "Notion Business and Manus AI are delivered within 2–4 hours after payment confirmation. Gamma and Otter.ai shared accounts are delivered within 5–30 minutes." },
     ],
     related: [
       { label: "AI Assistant & Chat", href: "/ai-assistant" },
@@ -173,6 +173,33 @@ const CATEGORIES: Record<string, CategoryConfig> = {
       { label: "Best AI for Business", href: "/best-ai-for-business" },
       { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
       { label: "Best AI for Students", href: "/best-ai-for-students" },
+    ],
+  },
+  "ai-writing": {
+    id: "ai-writing",
+    displayName: "AI Writing & SEO",
+    subtitle: "Writesonic — AI content writing, SEO & marketing copy",
+    description:
+      "AI-powered content writing and SEO tools. Writesonic Individual generates SEO-optimized blog posts, product descriptions, marketing copy, and social media content. Outrank competitors with AI-driven content at a fraction of the cost of hiring writers.",
+    metaDescription:
+      "AI writing tools in Bangladesh 2026. Writesonic Individual shared from BDT 799/mo. SEO content, blog writing, marketing copy. Pay with bKash, Nagad, Rocket.",
+    accent: "#6366f1",
+    faqs: [
+      { q: "What is Writesonic used for?", a: "Writesonic is an AI content writing platform. It can generate SEO blog posts, product descriptions, ad copy, email campaigns, and social media content from short prompts. It uses GPT-4o and integrates with SurferSEO for keyword-optimized content." },
+      { q: "Can Writesonic write in Bangla?", a: "Writesonic supports 25+ languages including Bangla. You can generate content in English and translate, or directly prompt in Bangla for local market content." },
+      { q: "How is Writesonic different from ChatGPT for content?", a: "Writesonic is purpose-built for marketing and SEO content with templates, tone controls, brand voice settings, and an Article Writer that produces publish-ready long-form content. ChatGPT is more general-purpose. For content writers, Writesonic saves significant time with structured outputs." },
+      { q: "Does AIPS sell Writesonic personal accounts?", a: "Currently we offer a shared Writesonic Individual plan. Message us on WhatsApp if you need a personal plan — we can arrange it based on your usage requirements." },
+      { q: "How fast is delivery?", a: "Shared Writesonic accounts are delivered within 5–30 minutes after payment confirmation via WhatsApp." },
+    ],
+    related: [
+      { label: "AI Assistant & Chat", href: "/ai-assistant" },
+      { label: "AI Workspace", href: "/ai-workspace" },
+      { label: "All Products", href: "/products" },
+    ],
+    guides: [
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
+      { label: "Best AI for Business", href: "/best-ai-for-business" },
     ],
   },
   "bundles": {
@@ -211,17 +238,17 @@ interface Product {
   brandColor: string;
   category: string;
   price: number;
-  officialUSD: number;
+  officialUSD: number | null;
   tier: string;
   accessType: string;
-  badge: string | null;
+  badge?: string;
   description: string;
-  deliveryMinutes: string;
-  warrantyDays: number;
+  deliverySLA: string;
+  whatsappMsg?: string;
 }
 
 function ProductCard({ p, accent }: { p: Product; accent: string }) {
-  const waLink = `${WHATSAPP}?text=${encodeURIComponent(`Hi, I want to order ${p.name} (BDT ${p.price})`)}`;
+  const waLink = `${WHATSAPP}?text=${encodeURIComponent(p.whatsappMsg ?? `Hi, I want to order ${p.name} (BDT ${p.price})`)}`;
   return (
     <motion.div
       initial={{ opacity: 0, y: 14 }}
@@ -256,13 +283,13 @@ function ProductCard({ p, accent }: { p: Product; accent: string }) {
             }>
             {p.accessType === "shared" ? "Shared" : "Personal"}
           </span>
-          <span className="text-xs" style={{ color: "#c9ceda" }}>⚡ {p.deliveryMinutes} min</span>
+          <span className="text-xs" style={{ color: "#c9ceda" }}>⚡ {p.deliverySLA}</span>
         </div>
 
         <div className="flex items-center justify-between mt-1">
           <div>
             <div className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT {p.price.toLocaleString()}</div>
-            <div className="text-xs" style={{ color: "#c9ceda" }}>${p.officialUSD}/mo official</div>
+            {p.officialUSD != null && <div className="text-xs" style={{ color: "#c9ceda" }}>${p.officialUSD}/mo official</div>}
           </div>
           <a href={waLink} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"

@@ -12,6 +12,7 @@ import {
   Users, History, UserPlus, Shield, Building, Rocket,
   BarChart3, Globe, CheckSquare,
   Type, Languages, Headphones, Copyright,
+  Mic, Presentation, Share2, PenLine,
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
@@ -1795,6 +1796,63 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 { icon: <ImageIcon className="w-5 h-5 flex-shrink-0" style={{ color: "#ec4899" }} />, text: "Fine-tuned image generation — train on your own style" },
                 { icon: <Layers className="w-5 h-5 flex-shrink-0" style={{ color: "#ec4899" }} />, text: "Canvas editor — edit, extend, and refine AI images" },
                 { icon: <Zap className="w-5 h-5 flex-shrink-0" style={{ color: "#ec4899" }} />, text: "Fastest generation — 4-second images for rapid iteration" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-4">
+                  {item.icon}
+                  <span className="text-sm" style={{ color: "#c9ceda" }}>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Otter.ai — Why Otter.ai? */}
+        {brandSlug === "otter-ai-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-xl font-bold text-white mb-5">Why Otter.ai?</h2>
+            <div className="rounded-xl p-6 space-y-5" style={{ backgroundColor: "#111827" }}>
+              {[
+                { icon: <Mic className="w-5 h-5 flex-shrink-0 text-blue-400" />, text: "Transcribe meetings in real-time — never take notes again" },
+                { icon: <FileText className="w-5 h-5 flex-shrink-0 text-blue-400" />, text: "Auto-generate summaries, action items, and key points" },
+                { icon: <Users className="w-5 h-5 flex-shrink-0 text-blue-400" />, text: "Speaker identification — knows who said what" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-4">
+                  {item.icon}
+                  <span className="text-sm" style={{ color: "#c9ceda" }}>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Gamma — Why Gamma? */}
+        {brandSlug === "gamma-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-xl font-bold text-white mb-5">Why Gamma?</h2>
+            <div className="rounded-xl p-6 space-y-5" style={{ backgroundColor: "#111827" }}>
+              {[
+                { icon: <Presentation className="w-5 h-5 flex-shrink-0" style={{ color: "#8b5cf6" }} />, text: "AI presentations in seconds — just describe your topic" },
+                { icon: <Layout className="w-5 h-5 flex-shrink-0" style={{ color: "#8b5cf6" }} />, text: "Beautiful templates — no design skills needed" },
+                { icon: <Share2 className="w-5 h-5 flex-shrink-0" style={{ color: "#8b5cf6" }} />, text: "Share as webpage, PDF, or slide deck — one click" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-4">
+                  {item.icon}
+                  <span className="text-sm" style={{ color: "#c9ceda" }}>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Writesonic — Why Writesonic? */}
+        {brandSlug === "writesonic-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-xl font-bold text-white mb-5">Why Writesonic?</h2>
+            <div className="rounded-xl p-6 space-y-5" style={{ backgroundColor: "#111827" }}>
+              {[
+                { icon: <PenLine className="w-5 h-5 flex-shrink-0 text-amber-400" />, text: "AI blog posts, ad copy, product descriptions in minutes" },
+                { icon: <Search className="w-5 h-5 flex-shrink-0 text-amber-400" />, text: "Built-in SEO optimization — rank higher on Google" },
+                { icon: <Globe className="w-5 h-5 flex-shrink-0 text-amber-400" />, text: "25+ languages — write content for any market" },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4">
                   {item.icon}

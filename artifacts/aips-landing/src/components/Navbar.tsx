@@ -6,6 +6,7 @@ import {
   MessageSquare, Image, Code2,
   Video, Music, Layout, Pen, Package,
   GraduationCap, Laptop, Palette, Building, Briefcase,
+  Building2,
 } from "lucide-react";
 import { useLocation } from "wouter";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
@@ -44,11 +45,36 @@ const SOLUTIONS = [
   { icon: Briefcase,     label: "Job Seekers", href: "/best-ai-for-job-seekers" },
 ];
 
-const MAIN_NAV = [
-  { label: "Bundles",  href: "/bundles" },
-  { label: "Pricing",  href: "/pricing" },
-  { label: "Support",  href: "/support" },
+const BUNDLES_LEFT = [
+  { icon: GraduationCap, iconCls: "text-blue-400",   name: "Student Essentials", price: "৳449",    sub: "ChatGPT + Study Guide",                  badge: "" },
+  { icon: GraduationCap, iconCls: "text-purple-400", name: "University Pro",     price: "৳899",    sub: "ChatGPT + Perplexity + Coaching",         badge: "" },
+  { icon: Laptop,        iconCls: "text-green-400",  name: "Freelancer",         price: "৳3,999",  sub: "ChatGPT + Midjourney + Perplexity",       badge: "Save ৳540" },
 ];
+
+const BUNDLES_RIGHT = [
+  { icon: Building,  iconCls: "text-amber-400", name: "Business Package",   price: "৳15,000", sub: "6 AI tools + 2hr Expert Setup",              badge: "Save ৳3,570" },
+  { icon: Building2, iconCls: "text-red-400",   name: "B2B Implementation", price: "৳25,000", sub: "Full stack + 5hr Training + 30-day Support", badge: "" },
+];
+
+function useActiveLink(location: string) {
+  if (location === "/bundles") return "bundles";
+  if (location === "/pricing") return "pricing";
+  if (location === "/support") return "support";
+  if (location === "/blog" || location.startsWith("/blog/")) return "blog";
+  if (
+    location.includes("-bangladesh") ||
+    location.startsWith("/products") ||
+    location.startsWith("/ai-assistant") ||
+    location.startsWith("/ai-image") ||
+    location.startsWith("/ai-video") ||
+    location.startsWith("/ai-voice") ||
+    location.startsWith("/ai-code") ||
+    location.startsWith("/ai-workspace") ||
+    location.startsWith("/ai-writing") ||
+    location.startsWith("/best-ai")
+  ) return "products";
+  return null;
+}
 
 function SearchOverlay({ onClose }: { onClose: () => void }) {
   const [query, setQuery] = useState("");
@@ -152,10 +178,12 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
   const [scrolled, setScrolled] = useState(alwaysSolid);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<"products" | "bundles" | null>(null);
   const [openSection, setOpenSection] = useState<string | null>(null);
-  const [, navigate] = useLocation();
+  const [location, navigate] = useLocation();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const activeLink = useActiveLink(location);
 
   useEffect(() => {
     if (alwaysSolid) return;
@@ -165,26 +193,61 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
   }, [alwaysSolid]);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") { setMegaOpen(false); setMenuOpen(false); } };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setOpenMenu(null); setMenuOpen(false); }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const openMega = () => {
+  const openDropdown = (name: "products" | "bundles") => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
-    setMegaOpen(true);
+    setOpenMenu(name);
   };
-  const closeMega = () => {
-    closeTimer.current = setTimeout(() => setMegaOpen(false), 120);
+  const closeDropdown = () => {
+    closeTimer.current = setTimeout(() => setOpenMenu(null), 150);
   };
 
   const go = (href: string) => {
     navigate(href);
-    setMegaOpen(false);
+    setOpenMenu(null);
     setMenuOpen(false);
   };
 
-  const navLinkCls = "text-sm font-medium transition-colors hover:text-[#f4b942]";
+  const navBtn = (key: "products" | "bundles", label: string) => {
+    const active = activeLink === key;
+    const isOpen = openMenu === key;
+    return (
+      <button
+        className={`flex items-center gap-1 text-sm font-medium transition-colors pb-px ${
+          active ? "text-[#f4b942] border-b-2 border-[#f4b942]" : isOpen ? "text-[#f4b942]" : "text-[#c9ceda] hover:text-[#f4b942]"
+        }`}
+        onMouseEnter={() => openDropdown(key)}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+      >
+        {label}
+        <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.18 }} className="inline-flex">
+          <ChevronDown className="w-3.5 h-3.5" />
+        </motion.span>
+      </button>
+    );
+  };
+
+  const navLink = (href: string, label: string, key: string) => {
+    const active = activeLink === key;
+    return (
+      <a key={label} href={href}
+        onClick={(e) => { e.preventDefault(); go(href); }}
+        className={`text-sm font-medium transition-colors pb-px ${
+          active ? "text-[#f4b942] border-b-2 border-[#f4b942]" : "text-[#c9ceda] hover:text-[#f4b942]"
+        }`}
+        onMouseEnter={() => { if (openMenu) closeDropdown(); }}
+      >
+        {label}
+      </a>
+    );
+  };
 
   return (
     <>
@@ -194,7 +257,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
         style={scrolled
           ? { backgroundColor: "rgba(10,14,39,0.97)", backdropFilter: "blur(14px)" }
           : { backgroundColor: "#0a0e27" }}
-        onMouseLeave={closeMega}
+        onMouseLeave={closeDropdown}
       >
         {/* ── Main bar ── */}
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between gap-6">
@@ -204,33 +267,14 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-6 flex-1 justify-center">
-            {/* Products mega trigger */}
-            <button
-              className={`flex items-center gap-1 text-sm font-medium transition-colors ${megaOpen ? "text-[#f4b942]" : "text-[#c9ceda] hover:text-[#f4b942]"}`}
-              onMouseEnter={openMega}
-              aria-expanded={megaOpen}
-              aria-haspopup="true"
-            >
-              Products
-              <motion.span animate={{ rotate: megaOpen ? 180 : 0 }} transition={{ duration: 0.18 }} className="inline-flex">
-                <ChevronDown className="w-3.5 h-3.5" />
-              </motion.span>
-            </button>
-
-            {MAIN_NAV.map((l) => (
-              <a key={l.label} href={l.href}
-                onClick={(e) => { e.preventDefault(); go(l.href); }}
-                className={navLinkCls}
-                style={{ color: "#c9ceda" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#f4b942"; closeMega(); }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#c9ceda"; }}
-              >
-                {l.label}
-              </a>
-            ))}
+            {navBtn("products", "Products")}
+            {navBtn("bundles", "Bundles")}
+            {navLink("/pricing", "Pricing", "pricing")}
+            {navLink("/support", "Support", "support")}
+            {navLink("/blog", "Blog", "blog")}
           </nav>
 
-          {/* Desktop right actions */}
+          {/* Desktop right */}
           <div className="hidden lg:flex items-center gap-3">
             <button onClick={() => setSearchOpen(true)}
               className="p-2 rounded-lg hover:bg-white/10 transition-colors"
@@ -246,7 +290,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
             </a>
           </div>
 
-          {/* Mobile right actions */}
+          {/* Mobile right */}
           <div className="lg:hidden flex items-center gap-1 -mr-1">
             <button className="p-2 rounded-lg hover:bg-white/10 transition-colors"
               aria-label="Search" style={{ color: "#c9ceda" }} onClick={() => setSearchOpen(true)}>
@@ -263,9 +307,9 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
           </div>
         </div>
 
-        {/* ── Desktop Mega Menu ── */}
+        {/* ── Products Mega Menu ── */}
         <AnimatePresence>
-          {megaOpen && (
+          {openMenu === "products" && (
             <motion.div
               initial={{ opacity: 0, y: -6 }}
               animate={{ opacity: 1, y: 0 }}
@@ -273,12 +317,10 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
               transition={{ duration: 0.18, ease: "easeOut" }}
               className="hidden lg:block absolute left-0 right-0 top-full border-b border-gray-800 shadow-2xl"
               style={{ backgroundColor: "#0a0e27" }}
-              onMouseEnter={openMega}
+              onMouseEnter={() => openDropdown("products")}
             >
               <div className="max-w-5xl mx-auto px-6 py-6">
                 <div className="grid grid-cols-3 gap-6">
-
-                  {/* Column 1 — Browse by Category */}
                   <div>
                     <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-semibold">Browse by Category</h4>
                     <div className="space-y-0.5">
@@ -294,7 +336,6 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
                     </div>
                   </div>
 
-                  {/* Column 2 — Popular Brands */}
                   <div>
                     <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-semibold">Popular Brands</h4>
                     <div className="space-y-0.5">
@@ -314,7 +355,6 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
                     </div>
                   </div>
 
-                  {/* Column 3 — Find Your Solution */}
                   <div>
                     <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-semibold">Find Your Solution</h4>
                     <div className="space-y-0.5">
@@ -330,7 +370,6 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
                   </div>
                 </div>
 
-                {/* Featured bar */}
                 <div className="flex justify-between items-center border-t border-gray-800 pt-4 mt-4"
                   style={{ background: "linear-gradient(to right, rgba(244,185,66,0.06), transparent)" }}>
                   <span className="text-gray-400 text-sm">56 Premium AI Tools · bKash/Nagad · 5-30 min delivery</span>
@@ -338,6 +377,77 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
                     className="text-sm font-medium hover:underline flex items-center gap-1"
                     style={{ color: "#f4b942" }}>
                     View All Products <ChevronRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ── Bundles Dropdown ── */}
+        <AnimatePresence>
+          {openMenu === "bundles" && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              className="hidden lg:block absolute left-0 right-0 top-full border-b border-gray-800 shadow-2xl"
+              style={{ backgroundColor: "#0a0e27" }}
+              onMouseEnter={() => openDropdown("bundles")}
+            >
+              <div className="max-w-2xl mx-auto px-6 py-6">
+                <div className="grid grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-semibold">Individual</h4>
+                    <div className="space-y-2">
+                      {BUNDLES_LEFT.map((b) => (
+                        <a key={b.name} href="/bundles"
+                          onClick={(e) => { e.preventDefault(); go("/bundles"); }}
+                          className="flex items-start gap-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg p-3 transition-colors">
+                          <b.icon className={`w-4 h-4 flex-shrink-0 mt-0.5 ${b.iconCls}`} />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2">
+                              <span className="text-white text-sm font-medium">{b.name}</span>
+                              {b.badge && (
+                                <span className="text-green-400 text-xs font-semibold">{b.badge}</span>
+                              )}
+                              <span className="text-[#f4b942] text-sm font-bold ml-auto">{b.price}</span>
+                            </div>
+                            <p className="text-gray-400 text-xs mt-0.5">{b.sub}</p>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-semibold">Business</h4>
+                    <div className="space-y-2">
+                      {BUNDLES_RIGHT.map((b) => (
+                        <a key={b.name} href="/bundles"
+                          onClick={(e) => { e.preventDefault(); go("/bundles"); }}
+                          className="flex items-start gap-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg p-3 transition-colors">
+                          <b.icon className={`w-4 h-4 flex-shrink-0 mt-0.5 ${b.iconCls}`} />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2">
+                              <span className="text-white text-sm font-medium">{b.name}</span>
+                              {b.badge && (
+                                <span className="text-green-400 text-xs font-semibold">{b.badge}</span>
+                              )}
+                              <span className="text-[#f4b942] text-sm font-bold ml-auto">{b.price}</span>
+                            </div>
+                            <p className="text-gray-400 text-xs mt-0.5">{b.sub}</p>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center border-t border-gray-800 pt-3 mt-3">
+                  <span className="text-gray-400 text-xs">Custom bundle? Tell us</span>
+                  <a href="/bundles" onClick={(e) => { e.preventDefault(); go("/bundles"); }}
+                    className="text-sm font-medium hover:underline" style={{ color: "#f4b942" }}>
+                    View All Bundles →
                   </a>
                 </div>
               </div>
@@ -365,11 +475,17 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
                   Order on WhatsApp
                 </a>
 
-                {/* Categories accordion */}
                 {[
-                  { key: "categories", label: "Categories",    items: CATEGORIES.map((c) => ({ label: c.label, href: c.href, meta: c.meta })) },
-                  { key: "brands",     label: "Popular Brands",items: POPULAR_BRANDS.map((b) => ({ label: b.name, href: b.href, meta: b.price })) },
-                  { key: "solutions",  label: "Best AI For",   items: SOLUTIONS.map((s) => ({ label: s.label, href: s.href, meta: "" })) },
+                  { key: "categories", label: "Categories",     items: CATEGORIES.map((c) => ({ label: c.label, href: c.href, meta: c.meta })) },
+                  { key: "brands",     label: "Popular Brands", items: POPULAR_BRANDS.map((b) => ({ label: b.name, href: b.href, meta: b.price })) },
+                  { key: "solutions",  label: "Best AI For",    items: SOLUTIONS.map((s) => ({ label: s.label, href: s.href, meta: "" })) },
+                  {
+                    key: "bundles", label: "Bundles",
+                    items: [
+                      ...BUNDLES_LEFT.map((b) => ({ label: b.name, href: "/bundles", meta: b.price })),
+                      ...BUNDLES_RIGHT.map((b) => ({ label: b.name, href: "/bundles", meta: b.price })),
+                    ],
+                  },
                 ].map((section) => (
                   <div key={section.key} className="rounded-lg my-0.5" style={{ backgroundColor: "#111827" }}>
                     <button
@@ -410,15 +526,15 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
                 <div className="h-px my-1" style={{ backgroundColor: "rgba(255,255,255,0.08)" }} />
 
                 {[
-                  { label: "Bundles", href: "/bundles" },
-                  { label: "Pricing", href: "/pricing" },
-                  { label: "Support", href: "/support" },
-                  { label: "How to Order", href: "/how-to-order" },
+                  { label: "Pricing",       href: "/pricing" },
+                  { label: "Support",       href: "/support" },
+                  { label: "Blog",          href: "/blog" },
+                  { label: "How to Order",  href: "/how-to-order" },
                 ].map((l) => (
                   <a key={l.label} href={l.href}
                     onClick={(e) => { e.preventDefault(); go(l.href); }}
-                    className="px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-white/5 transition-colors"
-                    style={{ color: "#c9ceda" }}>
+                    className={`px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-white/5 transition-colors ${activeLink === l.label.toLowerCase() ? "text-[#f4b942]" : ""}`}
+                    style={{ color: activeLink === l.label.toLowerCase() ? "#f4b942" : "#c9ceda" }}>
                     {l.label}
                   </a>
                 ))}

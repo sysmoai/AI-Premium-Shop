@@ -1,0 +1,157 @@
+FINAL UI/UX POLISH — 7 improvements in 1 prompt.
+Do NOT change any page content, product data, prices, or routes.
+Do NOT break any existing functionality.
+Use Lucide React icons + Tailwind CSS only.
+
+=== 1. BUNDLES MEGA MENU (Navbar) ===
+
+Make "Bundles" nav item work like "Products" — hover on desktop opens a dropdown.
+
+Bundles dropdown: max-w-2xl, bg-[#0a0e27] border border-gray-800 rounded-xl shadow-2xl p-6.
+2-column grid (grid-cols-2 gap-6):
+
+Left column — H4: "Individual" (text-gray-400 text-xs uppercase tracking-wider mb-3)
+3 cards stacked, each: bg-gray-800/50 rounded-lg p-3 mb-2 hover:bg-gray-800 transition, linking to /bundles
+- GraduationCap icon text-blue-400 | "Student Essentials" text-white text-sm | "৳449" text-[#f4b942] font-bold ml-auto
+  Sub: "ChatGPT + Study Guide" text-gray-400 text-xs
+- GraduationCap icon text-purple-400 | "University Pro" | "৳899"
+  Sub: "ChatGPT + Perplexity + Coaching"
+- Laptop icon text-green-400 | "Freelancer" | "৳3,999" + green badge "Save ৳540"
+  Sub: "ChatGPT + Midjourney + Perplexity"
+
+Right column — H4: "Business" (same style)
+2 cards:
+- Building icon text-amber-400 | "Business Package" | "৳15,000" + green badge "Save ৳3,570"
+  Sub: "6 AI tools + 2hr Expert Setup"
+- Building2 icon text-red-400 | "B2B Implementation" | "৳25,000"
+  Sub: "Full stack + 5hr Training + 30-day Support"
+
+Below columns: border-t border-gray-800 pt-3 mt-3 flex justify-between
+Left: "Custom bundle? Tell us" text-gray-400 text-xs
+Right: "View All Bundles →" text-[#f4b942] text-sm hover:underline → /bundles
+
+Behavior: opens on mouseenter, closes on mouseleave (150ms delay). Opening Bundles closes Products and vice versa. Closes on click-outside and Escape.
+
+Mobile: Bundles appears as accordion in mobile menu with 5 items listed.
+
+=== 2. ADD BLOG TO NAVBAR ===
+
+Desktop nav order: Products ▾ | Bundles ▾ | Pricing | Support | Blog | [Order Now]
+"Blog" → /blog. Simple link, same style as other nav items.
+Mobile: add Blog link below Support in mobile menu.
+
+=== 3. NAVBAR ACTIVE STATE ===
+
+Highlight the current page in the navbar. When the user is on /pricing, the "Pricing" link should have a visual indicator.
+
+Active state: text-[#f4b942] (gold) instead of text-gray-300. Add a small 2px bottom border (border-b-2 border-[#f4b942]) on the active link.
+
+Use the current route/pathname to determine which link is active:
+- If path starts with /chatgpt or /claude or /midjourney or any product page → "Products" is active
+- If path is /bundles → "Bundles" is active
+- If path is /pricing → "Pricing" is active
+- If path is /support → "Support" is active
+- If path is /blog → "Blog" is active
+- If path starts with /best-ai → none (or "Products")
+
+=== 4. FOOTER REDESIGN ===
+
+Replace current footer with this clean structure:
+
+Bg: bg-[#060914]. Border-top: border-t border-gray-800.
+Container: max-w-7xl mx-auto px-4 py-12.
+
+Grid: grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8
+
+COL 1 (lg:col-span-2 — brand):
+- "AI PREMIUM SHOP" text-lg font-bold text-white
+- "Premium AI subscriptions in Bangladesh. 56 tools. Local payment. Instant delivery." text-gray-400 text-sm mt-2 max-w-xs
+- Social row (flex gap-3 mt-4): Facebook, Instagram, LinkedIn
+  Each: w-8 h-8 rounded-full bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700
+  FB → https://www.facebook.com/aipremiumshopbd
+  IG → https://www.instagram.com/aipremiumshop/
+  LI → https://www.linkedin.com/showcase/aipremiumshop/
+
+COL 2 — "Products" (text-white text-sm font-semibold mb-3):
+- ChatGPT Plans → /chatgpt-plans-bangladesh
+- Claude → /claude-pro-bangladesh
+- Midjourney → /midjourney-bangladesh
+- Google AI Pro → /google-ai-pro-bangladesh
+- Copilot → /github-copilot-bangladesh
+- Bundles → /bundles
+- All Products → /pricing
+Each: text-gray-400 text-sm hover:text-white block py-1
+
+COL 3 — "Best AI For":
+- Students → /best-ai-for-students
+- Freelancers → /best-ai-for-freelancers
+- Creators → /best-ai-for-creators
+- Business → /best-ai-for-business
+- Developers → /best-ai-for-developers
+- Job Seekers → /best-ai-for-job-seekers
+
+COL 4 — "Company" + "Legal":
+Company: About, Blog, Support, Pricing, Contact
+Legal (mt-4): FAQ, How to Order, Refund Policy, Terms, Privacy Policy
+
+Below grid — border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center gap-4:
+Left: "We accept:" + 5 payment pills (bKash #E2136E, Nagad #F6921E, Rocket #8B2F8B, Bank #4285f4, Binance #F0B90B) each text-xs font-semibold px-3 py-1 rounded-full text-white
+Right: "© 2026 AI Premium Shop. All rights reserved." text-gray-500 text-xs
+
+No newsletter form. No email. Clean and simple.
+
+=== 5. THREE REMAINING THIN BRAND PAGES ===
+
+ADD visual sections to these 3 pages (same pattern as SuperGrok/Ideogram fixes). ADD AFTER pricing, BEFORE FAQ. Do NOT change existing content.
+
+/otter-ai-bangladesh:
+H2: "Why Otter.ai?"
+bg-gray-900 rounded-xl p-6, 3 items with Lucide icons (text-blue-400):
+- Mic icon | "Transcribe meetings in real-time — never take notes again"
+- FileText icon | "Auto-generate summaries, action items, and key points"
+- Users icon | "Speaker identification — knows who said what"
+
+/gamma-bangladesh:
+H2: "Why Gamma?"
+bg-gray-900 rounded-xl p-6, 3 items with Lucide icons (text-[#8b5cf6]):
+- Presentation icon | "AI presentations in seconds — just describe your topic"
+- Layout icon | "Beautiful templates — no design skills needed"
+- Share2 icon | "Share as webpage, PDF, or slide deck — one click"
+
+/writesonic-bangladesh:
+H2: "Why Writesonic?"
+bg-gray-900 rounded-xl p-6, 3 items with Lucide icons (text-amber-400):
+- PenLine icon | "AI blog posts, ad copy, product descriptions in minutes"
+- Search icon | "Built-in SEO optimization — rank higher on Google"
+- Globe icon | "25+ languages — write content for any market"
+
+=== 6. BACK-TO-TOP BUTTON ===
+
+Add a floating "back to top" button that appears when user scrolls past 500px.
+
+Position: fixed bottom-20 right-4 (above the mobile sticky bar on mobile, so bottom-24 on mobile).
+Style: w-10 h-10 rounded-full bg-gray-800 border border-gray-700 text-gray-400 hover:text-white hover:bg-gray-700 shadow-lg transition flex items-center justify-center z-40
+Icon: ChevronUp (Lucide, 20px)
+Behavior: smooth scroll to top (window.scrollTo({ top: 0, behavior: 'smooth' }))
+Show/hide: opacity transition based on scroll position. Hidden when scroll < 500px.
+
+=== 7. SCROLL-TO-TOP ON NAVIGATION ===
+
+When the user clicks any internal link (React Router navigation), the page should scroll to the top.
+
+Add a ScrollToTop component that uses useEffect + useLocation (from React Router) to call window.scrollTo(0, 0) on every route change.
+
+Place this component inside the Router in the app root (e.g., App.tsx or main.tsx).
+
+If this already exists, skip it. If not, add it.
+
+=== SAFETY RULES ===
+1. Do NOT change any page content, product data, prices, or descriptions
+2. Do NOT remove any existing routes or components
+3. Do NOT remove the mobile sticky bottom bar (PageLayout)
+4. Keep all WhatsApp links → wa.me/8801865385348
+5. Products and Bundles menus cannot both be open simultaneously
+6. npm run build must pass with zero errors
+7. No horizontal scroll on mobile 375px
+8. All footer and navbar links must point to valid routes
+9. Back-to-top button must not overlap mobile sticky bar

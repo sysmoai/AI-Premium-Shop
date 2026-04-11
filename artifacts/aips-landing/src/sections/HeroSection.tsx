@@ -1,6 +1,6 @@
 import { useEffect, useState, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, ChevronRight, Star, Users, Calendar, Shield } from "lucide-react";
+import { MessageCircle, ChevronRight, Star, Users, Calendar, Shield, Zap } from "lucide-react";
 import { PaymentBadges } from "@/components/PaymentBadges";
 import type React from "react";
 
@@ -37,10 +37,10 @@ function TrustBadge({
   value: string;
 }) {
   return (
-    <div className="card-glass rounded-xl py-4 px-4 text-center">
-      <Icon className="w-4 h-4 mx-auto mb-1.5" style={{ color: "#f4b942" }} />
-      <div className="text-base font-semibold text-white">{value}</div>
-      <div className="text-xs mt-0.5" style={{ color: "#c9ceda" }}>{label}</div>
+    <div className="bg-gray-900/80 backdrop-blur border border-gray-800 hover:border-[#f4b942]/30 rounded-xl p-4 text-center transition-all duration-300">
+      <Icon className="w-5 h-5 mx-auto mb-2" style={{ color: "#f4b942" }} />
+      <div className="text-2xl font-bold text-white">{value}</div>
+      <div className="text-xs mt-0.5 text-gray-400 uppercase tracking-wider">{label}</div>
     </div>
   );
 }
@@ -121,12 +121,12 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
           {/* SEO H1 — visually small, semantically authoritative */}
           <h1 className="sr-only">Premium AI Tools Bangladesh — ChatGPT, Claude, Midjourney &amp; More via bKash</h1>
 
-          {/* Visual headline (h2 for semantic hierarchy) */}
+          {/* Visual headline */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.55 }}
-            className="text-4xl md:text-6xl font-semibold text-white leading-tight mb-6"
+            className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white leading-tight mb-6"
             style={{ letterSpacing: "-0.02em" }}
           >
             What Takes You 3 Hours —<br className="hidden sm:block" />
@@ -138,8 +138,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-lg md:text-xl max-w-2xl mb-8 leading-relaxed"
-            style={{ color: "#c9ceda" }}
+            className="text-lg md:text-xl text-gray-400 max-w-2xl mb-8 leading-relaxed"
           >
             56 premium AI tools. Local payment via{" "}
             <span className="inline-block bg-[#E2136E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">bKash</span>{" "}
@@ -214,7 +213,8 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="hero-cta-primary"
-              className="btn-cta glow-cta px-8 py-4 rounded-xl text-base font-semibold flex items-center gap-2.5"
+              className="btn-cta px-8 py-4 rounded-xl text-lg font-bold flex items-center gap-2.5"
+              style={{ boxShadow: "0 8px 30px rgba(37,211,102,0.25)" }}
             >
               <MessageCircle className="w-5 h-5" />
               Order on WhatsApp
@@ -222,7 +222,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             <a
               href="#pain-points"
               data-testid="hero-cta-secondary"
-              className="btn-ghost-cta px-8 py-4 rounded-xl text-base flex items-center gap-2"
+              className="px-8 py-4 rounded-xl text-base flex items-center gap-2 border-2 border-gray-600 text-gray-300 hover:border-[#f4b942] hover:text-[#f4b942] transition-all duration-200 font-medium"
             >
               Which AI is right for me?
               <ChevronRight className="w-4 h-4" />
@@ -236,7 +236,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             transition={{ delay: 0.45 }}
             className="flex justify-center lg:justify-start"
           >
-            <PaymentBadges label="Pay with" className="justify-center lg:justify-start" />
+            <PaymentBadges label="Pay with" className="flex flex-wrap gap-2 justify-center lg:justify-start" />
           </motion.div>
         </div>
 
@@ -303,7 +303,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
           <TrustBadge icon={Users} label="Customers" value="1,200+" />
           <TrustBadge icon={Calendar} label="Established" value="Since 2022" />
           <TrustBadge icon={Shield} label="Warranty" value="30 Days" />
-          <TrustBadge icon={MessageCircle} label="Response" value="5-Min" />
+          <TrustBadge icon={Zap} label="Response" value="5-Min" />
         </div>
       </motion.div>
     </section>

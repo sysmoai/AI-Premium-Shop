@@ -19,7 +19,7 @@ const SPECIAL_OFFERS = [
     color: "#4285f4",
     accentBg: "rgba(66,133,244,0.08)",
     accentBorder: "rgba(66,133,244,0.25)",
-    accentHover: "rgba(66,133,244,0.18)",
+    glowColor: "rgba(66,133,244,0.3)",
   },
   {
     id: "notion-business",
@@ -32,7 +32,7 @@ const SPECIAL_OFFERS = [
     color: "#e5e7eb",
     accentBg: "rgba(229,231,235,0.06)",
     accentBorder: "rgba(229,231,235,0.15)",
-    accentHover: "rgba(229,231,235,0.12)",
+    glowColor: "rgba(229,231,235,0.2)",
   },
 ];
 
@@ -89,21 +89,20 @@ export function OffersSection() {
                 style={{
                   backgroundColor: offer.accentBg,
                   border: `1px solid ${offer.accentBorder}`,
+                  animation: `glow-offer-${i === 0 ? "blue" : "dark"} 2s ease-in-out infinite`,
                 }}
               >
-                {/* LIMITED TIME ribbon — top-left, inside card */}
-                <div className="absolute top-0 left-0">
-                  <span
-                    className="inline-block bg-amber-400 text-gray-900 text-[10px] font-bold px-3 py-1 rounded-tl-2xl rounded-br-lg"
-                  >
+                {/* LIMITED TIME ribbon — top-right */}
+                <div className="absolute top-3 right-3">
+                  <span className="inline-block bg-gradient-to-r from-[#f4b942] to-amber-600 text-[#0a0e27] font-bold text-xs uppercase px-3 py-1 rounded-full">
                     LIMITED TIME
                   </span>
                 </div>
 
-                {/* % Off badge — top-right, fully inside card */}
-                <div className="absolute top-3 right-4">
+                {/* % Off badge — top-left */}
+                <div className="absolute top-0 left-0">
                   <span
-                    className="inline-flex items-center gap-1 text-sm font-bold px-3 py-1.5 rounded-full text-white"
+                    className="inline-flex items-center gap-1 text-sm font-bold px-3 py-1.5 rounded-tl-2xl rounded-br-lg text-white"
                     style={{ background: "linear-gradient(135deg, #ec4899, #f97316)" }}
                   >
                     <Zap className="w-3.5 h-3.5" />
@@ -114,8 +113,8 @@ export function OffersSection() {
                 {/* Price row */}
                 <div className="mb-3">
                   <div className="flex items-baseline gap-3 mb-1">
-                    <span className="text-4xl font-bold text-white">৳{offer.price}</span>
-                    <span className="text-base line-through" style={{ color: "#6b7280" }}>
+                    <span className="text-3xl font-black text-white">৳{offer.price}</span>
+                    <span className="text-lg line-through text-red-400">
                       ৳{offer.officialPrice}
                     </span>
                     <span className="text-xs" style={{ color: "#c9ceda" }}>/month</span>
@@ -133,7 +132,7 @@ export function OffersSection() {
                   href={makeOrderLink(offer.name)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-cta px-6 py-3 rounded-xl text-sm inline-flex items-center gap-2"
+                  className="w-full py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-lg text-center flex items-center justify-center gap-2 transition-colors duration-200"
                 >
                   Order Now
                   <ArrowRight className="w-4 h-4" />
@@ -173,33 +172,39 @@ export function OffersSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07 }}
-                whileHover={{ y: -4, boxShadow: `0 8px 32px ${product.color}22` }}
-                className="relative rounded-xl p-5 border border-white/10 flex items-center justify-between transition-all duration-300"
-                style={{ backgroundColor: "rgba(10,14,39,0.6)" }}
+                whileHover={{ y: -2, boxShadow: `0 8px 32px rgba(244,185,66,0.15)` }}
+                className="relative bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-[#f4b942]/40 flex flex-col transition-all duration-200"
                 data-testid={`best-seller-${product.id}`}
               >
-                <div>
+                {/* Brand color top border */}
+                <div className="h-[3px] w-full flex-shrink-0" style={{ backgroundColor: product.color }} />
+
+                <div className="p-5 flex flex-col flex-1">
+                  {/* Badge */}
                   {product.badge && (
                     <span
-                      className="text-xs font-semibold px-2 py-0.5 rounded-full mb-2 inline-block"
+                      className="absolute top-5 right-4 text-xs font-semibold px-2 py-0.5 rounded-full"
                       style={{ background: "linear-gradient(135deg, #ec4899, #f97316)", color: "#fff" }}
                     >
                       {product.badge}
                     </span>
                   )}
-                  <div className="flex items-center gap-2">
+
+                  <div className="flex items-center gap-2 mb-2">
                     <span
                       className="w-2 h-2 rounded-full flex-shrink-0"
                       style={{ backgroundColor: product.color }}
                     />
-                    <span className="font-medium text-white text-sm">{product.name}</span>
+                    <span className="font-bold text-white text-sm">{product.name}</span>
                   </div>
-                  <div className="text-xl font-bold mt-1 text-white">
+
+                  <div className="text-xl font-bold mb-3" style={{ color: "#f4b942" }}>
                     ৳{product.price}
-                    <span className="text-xs font-normal ml-1" style={{ color: "#c9ceda" }}>/mo</span>
+                    <span className="text-xs font-normal ml-1 text-gray-400">/mo</span>
                   </div>
+
                   {product.id === "chatgpt-plus-starter" && (
-                    <div className="mt-1.5 space-y-1">
+                    <div className="mb-3 space-y-1">
                       <span className="text-xs px-2 py-0.5 rounded-full" style={{ backgroundColor: "#10a37f20", color: "#10a37f" }}>
                         Writing · Coding · Research · Images
                       </span>
@@ -210,17 +215,22 @@ export function OffersSection() {
                       </div>
                     </div>
                   )}
-                </div>
 
-                <a
-                  href={`https://wa.me/8801865385348?text=${encodeURIComponent(product.msg)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-cta text-xs px-4 py-2.5 rounded-lg flex items-center gap-1 flex-shrink-0"
-                >
-                  Order
-                  <ArrowRight className="w-3 h-3" />
-                </a>
+                  <div className="mt-auto">
+                    <a
+                      href={`https://wa.me/8801865385348?text=${encodeURIComponent(product.msg)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2 px-4 rounded-lg font-bold text-sm flex items-center justify-center gap-1.5 transition-colors duration-200"
+                      style={{ backgroundColor: "#f4b942", color: "#0a0e27" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#fbbf24")}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f4b942")}
+                    >
+                      Order
+                      <ArrowRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>

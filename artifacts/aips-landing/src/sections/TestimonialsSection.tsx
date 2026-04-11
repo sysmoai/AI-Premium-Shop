@@ -87,11 +87,10 @@ export function TestimonialsSection() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              whileHover={{ y: -4, boxShadow: `0 12px 32px ${t.borderColor}25` }}
+              whileHover={{ y: -4, boxShadow: `0 12px 32px rgba(244,185,66,0.12)` }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="relative rounded-2xl p-6 border border-white/10 flex flex-col flex-shrink-0 snap-center md:flex-shrink transition-all duration-300 hover:shadow-lg"
+              className="relative bg-gray-900 rounded-xl p-6 border border-gray-800 hover:border-[#f4b942]/20 flex flex-col flex-shrink-0 snap-center md:flex-shrink transition-all duration-300"
               style={{
-                backgroundColor: "rgba(10,14,39,0.5)",
                 borderLeft: `3px solid ${t.borderColor}`,
                 minWidth: 280,
               }}
@@ -99,7 +98,8 @@ export function TestimonialsSection() {
             >
               {/* Large quote mark */}
               <div
-                className="absolute top-2 left-4 text-amber-400/10 text-6xl font-serif select-none pointer-events-none leading-none"
+                className="absolute top-2 left-4 text-6xl font-serif select-none pointer-events-none leading-none"
+                style={{ color: "rgba(244,185,66,0.15)" }}
                 aria-hidden="true"
               >"</div>
 
@@ -111,14 +111,14 @@ export function TestimonialsSection() {
               </div>
 
               {/* Quote */}
-              <blockquote className="text-base leading-relaxed mb-6 flex-1 relative z-10" style={{ color: "#e5e7eb" }}>
+              <blockquote className="text-base italic leading-relaxed mb-6 flex-1 relative z-10 text-gray-300">
                 "{t.quote}"
               </blockquote>
 
               {/* Author */}
               <div className="flex items-center gap-3 relative z-10">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 text-white ${t.avatarClass}`}
+                  className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 text-white ${t.avatarClass}`}
                   style={{ boxShadow: `0 0 14px ${t.gradientFrom}50` }}
                 >
                   {t.initials}

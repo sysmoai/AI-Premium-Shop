@@ -64,13 +64,15 @@ export function FinalCTASection() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl py-14 px-8 border"
-            style={{ backgroundColor: "#151b3d", borderColor: "rgba(244,185,66,0.25)" }}
+            className="rounded-2xl py-14 px-8 md:p-12 border border-[#f4b942]/20"
+            style={{
+              background: "linear-gradient(135deg, rgba(244,185,66,0.08) 0%, transparent 50%, rgba(244,185,66,0.08) 100%)",
+            }}
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4">
               Start Today — From Just BDT 350
             </h2>
-            <p className="text-base mb-8 max-w-md mx-auto" style={{ color: "#c9ceda" }}>
+            <p className="text-base mb-8 max-w-md mx-auto text-center text-gray-400">
               Join 1,200+ customers who trust AI Premium Shop.
             </p>
             <a
@@ -78,11 +80,18 @@ export function FinalCTASection() {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="final-cta"
-              className="btn-cta glow-cta px-10 py-4 rounded-xl text-base inline-flex items-center gap-2 font-semibold"
+              className="bg-green-600 hover:bg-green-500 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg mx-auto block mt-6 max-w-xs text-center flex items-center justify-center gap-2 transition-colors duration-200"
+              style={{ boxShadow: "0 8px 30px rgba(37,211,102,0.25)" }}
             >
               <MessageCircle className="w-5 h-5" />
               Order on WhatsApp
             </a>
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-5">
+              <span className="text-sm text-gray-500">Pay with</span>
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#E2136E] text-white">bKash</span>
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#F6921E] text-white">Nagad</span>
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#6e40c9] text-white">Rocket</span>
+            </div>
           </motion.div>
         </div>
       </section>

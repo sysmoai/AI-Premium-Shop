@@ -133,7 +133,14 @@ export default function Home() {
         {/* 3B. AI AGENT ECONOMY */}
         <div className="scroll-reveal">
           <div className="max-w-5xl mx-auto px-4 md:px-8 py-12">
-            <div className="rounded-xl p-8 border" style={{ background: "linear-gradient(135deg, #111827 0%, #0a0e27 100%)", borderColor: "rgba(168,85,247,0.2)" }}>
+            <div
+              className="rounded-xl p-8 border"
+              style={{
+                background: "linear-gradient(135deg, #111827 0%, #0a0e27 100%)",
+                borderColor: "rgba(168,85,247,0.2)",
+                backgroundImage: "linear-gradient(135deg, #111827 0%, #0a0e27 100%), repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px)",
+              }}
+            >
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center">The AI Agent Economy</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 {[
@@ -142,8 +149,11 @@ export default function Home() {
                   { value: "18,000%", unit: "growth", label: "AI services on Fiverr", color: "#a855f7" },
                   { value: "8M", unit: "SMEs", label: "BD needs AI automation", color: "#3b82f6" },
                 ].map((stat) => (
-                  <div key={stat.label} className="text-center">
-                    <div className="text-3xl font-bold mb-1" style={{ color: stat.color }}>{stat.value}</div>
+                  <div
+                    key={stat.label}
+                    className="bg-gray-800/50 rounded-xl p-6 text-center transition-all duration-300 hover:scale-[1.05] cursor-default"
+                  >
+                    <div className="text-4xl md:text-5xl font-black mb-1" style={{ color: stat.color }}>{stat.value}</div>
                     <div className="text-sm text-gray-400 mb-0.5">{stat.unit}</div>
                     <div className="text-xs text-gray-500">{stat.label}</div>
                   </div>

@@ -51,7 +51,7 @@ export function FAQSection({ items, title = "Frequently Asked Questions", classN
           </motion.h2>
         </div>
 
-        <div className="space-y-3">
+        <div className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800">
           {items.map((item, i) => (
             <motion.div
               key={i}
@@ -59,13 +59,15 @@ export function FAQSection({ items, title = "Frequently Asked Questions", classN
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.04 }}
-              className="rounded-xl border border-white/10 overflow-hidden"
-              style={{ backgroundColor: "#151b3d" }}
+              className={i < items.length - 1 ? "border-b border-gray-800" : ""}
               data-testid={`faq-item-${i}`}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left gap-4 hover:bg-white/5 transition-colors"
+                className={cn(
+                  "w-full flex items-center justify-between py-4 px-6 text-left gap-4 transition-colors cursor-pointer",
+                  openIndex === i ? "bg-gray-800/50" : "hover:bg-white/5"
+                )}
                 aria-expanded={openIndex === i}
               >
                 <span className="font-medium text-white text-sm md:text-base leading-snug">
@@ -73,7 +75,7 @@ export function FAQSection({ items, title = "Frequently Asked Questions", classN
                 </span>
                 <motion.div
                   animate={{ rotate: openIndex === i ? 180 : 0 }}
-                  transition={{ duration: 0.22 }}
+                  transition={{ duration: 0.2 }}
                   className="flex-shrink-0"
                 >
                   <ChevronDown className="w-5 h-5" style={{ color: "#f4b942" }} />
@@ -89,10 +91,7 @@ export function FAQSection({ items, title = "Frequently Asked Questions", classN
                     transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
                     className="overflow-hidden"
                   >
-                    <p
-                      className="px-6 pb-5 text-sm leading-relaxed border-t border-white/10 pt-4"
-                      style={{ color: "#c9ceda" }}
-                    >
+                    <p className="px-6 pb-5 text-sm leading-relaxed border-t border-gray-800 pt-4 text-gray-400">
                       {item.answer}
                     </p>
                   </motion.div>

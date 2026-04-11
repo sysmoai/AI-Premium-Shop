@@ -1,0 +1,45 @@
+Two fixes. Do NOT change any existing pages or text.
+
+=== FIX 1A: CUSTOM 404 PAGE ===
+
+Create a custom 404 (Not Found) page. When any invalid URL is visited, show this page:
+
+Layout: centered on navy-900 background, same PageLayout as other pages (navbar + footer + sticky bar).
+
+Content:
+- Large "404" text (text-8xl font-bold text-[#f4b942])
+- Below: "Page Not Found" (text-2xl text-white font-semibold)
+- Below: "The page you're looking for doesn't exist or has been moved." (text-gray-400)
+- Below: two buttons side by side (flex gap-4 mt-8):
+  Button 1: "Browse All 56 AI Tools" → links to / (homepage)
+    Style: bg-[#f4b942] text-[#0a0e27] font-bold py-3 px-6 rounded-lg hover:bg-amber-400
+  Button 2: "Order on WhatsApp" → links to https://wa.me/8801865385348
+    Style: bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-500
+- Below buttons: "Popular pages:" with 4 links (flex flex-wrap gap-3 mt-6):
+  - ChatGPT Plans → /chatgpt-plans-bangladesh
+  - Claude Pro → /claude-pro-bangladesh
+  - Midjourney → /midjourney-bangladesh
+  - Bundles → /bundles
+  Each link: text-[#f4b942] hover:underline text-sm
+
+Make sure this 404 page is registered as the catch-all/fallback route.
+
+=== FIX 1B: OG IMAGE FORMAT ===
+
+The current OG image is SVG format. WhatsApp and Facebook often don't render SVG previews.
+
+Fix: Create a simple OG image as a static PNG file (or generate one at build time).
+If generating a PNG is complex, instead create a simple HTML-to-canvas approach:
+
+1. Create a file at /public/images/og/default-og.png
+2. Make it 1200x630 pixels
+3. Content: Navy-900 (#0a0e27) background
+   - "AI Premium Shop" in white, large, centered
+   - "56 Premium AI Tools | Bangladesh" in gray-400 below
+   - "From BDT 350/mo" in gold (#f4b942) below that
+   - "bKash · Nagad · Rocket" in small gray text at bottom
+4. Update all og:image meta tags to point to /images/og/default-og.png instead of the SVG
+
+If generating a real PNG at build time is too complex, create it as a React component rendered to a 1200x630 div with the above content, screenshot it, and save as PNG. Or simply use a solid color PNG placeholder — anything is better than SVG for WhatsApp sharing.
+
+The simplest acceptable fix: change the og:image to use a data URI or a simple colored rectangle PNG with text overlay.

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const DEFAULT_OG_IMAGE = "https://aipremiumshop.com/images/og/default-og.svg";
+const DEFAULT_OG_IMAGE = "https://aipremiumshop.com/images/og/default-og.png";
 
 interface SEOHeadProps {
   title: string;

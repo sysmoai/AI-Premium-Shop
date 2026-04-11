@@ -103,11 +103,10 @@ export function AIAgentsSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.45 }}
               whileHover={{ y: -4, boxShadow: `0 8px 28px ${uc.color}25` }}
-              className="group rounded-2xl p-5 flex-shrink-0 snap-center border border-white/10 transition-all duration-300"
+              className="group rounded-2xl p-5 flex-shrink-0 snap-center border border-white/10 border-l-4 border-purple-500/50 transition-all duration-300"
               style={{
                 backgroundColor: "rgba(255,255,255,0.03)",
                 minWidth: 240,
-                borderLeft: `3px solid ${uc.color}`,
               }}
             >
               {/* Bot icon + label */}
@@ -137,24 +136,25 @@ export function AIAgentsSection() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl p-6 mb-10 border"
-          style={{
-            backgroundColor: "rgba(139,92,246,0.07)",
-            borderColor: "rgba(139,92,246,0.3)",
-            borderLeft: "4px solid #8b5cf6",
-          }}
+          className="mb-10 flex flex-col sm:flex-row items-center gap-4 justify-center text-center sm:text-left"
         >
-          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center text-center sm:text-left">
-            <TrendingUp className="w-8 h-8 flex-shrink-0" style={{ color: "#8b5cf6" }} />
-            <div>
-              <p className="text-lg font-semibold text-white">
-                Freelancers who use AI earn{" "}
-                <span style={{ color: "#f4b942", fontSize: "1.4em" }}>44%</span>{" "}
-                more on average.
-              </p>
-              <p className="text-sm" style={{ color: "#c9ceda" }}>— Upwork 2025 Report</p>
-            </div>
-          </div>
+          <TrendingUp className="w-8 h-8 flex-shrink-0" style={{ color: "#8b5cf6" }} />
+          <p className="text-lg font-semibold text-white">
+            Freelancers who use AI earn{" "}
+            <span className="text-4xl font-bold text-amber-400">44%</span>{" "}
+            more on average.
+          </p>
+        </motion.div>
+
+        {/* Upwork blockquote */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-purple-500/10 border-l-4 border-purple-500 px-6 py-4 rounded-r-lg mb-10"
+        >
+          <p className="text-gray-300 italic">"Freelancers who use AI earn 44% more on average."</p>
+          <p className="text-gray-500 text-sm mt-1">— Upwork 2025 Report</p>
         </motion.div>
 
         {/* CTAs */}

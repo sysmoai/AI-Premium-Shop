@@ -286,6 +286,18 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll(".scroll-reveal").forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     const schema = {
       "@context": "https://schema.org",
       "@type": "Organization",
@@ -482,28 +494,28 @@ export default function Home() {
         <HeroSection ref={heroRef} />
 
         {/* 2. FIND YOUR SOLUTION — 6 pain-point cards */}
-        <PainPointSection />
+        <div className="scroll-reveal"><PainPointSection /></div>
 
         {/* 3. AI AGENTS — The 2026 Game Changer */}
-        <AIAgentsSection />
+        <div className="scroll-reveal"><AIAgentsSection /></div>
 
         {/* 4. SPECIAL OFFERS + BEST SELLERS */}
-        <OffersSection />
+        <div className="scroll-reveal"><OffersSection /></div>
 
         {/* 5. BROWSE BY CATEGORY */}
-        <CategorySection />
+        <div className="scroll-reveal"><CategorySection /></div>
 
         {/* 6. WHY AI PREMIUM SHOP */}
-        <WhyUsSection />
+        <div className="scroll-reveal"><WhyUsSection /></div>
 
         {/* 7. HOW IT WORKS */}
-        <HowItWorksSection />
+        <div className="scroll-reveal"><HowItWorksSection /></div>
 
         {/* 8. TESTIMONIALS */}
-        <TestimonialsSection />
+        <div className="scroll-reveal"><TestimonialsSection /></div>
 
         {/* 9. FAQ — 8 questions */}
-        <FAQSection items={FAQS} title="Frequently Asked Questions" />
+        <div className="scroll-reveal"><FAQSection items={FAQS} title="Frequently Asked Questions" /></div>
 
         {/* 10. FINAL CTA + FOOTER */}
         <FinalCTASection />

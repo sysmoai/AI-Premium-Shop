@@ -403,6 +403,17 @@
   to { transform: translateX(-50%); }
 }
 
+/* Scroll reveal */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* WhatsApp button box-shadow pulse */
 @keyframes wa-pulse {
   0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }

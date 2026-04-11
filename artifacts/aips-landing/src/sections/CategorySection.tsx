@@ -15,7 +15,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   PenTool,
 };
 
-const COLORS = ["#10a37f", "#ec4899", "#8b5cf6", "#f97316", "#06b6d4", "#f4b942", "#6366f1", "#e11d48"];
+const COLORS = ["#10a37f", "#8b5cf6", "#ec4899", "#f97316", "#6e40c9", "#4285f4", "#6366f1", "#f4b942"];
 
 const containerVariants: Variants = {
   hidden: {},
@@ -75,8 +75,8 @@ export function CategorySection() {
                 variants={itemVariants}
                 whileHover={{ y: -4, boxShadow: `0 8px 32px ${color}22` }}
                 transition={{ type: "spring", stiffness: 280, damping: 22 }}
-                className="group rounded-2xl p-5 border border-white/10 flex flex-col gap-3 transition-all duration-300 cursor-pointer"
-                style={{ backgroundColor: "#151b3d", borderLeft: `3px solid ${color}` }}
+                className="group rounded-xl p-5 border border-white/10 border-l-4 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+                style={{ backgroundColor: "#151b3d", borderLeftColor: color }}
                 data-testid={`category-${cat.id}`}
               >
                 <div

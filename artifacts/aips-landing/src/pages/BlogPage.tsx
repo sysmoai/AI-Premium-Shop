@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ChevronRight, Clock, User } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
 
 const POSTS = [
   {
@@ -60,6 +61,7 @@ export default function BlogPage() {
         description="AI guides, comparisons, and tips for Bangladesh. Learn which tools work best for your needs."
         canonical="https://aipremiumshop.com/blog"
       />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Blog" }]} />
 
       <section className="max-w-5xl mx-auto px-4 md:px-8 py-14">
         <motion.div

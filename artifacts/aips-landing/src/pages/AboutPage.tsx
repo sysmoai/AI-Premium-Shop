@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { MessageCircle, Users, Package, Layers, Calendar, Clock, Facebook, Instagram, Linkedin } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import { PaymentBadges } from "@/components/PaymentBadges";
 
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -22,6 +23,7 @@ export default function AboutPage() {
         description="AI Premium Shop — 1,200+ customers since 2022. Official AI subscriptions in Bangladesh. bKash payment. WhatsApp support."
         canonical="https://aipremiumshop.com/about"
       />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "About" }]} />
 
       <section className="max-w-5xl mx-auto px-4 md:px-8 py-14">
         <motion.div

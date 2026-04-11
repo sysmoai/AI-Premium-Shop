@@ -4,6 +4,8 @@ import { MessageCircle, Filter, ArrowUpDown, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { productListSchema, schemaJson } from "@/utils/schemas";
 import productsData from "../../data/products.json";
 import categoriesData from "../../data/categories.json";
 
@@ -140,6 +142,8 @@ export default function ProductsPage() {
         description="Browse 57 AI subscriptions. ChatGPT, Claude, Midjourney & more. Prices in BDT. Local payment. Fast delivery. AI Premium Shop."
         canonical="https://aipremiumshop.com/products"
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(productListSchema(ALL)) }} />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "All Products" }]} />
 
       <section className="max-w-7xl mx-auto px-4 md:px-8 py-14">
         <div className="mb-10">

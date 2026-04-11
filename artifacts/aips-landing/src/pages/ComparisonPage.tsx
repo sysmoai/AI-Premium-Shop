@@ -3,6 +3,7 @@ import { MessageCircle, ArrowRight, Check, X } from "lucide-react";
 import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 
@@ -140,6 +141,11 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
   return (
     <PageLayout>
       <SEOHead title={comp.title} description={comp.metaDescription} canonical={comp.canonical} />
+      <Breadcrumb items={[
+        { name: "Home", href: "/" },
+        { name: "Compare", href: "/blog" },
+        { name: `${comp.productA.name.split(" ")[0]} vs ${comp.productB.name.split(" ")[0]}` },
+      ]} />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-14">
 

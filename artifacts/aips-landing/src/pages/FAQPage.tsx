@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, MessageCircle } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 
@@ -131,6 +132,7 @@ export default function FAQPage() {
         description="Questions about buying AI tools in Bangladesh. Shared vs Personal, payment, delivery, refunds. AI Premium Shop answers."
         canonical="https://aipremiumshop.com/faq"
       />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "FAQ" }]} />
 
       <section className="max-w-3xl mx-auto px-4 md:px-8 py-14">
         <div className="mb-10">

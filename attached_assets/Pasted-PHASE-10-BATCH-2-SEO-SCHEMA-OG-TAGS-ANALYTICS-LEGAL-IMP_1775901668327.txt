@@ -1,0 +1,253 @@
+PHASE 10 BATCH 2 — SEO SCHEMA + OG TAGS + ANALYTICS + LEGAL
+
+IMPORTANT RULES:
+- Do not change any styling, layout, or visible design.
+- Only add invisible metadata, schema markup, analytics scripts, breadcrumbs, and legal pages.
+- Do not modify any existing page content except to add breadcrumbs at the top.
+
+=== PART A: SCHEMA JSON-LD ===
+
+1. ORGANIZATION SCHEMA (homepage only):
+Add this JSON-LD to the homepage <head>:
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AI Premium Shop",
+  "alternateName": "AIPS",
+  "url": "https://aipremiumshop.com",
+  "logo": "https://aipremiumshop.com/images/brand/aips-logo.png",
+  "description": "Bangladesh's trusted source for premium AI tool subscriptions.",
+  "foundingDate": "2022",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+8801865385348",
+    "contactType": "customer service",
+    "availableLanguage": ["English", "Bengali"]
+  },
+  "sameAs": [
+    "https://www.facebook.com/aipremiumshopbd",
+    "https://www.instagram.com/aipremiumshop/",
+    "https://www.linkedin.com/showcase/aipremiumshop/"
+  ]
+}
+</script>
+
+2. WEBSITE SCHEMA WITH SEARCH (homepage only):
+Add alongside Organization schema:
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "AI Premium Shop",
+  "url": "https://aipremiumshop.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://aipremiumshop.com/products?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+3. PRODUCT SCHEMA (on pages that list products):
+Create a reusable utility function generateProductSchema(product) that returns:
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "description": product.description,
+  "brand": { "@type": "Brand", "name": product.brand },
+  "offers": {
+    "@type": "Offer",
+    "price": product.price,
+    "priceCurrency": "BDT",
+    "availability": "https://schema.org/InStock",
+    "seller": { "@type": "Organization", "name": "AI Premium Shop" },
+    "url": "https://aipremiumshop.com/products"
+  }
+}
+
+On /products page: wrap all product schemas in an ItemList.
+On category pages (/ai-assistant, /ai-image, etc.): include only that category's products.
+Render as <script type="application/ld+json"> in the page head.
+
+4. FAQPAGE SCHEMA:
+On every page with FAQ accordion, dynamically generate FAQPage schema from the FAQ data:
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+  }))
+}
+
+Pages with FAQs: /, /faq, /ai-assistant, /ai-image, /ai-video, /ai-voice-music, /ai-code, /ai-workspace, /bundles, /best-ai-for-students, /best-ai-for-freelancers, /best-ai-for-creators, /best-ai-for-business, /best-ai-for-developers, /best-ai-for-job-seekers
+
+5. BREADCRUMBS (visible + schema):
+Add a Breadcrumb component that renders:
+- Visible: small gray text below navbar, above page content
+  Style: text-sm text-gray-400, items separated by " > ", each is a link except the last
+- Schema: BreadcrumbList JSON-LD in page head
+
+Patterns:
+- Homepage: no breadcrumb
+- /products: Home > All Products
+- /pricing: Home > Pricing
+- /ai-assistant: Home > AI Assistant & Chat
+- /ai-image: Home > AI Image & Design
+- (same for all category pages)
+- /bundles: Home > Bundles & Packages
+- /best-ai-for-students: Home > Guides > Best AI for Students
+- /best-ai-for-freelancers: Home > Guides > Best AI for Freelancers
+- (same for all guide pages)
+- /chatgpt-vs-claude: Home > Compare > ChatGPT vs Claude
+- (same for all comparison pages)
+- /ai-under-500: Home > Budget > Under BDT 500
+- /about: Home > About
+- /contact: Home > Contact
+- /faq: Home > FAQ
+- /blog: Home > Blog
+- /refund-policy: Home > Refund Policy
+- /terms: Home > Terms
+- /privacy-policy: Home > Privacy Policy
+
+BreadcrumbList schema example:
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aipremiumshop.com"},
+    {"@type": "ListItem", "position": 2, "name": "AI Assistant & Chat", "item": "https://aipremiumshop.com/ai-assistant"}
+  ]
+}
+
+=== PART B: OPEN GRAPH + TWITTER CARDS ===
+
+6. Add OG + Twitter Card meta tags to EVERY page using Next.js metadata API:
+
+openGraph: {
+  title: '[same as page title]',
+  description: '[same as meta description]',
+  url: 'https://aipremiumshop.com/[path]',
+  siteName: 'AI Premium Shop',
+  images: [{ url: 'https://aipremiumshop.com/images/og/default-og.png', width: 1200, height: 630 }],
+  locale: 'en_US',
+  type: 'website'
+},
+twitter: {
+  card: 'summary_large_image',
+  title: '[same as page title]',
+  description: '[same as meta description]',
+  images: ['https://aipremiumshop.com/images/og/default-og.png']
+}
+
+Create a default OG image placeholder: Generate a simple 1200x630 image using CSS/canvas or a static PNG.
+Design: Navy-900 (#0a0e27) background, centered white text "AI Premium Shop", below it "57 Premium AI Tools | Bangladesh | From BDT 350", gold line accent.
+Save to /public/images/og/default-og.png
+If generating an image programmatically is complex, create a simple SVG-based placeholder or use a solid color with text overlay.
+
+=== PART C: ANALYTICS ===
+
+7. GOOGLE ANALYTICS (GA4):
+Create a GoogleAnalytics component:
+- Read NEXT_PUBLIC_GA_ID from environment variable
+- If not set, render nothing (don't break the site)
+- If set, add the standard gtag.js script to <head>
+- Track page views automatically on route change
+
+8. FACEBOOK PIXEL:
+Create a FacebookPixel component:
+- Read NEXT_PUBLIC_FB_PIXEL_ID from environment variable
+- If not set, render nothing
+- If set, add standard FB Pixel script
+- Fire PageView on every page load
+
+9. WHATSAPP CLICK TRACKING:
+Create a reusable WhatsAppLink component that wraps all WhatsApp links:
+- Props: href (WhatsApp URL), productName (optional), buttonLocation (string)
+- On click, fire: gtag('event', 'whatsapp_click', { product_name, page_path, button_location })
+- Also fire FB pixel Lead event if FB Pixel is active
+- Replace all existing <a href="https://wa.me/..."> links with this component
+- Keep the exact same visual appearance and behavior
+
+10. EMAIL COLLECTION (simple):
+Add a small email signup section in the footer, above the copyright line:
+"Get AI tool updates and deals" [email input] [Subscribe]
+On submit: for now, just open WhatsApp with message "Hi, I want to subscribe to updates. My email: [entered email]"
+This is a bridge solution until a proper email service is connected.
+Style: subtle, single row, matches footer design.
+
+=== PART D: LEGAL PAGES ===
+
+11. CREATE /privacy-policy:
+Create a new page with:
+Title: "Privacy Policy — AI Premium Shop"
+Meta description: "Privacy policy for AI Premium Shop. How we handle your data, payments, and WhatsApp communication."
+
+Content sections:
+- What We Collect: name, WhatsApp number, email (optional), payment confirmation
+- How We Use It: order processing, delivery, customer support, marketing (with consent)
+- Payment Partners: bKash, Nagad, Rocket for payment processing
+- Communication: WhatsApp for order updates and support
+- Analytics: Google Analytics for website improvement (anonymized)
+- Data Storage: order records kept for warranty and support purposes
+- Your Rights: request data deletion by messaging us on WhatsApp
+- Contact: WhatsApp +880 1865-385348
+- Last updated: April 2026
+
+Style: same as /terms and /refund-policy — clean, readable, dark theme.
+Add to footer under Support column.
+Add to sitemap.
+
+12. COOKIE CONSENT BANNER:
+Add a small, non-intrusive banner at the bottom of the viewport (first visit only):
+Text: "We use cookies to improve your experience." [Accept] [Privacy Policy]
+- Accept button: Gold-500 background, small
+- Privacy Policy: text link to /privacy-policy
+- On Accept: save to localStorage (cookie_consent=true), hide banner
+- On return visits: check localStorage, don't show again
+- Only load GA4 and FB Pixel scripts AFTER consent is accepted
+- Style: Navy-800 bg, fixed bottom, 48px height, z-index above all content
+
+13. FIX /refund-policy (if broken/timing out):
+Check if the page exists. If it loads slowly, optimize it.
+If it doesn't render, recreate it with:
+Title: "Refund & Replacement Policy"
+Content:
+- 30-day replacement warranty on all subscriptions
+- Account stops working? We replace it free within 30 days
+- Refund within 15 minutes of delivery if service doesn't match
+- No refund after 15 minutes, for no-shows, wrong info, or non-use
+- Subscription provider fees are non-refundable
+- Contact: WhatsApp +880 1865-385348
+
+14. FIX /terms (if broken/timing out):
+Same check. If broken, recreate with:
+Title: "Terms of Service"
+Content covering:
+- Service description (AI subscription reselling)
+- Shared accounts: you share access with others but chat history and data are private
+- Personal accounts: dedicated to you only
+- Payment terms: full payment before delivery
+- Delivery: shared 5-30min, personal 2-4hrs
+- Warranty: 30-day replacement
+- Limitation of liability
+- Governing law: Bangladesh
+- Contact: WhatsApp +880 1865-385348
+
+=== VERIFICATION ===
+After this batch:
+- View source on homepage: Organization + WebSite JSON-LD present
+- View source on /products: Product schemas present
+- View source on /faq: FAQPage schema present
+- Breadcrumbs visible on /ai-assistant ("Home > AI Assistant & Chat")
+- Share homepage on WhatsApp: preview shows title + image
+- /privacy-policy loads correctly
+- /refund-policy loads correctly (no timeout)
+- /terms loads correctly (no timeout)
+- Cookie consent banner appears on first visit
+- Footer has Privacy Policy link and email signup

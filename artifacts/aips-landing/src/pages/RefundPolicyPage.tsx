@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { MessageCircle, Shield, Clock, AlertCircle, Star } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 
@@ -51,6 +52,7 @@ export default function RefundPolicyPage() {
         description="AI Premium Shop refund & replacement policy. 30-day warranty. How to request a refund or replacement."
         canonical="https://aipremiumshop.com/refund-policy"
       />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Refund Policy" }]} />
 
       <section className="max-w-3xl mx-auto px-4 md:px-8 py-14">
         <motion.div

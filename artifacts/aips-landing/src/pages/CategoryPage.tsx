@@ -4,6 +4,8 @@ import { MessageCircle, ChevronRight } from "lucide-react";
 import { useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { faqSchema, schemaJson } from "@/utils/schemas";
 import productsData from "../../data/products.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -342,6 +344,8 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
         description={config.metaDescription}
         canonical={`https://aipremiumshop.com/${categoryId}`}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(faqSchema(config.faqs)) }} />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: config.displayName }]} />
 
       <section className="max-w-7xl mx-auto px-4 md:px-8 py-14">
         <div className="mb-10">

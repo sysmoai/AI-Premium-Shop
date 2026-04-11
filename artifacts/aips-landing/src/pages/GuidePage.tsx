@@ -4,6 +4,8 @@ import { ChevronDown, MessageCircle, CheckCircle, ArrowRight } from "lucide-reac
 import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { faqSchema, schemaJson } from "@/utils/schemas";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 
@@ -303,6 +305,8 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
   return (
     <PageLayout>
       <SEOHead title={guide.title} description={guide.metaDescription} canonical={guide.canonical} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(faqSchema(guide.faqs)) }} />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Guides", href: "/blog" }, { name: guide.h1 }]} />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-14">
 

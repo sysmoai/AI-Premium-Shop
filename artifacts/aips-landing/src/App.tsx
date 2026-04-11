@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { CookieBanner } from "@/components/CookieBanner";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { FacebookPixel } from "@/components/FacebookPixel";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import ProductsPage from "@/pages/ProductsPage";
@@ -12,6 +16,7 @@ import FAQPage from "@/pages/FAQPage";
 import PricingPage from "@/pages/PricingPage";
 import RefundPolicyPage from "@/pages/RefundPolicyPage";
 import TermsPage from "@/pages/TermsPage";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import GuidePage from "@/pages/GuidePage";
 import ComparisonPage from "@/pages/ComparisonPage";
 import BudgetPage from "@/pages/BudgetPage";
@@ -110,6 +115,7 @@ function Router() {
       <Route path="/support" component={SupportPage} />
       <Route path="/refund-policy" component={RefundPolicyPage} />
       <Route path="/terms" component={TermsPage} />
+      <Route path="/privacy-policy" component={PrivacyPolicyPage} />
 
       <Route component={NotFound} />
     </Switch>
@@ -117,12 +123,17 @@ function Router() {
 }
 
 function App() {
+  const [cookieConsent, setCookieConsent] = useState(false);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <Router />
+          <CookieBanner onConsent={() => setCookieConsent(true)} />
         </WouterRouter>
+        <GoogleAnalytics enabled={cookieConsent} />
+        <FacebookPixel enabled={cookieConsent} />
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>

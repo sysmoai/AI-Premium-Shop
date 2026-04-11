@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 
+const DEFAULT_OG_IMAGE = "https://aipremiumshop.com/images/og/default-og.svg";
+
 interface SEOHeadProps {
   title: string;
   description?: string;
   canonical?: string;
   ogUrl?: string;
+  ogImage?: string;
 }
 
 const SITE_NAME = "AI Premium Shop";
@@ -16,6 +19,7 @@ export function SEOHead({
   description = DEFAULT_DESC,
   canonical,
   ogUrl,
+  ogImage = DEFAULT_OG_IMAGE,
 }: SEOHeadProps) {
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
   const canonicalUrl = canonical ?? (ogUrl ?? "https://aipremiumshop.com/");
@@ -37,9 +41,21 @@ export function SEOHead({
     };
 
     setMeta('meta[name="description"]', description);
+
     setMeta('meta[property="og:title"]', fullTitle);
     setMeta('meta[property="og:description"]', description);
     setMeta('meta[property="og:url"]', canonicalUrl);
+    setMeta('meta[property="og:site_name"]', SITE_NAME);
+    setMeta('meta[property="og:type"]', "website");
+    setMeta('meta[property="og:locale"]', "en_US");
+    setMeta('meta[property="og:image"]', ogImage);
+    setMeta('meta[property="og:image:width"]', "1200");
+    setMeta('meta[property="og:image:height"]', "630");
+
+    setMeta('meta[name="twitter:card"]', "summary_large_image");
+    setMeta('meta[name="twitter:title"]', fullTitle);
+    setMeta('meta[name="twitter:description"]', description);
+    setMeta('meta[name="twitter:image"]', ogImage);
 
     let canon = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (!canon) {
@@ -52,7 +68,7 @@ export function SEOHead({
     return () => {
       document.title = "AI Premium Shop";
     };
-  }, [fullTitle, description, canonicalUrl]);
+  }, [fullTitle, description, canonicalUrl, ogImage]);
 
   return null;
 }

@@ -19,6 +19,7 @@ import {
 
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
 import { SEOHead } from "@/components/SEOHead";
+import { ORG_SCHEMA, WEBSITE_SCHEMA, schemaJson } from "@/utils/schemas";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { StickyMobileBar } from "@/components/StickyMobileBar";
 import { FAQSection } from "@/components/FAQSection";
@@ -329,6 +330,8 @@ export default function Home() {
         description="57 premium AI tools in Bangladesh. ChatGPT from BDT 350. Pay via bKash/Nagad. 5-min WhatsApp delivery. 30-day warranty. Order now."
         canonical="https://aipremiumshop.com/"
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(ORG_SCHEMA) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(WEBSITE_SCHEMA) }} />
 
       {/* ── STICKY NAVBAR ── */}
       <header

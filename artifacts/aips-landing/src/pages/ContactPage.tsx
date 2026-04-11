@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { MessageCircle, Facebook, Instagram, Linkedin, Mail, Clock, CheckCircle } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import { PaymentBadges } from "@/components/PaymentBadges";
 
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -95,6 +96,7 @@ export default function ContactPage() {
         description="Contact AI Premium Shop on WhatsApp +880 1865-385348. Under 5-min response. 10AM-Midnight, 7 days a week."
         canonical="https://aipremiumshop.com/contact"
       />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Contact" }]} />
 
       <section className="max-w-4xl mx-auto px-4 md:px-8 py-14">
         <motion.div

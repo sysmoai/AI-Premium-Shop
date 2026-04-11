@@ -4,6 +4,7 @@ import { MessageCircle, ArrowRight, Zap, Shield } from "lucide-react";
 import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import productsData from "../../data/products.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -144,6 +145,11 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
   return (
     <PageLayout>
       <SEOHead title={config.title} description={config.metaDescription} canonical={config.canonical} />
+      <Breadcrumb items={[
+        { name: "Home", href: "/" },
+        { name: "Budget", href: "/pricing" },
+        { name: config.h1.replace("AI Tools ", "") },
+      ]} />
 
       <div className="max-w-5xl mx-auto px-4 md:px-8 py-14">
 

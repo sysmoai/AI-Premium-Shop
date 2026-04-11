@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { MessageCircle, ArrowUpDown, Filter } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import productsData from "../../data/products.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -57,6 +58,7 @@ export default function PricingPage() {
         description="Compare all AI subscription prices in Bangladesh. 57 tools from BDT 350. bKash/Nagad payment. AI Premium Shop 2026."
         canonical="https://aipremiumshop.com/pricing"
       />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Pricing" }]} />
 
       <section className="max-w-7xl mx-auto px-4 md:px-8 py-14">
         <div className="mb-10">

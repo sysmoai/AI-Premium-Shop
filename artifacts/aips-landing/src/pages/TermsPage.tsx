@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 
@@ -76,6 +77,7 @@ export default function TermsPage() {
         description="Terms of service for AI Premium Shop Bangladesh. Shared & personal account terms explained."
         canonical="https://aipremiumshop.com/terms"
       />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Terms" }]} />
 
       <section className="max-w-3xl mx-auto px-4 md:px-8 py-14">
         <motion.div

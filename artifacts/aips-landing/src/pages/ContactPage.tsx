@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, Facebook, Instagram, Linkedin, Mail, Clock, CheckCircle } from "lucide-react";
+import { MessageCircle, MessageSquare, Facebook, Instagram, Linkedin, Mail, Clock, CheckCircle, Users, Radio } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
@@ -27,11 +27,35 @@ const CHANNELS = [
     color: "#1877f2",
   },
   {
+    icon: Users,
+    label: "WA Community",
+    value: "Join our WhatsApp community",
+    desc: "Updates, deals & AI tips",
+    href: "https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc",
+    color: "#25d366",
+  },
+  {
+    icon: Radio,
+    label: "WA Channel",
+    value: "WhatsApp Channel",
+    desc: "Follow for news & offers",
+    href: "https://whatsapp.com/channel/0029VatCUtC72WTpSObAQF3O",
+    color: "#25d366",
+  },
+  {
+    icon: MessageSquare,
+    label: "Messenger",
+    value: "m.me/aipremiumshopbd",
+    desc: "Message on Facebook",
+    href: "https://m.me/aipremiumshopbd",
+    color: "#1877f2",
+  },
+  {
     icon: Instagram,
     label: "Instagram",
     value: "@aipremiumshop",
     desc: "Follow for updates & deals",
-    href: "#",
+    href: "https://www.instagram.com/aipremiumshop/",
     color: "#e1306c",
   },
   {
@@ -39,7 +63,7 @@ const CHANNELS = [
     label: "LinkedIn",
     value: "linkedin.com/showcase/aipremiumshop",
     desc: "Professional network",
-    href: "#",
+    href: "https://www.linkedin.com/showcase/aipremiumshop/",
     color: "#0a66c2",
   },
   {

@@ -1,0 +1,141 @@
+SOCIAL MEDIA + SHARING PERFECTION. Do NOT change prices, products, or page layouts.
+
+=== 1. VERIFY ALL SOCIAL LINKS ===
+
+Grep the entire codebase for these URLs. Verify each appears and is correct:
+
+WhatsApp Business: https://wa.me/8801865385348
+WhatsApp Community: https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc
+WhatsApp Channel: https://whatsapp.com/channel/0029VatCUtC72WTpSObAQF3O
+Facebook Page: https://www.facebook.com/aipremiumshopbd
+Facebook Messenger: https://m.me/aipremiumshopbd
+Instagram: https://www.instagram.com/aipremiumshop/
+LinkedIn: https://www.linkedin.com/showcase/aipremiumshop/
+bKash Payment: https://shop.bkash.com/page-power-tools01714672094/paymentlink
+
+IF any of these are missing from the site entirely, add them to the footer or contact page.
+
+Verify in FOOTER:
+- Facebook icon links to facebook.com/aipremiumshopbd
+- Instagram icon links to instagram.com/aipremiumshop/
+- LinkedIn icon links to linkedin.com/showcase/aipremiumshop/
+
+All social links must open in new tab (target="_blank" rel="noopener noreferrer").
+Fix any that don't.
+
+=== 2. WHATSAPP SHARE OPTIMIZATION ===
+
+When someone shares aipremiumshop.com on WhatsApp, it should show a rich preview.
+
+Verify these meta tags on the HOMEPAGE:
+<meta property="og:title" content="AI Premium Shop — 56 Premium AI Tools Bangladesh">
+<meta property="og:description" content="ChatGPT, Claude, Midjourney & more. From BDT 350/mo. bKash/Nagad. 1,200+ customers.">
+<meta property="og:image" content="https://aipremiumshop.com/images/og/default-og.png">
+<meta property="og:url" content="https://aipremiumshop.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI Premium Shop">
+
+IMPORTANT: og:image MUST be:
+- PNG format (not SVG)
+- Absolute URL starting with https://aipremiumshop.com/
+- Image should exist at that path in the public folder
+- Dimensions: 1200x630 pixels recommended
+
+Verify og:image file exists. If the file is missing, create a simple 1200x630 PNG:
+Navy background (#0a0e27), white text "AI Premium Shop", gray text "56 Premium AI Tools | Bangladesh", gold text "From BDT 350/mo"
+
+=== 3. FACEBOOK SHARE OPTIMIZATION ===
+
+Facebook uses the same OG tags as WhatsApp. Additionally verify:
+<meta property="fb:app_id" content=""> — if you have a Facebook App ID, add it. If not, skip.
+
+For every product page, verify og:title shows the product name + price (not generic).
+For example, /chatgpt-plus-bangladesh should have:
+og:title = "Buy ChatGPT Plus Bangladesh — BDT 350/mo | AI Premium Shop"
+og:description = specific to that product
+
+=== 4. TWITTER/X SHARE OPTIMIZATION ===
+
+Verify every page has:
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="[same as og:title]">
+<meta name="twitter:description" content="[same as og:description]">
+<meta name="twitter:image" content="[same as og:image]">
+
+=== 5. SHARE BUTTONS ON BLOG POSTS ===
+
+Verify that blog posts have share functionality. If share buttons exist, check they work:
+
+Facebook share URL format:
+https://www.facebook.com/sharer/sharer.php?u=[encoded-page-url]
+
+Twitter/X share URL format:
+https://twitter.com/intent/tweet?url=[encoded-page-url]&text=[encoded-title]
+
+WhatsApp share URL format:
+https://wa.me/?text=[encoded-title]%20[encoded-page-url]
+
+If share buttons DON'T exist on blog posts, ADD a simple share row after each post:
+flex items-center gap-3 my-6
+"Share:" text-gray-500 text-sm
+3 buttons:
+- Facebook: w-8 h-8 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:opacity-80 — links to facebook sharer
+- Twitter/X: w-8 h-8 rounded-full bg-gray-700 text-white — links to twitter intent
+- WhatsApp: w-8 h-8 rounded-full bg-[#25D366] text-white — links to wa.me share
+
+Each button opens in new tab.
+Use the current page URL and title dynamically.
+
+=== 6. CONTACT PAGE SOCIAL LINKS ===
+
+On the /contact page, verify ALL these channels are listed and linked:
+
+- WhatsApp: wa.me/8801865385348 (primary CTA)
+- WhatsApp Community: chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc
+- WhatsApp Channel: whatsapp.com/channel/0029VatCUtC72WTpSObAQF3O
+- Facebook Page: facebook.com/aipremiumshopbd
+- Facebook Messenger: m.me/aipremiumshopbd
+- Instagram: instagram.com/aipremiumshop/
+- LinkedIn: linkedin.com/showcase/aipremiumshop/
+
+If the contact page is missing any of these, add them.
+Each should have a Lucide icon + label + clickable link.
+Style: bg-gray-900 rounded-lg p-4, icon in brand color.
+
+=== 7. FLOATING WHATSAPP BUTTON ===
+
+Verify the floating WhatsApp button:
+- Is visible on ALL pages (not just homepage)
+- Has the green pulse animation
+- Links to wa.me/8801865385348
+- Shows on both desktop and mobile
+- Does NOT overlap the mobile sticky bar
+- Has a hover tooltip or label
+
+If the FloatingWhatsApp component exists but lacks pulse animation:
+Add: animate-pulse or a custom keyframe animation with expanding green box-shadow.
+
+=== 8. ABOUT PAGE SOCIAL PROOF ===
+
+On the /about page, verify these are present:
+- Social media links (FB, IG, LinkedIn)
+- WhatsApp number: +880 1865-385348
+- "1,200+ customers since 2022"
+- "56 premium AI tools, 19 brands"
+
+If the about page is missing social links, add a "Connect With Us" section:
+flex gap-4, each social: w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center
+Facebook (blue), Instagram (gradient), LinkedIn (blue), WhatsApp (green)
+
+=== VERIFY ===
+
+After all fixes:
+1. Check footer → 3 social icons all link correctly and open in new tab
+2. Check /contact → all 7 channels listed and clickable
+3. Check /about → social links present
+4. Check og:image on homepage → points to existing PNG file
+5. Check blog post → share buttons present and functional
+6. Check floating WhatsApp → visible with pulse, correct number
+7. npm run build → zero errors
+
+Report results.

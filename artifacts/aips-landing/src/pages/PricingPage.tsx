@@ -42,12 +42,12 @@ export default function PricingPage() {
   const [sort, setSort] = useState<SortKey>("price-asc");
 
   const products = useMemo(() => {
-    let list = [...(productsData.products as Product[])];
+    let list = [...((productsData.products as unknown) as Product[])];
     if (catFilter !== "all") list = list.filter((p) => p.category === catFilter);
     if (accessFilter !== "all") list = list.filter((p) => p.accessType === accessFilter);
     if (sort === "price-asc") list.sort((a, b) => a.price - b.price);
     else if (sort === "price-desc") list.sort((a, b) => b.price - a.price);
-    else list.sort((a, b) => (b.officialUSD * RATE - b.price) - (a.officialUSD * RATE - a.price));
+    else list.sort((a, b) => ((b.officialUSD ?? 0) * RATE - b.price) - ((a.officialUSD ?? 0) * RATE - a.price));
     return list;
   }, [catFilter, accessFilter, sort]);
 

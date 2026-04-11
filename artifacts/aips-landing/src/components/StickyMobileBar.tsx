@@ -1,22 +1,29 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
 interface StickyMobileBarProps {
-  heroRef: React.RefObject<HTMLElement | null>;
+  heroRef?: React.RefObject<HTMLElement | null>;
 }
 
 export function StickyMobileBar({ heroRef }: StickyMobileBarProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setVisible(!entry.isIntersecting),
-      { threshold: 0 }
-    );
-    if (heroRef.current) observer.observe(heroRef.current);
-    return () => observer.disconnect();
+    if (heroRef) {
+      const observer = new IntersectionObserver(
+        ([entry]) => setVisible(!entry.isIntersecting),
+        { threshold: 0 }
+      );
+      if (heroRef.current) observer.observe(heroRef.current);
+      return () => observer.disconnect();
+    } else {
+      const onScroll = () => setVisible(window.scrollY > 200);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+      return () => window.removeEventListener("scroll", onScroll);
+    }
   }, [heroRef]);
 
   return (

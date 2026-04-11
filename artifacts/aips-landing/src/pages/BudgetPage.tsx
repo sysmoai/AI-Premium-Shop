@@ -102,11 +102,11 @@ function ProductCard({ product, index }: ProductCardProps) {
         </span>
         <span className="inline-flex items-center gap-1 text-xs" style={{ color: "#c9ceda" }}>
           <Zap className="w-3 h-3" style={{ color: "#f4b942" }} />
-          {product.deliveryMinutes} min
+          {(product as any).deliveryMinutes ?? product.deliverySLA} delivery
         </span>
         <span className="inline-flex items-center gap-1 text-xs" style={{ color: "#c9ceda" }}>
           <Shield className="w-3 h-3" style={{ color: "#25d366" }} />
-          {product.warrantyDays}d warranty
+          {(product as any).warrantyDays ?? 30}d warranty
         </span>
       </div>
       <div className="flex items-center justify-between">

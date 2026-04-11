@@ -2,8 +2,8 @@ import { useEffect } from "react";
 
 declare global {
   interface Window {
-    fbq: (...args: unknown[]) => void;
-    _fbq: unknown;
+    fbq?: (...args: unknown[]) => void;
+    _fbq?: unknown;
   }
 }
 
@@ -28,8 +28,8 @@ export function FacebookPixel({ enabled }: { enabled: boolean }) {
     script.src = "https://connect.facebook.net/en_US/fbevents.js";
     document.head.appendChild(script);
 
-    window.fbq("init", pixelId);
-    window.fbq("track", "PageView");
+    window.fbq?.("init", pixelId);
+    window.fbq?.("track", "PageView");
   }, [enabled, pixelId]);
 
   return null;

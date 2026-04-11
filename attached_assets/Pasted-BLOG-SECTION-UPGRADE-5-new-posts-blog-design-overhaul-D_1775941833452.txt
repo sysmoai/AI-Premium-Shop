@@ -1,0 +1,308 @@
+BLOG SECTION UPGRADE — 5 new posts + blog design overhaul.
+Do NOT change existing blog posts. Only ADD new posts and IMPROVE blog layout.
+All visuals: Lucide React icons + Tailwind CSS. No external images.
+
+=== BLOG INDEX PAGE (/blog) REDESIGN ===
+
+Redesign the /blog page layout:
+
+HERO SECTION:
+bg-gradient-to-br from-[#0a0e27] to-[#151b3d] rounded-2xl p-8 md:p-12 mb-8
+H1: "AI Blog Bangladesh" (text-3xl md:text-4xl font-bold text-white)
+Subline: "Guides, tips, and strategies to earn more and work smarter with AI" (text-gray-400 text-lg mt-2)
+Below: 3 topic pills (flex gap-2 mt-4): "💰 Earn with AI" "🎓 Students" "💻 Freelancers" — each bg-gray-800 text-gray-300 text-sm rounded-full px-4 py-1.5
+
+FEATURED POST (latest post):
+Above the grid, show the newest post as a FEATURED card:
+bg-gray-900 rounded-xl overflow-hidden border border-gray-800
+Left side (60%): p-6 — category pill (e.g. "💰 Income") + H2 title (text-xl font-bold text-white) + excerpt (text-gray-400 text-sm) + "Read More →" link (text-[#f4b942])
+Right side (40%): CSS gradient hero matching the post topic (see post designs below)
+On mobile: stack vertically.
+
+POST GRID:
+grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6
+Each card:
+- Top: CSS gradient banner (h-40 rounded-t-xl) with Lucide icon (48px white) centered + topic text
+- Bottom: bg-gray-900 rounded-b-xl p-5
+  - Category pill (text-xs bg-gray-800 rounded-full px-2 py-0.5)
+  - H3: title (text-white font-semibold text-lg mt-2)
+  - Excerpt: first 120 chars (text-gray-400 text-sm mt-1)
+  - Footer: flex justify-between items-center mt-4
+    Left: "5 min read" (text-gray-500 text-xs) + "Apr 12, 2026" (text-gray-500 text-xs)
+    Right: "Read →" (text-[#f4b942] text-sm font-medium)
+  - Hover: border-[#f4b942]/30 transition
+
+Show ALL 10 posts (5 existing + 5 new). Newest first.
+
+=== BLOG POST TEMPLATE (apply to ALL 5 new posts) ===
+
+Each blog post page layout:
+
+BREADCRUMB: Home > Blog > [Post Title]
+
+HERO BANNER (top of post):
+w-full h-48 md:h-64 rounded-xl mb-8 relative overflow-hidden
+CSS gradient background unique to each post (specified below)
+Centered: large Lucide icon (64px, white, 20% opacity) + H1 title (text-white text-2xl md:text-3xl font-bold text-center px-4) + category pill
+
+BELOW HERO:
+flex items-center gap-4 text-gray-500 text-sm mb-8:
+- Clock icon (14px) + "5 min read"
+- Calendar icon (14px) + "April 12, 2026"
+- User icon (14px) + "AI Premium Shop"
+
+ARTICLE BODY:
+max-w-3xl mx-auto, prose styling:
+- H2: text-xl font-bold text-white mt-8 mb-4
+- Paragraphs: text-gray-300 leading-relaxed
+- Lists: text-gray-300, bullet color gray-500
+- Links: text-[#f4b942] hover:underline
+- Bold text: text-white font-semibold
+
+VISUAL ELEMENTS WITHIN POSTS (use these in relevant sections):
+
+STAT CARDS: When showing income/ROI numbers, use:
+grid-cols-2 md:grid-cols-3 gap-3 my-6
+Each: bg-gray-800 rounded-lg p-4 text-center
+- Number: text-2xl font-bold text-[#f4b942]
+- Label: text-gray-400 text-xs mt-1
+
+COMPARISON TABLES: When comparing tools, use:
+bg-gray-900 rounded-xl overflow-hidden my-6
+- Header row: bg-gray-800 text-white text-sm font-semibold
+- Body rows: border-b border-gray-800 text-gray-300 text-sm
+- Highlight best option with border-l-4 border-[#f4b942]
+
+STEP INDICATORS: When showing steps, use:
+Vertical timeline with numbered circles:
+Each step: flex gap-4 mb-6
+- Left: w-10 h-10 rounded-full bg-[#f4b942] text-[#0a0e27] font-bold flex items-center justify-center
+- Right: title (text-white font-semibold) + description (text-gray-400 text-sm)
+- Connecting line: border-l-2 border-gray-700 between steps
+
+CALLOUT BOXES: For key takeaways:
+bg-[#f4b942]/5 border border-[#f4b942]/20 rounded-xl p-4 my-6
+Lucide Lightbulb icon (text-[#f4b942]) + bold text
+
+INCOME CALCULATOR: For earning potential sections:
+bg-gradient-to-br from-green-500/10 to-gray-900 border border-green-500/20 rounded-xl p-6 my-6
+- Input: tool cost in gold
+- Output: potential income in green-400
+- ROI: large bold number in white
+
+BOTTOM OF EVERY POST:
+
+1. PRODUCT RECOMMENDATION BOX:
+bg-gray-900 rounded-xl p-6 border border-gray-800 my-8
+H3: "Tools Mentioned in This Article" (text-white font-semibold)
+Grid of 2-3 product cards, each:
+- Product name + price (text-[#f4b942]) + "Order →" link
+- Links to product pages
+
+2. WHATSAPP CTA:
+bg-green-600 hover:bg-green-500 text-white rounded-xl p-6 text-center my-8
+"Ready to start? Order your AI tools now"
+Big button: "Order on WhatsApp →" linking to wa.me/8801865385348
+
+3. RELATED POSTS:
+H3: "Related Articles" (text-white font-semibold)
+3 cards (grid-cols-3 on desktop) linking to other blog posts
+Same card design as blog index
+
+4. SHARE BUTTONS (optional, simple):
+flex gap-2 my-6: "Share:" text-gray-500 + Facebook/Twitter/WhatsApp share buttons (small icons, gray-800 bg)
+
+=== POST 1: How to Earn Money with AI in Bangladesh 2026 ===
+
+Slug: /blog/earn-money-with-ai-bangladesh
+Title: "How to Earn Money with AI in Bangladesh 2026 — Complete Guide | AI Premium Shop"
+Meta: "5 proven ways to earn BDT 20,000-100,000/mo with AI tools in Bangladesh. Freelancing, content, tutoring, automation. Start from BDT 350."
+Category pill: "💰 Income"
+Hero gradient: bg-gradient-to-br from-green-600 to-emerald-900
+Hero icon: TrendingUp (Lucide)
+
+Content (write 1000+ words of real, useful content):
+
+H1: How to Earn Money with AI in Bangladesh — 5 Proven Methods (2026)
+
+Intro paragraph: AI is not just a tool — it's an income source. In Bangladesh, thousands are earning BDT 20,000-100,000+/month with AI. This guide shows exactly how.
+
+STAT CARDS after intro: "BDT 20K-100K" potential/mo | "44%" more earnings (Upwork) | "BDT 350" to start | "650K+" BD freelancers
+
+H2: Method 1 — AI-Powered Freelancing
+(Use STEP INDICATORS for the getting-started process)
+Content about using ChatGPT for proposals, Midjourney for design, earning on Upwork/Fiverr.
+INCOME CALCULATOR: ChatGPT BDT 350/mo → 10 extra projects/mo → BDT 50,000+ income
+Link to: /chatgpt-plans-bangladesh, /best-ai-for-freelancers
+
+H2: Method 2 — AI Content Creation
+Content about YouTube scripts, thumbnails, voiceover, music.
+STAT CARDS: Creator stack cost BDT 5,586 | Potential BDT 30-100K | ROI 5-18x
+Link to: /best-ai-for-creators, /elevenlabs-bangladesh
+
+H2: Method 3 — AI Tutoring & Coaching
+INCOME CALCULATOR: ChatGPT BDT 350 → 10 students × BDT 3,000 = BDT 30,000/mo
+Link to: /best-ai-for-students
+
+H2: Method 4 — AI Automation Services
+COMPARISON TABLE: Service types + tools + charging rates
+Link to: /best-ai-for-business, /manus-ai-bangladesh
+
+H2: Method 5 — CV & Job Application Services
+Content about building a BDT 500-2,000/CV service
+Link to: /best-ai-for-job-seekers
+
+CALLOUT BOX: "Key takeaway: Start with ChatGPT Plus (BDT 350). It pays for itself in the first week."
+
+Product recommendation box + WhatsApp CTA + Related posts.
+
+=== POST 2: Best AI Tools for University Students Bangladesh ===
+
+Slug: /blog/ai-tools-university-students-bangladesh
+Title: "Best AI Tools for University Students Bangladesh 2026 | AI Premium Shop"
+Meta: "Top AI tools for BD university students. Research, assignments, thesis, exam prep. From BDT 350/mo."
+Category pill: "🎓 Students"
+Hero gradient: bg-gradient-to-br from-blue-600 to-indigo-900
+Hero icon: GraduationCap (Lucide)
+
+Content (1000+ words):
+H1 + intro about 4.5M university students in BD who can benefit.
+
+STAT CARDS: "4.5M" BD university students | "BDT 350" starting cost | "CGPA 3.5+" target | "30 min" assignment time
+
+H2: 1. ChatGPT Plus (BDT 350) — The All-Rounder
+Use COMPARISON TABLE showing Free vs Plus features for students.
+Link to: /chatgpt-plus-bangladesh
+
+H2: 2. Claude Pro (BDT 1,495) — For Thesis & Research
+CALLOUT BOX: "200K context = upload your entire thesis + 5 reference papers in ONE conversation"
+Link to: /claude-pro-bangladesh
+
+H2: 3. Perplexity Pro (BDT 350) — Cited Research
+Link to: /perplexity-pro-bangladesh
+
+H2: 4. Student Bundle (BDT 449) — Best Value
+Link to: /bundles
+
+H2: How to Use AI Ethically
+STEP INDICATORS for ethical AI use guidelines.
+
+COMPARISON TABLE: All student tools side by side with prices + best-for.
+Product box + CTA + Related posts.
+
+=== POST 3: How to Pay for AI Tools with bKash ===
+
+Slug: /blog/pay-ai-tools-bkash-bangladesh
+Title: "How to Pay for AI Tools with bKash Bangladesh 2026 | AI Premium Shop"
+Meta: "Buy ChatGPT, Claude, Midjourney with bKash or Nagad in Bangladesh. No credit card. 5-30 min delivery."
+Category pill: "💳 Payment Guide"
+Hero gradient: bg-gradient-to-br from-pink-600 to-rose-900
+Hero icon: CreditCard (Lucide)
+
+Content (800+ words):
+H1 + intro about payment barriers for BD users.
+
+STAT CARDS: "5" payment methods | "5-30 min" delivery | "1,200+" customers | "0" credit card needed
+
+H2: Why Direct Payment Fails
+CALLOUT BOX: "OpenAI requires Visa/Mastercard. 85% of BD users don't have international cards."
+
+H2: How AI Premium Shop Works
+STEP INDICATORS (5 steps): Browse → Choose → Pay bKash/Nagad → Send proof → Get access
+
+H2: Payment Methods
+COMPARISON TABLE: bKash | Nagad | Rocket | Bank | Binance — with how each works, speed, and fees.
+
+H2: Is It Safe?
+Trust stats.
+
+Links to: /how-to-order, /chatgpt-plans-bangladesh, /faq
+Product box + CTA + Related posts.
+
+=== POST 4: ChatGPT Plus vs Free — Worth BDT 350? ===
+
+Slug: /blog/chatgpt-plus-vs-free-bangladesh
+Title: "ChatGPT Plus vs Free — Worth BDT 350? Bangladesh Review | AI Premium Shop"
+Meta: "Is ChatGPT Plus worth BDT 350/mo in Bangladesh? Honest comparison. GPT-5, DALL-E, agents, deep research."
+Category pill: "🔍 Comparison"
+Hero gradient: bg-gradient-to-br from-[#10a37f] to-emerald-900
+Hero icon: Scale (Lucide)
+
+Content (900+ words):
+H1 + intro.
+
+BIG COMPARISON TABLE (main visual centerpiece):
+Feature | Free | Plus (BDT 350)
+Model | GPT-4o mini | GPT-5 series
+Image gen | ❌ | ✅ DALL-E
+Agent mode | ❌ | ✅
+Deep research | Limited | ✅ Full
+Codex | ❌ | ✅
+Ads | May show | Ad-free
+Speed | Slow peak hours | Fast always
+Use highlight colors: ❌ text-red-400, ✅ text-green-400
+
+H2: Real Bangladesh Examples
+3 mini story cards:
+- Student card (blue accent): "Assignment: 3 hours → 30 minutes"
+- Freelancer card (green accent): "Proposals: 1/10 reply → 4/10 replies"
+- Business card (amber accent): "1 person = 10 people's work"
+
+H2: The Math
+INCOME CALCULATOR: BDT 350/mo = BDT 12/day. Saves 10hrs/mo. ROI = 14x if earning BDT 5K extra.
+
+H2: Verdict
+CALLOUT BOX with green border: "Yes. If you use ChatGPT 3+ times per week, Plus pays for itself."
+
+Link to: /chatgpt-plus-bangladesh
+Product box + CTA + Related posts.
+
+=== POST 5: AI Freelancing — Earn in 7 Days ===
+
+Slug: /blog/ai-freelancing-guide-bangladesh
+Title: "AI Freelancing Guide Bangladesh 2026 — Earn in 7 Days | AI Premium Shop"
+Meta: "Start AI freelancing in Bangladesh in 7 days. Tools, platforms, pricing. Earn BDT 20,000+/mo."
+Category pill: "💻 Freelancing"
+Hero gradient: bg-gradient-to-br from-purple-600 to-violet-900
+Hero icon: Rocket (Lucide)
+
+Content (1000+ words):
+H1 + intro about BD being #2 global freelance market.
+
+STAT CARDS: "650K+" BD freelancers | "#2" global market | "44%" more with AI | "7 days" to first income
+
+H2: Day 1-2 — Get Your AI Tools
+STEP INDICATOR with day numbers.
+Link to: /chatgpt-plus-bangladesh, /bundles
+
+H2: Day 3 — Set Up Profiles
+CALLOUT BOX: "Use ChatGPT to write your Upwork profile. Takes 5 minutes. Sounds like a $50/hr professional."
+
+H2: Day 4-5 — Write AI Proposals
+Content with proposal template.
+
+H2: Day 6-7 — Deliver First Project
+STEP INDICATOR for delivery workflow.
+
+H2: Services You Can Offer
+BIG COMPARISON TABLE:
+| Service | AI Tool | Tool Cost | Charge | Monthly Income |
+Content writing | ChatGPT | BDT 350 | $50-200 | $500-2,000
+Design | Midjourney | BDT 1,199 | $30-100 | $300-1,000
+Video | Runway | BDT 1,794 | $100-500 | $500-2,500
+Voice | ElevenLabs | BDT 748 | $10-50 | $200-1,000
+Data | Claude | BDT 1,495 | $50-200 | $500-2,000
+
+H2: Real Numbers
+INCOME CALCULATOR: Tool investment BDT 350-4,000/mo → Income $500-3,000/mo → ROI 8-50x
+
+Links to: /best-ai-for-freelancers, /midjourney-bangladesh, /chatgpt-plans-bangladesh
+Product box + CTA + Related posts.
+
+=== BLOG INDEX UPDATE ===
+Show all 10 posts (5 existing + 5 new) in the redesigned grid. Newest first.
+
+=== SAFETY ===
+Do NOT change existing blog posts or any other pages.
+npm run build must pass with zero errors.
+All new posts must have SEO title, meta description, breadcrumbs, and BreadcrumbList schema.

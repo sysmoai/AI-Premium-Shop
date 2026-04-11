@@ -87,15 +87,15 @@ export function PageFooter() {
             </p>
             <div className="flex items-center gap-3 mt-5">
               <a href="https://www.facebook.com/aipremiumshopbd" target="_blank" rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/30 transition-colors" aria-label="Facebook">
+                className="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/30 opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110" aria-label="Facebook">
                 <Facebook className="w-4 h-4" style={{ color: "#c9ceda" }} />
               </a>
               <a href="https://www.instagram.com/aipremiumshop/" target="_blank" rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/30 transition-colors" aria-label="Instagram">
+                className="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/30 opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110" aria-label="Instagram">
                 <Instagram className="w-4 h-4" style={{ color: "#c9ceda" }} />
               </a>
               <a href="https://www.linkedin.com/showcase/aipremiumshop/" target="_blank" rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/30 transition-colors" aria-label="LinkedIn">
+                className="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/30 opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
                 <Linkedin className="w-4 h-4" style={{ color: "#c9ceda" }} />
               </a>
             </div>
@@ -103,7 +103,7 @@ export function PageFooter() {
 
           {FOOTER_COLS.map((col) => (
             <div key={col.title}>
-              <div className="font-semibold text-white text-sm mb-4">{col.title}</div>
+              <div className="font-semibold text-amber-400 text-sm mb-4">{col.title}</div>
               <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.label}>

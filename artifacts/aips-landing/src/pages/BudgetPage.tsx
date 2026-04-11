@@ -163,7 +163,14 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
             style={{ backgroundColor: "#f4b94215", borderColor: "#f4b94230", color: "#f4b942" }}>
             💰 Budget Guide — Bangladesh 2026
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">{config.h1}</h1>
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            {config.h1.includes("BDT") ? (
+              <>
+                {config.h1.split("BDT")[0]}
+                <span className="text-amber-400">BDT{config.h1.split("BDT")[1]}</span>
+              </>
+            ) : config.h1}
+          </h1>
           <p className="text-lg" style={{ color: "#c9ceda" }}>{config.subtitle}</p>
         </motion.div>
 
@@ -266,13 +273,15 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="flex justify-center mb-10"
+            className="mb-10"
           >
+          <div className="bg-white/[0.03] border border-white/10 rounded-xl p-4 text-center">
             <Link href={config.nextTier.href}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 text-sm font-medium text-white hover:bg-white/5 transition-colors">
               {config.nextTier.label}
               <ArrowRight className="w-4 h-4" />
             </Link>
+          </div>
           </motion.div>
         )}
 

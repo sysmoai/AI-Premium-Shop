@@ -1,0 +1,48 @@
+MICRO FIX: Final global cleanup — footer styling, Perplexity page, Google AI page.
+
+FOOTER:
+1. Footer social icons: add "transition-all duration-300 hover:scale-110 hover:opacity-100 opacity-70"
+2. Footer section headings (Products, Best AI For, Company, Support): add "text-amber-400 font-semibold"
+3. Footer links: add "transition-colors duration-200 hover:text-white" (they should be gray by default, white on hover)
+4. "Privacy Policy" link: make sure it exists in the Support column. If missing, add it linking to /privacy-policy.
+
+PERPLEXITY BRAND PAGE (/perplexity-pro-bangladesh):
+5. If the page does NOT have a "Why Perplexity" highlight section, add one after the hero:
+   3 cards in a row:
+   Card 1: title "Citations", desc "Every answer comes with source links you can verify."
+   Card 2: title "Deep Research", desc "Multi-page reports with data, charts, and cited sources."
+   Card 3: title "Real-Time", desc "Always up to date. Searches the live web."
+   Each card: bg-[#151b3d] border-t-4 border-teal-500 rounded-xl p-6 transition-all hover:scale-[1.02]
+
+6. If the page does NOT have a FOMO/comparison section, add after plans:
+   <div className="bg-teal-500/5 border-l-4 border-teal-500 rounded-lg p-6 my-8">
+     <p className="text-white font-bold">Old way: Google → 10 blue links → 30 minutes → maybe find answer</p>
+     <p className="text-teal-400 font-bold mt-2">New way: Perplexity → direct answer with sources → 30 seconds</p>
+     <p className="text-gray-400 text-sm mt-3">Perplexity saves students 2-3 hours per research paper. At ৳350/mo, that's less than ৳12 per hour saved.</p>
+   </div>
+
+GOOGLE AI PRO PAGE (/gemini-advanced-bangladesh):
+7. If the page does NOT have a prominent "83% OFF" price visual, add one after the hero:
+   <div className="text-center py-8 bg-[#151b3d] rounded-2xl my-8">
+     <p className="text-gray-400 text-sm mb-2">Official Price</p>
+     <span className="text-red-400 line-through text-2xl">৳2,990/mo</span>
+     <span className="text-amber-400 text-5xl font-bold mx-4">৳500</span>
+     <span className="bg-emerald-500 text-white px-4 py-2 rounded-full text-lg font-bold animate-pulse">83% OFF</span>
+     <p className="text-gray-400 text-sm mt-4">On YOUR personal Gmail account. bKash/Nagad payment.</p>
+   </div>
+
+8. If no Google ecosystem visual exists, add after the price visual:
+   <div className="flex items-center justify-center gap-3 flex-wrap my-8 text-blue-400">
+     <span className="bg-blue-500/10 px-3 py-2 rounded-lg text-sm">📧 Gmail AI</span>
+     <span className="text-gray-600">→</span>
+     <span className="bg-blue-500/10 px-3 py-2 rounded-lg text-sm">📄 Docs AI</span>
+     <span className="text-gray-600">→</span>
+     <span className="bg-blue-500/10 px-3 py-2 rounded-lg text-sm">📊 Sheets AI</span>
+     <span className="text-gray-600">→</span>
+     <span className="bg-blue-500/10 px-3 py-2 rounded-lg text-sm">📽 Slides AI</span>
+     <span className="text-gray-600">→</span>
+     <span className="bg-blue-500/10 px-3 py-2 rounded-lg text-sm">💾 2TB Drive</span>
+   </div>
+   <p className="text-center text-gray-400 text-sm">AI everywhere in Google — all for ৳500/mo</p>
+
+Do NOT change any existing text or prices. Only add styling and missing sections.

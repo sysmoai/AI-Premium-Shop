@@ -186,7 +186,7 @@ const COMPARISONS: Record<string, CompConfig> = {
 function Cell({ value }: { value: string | boolean }) {
   if (typeof value === "boolean") {
     return value
-      ? <Check className="w-5 h-5 mx-auto" style={{ color: "#25d366" }} />
+      ? <span className="inline-flex items-center justify-center text-emerald-400 font-semibold"><Check className="w-5 h-5" /></span>
       : <X className="w-5 h-5 mx-auto" style={{ color: "#ef4444" }} />;
   }
   return <span className="text-sm" style={{ color: "#c9ceda" }}>{value}</span>;
@@ -229,6 +229,21 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
           <p className="text-sm leading-relaxed" style={{ color: "#e8d5a3" }}>{comp.aioSnippet}</p>
         </motion.div>
 
+        {/* VS Visual */}
+        <motion.div custom={0.8} variants={fadeUp} initial="hidden" animate="visible">
+          <div className="flex items-center justify-center gap-4 my-8">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold"
+              style={{ backgroundColor: comp.productA.color + "33", color: comp.productA.color }}>
+              {comp.productA.name.charAt(0)}
+            </div>
+            <span className="text-gray-500 text-2xl font-bold">VS</span>
+            <div className="w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold"
+              style={{ backgroundColor: comp.productB.color + "33", color: comp.productB.color }}>
+              {comp.productB.name.charAt(0)}
+            </div>
+          </div>
+        </motion.div>
+
         {/* Product Labels */}
         <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible"
           className="grid grid-cols-2 gap-4 mb-6">
@@ -246,7 +261,7 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
         <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible"
           className="rounded-2xl border border-white/10 overflow-hidden mb-10"
           style={{ backgroundColor: "#151b3d" }}>
-          <div className="grid grid-cols-[1fr_1fr_1fr] text-xs font-semibold uppercase tracking-wider border-b border-white/10"
+          <div className="grid grid-cols-[1fr_1fr_1fr] text-xs font-semibold uppercase tracking-wider border-b border-white/10 bg-white/[0.03]"
             style={{ color: "#c9ceda" }}>
             <div className="p-4">Feature</div>
             <div className="p-4 border-l border-white/10 text-center" style={{ color: comp.productA.color }}>{comp.productA.name.split(" ")[0]}</div>
@@ -270,13 +285,13 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
           <h2 className="text-2xl font-bold text-white mb-4">Our Verdict</h2>
           <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>{comp.verdict}</p>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="p-5 rounded-2xl border"
-              style={{ backgroundColor: comp.productA.color + "12", borderColor: comp.productA.color + "35" }}>
+            <div className="rounded-lg p-6 border-l-4"
+              style={{ backgroundColor: comp.productA.color + "0d", borderLeftColor: comp.productA.color }}>
               <div className="font-bold mb-2" style={{ color: comp.productA.color }}>Choose {comp.productA.name.split(" (")[0]}</div>
               <p className="text-sm" style={{ color: "#c9ceda" }}>{comp.verdictA}</p>
             </div>
-            <div className="p-5 rounded-2xl border"
-              style={{ backgroundColor: comp.productB.color + "12", borderColor: comp.productB.color + "35" }}>
+            <div className="rounded-lg p-6 border-l-4"
+              style={{ backgroundColor: comp.productB.color + "0d", borderLeftColor: comp.productB.color }}>
               <div className="font-bold mb-2" style={{ color: comp.productB.color }}>Choose {comp.productB.name.split(" (")[0]}</div>
               <p className="text-sm" style={{ color: "#c9ceda" }}>{comp.verdictB}</p>
             </div>
@@ -287,7 +302,7 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
         <motion.div custom={3.5} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
           <h2 className="text-2xl font-bold text-white mb-4">Who Should Choose What?</h2>
           <div className="rounded-2xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
-            <div className="grid grid-cols-[1fr_1fr_1fr] text-xs font-semibold uppercase tracking-wider border-b border-white/10"
+            <div className="grid grid-cols-[1fr_1fr_1fr] text-xs font-semibold uppercase tracking-wider border-b border-white/10 bg-white/[0.03]"
               style={{ color: "#c9ceda" }}>
               <div className="p-4">If you are…</div>
               <div className="p-4 border-l border-white/10">Our pick</div>
@@ -400,8 +415,7 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
               {comp.productB.orderText}
             </a>
             <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want to order BOTH " + comp.productA.name.split(" ")[0] + " and " + comp.productB.name.split(" ")[0])}`} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: "#25d366", color: "#fff" }}>
+              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-3 rounded-xl font-bold hover:opacity-90 transition-opacity">
               Buy Both
             </a>
           </div>

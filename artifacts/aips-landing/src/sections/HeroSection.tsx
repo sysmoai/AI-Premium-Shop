@@ -2,6 +2,7 @@ import { useEffect, useState, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, ChevronRight, Star, Users, Calendar, Shield } from "lucide-react";
 import { PaymentBadges } from "@/components/PaymentBadges";
+import type React from "react";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
@@ -26,49 +27,19 @@ const HERO_CARDS = [
   { name: "ChatGPT Plus", price: "৳350", color: "#10a37f", rotate: "5deg", opacity: 1, zIndex: 3 },
 ];
 
-function useCountUp(target: number, duration = 2200) {
-  const [count, setCount] = useState(target);
-  useEffect(() => {
-    setCount(0);
-    let start: number | null = null;
-    const step = (timestamp: number) => {
-      if (!start) start = timestamp;
-      const progress = Math.min((timestamp - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(ease * target));
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    const raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [target, duration]);
-  return count;
-}
-
 function TrustBadge({
   icon: Icon,
   label,
-  staticValue,
-  countTo,
-  suffix,
+  value,
 }: {
   icon: React.ElementType;
   label: string;
-  staticValue?: string;
-  countTo?: number;
-  suffix?: string;
+  value: string;
 }) {
-  const count = useCountUp(countTo ?? 0);
-
   return (
     <div className="card-glass rounded-xl py-4 px-4 text-center">
       <Icon className="w-4 h-4 mx-auto mb-1.5" style={{ color: "#f4b942" }} />
-      <div className="text-base font-semibold text-white">
-        {countTo
-          ? count > 0
-            ? `${count.toLocaleString()}${suffix ?? "+"}`
-            : `${countTo.toLocaleString()}${suffix ?? "+"}`
-          : staticValue}
-      </div>
+      <div className="text-base font-semibold text-white">{value}</div>
       <div className="text-xs mt-0.5" style={{ color: "#c9ceda" }}>{label}</div>
     </div>
   );
@@ -321,10 +292,10 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
         className="relative z-10 mt-16 w-full max-w-3xl mx-auto"
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <TrustBadge icon={Users} label="Customers" countTo={1200} suffix="+" />
-          <TrustBadge icon={Calendar} label="Established" staticValue="Since 2022" />
-          <TrustBadge icon={Shield} label="Warranty" countTo={30} suffix=" Days" />
-          <TrustBadge icon={MessageCircle} label="Response" staticValue="5-Min" />
+          <TrustBadge icon={Users} label="Customers" value="1,200+" />
+          <TrustBadge icon={Calendar} label="Established" value="Since 2022" />
+          <TrustBadge icon={Shield} label="Warranty" value="30 Days" />
+          <TrustBadge icon={MessageCircle} label="Response" value="5-Min" />
         </div>
       </motion.div>
     </section>

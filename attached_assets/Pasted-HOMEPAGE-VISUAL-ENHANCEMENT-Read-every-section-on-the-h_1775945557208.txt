@@ -1,0 +1,161 @@
+HOMEPAGE VISUAL ENHANCEMENT — Read every section on the homepage (Home.tsx or equivalent).
+For each section, apply the improvements below.
+Do NOT change any text content, prices, product names, or links.
+Only IMPROVE visual styling, spacing, hover effects, and polish.
+Use Tailwind CSS only. No external images.
+
+First: Read the entire Home.tsx (or homepage component) to understand what sections exist.
+Then apply improvements section by section.
+
+=== SECTION: HERO ===
+
+Enhance:
+1. If the aurora glow gradient exists, make sure it's smooth (20s animation, 3 radial gradients at low opacity)
+2. H1: ensure it's text-3xl md:text-5xl lg:text-6xl for maximum impact
+3. Subline: text-lg md:text-xl text-gray-400
+4. CTA buttons: the primary "Order on WhatsApp" should be the LARGEST button on the page — py-4 px-8 text-lg font-bold rounded-xl with green glow shadow (shadow-green-500/25)
+5. The secondary button "Which AI is right for me?" should be outlined: border-2 border-gray-600 text-gray-300 hover:border-[#f4b942] hover:text-[#f4b942]
+6. Payment badges below CTA: ensure they're in a flex wrap row with proper spacing (gap-2)
+7. Trust line above hero: if "Trusted by 1,200+" text exists, add a subtle shine animation or gold accent
+
+=== SECTION: TRUST BADGES (1,200+ / Since 2022 / 30 Days / 5-Min) ===
+
+Enhance:
+1. Each badge: bg-gray-900/80 backdrop-blur border border-gray-800 rounded-xl p-4
+2. Number: text-2xl font-bold text-white
+3. Label: text-gray-400 text-xs uppercase tracking-wider
+4. Add subtle Lucide icons to each: Users (1,200+), Calendar (Since 2022), Shield (30 Days), Zap (5-Min)
+5. On hover: border-[#f4b942]/30 transition
+
+=== SECTION: PROBLEM-SOLUTION CARDS (6 segments) ===
+
+Enhance:
+1. Each card should have a colored left border (4px) matching the segment:
+   - Students: border-blue-500
+   - Freelancers: border-green-500
+   - Creators: border-purple-500
+   - Business: border-amber-500
+   - Job Seekers: border-cyan-500
+   - Developers: border-red-500
+2. Card header (problem): bold text-white
+3. Solution text: text-gray-300 with key phrase highlighted in text-[#f4b942]
+4. Price tag: bg-[#f4b942]/10 text-[#f4b942] font-bold px-3 py-1 rounded-full inline-block
+5. CTA link: text-[#f4b942] hover:underline with ArrowRight icon (Lucide, 16px)
+6. Hover: translateY(-4px) transition-all duration-300 shadow-lg
+
+=== SECTION: AI AGENT ECONOMY (4 stats) ===
+
+Enhance:
+1. Container: add subtle grid pattern background (repeating linear gradient at 3% opacity, 40px spacing)
+2. Each stat card: bg-gray-800/50 rounded-xl p-6 text-center
+3. Number: text-4xl md:text-5xl font-black (not just bold)
+4. Number colors should alternate: gold, green, purple, blue
+5. Label below: text-gray-400 text-sm
+6. Source: text-gray-600 text-xs
+7. Hover on each card: scale-[1.05] transition
+
+=== SECTION: SPECIAL OFFERS (Google AI + Notion) ===
+
+Enhance:
+1. Both cards should have animated border glow (2s ease-in-out pulsing border color)
+2. "LIMITED TIME" ribbon: bg-gradient-to-r from-[#f4b942] to-amber-600 text-[#0a0e27] font-bold text-xs uppercase px-3 py-1 absolute top-3 right-3 rounded-full
+3. Original price: text-red-400 line-through text-lg
+4. Discounted price: text-3xl font-black text-white
+5. Discount badge: bg-green-500 text-white font-bold text-sm px-3 py-1 rounded-full
+6. Order button: w-full py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-lg text-center
+
+=== SECTION: BEST SELLERS (6 product cards) ===
+
+Enhance:
+1. Each card: bg-gray-900 rounded-xl overflow-hidden border border-gray-800
+2. Brand color accent: 3px top border in brand color (ChatGPT green, Claude amber, Midjourney dark, etc.)
+3. Product name: text-white font-bold
+4. Price: text-[#f4b942] text-xl font-bold
+5. "Best Seller" or "Popular" badge: absolute top-3 left-3, small pill
+6. Order button: bg-[#f4b942] text-[#0a0e27] font-bold py-2 px-4 rounded-lg w-full hover:bg-amber-400
+7. Hover: border-[#f4b942]/40 shadow-lg translateY(-2px) transition-all duration-200
+
+=== SECTION: BROWSE BY CATEGORY (8 categories) ===
+
+Enhance:
+1. Each category card: bg-gray-900 rounded-xl p-5 border border-gray-800
+2. Icon: 40px Lucide icon in category color at top
+3. Category name: text-white font-bold text-lg
+4. Tool count + starting price: text-gray-400 text-sm
+5. Hover: border color matches category, translateY(-4px), shadow-lg
+6. Grid: grid-cols-2 md:grid-cols-4 gap-4
+
+=== SECTION: COMPARISON TABLE (savings) ===
+
+Enhance:
+1. Table container: bg-gray-900 rounded-xl overflow-hidden
+2. Header row: bg-gray-800 text-white font-semibold
+3. "You Save" column: text-green-400 font-bold text-lg
+4. "Direct Purchase" column: text-red-400 line-through
+5. "With AIPS" column: text-[#f4b942] font-bold text-xl
+6. Alternating row backgrounds: even rows slightly lighter (bg-gray-800/30)
+7. Below table: text about "No international credit card needed" in a callout box with CreditCard icon
+
+=== SECTION: TRUST POINTS (4 pillars) ===
+
+Enhance:
+1. 4 cards in a row (grid-cols-2 md:grid-cols-4)
+2. Each: bg-gray-900 rounded-xl p-6 text-center border border-gray-800
+3. Lucide icon at top (40px): Zap (delivery), CreditCard (payment), Shield (warranty), Headphones (coaching)
+4. Icon color: text-[#f4b942]
+5. Title: text-white font-semibold
+6. Description: text-gray-400 text-sm
+7. Hover: icon scales up, border-[#f4b942]/30
+
+=== SECTION: HOW TO ORDER (4 steps) ===
+
+Enhance:
+1. Step numbers: w-16 h-16 rounded-full bg-gradient-to-br from-[#f4b942] to-amber-600 text-[#0a0e27] font-bold text-xl flex items-center justify-center
+2. Connecting line between steps: border-l-2 border-dashed border-gray-700 (vertical on mobile) or border-t-2 (horizontal on desktop)
+3. Step title: text-white font-semibold text-lg
+4. Step description: text-gray-400 text-sm
+5. Each step has a small Lucide icon: ShoppingCart, CreditCard, Package, MessageCircle
+
+=== SECTION: TESTIMONIALS (3 reviews) ===
+
+Enhance:
+1. Large “ quotation mark: text-6xl text-[#f4b942]/15 absolute top-2 left-4
+2. Quote text: text-gray-300 text-base italic leading-relaxed
+3. Avatar: w-12 h-12 rounded-full bg-gradient-to-br from-[#f4b942] to-purple-500 flex items-center justify-center text-white font-bold
+4. Name: text-white font-semibold
+5. Segment pill: bg-gray-800 text-gray-400 text-xs px-2 py-0.5 rounded-full
+6. Card: bg-gray-900 rounded-xl p-6 border border-gray-800
+7. Hover: border-[#f4b942]/20
+
+=== SECTION: FAQ (7 questions) ===
+
+Enhance:
+1. Accordion container: bg-gray-900 rounded-xl overflow-hidden
+2. Each question: py-4 px-6 border-b border-gray-800 cursor-pointer
+3. Question text: text-white font-medium flex justify-between items-center
+4. Chevron icon: rotate on open (transition-transform duration-200)
+5. Answer: text-gray-400 text-sm leading-relaxed px-6 pb-4
+6. Active/open question: bg-gray-800/50
+
+=== SECTION: FINAL CTA ===
+
+Enhance:
+1. Background: bg-gradient-to-r from-[#f4b942]/10 via-transparent to-[#f4b942]/10 rounded-2xl p-8 md:p-12 border border-[#f4b942]/20
+2. H2: "Start Today — From Just BDT 350" text-2xl md:text-3xl font-bold text-white text-center
+3. Subline: "Join 1,200+ customers who trust AI Premium Shop" text-gray-400 text-center
+4. Big CTA button: bg-green-600 hover:bg-green-500 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg shadow-green-500/25 mx-auto block mt-6
+5. Below button: small text "Pay with bKash · Nagad · Rocket" with colored payment pills
+
+=== GLOBAL HOMEPAGE POLISH ===
+
+1. Section spacing: ensure consistent py-16 md:py-20 between all major sections
+2. Section headers: all H2s should be text-2xl md:text-3xl font-bold text-white with a small gray subline below
+3. Section dividers: if any visible <hr> or dividers exist, make them subtle (border-gray-800/50)
+4. Scroll reveal: if IntersectionObserver animations exist, ensure they're smooth (opacity 0→1, translateY 30→0, 600ms ease-out, trigger once)
+5. Dark theme consistency: no white backgrounds anywhere, everything bg-[#0a0e27] or darker
+
+=== SAFETY ===
+Do NOT change any text content, prices, product names, or links.
+Do NOT remove any sections.
+Only ENHANCE existing styling.
+npm run build must pass with zero errors.

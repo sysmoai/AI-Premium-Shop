@@ -11,6 +11,8 @@ const TESTIMONIALS = [
     gradientFrom: "#3b82f6",
     gradientTo: "#8b5cf6",
     borderColor: "#3b82f6",
+    avatarClass: "bg-gradient-to-br from-blue-500 to-indigo-600",
+    pillClass: "bg-blue-500/20 text-blue-400",
   },
   {
     id: 2,
@@ -21,6 +23,8 @@ const TESTIMONIALS = [
     gradientFrom: "#10a37f",
     gradientTo: "#06b6d4",
     borderColor: "#10a37f",
+    avatarClass: "bg-gradient-to-br from-emerald-500 to-teal-600",
+    pillClass: "bg-emerald-500/20 text-emerald-400",
   },
   {
     id: 3,
@@ -28,9 +32,11 @@ const TESTIMONIALS = [
     name: "Kamal",
     role: "Business Owner",
     initials: "K",
-    gradientFrom: "#f97316",
-    gradientTo: "#ec4899",
-    borderColor: "#f97316",
+    gradientFrom: "#f59e0b",
+    gradientTo: "#ca8a04",
+    borderColor: "#f59e0b",
+    avatarClass: "bg-gradient-to-br from-amber-500 to-yellow-600",
+    pillClass: "bg-amber-500/20 text-amber-400",
   },
 ];
 
@@ -83,7 +89,7 @@ export function TestimonialsSection() {
               viewport={{ once: true }}
               whileHover={{ y: -4, boxShadow: `0 12px 32px ${t.borderColor}25` }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="relative rounded-2xl p-6 border border-white/10 flex flex-col flex-shrink-0 snap-center md:flex-shrink"
+              className="relative rounded-2xl p-6 border border-white/10 flex flex-col flex-shrink-0 snap-center md:flex-shrink transition-all duration-300 hover:shadow-lg"
               style={{
                 backgroundColor: "rgba(10,14,39,0.5)",
                 borderLeft: `3px solid ${t.borderColor}`,
@@ -93,12 +99,9 @@ export function TestimonialsSection() {
             >
               {/* Large quote mark */}
               <div
-                className="absolute top-4 left-5 text-6xl font-serif leading-none select-none pointer-events-none"
-                style={{ color: `${t.gradientFrom}20`, fontFamily: "Georgia, serif", lineHeight: 1 }}
+                className="absolute top-2 left-4 text-amber-400/10 text-6xl font-serif select-none pointer-events-none leading-none"
                 aria-hidden="true"
-              >
-                &ldquo;
-              </div>
+              >"</div>
 
               {/* Stars */}
               <div className="flex gap-1 mb-4 relative z-10">
@@ -115,22 +118,15 @@ export function TestimonialsSection() {
               {/* Author */}
               <div className="flex items-center gap-3 relative z-10">
                 <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
-                  style={{
-                    background: `linear-gradient(135deg, ${t.gradientFrom}, ${t.gradientTo})`,
-                    color: "#fff",
-                    boxShadow: `0 0 14px ${t.gradientFrom}50`,
-                  }}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 text-white ${t.avatarClass}`}
+                  style={{ boxShadow: `0 0 14px ${t.gradientFrom}50` }}
                 >
                   {t.initials}
                 </div>
                 <div>
-                  <div className="font-semibold text-white text-sm">{t.name}</div>
-                  <div
-                    className="text-xs px-2 py-0.5 rounded-full inline-block mt-0.5"
-                    style={{ backgroundColor: t.borderColor + "20", color: t.borderColor }}
-                  >
-                    {t.role}
+                  <div className="font-semibold text-white text-sm flex items-center flex-wrap gap-1">
+                    {t.name}
+                    <span className={`${t.pillClass} px-2 py-0.5 rounded-full text-[10px] font-medium`}>{t.role}</span>
                   </div>
                 </div>
               </div>

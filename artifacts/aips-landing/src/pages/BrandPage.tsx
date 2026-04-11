@@ -659,6 +659,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   emoji: "🎓",
                   title: "Students",
                   accent: "#3b82f6",
+                  iconBg: "bg-blue-500/10",
+                  borderClass: "border-blue-500",
                   pain: "Assignment deadline, English weak, research paper",
                   solution: "ChatGPT Plus ৳350/mo → A+ grades, research done in 30 min",
                   outcome: "CGPA 2.8 → 3.5+ possible",
@@ -671,6 +673,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   emoji: "💻",
                   title: "Freelancers",
                   accent: "#10a37f",
+                  iconBg: "bg-emerald-500/10",
+                  borderClass: "border-emerald-500",
                   pain: "Can't write proposals, delivery slow, clients leaving",
                   solution: "ChatGPT Plus ৳350–950/mo → Proposals in 2 min, delivery 50% faster",
                   outcome: "Freelancers with AI earn 44% more — Upwork 2025",
@@ -683,6 +687,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   emoji: "💼",
                   title: "Business Owners",
                   accent: "#f59e0b",
+                  iconBg: "bg-amber-500/10",
+                  borderClass: "border-amber-500",
                   pain: "Marketing expensive, support staff needed, content slow",
                   solution: "ChatGPT Business ৳699/mo → 1 person does 10 people's work",
                   outcome: "Save ৳15,000–50,000/mo in staff costs",
@@ -695,6 +701,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   emoji: "🔍",
                   title: "Job Seekers",
                   accent: "#a855f7",
+                  iconBg: "bg-indigo-500/10",
+                  borderClass: "border-indigo-500",
                   pain: "CV rejected, interview nervous, no skill roadmap",
                   solution: "ChatGPT Plus ৳350/mo → Professional CV in 5 min, mock interview",
                   outcome: "Get hired 2–3 months faster. Starting salary 10–20% higher.",
@@ -707,6 +715,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   emoji: "🖥️",
                   title: "Developers",
                   accent: "#06b6d4",
+                  iconBg: "bg-purple-500/10",
+                  borderClass: "border-purple-500",
                   pain: "Debugging for hours, client deadlines slipping",
                   solution: "ChatGPT Pro ৳4,500/mo → Unlimited GPT-5 Pro mode, Sora video, agents",
                   outcome: "Code 55% faster. Bug fix in seconds, not hours.",
@@ -720,14 +730,17 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 return (
                   <div
                     key={seg.title}
-                    className="flex-shrink-0 rounded-xl border overflow-hidden"
-                    style={{ width: 200, backgroundColor: "#0e1535", borderColor: "rgba(255,255,255,0.1)" }}
+                    className="flex-shrink-0 rounded-xl border overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+                    style={{ width: 200, backgroundColor: "#0e1535", borderColor: "rgba(255,255,255,0.1)", borderLeftWidth: 4, borderLeftColor: seg.accent }}
                   >
                     <div className="flex items-center justify-center py-3" style={{ backgroundColor: seg.svgBg }}>
                       {seg.svg}
                     </div>
                     <div className="p-4">
-                      <div className="font-bold text-white text-sm mb-2">{seg.emoji} {seg.title}</div>
+                      <div className={`w-10 h-10 rounded-lg ${seg.iconBg} flex items-center justify-center mb-2`}>
+                        <span className="text-xl">{seg.emoji}</span>
+                      </div>
+                      <div className="font-bold text-white text-sm mb-2">{seg.title}</div>
                       <div className="text-xs mb-2 leading-relaxed" style={{ color: "#ef4444" }}>
                         <span className="font-semibold">Pain:</span> {seg.pain}
                       </div>
@@ -842,8 +855,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             <h2 className="text-2xl font-bold text-white mb-2">The Cost of NOT Using AI in 2026</h2>
             <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>Every month without AI, you're falling behind.</p>
             <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <div className="rounded-2xl p-5 border" style={{ backgroundColor: "rgba(239,68,68,0.06)", borderColor: "rgba(239,68,68,0.25)" }}>
-                <div className="text-base font-bold mb-4" style={{ color: "#ef4444" }}>❌ Without AI</div>
+              <div className="bg-red-500/5 border-l-4 border-red-500 rounded-lg p-6">
+                <div className="text-red-400 font-bold text-lg mb-4">❌ Without AI</div>
                 <ul className="space-y-3 text-sm" style={{ color: "#c9ceda" }}>
                   <li><span className="font-semibold text-white">Students:</span> Assignment takes 3 days. CGPA stuck at 2.8. English writing weak.</li>
                   <li><span className="font-semibold text-white">Freelancers:</span> 10 proposals → 1 reply. Delivery takes 3–5 days. Earning $200–500/mo.</li>
@@ -851,8 +864,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   <li><span className="font-semibold text-white">Job Seekers:</span> Generic CV. 50 applications → 2 calls. 6+ months to get hired.</li>
                 </ul>
               </div>
-              <div className="rounded-2xl p-5 border" style={{ backgroundColor: "rgba(16,163,127,0.06)", borderColor: "rgba(16,163,127,0.25)" }}>
-                <div className="text-base font-bold mb-4" style={{ color: "#10a37f" }}>✅ With ChatGPT (৳350/mo)</div>
+              <div className="bg-emerald-500/5 border-l-4 border-emerald-500 rounded-lg p-6">
+                <div className="text-emerald-400 font-bold text-lg mb-4">✅ With ChatGPT (৳350/mo)</div>
                 <ul className="space-y-3 text-sm" style={{ color: "#c9ceda" }}>
                   <li><span className="font-semibold text-white">Students:</span> Assignment in 2 hours. CGPA 3.5+. Professional English writing.</li>
                   <li><span className="font-semibold text-white">Freelancers:</span> 10 proposals → 3–4 replies. Delivery 1–2 days. Earning $500–1,500+/mo.</li>
@@ -879,7 +892,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
 
         {/* 1D: Agentic AI Highlight */}
         {brandSlug === "chatgpt-plans-bangladesh" && (
-          <div className="mb-14 rounded-2xl border overflow-hidden" style={{ backgroundColor: "#0e1535", borderColor: "rgba(16,163,127,0.3)" }}>
+          <div className="mb-14 rounded-2xl border overflow-hidden bg-purple-500/5 border-purple-500/20" style={{ backgroundColor: undefined }}>
             <div className="p-6 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
               <h3 className="text-xl font-bold text-white mb-1">🤖 ChatGPT Pro = Your Own AI Employee</h3>
               <p className="text-sm" style={{ color: "#c9ceda" }}>This is not a chatbot. This is an AI employee that works 24/7.</p>
@@ -907,7 +920,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                       </li>
                     ))}
                   </ul>
-                  <div className="rounded-xl p-4 border text-sm" style={{ backgroundColor: "#f4b94210", borderColor: "#f4b94230", color: "#f4b942" }}>
+                  <div className="bg-amber-500/10 border-l-4 border-amber-500 rounded-r-lg p-4 mt-6 text-sm" style={{ color: "#f4b942" }}>
                     📊 "AI agency founders earn $34,000/mo profit with just 5 clients — Medium, March 2026"
                   </div>
                 </div>

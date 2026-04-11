@@ -1,0 +1,232 @@
+SVG STORYTELLING ADD-ON — RICH VISUAL SCENES
+
+The ChatGPT brand page already has good content sections from the previous prompt.
+Now ADD rich inline SVG illustrations to make each section visually powerful.
+
+RULES:
+- All SVGs are inline React components (no external files)
+- Style: geometric/minimal like Notion, Linear, Stripe illustrations
+- Humans: circle head (20-24px), rounded rectangle body, simple limbs
+- Devices: rounded rectangles with subtle screen glow
+- Use the segment accent color for each illustration
+- Max size: 200x150px on desktop, 120x90px on mobile
+- All SVGs must be responsive (viewBox based, not fixed px)
+- Do NOT use emoji as illustrations. Use actual SVG paths.
+
+=== 1. STUDENT STORY SVG ===
+
+Create a React component <StudentStorySVG /> that shows:
+
+Scene: A student sitting at a desk.
+- Desk: rounded rectangle, Navy-700 (#1e293b)
+- Laptop on desk: smaller rounded rect with blue (#4285f4) screen glow
+- On laptop screen: small chat bubble icon (representing AI conversation)
+- Stack of 3 books next to laptop: blue, indigo, purple rectangles stacked
+- Paper with "A+" floating above the desk at slight angle, green (#10b981) text
+- Clock on wall behind: circle with hands showing "0:15" (15 minutes)
+- Student: circle head (skin tone #d4a574), rectangle body (blue shirt),
+  sitting posture (slight forward lean toward laptop)
+- Small sparkle/star icons (3) around the laptop in gold (#f4b942) at 40% opacity
+- Background: transparent (inherits page bg)
+
+Animation:
+- The "A+" paper gently floats up and down (translateY -3px to 3px, 3s ease infinite)
+- Sparkles pulse in opacity (0.2 to 0.6, staggered 1s each)
+
+Use this in: "Which ChatGPT Plan Fits Your Life?" > Students card
+Position: right side of card on desktop, top of card on mobile
+
+=== 2. FREELANCER STORY SVG ===
+
+Create <FreelancerStorySVG />:
+
+Scene: A freelancer at dual monitors earning money.
+- Desk: wide rounded rectangle
+- Two monitors: left monitor shows "Upwork" text in green, right shows AI chat bubbles
+- Person sitting: circle head, rectangle body (green #10a37f shirt)
+- Money icons: 3 small dollar signs ($) floating upward from the right side,
+  each at different heights, green color, subtle upward animation
+- Clock showing productivity: small clock with arrow going fast
+- Coffee cup on desk (small rounded rect with steam lines)
+- A "proposal" document icon near the left monitor with a green checkmark
+
+Animation:
+- Dollar signs float upward slowly (translateY 0 to -20px, 4s infinite, staggered)
+- Chat bubbles on right monitor pulse gently
+
+Use in: Freelancers card
+
+=== 3. BUSINESS OWNER STORY SVG ===
+
+Create <BusinessStorySVG />:
+
+Scene: A business owner with AI automating tasks.
+- Central figure: person in gold/amber shirt, sitting at desk
+- WhatsApp icon (green circle with phone): showing multiple message bubbles
+  being auto-replied (small robot icon near the messages)
+- Growth chart: simple line chart going up-right, green line on navy grid
+- Three employee silhouettes (gray, faded) with an arrow pointing to
+  one robot icon (gold outline) — representing "AI replaces 3 staff"
+- Calculator/money icon showing savings
+
+Animation:
+- Growth chart line draws itself (stroke-dasharray animation, 2s)
+- Message bubbles appear one by one (opacity 0→1, staggered 0.5s)
+
+Use in: Business Owners card
+
+=== 4. JOB SEEKER STORY SVG ===
+
+Create <JobSeekerStorySVG />:
+
+Scene: A job seeker transforming their career.
+- Left side ("before"): a crumpled CV with red X mark, sad face circle
+- Arrow in the middle: gold, pointing right
+- Right side ("after"): a polished CV with green checkmark, happy face circle,
+  company building icons in background
+- Interview chair and desk in background
+- LinkedIn "in" logo icon (small, subtle)
+
+Animation:
+- Arrow pulses (scale 1→1.1→1, 2s infinite)
+- "After" side has gentle green glow
+
+Use in: Job Seekers card
+
+=== 5. DEVELOPER STORY SVG ===
+
+Create <DeveloperStorySVG />:
+
+Scene: A developer with AI fixing bugs.
+- Code editor: dark rounded rectangle with lines of "code" (green #10b981 colored lines)
+- Bug icon (small beetle shape, red) with an X over it (bug squashed)
+- Rocket icon launching from the code editor upward
+- Person: circle head, purple (#6e40c9) shirt, typing posture
+- Terminal window below editor showing green checkmarks (tests passing)
+- "55%" text floating near the rocket in gold
+
+Animation:
+- Rocket moves upward slightly (translateY 0 to -8px, 3s infinite)
+- Code lines blink/appear one by one (opacity animation)
+- Bug gets X mark with a quick scale animation
+
+Use in: Developers card
+
+=== 6. FOMO SECTION SPLIT ILLUSTRATION ===
+
+Create <FOMOSplitSVG />:
+
+Scene: Left vs Right split.
+
+Left half (red tones):
+- Person at desk, slumped posture, gray/red tones
+- Clock showing 3:00 (late, stressed)
+- Papers scattered (disordered rectangles at angles)
+- Red X marks floating
+- A declining chart line (red, going down)
+
+Right half (green tones):
+- Same person, upright posture, green tones
+- Clock showing 0:15 (fast, efficient)
+- Papers neatly stacked with green checkmarks
+- Rising chart line (green, going up)
+- Gold sparkles around
+
+Divider: vertical dashed line in the middle
+
+Animation:
+- Left side slightly dims (opacity 0.7), right side full bright
+- Chart lines draw themselves (stroke-dasharray, 2s)
+
+Use above the FOMO text section: "The Cost of NOT Using AI in 2026"
+Size: full width of content area, 200px height on desktop, 120px mobile
+
+=== 7. AGENTIC AI ROBOT SVG ===
+
+Create <AgenticRobotSVG />:
+
+Scene: A geometric robot doing multiple tasks.
+- Central robot: rounded square head with two dot eyes and a small smile line,
+  rectangular body, Navy-700 color with purple (#8b5cf6) accent lines
+- 4 arms extending from the body to 4 corners:
+  - Top-left arm holds: a pen (writing)
+  - Top-right arm holds: a code bracket {} (coding)
+  - Bottom-left arm holds: a search icon (researching)
+  - Bottom-right arm holds: an envelope (emailing)
+- Each arm end has a small circle "hand" in the task color
+- Gold (#f4b942) energy lines radiating from the robot
+- Small text labels near each task icon
+
+Animation:
+- Arms gently rotate ±5 degrees (subtle wave motion, 4s infinite, staggered)
+- Energy lines pulse in opacity (0.2→0.5→0.2)
+
+Use in: "ChatGPT Pro = Your Own AI Employee" section
+Size: 200x200 on desktop, centered, 120x120 on mobile
+
+=== 8. HOW IT WORKS FLOW SVG ===
+
+Create <OrderFlowSVG />:
+
+Scene: 4 connected steps in a horizontal flow.
+
+Step 1: Phone icon (WhatsApp green) with chat bubble
+Step 2: bKash logo-style icon (pink #E2136E circle with ৳ symbol)
+Step 3: Package icon (blue) with checkmark
+Step 4: Thumbs up icon (gold) with 5 stars
+
+Connected by: animated dashed lines with small circles traveling along them
+(like data flowing through a pipeline)
+
+Animation:
+- Small dots travel along the dashed lines from left to right
+  (translateX animation, 3s infinite, staggered per connection)
+- Each step icon gently pulses when the dot reaches it
+
+Use in: "How to Order ChatGPT" section, above the 4 steps
+Horizontal on desktop, vertical on mobile
+
+=== 9. APPLY SVG COMPONENTS ===
+
+After creating all SVG components, add them to the ChatGPT brand page:
+
+- <StudentStorySVG /> inside the Students segment card (right side desktop)
+- <FreelancerStorySVG /> inside the Freelancers segment card
+- <BusinessStorySVG /> inside the Business Owners segment card
+- <JobSeekerStorySVG /> inside the Job Seekers segment card  
+- <DeveloperStorySVG /> inside the Developers segment card
+- <FOMOSplitSVG /> above the "Cost of NOT Using AI" section heading
+- <AgenticRobotSVG /> inside the "ChatGPT Pro = Your Own AI Employee" section
+- <OrderFlowSVG /> above the "How to Order" steps
+
+Also create a shared illustration component library file (e.g., /components/illustrations/)
+so these can be reused across other brand pages in future prompts.
+
+=== 10. HOMEPAGE APPLICATION ===
+
+Also apply these illustrations to the HOMEPAGE:
+
+- The 6 segment cards on homepage ("Every Problem Has an AI Solution"):
+  Add the matching SVG to each card (smaller size: 80x60)
+  Student card → <StudentStorySVG />
+  Freelancer card → <FreelancerStorySVG />
+  Business card → <BusinessStorySVG />
+  Job Seeker card → <JobSeekerStorySVG />
+  Developer card → <DeveloperStorySVG />
+  Creator card → create a new <CreatorStorySVG /> with:
+    Camera on tripod + YouTube play button + AI-generated thumbnail + music notes
+    Pink (#ec4899) accent
+
+- Agentic AI section on homepage:
+  Add <AgenticRobotSVG /> centered above the 4 use-case cards
+
+=== VERIFICATION ===
+- [ ] ChatGPT brand page has SVG illustrations in every segment card
+- [ ] FOMO section has split-screen SVG (red vs green)
+- [ ] Agentic section has robot SVG with 4 arms
+- [ ] How to Order has animated flow SVG
+- [ ] Homepage segment cards have matching SVG illustrations
+- [ ] All SVGs are responsive (small on mobile)
+- [ ] All SVGs have subtle animations
+- [ ] No external image files used
+- [ ] Page still loads fast (< 3 seconds)

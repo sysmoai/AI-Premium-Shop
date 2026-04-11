@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ChevronRight, MessageCircle, TrendingUp, Bot } from "lucide-react";
+import { AgenticRobotSVG } from "@/components/illustrations";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 const SETUP_LINK = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20book%20a%201%3A1%20AI%20Setup%20Session";
@@ -80,6 +81,17 @@ export function AIAgentsSection() {
             and builds reports — autonomously.
           </motion.p>
         </div>
+
+        {/* Robot illustration */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0, 0, 0.2, 1] }}
+          className="flex justify-center mb-10"
+        >
+          <AgenticRobotSVG />
+        </motion.div>
 
         {/* Use case cards */}
         <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-4 md:overflow-visible md:pb-0 mb-12">

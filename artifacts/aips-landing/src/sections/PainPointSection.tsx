@@ -9,11 +9,20 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useLocation } from "wouter";
+import {
+  StudentStorySVG,
+  FreelancerStorySVG,
+  BusinessStorySVG,
+  JobSeekerStorySVG,
+  DeveloperStorySVG,
+  CreatorStorySVG,
+} from "@/components/illustrations";
 
 const CARDS = [
   {
     id: "students",
     Icon: GraduationCap,
+    SvgComp: StudentStorySVG,
     headline: "Falling Behind in Your Studies?",
     color: "#3b82f6",
     gradientTo: "#8b5cf6",
@@ -31,6 +40,7 @@ const CARDS = [
   {
     id: "freelancers",
     Icon: Laptop,
+    SvgComp: FreelancerStorySVG,
     headline: "No Clients? Slow Deliveries?",
     color: "#10a37f",
     gradientTo: "#20b2aa",
@@ -48,6 +58,7 @@ const CARDS = [
   {
     id: "creators",
     Icon: Video,
+    SvgComp: CreatorStorySVG,
     headline: "Out of Ideas? Tired of Editing?",
     color: "#ec4899",
     gradientTo: "#f97316",
@@ -65,6 +76,7 @@ const CARDS = [
   {
     id: "business",
     Icon: Briefcase,
+    SvgComp: BusinessStorySVG,
     headline: "Still Doing Everything Manually?",
     color: "#f97316",
     gradientTo: "#f4b942",
@@ -82,6 +94,7 @@ const CARDS = [
   {
     id: "jobseekers",
     Icon: Search,
+    SvgComp: JobSeekerStorySVG,
     headline: "Not Getting Hired?",
     color: "#8b5cf6",
     gradientTo: "#6366f1",
@@ -99,6 +112,7 @@ const CARDS = [
   {
     id: "developers",
     Icon: Code2,
+    SvgComp: DeveloperStorySVG,
     headline: "Coding Until 3 AM?",
     color: "#06b6d4",
     gradientTo: "#8b5cf6",
@@ -187,6 +201,11 @@ export function PainPointSection() {
                 className="h-1 w-full flex-shrink-0"
                 style={{ background: `linear-gradient(90deg, ${card.color}, ${card.gradientTo})` }}
               />
+
+              {/* Illustration strip */}
+              <div className="w-full flex items-center justify-center py-3" style={{ backgroundColor: "#0a0e27" }}>
+                <card.SvgComp />
+              </div>
 
               <div className="p-6 flex flex-col flex-1">
                 <div

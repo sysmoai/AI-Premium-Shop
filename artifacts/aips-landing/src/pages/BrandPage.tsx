@@ -6,6 +6,16 @@ import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { BrandIcon } from "@/components/BrandIcon";
 import productsData from "../../data/products.json";
+import {
+  StudentStorySVG,
+  FreelancerStorySVG,
+  BusinessStorySVG,
+  JobSeekerStorySVG,
+  DeveloperStorySVG,
+  FOMOSplitSVG,
+  AgenticRobotSVG,
+  OrderFlowSVG,
+} from "@/components/illustrations";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 
@@ -648,21 +658,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   outcome: "CGPA 2.8 → 3.5+ possible",
                   cta: "Order ৳350/mo",
                   msg: "Hi, I want ChatGPT Plus Starter Shared (৳350/mo) for studies",
-                  svgBg: "#1e3a5f",
-                  svg: (
-                    <svg viewBox="0 0 120 90" width="120" height="90" style={{ display: "block" }}>
-                      <rect x="30" y="50" width="60" height="35" rx="4" fill="#1e40af" />
-                      <rect x="40" y="30" width="40" height="25" rx="2" fill="#2563eb" />
-                      <rect x="45" y="34" width="30" height="3" rx="1" fill="#93c5fd" />
-                      <rect x="45" y="40" width="20" height="2" rx="1" fill="#93c5fd" />
-                      <circle cx="60" cy="22" r="10" fill="#fde68a" />
-                      <rect x="50" y="60" width="20" height="20" rx="2" fill="#1d4ed8" />
-                      <rect x="80" y="45" width="14" height="18" rx="1" fill="#3b82f6" />
-                      <rect x="82" y="47" width="4" height="2" rx="0.5" fill="#bfdbfe" />
-                      <rect x="82" y="51" width="7" height="1" rx="0.5" fill="#bfdbfe" />
-                      <text x="87" y="39" fontSize="9" fill="#fbbf24" fontWeight="bold">A+</text>
-                    </svg>
-                  ),
+                  svgBg: "#0b1a3a",
+                  svg: <StudentStorySVG />,
                 },
                 {
                   emoji: "💻",
@@ -673,21 +670,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   outcome: "Freelancers with AI earn 44% more — Upwork 2025",
                   cta: "Order ৳950/mo",
                   msg: "Hi, I want ChatGPT Plus Premium Shared (৳950/mo) for freelancing",
-                  svgBg: "#052e16",
-                  svg: (
-                    <svg viewBox="0 0 120 90" width="120" height="90" style={{ display: "block" }}>
-                      <rect x="15" y="30" width="60" height="45" rx="4" fill="#166534" />
-                      <rect x="20" y="35" width="50" height="35" rx="2" fill="#1a1a2e" />
-                      <rect x="22" y="37" width="46" height="3" rx="1" fill="#10a37f" />
-                      <rect x="22" y="42" width="30" height="2" rx="1" fill="#4ade80" />
-                      <rect x="22" y="46" width="20" height="2" rx="1" fill="#4ade80" />
-                      <circle cx="90" cy="25" r="12" fill="#15803d" />
-                      <path d="M86 25 L89 28 L94 21" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" />
-                      <rect x="75" y="55" width="30" height="18" rx="3" fill="#166534" />
-                      <rect x="78" y="58" width="24" height="3" rx="1" fill="#fbbf24" />
-                      <text x="82" y="70" fontSize="7" fill="#4ade80">$$$</text>
-                    </svg>
-                  ),
+                  svgBg: "#021a0e",
+                  svg: <FreelancerStorySVG />,
                 },
                 {
                   emoji: "💼",
@@ -698,19 +682,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   outcome: "Save ৳15,000–50,000/mo in staff costs",
                   cta: "Order ৳699/mo",
                   msg: "Hi, I want ChatGPT Business Starter Shared (৳699/mo)",
-                  svgBg: "#451a03",
-                  svg: (
-                    <svg viewBox="0 0 120 90" width="120" height="90" style={{ display: "block" }}>
-                      <rect x="20" y="40" width="80" height="45" rx="4" fill="#78350f" />
-                      <rect x="30" y="25" width="60" height="20" rx="2" fill="#92400e" />
-                      <circle cx="60" cy="20" r="10" fill="#fde68a" />
-                      <rect x="25" y="45" width="15" height="25" rx="1" fill="#b45309" />
-                      <rect x="45" y="45" width="15" height="25" rx="1" fill="#b45309" />
-                      <rect x="65" y="45" width="15" height="25" rx="1" fill="#b45309" />
-                      <path d="M30 55 L50 45 L70 50 L90 38" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" />
-                      <circle cx="90" cy="38" r="4" fill="#f59e0b" />
-                    </svg>
-                  ),
+                  svgBg: "#160801",
+                  svg: <BusinessStorySVG />,
                 },
                 {
                   emoji: "🔍",
@@ -721,21 +694,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   outcome: "Get hired 2–3 months faster. Starting salary 10–20% higher.",
                   cta: "Order ৳350/mo",
                   msg: "Hi, I want ChatGPT Plus Starter Shared (৳350/mo) for job search",
-                  svgBg: "#2e1065",
-                  svg: (
-                    <svg viewBox="0 0 120 90" width="120" height="90" style={{ display: "block" }}>
-                      <rect x="20" y="20" width="50" height="65" rx="3" fill="#581c87" />
-                      <rect x="25" y="25" width="40" height="4" rx="1" fill="#e9d5ff" />
-                      <rect x="25" y="32" width="25" height="2" rx="1" fill="#c4b5fd" />
-                      <rect x="25" y="37" width="35" height="2" rx="1" fill="#c4b5fd" />
-                      <rect x="25" y="42" width="30" height="2" rx="1" fill="#c4b5fd" />
-                      <rect x="25" y="47" width="35" height="2" rx="1" fill="#c4b5fd" />
-                      <circle cx="85" cy="30" r="14" fill="#7c3aed" />
-                      <rect x="78" y="26" width="14" height="10" rx="1" fill="#a855f7" />
-                      <rect x="80" y="38" width="10" height="8" rx="1" fill="#a855f7" />
-                      <path d="M82 29 L84 31 L89 26" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
-                  ),
+                  svgBg: "#120530",
+                  svg: <JobSeekerStorySVG />,
                 },
                 {
                   emoji: "🖥️",
@@ -746,20 +706,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   outcome: "Code 55% faster. Bug fix in seconds, not hours.",
                   cta: "Order ৳4,500/mo",
                   msg: "Hi, I want ChatGPT Pro Premium Shared (৳4,500/mo)",
-                  svgBg: "#083344",
-                  svg: (
-                    <svg viewBox="0 0 120 90" width="120" height="90" style={{ display: "block" }}>
-                      <rect x="5" y="15" width="70" height="50" rx="4" fill="#0e7490" />
-                      <rect x="8" y="18" width="64" height="42" rx="2" fill="#0a0e27" />
-                      <rect x="10" y="20" width="60" height="3" rx="1" fill="#06b6d4" />
-                      <text x="12" y="32" fontSize="7" fill="#4ade80" fontFamily="monospace">{"const ai = new GPT5();"}</text>
-                      <text x="12" y="41" fontSize="7" fill="#94a3b8" fontFamily="monospace">{"// build faster"}</text>
-                      <text x="12" y="50" fontSize="7" fill="#4ade80" fontFamily="monospace">{"ai.buildFeature();"}</text>
-                      <circle cx="90" cy="35" r="18" fill="#0891b2" />
-                      <text x="82" y="32" fontSize="10" fill="white" fontWeight="bold">55%</text>
-                      <text x="80" y="43" fontSize="6" fill="#e0f2fe">faster</text>
-                    </svg>
-                  ),
+                  svgBg: "#030e1a",
+                  svg: <DeveloperStorySVG />,
                 },
               ].map((seg) => {
                 const waLink = `${WHATSAPP}?text=${encodeURIComponent(seg.msg)}`;
@@ -882,6 +830,9 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
         {/* 1C: FOMO Section */}
         {brandSlug === "chatgpt-plans-bangladesh" && (
           <div className="mb-14">
+            <div className="mb-6 rounded-2xl overflow-hidden">
+              <FOMOSplitSVG />
+            </div>
             <h2 className="text-2xl font-bold text-white mb-2">The Cost of NOT Using AI in 2026</h2>
             <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>Every month without AI, you're falling behind.</p>
             <div className="grid md:grid-cols-2 gap-4 mb-6">
@@ -930,26 +881,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             <div className="p-6">
               <div className="flex flex-col md:flex-row gap-6 items-start">
                 <div className="flex-shrink-0">
-                  <svg viewBox="0 0 120 120" width="120" height="120">
-                    <circle cx="60" cy="60" r="55" fill="#10a37f15" stroke="#10a37f" strokeWidth="1" strokeDasharray="4 3" />
-                    <rect x="45" y="30" width="30" height="35" rx="6" fill="#10a37f" />
-                    <circle cx="60" cy="24" r="8" fill="#10a37f" />
-                    <circle cx="53" cy="42" r="3" fill="white" />
-                    <circle cx="67" cy="42" r="3" fill="white" />
-                    <rect x="54" y="50" width="12" height="3" rx="1.5" fill="white" fillOpacity="0.5" />
-                    <rect x="45" y="65" width="8" height="20" rx="3" fill="#10a37f" />
-                    <rect x="67" y="65" width="8" height="20" rx="3" fill="#10a37f" />
-                    <rect x="50" y="80" width="8" height="18" rx="3" fill="#10a37f" />
-                    <rect x="62" y="80" width="8" height="18" rx="3" fill="#10a37f" />
-                    <line x1="45" y1="48" x2="15" y2="30" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
-                    <line x1="75" y1="48" x2="105" y2="30" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
-                    <line x1="45" y1="55" x2="10" y2="60" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
-                    <line x1="75" y1="55" x2="110" y2="60" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
-                    <text x="2" y="33" fontSize="7" fill="#10a37f">Write</text>
-                    <text x="96" y="33" fontSize="7" fill="#10a37f">Code</text>
-                    <text x="2" y="63" fontSize="7" fill="#10a37f">Research</text>
-                    <text x="98" y="63" fontSize="7" fill="#10a37f">Email</text>
-                  </svg>
+                  <AgenticRobotSVG />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm mb-4" style={{ color: "#c9ceda" }}>
@@ -981,6 +913,9 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
         {/* How to Order */}
         <div className="mb-14 p-6 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
           <h2 className="text-xl font-bold text-white mb-4">How to Order {meta.displayName} in Bangladesh</h2>
+          <div className="mb-5">
+            <OrderFlowSVG />
+          </div>
           <ol className="space-y-3 text-sm" style={{ color: "#c9ceda" }}>
             <li className="flex gap-3">
               <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"

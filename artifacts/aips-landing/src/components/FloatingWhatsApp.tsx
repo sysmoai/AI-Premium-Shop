@@ -46,7 +46,7 @@ export function FloatingWhatsApp() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           className="relative w-14 h-14 rounded-full flex items-center justify-center shadow-2xl"
-          style={{ backgroundColor: "#25d366" }}
+          style={{ backgroundColor: "#25d366", animation: "wa-pulse 2s ease-in-out infinite" }}
         >
           <MessageCircle className="w-7 h-7 text-white fill-white" />
         </motion.div>

@@ -112,7 +112,11 @@ export default function HowToOrderPage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">How to Order — 4 Simple Steps</h1>
           <p className="text-lg" style={{ color: "#c9ceda" }}>
-            Order any AI subscription in Bangladesh. Pay with bKash or Nagad. Most accounts delivered in under 30 minutes.
+            Order any AI subscription in Bangladesh. Pay with{" "}
+            <span className="inline-block bg-[#E2136E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">bKash</span>{" "}
+            or{" "}
+            <span className="inline-block bg-[#F6921E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">Nagad</span>.
+            Most accounts delivered in under 30 minutes.
           </p>
         </motion.div>
 
@@ -149,12 +153,22 @@ export default function HowToOrderPage() {
                     </ul>
                     {step.paymentMethods && (
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {step.paymentMethods.map((m) => (
-                          <span key={m} className="text-xs px-3 py-1 rounded-lg font-medium border"
-                            style={{ backgroundColor: "#f4b94210", borderColor: "#f4b94230", color: "#f4b942" }}>
-                            {m}
-                          </span>
-                        ))}
+                        {step.paymentMethods.map((m) => {
+                          const PM: Record<string, { bg: string; text: string }> = {
+                            bKash: { bg: "#E2136E", text: "#fff" },
+                            Nagad: { bg: "#F6921E", text: "#fff" },
+                            Rocket: { bg: "#8B2F8B", text: "#fff" },
+                            "Bank Transfer": { bg: "#3b82f6", text: "#fff" },
+                            Binance: { bg: "#F0B90B", text: "#111" },
+                          };
+                          const c = PM[m] ?? { bg: "#f4b942", text: "#0a0e27" };
+                          return (
+                            <span key={m} className="inline-block text-xs px-2.5 py-1 rounded-full font-semibold"
+                              style={{ backgroundColor: c.bg, color: c.text }}>
+                              {m}
+                            </span>
+                          );
+                        })}
                       </div>
                     )}
                     {step.cta && (

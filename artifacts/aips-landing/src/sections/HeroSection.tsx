@@ -141,7 +141,10 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             className="text-lg md:text-xl max-w-2xl mb-8 leading-relaxed"
             style={{ color: "#c9ceda" }}
           >
-            56 premium AI tools. Local payment via bKash and Nagad.
+            56 premium AI tools. Local payment via{" "}
+            <span className="inline-block bg-[#E2136E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">bKash</span>{" "}
+            and{" "}
+            <span className="inline-block bg-[#F6921E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">Nagad</span>.
             Starting at just <strong className="text-white">BDT 350/month.</strong>
           </motion.p>
 

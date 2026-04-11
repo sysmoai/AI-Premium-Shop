@@ -1,0 +1,169 @@
+UPGRADE the Header (Navbar) and Footer ONLY. Do NOT change any page content, product data, routes, or other components. Do NOT break any existing functionality.
+
+Use Lucide React icons + Tailwind CSS only. Keep all existing navigation links working.
+
+=== PART 1: HEADER / NAVBAR MEGA MENU ===
+
+Replace the current "Products" dropdown with a MEGA MENU that opens on hover (desktop) and click (mobile).
+
+Desktop mega menu: full-width dropdown (max-w-5xl mx-auto), bg-[#0a0e27] border border-gray-800 rounded-xl shadow-2xl p-6.
+
+Layout: 3-column grid (grid-cols-3 gap-6) + 1 featured section on right.
+
+COLUMN 1 — "AI Categories" (left):
+H4: "Browse by Category" (text-gray-400 text-xs uppercase tracking-wider mb-3)
+8 category links, each with Lucide icon (16px) + name + tool count + starting price:
+- MessageSquare icon | "AI Chat & Assistant" | "21 tools · from ৳350" → /products (or scroll to category section on homepage)
+- Image icon | "AI Image & Design" | "9 tools · from ৳599" → /midjourney-bangladesh
+- Video icon | "AI Video" | "4 tools · from ৳1,499" → /runway-bangladesh
+- Music icon | "AI Voice & Music" | "6 tools · from ৳499" → /elevenlabs-bangladesh
+- Code icon | "AI Code & Dev" | "6 tools · from ৳500" → /github-copilot-bangladesh
+- Layout icon | "AI Workspace" | "5 tools · from ৳399" → /notion-business-bangladesh
+- PenTool icon | "AI Writing" | "1 tool · ৳799" → /writesonic-bangladesh
+- Package icon | "Bundles" | "5 packs · from ৳449" → /bundles
+
+Each link: flex items-center gap-3, icon text-gray-500, name text-white text-sm font-medium, meta text-gray-500 text-xs. Hover: bg-gray-800/50 rounded-lg px-2 py-1.5 transition.
+
+COLUMN 2 — "Popular Brands" (center):
+H4: "Popular Brands" (same style as above)
+Top 8 brands as links:
+- "ChatGPT" | "from ৳350" | badge: "9 plans" → /chatgpt-plans-bangladesh
+- "Claude" | "from ৳1,495" | badge: "5 plans" → /claude-pro-bangladesh
+- "Midjourney" | "from ৳1,199" | badge: "6 plans" → /midjourney-bangladesh
+- "Google AI Pro" | "from ৳500" | badge: "83% OFF" (text-green-400) → /google-ai-pro-bangladesh
+- "GitHub Copilot" | "from ৳1,495" → /github-copilot-bangladesh
+- "Cursor" | "from ৳2,990" → /cursor-bangladesh
+- "Notion Business" | "from ৳800" | badge: "73% OFF" (text-green-400) → /notion-business-bangladesh
+- "Perplexity" | "from ৳350" → /perplexity-pro-bangladesh
+
+Each: text-white text-sm, price text-gray-400 text-xs. Same hover as column 1.
+
+COLUMN 3 — "Best AI For" (right):
+H4: "Find Your Solution" (same style)
+6 segment links:
+- GraduationCap icon | "Students" → /best-ai-for-students
+- Laptop icon | "Freelancers" → /best-ai-for-freelancers
+- Palette icon | "Creators" → /best-ai-for-creators
+- Building icon | "Business" → /best-ai-for-business
+- Code icon | "Developers" → /best-ai-for-developers
+- Briefcase icon | "Job Seekers" → /best-ai-for-job-seekers
+
+Each: same style as column 1.
+
+BELOW the 3 columns, add a FEATURED BAR (full width):
+bg-gradient-to-r from-[#f4b942]/10 to-transparent border-t border-gray-800 pt-4 mt-4
+flex justify-between items-center:
+Left: "56 Premium AI Tools · bKash/Nagad · 5-30 min delivery" (text-gray-400 text-sm)
+Right: "View All Products →" link (text-[#f4b942] text-sm font-medium hover:underline) → /pricing
+
+MOBILE MENU:
+On mobile (below md breakpoint), the mega menu should be a scrollable accordion:
+- "Categories" accordion → expands to show all 8 categories
+- "Popular Brands" accordion → expands to show 8 brands
+- "Best AI For" accordion → expands to show 6 segments
+- Direct links: Bundles, Pricing, Support, How to Order
+Keep the mobile menu clean. Each accordion section: bg-gray-900 rounded-lg my-1.
+
+NAVBAR TOP-LEVEL LINKS (keep these visible on desktop):
+Products ▾ (mega menu) | Bundles (/bundles) | Pricing (/pricing) | Support (/support) | [Order Now] button (green, WhatsApp link)
+
+The "Bundles" link should be VISIBLE as its own top-level nav item (not hidden inside mega menu only).
+
+NAVBAR STYLING:
+Keep the existing navbar background (bg-[#0a0e27] or similar dark navy).
+Add a subtle bottom border: border-b border-gray-800/50.
+Logo/brand name: keep as-is.
+Make sure the navbar is sticky (fixed top, z-50).
+Smooth mega menu transition: opacity + translateY animation (200ms ease-out).
+
+=== PART 2: FOOTER PREMIUM REDESIGN ===
+
+Redesign the footer. Keep ALL existing links. Only improve layout and styling.
+
+Footer background: bg-[#060914] (slightly darker than page bg).
+Top border: 1px gradient border (from-transparent via-[#f4b942]/30 to-transparent).
+
+FOOTER LAYOUT (4 sections):
+
+SECTION 1 — Brand + Social (top-left on desktop):
+- "AI PREMIUM SHOP" text-xl font-bold text-white
+- Below: "Bangladesh's #1 AI subscription shop. 56 premium tools. Local payment. Real support." (text-gray-400 text-sm, max-w-xs)
+- Below: Social icons row (flex gap-3):
+  Facebook, Instagram, LinkedIn icons (Lucide or simple SVG) — each w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition
+- Below: WhatsApp contact: "+880 1865-385348" with Phone icon (text-gray-400 text-sm)
+
+SECTION 2 — Products (grid of links):
+H4: "Products" (text-white text-sm font-semibold mb-3)
+Two sub-columns:
+Left:
+- AI Chat & Assistant
+- AI Image & Design
+- AI Video
+- AI Voice & Music
+Right:
+- AI Code & Dev
+- AI Workspace
+- Bundles
+- All Products (/pricing)
+Each: text-gray-400 text-sm hover:text-white transition.
+
+SECTION 3 — Best AI For:
+H4: "Solutions" (text-white text-sm font-semibold mb-3)
+- Students
+- Freelancers
+- Creators
+- Business
+- Developers
+- Job Seekers
+- Designers
+- Marketers
+Each: text-gray-400 text-sm hover:text-white transition.
+
+SECTION 4 — Company + Support:
+H4: "Company" (text-white text-sm font-semibold mb-3)
+- About
+- Contact
+- Blog
+- Pricing
+H4: "Support" (text-white text-sm font-semibold mb-3 mt-4)
+- FAQ
+- How to Order
+- Refund Policy
+- Terms
+- Privacy Policy
+Each: text-gray-400 text-sm hover:text-white transition.
+
+BELOW the 4 sections, add PAYMENT BADGES row:
+flex flex-wrap items-center gap-2 justify-center (on mobile) or justify-start (desktop)
+"We accept:" (text-gray-500 text-xs mr-2)
+Then 5 badges: bKash (#E2136E), Nagad (#F6921E), Rocket (#8B2F8B), Bank (#4285f4), Binance (#F0B90B)
+Each badge: text-xs font-semibold px-3 py-1 rounded-full text-white with brand bg color.
+
+BOTTOM BAR (very bottom):
+border-t border-gray-800 py-4 mt-6
+flex justify-between items-center:
+Left: "© 2026 AI Premium Shop. All rights reserved." (text-gray-500 text-xs)
+Right: "Email: support@aipremiumshop.com" (text-gray-500 text-xs)
+
+NEWSLETTER SIGNUP (if it already exists, keep it. If not, add between payment badges and bottom bar):
+flex items-center gap-2, max-w-md:
+Label: "Get AI tool updates and deals" (text-gray-400 text-sm)
+Input: bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 flex-1
+Button: "Subscribe" bg-[#f4b942] text-[#0a0e27] font-semibold px-4 py-2 rounded-lg hover:bg-amber-400
+
+RESPONSIVE:
+- Desktop: 4-column grid (brand | products | solutions | company+support)
+- Tablet: 2-column grid
+- Mobile: single column, stacked sections
+
+=== SAFETY RULES ===
+
+1. Do NOT change any page components, product data, routes, or layouts outside of Navbar and Footer
+2. Do NOT remove any existing links — only reorganize and add
+3. Do NOT change any product prices, names, or descriptions
+4. Keep all existing WhatsApp links pointing to wa.me/8801865385348
+5. Keep the mobile sticky bottom bar as-is (it's in PageLayout, not Footer)
+6. The mega menu must close when clicking outside or pressing Escape
+7. The mega menu must not block page content when closed
+8. Test: npm run build must pass with zero errors after changes
+9. Verify mobile menu works at 375px width with no horizontal scroll

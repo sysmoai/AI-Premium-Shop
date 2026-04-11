@@ -3,7 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu, X, MessageCircle, Search,
   ChevronDown, ChevronRight,
-  MessageSquare, Image, Code2, Zap,
+  MessageSquare, Image, Code2,
+  Video, Music, Layout, Pen, Package,
+  GraduationCap, Laptop, Palette, Building, Briefcase,
 } from "lucide-react";
 import { useLocation } from "wouter";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
@@ -11,159 +13,42 @@ import productsData from "../../data/products.json";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
-const MEGA_COLUMNS = [
-  {
-    heading: "AI Assistant & Chat",
-    color: "#f4b942",
-    href: "/ai-assistant",
-    Icon: MessageSquare,
-    brands: [
-      { name: "ChatGPT", price: "from BDT 350", href: "/chatgpt-plans-bangladesh" },
-      { name: "Claude", price: "from BDT 1,495", href: "/claude-pro-bangladesh" },
-      { name: "Google AI Pro", price: "BDT 500", href: "/gemini-advanced-bangladesh" },
-      { name: "Grok / SuperGrok", price: "from BDT 1,495", href: "/supergrok-bangladesh" },
-      { name: "Perplexity Pro", price: "from BDT 350", href: "/perplexity-pro-bangladesh" },
-    ],
-  },
-  {
-    heading: "AI Creative Studio",
-    color: "#ec4899",
-    href: "/ai-image",
-    Icon: Image,
-    brands: [
-      { name: "Midjourney", price: "from BDT 1,199", href: "/midjourney-bangladesh" },
-      { name: "Ideogram", price: "from BDT 2,990", href: "/ideogram-bangladesh" },
-      { name: "Runway", price: "from BDT 1,794", href: "/runway-bangladesh" },
-      { name: "HeyGen", price: "from BDT 1,499", href: "/heygen-bangladesh" },
-      { name: "ElevenLabs", price: "from BDT 748", href: "/elevenlabs-bangladesh" },
-      { name: "Suno AI", price: "from BDT 1,495", href: "/suno-ai-bangladesh" },
-    ],
-  },
-  {
-    heading: "AI Professional",
-    color: "#06b6d4",
-    href: "/ai-code",
-    Icon: Code2,
-    brands: [
-      { name: "GitHub Copilot", price: "BDT 1,495", href: "/github-copilot-bangladesh" },
-      { name: "Cursor Pro", price: "from BDT 2,990", href: "/cursor-bangladesh" },
-      { name: "Notion Business", price: "BDT 800", href: "/notion-business-bangladesh" },
-      { name: "Replit Core", price: "BDT 500", href: "/replit-bangladesh" },
-      { name: "v0.dev Pro", price: "BDT 999", href: "/v0-dev-bangladesh" },
-      { name: "Manus AI", price: "BDT 2,500", href: "/manus-ai-bangladesh" },
-    ],
-  },
-  {
-    heading: "Quick Links",
-    color: "#f4b942",
-    href: "/products",
-    Icon: Zap,
-    brands: [
-      { name: "All 56 Products", price: "", href: "/products" },
-      { name: "Bundles from BDT 449", price: "", href: "/bundles" },
-      { name: "Pricing", price: "", href: "/pricing" },
-      { name: "Best AI for Students", price: "", href: "/best-ai-for-students" },
-      { name: "Best AI for Freelancers", price: "", href: "/best-ai-for-freelancers" },
-      { name: "Best AI for Business", price: "", href: "/best-ai-for-business" },
-    ],
-  },
+const CATEGORIES = [
+  { icon: MessageSquare, label: "AI Chat & Assistant", meta: "21 tools · from ৳350",  href: "/products" },
+  { icon: Image,         label: "AI Image & Design",   meta: "9 tools · from ৳599",   href: "/midjourney-bangladesh" },
+  { icon: Video,         label: "AI Video",             meta: "4 tools · from ৳1,499", href: "/runway-bangladesh" },
+  { icon: Music,         label: "AI Voice & Music",     meta: "6 tools · from ৳499",   href: "/elevenlabs-bangladesh" },
+  { icon: Code2,         label: "AI Code & Dev",        meta: "6 tools · from ৳500",   href: "/github-copilot-bangladesh" },
+  { icon: Layout,        label: "AI Workspace",         meta: "5 tools · from ৳399",   href: "/notion-business-bangladesh" },
+  { icon: Pen,           label: "AI Writing",           meta: "1 tool · ৳799",         href: "/writesonic-bangladesh" },
+  { icon: Package,       label: "Bundles",              meta: "5 packs · from ৳449",   href: "/bundles" },
+];
+
+const POPULAR_BRANDS = [
+  { name: "ChatGPT",         price: "from ৳350",   badge: "9 plans",    badgeGreen: false, href: "/chatgpt-plans-bangladesh" },
+  { name: "Claude",          price: "from ৳1,495", badge: "5 plans",    badgeGreen: false, href: "/claude-pro-bangladesh" },
+  { name: "Midjourney",      price: "from ৳1,199", badge: "6 plans",    badgeGreen: false, href: "/midjourney-bangladesh" },
+  { name: "Google AI Pro",   price: "from ৳500",   badge: "83% OFF",    badgeGreen: true,  href: "/gemini-advanced-bangladesh" },
+  { name: "GitHub Copilot",  price: "from ৳1,495", badge: "",           badgeGreen: false, href: "/github-copilot-bangladesh" },
+  { name: "Cursor",          price: "from ৳2,990", badge: "",           badgeGreen: false, href: "/cursor-bangladesh" },
+  { name: "Notion Business", price: "from ৳800",   badge: "73% OFF",    badgeGreen: true,  href: "/notion-business-bangladesh" },
+  { name: "Perplexity",      price: "from ৳350",   badge: "",           badgeGreen: false, href: "/perplexity-pro-bangladesh" },
+];
+
+const SOLUTIONS = [
+  { icon: GraduationCap, label: "Students",    href: "/best-ai-for-students" },
+  { icon: Laptop,        label: "Freelancers", href: "/best-ai-for-freelancers" },
+  { icon: Palette,       label: "Creators",    href: "/best-ai-for-creators" },
+  { icon: Building,      label: "Business",    href: "/best-ai-for-business" },
+  { icon: Code2,         label: "Developers",  href: "/best-ai-for-developers" },
+  { icon: Briefcase,     label: "Job Seekers", href: "/best-ai-for-job-seekers" },
 ];
 
 const MAIN_NAV = [
-  { label: "Bundles", href: "/bundles" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Support", href: "/support" },
+  { label: "Bundles",  href: "/bundles" },
+  { label: "Pricing",  href: "/pricing" },
+  { label: "Support",  href: "/support" },
 ];
-
-function ProductsMegaMenu() {
-  const [open, setOpen] = useState(false);
-  const [, navigate] = useLocation();
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const handleEnter = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setOpen(true);
-  };
-  const handleLeave = () => {
-    timeoutRef.current = setTimeout(() => setOpen(false), 150);
-  };
-
-  return (
-    <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-      <button
-        className="flex items-center gap-1 text-sm font-medium transition-colors"
-        style={{ color: open ? "#f4b942" : "#c9ceda" }}
-        aria-expanded={open}
-        aria-haspopup="true"
-      >
-        Products
-        <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.18 }}>
-          <ChevronDown className="w-3.5 h-3.5" />
-        </motion.div>
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.98 }}
-            transition={{ duration: 0.18 }}
-            className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[780px] rounded-2xl border border-white/10 shadow-2xl z-50 overflow-hidden"
-            style={{ backgroundColor: "#151b3d" }}
-            onMouseEnter={handleEnter}
-            onMouseLeave={handleLeave}
-          >
-            <div className="grid grid-cols-4 gap-0">
-              {MEGA_COLUMNS.map((col, ci) => (
-                <div key={col.heading} className={`p-5 ${ci < 3 ? "border-r border-white/8" : ""}`}>
-                  <a
-                    href={col.href}
-                    onClick={(e) => { e.preventDefault(); navigate(col.href); setOpen(false); }}
-                    className="flex items-center gap-2 mb-4 group"
-                  >
-                    <div className="w-6 h-6 rounded-md flex items-center justify-center"
-                      style={{ backgroundColor: col.color + "20" }}>
-                      <col.Icon className="w-3.5 h-3.5" style={{ color: col.color }} />
-                    </div>
-                    <span className="text-xs font-bold uppercase tracking-wider group-hover:opacity-80 transition-opacity"
-                      style={{ color: col.color }}>
-                      {col.heading}
-                    </span>
-                  </a>
-                  <div className="space-y-0.5">
-                    {col.brands.map((brand) => (
-                      <a
-                        key={brand.name}
-                        href={brand.href}
-                        onClick={(e) => { e.preventDefault(); navigate(brand.href); setOpen(false); }}
-                        className="flex items-center justify-between px-2 py-1.5 rounded-lg hover:bg-white/6 transition-colors group/item"
-                      >
-                        <span className="text-sm font-medium text-white group-hover/item:text-white truncate">{brand.name}</span>
-                        {brand.price && (
-                          <span className="text-xs ml-2 flex-shrink-0" style={{ color: "#f4b942" }}>{brand.price}</span>
-                        )}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="border-t border-white/8 px-5 py-3 flex items-center justify-between"
-              style={{ backgroundColor: "rgba(244,185,66,0.04)" }}>
-              <span className="text-xs" style={{ color: "#c9ceda" }}>56 premium AI tools · Pay with bKash or Nagad · Delivery in 5–30 min</span>
-              <a href="/products" onClick={(e) => { e.preventDefault(); navigate("/products"); setOpen(false); }}
-                className="flex items-center gap-1 text-xs font-semibold hover:opacity-80 transition-opacity"
-                style={{ color: "#f4b942" }}>
-                See all products <ChevronRight className="w-3 h-3" />
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
 
 function SearchOverlay({ onClose }: { onClose: () => void }) {
   const [query, setQuery] = useState("");
@@ -267,8 +152,10 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
   const [scrolled, setScrolled] = useState(alwaysSolid);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [openCategory, setOpenCategory] = useState<string | null>(null);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const [openSection, setOpenSection] = useState<string | null>(null);
   const [, navigate] = useLocation();
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (alwaysSolid) return;
@@ -277,62 +164,92 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, [alwaysSolid]);
 
-  const navLink = (href: string, label: string) => (
-    <a
-      key={label}
-      href={href}
-      onClick={(e) => { e.preventDefault(); navigate(href); setMenuOpen(false); }}
-      className="text-sm font-medium transition-colors"
-      style={{ color: "#c9ceda" }}
-      onMouseEnter={(e) => (e.currentTarget.style.color = "#f4b942")}
-      onMouseLeave={(e) => (e.currentTarget.style.color = "#c9ceda")}
-    >
-      {label}
-    </a>
-  );
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") { setMegaOpen(false); setMenuOpen(false); } };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  const openMega = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setMegaOpen(true);
+  };
+  const closeMega = () => {
+    closeTimer.current = setTimeout(() => setMegaOpen(false), 120);
+  };
+
+  const go = (href: string) => {
+    navigate(href);
+    setMegaOpen(false);
+    setMenuOpen(false);
+  };
+
+  const navLinkCls = "text-sm font-medium transition-colors hover:text-[#f4b942]";
 
   return (
     <>
       <header
         data-testid="navbar"
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "border-b border-white/10 py-3" : "py-4"}`}
-        style={scrolled ? { backgroundColor: "rgba(10,14,39,0.95)", backdropFilter: "blur(14px)" } : {}}
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b border-gray-800/50 ${scrolled ? "py-3" : "py-4"}`}
+        style={scrolled
+          ? { backgroundColor: "rgba(10,14,39,0.97)", backdropFilter: "blur(14px)" }
+          : { backgroundColor: "#0a0e27" }}
+        onMouseLeave={closeMega}
       >
+        {/* ── Main bar ── */}
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between gap-6">
-          <a href="/" onClick={(e) => { e.preventDefault(); navigate("/"); }} aria-label="AI Premium Shop" className="flex-shrink-0">
+          <a href="/" onClick={(e) => { e.preventDefault(); go("/"); }} aria-label="AI Premium Shop" className="flex-shrink-0">
             <PrimaryBrandLogo size="medium" layout="horizontal" />
           </a>
 
+          {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-6 flex-1 justify-center">
-            <ProductsMegaMenu />
-            {MAIN_NAV.map((l) => navLink(l.href, l.label))}
+            {/* Products mega trigger */}
+            <button
+              className={`flex items-center gap-1 text-sm font-medium transition-colors ${megaOpen ? "text-[#f4b942]" : "text-[#c9ceda] hover:text-[#f4b942]"}`}
+              onMouseEnter={openMega}
+              aria-expanded={megaOpen}
+              aria-haspopup="true"
+            >
+              Products
+              <motion.span animate={{ rotate: megaOpen ? 180 : 0 }} transition={{ duration: 0.18 }} className="inline-flex">
+                <ChevronDown className="w-3.5 h-3.5" />
+              </motion.span>
+            </button>
+
+            {MAIN_NAV.map((l) => (
+              <a key={l.label} href={l.href}
+                onClick={(e) => { e.preventDefault(); go(l.href); }}
+                className={navLinkCls}
+                style={{ color: "#c9ceda" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#f4b942"; closeMega(); }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#c9ceda"; }}
+              >
+                {l.label}
+              </a>
+            ))}
           </nav>
 
+          {/* Desktop right actions */}
           <div className="hidden lg:flex items-center gap-3">
-            <button
-              onClick={() => setSearchOpen(true)}
+            <button onClick={() => setSearchOpen(true)}
               className="p-2 rounded-lg hover:bg-white/10 transition-colors"
-              aria-label="Search products"
-              style={{ color: "#c9ceda" }}
-            >
-              <Search className="w-4.5 h-4.5 w-[18px] h-[18px]" />
+              aria-label="Search products" style={{ color: "#c9ceda" }}>
+              <Search className="w-[18px] h-[18px]" />
             </button>
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
               data-testid="navbar-cta"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity flex-shrink-0"
-              style={{ background: "linear-gradient(135deg, #ec4899, #f97316)", color: "#fff" }}
-            >
+              style={{ background: "linear-gradient(135deg,#ec4899,#f97316)", color: "#fff" }}>
               <MessageCircle className="w-4 h-4" />
               Order Now
             </a>
           </div>
 
+          {/* Mobile right actions */}
           <div className="lg:hidden flex items-center gap-1 -mr-1">
-            <button className="p-2 rounded-lg hover:bg-white/10 transition-colors" aria-label="Search"
-              style={{ color: "#c9ceda" }} onClick={() => setSearchOpen(true)}>
+            <button className="p-2 rounded-lg hover:bg-white/10 transition-colors"
+              aria-label="Search" style={{ color: "#c9ceda" }} onClick={() => setSearchOpen(true)}>
               <Search className="w-5 h-5" />
             </button>
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
@@ -346,6 +263,89 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
           </div>
         </div>
 
+        {/* ── Desktop Mega Menu ── */}
+        <AnimatePresence>
+          {megaOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              className="hidden lg:block absolute left-0 right-0 top-full border-b border-gray-800 shadow-2xl"
+              style={{ backgroundColor: "#0a0e27" }}
+              onMouseEnter={openMega}
+            >
+              <div className="max-w-5xl mx-auto px-6 py-6">
+                <div className="grid grid-cols-3 gap-6">
+
+                  {/* Column 1 — Browse by Category */}
+                  <div>
+                    <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-semibold">Browse by Category</h4>
+                    <div className="space-y-0.5">
+                      {CATEGORIES.map((cat) => (
+                        <a key={cat.label} href={cat.href}
+                          onClick={(e) => { e.preventDefault(); go(cat.href); }}
+                          className="flex items-center gap-3 px-2 py-1.5 rounded-lg hover:bg-gray-800/50 transition-colors group">
+                          <cat.icon className="w-4 h-4 text-gray-500 flex-shrink-0 group-hover:text-gray-300 transition-colors" />
+                          <span className="text-white text-sm font-medium flex-1 leading-tight">{cat.label}</span>
+                          <span className="text-gray-500 text-xs flex-shrink-0">{cat.meta}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Column 2 — Popular Brands */}
+                  <div>
+                    <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-semibold">Popular Brands</h4>
+                    <div className="space-y-0.5">
+                      {POPULAR_BRANDS.map((brand) => (
+                        <a key={brand.name} href={brand.href}
+                          onClick={(e) => { e.preventDefault(); go(brand.href); }}
+                          className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-gray-800/50 transition-colors">
+                          <span className="text-white text-sm font-medium flex-1">{brand.name}</span>
+                          <span className="text-gray-400 text-xs flex-shrink-0">{brand.price}</span>
+                          {brand.badge && (
+                            <span className={`text-xs font-semibold flex-shrink-0 ${brand.badgeGreen ? "text-green-400" : "text-[#f4b942]"}`}>
+                              {brand.badge}
+                            </span>
+                          )}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Column 3 — Find Your Solution */}
+                  <div>
+                    <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-semibold">Find Your Solution</h4>
+                    <div className="space-y-0.5">
+                      {SOLUTIONS.map((sol) => (
+                        <a key={sol.label} href={sol.href}
+                          onClick={(e) => { e.preventDefault(); go(sol.href); }}
+                          className="flex items-center gap-3 px-2 py-1.5 rounded-lg hover:bg-gray-800/50 transition-colors group">
+                          <sol.icon className="w-4 h-4 text-gray-500 flex-shrink-0 group-hover:text-gray-300 transition-colors" />
+                          <span className="text-white text-sm font-medium">{sol.label}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Featured bar */}
+                <div className="flex justify-between items-center border-t border-gray-800 pt-4 mt-4"
+                  style={{ background: "linear-gradient(to right, rgba(244,185,66,0.06), transparent)" }}>
+                  <span className="text-gray-400 text-sm">56 Premium AI Tools · bKash/Nagad · 5-30 min delivery</span>
+                  <a href="/pricing" onClick={(e) => { e.preventDefault(); go("/pricing"); }}
+                    className="text-sm font-medium hover:underline flex items-center gap-1"
+                    style={{ color: "#f4b942" }}>
+                    View All Products <ChevronRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ── Mobile Menu ── */}
         <AnimatePresence>
           {menuOpen && (
             <motion.div
@@ -356,38 +356,33 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
               className="lg:hidden overflow-hidden border-t border-white/10"
               style={{ backgroundColor: "rgba(10,14,39,0.98)" }}
             >
-              <div className="px-5 py-5 flex flex-col gap-1">
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold mb-3 hover:opacity-90 transition-opacity"
+              <div className="px-4 py-4 flex flex-col gap-1">
+                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold mb-2 hover:opacity-90 transition-opacity"
                   style={{ backgroundColor: "#25d366", color: "#fff", minHeight: "44px" }}
-                  onClick={() => setMenuOpen(false)}
-                >
+                  onClick={() => setMenuOpen(false)}>
                   <MessageCircle className="w-4 h-4" />
                   Order on WhatsApp
                 </a>
 
-                {MEGA_COLUMNS.map((col) => (
-                  <div key={col.heading}>
+                {/* Categories accordion */}
+                {[
+                  { key: "categories", label: "Categories",    items: CATEGORIES.map((c) => ({ label: c.label, href: c.href, meta: c.meta })) },
+                  { key: "brands",     label: "Popular Brands",items: POPULAR_BRANDS.map((b) => ({ label: b.name, href: b.href, meta: b.price })) },
+                  { key: "solutions",  label: "Best AI For",   items: SOLUTIONS.map((s) => ({ label: s.label, href: s.href, meta: "" })) },
+                ].map((section) => (
+                  <div key={section.key} className="rounded-lg my-0.5" style={{ backgroundColor: "#111827" }}>
                     <button
-                      className="flex items-center justify-between w-full px-2 py-2.5 rounded-lg hover:bg-white/5 transition-colors"
-                      onClick={() => setOpenCategory(openCategory === col.heading ? null : col.heading)}
+                      className="flex items-center justify-between w-full px-4 py-3 text-sm font-semibold text-white"
+                      onClick={() => setOpenSection(openSection === section.key ? null : section.key)}
                     >
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-md flex items-center justify-center"
-                          style={{ backgroundColor: col.color + "20" }}>
-                          <col.Icon className="w-3.5 h-3.5" style={{ color: col.color }} />
-                        </div>
-                        <span className="text-sm font-semibold text-white">{col.heading}</span>
-                      </div>
-                      <motion.div animate={{ rotate: openCategory === col.heading ? 180 : 0 }} transition={{ duration: 0.18 }}>
-                        <ChevronDown className="w-4 h-4" style={{ color: "#c9ceda" }} />
-                      </motion.div>
+                      {section.label}
+                      <motion.span animate={{ rotate: openSection === section.key ? 180 : 0 }} transition={{ duration: 0.18 }} className="inline-flex">
+                        <ChevronDown className="w-4 h-4 text-gray-400" />
+                      </motion.span>
                     </button>
                     <AnimatePresence>
-                      {openCategory === col.heading && (
+                      {openSection === section.key && (
                         <motion.div
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
@@ -395,28 +390,16 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
                           transition={{ duration: 0.18 }}
                           className="overflow-hidden"
                         >
-                          <div className="ml-8 mb-1 space-y-0.5">
-                            {col.brands.map((brand) => (
-                              <a
-                                key={brand.name}
-                                href={brand.href}
-                                onClick={(e) => { e.preventDefault(); navigate(brand.href); setMenuOpen(false); }}
-                                className="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-white/5 transition-colors"
-                              >
-                                <span className="text-sm text-white">{brand.name}</span>
-                                {brand.price && (
-                                  <span className="text-xs ml-2" style={{ color: "#f4b942" }}>{brand.price}</span>
-                                )}
+                          <div className="px-4 pb-3 space-y-0.5">
+                            {section.items.map((item) => (
+                              <a key={item.label} href={item.href}
+                                onClick={(e) => { e.preventDefault(); go(item.href); }}
+                                className="flex items-center justify-between py-2 text-sm hover:text-white transition-colors"
+                                style={{ color: "#c9ceda" }}>
+                                <span>{item.label}</span>
+                                {item.meta && <span className="text-xs" style={{ color: "#f4b942" }}>{item.meta}</span>}
                               </a>
                             ))}
-                            <a
-                              href={col.href}
-                              onClick={(e) => { e.preventDefault(); navigate(col.href); setMenuOpen(false); }}
-                              className="flex items-center gap-1 px-3 py-2 text-xs font-semibold hover:opacity-80 transition-opacity"
-                              style={{ color: col.color }}
-                            >
-                              View all → <ChevronRight className="w-3 h-3" />
-                            </a>
                           </div>
                         </motion.div>
                       )}
@@ -424,16 +407,18 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
                   </div>
                 ))}
 
-                <div className="h-px my-2" style={{ backgroundColor: "rgba(255,255,255,0.08)" }} />
+                <div className="h-px my-1" style={{ backgroundColor: "rgba(255,255,255,0.08)" }} />
 
-                {MAIN_NAV.map((l) => (
-                  <a
-                    key={l.label}
-                    href={l.href}
-                    onClick={(e) => { e.preventDefault(); navigate(l.href); setMenuOpen(false); }}
-                    className="px-2 py-2.5 text-sm font-medium rounded-lg hover:bg-white/5 transition-colors"
-                    style={{ color: "#c9ceda" }}
-                  >
+                {[
+                  { label: "Bundles", href: "/bundles" },
+                  { label: "Pricing", href: "/pricing" },
+                  { label: "Support", href: "/support" },
+                  { label: "How to Order", href: "/how-to-order" },
+                ].map((l) => (
+                  <a key={l.label} href={l.href}
+                    onClick={(e) => { e.preventDefault(); go(l.href); }}
+                    className="px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-white/5 transition-colors"
+                    style={{ color: "#c9ceda" }}>
                     {l.label}
                   </a>
                 ))}

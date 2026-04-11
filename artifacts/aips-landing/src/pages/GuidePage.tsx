@@ -1,13 +1,30 @@
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { ChevronDown, ChevronRight, MessageCircle, CheckCircle, ArrowRight } from "lucide-react";
+import {
+  ChevronDown, ChevronRight, MessageCircle, CheckCircle, ArrowRight,
+  GraduationCap, Laptop, Camera, Briefcase, Code2, Search,
+  Palette, TrendingUp, ShoppingBag, type LucideIcon,
+} from "lucide-react";
 import { Link } from "wouter";
+
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { faqSchema, schemaJson } from "@/utils/schemas";
 
 const WHATSAPP = "https://wa.me/8801865385348";
+
+const GUIDE_ICONS: Record<string, { Icon: LucideIcon; color: string }> = {
+  students:      { Icon: GraduationCap, color: "#4285f4" },
+  freelancers:   { Icon: Laptop,        color: "#10a37f" },
+  creators:      { Icon: Camera,        color: "#ec4899" },
+  business:      { Icon: Briefcase,     color: "#f4b942" },
+  developers:    { Icon: Code2,         color: "#8b5cf6" },
+  "job-seekers": { Icon: Search,        color: "#6366f1" },
+  designers:     { Icon: Palette,       color: "#a855f7" },
+  marketers:     { Icon: TrendingUp,    color: "#4285f4" },
+  ecommerce:     { Icon: ShoppingBag,   color: "#f4b942" },
+};
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -457,20 +474,33 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
 
         {/* Hero */}
         <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border"
-            style={{ backgroundColor: guide.accentColor + "18", borderColor: guide.accentColor + "40", color: guide.accentColor }}>
-            <span>{guide.emoji}</span>
-            <span>Guide for {guide.h1.replace("Best AI Tools for ", "")}</span>
-          </div>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">{guide.h1}</h1>
-          <p className="text-lg md:text-xl" style={{ color: "#c9ceda" }}>{guide.subtitle}</p>
-          {guide.statLine && (
-            <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border"
-              style={{ backgroundColor: "#f4b94215", borderColor: "#f4b94230", color: "#f4b942" }}>
-              <span>📊</span>
-              <span>{guide.statLine}</span>
+          <div className="flex items-start justify-between gap-6">
+            <div className="flex-1 min-w-0">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border"
+                style={{ backgroundColor: guide.accentColor + "18", borderColor: guide.accentColor + "40", color: guide.accentColor }}>
+                <span>{guide.emoji}</span>
+                <span>Guide for {guide.h1.replace("Best AI Tools for ", "")}</span>
+              </div>
+              <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">{guide.h1}</h1>
+              <p className="text-lg md:text-xl" style={{ color: "#c9ceda" }}>{guide.subtitle}</p>
+              {guide.statLine && (
+                <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border"
+                  style={{ backgroundColor: "#f4b94215", borderColor: "#f4b94230", color: "#f4b942" }}>
+                  <span>📊</span>
+                  <span>{guide.statLine}</span>
+                </div>
+              )}
             </div>
-          )}
+            {GUIDE_ICONS[guideKey] && (() => {
+              const { Icon, color } = GUIDE_ICONS[guideKey];
+              return (
+                <div className="hidden md:flex flex-shrink-0 w-24 h-24 rounded-3xl items-center justify-center"
+                  style={{ backgroundColor: color + "15", border: `1px solid ${color}30` }}>
+                  <Icon className="w-12 h-12" style={{ color }} />
+                </div>
+              );
+            })()}
+          </div>
         </motion.div>
 
         {/* AIO Snippet */}

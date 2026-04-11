@@ -1,6 +1,12 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, ChevronRight } from "lucide-react";
+import {
+  MessageCircle, ChevronRight,
+  FileText, Terminal, Brain, Zap,
+  Link2, Layers, Clock,
+  Bot, Search, Mail, HardDrive, BarChart2, Layout, Play, ImageIcon,
+  GraduationCap, Laptop, Briefcase, Monitor,
+} from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
@@ -955,24 +961,15 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
 
             <div className="grid md:grid-cols-3 gap-4">
               {[
-                {
-                  icon: "✍️",
-                  title: "Writing",
-                  desc: "#1 on Chatbot Arena for writing quality. Legal documents, research papers, creative content — Claude writes better than any AI.",
-                },
-                {
-                  icon: "💻",
-                  title: "Code",
-                  desc: "Claude Code: autonomous coding agent. Writes, reviews, tests, and fixes entire codebases. Used by professional engineers worldwide.",
-                },
-                {
-                  icon: "🧠",
-                  title: "Thinking",
-                  desc: "1M token context + extended thinking. Feed it your entire thesis, legal case, or codebase — it understands ALL of it.",
-                },
+                { Icon: FileText, title: "Writing", desc: "#1 on Chatbot Arena for writing quality. Legal documents, research papers, creative content — Claude writes better than any AI." },
+                { Icon: Terminal, title: "Code", desc: "Claude Code: autonomous coding agent. Writes, reviews, tests, and fixes entire codebases. Used by professional engineers worldwide." },
+                { Icon: Brain, title: "Thinking", desc: "1M token context + extended thinking. Feed it your entire thesis, legal case, or codebase — it understands ALL of it." },
               ].map((card) => (
-                <div key={card.title} className="rounded-2xl p-5 border-t-[3px]" style={{ backgroundColor: "#0a0e27", borderTopColor: "#d97706", border: "1px solid rgba(217,119,6,0.2)", borderTopWidth: 3 }}>
-                  <div className="text-2xl mb-3">{card.icon}</div>
+                <div key={card.title} className="rounded-2xl p-5 transition-all duration-300 hover:scale-[1.02]"
+                  style={{ backgroundColor: "#0a0e27", border: "1px solid rgba(217,119,6,0.2)", borderTopWidth: 3, borderTopColor: "#d97706", borderTopStyle: "solid" }}>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: "rgba(217,119,6,0.12)", border: "1px solid rgba(217,119,6,0.25)" }}>
+                    <card.Icon className="w-6 h-6" style={{ color: "#d97706" }} />
+                  </div>
                   <h3 className="font-bold text-white mb-2">{card.title}</h3>
                   <p className="text-sm" style={{ color: "#c9ceda" }}>{card.desc}</p>
                 </div>
@@ -1047,19 +1044,26 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
         {brandSlug === "claude-pro-bangladesh" && (
           <div className="mb-14 rounded-2xl border overflow-hidden" style={{ borderColor: "rgba(217,119,6,0.3)" }}>
             <div className="px-6 py-4" style={{ background: "linear-gradient(135deg, #292108 0%, #1a1508 100%)" }}>
-              <div className="text-sm font-semibold mb-1" style={{ color: "#d97706" }}>⚡ Claude Max — AI That Thinks for Hours</div>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "rgba(217,119,6,0.2)" }}>
+                  <Zap className="w-5 h-5" style={{ color: "#d97706" }} />
+                </div>
+                <div className="text-sm font-semibold" style={{ color: "#d97706" }}>Claude Max — AI That Thinks for Hours</div>
+              </div>
               <h3 className="text-lg font-bold text-white">৳14,950–৳29,900/mo = AI Partner for Complex Professional Work</h3>
               <p className="text-sm mt-1" style={{ color: "#c9ceda" }}>This is not a chatbot. This is an AI partner for complex professional work.</p>
             </div>
             <div className="p-6" style={{ backgroundColor: "#0a0e27" }}>
               <div className="grid sm:grid-cols-3 gap-4 mb-4">
                 {[
-                  { icon: "📂", title: "Entire codebase", desc: "Feed Claude your whole project — it understands architecture, dependencies, and logic end-to-end." },
-                  { icon: "📚", title: "Full legal case", desc: "Upload hundreds of pages of case files. Claude reads, cross-references, and finds the key arguments." },
-                  { icon: "🎓", title: "Complete thesis", desc: "1M token window = your entire dissertation. Claude restructures, cites, and polishes everything." },
+                  { Icon: Layers, title: "Entire codebase", desc: "Feed Claude your whole project — it understands architecture, dependencies, and logic end-to-end." },
+                  { Icon: FileText, title: "Full legal case", desc: "Upload hundreds of pages of case files. Claude reads, cross-references, and finds the key arguments." },
+                  { Icon: GraduationCap, title: "Complete thesis", desc: "1M token window = your entire dissertation. Claude restructures, cites, and polishes everything." },
                 ].map((c) => (
                   <div key={c.title} className="p-4 rounded-xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
-                    <div className="text-xl mb-2">{c.icon}</div>
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ backgroundColor: "rgba(217,119,6,0.12)" }}>
+                      <c.Icon className="w-5 h-5" style={{ color: "#d97706" }} />
+                    </div>
                     <div className="font-semibold text-white text-sm mb-1">{c.title}</div>
                     <p className="text-xs" style={{ color: "#c9ceda" }}>{c.desc}</p>
                   </div>
@@ -1118,12 +1122,15 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
 
             <div className="grid md:grid-cols-3 gap-4">
               {[
-                { icon: "🔗", title: "Citations", desc: "Every answer comes with source links you can verify. No hallucinations. No made-up facts. Real research you can cite." },
-                { icon: "📊", title: "Deep Research", desc: "Ask complex questions, get multi-page reports with data, charts, and cited sources from 20–50 web sources — in minutes." },
-                { icon: "⚡", title: "Real-Time", desc: "Always up to date. Searches the live web. Perfect for market research, competitor analysis, and trending topics." },
+                { Icon: Link2, title: "Citations", desc: "Every answer comes with source links you can verify. No hallucinations. No made-up facts. Real research you can cite." },
+                { Icon: Layers, title: "Deep Research", desc: "Ask complex questions, get multi-page reports with data, charts, and cited sources from 20–50 web sources — in minutes." },
+                { Icon: Clock, title: "Real-Time", desc: "Always up to date. Searches the live web. Perfect for market research, competitor analysis, and trending topics." },
               ].map((card) => (
-                <div key={card.title} className="rounded-2xl p-5 border-t-[3px]" style={{ backgroundColor: "#0a0e27", borderTopColor: "#20b2aa", border: "1px solid rgba(32,178,170,0.2)", borderTopWidth: 3 }}>
-                  <div className="text-2xl mb-3">{card.icon}</div>
+                <div key={card.title} className="rounded-2xl p-5 transition-all duration-300 hover:scale-[1.02]"
+                  style={{ backgroundColor: "#0a0e27", border: "1px solid rgba(32,178,170,0.2)", borderTopWidth: 3, borderTopColor: "#20b2aa", borderTopStyle: "solid" }}>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: "rgba(32,178,170,0.12)", border: "1px solid rgba(32,178,170,0.25)" }}>
+                    <card.Icon className="w-6 h-6" style={{ color: "#20b2aa" }} />
+                  </div>
                   <h3 className="font-bold text-white mb-2">{card.title}</h3>
                   <p className="text-sm" style={{ color: "#c9ceda" }}>{card.desc}</p>
                 </div>
@@ -1233,18 +1240,20 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
               {[
-                { icon: "🤖", label: "Gemini 3.1 Pro", desc: "Google's most capable AI model" },
-                { icon: "🔍", label: "Deep Research", desc: "Multi-source research reports in minutes" },
-                { icon: "📧", label: "AI in Gmail", desc: "Write and reply to emails automatically" },
-                { icon: "📝", label: "AI in Google Docs", desc: "Write, summarize, translate documents" },
-                { icon: "📊", label: "AI in Sheets", desc: "Formulas, analysis, charts automatically" },
-                { icon: "📐", label: "AI in Slides", desc: "Create full presentations from a prompt" },
-                { icon: "💾", label: "2TB Google Drive", desc: "Never worry about storage again" },
-                { icon: "🎨", label: "AI Image Gen", desc: "Generate images with Imagen 3" },
-                { icon: "▶️", label: "YouTube Premium", desc: "Ad-free YouTube included" },
+                { Icon: Bot, label: "Gemini 3.1 Pro", desc: "Google's most capable AI model" },
+                { Icon: Search, label: "Deep Research", desc: "Multi-source research reports in minutes" },
+                { Icon: Mail, label: "AI in Gmail", desc: "Write and reply to emails automatically" },
+                { Icon: FileText, label: "AI in Google Docs", desc: "Write, summarize, translate documents" },
+                { Icon: BarChart2, label: "AI in Sheets", desc: "Formulas, analysis, charts automatically" },
+                { Icon: Layout, label: "AI in Slides", desc: "Create full presentations from a prompt" },
+                { Icon: HardDrive, label: "2TB Google Drive", desc: "Never worry about storage again" },
+                { Icon: ImageIcon, label: "AI Image Gen", desc: "Generate images with Imagen 3" },
+                { Icon: Play, label: "YouTube Premium", desc: "Ad-free YouTube included" },
               ].map((item) => (
-                <div key={item.label} className="flex items-start gap-3 p-3 rounded-xl border border-white/10" style={{ backgroundColor: "#0a0e27" }}>
-                  <span className="text-xl flex-shrink-0">{item.icon}</span>
+                <div key={item.label} className="flex items-start gap-3 p-3 rounded-xl border border-white/10 transition-all duration-200 hover:border-[#4285f4]/30" style={{ backgroundColor: "#0a0e27" }}>
+                  <div className="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center" style={{ backgroundColor: "rgba(66,133,244,0.12)" }}>
+                    <item.Icon className="w-4 h-4" style={{ color: "#4285f4" }} />
+                  </div>
                   <div>
                     <div className="font-semibold text-white text-sm">{item.label}</div>
                     <div className="text-xs mt-0.5" style={{ color: "#9ca3af" }}>{item.desc}</div>

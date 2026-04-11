@@ -1,0 +1,324 @@
+VISUAL PROMPT 2 — GLOBAL VISUAL POLISH + CLAUDE/PERPLEXITY/GOOGLE CONTENT
+
+This prompt fixes ALL visual gaps across the entire website.
+Uses ONLY proven techniques: Tailwind CSS, Lucide React icons, CSS animations.
+Do NOT try to create complex SVG scenes with people. Use Lucide icons instead.
+
+IMPORTANT: The Lucide icon library (lucide-react) should already be installed.
+If not, install it: npm install lucide-react
+Import icons like: import { GraduationCap, Laptop, Camera, Briefcase, Search, Code, Bot } from 'lucide-react'
+
+=== PART 1: HOMEPAGE GLOBAL VISUAL POLISH ===
+
+1A. AURORA GRADIENT HERO:
+Add to the homepage hero section's container element:
+
+className="relative overflow-hidden"
+
+Add a ::before pseudo-element via Tailwind or a wrapper div:
+<div className="absolute inset-0 -z-10">
+  <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full 
+    bg-amber-500/[0.06] blur-[100px]" />
+  <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full 
+    bg-purple-500/[0.05] blur-[120px]" />
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+    w-[400px] h-[400px] rounded-full bg-pink-500/[0.03] blur-[80px]" />
+</div>
+
+This creates the aurora glow effect using Tailwind blur + opacity. Zero animation needed.
+Simple, fast, beautiful.
+
+1B. SEGMENT CARDS (6 cards on homepage — "Every Problem Has an AI Solution"):
+Replace emoji headings with Lucide icons + add gradient top strip + hover effect:
+
+For each card, wrap in:
+<div className="relative group bg-[#151b3d] rounded-xl overflow-hidden
+  transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[accent]/20">
+  
+  {/* Gradient top strip */}
+  <div className="h-1 w-full bg-gradient-to-r from-[color1] to-[color2]" />
+  
+  {/* Icon */}
+  <div className="p-6">
+    <div className="w-12 h-12 rounded-xl bg-[accent]/10 flex items-center justify-center mb-4">
+      <LucideIcon className="w-6 h-6 text-[accent]" />
+    </div>
+    {/* existing card content */}
+  </div>
+</div>
+
+Icon + color mapping:
+- Students: <GraduationCap /> gradient from-blue-500 to-purple-500
+- Freelancers: <Laptop /> gradient from-emerald-500 to-teal-500
+- Creators: <Camera /> gradient from-pink-500 to-orange-500
+- Business: <Briefcase /> gradient from-amber-500 to-orange-500
+- Job Seekers: <Search /> gradient from-indigo-500 to-purple-500
+- Developers: <Code /> gradient from-purple-500 to-pink-500
+
+1C. CATEGORY CARDS (8 cards — "Browse by Category"):
+Add left accent border + hover lift + Lucide icon:
+
+<div className="border-l-3 border-[accent] bg-[#151b3d] rounded-xl p-6
+  transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[accent]/10">
+  <LucideIcon className="w-8 h-8 text-[accent] mb-3" />
+  {/* existing content */}
+  <span className="text-amber-400 font-bold">from ৳{price}</span>
+</div>
+
+Icon mapping:
+- AI Assistant: <Bot /> color #10a37f
+- AI Image: <Palette /> color #8b5cf6
+- AI Video: <Video /> color #ec4899
+- AI Voice: <Mic /> color #f97316
+- AI Code: <Terminal /> color #6e40c9
+- AI Workspace: <LayoutGrid /> color #4285f4
+- AI Writing: <PenTool /> color #6366f1
+- Bundles: <Gift /> color #f4b942
+
+1D. SPECIAL OFFER CARDS:
+Add animated glow border + "LIMITED TIME" badge:
+
+Wrapper: 
+className="relative bg-[#151b3d] rounded-xl overflow-hidden
+  shadow-lg shadow-blue-500/20 animate-[glow_3s_ease-in-out_infinite_alternate]"
+
+CSS for glow:
+@keyframes glow {
+  from { box-shadow: 0 0 20px rgba(66,133,244,0.15); }
+  to { box-shadow: 0 0 30px rgba(66,133,244,0.25); }
+}
+
+"LIMITED TIME" badge:
+<span className="absolute top-3 left-0 bg-amber-400 text-gray-900 text-[10px] 
+  font-bold px-3 py-0.5 rounded-r-full">LIMITED TIME</span>
+
+Discount badge pulse:
+className="animate-[pulse-badge_2s_ease-in-out_infinite]"
+@keyframes pulse-badge { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+1E. HOW TO ORDER — STEP CIRCLES:
+Replace plain "01" "02" "03" "04" with gradient circles + Lucide icons:
+
+<div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 
+  flex items-center justify-center shadow-lg shadow-green-500/30">
+  <ShoppingCart className="w-7 h-7 text-white" />
+</div>
+
+Step 1: <ShoppingCart /> from-green-500 to-emerald-600
+Step 2: <CreditCard /> from-pink-500 to-rose-600
+Step 3: <Package /> from-blue-500 to-indigo-600
+Step 4: <MessageCircle /> from-amber-500 to-yellow-600
+
+Connect steps with dashed line:
+Desktop: <div className="hidden md:block flex-1 border-t-2 border-dashed border-white/10 mx-4" />
+Mobile: <div className="md:hidden w-0.5 h-8 border-l-2 border-dashed border-white/10 mx-auto" />
+
+1F. COMPARISON TABLE VISUAL:
+"You Save" column: <span className="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full text-sm font-bold">88%</span>
+"Direct Purchase" column: <span className="text-red-400 line-through">BDT 2,990/mo</span>
+"With AIPS" column: <span className="text-amber-400 text-xl font-bold">BDT 350/mo</span>
+
+1G. TESTIMONIALS:
+Gradient avatar circles:
+<div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 
+  flex items-center justify-center text-white font-bold text-lg">R</div>
+
+Segment label pills:
+<span className="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full text-xs">Student</span>
+
+Quote decoration (CSS pseudo-element or separate div):
+<div className="absolute top-2 left-4 text-amber-400/15 text-7xl font-serif select-none">"</div>
+
+1H. AGENTIC AI SECTION:
+Grid pattern background:
+<div className="relative" style=
+  backgroundImage: 'linear-gradient(rgba(139,92,246,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.03) 1px, transparent 1px)',
+  backgroundSize: '40px 40px'
+>
+
+Robot icon: <Bot className="w-12 h-12 text-purple-400 mx-auto mb-6" />
+
+"44%" stat: <span className="text-4xl font-bold text-amber-400">44%</span>
+
+1I. SCROLL-REVEAL:
+Create a useScrollReveal hook or use a simple IntersectionObserver wrapper:
+
+const ScrollReveal = ({ children, className }) => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+  
+  return (
+    <div ref={ref} className={`transition-all duration-700 ease-out
+      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+      ${className || ''}`}>
+      {children}
+    </div>
+  );
+};
+
+Wrap EVERY major homepage section in <ScrollReveal>:
+- Segment cards, category cards, special offers, best sellers,
+  how-it-works, comparison table, testimonials, FAQ, agentic AI
+
+1J. WHATSAPP BUTTON PULSE:
+Add to the floating WhatsApp button:
+className="animate-[wa-pulse_2s_ease-in-out_infinite]"
+
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+1K. PAYMENT BADGES:
+Replace text "bKash", "Nagad" etc with colored pill badges:
+
+const paymentStyles = {
+  bKash: 'bg-[#E2136E] text-white',
+  Nagad: 'bg-[#F6921E] text-white',
+  Rocket: 'bg-[#8B2F8B] text-white',
+  'Bank Transfer': 'bg-blue-500 text-white',
+  Binance: 'bg-[#F0B90B] text-gray-900'
+};
+
+<span className={`${paymentStyles[method]} px-3 py-1 rounded-full text-xs font-semibold`}>
+  {method}
+</span>
+
+Use in: hero, footer, /how-to-order, /contact
+
+1L. FAVICON:
+Create /public/favicon.svg:
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#0a0e27"/>
+  <text x="16" y="22" text-anchor="middle" fill="#f4b942" font-size="16" font-weight="bold" font-family="Inter,system-ui,sans-serif">AI</text>
+</svg>
+
+In layout.tsx head: <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+1M. OG IMAGE:
+Create /public/images/og/default-og.svg (or use @vercel/og API route):
+Simple SVG: Navy bg + "AI Premium Shop" white text + "56 Premium AI Tools | Bangladesh" gray + "From BDT 350" gold
+
+If API route is complex, just create a static SVG file and reference it.
+
+1N. PRODUCT CARD HOVER (all product cards sitewide):
+Add to every product card wrapper:
+className="transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[brandColor]/10"
+
+Also add 3px left border in brand color:
+className="border-l-3" style= borderColor: brandColor 
+
+=== PART 2: CHATGPT PAGE SVG FIX ===
+
+The ChatGPT brand page segment cards (Students, Freelancers, etc.) currently show
+emoji icons. Replace emoji with Lucide icons:
+
+🎓 → <GraduationCap className="w-8 h-8 text-blue-400" />
+💻 → <Laptop className="w-8 h-8 text-emerald-400" />
+💼 → <Briefcase className="w-8 h-8 text-amber-400" />
+🔍 → <Search className="w-8 h-8 text-indigo-400" />
+🖥️ → <Monitor className="w-8 h-8 text-purple-400" />
+
+Add the same gradient top strip and hover effect as homepage segment cards.
+
+For the FOMO section, add visual styling:
+- Left "Without AI" column: bg-red-500/5 border-l-4 border-red-500 rounded-lg p-6
+- Right "With ChatGPT" column: bg-emerald-500/5 border-l-4 border-emerald-500 rounded-lg p-6
+
+For the Agentic AI section, add: <Bot className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+
+=== PART 3: CLAUDE BRAND PAGE CONTENT ===
+
+The Claude brand page (/claude-pro-bangladesh) ALREADY has the Visual Prompt 2 content
+(writing/code highlights, segment table, FOMO, agentic section) from a previous prompt.
+
+Just add visual polish:
+- 3 highlight cards (Writing, Code, Thinking): Add Lucide icons instead of emoji
+  ✍️ → <FileText className="w-8 h-8 text-amber-400" />
+  💻 → <Terminal className="w-8 h-8 text-amber-400" />
+  🧠 → <Brain className="w-8 h-8 text-amber-400" />
+  Each card: 3px top border in #d97706 gradient, hover:scale(1.02)
+
+- Segment table: Style with alternating row colors
+- FOMO stats (3×, 60%, 44%): Make numbers large + amber-400 color + bold
+- Claude Max section: Add <Zap className="w-12 h-12 text-purple-400" /> icon
+
+=== PART 4: PERPLEXITY BRAND PAGE ===
+
+Add to /perplexity-pro-bangladesh:
+- "WHY PERPLEXITY" section with 3 Lucide icon cards:
+  <Link2 /> Citations + <Layers /> Deep Research + <Clock /> Real-Time
+  Brand accent: #20b2aa
+  Each card: 3px top border teal gradient, hover effect
+
+- "Perplexity vs Google Search" visual comparison:
+  Left column: bg-red-500/5, "Google: 10 blue links → 30 min → maybe find answer"
+  Right column: bg-teal-500/5, "Perplexity: direct answer → 30 seconds → verified"
+
+- Segment table, AIO, FAQ (same pattern as ChatGPT/Claude pages)
+
+=== PART 5: GOOGLE AI PRO BRAND PAGE ===
+
+Add to /gemini-advanced-bangladesh:
+- Large "83% OFF" visual:
+  <div className="text-center py-8">
+    <span className="text-red-400 line-through text-2xl">৳2,990</span>
+    <span className="text-amber-400 text-5xl font-bold mx-4">৳500</span>
+    <span className="bg-emerald-500 text-white px-4 py-2 rounded-full text-lg font-bold 
+      animate-[pulse-badge_2s_ease-in-out_infinite]">83% OFF</span>
+  </div>
+
+- "Google Ecosystem" visual using Lucide icons in a horizontal flow:
+  <Mail /> Gmail → <FileText /> Docs → <Table2 /> Sheets → <Presentation /> Slides → <HardDrive /> Drive
+  Connected by arrows (→), each with small sparkle ✨ underneath
+  All icons in #4285f4 blue
+
+- Segment table, AIO, FAQ
+
+=== PART 6: GUIDE PAGES VISUAL POLISH ===
+
+For all 9 guide pages, add Lucide icons to the hero:
+/best-ai-for-students: <GraduationCap className="w-16 h-16 text-blue-400" />
+/best-ai-for-freelancers: <Laptop className="w-16 h-16 text-emerald-400" />
+/best-ai-for-creators: <Camera className="w-16 h-16 text-pink-400" />
+/best-ai-for-business: <Briefcase className="w-16 h-16 text-amber-400" />
+/best-ai-for-developers: <Code className="w-16 h-16 text-purple-400" />
+/best-ai-for-job-seekers: <Search className="w-16 h-16 text-indigo-400" />
+/best-ai-for-designers: <Palette className="w-16 h-16 text-purple-400" />
+/best-ai-for-marketers: <TrendingUp className="w-16 h-16 text-blue-400" />
+/best-ai-for-ecommerce: <ShoppingBag className="w-16 h-16 text-amber-400" />
+
+Position: right side of hero text on desktop, above heading on mobile.
+
+=== VERIFICATION ===
+After this prompt, check:
+- [ ] Homepage hero has aurora glow (blurred colored circles)
+- [ ] 6 segment cards have Lucide icons + gradient strips + hover effect
+- [ ] 8 category cards have Lucide icons + left accent border + hover lift
+- [ ] Special offers have animated glow + "LIMITED TIME" badge
+- [ ] How-to-order has gradient circles with icons
+- [ ] Comparison table has green badges + red strikethrough + gold prices
+- [ ] Testimonials have gradient avatars + quote decoration
+- [ ] Agentic AI has grid pattern + Bot icon
+- [ ] Sections fade in on scroll
+- [ ] WhatsApp button pulses green
+- [ ] Payment methods are colored pill badges
+- [ ] Favicon visible in browser tab
+- [ ] Product cards have hover effects + brand color left border
+- [ ] ChatGPT page emoji replaced with Lucide icons
+- [ ] Claude page icons styled with amber accent
+- [ ] Perplexity page has research highlights
+- [ ] Google AI page has 83% OFF visual + ecosystem flow
+- [ ] Guide pages have segment Lucide icons in hero
+- [ ] Mobile responsive (test 375px)
+- [ ] Page loads fast (< 3 seconds)

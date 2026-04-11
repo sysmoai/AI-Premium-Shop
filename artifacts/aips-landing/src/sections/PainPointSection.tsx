@@ -26,6 +26,7 @@ const CARDS = [
     headline: "Falling Behind in Your Studies?",
     color: "#3b82f6",
     gradientTo: "#8b5cf6",
+    stripClass: "bg-gradient-to-r from-blue-500 to-purple-500",
     pains: [
       "Assignment deadlines keep slipping",
       "Research papers are overwhelming — especially in English",
@@ -44,6 +45,7 @@ const CARDS = [
     headline: "No Clients? Slow Deliveries?",
     color: "#10a37f",
     gradientTo: "#20b2aa",
+    stripClass: "bg-gradient-to-r from-emerald-500 to-teal-500",
     pains: [
       "Can't write proposals that win on Upwork or Fiverr",
       "Takes 2–3 days to deliver — competitors do it in 2 hours",
@@ -62,6 +64,7 @@ const CARDS = [
     headline: "Out of Ideas? Tired of Editing?",
     color: "#ec4899",
     gradientTo: "#f97316",
+    stripClass: "bg-gradient-to-r from-pink-500 to-orange-500",
     pains: [
       "Script writing eats hours of your day",
       "Hiring designers for every thumbnail gets expensive",
@@ -80,6 +83,7 @@ const CARDS = [
     headline: "Still Doing Everything Manually?",
     color: "#f97316",
     gradientTo: "#f4b942",
+    stripClass: "bg-gradient-to-r from-amber-500 to-orange-500",
     pains: [
       "Slow customer replies are costing you sales",
       "Marketing content costs lakhs at agencies",
@@ -98,6 +102,7 @@ const CARDS = [
     headline: "Not Getting Hired?",
     color: "#8b5cf6",
     gradientTo: "#6366f1",
+    stripClass: "bg-gradient-to-r from-indigo-500 to-purple-500",
     pains: [
       "Your CV isn't getting shortlisted",
       "Interview nerves are holding you back",
@@ -116,6 +121,7 @@ const CARDS = [
     headline: "Coding Until 3 AM?",
     color: "#06b6d4",
     gradientTo: "#8b5cf6",
+    stripClass: "bg-gradient-to-r from-purple-500 to-pink-500",
     pains: [
       "Hours lost debugging",
       "Client project deadlines keep slipping",
@@ -192,15 +198,12 @@ export function PainPointSection() {
               variants={cardVariants}
               whileHover={{ y: -5, boxShadow: `0 0 32px ${card.color}22` }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="group relative rounded-2xl flex flex-col border border-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg overflow-hidden"
+              className="group relative rounded-2xl flex flex-col border border-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl overflow-hidden"
               style={{ backgroundColor: "#151b3d" }}
               data-testid={`pain-card-${card.id}`}
             >
               {/* Gradient top strip */}
-              <div
-                className="h-1 w-full flex-shrink-0"
-                style={{ background: `linear-gradient(90deg, ${card.color}, ${card.gradientTo})` }}
-              />
+              <div className={`h-1 w-full flex-shrink-0 ${card.stripClass}`} />
 
               {/* Illustration strip */}
               <div className="w-full flex items-center justify-center py-3" style={{ backgroundColor: "#0a0e27" }}>

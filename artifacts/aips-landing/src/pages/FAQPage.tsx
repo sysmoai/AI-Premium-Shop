@@ -54,7 +54,7 @@ const FAQS = [
   },
   {
     q: "What AI tool is best for my work?",
-    a: "It depends on your needs:\n\n• Students: ChatGPT Plus Shared (BDT 350) or Google AI Pro (BDT 400)\n• Freelancers: ChatGPT Plus Private (BDT 700) or Claude Pro Shared (BDT 400)\n• Developers: GitHub Copilot Individual (BDT 600) or Cursor Pro (BDT 1,100)\n• Content Creators: Midjourney Standard (BDT 900) + Suno Pro (BDT 500)\n• Business: ChatGPT Team (BDT 1,200) + Notion AI (BDT 550)\n\nNot sure? Message us on WhatsApp and we'll recommend the perfect tool.",
+    a: "It depends on your needs:\n\n• Students: ChatGPT Plus Shared (BDT 350) or Google AI Pro (BDT 400)\n• Freelancers: ChatGPT Plus Private (BDT 700) or Claude Pro Premium Shared (BDT 1,495)\n• Developers: GitHub Copilot Individual (BDT 600) or Cursor Pro (BDT 1,100)\n• Content Creators: Midjourney Standard (BDT 900) + Suno Pro (BDT 500)\n• Business: ChatGPT Team (BDT 1,200) + Notion AI (BDT 550)\n\nNot sure? Message us on WhatsApp and we'll recommend the perfect tool.",
   },
 ];
 

@@ -9,7 +9,7 @@ const WHATSAPP = "https://wa.me/8801865385348";
 
 const STATS = [
   { icon: Users, value: "1,200+", label: "Happy customers" },
-  { icon: Package, value: "57", label: "AI tools available" },
+  { icon: Package, value: "56", label: "AI tools available" },
   { icon: Layers, value: "19", label: "Leading brands" },
   { icon: Calendar, value: "2022", label: "Founded" },
   { icon: Clock, value: "<5 min", label: "WhatsApp response" },
@@ -68,7 +68,7 @@ export default function AboutPage() {
           >
             <h2 className="text-xl font-bold text-white mb-4">What We Offer</h2>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>
-              57 premium AI tools from 19 leading brands including ChatGPT, Claude, Midjourney, GitHub Copilot, Runway, ElevenLabs, and more. Shared and personal accounts available. Prices start at just BDT 350 per month.
+              56 premium AI tools from 19 leading brands including ChatGPT, Claude, Midjourney, GitHub Copilot, Runway, ElevenLabs, and more. Shared and personal accounts available. Prices start at just BDT 350 per month.
             </p>
             <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
               All plans come with 30-day replacement warranty, under-5-minute WhatsApp response, and local payment via bKash, Nagad, Rocket, or bank transfer.

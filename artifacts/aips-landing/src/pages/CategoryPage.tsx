@@ -36,7 +36,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     accent: "#10a37f",
     faqs: [
       { q: "What's the difference between Shared and Personal accounts?", a: "Shared accounts are cost-effective: you access the same plan as other users (no chat history sharing). Personal accounts are yours alone — full privacy, custom settings, and no usage limits from others." },
-      { q: "Which AI assistant is best for students in Bangladesh?", a: "ChatGPT Plus Shared (BDT 350) is the best starter. For more demanding work, Claude Pro Shared (BDT 599) offers the best writing and analysis — ranked #1 on Chatbot Arena." },
+      { q: "Which AI assistant is best for students in Bangladesh?", a: "ChatGPT Plus Shared (BDT 350) is the best starter. For more demanding work, Claude Pro Premium Shared (BDT 1,495) offers the best writing and analysis — ranked #1 on Chatbot Arena." },
       { q: "Can I switch models after ordering?", a: "Yes — you get access to all models within your plan. ChatGPT Plus includes GPT-5.4, image generation, web search, and AI agents. Claude Pro includes all Claude models including Opus 4.6." },
       { q: "How fast is delivery?", a: "Most AI assistant accounts are delivered within 5–30 minutes of payment confirmation, even at midnight." },
     ],

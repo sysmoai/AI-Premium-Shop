@@ -28,7 +28,7 @@ const POSTS: Record<string, {
         <h2>The Top 5 AI Tools for Bangladesh in 2026</h2>
         <h3>1. ChatGPT Plus — from ৳350/month</h3>
         <p>ChatGPT Plus is the most versatile AI assistant available. With GPT-5 multimodal capabilities, it handles writing, coding, research, image generation, and agent-based automation. The shared plan at ৳350/month is the best starting point for anyone new to AI.</p>
-        <h3>2. Claude Pro — from ৳599/month</h3>
+        <h3>2. Claude Pro — from ৳1,495/month</h3>
         <p>Claude Pro is widely regarded as the best AI for writing quality. Its 200K context window, Opus 4.6 model, and Claude Code make it the #1 choice for writers, researchers, and developers who need deep reasoning.</p>
         <h3>3. Google AI Pro — ৳500/month</h3>
         <p>AIPS-exclusive pricing. Full Google AI Pro plan on your own Gmail account. Gemini 3.1 Pro, 2TB storage, AI in Docs, Sheets, Gmail. The best value for professionals who already use Google Workspace.</p>
@@ -37,7 +37,7 @@ const POSTS: Record<string, {
         <h3>5. GitHub Copilot Pro — ৳1,495/month</h3>
         <p>For developers, Copilot Pro is the most practical AI investment. Unlimited code completions inside VS Code, JetBrains, and Neovim. Access to 300 premium requests with Claude and GPT-5 models.</p>
         <h2>How to Get Started</h2>
-        <p>All 57 AI tools are available through AI Premium Shop. Order on WhatsApp: share which tool you want, confirm payment via bKash/Nagad/Rocket, and receive your account within minutes.</p>
+        <p>All 56 AI tools are available through AI Premium Shop. Order on WhatsApp: share which tool you want, confirm payment via bKash/Nagad/Rocket, and receive your account within minutes.</p>
       </div>
     ),
   },
@@ -53,7 +53,6 @@ const POSTS: Record<string, {
         <p>ChatGPT and Claude are the two most popular AI assistants in the world. Both are available in Bangladesh through AI Premium Shop — but they excel at different things. Here's an honest comparison.</p>
         <h2>Price Comparison (BDT)</h2>
         <p>ChatGPT Plus Starter Shared: <strong>৳350/month</strong></p>
-        <p>Claude Pro Shared: <strong>৳599/month</strong></p>
         <p>ChatGPT Plus Premium Shared: <strong>৳950/month</strong></p>
         <p>Claude Pro Premium Shared: <strong>৳1,495/month</strong></p>
         <h2>Writing Quality</h2>

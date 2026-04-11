@@ -164,7 +164,7 @@ const GUIDES: Record<string, GuideConfig> = {
       { rank: 1, name: "Google AI Pro", price: "BDT 500/mo", reason: "Gmail AI, Google Docs AI, Sheets AI — AI built into tools your team already uses daily.", badge: "Best for Teams", color: "#4285f4" },
       { rank: 2, name: "ChatGPT Team", price: "BDT 1,200/mo", reason: "Team AI assistant with admin controls and privacy. Unlimited GPT-5.4 for the whole team.", badge: "For Operations", color: "#10a37f" },
       { rank: 3, name: "Notion AI — Plus Plan", price: "BDT 550/mo", reason: "AI workspace for docs, projects, SOPs, and team collaboration. Replaces multiple tools.", badge: "For Docs", color: "#000000" },
-      { rank: 4, name: "Claude Pro — Shared", price: "BDT 400/mo", reason: "Best AI for drafting contracts, reports, and long-form business documents.", badge: "For Writing", color: "#d97706" },
+      { rank: 4, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "Best AI for drafting contracts, reports, and long-form business documents.", badge: "For Writing", color: "#d97706" },
     ],
     startHere: {
       name: "Google AI Pro",

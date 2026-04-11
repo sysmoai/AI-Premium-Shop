@@ -112,8 +112,8 @@ const BRAND_META: Record<string, {
 
   "claude-pro-bangladesh": {
     displayName: "Claude",
-    tagline: "Claude Pro Bangladesh — from ৳599/month",
-    description: "Claude by Anthropic is the AI that rivals and often surpasses ChatGPT for writing, coding, and nuanced analysis. Claude Opus 4.6 leads in creative writing, legal documents, research, and complex reasoning. Available from Shared (৳599) to Max 20x (৳29,900). Pay via bKash.",
+    tagline: "Claude Pro Bangladesh — from ৳1,495/month",
+    description: "Claude by Anthropic is the AI that rivals and often surpasses ChatGPT for writing, coding, and nuanced analysis. Claude Opus 4.6 leads in creative writing, legal documents, research, and complex reasoning. Available from Premium Shared (৳1,495) to Max 20x (৳29,900). Pay via bKash.",
     accentColor: "#d97706",
     faqs: [
       { q: "Is Claude better than ChatGPT for writing?", a: "Claude (especially Opus) consistently scores higher for nuanced writing, creative content, legal documents, and academic papers. ChatGPT is stronger for coding and tool use. Most professionals use both." },
@@ -632,7 +632,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
               { label: "AI Image & Design", href: "/ai-image" },
               { label: "AI Code & Dev Tools", href: "/ai-code" },
               { label: "AI Voice & Music", href: "/ai-voice-music" },
-              { label: "All 57 Products", href: "/products" },
+              { label: "All 56 Products", href: "/products" },
             ].map((link) => (
               <a key={link.href} href={link.href}
                 onClick={(e) => { e.preventDefault(); navigate(link.href); }}

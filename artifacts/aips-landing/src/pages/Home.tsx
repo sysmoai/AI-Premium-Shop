@@ -115,7 +115,7 @@ const MEGA_COLUMNS = [
     href: "/ai-assistant",
     brands: [
       { name: "ChatGPT Plus", from: "৳350", href: "/chatgpt-plus-bangladesh", badge: "⭐" },
-      { name: "Claude Pro", from: "৳599", href: "/claude-pro-bangladesh" },
+      { name: "Claude Pro", from: "৳1,495", href: "/claude-pro-bangladesh" },
       { name: "Google AI Pro", from: "৳500", href: "/gemini-advanced-bangladesh", badge: "🔥" },
       { name: "Grok / SuperGrok", from: "৳1,495", href: "/supergrok-bangladesh" },
       { name: "Perplexity Pro", from: "৳350", href: "/perplexity-pro-bangladesh" },
@@ -161,7 +161,7 @@ const MEGA_COLUMNS = [
     brands: [
       { name: "🔥 Special Offers", from: "", href: "/#offers" },
       { name: "📦 Bundles from ৳449", from: "", href: "/bundles" },
-      { name: "📋 All 57 Products", from: "", href: "/products" },
+      { name: "📋 All 56 Products", from: "", href: "/products" },
       { name: "📝 Blog", from: "", href: "/blog" },
       { name: "🎓 Best AI for Students", from: "", href: "/best-ai-for-students" },
       { name: "💼 Best AI for Business", from: "", href: "/best-ai-for-business" },
@@ -257,14 +257,14 @@ function ProductsDropdown() {
             <div className="px-5 py-3 border-t border-white/5 flex items-center justify-between"
               style={{ backgroundColor: "rgba(255,255,255,0.03)" }}>
               <span className="text-xs" style={{ color: "#c9ceda" }}>
-                57 premium AI tools · bKash, Nagad, Rocket · 30-day warranty
+                56 premium AI tools · bKash, Nagad, Rocket · 30-day warranty
               </span>
               <button
                 onClick={() => goTo("/products")}
                 className="flex items-center gap-1.5 text-xs font-semibold hover:opacity-80 transition-opacity"
                 style={{ color: "#f4b942" }}
               >
-                View all 57 products
+                View all 56 products
                 <ChevronRight className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -327,7 +327,7 @@ export default function Home() {
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
         title="AI Premium Shop — Premium AI Tools Bangladesh | From BDT 350"
-        description="57 premium AI tools in Bangladesh. ChatGPT from BDT 350. Pay via bKash/Nagad. 5-min WhatsApp delivery. 30-day warranty. Order now."
+        description="56 premium AI tools in Bangladesh. ChatGPT from BDT 350. Pay via bKash/Nagad. 5-min WhatsApp delivery. 30-day warranty. Order now."
         canonical="https://aipremiumshop.com/"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(ORG_SCHEMA) }} />

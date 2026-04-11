@@ -45,7 +45,7 @@ export function CategorySection() {
             className="text-sm font-semibold uppercase tracking-widest mb-3"
             style={{ color: "#f4b942" }}
           >
-            57 Tools
+            56 Tools
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}

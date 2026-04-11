@@ -55,7 +55,7 @@ export default function PricingPage() {
     <PageLayout>
       <SEOHead
         title="AI Subscription Prices Bangladesh 2026 — Compare All Plans"
-        description="Compare all AI subscription prices in Bangladesh. 57 tools from BDT 350. bKash/Nagad payment. AI Premium Shop 2026."
+        description="Compare all AI subscription prices in Bangladesh. 56 tools from BDT 350. bKash/Nagad payment. AI Premium Shop 2026."
         canonical="https://aipremiumshop.com/pricing"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Pricing" }]} />

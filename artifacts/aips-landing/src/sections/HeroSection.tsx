@@ -142,8 +142,11 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             Trusted by 1,200+ customers since 2022
           </motion.div>
 
-          {/* H1 */}
-          <motion.h1
+          {/* SEO H1 — visually small, semantically authoritative */}
+          <h1 className="sr-only">Premium AI Tools Bangladesh — ChatGPT, Claude, Midjourney &amp; More via bKash</h1>
+
+          {/* Visual headline (h2 for semantic hierarchy) */}
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.55 }}
@@ -152,7 +155,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
           >
             What Takes You 3 Hours —<br className="hidden sm:block" />
             <span style={{ color: "#ffffff" }}> AI Does in 15 Minutes.</span>
-          </motion.h1>
+          </motion.h2>
 
           {/* Subheadline */}
           <motion.p

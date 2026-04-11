@@ -37,7 +37,7 @@ import { FinalCTASection } from "@/sections/FinalCTASection";
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
 const PRODUCT_CATEGORIES = [
-  { label: "AI Assistant & Chat", count: 21, Icon: MessageSquare, color: "#10a37f", href: "/ai-assistant" },
+  { label: "AI Assistant & Chat", count: 20, Icon: MessageSquare, color: "#10a37f", href: "/ai-assistant" },
   { label: "AI Image & Design", count: 9, Icon: Image, color: "#ec4899", href: "/ai-image" },
   { label: "AI Video", count: 4, Icon: Video, color: "#8b5cf6", href: "/ai-video" },
   { label: "AI Voice & Music", count: 6, Icon: Music, color: "#f97316", href: "/ai-voice-music" },
@@ -46,10 +46,9 @@ const PRODUCT_CATEGORIES = [
 ];
 
 const SECONDARY_NAV = [
-  { label: "Blog", href: "/blog" },
   { label: "Bundles", href: "/bundles" },
   { label: "Pricing", href: "/pricing" },
-  { label: "About", href: "/about" },
+  { label: "Support", href: "/support" },
 ];
 
 const MOBILE_DRAWER_LINKS = [
@@ -57,10 +56,9 @@ const MOBILE_DRAWER_LINKS = [
   { label: "Solutions", href: "#pain-points" },
   { label: "Best Sellers", href: "#offers" },
   { label: "Why Us", href: "#why-us" },
-  { label: "Blog", href: "/blog" },
   { label: "Bundles", href: "/bundles" },
   { label: "Pricing", href: "/pricing" },
-  { label: "About", href: "/about" },
+  { label: "Support", href: "/support" },
   { label: "FAQ", href: "/faq" },
 ];
 
@@ -159,14 +157,14 @@ const MEGA_COLUMNS = [
     color: "#f4b942",
     href: "/products",
     brands: [
-      { name: "🔥 Special Offers", from: "", href: "/#offers" },
-      { name: "📦 Bundles from ৳449", from: "", href: "/bundles" },
       { name: "📋 All 56 Products", from: "", href: "/products" },
-      { name: "📝 Blog", from: "", href: "/blog" },
-      { name: "🎓 Best AI for Students", from: "", href: "/best-ai-for-students" },
-      { name: "💼 Best AI for Business", from: "", href: "/best-ai-for-business" },
+      { name: "📦 Bundles from ৳449", from: "", href: "/bundles" },
       { name: "💰 Pricing & Compare", from: "", href: "/pricing" },
+      { name: "🎓 Best AI for Students", from: "", href: "/best-ai-for-students" },
+      { name: "💼 Best AI for Freelancers", from: "", href: "/best-ai-for-freelancers" },
+      { name: "🏢 Best AI for Business", from: "", href: "/best-ai-for-business" },
       { name: "❓ FAQ", from: "", href: "/faq" },
+      { name: "💬 Support", from: "", href: "/support" },
     ],
   },
 ];
@@ -448,7 +446,7 @@ export default function Home() {
                 <div className="h-px my-3" style={{ backgroundColor: "rgba(255,255,255,0.08)" }} />
 
                 {/* Secondary links */}
-                {MOBILE_DRAWER_LINKS.filter(l => ["Bundles", "Pricing", "About", "FAQ"].includes(l.label)).map((link) => (
+                {MOBILE_DRAWER_LINKS.filter(l => ["Bundles", "Pricing", "Support", "FAQ"].includes(l.label)).map((link) => (
                   <a
                     key={link.label}
                     href={link.href}

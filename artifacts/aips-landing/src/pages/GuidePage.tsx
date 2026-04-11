@@ -33,6 +33,7 @@ interface GuideConfig {
   title: string;
   h1: string;
   subtitle: string;
+  aioSnippet: string;
   metaDescription: string;
   canonical: string;
   whyHeading: string;
@@ -47,12 +48,40 @@ interface GuideConfig {
   comparison?: { label: string; href: string };
 }
 
+const TOOL_BRAND_SLUGS: Record<string, string> = {
+  "ChatGPT": "/chatgpt-plans-bangladesh",
+  "ChatGPT Plus": "/chatgpt-plans-bangladesh",
+  "ChatGPT Plus — Starter Shared": "/chatgpt-plans-bangladesh",
+  "ChatGPT Plus — Premium Shared": "/chatgpt-plans-bangladesh",
+  "ChatGPT Team": "/chatgpt-business-bangladesh",
+  "Claude": "/claude-pro-bangladesh",
+  "Claude Pro": "/claude-pro-bangladesh",
+  "Claude Pro — Premium Shared": "/claude-pro-bangladesh",
+  "Claude Pro — Personal": "/claude-pro-bangladesh",
+  "Google AI Pro": "/gemini-advanced-bangladesh",
+  "Midjourney": "/midjourney-bangladesh",
+  "Midjourney — Standard Shared": "/midjourney-bangladesh",
+  "GitHub Copilot Pro": "/github-copilot-bangladesh",
+  "Cursor Pro": "/cursor-bangladesh",
+  "ElevenLabs": "/elevenlabs-bangladesh",
+  "ElevenLabs — Starter Plan": "/elevenlabs-bangladesh",
+  "Suno AI — Pro Plan": "/suno-ai-bangladesh",
+  "Runway — Standard Plan": "/runway-bangladesh",
+  "Notion AI — Plus Plan": "/notion-business-bangladesh",
+  "Replit": "/replit-bangladesh",
+  "v0.dev Pro — Shared": "/v0-dev-bangladesh",
+  "Perplexity Pro": "/perplexity-pro-bangladesh",
+  "Perplexity Pro — Shared": "/perplexity-pro-bangladesh",
+  "Grok": "/supergrok-bangladesh",
+};
+
 const GUIDES: Record<string, GuideConfig> = {
   students: {
     slug: "best-ai-for-students",
     title: "Best AI Tools for Students Bangladesh 2026",
-    h1: "Best AI Tools for Students",
+    h1: "Best AI Tools for Students in Bangladesh 2026",
     subtitle: "Write better papers. Study smarter. Ace your exams.",
+    aioSnippet: "The best AI tools for students in Bangladesh in 2026 are Google AI Pro (BDT 500/mo) for Gmail and Docs integration, ChatGPT Plus Shared (BDT 350/mo) for writing and coding assignments, and Perplexity Pro Shared (BDT 350/mo) for research with cited sources. No international credit card needed — pay with bKash or Nagad and receive access in 5–30 minutes via WhatsApp.",
     metaDescription: "Best AI tools for students in Bangladesh 2026. Google AI BDT 500. ChatGPT BDT 350. Study smarter.",
     canonical: "https://aipremiumshop.com/best-ai-for-students",
     whyHeading: "Why AI Matters for Students",
@@ -84,8 +113,9 @@ const GUIDES: Record<string, GuideConfig> = {
   freelancers: {
     slug: "best-ai-for-freelancers",
     title: "Best AI Tools for Freelancers Bangladesh 2026",
-    h1: "Best AI Tools for Freelancers",
+    h1: "Best AI Tools for Freelancers in Bangladesh 2026",
     subtitle: "Win more clients. Deliver faster. Earn more.",
+    aioSnippet: "The top AI tools for freelancers in Bangladesh 2026 are ChatGPT Plus Premium Shared (BDT 950/mo) for proposals and content delivery, Claude Pro Premium Shared (BDT 1,495/mo) for writing quality, and Midjourney Standard Shared (BDT 1,199/mo) for client graphics. Freelancers using AI earn 44% more on average (Upwork 2025). Order any tool via WhatsApp and pay with bKash or Nagad.",
     metaDescription: "Best AI tools for freelancers Bangladesh 2026. Earn 44% more with AI. From BDT 350. Upwork & Fiverr.",
     canonical: "https://aipremiumshop.com/best-ai-for-freelancers",
     whyHeading: "Why AI is a Freelancer's Competitive Advantage",
@@ -119,8 +149,9 @@ const GUIDES: Record<string, GuideConfig> = {
   creators: {
     slug: "best-ai-for-creators",
     title: "Best AI for Content Creators Bangladesh 2026",
-    h1: "Best AI Tools for Content Creators",
+    h1: "Best AI Tools for Content Creators in Bangladesh 2026",
     subtitle: "Create faster. Edit smarter. Grow your audience.",
+    aioSnippet: "The best AI tools for content creators in Bangladesh 2026 are ChatGPT Plus (BDT 950/mo) for scripting, Midjourney Standard Shared (BDT 1,199/mo) for thumbnails, ElevenLabs (BDT 748/mo) for voiceovers, and Suno AI Pro (BDT 1,495/mo) for copyright-free music. All accessible via bKash or Nagad payment through WhatsApp — no international card required.",
     metaDescription: "Best AI for content creators Bangladesh 2026. Script, thumbnail, music — all AI. From BDT 350.",
     canonical: "https://aipremiumshop.com/best-ai-for-creators",
     whyHeading: "Why AI is a Creator's Superpower",
@@ -154,8 +185,9 @@ const GUIDES: Record<string, GuideConfig> = {
   business: {
     slug: "best-ai-for-business",
     title: "Best AI for Business & SME Bangladesh 2026",
-    h1: "Best AI Tools for Business Owners",
+    h1: "Best AI Tools for Business Owners in Bangladesh 2026",
     subtitle: "Automate operations. Cut costs. Scale faster.",
+    aioSnippet: "The top AI tools for business owners in Bangladesh 2026 are Google AI Pro (BDT 500/mo) for Gmail and Google Workspace AI, ChatGPT Team (BDT 1,200/mo) for team operations with admin controls, and Claude Pro (BDT 1,495/mo) for contracts and business documents. AI reduces operational costs by 30–40%. Pay with bKash or Nagad — no international card required.",
     metaDescription: "Best AI for business owners Bangladesh 2026. Automate sales, support, content. From BDT 500.",
     canonical: "https://aipremiumshop.com/best-ai-for-business",
     whyHeading: "Why Businesses in Bangladesh Are Adopting AI Now",
@@ -188,8 +220,9 @@ const GUIDES: Record<string, GuideConfig> = {
   developers: {
     slug: "best-ai-for-developers",
     title: "Best AI Coding Tools for Developers Bangladesh 2026",
-    h1: "Best AI Tools for Developers",
+    h1: "Best AI Coding Tools for Developers in Bangladesh 2026",
     subtitle: "Code faster. Debug instantly. Ship on time.",
+    aioSnippet: "The best AI coding tools for developers in Bangladesh 2026 are GitHub Copilot Pro (BDT 1,495/mo) for IDE integration with zero workflow changes, Cursor Pro (BDT 2,990/mo) for full AI-native agent-mode coding, and Claude Pro Personal (BDT 2,990/mo) for complex reasoning and debugging. GitHub Copilot reduces coding time by 55%. Order via WhatsApp — pay with bKash.",
     metaDescription: "Best AI coding tools Bangladesh 2026. Copilot, Cursor, Replit. Code 50% faster. From BDT 500.",
     canonical: "https://aipremiumshop.com/best-ai-for-developers",
     whyHeading: "Why Developers Need AI Coding Tools in 2026",
@@ -223,8 +256,9 @@ const GUIDES: Record<string, GuideConfig> = {
   "job-seekers": {
     slug: "best-ai-for-job-seekers",
     title: "Best AI Tools for Job Seekers Bangladesh 2026",
-    h1: "Best AI Tools for Job Seekers",
+    h1: "Best AI Tools for Job Seekers in Bangladesh 2026",
     subtitle: "Build a winning CV. Ace interviews. Land the job.",
+    aioSnippet: "The best AI tools for job seekers in Bangladesh 2026 are ChatGPT Plus Starter Shared (BDT 350/mo) for CVs and cover letters, Google AI Pro (BDT 500/mo) for Gmail-integrated job applications, and Perplexity Pro (BDT 350/mo) for researching companies before interviews. Starting at just BDT 350/mo — one job offer pays back months of subscription. Pay with bKash via WhatsApp.",
     metaDescription: "Best AI for job seekers Bangladesh 2026. CV builder, interview prep, skill roadmap. From BDT 350.",
     canonical: "https://aipremiumshop.com/best-ai-for-job-seekers",
     whyHeading: "Why AI Gives Job Seekers an Edge",
@@ -328,8 +362,51 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
           )}
         </motion.div>
 
-        {/* Why AI */}
+        {/* AIO Snippet */}
         <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible"
+          className="p-5 rounded-2xl border mb-8"
+          style={{ backgroundColor: "rgba(244,185,66,0.06)", borderColor: "rgba(244,185,66,0.25)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "#e8d5a3" }}>{guide.aioSnippet}</p>
+        </motion.div>
+
+        {/* Quick Price Comparison Table */}
+        <motion.div custom={1.5} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
+          <h2 className="text-xl font-bold text-white mb-4">Price Comparison — {new Date().getFullYear()}</h2>
+          <div className="rounded-2xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
+            <div className="grid grid-cols-[auto_1fr_auto_auto] text-xs font-semibold uppercase tracking-wider border-b border-white/10 px-5 py-3" style={{ color: "#c9ceda" }}>
+              <div className="w-7">#</div>
+              <div>Tool</div>
+              <div className="text-right pr-6">Price/mo</div>
+              <div className="w-20 text-center">Order</div>
+            </div>
+            {guide.tools.map((tool, i) => {
+              const slug = TOOL_BRAND_SLUGS[tool.name] ?? null;
+              const waUrl = `${WHATSAPP}?text=${encodeURIComponent(`Hi, I want to order ${tool.name}`)}`;
+              return (
+                <div key={i} className={`grid grid-cols-[auto_1fr_auto_auto] items-center px-5 py-3 ${i > 0 ? "border-t border-white/6" : ""}`}>
+                  <div className="w-7 text-sm font-bold" style={{ color: guide.accentColor }}>{tool.rank}</div>
+                  <div>
+                    {slug
+                      ? <Link href={slug} className="font-semibold text-white text-sm hover:opacity-80 transition-opacity underline decoration-white/20">{tool.name}</Link>
+                      : <span className="font-semibold text-white text-sm">{tool.name}</span>
+                    }
+                    {tool.badge && <span className="ml-2 px-1.5 py-0.5 rounded-full text-xs font-semibold" style={{ backgroundColor: (tool.color ?? guide.accentColor) + "25", color: tool.color ?? guide.accentColor }}>{tool.badge}</span>}
+                  </div>
+                  <div className="text-sm font-bold pr-6" style={{ color: "#f4b942" }}>{tool.price}</div>
+                  <a href={waUrl} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity"
+                    style={{ backgroundColor: "#25d366", color: "#fff" }}>
+                    <MessageCircle className="w-3 h-3" />
+                    Order
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* Why AI */}
+        <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible"
           className="p-6 md:p-8 rounded-2xl border border-white/10 mb-10"
           style={{ backgroundColor: "#151b3d" }}>
           <h2 className="text-xl font-bold text-white mb-3">{guide.whyHeading}</h2>
@@ -397,6 +474,26 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
             </a>
           </div>
         </motion.div>
+
+        {/* Internal brand links */}
+        {guide.tools.some((t) => TOOL_BRAND_SLUGS[t.name]) && (
+          <motion.div custom={guide.tools.length + 4} variants={fadeUp} initial="hidden" animate="visible"
+            className="p-6 rounded-2xl border border-white/10 mb-10"
+            style={{ backgroundColor: "#151b3d" }}>
+            <h3 className="font-bold text-white mb-1 text-sm">Explore each tool in detail</h3>
+            <p className="text-xs mb-4" style={{ color: "#c9ceda" }}>Read full pricing, plans, and reviews for each tool.</p>
+            <div className="flex flex-wrap gap-2">
+              {guide.tools.filter((t) => TOOL_BRAND_SLUGS[t.name]).map((t) => (
+                <Link key={t.name} href={TOOL_BRAND_SLUGS[t.name]}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-white/10 text-sm font-medium hover:border-white/30 transition-colors"
+                  style={{ color: t.color ?? guide.accentColor, minHeight: "36px" }}>
+                  {t.name.split(" —")[0].split(" — ")[0]}
+                  <ChevronRight className="w-3 h-3" />
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         {/* FAQ */}
         <motion.div custom={guide.tools.length + 5} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">

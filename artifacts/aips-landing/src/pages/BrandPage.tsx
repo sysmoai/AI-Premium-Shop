@@ -8,6 +8,33 @@ import productsData from "../../data/products.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 
+const BRAND_COMPETITORS: Record<string, {
+  name1: string; slug1: string; price1: string; strength1: string;
+  name2: string; slug2: string; price2: string; strength2: string;
+  compPage?: string;
+}> = {
+  "chatgpt-plans-bangladesh": { name1: "Claude", slug1: "/claude-pro-bangladesh", price1: "from BDT 1,495", strength1: "#1 for writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 500", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
+  "chatgpt-plus-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", price1: "from BDT 1,495", strength1: "#1 for writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 500", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
+  "chatgpt-business-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", price1: "from BDT 1,495", strength1: "Best writing quality, long documents", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 500", strength2: "Google Workspace integration" },
+  "chatgpt-pro-bangladesh": { name1: "Claude Max 5x", slug1: "/claude-pro-bangladesh", price1: "from BDT 14,950", strength1: "Extended thinking, 1M context window", name2: "GitHub Copilot Pro", slug2: "/github-copilot-bangladesh", price2: "BDT 1,495", strength2: "Best AI coding tool in VS Code" },
+  "claude-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 350", strength1: "All-rounder: images, agents, web search", name2: "Perplexity Pro", slug2: "/perplexity-pro-bangladesh", price2: "from BDT 350", strength2: "AI-powered web research with citations", compPage: "/chatgpt-vs-claude" },
+  "gemini-advanced-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 350", strength1: "Image gen, coding agents, widest capabilities", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Writing quality & long document analysis", compPage: "/chatgpt-vs-gemini" },
+  "supergrok-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 350", strength1: "More affordable, image generation", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Best writing & reasoning quality" },
+  "perplexity-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 350", strength1: "Broader AI capabilities, image gen", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Long document analysis, best writing" },
+  "midjourney-bangladesh": { name1: "Ideogram", slug1: "/ideogram-bangladesh", price1: "from BDT 2,990", strength1: "Text in images, typography design", name2: "Leonardo AI", slug2: "/leonardo-ai-bangladesh", price2: "from BDT 599", strength2: "Budget image generation, character consistency" },
+  "ideogram-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", price1: "from BDT 1,199", strength1: "Highest quality photorealistic & artistic images", name2: "Leonardo AI", slug2: "/leonardo-ai-bangladesh", price2: "from BDT 599", strength2: "Budget image generation" },
+  "leonardo-ai-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", price1: "from BDT 1,199", strength1: "Best quality images across all styles", name2: "Ideogram", slug2: "/ideogram-bangladesh", price2: "from BDT 2,990", strength2: "Text in images & typography" },
+  "runway-bangladesh": { name1: "HeyGen", slug1: "/heygen-bangladesh", price1: "from BDT 1,499", strength1: "AI avatars & video translation", name2: "Midjourney", slug2: "/midjourney-bangladesh", price2: "from BDT 1,199", strength2: "Best image generation" },
+  "heygen-bangladesh": { name1: "Runway", slug1: "/runway-bangladesh", price1: "from BDT 1,794", strength1: "Video editing & AI video generation", name2: "ElevenLabs", slug2: "/elevenlabs-bangladesh", price2: "from BDT 748", strength2: "AI voice cloning & dubbing" },
+  "elevenlabs-bangladesh": { name1: "Suno AI", slug1: "/suno-ai-bangladesh", price1: "from BDT 1,495", strength1: "AI music generation with commercial license", name2: "HeyGen", slug2: "/heygen-bangladesh", price2: "from BDT 1,499", strength2: "AI video creation with avatars" },
+  "suno-ai-bangladesh": { name1: "ElevenLabs", slug1: "/elevenlabs-bangladesh", price1: "from BDT 748", strength1: "Voice cloning & audio production", name2: "Udio", slug2: "/udio-bangladesh", price2: "from BDT 499", strength2: "Budget AI music generation" },
+  "github-copilot-bangladesh": { name1: "Cursor Pro", slug1: "/cursor-bangladesh", price1: "from BDT 2,990", strength1: "AI-native editor with autonomous agent mode", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Best for complex code reasoning", compPage: "/copilot-vs-cursor" },
+  "cursor-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", price1: "BDT 1,495", strength1: "Works in existing VS Code/JetBrains IDE", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Long context code review & reasoning", compPage: "/copilot-vs-cursor" },
+  "notion-business-bangladesh": { name1: "Google AI Pro", slug1: "/gemini-advanced-bangladesh", price1: "BDT 500", strength1: "AI in Gmail, Docs, Sheets + 2TB storage", name2: "Otter.ai", slug2: "/otter-ai-bangladesh", price2: "from BDT 799", strength2: "Meeting transcription & AI notes" },
+  "replit-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", price1: "BDT 1,495", strength1: "Best IDE code completion plugin", name2: "Cursor Pro", slug2: "/cursor-bangladesh", price2: "from BDT 2,990", strength2: "Full AI-native coding environment" },
+  "v0-dev-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", price1: "BDT 1,495", strength1: "Best for general backend/frontend coding", name2: "Replit Core", slug2: "/replit-bangladesh", price2: "BDT 500", strength2: "Cloud dev environment with AI" },
+};
+
 interface Product {
   id: string;
   name: string;
@@ -622,6 +649,140 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             ))}
           </div>
         </div>
+
+        {/* 3B: Quick Answers */}
+        {(() => {
+          const qa = [
+            {
+              q: `How much does ${meta.displayName} cost in Bangladesh?`,
+              a: `${meta.displayName} in Bangladesh costs from BDT ${products[0]?.price.toLocaleString() ?? "—"}/month through AI Premium Shop. Plans range from BDT ${products[0]?.price.toLocaleString()} to BDT ${products[products.length - 1]?.price.toLocaleString()}. Pay with bKash, Nagad, or Rocket — no international card required.`,
+            },
+            {
+              q: `Is ${meta.displayName} available in Bangladesh?`,
+              a: `Yes. AI Premium Shop (AIPS) offers official ${meta.displayName} subscriptions in Bangladesh. All plans are delivered within 5–30 minutes via WhatsApp after payment confirmation. We have served 1,200+ customers since 2022.`,
+            },
+            {
+              q: `How do I buy ${meta.displayName} in Bangladesh without a credit card?`,
+              a: `Message AI Premium Shop on WhatsApp (+880 1865-385348). Choose your plan from the options above. Pay with bKash, Nagad, or Rocket. Receive your credentials in ${cheapest?.deliverySLA ?? "5–30 minutes"}. No international credit card needed.`,
+            },
+            {
+              q: `Is it safe to buy ${meta.displayName} through AI Premium Shop?`,
+              a: `Yes. AIPS provides official, verified ${meta.displayName} subscriptions. All plans include a 30-day warranty. Over 1,200 customers served since 2022.`,
+            },
+          ];
+          return (
+            <div className="mb-14">
+              <h2 className="text-xl font-bold text-white mb-4">Quick Answers — {meta.displayName} Bangladesh</h2>
+              <div className="space-y-3">
+                {qa.map((item, i) => (
+                  <details key={i} className="group rounded-xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
+                    <summary className="flex items-center justify-between p-5 cursor-pointer font-semibold text-white text-sm">
+                      {item.q}
+                      <ChevronRight className="w-4 h-4 flex-shrink-0 transition-transform group-open:rotate-90" style={{ color: "#f4b942" }} />
+                    </summary>
+                    <div className="px-5 pb-5 text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{item.a}</div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* 3C: Segment Table */}
+        {products.length > 0 && (() => {
+          const sharedProducts = products.filter(p => p.accessType === "shared");
+          const personalProducts = products.filter(p => p.accessType === "personal");
+          const cheapestShared = sharedProducts[0] ?? products[0];
+          const premiumShared = sharedProducts.length > 1 ? sharedProducts[Math.min(1, sharedProducts.length - 1)] : sharedProducts[0] ?? products[0];
+          const businessPlan = products.find(p => (p.tier ?? "").toLowerCase().includes("business") || (p.tier ?? "").toLowerCase().includes("team")) ?? personalProducts[0] ?? products[Math.floor(products.length / 2)];
+          const proPlan = products[products.length - 1];
+          const segments = [
+            { icon: "🎓", type: "Student / Budget user", plan: cheapestShared, why: "Maximum savings, full AI features included" },
+            { icon: "💼", type: "Freelancer", plan: premiumShared, why: "Fewer users per account — more reliable for client work" },
+            { icon: "🏢", type: "Business / Team", plan: businessPlan ?? cheapestShared, why: "Admin controls, privacy, or team features" },
+            { icon: "💻", type: "Developer / Power user", plan: proPlan, why: "Maximum limits, full access, best performance" },
+          ].filter((s, i, arr) => arr.findIndex(x => x.plan?.id === s.plan?.id) === i);
+          return (
+            <div className="mb-14">
+              <h2 className="text-xl font-bold text-white mb-2">Which {meta.displayName} Plan is Right for You?</h2>
+              <p className="text-sm mb-5" style={{ color: "#c9ceda" }}>Choose based on your usage and budget.</p>
+              <div className="rounded-2xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
+                <div className="grid grid-cols-[auto_1fr_auto_auto] text-xs font-semibold uppercase tracking-wider border-b border-white/10 px-5 py-3" style={{ color: "#c9ceda" }}>
+                  <div className="w-8"></div>
+                  <div>If you are…</div>
+                  <div className="text-right pr-6">Price/mo</div>
+                  <div className="w-20 text-center">Order</div>
+                </div>
+                {segments.map((seg, i) => {
+                  const waUrl = seg.plan ? `${WHATSAPP}?text=${encodeURIComponent(seg.plan.whatsappMsg ?? `Hi, I want ${seg.plan.name}`)}` : WHATSAPP;
+                  return (
+                    <div key={i} className={`grid grid-cols-[auto_1fr_auto_auto] items-center px-5 py-3 ${i > 0 ? "border-t border-white/6" : ""}`}>
+                      <div className="w-8 text-lg">{seg.icon}</div>
+                      <div>
+                        <div className="font-semibold text-white text-sm">{seg.type}</div>
+                        <div className="text-xs mt-0.5" style={{ color: "#c9ceda" }}>{seg.plan?.name ?? "—"} · {seg.why}</div>
+                      </div>
+                      <div className="text-sm font-bold pr-6" style={{ color: "#f4b942" }}>
+                        {seg.plan ? `BDT ${seg.plan.price.toLocaleString()}` : "—"}
+                      </div>
+                      <a href={waUrl} target="_blank" rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity"
+                        style={{ backgroundColor: "#25d366", color: "#fff" }}>
+                        <MessageCircle className="w-3 h-3" />
+                        Order
+                      </a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* 3D: Competitor Comparison */}
+        {BRAND_COMPETITORS[brandSlug] && (() => {
+          const comp = BRAND_COMPETITORS[brandSlug];
+          return (
+            <div className="mb-14">
+              <h2 className="text-xl font-bold text-white mb-2">How {meta.displayName} Compares</h2>
+              <p className="text-sm mb-5" style={{ color: "#c9ceda" }}>Consider these alternatives — all available through AI Premium Shop.</p>
+              <div className="rounded-2xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
+                <div className="grid grid-cols-4 text-xs font-semibold uppercase tracking-wider border-b border-white/10" style={{ color: "#c9ceda" }}>
+                  <div className="p-4">Feature</div>
+                  <div className="p-4 border-l border-white/10" style={{ color: meta.accentColor }}>{meta.displayName}</div>
+                  <div className="p-4 border-l border-white/10">
+                    <a href={comp.slug1} onClick={(e) => { e.preventDefault(); navigate(comp.slug1); }} className="hover:opacity-80 transition-opacity underline decoration-white/20">{comp.name1}</a>
+                  </div>
+                  <div className="p-4 border-l border-white/10">
+                    <a href={comp.slug2} onClick={(e) => { e.preventDefault(); navigate(comp.slug2); }} className="hover:opacity-80 transition-opacity underline decoration-white/20">{comp.name2}</a>
+                  </div>
+                </div>
+                {[
+                  { label: "Price (AIPS)", a: cheapest ? `from BDT ${cheapest.price.toLocaleString()}` : "—", b: comp.price1, c: comp.price2 },
+                  { label: "Best for", a: meta.tagline, b: comp.strength1, c: comp.strength2 },
+                  { label: "Delivery", a: cheapest?.deliverySLA ?? "5–30 min", b: "5–30 min", c: "5–30 min" },
+                ].map((row, ri) => (
+                  <div key={ri} className={`grid grid-cols-4 ${ri > 0 ? "border-t border-white/5" : ""}`}>
+                    <div className="p-4 text-xs font-semibold" style={{ color: "#c9ceda" }}>{row.label}</div>
+                    <div className="p-4 border-l border-white/10 text-sm" style={{ color: ri === 0 ? "#f4b942" : "#c9ceda" }}>{row.a}</div>
+                    <div className="p-4 border-l border-white/10 text-sm" style={{ color: "#c9ceda" }}>{row.b}</div>
+                    <div className="p-4 border-l border-white/10 text-sm" style={{ color: "#c9ceda" }}>{row.c}</div>
+                  </div>
+                ))}
+              </div>
+              {comp.compPage && (
+                <div className="mt-3">
+                  <a href={comp.compPage} onClick={(e) => { e.preventDefault(); navigate(comp.compPage!); }}
+                    className="inline-flex items-center gap-1.5 text-sm hover:opacity-80 transition-opacity"
+                    style={{ color: "#f4b942" }}>
+                    Full comparison: {meta.displayName} vs {comp.name1} →
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              )}
+            </div>
+          );
+        })()}
 
         {/* Related links */}
         <div className="mb-10">

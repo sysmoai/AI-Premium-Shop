@@ -19,6 +19,7 @@ interface BudgetConfig {
   title: string;
   h1: string;
   subtitle: string;
+  aioSnippet: string;
   metaDescription: string;
   canonical: string;
   nextTier?: { label: string; href: string };
@@ -31,6 +32,7 @@ const BUDGETS: Record<string, BudgetConfig> = {
     title: "AI Tools Under BDT 500 — Cheapest Premium AI Bangladesh",
     h1: "AI Tools Under BDT 500",
     subtitle: "Premium AI at student-friendly prices. No credit card needed.",
+    aioSnippet: "The cheapest premium AI tools in Bangladesh under BDT 500: ChatGPT Plus Starter Shared (BDT 350/mo), Perplexity Pro Shared (BDT 350/mo), Google AI Pro (BDT 500/mo, personal account + 2TB), and Gamma (BDT 399/mo). All available via bKash or Nagad — no international credit card required. Order on WhatsApp and receive access in 5–30 minutes.",
     metaDescription: "AI tools under BDT 500 in Bangladesh. ChatGPT BDT 350, Google AI BDT 500. Cheapest premium AI.",
     canonical: "https://aipremiumshop.com/ai-under-500",
     nextTier: { label: "See tools under BDT 1,000", href: "/ai-under-1000" },
@@ -41,6 +43,7 @@ const BUDGETS: Record<string, BudgetConfig> = {
     title: "AI Tools Under BDT 1000 — Budget AI Subscriptions BD",
     h1: "AI Tools Under BDT 1,000",
     subtitle: "The full range of premium AI tools — all under BDT 1,000/month.",
+    aioSnippet: "Premium AI tools available under BDT 1,000 per month in Bangladesh include ChatGPT Plus (from BDT 350), Google AI Pro (BDT 500), Replit Core (BDT 500), Gamma (BDT 399), Udio (BDT 499), ElevenLabs Starter (BDT 748), ChatGPT Plus Premium Shared (BDT 950), and Notion AI (BDT 800). Pay with bKash or Nagad — no international card required.",
     metaDescription: "AI tools under BDT 1000 in Bangladesh. Claude, Notion, Perplexity & more. Budget AI tools.",
     canonical: "https://aipremiumshop.com/ai-under-1000",
     nextTier: { label: "See tools under BDT 3,000", href: "/ai-under-3000" },
@@ -51,9 +54,10 @@ const BUDGETS: Record<string, BudgetConfig> = {
     title: "AI Tools Under BDT 3000 — Mid-Range AI Bangladesh",
     h1: "AI Tools Under BDT 3,000",
     subtitle: "Every AI tool in our catalog, including personal accounts — all under BDT 3,000.",
+    aioSnippet: "All premium AI tools in our Bangladesh catalog are available under BDT 3,000/month — including personal (private) accounts for ChatGPT Plus (BDT 2,990), Claude Pro (BDT 2,990), GitHub Copilot Pro (BDT 1,495), Cursor Pro (BDT 2,990), and Midjourney (up to BDT 2,990). Pay with bKash or Nagad. Order on WhatsApp for 5–30 minute delivery.",
     metaDescription: "AI tools under BDT 3000 in Bangladesh. Personal accounts for pros. Mid-range AI subscriptions.",
     canonical: "https://aipremiumshop.com/ai-under-3000",
-    highlight: "All 31 products in our catalog are available under BDT 3,000 per month.",
+    highlight: "Every premium AI tool in our catalog is available under BDT 3,000 per month.",
   },
 };
 
@@ -163,6 +167,13 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
           <p className="text-lg" style={{ color: "#c9ceda" }}>{config.subtitle}</p>
         </motion.div>
 
+        {/* AIO Snippet */}
+        <motion.div custom={0.5} variants={fadeUp} initial="hidden" animate="visible"
+          className="p-5 rounded-2xl border mb-6"
+          style={{ backgroundColor: "rgba(244,185,66,0.06)", borderColor: "rgba(244,185,66,0.25)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "#e8d5a3" }}>{config.aioSnippet}</p>
+        </motion.div>
+
         {/* Highlight */}
         <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible"
           className="p-5 rounded-2xl border mb-8 flex items-center gap-3"
@@ -234,7 +245,7 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
             </a>
             <Link href="/products"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold border border-white/20 text-white hover:bg-white/5 transition-colors">
-              Browse All 31 Tools
+              Browse All 56 Tools
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

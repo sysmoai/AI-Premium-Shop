@@ -18,9 +18,16 @@ interface CompRow {
   b: string | boolean;
 }
 
+interface WhoRow {
+  persona: string;
+  pick: string;
+  reason: string;
+}
+
 interface CompConfig {
   title: string;
   h1: string;
+  aioSnippet: string;
   metaDescription: string;
   canonical: string;
   productA: { name: string; color: string; orderText: string };
@@ -29,6 +36,8 @@ interface CompConfig {
   verdict: string;
   verdictA: string;
   verdictB: string;
+  buyBothText?: string;
+  whoTable: WhoRow[];
   relatedGuides: { label: string; href: string }[];
 }
 
@@ -36,6 +45,7 @@ const COMPARISONS: Record<string, CompConfig> = {
   "chatgpt-vs-claude": {
     title: "ChatGPT vs Claude Bangladesh 2026 — Which is Better?",
     h1: "ChatGPT vs Claude — Which One Is Right for You?",
+    aioSnippet: "ChatGPT vs Claude in Bangladesh 2026: ChatGPT Plus Shared starts at BDT 350/mo and excels as an all-rounder (images, web search, code, agents). Claude Pro starts at BDT 1,495/mo and is ranked #1 for writing quality and long-document reasoning (1M token context). Both available via bKash or Nagad — delivery in 5–30 minutes via WhatsApp.",
     metaDescription: "ChatGPT vs Claude in Bangladesh 2026. Features, prices, which is better. AI Premium Shop.",
     canonical: "https://aipremiumshop.com/chatgpt-vs-claude",
     productA: { name: "ChatGPT (OpenAI)", color: "#10a37f", orderText: "Order ChatGPT" },
@@ -47,14 +57,20 @@ const COMPARISONS: Record<string, CompConfig> = {
       { feature: "Video generation", a: "Yes (Sora — Pro only)", b: false },
       { feature: "Code assistant", a: "Codex agent in ChatGPT", b: "Claude Code terminal" },
       { feature: "Context window", a: "128K tokens", b: "200K–1M tokens" },
-      { feature: "Shared price (AIPS)", a: "From BDT 350/mo", b: "From BDT 400/mo" },
-      { feature: "Private price (AIPS)", a: "BDT 700/mo", b: "BDT 750/mo" },
+      { feature: "Shared price (AIPS)", a: "From BDT 350/mo", b: "From BDT 1,495/mo" },
+      { feature: "Personal price (AIPS)", a: "BDT 2,990/mo", b: "BDT 2,990/mo" },
       { feature: "Web search", a: true, b: false },
       { feature: "Savings vs official", a: "~88%", b: "~80%" },
     ],
     verdict: "Both are world-class AI tools available at Bangladesh prices. Your choice depends on your primary use case.",
     verdictA: "Choose ChatGPT if you want an all-in-one tool that does everything — text, images, web search, code, and agents. It's also the cheapest option at BDT 350.",
     verdictB: "Choose Claude if you need the best writing quality, the longest document analysis (1M token context), or the most advanced reasoning. Claude is ranked #1 on the independent Chatbot Arena benchmark.",
+    buyBothText: "ChatGPT Plus Shared (BDT 350) + Claude Pro Premium Shared (BDT 1,495) = BDT 1,845/mo total — get the best of both worlds for writing and everything else.",
+    whoTable: [
+      { persona: "Students on a tight budget", pick: "ChatGPT Plus Shared — BDT 350", reason: "Cheapest AI in our catalog. Covers writing, coding, and research." },
+      { persona: "Copywriters & content writers", pick: "Claude Pro — BDT 1,495", reason: "Ranked #1 for writing quality on independent benchmarks." },
+      { persona: "Developers & researchers", pick: "ChatGPT Plus", reason: "Image gen, agents, web search, and code — one comprehensive tool." },
+    ],
     relatedGuides: [
       { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
       { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
@@ -64,6 +80,7 @@ const COMPARISONS: Record<string, CompConfig> = {
   "chatgpt-vs-gemini": {
     title: "ChatGPT vs Gemini Bangladesh 2026 — Full Comparison",
     h1: "ChatGPT vs Google AI Pro — Which Should You Choose?",
+    aioSnippet: "ChatGPT vs Google AI Pro in Bangladesh 2026: ChatGPT Plus Shared is BDT 350/mo (shared account, cheapest AI tool available). Google AI Pro is BDT 500/mo and includes your own Gmail account, 2TB Google Drive storage, and AI built into Docs, Sheets, and Slides. Google AI Pro is the better value for anyone using Google Workspace daily. Both available via bKash — no international card needed.",
     metaDescription: "ChatGPT vs Gemini in Bangladesh 2026. Full comparison with BD prices. AI Premium Shop.",
     canonical: "https://aipremiumshop.com/chatgpt-vs-gemini",
     productA: { name: "ChatGPT Plus", color: "#10a37f", orderText: "Order ChatGPT" },
@@ -83,6 +100,12 @@ const COMPARISONS: Record<string, CompConfig> = {
     verdict: "Both are excellent — the right choice depends on your existing tools and workflow.",
     verdictA: "Choose ChatGPT if you want the cheapest AI option (BDT 350) and primarily need AI for writing, coding, and chatting. Best for students on a tight budget.",
     verdictB: "Google AI Pro at BDT 500 is the best-value tool in our catalog. You get a personal account (not shared), 2TB storage, and AI built into Gmail, Docs, Sheets, and Slides. For anyone who uses Google Workspace daily, this is the clear winner.",
+    buyBothText: "ChatGPT Plus Shared (BDT 350) + Google AI Pro (BDT 500) = BDT 850/mo — one for AI chat, one for your Google Workspace.",
+    whoTable: [
+      { persona: "Students on a tight budget", pick: "ChatGPT Plus Shared — BDT 350", reason: "Cheapest AI tool in our catalog." },
+      { persona: "Google Workspace users", pick: "Google AI Pro — BDT 500", reason: "AI in Gmail, Docs, Sheets + 2TB storage + personal account." },
+      { persona: "Job seekers & writers", pick: "Google AI Pro", reason: "Personal Gmail account is more professional for job applications." },
+    ],
     relatedGuides: [
       { label: "Best AI for Students", href: "/best-ai-for-students" },
       { label: "Best AI for Business", href: "/best-ai-for-business" },
@@ -92,6 +115,7 @@ const COMPARISONS: Record<string, CompConfig> = {
   "copilot-vs-cursor": {
     title: "GitHub Copilot vs Cursor — Best AI Code Editor 2026",
     h1: "GitHub Copilot vs Cursor — Which AI Code Tool Should You Use?",
+    aioSnippet: "GitHub Copilot vs Cursor in Bangladesh 2026: Copilot Pro (BDT 1,495/mo) plugs into your existing VS Code or JetBrains with zero workflow change. Cursor Pro (BDT 2,990/mo) offers a full AI-native coding environment with autonomous agent mode that can write entire features from a single prompt. Both available via bKash — order on WhatsApp and receive access in under 2 hours.",
     metaDescription: "GitHub Copilot vs Cursor 2026. Best AI code editor compared. Prices in BDT.",
     canonical: "https://aipremiumshop.com/copilot-vs-cursor",
     productA: { name: "GitHub Copilot Pro", color: "#6e40c9", orderText: "Order Copilot" },
@@ -111,6 +135,12 @@ const COMPARISONS: Record<string, CompConfig> = {
     verdict: "Both tools make you a faster developer. The right choice depends on how much you want to change your workflow.",
     verdictA: "Choose GitHub Copilot if you want AI assistance inside your existing editor without changing anything. It plugs into VS Code or JetBrains and starts helping immediately. Best starting point for most developers.",
     verdictB: "Choose Cursor if you want the most powerful AI coding experience available. Its agent mode can write entire features autonomously. Many professional developers at top tech companies have switched to Cursor as their primary editor.",
+    buyBothText: "GitHub Copilot Pro (BDT 1,495) + Cursor Pro (BDT 2,990) = BDT 4,485/mo — use Copilot in your main IDE and Cursor for complex agent tasks.",
+    whoTable: [
+      { persona: "Developers new to AI tools", pick: "GitHub Copilot Pro — BDT 1,495", reason: "No IDE change required — start getting completions in VS Code today." },
+      { persona: "Full-stack / startup developers", pick: "Cursor Pro — BDT 2,990", reason: "Agent mode builds entire features from a single prompt." },
+      { persona: "Budget-conscious developers", pick: "GitHub Copilot Pro", reason: "Half the price of Cursor with proven productivity gains." },
+    ],
     relatedGuides: [
       { label: "Best AI for Developers", href: "/best-ai-for-developers" },
       { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
@@ -150,11 +180,18 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-14">
 
         {/* Hero */}
-        <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
+        <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-white/20" style={{ color: "#c9ceda" }}>
             ⚡ Head-to-Head Comparison — Bangladesh 2026
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">{comp.h1}</h1>
+        </motion.div>
+
+        {/* AIO Snippet */}
+        <motion.div custom={0.5} variants={fadeUp} initial="hidden" animate="visible"
+          className="p-5 rounded-2xl border mb-8"
+          style={{ backgroundColor: "rgba(244,185,66,0.06)", borderColor: "rgba(244,185,66,0.25)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "#e8d5a3" }}>{comp.aioSnippet}</p>
         </motion.div>
 
         {/* Product Labels */}
@@ -211,14 +248,40 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
           </div>
         </motion.div>
 
+        {/* Who Should Choose */}
+        <motion.div custom={3.5} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
+          <h2 className="text-2xl font-bold text-white mb-4">Who Should Choose What?</h2>
+          <div className="rounded-2xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
+            <div className="grid grid-cols-[1fr_1fr_1fr] text-xs font-semibold uppercase tracking-wider border-b border-white/10"
+              style={{ color: "#c9ceda" }}>
+              <div className="p-4">If you are…</div>
+              <div className="p-4 border-l border-white/10">Our pick</div>
+              <div className="p-4 border-l border-white/10">Why</div>
+            </div>
+            {comp.whoTable.map((row, i) => (
+              <div key={i} className={`grid grid-cols-[1fr_1fr_1fr] border-b border-white/5 ${i % 2 !== 0 ? "bg-white/2" : ""}`}>
+                <div className="p-4 text-sm font-medium text-white">{row.persona}</div>
+                <div className="p-4 border-l border-white/10 text-sm font-semibold" style={{ color: "#f4b942" }}>{row.pick}</div>
+                <div className="p-4 border-l border-white/10 text-sm" style={{ color: "#c9ceda" }}>{row.reason}</div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Order CTAs */}
         <motion.div custom={4} variants={fadeUp} initial="hidden" animate="visible"
           className="p-8 rounded-2xl border border-white/10 text-center"
           style={{ backgroundColor: "#151b3d" }}>
           <h2 className="text-xl font-bold text-white mb-2">Ready to order?</h2>
-          <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>
+          <p className="text-sm mb-2" style={{ color: "#c9ceda" }}>
             Both delivered in 5–30 minutes. Pay with bKash, Nagad, or Rocket. 30-day warranty.
           </p>
+          {comp.buyBothText && (
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium border mb-6"
+              style={{ backgroundColor: "#f4b94210", borderColor: "#f4b94230", color: "#f4b942" }}>
+              💡 {comp.buyBothText}
+            </div>
+          )}
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a href={orderAUrl} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity border"
@@ -232,17 +295,17 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
               <MessageCircle className="w-4 h-4" />
               {comp.productB.orderText}
             </a>
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
+            <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want to order BOTH " + comp.productA.name.split(" ")[0] + " and " + comp.productB.name.split(" ")[0])}`} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
               style={{ backgroundColor: "#25d366", color: "#fff" }}>
-              Not sure? Ask us
+              Buy Both
             </a>
           </div>
           <div className="mt-6 pt-6 border-t border-white/10 flex flex-wrap items-center gap-4 justify-center">
             <Link href="/products"
               className="inline-flex items-center gap-1 text-sm hover:opacity-80 transition-opacity"
               style={{ color: "#c9ceda" }}>
-              Browse all 31 AI tools
+              Browse all 56 AI tools
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

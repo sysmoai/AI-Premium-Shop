@@ -137,6 +137,15 @@ export function TestimonialsSection() {
             </motion.div>
           ))}
         </div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-xs text-center mt-6"
+          style={{ color: "rgba(255,255,255,0.3)" }}
+        >
+          Names changed for privacy. Real customer feedback.
+        </motion.p>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { MessageCircle, ChevronRight } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { BrandIcon } from "@/components/BrandIcon";
 import productsData from "../../data/products.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -539,16 +540,16 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                     transition={{ duration: 0.35, delay: i * 0.07 }}
                     whileHover={{ y: -3, boxShadow: `0 8px 32px ${meta.accentColor}30`, scale: 1.02 }}
                     className="relative rounded-2xl border border-white/10 flex flex-col overflow-hidden cursor-pointer"
-                    style={{ backgroundColor: "#151b3d", transition: "border-color 0.2s" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.borderColor = meta.accentColor + "50")}
-                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)")}
+                    style={{ backgroundColor: "#151b3d", borderLeft: `3px solid ${p.brandColor || meta.accentColor}` }}
                   >
-                    <div className="h-1 w-full" style={{ backgroundColor: meta.accentColor }} />
                     <div className="p-5 flex flex-col flex-1 gap-3">
                       <div className="flex items-start justify-between gap-2">
-                        <div>
-                          <div className="font-bold text-white text-sm leading-tight">{p.name}</div>
-                          <div className="text-xs mt-0.5" style={{ color: meta.accentColor }}>{p.tier}</div>
+                        <div className="flex items-center gap-2.5">
+                          <BrandIcon brand={p.brand || meta.displayName} color={p.brandColor || meta.accentColor} size={32} />
+                          <div>
+                            <div className="font-bold text-white text-sm leading-tight">{p.name}</div>
+                            <div className="text-xs mt-0.5" style={{ color: meta.accentColor }}>{p.tier}</div>
+                          </div>
                         </div>
                         {p.badge && (
                           <span className="text-xs font-semibold px-2 py-0.5 rounded-full flex-shrink-0"

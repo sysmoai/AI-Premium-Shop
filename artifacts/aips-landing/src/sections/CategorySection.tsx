@@ -76,7 +76,7 @@ export function CategorySection() {
                 whileHover={{ y: -4, boxShadow: `0 8px 32px ${color}22` }}
                 transition={{ type: "spring", stiffness: 280, damping: 22 }}
                 className="group rounded-2xl p-5 border border-white/10 flex flex-col gap-3 transition-all duration-300 cursor-pointer"
-                style={{ backgroundColor: "#151b3d" }}
+                style={{ backgroundColor: "#151b3d", borderLeft: `3px solid ${color}` }}
                 data-testid={`category-${cat.id}`}
               >
                 <div

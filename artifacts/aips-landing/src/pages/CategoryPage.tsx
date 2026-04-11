@@ -5,6 +5,7 @@ import { useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { BrandIcon } from "@/components/BrandIcon";
 import { faqSchema, schemaJson } from "@/utils/schemas";
 import productsData from "../../data/products.json";
 
@@ -267,14 +268,16 @@ function ProductCard({ p, accent }: { p: Product; accent: string }) {
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.35 }}
       className="relative rounded-2xl border border-white/10 flex flex-col overflow-hidden"
-      style={{ backgroundColor: "#151b3d" }}
+      style={{ backgroundColor: "#151b3d", borderLeft: `3px solid ${p.brandColor}` }}
     >
-      <div className="h-1 w-full" style={{ backgroundColor: p.brandColor }} />
       <div className="p-5 flex flex-col flex-1 gap-3">
         <div className="flex items-start justify-between gap-2">
-          <div>
-            <div className="font-bold text-white text-sm leading-tight">{p.name}</div>
-            <div className="text-xs mt-0.5" style={{ color: p.brandColor }}>{p.brand}</div>
+          <div className="flex items-center gap-2.5">
+            <BrandIcon brand={p.brand} color={p.brandColor} size={32} />
+            <div>
+              <div className="font-bold text-white text-sm leading-tight">{p.name}</div>
+              <div className="text-xs mt-0.5" style={{ color: p.brandColor }}>{p.brand}</div>
+            </div>
           </div>
           {p.badge && (
             <span className="text-xs font-semibold px-2 py-0.5 rounded-full flex-shrink-0"

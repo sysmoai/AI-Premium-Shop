@@ -1,0 +1,210 @@
+PHASE 10 BATCH 5 — VISUAL + IMAGES + UI POLISH
+
+This batch adds all visual elements that make the site look premium.
+Do not change any text content, prices, or functionality.
+Only add visual enhancements.
+
+IMAGE RULES (CRITICAL FOR SPEED):
+- All images must use next/image component with lazy loading
+- Use WebP format wherever possible
+- Use SVG for logos and icons
+- Use placeholder="blur" for perceived instant loading
+- Only the hero image gets priority={true}
+- Test that page still loads fast after adding images
+
+=== PART A: BRAND IDENTITY ===
+
+1. FAVICON:
+Create favicons from the AIPS brand:
+- /public/favicon.ico (32x32)
+- /public/apple-touch-icon.png (180x180)
+- Use the AIPS logo from GitHub: https://github.com/sysmoai/Aipswebsitev2
+- If logo file is not accessible, create a simple favicon:
+  Navy-900 (#0a0e27) square with gold "AI" text
+Add to <head>: <link rel="icon" href="/favicon.ico" />
+
+2. NAVBAR LOGO:
+Replace the text "AI PREMIUM SHOP" in the navbar with the actual logo image.
+- If logo is available from GitHub repo, use it
+- If not, create a simple text-based logo component:
+  "AI" in Gold-500 (#f4b942) + "Premium Shop" in white
+  Font: Inter 700, 20px
+- Keep it compact for mobile (logo icon only on small screens)
+
+3. BRAND LOGOS ON PRODUCT CARDS:
+For each product card across the entire site, add a small brand logo/icon.
+Use simple CSS-only brand indicators (no external image files needed):
+
+Create a BrandIcon component that renders a colored circle with brand initial:
+- ChatGPT: #10a37f background, white "C" letter
+- Claude: #d97706 background, white "C" letter  
+- Google: #4285f4 background, white "G" letter
+- Midjourney: #000000 background, white "M" letter
+- Grok: #000000 background, white "X" letter
+- Perplexity: #20b2aa background, white "P" letter
+- GitHub: #6e40c9 background, white "G" letter
+- Cursor: #000000 background, white "C" letter
+- ElevenLabs: #000000 background, white "E" letter
+- Suno: #000000 background, white "S" letter
+- Runway: #000000 background, white "R" letter
+- Notion: #000000 background, white "N" letter
+- Others: Navy-800 background, white first letter
+
+Size: 32px circle, positioned top-left of each product card.
+Also add a 3px left border to each card in the brand color.
+
+4. PAYMENT METHOD VISUAL LOGOS:
+In the footer and on payment sections, replace text labels with styled pills:
+Create colored pill badges for each payment method:
+- bKash: #E2136E background, white text
+- Nagad: #F6921E background, white text
+- Rocket: #8B2F8B background, white text
+- Bank Transfer: #4285f4 background, white text
+- Binance: #F0B90B background, dark text
+
+Size: small pills, inline, with rounded corners.
+
+=== PART B: HERO VISUAL UPGRADE ===
+
+5. ANIMATED GRADIENT BACKGROUND ON HERO:
+Add a subtle animated aurora effect behind the hero section:
+
+CSS:
+@keyframes aurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+Background layers (applied to hero section):
+- Radial gradient: Gold (#f4b942) at 10% opacity, positioned top-right, 400px radius
+- Radial gradient: Purple (#8b5cf6) at 8% opacity, positioned bottom-left, 500px radius
+- Radial gradient: Pink (#ec4899) at 5% opacity, positioned center, 300px radius
+- Base: Navy-900 (#0a0e27)
+- Animation: background-size 200% 200%, animate 15s ease infinite
+
+6. FLOATING CARD STACK ON HERO (desktop only):
+On the RIGHT side of the hero section (desktop only, hidden on mobile):
+Create 3 overlapping CSS-only product cards:
+- Card 1 (back): "Midjourney BDT 1,199" rotated -5deg, opacity 0.6
+- Card 2 (middle): "Google AI BDT 500" rotated 0deg, opacity 0.8
+- Card 3 (front): "ChatGPT BDT 350" rotated 5deg, opacity 1.0
+
+Each card: Navy-800 bg, 12px radius, subtle gold border, 160px wide
+Add floating animation: translateY -10px to 10px, 4s ease infinite loop
+Hide entirely on screens < 768px
+
+=== PART C: SECTION-BY-SECTION POLISH ===
+
+7. SEGMENT CARDS ("Every Problem Has an AI Solution"):
+Add to each of the 6 pain-point cards:
+- 4px gradient strip at top of card (unique color per segment)
+- Students: blue (#4285f4) to purple (#8b5cf6)
+- Freelancers: green (#10a37f) to teal (#20b2aa)
+- Creators: pink (#ec4899) to orange (#f97316)
+- Business: gold (#f4b942) to orange (#f97316)
+- Job Seekers: indigo (#6366f1) to purple (#8b5cf6)
+- Developers: purple (#6e40c9) to pink (#ec4899)
+- Hover effect: scale(1.01) + increased shadow + subtle color tint
+
+8. CATEGORY CARDS ("Browse by Category"):
+Add to each category card:
+- 3px left border in category accent color
+- Category accent colors: AI Assistant #10a37f, AI Image #8b5cf6, AI Video #ec4899,
+  Voice #f97316, Code #6e40c9, Workspace #4285f4, Writing #6366f1, Bundles #f4b942
+- Hover: card lifts with translateY(-4px), border glows in accent color
+- Price text "from BDT X" in Gold-500, bold
+
+9. SPECIAL OFFER CARDS:
+Add to the 2 special offer cards (Google AI 83% Off, Notion 73% Off):
+- Animated border glow: 2s ease-in-out infinite alternate
+  Google card: pulsing blue (#4285f4 at 30% opacity)
+  Notion card: pulsing dark (#000000 at 20% opacity)
+- Discount badge: slightly larger font, subtle scale pulse (1.0 to 1.05, 2s loop)
+- "LIMITED TIME" small ribbon at top-left corner, Gold-500 background
+
+10. HOW TO ORDER STEPS:
+Upgrade the 4-step section:
+- Each step number in a 64px circle with gradient background:
+  Step 1 (Choose): green gradient + cart icon
+  Step 2 (Pay): pink gradient + card icon
+  Step 3 (Receive): blue gradient + package icon
+  Step 4 (Support): gold gradient + message icon
+- Number in white, bold, 24px inside circle
+- Connecting dashed line between steps (horizontal desktop, vertical mobile)
+  Color: rgba(255,255,255,0.2)
+
+11. COMPARISON TABLE ("Why 1,200+ Customers Choose Us"):
+- "You Save" percentages in green badge pills (#10b981 background)
+- "Direct Purchase" prices in red strikethrough
+- "With AIPS" prices in Gold-500, larger font
+
+12. TESTIMONIALS:
+- Add large “ quotation mark in Gold-500 at 20% opacity as background element (top-left, 80px font)
+- Avatar circles with gradient backgrounds:
+  R (Student): Blue gradient
+  N (Freelancer): Green gradient
+  K (Business): Gold gradient
+- Add segment label pills under each name in matching colors
+- Note: add a small disclaimer text below testimonials: "Names changed for privacy. Real customer feedback."
+
+13. AGENTIC AI SECTION:
+- Different background: subtle grid pattern overlay
+  background-image: linear-gradient(rgba(139,92,246,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(139,92,246,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+- 4 use-case cards: subtle purple left-border (3px, #8b5cf6)
+- "44%" stat in large, bold Gold-500 text
+
+=== PART D: GLOBAL VISUAL ENHANCEMENTS ===
+
+14. SCROLL-REVEAL ANIMATIONS:
+Major sections on homepage fade-in and slide-up when scrolled into view:
+- Use Intersection Observer API
+- Initial state: opacity 0, translateY(30px)
+- Animate to: opacity 1, translateY(0)
+- Duration: 600ms, ease-out
+- Stagger children by 100ms
+- Only trigger once (not on scroll back up)
+- Apply to: segment cards, category cards, special offers, best sellers,
+  how-it-works, comparison table, testimonials, FAQ
+
+15. WHATSAPP BUTTON PULSE:
+Add pulse animation to the floating WhatsApp button:
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+Animation: pulse 2s infinite
+On hover: show tooltip "Chat with us"
+
+16. OG IMAGES:
+Create a proper default OG image for social sharing:
+- 1200x630px
+- Navy-900 background
+- "AI Premium Shop" in white, large, centered
+- "57 Premium AI Tools | Bangladesh" below in gray
+- "From BDT 350 | bKash · Nagad" below in Gold-500
+- Save as /public/images/og/default-og.png
+
+This can be generated as a React component rendered to canvas/image,
+or as a static image created with CSS and screenshot.
+If programmatic image generation is complex, create a simple static design.
+
+=== VERIFICATION ===
+- Favicon visible in browser tab
+- Navbar shows logo (not just text)
+- Product cards have colored brand circles and left borders
+- Hero has subtle animated gradient background
+- Floating card stack visible on desktop hero (not on mobile)
+- Segment cards have gradient top strips and hover effects
+- Category cards have accent borders and hover lift
+- Special offer cards have animated glow
+- How-to-order has circle step indicators
+- Comparison table has green savings badges
+- Testimonials have quote icons and gradient avatars
+- Sections fade in on scroll
+- WhatsApp button pulses
+- Share URL on WhatsApp → preview image appears
+- Page still loads fast (< 3 seconds)

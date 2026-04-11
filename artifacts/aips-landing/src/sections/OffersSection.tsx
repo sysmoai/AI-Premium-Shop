@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Tag } from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
 import { Link } from "wouter";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
@@ -13,24 +13,26 @@ const SPECIAL_OFFERS = [
     name: "Google AI Pro",
     price: 500,
     officialPrice: 2990,
-    badge: "83% Off",
+    pctOff: 83,
     description:
       "Gemini 3.1 Pro, Deep Research, 2TB storage, AI agents. Official price BDT 2,990.",
     color: "#4285f4",
-    glowClass: "glow-offer-blue",
-    glowAnimation: "glow-pulse-blue 2.5s ease-in-out infinite",
+    accentBg: "rgba(66,133,244,0.08)",
+    accentBorder: "rgba(66,133,244,0.25)",
+    accentHover: "rgba(66,133,244,0.18)",
   },
   {
     id: "notion-business",
     name: "Notion Business",
     price: 800,
     officialPrice: 2990,
-    badge: "73% Off",
+    pctOff: 73,
     description:
-      "Notion AI included, teamspaces, SSO. Official price BDT 2,990.",
+      "Notion AI included, teamspaces, advanced permissions & SSO. Official price BDT 2,990.",
     color: "#e5e7eb",
-    glowClass: "glow-offer-dark",
-    glowAnimation: "glow-pulse-dark 2.5s ease-in-out infinite",
+    accentBg: "rgba(229,231,235,0.06)",
+    accentBorder: "rgba(229,231,235,0.15)",
+    accentHover: "rgba(229,231,235,0.12)",
   },
 ];
 
@@ -68,7 +70,7 @@ export function OffersSection() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-semibold text-white"
+              className="text-3xl md:text-4xl font-bold text-white"
             >
               Special Offers
             </motion.h2>
@@ -83,43 +85,42 @@ export function OffersSection() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="relative rounded-2xl p-6 overflow-hidden shadow-lg shadow-blue-500/20"
+                className="relative rounded-2xl p-6 pt-10 transition-all duration-300"
                 style={{
-                  backgroundColor: "rgba(10,14,39,0.85)",
-                  animation: "glow 3s ease-in-out infinite alternate",
+                  backgroundColor: offer.accentBg,
+                  border: `1px solid ${offer.accentBorder}`,
                 }}
               >
-                {/* "Limited Time" pill ribbon */}
-                <span className="absolute top-3 left-0 bg-amber-400 text-gray-900 text-[10px] font-bold px-3 py-0.5 rounded-r-full z-10">
-                  LIMITED TIME
-                </span>
+                {/* LIMITED TIME ribbon — top-left, inside card */}
+                <div className="absolute top-0 left-0">
+                  <span
+                    className="inline-block bg-amber-400 text-gray-900 text-[10px] font-bold px-3 py-1 rounded-tl-2xl rounded-br-lg"
+                  >
+                    LIMITED TIME
+                  </span>
+                </div>
 
-                {/* Discount badge with pulse */}
-                <span
-                  className="animate-pulse absolute -top-3 right-5 text-sm font-bold px-4 py-1.5 rounded-full"
-                  style={{
-                    background: "linear-gradient(135deg, #ec4899, #f97316)",
-                    color: "#fff",
-                  }}
-                >
-                  {offer.badge}
-                </span>
+                {/* % Off badge — top-right, fully inside card */}
+                <div className="absolute top-3 right-4">
+                  <span
+                    className="inline-flex items-center gap-1 text-sm font-bold px-3 py-1.5 rounded-full text-white"
+                    style={{ background: "linear-gradient(135deg, #ec4899, #f97316)" }}
+                  >
+                    <Zap className="w-3.5 h-3.5" />
+                    {offer.pctOff}% Off
+                  </span>
+                </div>
 
-                <div className="mb-4 mt-2">
+                {/* Price row */}
+                <div className="mb-3">
                   <div className="flex items-baseline gap-3 mb-1">
-                    <span className="text-3xl font-semibold text-white">৳{offer.price}</span>
-                    <span
-                      className="text-base line-through"
-                      style={{ color: "#ef4444" }}
-                    >
+                    <span className="text-4xl font-bold text-white">৳{offer.price}</span>
+                    <span className="text-base line-through" style={{ color: "#6b7280" }}>
                       ৳{offer.officialPrice}
                     </span>
                     <span className="text-xs" style={{ color: "#c9ceda" }}>/month</span>
                   </div>
-                  <h3
-                    className="text-lg font-semibold"
-                    style={{ color: offer.color === "#e5e7eb" ? offer.color : offer.color }}
-                  >
+                  <h3 className="text-lg font-bold" style={{ color: offer.color }}>
                     {offer.name}
                   </h3>
                 </div>
@@ -158,7 +159,7 @@ export function OffersSection() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-semibold text-white"
+              className="text-3xl md:text-4xl font-bold text-white"
             >
               Best Sellers
             </motion.h2>
@@ -173,7 +174,7 @@ export function OffersSection() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07 }}
                 whileHover={{ y: -4, boxShadow: `0 8px 32px ${product.color}22` }}
-                className="relative rounded-xl p-5 border border-white/10 flex items-center justify-between"
+                className="relative rounded-xl p-5 border border-white/10 flex items-center justify-between transition-all duration-300"
                 style={{ backgroundColor: "rgba(10,14,39,0.6)" }}
                 data-testid={`best-seller-${product.id}`}
               >
@@ -193,7 +194,7 @@ export function OffersSection() {
                     />
                     <span className="font-medium text-white text-sm">{product.name}</span>
                   </div>
-                  <div className="text-xl font-semibold mt-1 text-white">
+                  <div className="text-xl font-bold mt-1 text-white">
                     ৳{product.price}
                     <span className="text-xs font-normal ml-1" style={{ color: "#c9ceda" }}>/mo</span>
                   </div>

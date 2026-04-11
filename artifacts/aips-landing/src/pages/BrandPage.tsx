@@ -978,8 +978,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 { Icon: Terminal, title: "Code", desc: "Claude Code: autonomous coding agent. Writes, reviews, tests, and fixes entire codebases. Used by professional engineers worldwide." },
                 { Icon: Brain, title: "Thinking", desc: "1M token context + extended thinking. Feed it your entire thesis, legal case, or codebase — it understands ALL of it." },
               ].map((card) => (
-                <div key={card.title} className="rounded-2xl p-5 transition-all duration-300 hover:scale-[1.02]"
-                  style={{ backgroundColor: "#0a0e27", border: "1px solid rgba(217,119,6,0.2)", borderTopWidth: 3, borderTopColor: "#d97706", borderTopStyle: "solid" }}>
+                <div key={card.title} className="rounded-2xl p-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+                  style={{ backgroundColor: "#0a0e27", border: "1px solid rgba(217,119,6,0.2)", borderTopWidth: 4, borderTopColor: "#d97706", borderTopStyle: "solid" }}>
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: "rgba(217,119,6,0.12)", border: "1px solid rgba(217,119,6,0.25)" }}>
                     <card.Icon className="w-6 h-6" style={{ color: "#d97706" }} />
                   </div>
@@ -1001,7 +1001,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             <div className="rounded-2xl overflow-hidden border border-white/10">
               <table className="w-full text-sm">
                 <thead>
-                  <tr style={{ backgroundColor: "#151b3d" }}>
+                  <tr className="bg-amber-500/10">
                     <th className="text-left px-4 py-3 font-semibold text-white">Segment</th>
                     <th className="text-left px-4 py-3 font-semibold text-white hidden sm:table-cell">Why Claude</th>
                     <th className="text-left px-4 py-3 font-semibold text-white hidden md:table-cell">Plan</th>
@@ -1017,7 +1017,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                     { seg: "🏢 Agencies", why: "Team plan with admin controls", plan: "Team", price: "৳3,990", link: "/best-ai-for-business" },
                     { seg: "⚡ Power Users", why: "5x–20x limits, 1M context window", plan: "Max 5x/20x", price: "৳14,950–29,900", link: "/" },
                   ].map((row, i) => (
-                    <tr key={i} style={{ backgroundColor: i % 2 === 0 ? "#0a0e2788" : "#151b3d88" }}>
+                    <tr key={i} className={i % 2 === 0 ? "bg-white/[0.02]" : ""}>
                       <td className="px-4 py-3 text-white font-medium">{row.seg}</td>
                       <td className="px-4 py-3 hidden sm:table-cell" style={{ color: "#c9ceda" }}>{row.why}</td>
                       <td className="px-4 py-3 hidden md:table-cell" style={{ color: "#c9ceda" }}>{row.plan}</td>
@@ -1032,7 +1032,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
 
         {/* Claude 1C: FOMO for Writers */}
         {brandSlug === "claude-pro-bangladesh" && (
-          <div className="mb-14 p-6 rounded-2xl border" style={{ backgroundColor: "rgba(217,119,6,0.06)", borderColor: "rgba(217,119,6,0.3)" }}>
+          <div className="bg-amber-500/5 border-l-4 border-amber-500 rounded-lg p-6 my-8">
             <div className="text-base font-bold mb-3" style={{ color: "#d97706" }}>⚠️ If You Write for a Living and You're NOT Using Claude…</div>
             <p className="text-sm mb-4" style={{ color: "#c9ceda" }}>
               You're competing with one hand tied behind your back. Every writer using Claude Opus 4.6 produces <strong className="text-white">3× more content at higher quality</strong>. Clients are comparing proposals written by AI-assisted writers against your manual work — and choosing the AI-assisted ones.
@@ -1044,7 +1044,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 { label: "Higher earnings", stat: "44%", sub: "avg income increase" },
               ].map((s) => (
                 <div key={s.label} className="p-3 rounded-xl" style={{ backgroundColor: "#d9770615" }}>
-                  <div className="text-2xl font-bold" style={{ color: "#d97706" }}>{s.stat}</div>
+                  <div className="text-3xl font-bold text-amber-400">{s.stat}</div>
                   <div className="font-semibold text-white">{s.label}</div>
                   <div className="text-xs mt-0.5" style={{ color: "#9ca3af" }}>{s.sub}</div>
                 </div>
@@ -1055,7 +1055,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
 
         {/* Claude 1D: Agentic Highlight (Max) */}
         {brandSlug === "claude-pro-bangladesh" && (
-          <div className="mb-14 rounded-2xl border overflow-hidden" style={{ borderColor: "rgba(217,119,6,0.3)" }}>
+          <div className="mb-14 rounded-2xl border overflow-hidden bg-purple-500/5 border-purple-500/20">
             <div className="px-6 py-4" style={{ background: "linear-gradient(135deg, #292108 0%, #1a1508 100%)" }}>
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "rgba(217,119,6,0.2)" }}>
@@ -1073,7 +1073,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   { Icon: FileText, title: "Full legal case", desc: "Upload hundreds of pages of case files. Claude reads, cross-references, and finds the key arguments." },
                   { Icon: GraduationCap, title: "Complete thesis", desc: "1M token window = your entire dissertation. Claude restructures, cites, and polishes everything." },
                 ].map((c) => (
-                  <div key={c.title} className="p-4 rounded-xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
+                  <div key={c.title} className="p-4 rounded-xl border border-white/10 border-l-4 border-purple-500/50" style={{ backgroundColor: "#151b3d" }}>
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ backgroundColor: "rgba(217,119,6,0.12)" }}>
                       <c.Icon className="w-5 h-5" style={{ color: "#d97706" }} />
                     </div>
@@ -1530,7 +1530,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 ].map((row, ri) => (
                   <div key={ri} className={`grid grid-cols-4 ${ri > 0 ? "border-t border-white/5" : ""}`}>
                     <div className="p-4 text-xs font-semibold" style={{ color: "#c9ceda" }}>{row.label}</div>
-                    <div className="p-4 border-l border-white/10 text-sm" style={{ color: ri === 0 ? "#f4b942" : "#c9ceda" }}>{row.a}</div>
+                    <div className={`p-4 border-l border-white/10 text-sm${ri === 0 ? " text-amber-400 font-bold" : ""}`} style={{ color: ri !== 0 ? "#c9ceda" : undefined }}>{row.a}</div>
                     <div className="p-4 border-l border-white/10 text-sm" style={{ color: "#c9ceda" }}>{row.b}</div>
                     <div className="p-4 border-l border-white/10 text-sm" style={{ color: "#c9ceda" }}>{row.c}</div>
                   </div>

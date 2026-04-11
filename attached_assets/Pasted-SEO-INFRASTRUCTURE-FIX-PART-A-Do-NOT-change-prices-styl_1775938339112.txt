@@ -1,0 +1,109 @@
+SEO INFRASTRUCTURE FIX — PART A.
+Do NOT change prices, styling, or layouts. Only fix SEO metadata.
+
+=== 1. TITLE TAGS ===
+Verify <title> on every page. Fix to match:
+
+BRAND PAGES:
+/chatgpt-plans-bangladesh → "ChatGPT Plans Bangladesh 2026 — From BDT 350 | AI Premium Shop"
+/chatgpt-plus-bangladesh → "Buy ChatGPT Plus Bangladesh — BDT 350/mo | AI Premium Shop"
+/chatgpt-business-bangladesh → "ChatGPT Business Bangladesh — BDT 699/mo | AI Premium Shop"
+/chatgpt-pro-bangladesh → "ChatGPT Pro Bangladesh — BDT 4,500/mo | AI Premium Shop"
+/chatgpt-go-bangladesh → "ChatGPT Go Bangladesh — BDT 1,196/mo | AI Premium Shop"
+/claude-pro-bangladesh → "Claude Pro Bangladesh — From BDT 1,495/mo | AI Premium Shop"
+/midjourney-bangladesh → "Midjourney Bangladesh — From BDT 1,199/mo | AI Premium Shop"
+/notion-business-bangladesh → "Notion Business Bangladesh — BDT 800/mo 73% Off | AI Premium Shop"
+/google-ai-pro-bangladesh → "Google AI Pro Bangladesh — BDT 500/mo 83% Off | AI Premium Shop"
+/github-copilot-bangladesh → "GitHub Copilot Bangladesh — BDT 1,495/mo | AI Premium Shop"
+/cursor-bangladesh → "Cursor Pro Bangladesh — From BDT 2,990/mo | AI Premium Shop"
+/perplexity-pro-bangladesh → "Perplexity Pro Bangladesh — From BDT 350/mo | AI Premium Shop"
+/supergrok-bangladesh → "SuperGrok Bangladesh — From BDT 1,495/mo | AI Premium Shop"
+/runway-bangladesh → "Runway AI Bangladesh — From BDT 1,794/mo | AI Premium Shop"
+/elevenlabs-bangladesh → "ElevenLabs Bangladesh — From BDT 748/mo | AI Premium Shop"
+/suno-ai-bangladesh → "Suno AI Bangladesh — From BDT 1,495/mo | AI Premium Shop"
+/manus-ai-bangladesh → "Manus AI Bangladesh — BDT 2,500/mo | AI Premium Shop"
+/ideogram-bangladesh → "Ideogram AI Bangladesh — From BDT 2,990/mo | AI Premium Shop"
+/heygen-bangladesh → "HeyGen Bangladesh — BDT 1,499/mo | AI Premium Shop"
+/udio-bangladesh → "Udio Pro Bangladesh — BDT 499/mo | AI Premium Shop"
+/leonardo-ai-bangladesh → "Leonardo AI Bangladesh — BDT 599/mo | AI Premium Shop"
+/otter-ai-bangladesh → "Otter.ai Pro Bangladesh — BDT 799/mo | AI Premium Shop"
+/gamma-bangladesh → "Gamma Plus Bangladesh — BDT 399/mo | AI Premium Shop"
+/writesonic-bangladesh → "Writesonic Bangladesh — BDT 799/mo | AI Premium Shop"
+/replit-bangladesh → "Replit Core Bangladesh — BDT 500/mo | AI Premium Shop"
+/v0-dev-bangladesh → "v0.dev Pro Bangladesh — BDT 999/mo | AI Premium Shop"
+
+GUIDE PAGES:
+/best-ai-for-students → "Best AI Tools for Students Bangladesh 2026 — From BDT 350 | AI Premium Shop"
+/best-ai-for-freelancers → "Best AI for Freelancers Bangladesh 2026 | AI Premium Shop"
+/best-ai-for-creators → "Best AI for Content Creators Bangladesh 2026 | AI Premium Shop"
+/best-ai-for-business → "Best AI for Business Bangladesh 2026 | AI Premium Shop"
+/best-ai-for-developers → "Best AI Coding Tools Bangladesh 2026 | AI Premium Shop"
+/best-ai-for-job-seekers → "Best AI for Job Seekers Bangladesh 2026 | AI Premium Shop"
+/best-ai-for-designers → "Best AI for Designers Bangladesh 2026 | AI Premium Shop"
+/best-ai-for-marketers → "Best AI for Digital Marketers Bangladesh 2026 | AI Premium Shop"
+/best-ai-for-ecommerce → "Best AI for E-commerce Bangladesh 2026 | AI Premium Shop"
+
+COMPARISON:
+/chatgpt-vs-claude-bangladesh → "ChatGPT vs Claude Bangladesh 2026 — Which is Better? | AI Premium Shop"
+/copilot-vs-cursor → "GitHub Copilot vs Cursor 2026 — Best AI Code Tool | AI Premium Shop"
+/midjourney-vs-ideogram → "Midjourney vs Ideogram 2026 — Best AI Image Tool | AI Premium Shop"
+/chatgpt-plans-comparison-bangladesh → "Compare All ChatGPT Plans Bangladesh 2026 | AI Premium Shop"
+
+CORE:
+/ → "AI Premium Shop — 56 Premium AI Tools Bangladesh | From BDT 350/mo"
+/bundles → "AI Tool Bundles Bangladesh — Student, Freelancer & Business | AI Premium Shop"
+/pricing → "AI Tool Pricing Bangladesh 2026 — All 56 Plans | AI Premium Shop"
+/support → "AI Setup Support & 1:1 Coaching — BDT 799/hr | AI Premium Shop"
+/faq → "FAQ — Buy AI Tools Bangladesh via bKash | AI Premium Shop"
+/about → "About AI Premium Shop — 1,200+ Customers Since 2022 | Bangladesh"
+/contact → "Contact AI Premium Shop — WhatsApp Order | bKash & Nagad"
+/how-to-order → "How to Buy AI Tools in Bangladesh via bKash | AI Premium Shop"
+/refund-policy → "Refund & 30-Day Warranty Policy | AI Premium Shop"
+/terms → "Terms of Service | AI Premium Shop Bangladesh"
+/privacy-policy → "Privacy Policy | AI Premium Shop Bangladesh"
+/blog → "AI Blog Bangladesh — Guides & Tips | AI Premium Shop"
+/best-ai-subscription-2026 → "Best AI Subscription 2026 Bangladesh — Top 10 | AI Premium Shop"
+/best-ai-budget-bangladesh → "Cheapest AI Tools Bangladesh 2026 | AI Premium Shop"
+
+=== 2. META DESCRIPTIONS ===
+Every page needs unique description (max 155 chars) with price + "bKash" + "Bangladesh".
+
+Key pages (use exactly):
+/ → "56 premium AI tools in Bangladesh from BDT 350/mo. ChatGPT, Claude, Midjourney & more. bKash/Nagad. 5-30 min delivery. 1,200+ customers."
+/chatgpt-plans-bangladesh → "All ChatGPT plans Bangladesh from BDT 350. Plus, Business, Pro. bKash/Nagad. 5-30 min delivery. 30-day warranty. AI Premium Shop."
+/claude-pro-bangladesh → "Claude Pro Bangladesh from BDT 1,495/mo. Opus 4.6, 200K context, Claude Code. bKash/Nagad. 5-15 min delivery. AI Premium Shop."
+/midjourney-bangladesh → "Midjourney Bangladesh from BDT 1,199/mo. AI image generation. 6 plans. bKash/Nagad. Instant delivery. AI Premium Shop."
+/notion-business-bangladesh → "Notion Business BDT 800/mo — 73% off. Notion AI, teamspaces, SSO. bKash/Nagad. 2-4hr delivery. AI Premium Shop."
+
+For other pages: generate following the pattern "[Brand] Bangladesh from BDT [price]. [Key feature]. bKash/Nagad. AI Premium Shop."
+
+=== 3. SCHEMAS ===
+
+HOMEPAGE: Organization schema must have contactPoint (telephone +8801865385348, contactType sales, areaServed BD) AND sameAs array with Facebook, Instagram, LinkedIn URLs. ADD any missing fields.
+
+BRAND PAGES: Product schema priceCurrency must be "BDT" not "USD". Fix any wrong ones.
+
+FAQ PAGES: FAQPage schema must match rendered FAQ content. Add if missing.
+
+ALL PAGES: BreadcrumbList schema matching visible breadcrumbs.
+
+=== 4. CANONICAL + OG + TWITTER ===
+
+Every page: canonical href must use aipremiumshop.com (not Replit dev URL).
+og:image must point to PNG (not SVG).
+og:site_name = "AI Premium Shop"
+og:locale = "en_BD"
+twitter:card = "summary_large_image"
+All og:title/description must match title/meta description.
+
+=== 5. SITEMAP ===
+
+sitemap.xml must have 55+ URLs. Check against all routes in the app. Add any missing pages. Remove /404 if present. Each URL needs <lastmod>.
+Sitemap URL in robots.txt must be https://aipremiumshop.com/sitemap.xml
+
+=== 6. SPEED ===
+Add <link rel="preconnect" href="https://wa.me"> to index.html if missing.
+Remove unused imports. Verify lazy loading below fold.
+
+npm run build must pass with zero errors.
+Do NOT change prices, styling, or layouts.

@@ -27,7 +27,7 @@ interface Product {
   brandColor: string;
   category: string;
   price: number;
-  officialUSD: number;
+  officialUSD: number | null;
   tier: string;
   accessType: string;
   badge: string | null;
@@ -53,8 +53,8 @@ export default function PricingPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="AI Subscription Pricing Bangladesh 2026 — All Plans Compared | AI Premium Shop"
-        description="Compare every AI subscription price in Bangladesh. ChatGPT, Claude, Midjourney, GitHub Copilot and 30+ more. Pay with bKash. Starts BDT 350."
+        title="AI Subscription Prices Bangladesh 2026 — Compare All Plans"
+        description="Compare all AI subscription prices in Bangladesh. 57 tools from BDT 350. bKash/Nagad payment. AI Premium Shop 2026."
         canonical="https://aipremiumshop.com/pricing"
       />
 
@@ -150,8 +150,8 @@ export default function PricingPage() {
               </thead>
               <tbody>
                 {products.map((p, i) => {
-                  const officialBDT = Math.round(p.officialUSD * RATE);
-                  const savings = officialBDT - p.price;
+                  const officialBDT = p.officialUSD ? Math.round(p.officialUSD * RATE) : 0;
+                  const savings = officialBDT > 0 ? officialBDT - p.price : -1;
                   const waLink = `${WHATSAPP}?text=${encodeURIComponent(`Hi, I want to order ${p.name} (BDT ${p.price})`)}`;
                   return (
                     <tr
@@ -190,8 +190,13 @@ export default function PricingPage() {
                         )}
                       </td>
                       <td className="px-4 py-4 hidden md:table-cell text-xs" style={{ color: "#c9ceda" }}>
-                        ${p.officialUSD}/mo<br />
-                        <span style={{ color: "#c9ceda" }}>≈ BDT {officialBDT.toLocaleString()}</span>
+                        {p.officialUSD === null ? (
+                          "—"
+                        ) : p.id === "notion-business-6m" ? (
+                          <>{`$${p.officialUSD} total (6 months)`}<br /><span style={{ color: "#c9ceda" }}>{"≈ BDT 800/mo × 6"}</span></>
+                        ) : (
+                          <>{`$${p.officialUSD}/mo`}<br /><span style={{ color: "#c9ceda" }}>{`≈ BDT ${officialBDT.toLocaleString()}`}</span></>
+                        )}
                       </td>
                       <td className="px-4 py-4 hidden lg:table-cell text-xs" style={{ color: "#c9ceda" }}>⚡ {p.deliveryMinutes} min</td>
                       <td className="px-4 py-4">

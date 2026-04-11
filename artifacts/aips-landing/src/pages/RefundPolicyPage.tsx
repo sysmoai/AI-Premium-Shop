@@ -47,8 +47,8 @@ export default function RefundPolicyPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="Refund & Replacement Policy | AI Premium Shop"
-        description="AI Premium Shop refund and replacement policy. 30-day replacement warranty on all AI subscriptions. Refunds within 15 minutes of delivery if needed."
+        title="Refund & Replacement Policy | AI Premium Shop Bangladesh"
+        description="AI Premium Shop refund & replacement policy. 30-day warranty. How to request a refund or replacement."
         canonical="https://aipremiumshop.com/refund-policy"
       />
 

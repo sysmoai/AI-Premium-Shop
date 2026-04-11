@@ -1,0 +1,163 @@
+PHASE 10 BATCH 1 — CRITICAL DATA FIXES + TECHNICAL SEO FOUNDATION
+
+IMPORTANT RULES:
+- Do not change any styling, layout, or design.
+- Do not add or remove features not listed here.
+- The fewer lines of code changed, the better.
+- At each step, ask yourself: "Am I adding anything not explicitly requested?" If yes, stop.
+
+=== PART A: FIX WRONG DATA ===
+
+1. HOMEPAGE TRUST BADGES:
+The trust/stats section shows wrong numbers.
+- Change customer count from "1,149+" to "1,200+"
+- Change warranty from "28 Days" to "30 Days"
+- If there is a count-up animation that starts from 0 and never reaches the target number, either fix the animation or replace with static numbers: "1,200+", "Since 2022", "30 Days", "5-Min"
+- The numbers MUST be visible immediately on page load. Users must never see "0".
+
+2. ABOUT PAGE (/about):
+- In the body paragraph, change "31 premium AI tools" to "57 premium AI tools"
+- In the stats grid, change "31" to "57" for "AI tools available"
+- In the stats grid, change "13+" to "19" for "Leading brands"
+- Do not change any other text on the about page.
+
+3. PRICING PAGE (/pricing) — Fix display bugs:
+- For products with no official USD price (Student Essentials, University Pro, Freelancer Bundle, Business Package, B2B Implementation, Manus AI): show "—" in the official USD column instead of "$/mo ≈ BDT 0"
+- For Notion Business 6-Month Plan: change the official price display from "$120/mo officially" to "$120 total (6 months)" and change "≈ BDT 17,940" to "≈ BDT 800/mo × 6"
+- Hide the "Save BDT X" badge on any product where savings equals 0 or is negative. Affected products include: ChatGPT Go, ElevenLabs Starter, SuperGrok Lite, GitHub Copilot Pro, Suno AI Pro, and any product where the AIPS BDT price equals or exceeds the formula price (USD × 130 × 1.15).
+
+4. FOOTER — Fix Instagram link:
+The Instagram icon in the footer has an empty href. Set it to: https://www.instagram.com/aipremiumshop/
+
+=== PART B: TECHNICAL SEO ===
+
+5. FIX sitemap.xml (currently returns HTTP 500):
+Create a proper dynamic XML sitemap at /sitemap.xml (or /api/sitemap.xml with rewrite).
+It must return Content-Type: application/xml and list ALL pages:
+
+https://aipremiumshop.com/
+https://aipremiumshop.com/products
+https://aipremiumshop.com/pricing
+https://aipremiumshop.com/about
+https://aipremiumshop.com/contact
+https://aipremiumshop.com/faq
+https://aipremiumshop.com/blog
+https://aipremiumshop.com/refund-policy
+https://aipremiumshop.com/terms
+https://aipremiumshop.com/ai-assistant
+https://aipremiumshop.com/ai-image
+https://aipremiumshop.com/ai-video
+https://aipremiumshop.com/ai-voice-music
+https://aipremiumshop.com/ai-code
+https://aipremiumshop.com/ai-workspace
+https://aipremiumshop.com/bundles
+https://aipremiumshop.com/best-ai-for-students
+https://aipremiumshop.com/best-ai-for-freelancers
+https://aipremiumshop.com/best-ai-for-creators
+https://aipremiumshop.com/best-ai-for-business
+https://aipremiumshop.com/best-ai-for-developers
+https://aipremiumshop.com/best-ai-for-job-seekers
+https://aipremiumshop.com/chatgpt-vs-claude
+https://aipremiumshop.com/chatgpt-vs-gemini
+https://aipremiumshop.com/copilot-vs-cursor
+https://aipremiumshop.com/ai-under-500
+https://aipremiumshop.com/ai-under-1000
+https://aipremiumshop.com/ai-under-3000
+
+Each URL should have a <lastmod> with today's date (2026-04-11).
+Use Next.js built-in sitemap generation if available (app/sitemap.ts).
+
+6. FIX robots.txt (currently returns timeout):
+Create /public/robots.txt with exactly this content:
+
+User-agent: *
+Allow: /
+Sitemap: https://aipremiumshop.com/sitemap.xml
+
+Or use app/robots.ts for Next.js dynamic generation.
+
+7. ADD CANONICAL TAGS to every page:
+In the Next.js metadata for every page, add:
+metadata.alternates = { canonical: 'https://aipremiumshop.com' + pathname }
+This generates: <link rel="canonical" href="https://aipremiumshop.com/[path]" />
+
+8. ADD UNIQUE TITLE TAGS — every page must have its own <title>:
+
+/ → "AI Premium Shop — Premium AI Tools Bangladesh | From BDT 350"
+/products → "All 57 AI Tools — Prices in BDT | AI Premium Shop Bangladesh"
+/pricing → "AI Subscription Prices Bangladesh 2026 — Compare All Plans"
+/about → "About AI Premium Shop — Bangladesh's Trusted AI Provider Since 2022"
+/faq → "FAQ — AI Subscriptions Bangladesh | AI Premium Shop"
+/contact → "Contact — Order AI Tools via WhatsApp | AI Premium Shop"
+/blog → "Blog — AI Tools Guides & Tips Bangladesh | AI Premium Shop"
+/refund-policy → "Refund & Replacement Policy | AI Premium Shop Bangladesh"
+/terms → "Terms of Service | AI Premium Shop Bangladesh"
+/ai-assistant → "AI Assistant & Chat — ChatGPT, Claude, Gemini Bangladesh"
+/ai-image → "AI Image Generator — Midjourney, Ideogram Bangladesh"
+/ai-video → "AI Video Generator — Runway, HeyGen Bangladesh"
+/ai-voice-music → "AI Voice & Music — ElevenLabs, Suno Bangladesh"
+/ai-code → "AI Coding Tools — GitHub Copilot, Cursor Bangladesh"
+/ai-workspace → "AI Workspace — Notion, Manus AI Bangladesh"
+/bundles → "AI Tool Bundles — Student to Business Packages | From BDT 449"
+/best-ai-for-students → "Best AI Tools for Students Bangladesh 2026"
+/best-ai-for-freelancers → "Best AI Tools for Freelancers Bangladesh 2026"
+/best-ai-for-creators → "Best AI for Content Creators Bangladesh 2026"
+/best-ai-for-business → "Best AI for Business & SME Bangladesh 2026"
+/best-ai-for-developers → "Best AI Coding Tools for Developers Bangladesh 2026"
+/best-ai-for-job-seekers → "Best AI Tools for Job Seekers Bangladesh 2026"
+/chatgpt-vs-claude → "ChatGPT vs Claude Bangladesh 2026 — Which is Better?"
+/chatgpt-vs-gemini → "ChatGPT vs Gemini Bangladesh 2026 — Full Comparison"
+/copilot-vs-cursor → "GitHub Copilot vs Cursor — Best AI Code Editor 2026"
+/ai-under-500 → "AI Tools Under BDT 500 — Cheapest Premium AI Bangladesh"
+/ai-under-1000 → "AI Tools Under BDT 1000 — Budget AI Subscriptions BD"
+/ai-under-3000 → "AI Tools Under BDT 3000 — Mid-Range AI Bangladesh"
+
+9. ADD UNIQUE META DESCRIPTIONS — every page must have its own (max 155 chars):
+
+/ → "57 premium AI tools in Bangladesh. ChatGPT from BDT 350. Pay via bKash/Nagad. 5-min WhatsApp delivery. 30-day warranty. Order now."
+/products → "Browse 57 AI subscriptions. ChatGPT, Claude, Midjourney & more. Prices in BDT. Local payment. Fast delivery. AI Premium Shop."
+/pricing → "Compare all AI subscription prices in Bangladesh. 57 tools from BDT 350. bKash/Nagad payment. AI Premium Shop 2026."
+/about → "AI Premium Shop — 1,200+ customers since 2022. Official AI subscriptions in Bangladesh. bKash payment. WhatsApp support."
+/faq → "Questions about buying AI tools in Bangladesh. Shared vs Personal, payment, delivery, refunds. AI Premium Shop answers."
+/contact → "Contact AI Premium Shop on WhatsApp +880 1865-385348. Under 5-min response. 10AM-Midnight, 7 days a week."
+/ai-assistant → "ChatGPT, Claude, Gemini, Grok, Perplexity in Bangladesh. From BDT 350. Shared & Personal. bKash/Nagad. Fast delivery."
+/ai-image → "Midjourney, Ideogram, Leonardo AI in Bangladesh. From BDT 599. AI image generation. bKash/Nagad payment."
+/ai-video → "Runway & HeyGen AI video in Bangladesh. From BDT 1,499. AI video generation & avatars. Local payment."
+/ai-voice-music → "ElevenLabs, Suno AI, Udio in Bangladesh. From BDT 499. Voice cloning & AI music. Local payment."
+/ai-code → "GitHub Copilot, Cursor, v0.dev, Replit in Bangladesh. From BDT 500. AI coding tools. bKash/Nagad."
+/ai-workspace → "Notion, Manus AI, Otter.ai, Gamma in Bangladesh. From BDT 399. AI productivity tools. Local payment."
+/bundles → "AI tool bundles for students, freelancers & business. From BDT 449. Save more. AI Premium Shop."
+/best-ai-for-students → "Best AI tools for students in Bangladesh 2026. Google AI BDT 500. ChatGPT BDT 350. Study smarter."
+/best-ai-for-freelancers → "Best AI tools for freelancers Bangladesh 2026. Earn 44% more with AI. From BDT 350. Upwork & Fiverr."
+/best-ai-for-creators → "Best AI for content creators Bangladesh 2026. Script, thumbnail, music — all AI. From BDT 350."
+/best-ai-for-business → "Best AI for business owners Bangladesh 2026. Automate sales, support, content. From BDT 500."
+/best-ai-for-developers → "Best AI coding tools Bangladesh 2026. Copilot, Cursor, Replit. Code 50% faster. From BDT 500."
+/best-ai-for-job-seekers → "Best AI for job seekers Bangladesh 2026. CV builder, interview prep, skill roadmap. From BDT 350."
+/chatgpt-vs-claude → "ChatGPT vs Claude in Bangladesh 2026. Features, prices, which is better. AI Premium Shop."
+/chatgpt-vs-gemini → "ChatGPT vs Gemini in Bangladesh 2026. Full comparison with BD prices. AI Premium Shop."
+/copilot-vs-cursor → "GitHub Copilot vs Cursor 2026. Best AI code editor compared. Prices in BDT."
+/ai-under-500 → "AI tools under BDT 500 in Bangladesh. ChatGPT BDT 350, Google AI BDT 500. Cheapest premium AI."
+/ai-under-1000 → "AI tools under BDT 1000 in Bangladesh. Claude, Notion, Perplexity & more. Budget AI tools."
+/ai-under-3000 → "AI tools under BDT 3000 in Bangladesh. Personal accounts for pros. Mid-range AI subscriptions."
+/blog → "AI guides, comparisons, and tips for Bangladesh. Learn which tools work best for your needs."
+/refund-policy → "AI Premium Shop refund & replacement policy. 30-day warranty. How to request a refund or replacement."
+/terms → "Terms of service for AI Premium Shop Bangladesh. Shared & personal account terms explained."
+
+10. TRAILING SLASH CONSISTENCY:
+In next.config.js (or next.config.mjs), set: trailingSlash: false
+This prevents /products/ and /products from being two separate pages.
+
+11. REMOVE REPLIT DEV BANNER:
+If there is any code that renders "This is a temporary development preview" at the bottom of pages, remove it or hide it. If it's injected by Replit's dev environment and cannot be removed in code, note it — it will disappear after deployment.
+
+=== VERIFICATION AFTER THIS BATCH ===
+Check these manually after Replit finishes:
+- Homepage shows "1,200+" and "30 Days" (not 1,149 or 28)
+- /about page shows "57 premium AI tools" and "19" brands
+- /pricing shows "—" for bundles (not $0), no "Save BDT 0" badges
+- /sitemap.xml loads and shows XML with all URLs
+- /robots.txt loads and shows correct content
+- View page source on any page — <title> tag is unique
+- View page source — <meta name="description"> is unique
+- View page source — <link rel="canonical"> exists
+- Footer Instagram icon links to instagram.com/aipremiumshop/

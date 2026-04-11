@@ -91,8 +91,8 @@ export default function ContactPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="Contact AI Premium Shop — Order via WhatsApp"
-        description="Contact AI Premium Shop Bangladesh. WhatsApp: +880 1865-385348. Response under 5 minutes. 10 AM to Midnight BST, 7 days a week."
+        title="Contact — Order AI Tools via WhatsApp | AI Premium Shop"
+        description="Contact AI Premium Shop on WhatsApp +880 1865-385348. Under 5-min response. 10AM-Midnight, 7 days a week."
         canonical="https://aipremiumshop.com/contact"
       />
 

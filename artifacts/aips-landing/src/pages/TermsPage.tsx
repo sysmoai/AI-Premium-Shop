@@ -72,8 +72,8 @@ export default function TermsPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="Terms of Service | AI Premium Shop"
-        description="Terms of Service for AI Premium Shop Bangladesh. Service description, payment terms, delivery, account usage, warranty, and dispute resolution."
+        title="Terms of Service | AI Premium Shop Bangladesh"
+        description="Terms of service for AI Premium Shop Bangladesh. Shared & personal account terms explained."
         canonical="https://aipremiumshop.com/terms"
       />
 

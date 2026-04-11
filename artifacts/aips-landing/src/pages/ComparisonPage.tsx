@@ -33,9 +33,9 @@ interface CompConfig {
 
 const COMPARISONS: Record<string, CompConfig> = {
   "chatgpt-vs-claude": {
-    title: "ChatGPT vs Claude — Which AI Should You Buy? Bangladesh 2026 | AI Premium Shop",
+    title: "ChatGPT vs Claude Bangladesh 2026 — Which is Better?",
     h1: "ChatGPT vs Claude — Which One Is Right for You?",
-    metaDescription: "ChatGPT vs Claude comparison 2026 Bangladesh. Compare prices, features, and use cases. Both available from BDT 350–400 with bKash payment.",
+    metaDescription: "ChatGPT vs Claude in Bangladesh 2026. Features, prices, which is better. AI Premium Shop.",
     canonical: "https://aipremiumshop.com/chatgpt-vs-claude",
     productA: { name: "ChatGPT (OpenAI)", color: "#10a37f", orderText: "Order ChatGPT" },
     productB: { name: "Claude (Anthropic)", color: "#d97706", orderText: "Order Claude" },
@@ -61,9 +61,9 @@ const COMPARISONS: Record<string, CompConfig> = {
     ],
   },
   "chatgpt-vs-gemini": {
-    title: "ChatGPT vs Google AI Pro — Comparison Bangladesh 2026 | AI Premium Shop",
+    title: "ChatGPT vs Gemini Bangladesh 2026 — Full Comparison",
     h1: "ChatGPT vs Google AI Pro — Which Should You Choose?",
-    metaDescription: "ChatGPT vs Google AI Pro (Gemini) comparison Bangladesh 2026. ChatGPT at BDT 350 vs Google AI Pro at BDT 500. Compare features, prices, and use cases.",
+    metaDescription: "ChatGPT vs Gemini in Bangladesh 2026. Full comparison with BD prices. AI Premium Shop.",
     canonical: "https://aipremiumshop.com/chatgpt-vs-gemini",
     productA: { name: "ChatGPT Plus", color: "#10a37f", orderText: "Order ChatGPT" },
     productB: { name: "Google AI Pro", color: "#4285f4", orderText: "Order Google AI Pro" },
@@ -89,9 +89,9 @@ const COMPARISONS: Record<string, CompConfig> = {
     ],
   },
   "copilot-vs-cursor": {
-    title: "GitHub Copilot vs Cursor — Best AI Coding Tool 2026 | AI Premium Shop",
+    title: "GitHub Copilot vs Cursor — Best AI Code Editor 2026",
     h1: "GitHub Copilot vs Cursor — Which AI Code Tool Should You Use?",
-    metaDescription: "GitHub Copilot vs Cursor comparison Bangladesh 2026. Copilot at BDT 1,495 vs Cursor Pro at BDT 2,990. Which AI coding tool is right for you?",
+    metaDescription: "GitHub Copilot vs Cursor 2026. Best AI code editor compared. Prices in BDT.",
     canonical: "https://aipremiumshop.com/copilot-vs-cursor",
     productA: { name: "GitHub Copilot Pro", color: "#6e40c9", orderText: "Order Copilot" },
     productB: { name: "Cursor Pro", color: "#3b82f6", orderText: "Order Cursor" },

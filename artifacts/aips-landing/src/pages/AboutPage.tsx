@@ -8,8 +8,8 @@ const WHATSAPP = "https://wa.me/8801865385348";
 
 const STATS = [
   { icon: Users, value: "1,200+", label: "Happy customers" },
-  { icon: Package, value: "31", label: "AI tools available" },
-  { icon: Layers, value: "13+", label: "Leading brands" },
+  { icon: Package, value: "57", label: "AI tools available" },
+  { icon: Layers, value: "19", label: "Leading brands" },
   { icon: Calendar, value: "2022", label: "Founded" },
   { icon: Clock, value: "<5 min", label: "WhatsApp response" },
 ];
@@ -18,8 +18,8 @@ export default function AboutPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="About AI Premium Shop — Bangladesh's Trusted AI Subscription Provider"
-        description="Founded in 2022. 1,200+ customers. Bangladesh's most trusted source for premium AI subscriptions. ChatGPT, Claude, Midjourney and 30+ more tools via bKash."
+        title="About AI Premium Shop — Bangladesh's Trusted AI Provider Since 2022"
+        description="AI Premium Shop — 1,200+ customers since 2022. Official AI subscriptions in Bangladesh. bKash payment. WhatsApp support."
         canonical="https://aipremiumshop.com/about"
       />
 
@@ -66,7 +66,7 @@ export default function AboutPage() {
           >
             <h2 className="text-xl font-bold text-white mb-4">What We Offer</h2>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>
-              31 premium AI tools from 13 leading brands including ChatGPT, Claude, Midjourney, GitHub Copilot, Runway, ElevenLabs, and more. Shared and personal accounts available. Prices start at just BDT 350 per month.
+              57 premium AI tools from 19 leading brands including ChatGPT, Claude, Midjourney, GitHub Copilot, Runway, ElevenLabs, and more. Shared and personal accounts available. Prices start at just BDT 350 per month.
             </p>
             <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
               All plans come with 30-day replacement warranty, under-5-minute WhatsApp response, and local payment via bKash, Nagad, Rocket, or bank transfer.
@@ -136,7 +136,7 @@ export default function AboutPage() {
                 <div className="text-xs" style={{ color: "#c9ceda" }}>facebook.com/aipremiumshopbd</div>
               </div>
             </a>
-            <a href="#" className="flex items-center gap-3 p-4 rounded-xl border border-white/10 hover:border-white/30 transition-colors">
+            <a href="https://www.instagram.com/aipremiumshop/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 rounded-xl border border-white/10 hover:border-white/30 transition-colors">
               <Instagram className="w-5 h-5" style={{ color: "#e1306c" }} />
               <div>
                 <div className="text-sm font-semibold text-white">Instagram</div>

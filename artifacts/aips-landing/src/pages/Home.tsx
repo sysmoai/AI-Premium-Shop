@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
+import { SEOHead } from "@/components/SEOHead";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { StickyMobileBar } from "@/components/StickyMobileBar";
 import { FAQSection } from "@/components/FAQSection";
@@ -323,6 +324,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
+      <SEOHead
+        title="AI Premium Shop — Premium AI Tools Bangladesh | From BDT 350"
+        description="57 premium AI tools in Bangladesh. ChatGPT from BDT 350. Pay via bKash/Nagad. 5-min WhatsApp delivery. 30-day warranty. Order now."
+        canonical="https://aipremiumshop.com/"
+      />
 
       {/* ── STICKY NAVBAR ── */}
       <header

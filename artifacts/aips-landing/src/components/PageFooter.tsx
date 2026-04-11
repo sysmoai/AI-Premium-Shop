@@ -75,7 +75,7 @@ export function PageFooter() {
                 className="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/30 transition-colors" aria-label="Facebook">
                 <Facebook className="w-4 h-4" style={{ color: "#c9ceda" }} />
               </a>
-              <a href="#" className="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/30 transition-colors" aria-label="Instagram">
+              <a href="https://www.instagram.com/aipremiumshop/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/30 transition-colors" aria-label="Instagram">
                 <Instagram className="w-4 h-4" style={{ color: "#c9ceda" }} />
               </a>
               <a href="#" className="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/30 transition-colors" aria-label="LinkedIn">

@@ -136,8 +136,8 @@ export default function ProductsPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="All AI Tools — Premium Subscriptions | AI Premium Shop Bangladesh"
-        description="Browse premium AI subscriptions from BDT 350. ChatGPT, Claude, Midjourney, Copilot and more. Pay with bKash. Delivered in minutes."
+        title="All 57 AI Tools — Prices in BDT | AI Premium Shop Bangladesh"
+        description="Browse 57 AI subscriptions. ChatGPT, Claude, Midjourney & more. Prices in BDT. Local payment. Fast delivery. AI Premium Shop."
         canonical="https://aipremiumshop.com/products"
       />
 

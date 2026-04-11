@@ -56,8 +56,8 @@ export default function BlogPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="AI Tools Blog Bangladesh — Guides, Reviews & Tips | AI Premium Shop"
-        description="AI tools guides, reviews, and how-to articles for Bangladesh. Learn how to use ChatGPT, Claude, Midjourney, and more. Tips for freelancers, students, and businesses."
+        title="Blog — AI Tools Guides & Tips Bangladesh | AI Premium Shop"
+        description="AI guides, comparisons, and tips for Bangladesh. Learn which tools work best for your needs."
         canonical="https://aipremiumshop.com/blog"
       />
 

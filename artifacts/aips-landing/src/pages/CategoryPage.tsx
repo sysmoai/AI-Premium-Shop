@@ -11,6 +11,7 @@ const WHATSAPP = "https://wa.me/8801865385348";
 interface CategoryConfig {
   id: string;
   displayName: string;
+  seoTitle: string;
   subtitle: string;
   description: string;
   metaDescription: string;
@@ -24,11 +25,12 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-assistant": {
     id: "ai-assistant",
     displayName: "AI Assistant & Chat",
+    seoTitle: "AI Assistant & Chat — ChatGPT, Claude, Gemini Bangladesh",
     subtitle: "ChatGPT, Claude, Gemini, Grok & more",
     description:
       "The world's most powerful AI assistants. Write, code, research, create images, and automate tasks. From ChatGPT and Claude to Gemini and Perplexity — find your perfect AI partner. All plans available with local payment via bKash, Nagad, or Rocket.",
     metaDescription:
-      "Buy ChatGPT Plus, Claude Pro, Gemini Advanced, Grok in Bangladesh. From BDT 350. Pay with bKash. Delivered in minutes. 30-day warranty.",
+      "ChatGPT, Claude, Gemini, Grok, Perplexity in Bangladesh. From BDT 350. Shared & Personal. bKash/Nagad. Fast delivery.",
     accent: "#10a37f",
     faqs: [
       { q: "What's the difference between Shared and Personal accounts?", a: "Shared accounts are cost-effective: you access the same plan as other users (no chat history sharing). Personal accounts are yours alone — full privacy, custom settings, and no usage limits from others." },
@@ -51,11 +53,12 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-image": {
     id: "ai-image",
     displayName: "AI Image & Design",
+    seoTitle: "AI Image Generator — Midjourney, Ideogram Bangladesh",
     subtitle: "Midjourney, Ideogram, Leonardo AI — text-to-image",
     description:
       "Create stunning visuals with AI. Generate images from text prompts, design logos, and produce photorealistic graphics. Midjourney for artistic quality, Ideogram for perfect text rendering, Leonardo AI for 3D and motion. All available in Bangladesh via bKash — no international card needed.",
     metaDescription:
-      "Buy Midjourney, Ideogram, Leonardo AI in Bangladesh. AI image generation from BDT 450. Pay with bKash. 30-day warranty.",
+      "Midjourney, Ideogram, Leonardo AI in Bangladesh. From BDT 599. AI image generation. bKash/Nagad payment.",
     accent: "#8b5cf6",
     faqs: [
       { q: "Which AI image tool is best for logo design?", a: "Ideogram is the best for logos and text-heavy designs — it renders text perfectly inside images. For artistic or photorealistic images, Midjourney Standard Plan is the top choice." },
@@ -77,11 +80,12 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-video": {
     id: "ai-video",
     displayName: "AI Video",
+    seoTitle: "AI Video Generator — Runway, HeyGen Bangladesh",
     subtitle: "Runway, HeyGen — text-to-video & AI avatars",
     description:
       "Generate and edit videos with AI. Text-to-video, image-to-video, 4K upscaling, and AI avatar creation. Runway Gen-4 is the leading platform used by filmmakers worldwide. HeyGen creates professional talking-head videos with AI avatars in 15+ languages — all accessible in Bangladesh with bKash payment.",
     metaDescription:
-      "Buy Runway, HeyGen in Bangladesh. AI video generation from BDT 1,495. Pay with bKash or Nagad. 30-day warranty.",
+      "Runway & HeyGen AI video in Bangladesh. From BDT 1,499. AI video generation & avatars. Local payment.",
     accent: "#ec4899",
     faqs: [
       { q: "What can I make with Runway?", a: "Runway Gen-4 creates video from text prompts or reference images, applies motion effects, removes backgrounds from video, and provides advanced editing tools used by professional filmmakers and video editors." },
@@ -102,11 +106,12 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-voice-music": {
     id: "ai-voice-music",
     displayName: "AI Voice & Music",
+    seoTitle: "AI Voice & Music — ElevenLabs, Suno Bangladesh",
     subtitle: "ElevenLabs, Suno AI — voice cloning & music generation",
     description:
       "Clone voices, generate speech, and create music with AI. ElevenLabs produces human-quality voiceovers in 29+ languages for content creators, podcasters, and businesses. Suno creates complete AI-generated songs — lyrics, vocals, and instrumentation — in any genre. Now available in Bangladesh via local payment.",
     metaDescription:
-      "Buy ElevenLabs, Suno AI in Bangladesh. AI voice cloning from BDT 500. Pay with bKash. 30-day warranty.",
+      "ElevenLabs, Suno AI, Udio in Bangladesh. From BDT 499. Voice cloning & AI music. Local payment.",
     accent: "#f97316",
     faqs: [
       { q: "Can I clone my own voice with ElevenLabs?", a: "Yes — ElevenLabs Starter and Creator plans include voice cloning from a short audio sample. The cloned voice can then generate unlimited audio in that voice." },
@@ -127,11 +132,12 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-code": {
     id: "ai-code",
     displayName: "AI Code & Dev Tools",
+    seoTitle: "AI Coding Tools — GitHub Copilot, Cursor Bangladesh",
     subtitle: "GitHub Copilot, Cursor, v0.dev, Replit",
     description:
       "Code faster with AI pair programming. GitHub Copilot Pro integrates directly into VS Code, JetBrains, and Neovim. Cursor is the AI-native editor trusted by teams at OpenAI, Stripe, and Figma. v0.dev generates complete React UIs from text. Replit's agent builds full-stack apps — all available in Bangladesh via bKash from ৳500/month.",
     metaDescription:
-      "Buy GitHub Copilot, Cursor Pro, v0.dev, Replit in Bangladesh. AI coding tools from BDT 500. Pay with bKash. 30-day warranty.",
+      "GitHub Copilot, Cursor, v0.dev, Replit in Bangladesh. From BDT 500. AI coding tools. bKash/Nagad.",
     accent: "#06b6d4",
     faqs: [
       { q: "GitHub Copilot vs Cursor — which is better?", a: "GitHub Copilot integrates into your existing IDE (VS Code, JetBrains, Vim). Cursor is a standalone AI-first IDE built on VS Code. Cursor is more powerful for AI-driven development; Copilot is more convenient if you already use a specific IDE." },
@@ -152,11 +158,12 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-workspace": {
     id: "ai-workspace",
     displayName: "AI Workspace",
+    seoTitle: "AI Workspace — Notion, Manus AI Bangladesh",
     subtitle: "Notion, Manus AI, Otter.ai, Gamma — productivity",
     description:
       "AI-powered productivity and collaboration for teams and individuals. Notion Business includes AI writing, summarization, and database features. Manus AI is an autonomous research and automation agent. Gamma generates beautiful presentations from one sentence. Otter.ai transcribes meetings automatically — all available in Bangladesh via bKash.",
     metaDescription:
-      "Buy Notion Business, Gamma, Otter.ai, Manus AI in Bangladesh. AI workspace tools from BDT 399. Pay with bKash. 30-day warranty.",
+      "Notion, Manus AI, Otter.ai, Gamma in Bangladesh. From BDT 399. AI productivity tools. Local payment.",
     accent: "#f4b942",
     faqs: [
       { q: "What does Notion AI add over regular Notion?", a: "Notion AI can write pages from prompts, summarize long documents, translate content, fill databases automatically, and answer questions about your workspace. It's integrated directly into your workflow." },
@@ -178,6 +185,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "ai-writing": {
     id: "ai-writing",
     displayName: "AI Writing & SEO",
+    seoTitle: "AI Writing & SEO Tools — Writesonic Bangladesh",
     subtitle: "Writesonic — AI content writing, SEO & marketing copy",
     description:
       "AI-powered content writing and SEO tools. Writesonic Individual generates SEO-optimized blog posts, product descriptions, marketing copy, and social media content. Outrank competitors with AI-driven content at a fraction of the cost of hiring writers.",
@@ -205,11 +213,12 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   "bundles": {
     id: "bundles",
     displayName: "Bundles & Packages",
+    seoTitle: "AI Tool Bundles — Student to Business Packages | From BDT 449",
     subtitle: "Multiple AI tools at a package price",
     description:
       "Save more with curated AI tool bundles. Each bundle is designed for a specific use case — students, freelancers, content creators, or business owners. Get multiple premium AI subscriptions at a discounted price compared to buying individually. Message us on WhatsApp to create a custom bundle.",
     metaDescription:
-      "AI tool bundles in Bangladesh. Multiple premium subscriptions at a package price. Pay with bKash. 30-day warranty.",
+      "AI tool bundles for students, freelancers & business. From BDT 449. Save more. AI Premium Shop.",
     accent: "#e11d48",
     faqs: [
       { q: "What bundles are available?", a: "We're building curated bundles for specific needs. Message us on WhatsApp and we'll create a custom bundle based on your workflow and budget." },
@@ -329,7 +338,7 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
   return (
     <PageLayout>
       <SEOHead
-        title={`${config.displayName} — AI Subscriptions Bangladesh | AI Premium Shop`}
+        title={config.seoTitle}
         description={config.metaDescription}
         canonical={`https://aipremiumshop.com/${categoryId}`}
       />

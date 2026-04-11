@@ -1,0 +1,253 @@
+VISUAL PROMPT 1 — CHATGPT UNIVERSE: VISUAL STORYTELLING + FOMO + OUTCOMES
+
+This prompt upgrades all pages where ChatGPT products appear.
+Do NOT rebuild pages. Only ADD new visual sections and enhance existing content.
+All visuals are generated in code (SVG, CSS, React). No external image files.
+
+ChatGPT brand color: #10a37f
+ChatGPT plans: Plus Shared ৳350, Plus Premium ৳950, Plus Personal ৳2,990,
+  Go ৳1,196, Business Shared ৳699, Business Premium ৳1,299,
+  Business Personal ৳3,990, Pro Shared ৳4,500, Pro Personal ৳29,900
+
+=== PART 1: CHATGPT BRAND PAGE (/chatgpt-plans-bangladesh) ===
+
+1A. ADD "WHAT CHATGPT CAN DO FOR YOU" SECTION (after hero, before plans):
+
+Create a visual grid showing 6 ChatGPT use cases with SVG icons:
+
+Row 1 (3 cards):
+- WRITE: Pen icon + "Essays, proposals, emails, ads — professional quality in minutes"
+- CODE: Terminal icon + "Debug, build features, write tests — 55% faster (GitHub Research)"
+- RESEARCH: Search icon + "Deep research with sources, data analysis, market insights"
+
+Row 2 (3 cards):
+- CREATE: Image icon + "Generate images with DALL-E, design assets, presentations"
+- AUTOMATE: Robot icon + "AI Agents do tasks for you — research, email, reports"
+- LEARN: Brain icon + "Learn any subject, any language, 24/7 personal tutor"
+
+Each card: Navy-800 bg, 3px top border in #10a37f gradient,
+SVG icon (32px, white), heading (white, bold), description (gray-400, text-sm)
+Hover: scale(1.02), green glow
+
+1B. ADD "WHO USES CHATGPT" SEGMENT SECTION:
+
+Create a visual showing which BD segments use which ChatGPT plan:
+
+H2: "Which ChatGPT Plan Fits Your Life?"
+
+Create 5 visual cards (horizontal scroll on mobile):
+
+Card 1 - STUDENT:
+  SVG illustration: Student at desk with laptop + books + A+ paper
+  Title: "🎓 Students"
+  Pain: "Assignment deadline, English weak, research paper"
+  Solution: "ChatGPT Plus ৳350/mo → A+ grades, research done in 30 min"
+  Outcome: "CGPA 2.8 → 3.5+ possible"
+  CTA: [Order ৳350/mo] button (green, WhatsApp link)
+
+Card 2 - FREELANCER:
+  SVG illustration: Person at dual monitors + Upwork logo + money floating up
+  Title: "💻 Freelancers"
+  Pain: "Can't write proposals, delivery slow, clients leaving"
+  Solution: "ChatGPT Plus ৳350-950/mo → Proposals in 2 min, delivery 50% faster"
+  Outcome: "Freelancers with AI earn 44% more — Upwork 2025"
+  CTA: [Order ৳950/mo] button
+
+Card 3 - BUSINESS OWNER:
+  SVG illustration: Office desk + WhatsApp messages + growth chart
+  Title: "💼 Business Owners"
+  Pain: "Marketing expensive, support staff needed, content slow"
+  Solution: "ChatGPT Business ৳699/mo → 1 person does 10 people's work"
+  Outcome: "Save ৳15,000-50,000/mo in staff costs"
+  CTA: [Order ৳699/mo] button
+
+Card 4 - JOB SEEKER:
+  SVG illustration: Person with polished CV + interview chair + company buildings
+  Title: "🔍 Job Seekers"
+  Pain: "CV rejected, interview nervous, no skill roadmap"
+  Solution: "ChatGPT Plus ৳350/mo → Professional CV in 5 min, mock interview"
+  Outcome: "Get hired 2-3 months faster. Starting salary 10-20% higher."
+  CTA: [Order ৳350/mo] button
+
+Card 5 - DEVELOPER:
+  SVG illustration: Code editor with green code + bug squashed + rocket
+  Title: "🖥️ Developers"
+  Pain: "Debugging for hours, client deadlines slipping"
+  Solution: "ChatGPT Pro ৳4,500/mo → Unlimited GPT-5 Pro mode, Sora video, agents"
+  Outcome: "Code 55% faster. Bug fix in seconds, not hours."
+  CTA: [Order ৳4,500/mo] button
+
+Each card: Navy-800 bg, rounded-xl, 200px wide (scroll horizontal on mobile)
+SVG illustration: 120x90px, simple geometric style (circle head, rectangle desk/laptop)
+Accent color matches segment (blue for student, green for freelancer, gold for business, etc.)
+
+1C. ADD "WHAT HAPPENS IF YOU DON'T USE AI" FOMO SECTION:
+
+H2: "The Cost of NOT Using AI in 2026"
+Subtitle: "Every month without AI, you're falling behind."
+
+Create a comparison visual (red left vs green right):
+
+Left side (red tones, #ef4444 at 10% opacity bg):
+Title: "❌ Without AI"
+- Students: "Assignment takes 3 days. CGPA stuck at 2.8. English writing weak."
+- Freelancers: "10 proposals → 1 reply. Delivery takes 3-5 days. Earning $200-500/mo."
+- Business: "Hiring 3 staff for content + support + marketing = ৳45,000+/mo cost."
+- Job Seekers: "Generic CV. 50 applications → 2 calls. 6+ months to get hired."
+
+Right side (green tones, #10b981 at 10% opacity bg):
+Title: "✅ With ChatGPT (৳350/mo)"
+- Students: "Assignment in 2 hours. CGPA 3.5+. Professional English writing."
+- Freelancers: "10 proposals → 3-4 replies. Delivery 1-2 days. Earning $500-1,500+/mo."
+- Business: "ChatGPT Business ৳699 = 1 person doing 10 people's work."
+- Job Seekers: "ATS-optimized CV. 20 apps → 5-8 calls. Hired in 1-3 months."
+
+Bottom CTA: "Start for just ৳350/mo — the price of 2 cups of tea."
+[Order on WhatsApp] green button
+
+1D. ADD "AGENTIC AI" HIGHLIGHT (below plans):
+
+H3: "🤖 ChatGPT Pro = Your Own AI Employee"
+
+Visual: SVG robot with multiple arms (writing, coding, researching, emailing)
+Circular arrangement around the robot showing tasks it does autonomously.
+
+Text: "ChatGPT Pro (৳4,500/mo shared, ৳29,900 personal) includes:
+- Unlimited GPT-5 Pro mode (smartest AI available)
+- Sora video generation
+- Codex agent (writes code autonomously)
+- Deep research agent (researches for hours, delivers report)
+- Custom GPTs for your specific workflow
+
+This is not a chatbot. This is an AI employee that works 24/7."
+
+Statistic callout: "AI agency founders earn $34,000/mo profit with just 5 clients
+— Medium, March 2026"
+
+=== PART 2: HOMEPAGE CHATGPT ELEMENTS ===
+
+2A. BEST SELLERS SECTION:
+The ChatGPT Plus Starter Shared (৳350) card should have:
+- BrandIcon circle: #10a37f with white "C"
+- Small use-case badge below price: "Writing · Coding · Research · Images"
+- "View all 9 ChatGPT plans →" link below Order button
+  Links to /chatgpt-plans-bangladesh
+
+2B. SEGMENT CARDS (Students, Freelancers):
+On the Students segment card, add a small pill badge:
+"Start with ChatGPT ৳350/mo" in green (#10a37f) pill
+Links to /chatgpt-plans-bangladesh
+
+Same for Freelancers, Job Seekers, Business cards — each mentions ChatGPT as entry point.
+
+=== PART 3: GUIDE PAGES CHATGPT ELEMENTS ===
+
+3A. /best-ai-for-students:
+Add a "Student Success Story" visual callout box:
+Background: blue gradient at 5% opacity
+Icon: 🎓 (48px)
+Quote: "ChatGPT ৳350/mo changed how I study. My research papers went from C+ to A.
+I can explain complex economics theories in simple Bangla now.
+My CGPA improved from 2.9 to 3.6 in one semester."
+— Based on real student outcomes (anonymized)
+
+Below: "Every subject. Every assignment. Every exam. One tool."
+Subject tags: Economics · Accounting · Law · CSE · English · BBA · Medical · HSC
+Each tag is a small pill badge in blue tones.
+
+3B. /best-ai-for-freelancers:
+Add a "Freelancer Income Calculator" visual:
+Background: green gradient at 5% opacity
+Icon: 💻 (48px)
+
+"Without AI: 5 projects/month × $50 = $250/month
+With ChatGPT + Midjourney: 12 projects/month × $80 = $960/month
+Difference: $710/month = ৳92,300 BDT extra
+AI subscription cost: ৳350-1,199/month
+ROI: 77x-264x return"
+
+Freelancer types with ChatGPT recommendations:
+Writer → ChatGPT Plus ৳350 | Designer → + Midjourney ৳1,199 |
+Developer → + Copilot ৳1,495 | VA → ChatGPT + Notion ৳1,150
+
+3C. /best-ai-for-business:
+Add "Business Cost Savings" visual:
+Background: gold gradient at 5% opacity
+Icon: 💼 (48px)
+
+"Traditional costs vs AI costs:
+Content Writer: ৳15,000/mo → ChatGPT Business: ৳699/mo
+Designer: ৳5,000/mo → Midjourney: ৳1,199/mo
+Support Staff: ৳12,000/mo → AI Agent: ৳699/mo
+Marketing Agency: ৳50,000/mo → AI Stack: ৳2,497/mo
+
+Total savings: ৳79,000/mo with same or better output"
+
+3D. /best-ai-for-job-seekers:
+Add "Job Search Timeline" visual:
+Background: indigo gradient at 5% opacity
+Icon: 🔍 (48px)
+
+"Without AI: 6 months average to get hired
+With AI: 1-3 months average
+
+Every month without a job = ৳15,000-30,000 lost income
+3 months faster = ৳45,000-90,000 more earnings
+ChatGPT subscription: ৳350/mo
+ROI: 128x-257x return"
+
+=== PART 4: COMPARISON PAGES CHATGPT ELEMENTS ===
+
+4A. /chatgpt-vs-claude:
+Add a "Decision Matrix" visual:
+
+SVG visual: Two circles (green C vs amber C) with VS between them.
+
+"Quick Decision:
+✔ Choose ChatGPT if: You want one tool for everything — writing, coding, images, agents, research
+✔ Choose Claude if: You write long documents, legal content, or do complex code review
+✔ Choose BOTH if: You're a professional who needs the best of both worlds (৳1,845/mo)"
+
+"Real-world test:
+Writing quality: Claude wins (Opus 4.6 = #1 on Chatbot Arena)
+Coding speed: ChatGPT wins (Codex agent builds full features)
+Image generation: ChatGPT wins (DALL-E built in, Claude has none)
+Research: Tie (both excellent, ChatGPT has browsing, Claude has 1M context)
+Agents: ChatGPT wins (Custom GPTs, deep research agent, Codex)
+Price: ChatGPT wins (৳350 vs Claude ৳1,495)"
+
+4B. /chatgpt-vs-gemini:
+Add similar decision matrix:
+"✔ Choose ChatGPT if: You want the most versatile AI with agents + coding + images
+✔ Choose Google AI if: You live in Google ecosystem (Gmail, Docs, Drive) and want 2TB storage
+✔ Choose BOTH if: ChatGPT for work + Google AI for email/docs (৳850/mo)"
+
+=== PART 5: BUDGET PAGES CHATGPT ELEMENTS ===
+
+5A. /ai-under-500:
+Make ChatGPT Plus Shared (৳350) the HERO product:
+Add a highlight box: "Best Value Under ৳500"
+SVG illustration: A simple medal/trophy icon
+"ChatGPT Plus Shared at ৳350/mo is the #1 best-value AI tool in Bangladesh.
+It gives you: writing, coding, image generation, deep research, AI agents
+— all for the price of 2 cups of tea per month."
+
+=== PART 6: BUNDLES PAGE CHATGPT ELEMENTS ===
+
+For every bundle that includes ChatGPT, add a small note:
+"Powered by ChatGPT — the world's most popular AI"
+With the BrandIcon circle (#10a37f, white C) next to it.
+
+Student Essentials (৳449): "ChatGPT + AI Setup Guide → Study smarter from day 1"
+Freelancer Bundle (৳3,999): "ChatGPT Personal + Midjourney + Perplexity → Full freelancer AI stack"
+
+=== VERIFICATION ===
+After this prompt:
+- [ ] /chatgpt-plans-bangladesh has: "What ChatGPT Can Do" grid, segment cards with illustrations, FOMO section, agentic AI highlight
+- [ ] Homepage best sellers ChatGPT card has use-case badge + "View all plans" link
+- [ ] Guide pages have outcome calculators (income, CGPA, cost savings, job timeline)
+- [ ] Comparison pages have decision matrices
+- [ ] /ai-under-500 highlights ChatGPT as hero product
+- [ ] All new sections have SVG illustrations (not external images)
+- [ ] Mobile responsive (illustrations hidden or smaller on mobile)
+- [ ] Page still loads fast

@@ -21,7 +21,6 @@ import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
 import { SEOHead } from "@/components/SEOHead";
 import { ORG_SCHEMA, WEBSITE_SCHEMA, schemaJson } from "@/utils/schemas";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
-import { StickyMobileBar } from "@/components/StickyMobileBar";
 import { FAQSection } from "@/components/FAQSection";
 
 import { HeroSection } from "@/sections/HeroSection";
@@ -276,7 +275,6 @@ function ProductsDropdown() {
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const heroRef = useRef<HTMLElement>(null);
   const [, navigate] = useLocation();
 
   useEffect(() => {
@@ -491,7 +489,7 @@ export default function Home() {
 
       <main>
         {/* 1. HERO */}
-        <HeroSection ref={heroRef} />
+        <HeroSection />
 
         {/* 2. FIND YOUR SOLUTION — 6 pain-point cards */}
         <div className="scroll-reveal"><PainPointSection /></div>
@@ -523,9 +521,6 @@ export default function Home() {
 
       {/* FLOATING WHATSAPP BUTTON */}
       <FloatingWhatsApp />
-
-      {/* MOBILE STICKY BOTTOM BAR */}
-      <StickyMobileBar heroRef={heroRef} />
     </div>
   );
 }

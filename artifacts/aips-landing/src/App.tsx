@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { useState, useEffect } from "react";
+import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MessageCircle } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CookieBanner } from "@/components/CookieBanner";
@@ -26,6 +27,46 @@ import BrandPage from "@/pages/BrandPage";
 import SupportPage from "@/pages/SupportPage";
 import HowToOrderPage from "@/pages/HowToOrderPage";
 import BestAISubscriptionPage from "@/pages/BestAISubscriptionPage";
+
+const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20an%20AI%20subscription";
+
+function MobileOrderBar() {
+  const [visible, setVisible] = useState(false);
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 200);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  if (location === "/contact") return null;
+
+  return (
+    <div
+      className={`md:hidden fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300 border-t border-white/10 ${visible ? "translate-y-0" : "translate-y-full"}`}
+      style={{ backgroundColor: "#0a0e27" }}
+    >
+      <div className="flex items-center justify-between px-4 h-14 gap-3">
+        <div>
+          <div className="text-xs" style={{ color: "#c9ceda" }}>From</div>
+          <div className="text-base font-bold" style={{ color: "#f4b942" }}>BDT 350/mo</div>
+        </div>
+        <a
+          href={WHATSAPP}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity flex-shrink-0"
+          style={{ backgroundColor: "#25d366", color: "#fff", minHeight: "44px" }}
+        >
+          <MessageCircle className="w-4 h-4" />
+          Order Now
+        </a>
+      </div>
+    </div>
+  );
+}
 
 const queryClient = new QueryClient();
 
@@ -138,6 +179,7 @@ function App() {
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <Router />
+          <MobileOrderBar />
           <CookieBanner onConsent={() => setCookieConsent(true)} />
         </WouterRouter>
         <GoogleAnalytics enabled={cookieConsent} />

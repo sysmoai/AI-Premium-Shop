@@ -26,6 +26,18 @@ const GUIDE_ICONS: Record<string, { Icon: LucideIcon; color: string }> = {
   ecommerce:     { Icon: ShoppingBag,   color: "#f4b942" },
 };
 
+const GUIDE_GLOWS: Record<string, string> = {
+  students:      "bg-blue-500/[0.06]",
+  freelancers:   "bg-emerald-500/[0.06]",
+  creators:      "bg-pink-500/[0.06]",
+  business:      "bg-amber-500/[0.06]",
+  developers:    "bg-purple-500/[0.06]",
+  "job-seekers": "bg-indigo-500/[0.06]",
+  designers:     "bg-violet-500/[0.06]",
+  marketers:     "bg-blue-500/[0.06]",
+  ecommerce:     "bg-amber-500/[0.06]",
+};
+
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.4, delay: i * 0.08, ease: [0, 0, 0.2, 1] } }),
@@ -470,7 +482,10 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(faqSchema(guide.faqs)) }} />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Guides", href: "/blog" }, { name: guide.h1 }]} />
 
-      <div className="max-w-4xl mx-auto px-4 md:px-8 py-14">
+      <div className="max-w-4xl mx-auto px-4 md:px-8 py-14 relative overflow-hidden">
+        {GUIDE_GLOWS[guideKey] && (
+          <div className={`absolute top-0 right-0 w-64 h-64 rounded-full ${GUIDE_GLOWS[guideKey]} blur-[80px] pointer-events-none`} />
+        )}
 
         {/* Hero */}
         <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-12">
@@ -674,8 +689,8 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
           <div className="space-y-4">
             {guide.tools.map((tool, i) => (
               <motion.div key={i} custom={i + 3} variants={fadeUp} initial="hidden" animate="visible"
-                className="flex items-start gap-4 p-5 rounded-2xl border border-white/10"
-                style={{ backgroundColor: "#151b3d" }}>
+                className="flex items-start gap-4 p-5 rounded-2xl border border-white/10 border-l-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+                style={{ backgroundColor: "#151b3d", borderLeftColor: tool.rank === 1 ? "#fbbf24" : tool.rank === 2 ? "#9ca3af" : tool.rank === 3 ? "#92400e" : "rgba(255,255,255,0.1)" }}>
                 <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"
                   style={{ backgroundColor: (tool.color ?? guide.accentColor) + "25", color: tool.color ?? guide.accentColor }}>
                   {tool.rank}
@@ -783,6 +798,20 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
             </div>
           </motion.div>
         )}
+
+        {/* FOMO Banner */}
+        <motion.div custom={guide.tools.length + 6.5} variants={fadeUp} initial="hidden" animate="visible">
+          <div className="bg-[#151b3d] border border-red-500/20 rounded-xl p-6 my-12">
+            <h3 className="text-white font-bold text-lg mb-3">⚠️ The Cost of Waiting</h3>
+            <ul className="text-gray-400 text-sm space-y-2">
+              <li>• Students using AI outperform non-AI students in every metric</li>
+              <li>• Freelancers with AI earn 44% more — Upwork Research 2025</li>
+              <li>• Businesses using AI save 60-80% on operations — McKinsey</li>
+              <li>• 92% of developers now use AI coding tools — GitHub Survey</li>
+            </ul>
+            <p className="text-white font-semibold mt-4">The question is not "should I use AI?" — it's "how long can I afford not to?"</p>
+          </div>
+        </motion.div>
 
         {/* Final CTA */}
         <motion.div custom={guide.tools.length + 7} variants={fadeUp} initial="hidden" animate="visible"

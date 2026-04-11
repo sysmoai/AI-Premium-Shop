@@ -57,6 +57,30 @@ const BRAND_COMPETITORS: Record<string, {
   "v0-dev-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", price1: "BDT 1,495", strength1: "Best for general backend/frontend coding", name2: "Replit Core", slug2: "/replit-bangladesh", price2: "BDT 500", strength2: "Cloud dev environment with AI" },
 };
 
+const BEST_FOR_LABELS: Record<string, string> = {
+  "chatgpt-plans-bangladesh":    "All-rounder: writing, coding, images, agents",
+  "chatgpt-plus-bangladesh":     "Best budget AI — writing, coding, images",
+  "chatgpt-business-bangladesh": "Teams: admin controls + unlimited usage",
+  "chatgpt-pro-bangladesh":      "Power users: unlimited GPT-5 Pro + Sora",
+  "claude-pro-bangladesh":       "Best writing quality & code analysis",
+  "gemini-advanced-bangladesh":  "Google Workspace AI + 2TB storage",
+  "supergrok-bangladesh":        "Real-time AI with X/Twitter data",
+  "perplexity-pro-bangladesh":   "AI-powered web research with citations",
+  "midjourney-bangladesh":       "Best AI image generation",
+  "ideogram-bangladesh":         "AI images with perfect text rendering",
+  "leonardo-ai-bangladesh":      "Budget AI image generation",
+  "runway-bangladesh":           "Professional AI video creation",
+  "heygen-bangladesh":           "AI avatars & video translation",
+  "elevenlabs-bangladesh":       "AI voice cloning & text-to-speech",
+  "suno-ai-bangladesh":          "AI music & song generation",
+  "github-copilot-bangladesh":   "AI coding assistant for VS Code",
+  "cursor-bangladesh":           "AI-native IDE with agent mode",
+  "notion-business-bangladesh":  "AI workspace for teams",
+  "manus-ai-bangladesh":         "Autonomous AI agent",
+  "replit-bangladesh":           "Cloud dev environment with AI",
+  "v0-dev-bangladesh":           "AI-powered UI component generation",
+};
+
 interface Product {
   id: string;
   name: string;
@@ -1810,7 +1834,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 </div>
                 {[
                   { label: "Price (AIPS)", a: cheapest ? `from BDT ${cheapest.price.toLocaleString()}` : "—", b: comp.price1, c: comp.price2 },
-                  { label: "Best for", a: meta.tagline, b: comp.strength1, c: comp.strength2 },
+                  { label: "Best for", a: BEST_FOR_LABELS[brandSlug] ?? meta.tagline, b: comp.strength1, c: comp.strength2 },
                   { label: "Delivery", a: cheapest?.deliverySLA ?? "5–30 min", b: "5–30 min", c: "5–30 min" },
                 ].map((row, ri) => (
                   <div key={ri} className={`grid grid-cols-4 ${ri > 0 ? "border-t border-white/5" : ""}`}>

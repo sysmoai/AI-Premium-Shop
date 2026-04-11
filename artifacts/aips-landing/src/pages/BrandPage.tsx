@@ -8,6 +8,7 @@ import {
   GraduationCap, Laptop, Briefcase, Monitor,
   Camera, Youtube, Palette, Megaphone, BookOpen, Home,
   Video, Scissors, Maximize, ArrowUpCircle, Sparkles, Music,
+  Code, ThumbsUp,
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
@@ -1453,6 +1454,94 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 <li>• Full songs with lyrics</li>
               </ul>
               <p className="font-bold text-sm text-white">2,500 credits/month = ~500 songs. All commercially licensed.</p>
+            </div>
+          </div>
+        )}
+
+        {/* ===== GITHUB COPILOT SECTIONS ===== */}
+
+        {brandSlug === "github-copilot-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">GitHub Copilot — Code 55% Faster</h2>
+            <div className="grid grid-cols-3 gap-4 mb-3">
+              {[
+                { stat: "55%", label: "faster task completion" },
+                { stat: "87%", label: "less mental effort on repetitive tasks" },
+                { stat: "73%", label: "developers stay in flow state" },
+              ].map((item) => (
+                <div key={item.stat} className="bg-gray-900 rounded-xl p-6 text-center">
+                  <div className="text-4xl font-bold mb-2" style={{ color: "#6e40c9" }}>{item.stat}</div>
+                  <div className="text-sm text-gray-400">{item.label}</div>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs italic text-gray-500 mb-6">Source: GitHub Research 2025</p>
+            <h3 className="text-xl font-bold text-white mb-3">Income Impact</h3>
+            <div className="border-l-4 bg-gray-900 p-4 rounded-r-lg" style={{ borderColor: "#6e40c9" }}>
+              <p className="text-sm" style={{ color: "#c9ceda" }}>
+                At BDT 1,495/mo, saving 20 hours/month = effective cost BDT 75/hour saved.
+                20 extra hours at $20/hr = $400/mo = BDT 52,000 extra income.{" "}
+                <strong style={{ color: "#f4b942" }}>ROI: 35x return.</strong>
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* ===== CURSOR SECTIONS ===== */}
+
+        {brandSlug === "cursor-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">Cursor Agent Mode — AI That Writes Code For You</h2>
+            <div className="bg-gray-900 rounded-xl p-6 mb-6">
+              <ul className="space-y-3">
+                {[
+                  "Understands your ENTIRE codebase",
+                  "Writes full features from a single prompt",
+                  "Multi-file refactoring autonomously",
+                  "Uses Claude, GPT-5, Gemini — all frontier models",
+                  "Used by developers at OpenAI, Stripe, Shopify",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm text-white">
+                    <Code className="w-4 h-4 flex-shrink-0 text-cyan-400" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">Copilot vs Cursor — Quick Decision</h3>
+            <div className="space-y-2">
+              {[
+                { Icon: ThumbsUp, text: "Start with Copilot (BDT 1,495) if:", sub: "You love your current VS Code setup" },
+                { Icon: Zap, text: "Choose Cursor (BDT 2,990) if:", sub: "You want full AI agent coding" },
+                { Icon: Layers, text: "Use BOTH (BDT 4,485) if:", sub: "Quick completions + complex features" },
+              ].map((item) => (
+                <div key={item.text} className="bg-gray-800 rounded-lg p-4 flex items-center gap-4">
+                  <item.Icon className="w-5 h-5 flex-shrink-0" style={{ color: "#c9ceda" }} />
+                  <div>
+                    <span className="text-sm font-semibold text-white">{item.text}</span>
+                    <span className="text-sm text-gray-400"> {item.sub}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ===== REPLIT SECTIONS ===== */}
+
+        {brandSlug === "replit-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">Build Anything With AI</h2>
+            <div className="rounded-xl p-6 border" style={{ background: "linear-gradient(to right, rgba(249,115,22,0.1), #111827)", borderColor: "rgba(249,115,22,0.3)" }}>
+              <p className="text-sm mb-4" style={{ color: "#c9ceda" }}>
+                Replit Core BDT 500/mo — Cloud IDE with AI Agent. Build full apps from a single prompt. Deploy instantly. No local setup.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-5">
+                {["Students", "Freelancers", "Entrepreneurs", "MVPs"].map((pill) => (
+                  <span key={pill} className="bg-gray-800 rounded-full px-3 py-1 text-sm" style={{ color: "#c9ceda" }}>{pill}</span>
+                ))}
+              </div>
+              <p className="font-bold text-sm" style={{ color: "#f4b942" }}>BDT 500/mo = build a SaaS that earns $1,000+/mo. Best ROI in tech.</p>
             </div>
           </div>
         )}

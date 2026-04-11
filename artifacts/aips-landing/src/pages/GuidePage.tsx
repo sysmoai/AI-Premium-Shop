@@ -813,6 +813,36 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
           </div>
         </motion.div>
 
+        {/* Developer Career Path */}
+        {guideKey === "developers" && (
+          <motion.div custom={guide.tools.length + 6.8} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
+            <h2 className="text-2xl font-bold text-white mb-6">Developer Career Path With AI</h2>
+            <div className="space-y-3 mb-6">
+              {[
+                { border: "border-blue-500", level: "Level 1: Junior", tool: "Copilot Pro BDT 1,495", desc: "Learn faster, code faster, get hired faster" },
+                { border: "border-purple-500", level: "Level 2: Mid-level", tool: "Copilot + Cursor BDT 4,485", desc: "Complex projects, premium freelance rates" },
+                { border: "border-amber-500", level: "Level 3: Senior", tool: "+ Claude Pro BDT 7,475", desc: "Architect systems, $50+/hr" },
+                { border: "border-green-500", level: "Level 4: AI Agent Builder", tool: "Full stack BDT 10,000+", desc: "Build AI products, $100+/hr" },
+              ].map((item) => (
+                <div key={item.level} className={`bg-gray-900 rounded-lg p-4 border-l-4 ${item.border}`}>
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="font-bold text-white text-sm mb-0.5">{item.level}</div>
+                      <div className="text-sm mb-1" style={{ color: "#f4b942" }}>{item.tool}</div>
+                      <div className="text-sm" style={{ color: "#c9ceda" }}>{item.desc}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="rounded-xl p-6" style={{ backgroundColor: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.2)" }}>
+              <p className="text-sm" style={{ color: "#c9ceda" }}>
+                92% of developers now use AI coding tools (GitHub Survey 2025). The 8% who don't are competing against developers who code 55% faster.
+              </p>
+            </div>
+          </motion.div>
+        )}
+
         {/* Creator AI Stack Calculator */}
         {guideKey === "creators" && (
           <motion.div custom={guide.tools.length + 6.8} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">

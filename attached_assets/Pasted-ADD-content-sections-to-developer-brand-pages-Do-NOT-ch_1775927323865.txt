@@ -1,0 +1,66 @@
+ADD content sections to developer brand pages. Do NOT change any existing text content. Do NOT remove anything. Only ADD new sections AFTER existing content, BEFORE the final WhatsApp CTA.
+
+Use Lucide React icons + Tailwind CSS only. No SVG drawings. No external images.
+
+=== /github-copilot-bangladesh ===
+
+ADD after pricing, before FAQ:
+
+H2: "GitHub Copilot — Code 55% Faster"
+3-card stat grid (grid-cols-3 gap-4):
+Each card: bg-gray-900 rounded-xl p-6 text-center
+- Large number in text-[#6e40c9] text-4xl font-bold: "55%" | below: "faster task completion" text-gray-400 text-sm
+- "87%" | "less mental effort on repetitive tasks"
+- "73%" | "developers stay in flow state"
+Source line: text-gray-500 text-xs italic: "Source: GitHub Research 2025"
+
+ADD below stats:
+H3: "Income Impact"
+border-l-4 border-[#6e40c9] bg-gray-900 p-4 rounded-r-lg
+"At BDT 1,495/mo, saving 20 hours/month = effective cost BDT 75/hour saved.
+20 extra hours at $20/hr = $400/mo = BDT 52,000 extra income.
+ROI: 35x return." (ROI in bold gold)
+
+=== /cursor-bangladesh ===
+
+ADD after pricing, before FAQ:
+
+H2: "Cursor Agent Mode — AI That Writes Code For You"
+bg-gray-900 rounded-xl p-6
+Bullet list with Code icon (Lucide, text-cyan-400) for each:
+• Understands your ENTIRE codebase
+• Writes full features from a single prompt
+• Multi-file refactoring autonomously
+• Uses Claude, GPT-5, Gemini — all frontier models
+• Used by developers at OpenAI, Stripe, Shopify
+
+ADD below:
+H3: "Copilot vs Cursor — Quick Decision"
+3 items, each bg-gray-800 rounded-lg p-4 mb-2:
+- "Start with Copilot (BDT 1,495) if: You love your current VS Code setup" — icon: ThumbsUp
+- "Choose Cursor (BDT 2,990) if: You want full AI agent coding" — icon: Zap
+- "Use BOTH (BDT 4,485) if: Quick completions + complex features" — icon: Layers
+
+=== /replit-bangladesh ===
+
+ADD after pricing, before FAQ:
+H2: "Build Anything With AI"
+bg-gradient-to-r from-[#f97316]/10 to-gray-900 rounded-xl p-6 border border-[#f97316]/30
+Text: "Replit Core BDT 500/mo — Cloud IDE with AI Agent. Build full apps from a single prompt. Deploy instantly. No local setup."
+4-pill row: "Students" "Freelancers" "Entrepreneurs" "MVPs" — each bg-gray-800 rounded-full px-3 py-1 text-sm
+Bold: "BDT 500/mo = build a SaaS that earns $1,000+/mo. Best ROI in tech."
+
+=== /best-ai-for-developers ===
+
+ADD before final CTA:
+H2: "Developer Career Path With AI"
+4 level cards stacked vertically, each bg-gray-900 rounded-lg p-4 mb-3, left border color escalating:
+- border-l-4 border-blue-500: "Level 1: Junior" | "Copilot Pro BDT 1,495" | "Learn faster, code faster, get hired faster"
+- border-l-4 border-purple-500: "Level 2: Mid-level" | "Copilot + Cursor BDT 4,485" | "Complex projects, premium freelance rates"
+- border-l-4 border-amber-500: "Level 3: Senior" | "+ Claude Pro BDT 7,475" | "Architect systems, $50+/hr"
+- border-l-4 border-green-500: "Level 4: AI Agent Builder" | "Full stack BDT 10,000+" | "Build AI products, $100+/hr"
+
+ADD FOMO callout below (bg-red-500/5 border border-red-500/20 rounded-xl p-6):
+"92% of developers now use AI coding tools (GitHub Survey 2025). The 8% who don't are competing against developers who code 55% faster."
+
+Do NOT change any text content on any page. Only ADD these new sections.

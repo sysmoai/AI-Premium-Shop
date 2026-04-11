@@ -99,7 +99,7 @@ export function WhyUsSection() {
                   <td className="px-5 py-4 text-red-400 line-through">{row.direct}</td>
                   <td className="px-5 py-4 text-amber-400 text-lg font-bold">{row.aips}</td>
                   <td className="px-5 py-4">
-                    <span className="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full text-sm font-bold">
+                    <span className="bg-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-full text-sm font-bold">
                       {row.save}
                     </span>
                   </td>

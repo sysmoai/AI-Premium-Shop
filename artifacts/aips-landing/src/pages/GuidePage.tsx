@@ -917,6 +917,25 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
           </motion.div>
         )}
 
+        {/* FOMO Banner — all guide pages */}
+        <motion.div custom={guide.tools.length + 6.9} variants={fadeUp} initial="hidden" animate="visible" className="mb-8">
+          <div className="rounded-xl p-6" style={{ backgroundColor: "#151b3d", border: "1px solid rgba(239,68,68,0.1)" }}>
+            <h3 className="text-lg font-bold text-white mb-3">AI Is No Longer Optional</h3>
+            <div className="text-sm leading-relaxed space-y-1 mb-4" style={{ color: "#d1d5db" }}>
+              <p>• Students using AI outperform peers in every metric</p>
+              <p>• Freelancers with AI earn 44% more (Upwork Research)</p>
+              <p>• Businesses save 60-80% on operations (McKinsey)</p>
+              <p>• 92% of developers use AI coding tools (GitHub)</p>
+            </div>
+            <p className="text-white font-bold mb-4">The question is not "should I use AI?" — it's "how long can I afford not to?"</p>
+            <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want to start with AI tools")}`}
+              target="_blank" rel="noopener noreferrer"
+              className="inline-block bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+              Start for BDT 350/mo →
+            </a>
+          </div>
+        </motion.div>
+
         {/* Final CTA */}
         <motion.div custom={guide.tools.length + 7} variants={fadeUp} initial="hidden" animate="visible"
           className="p-8 rounded-2xl text-center border border-white/10"

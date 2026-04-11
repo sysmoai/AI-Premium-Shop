@@ -364,12 +364,14 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
         {/* Bundle Breakdown — only for bundles category */}
         {categoryId === "bundles" && (
           <div className="mb-12">
-            <h2 className="text-xl font-bold text-white mb-2">Bundle Breakdown</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Pick Your AI Stack — Save More, Get More</h2>
             <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>See what's included in each bundle — and how much you save vs buying each tool individually.</p>
             <div className="space-y-4">
               {[
                 {
                   name: "Student Essentials Package", price: 449, tier: "Essentials",
+                  context: "First step into AI — assignments, research, exam prep",
+                  contextItalic: true,
                   items: [
                     { tool: "ChatGPT Plus — Starter Shared", value: 350 },
                     { tool: "AI Setup Guide (personalised)", value: 150 },
@@ -379,6 +381,8 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
                 },
                 {
                   name: "University Pro Package", price: 899, tier: "Pro",
+                  context: "Research papers + premium AI + coaching session. Save BDT 701",
+                  contextItalic: false,
                   items: [
                     { tool: "ChatGPT Plus — Premium Shared", value: 850 },
                     { tool: "Perplexity Pro — Shared", value: 350 },
@@ -389,6 +393,8 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
                 },
                 {
                   name: "Freelancer Bundle", price: 3999, tier: "Bundle",
+                  context: "Complete freelancer toolkit. Freelancers with AI earn 44% more.",
+                  contextItalic: false,
                   items: [
                     { tool: "ChatGPT Plus — Personal", value: 2990 },
                     { tool: "Midjourney Standard — Shared", value: 1199 },
@@ -399,6 +405,8 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
                 },
                 {
                   name: "Business Package", price: 15000, tier: "Business",
+                  context: "Full AI transformation. Replace BDT 45,000/mo in costs.",
+                  contextItalic: false,
                   items: [
                     { tool: "ChatGPT Business — Personal", value: 7490 },
                     { tool: "Google AI Pro — Personal", value: 500 },
@@ -428,6 +436,9 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
                             {bundle.tier}
                           </span>
                         </div>
+                        <p className={`text-sm mb-1.5 ${bundle.contextItalic ? "italic" : ""}`} style={{ color: "#9ca3af" }}>
+                          {bundle.context}
+                        </p>
                         <div className="text-lg font-bold" style={{ color: "#f4b942" }}>
                           ৳{bundle.price.toLocaleString()}/mo
                           <span className="text-xs font-medium ml-2" style={{ color: "#25d366" }}>

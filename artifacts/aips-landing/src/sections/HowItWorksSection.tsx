@@ -117,9 +117,9 @@ export function HowItWorksSection() {
                 <div
                   className="absolute -top-2 -right-2 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold z-10"
                   style={{
-                    background: `linear-gradient(135deg, ${step.color}, ${step.gradientTo})`,
+                    background: "linear-gradient(135deg, #f4b942, #f97316)",
                     color: "#0a0e27",
-                    boxShadow: `0 2px 8px ${step.color}60`,
+                    boxShadow: "0 2px 8px rgba(244,185,66,0.5)",
                   }}
                 >
                   {step.number}

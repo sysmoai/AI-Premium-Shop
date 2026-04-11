@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Clock, Users, HelpCircle, ChevronRight, Star } from "lucide-react";
+import { MessageCircle, Clock, Users, HelpCircle, ChevronRight, Star, GraduationCap, Laptop, Building, Code } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 
@@ -193,6 +193,32 @@ export default function SupportPage() {
               </a>
             </div>
           </div>
+        </motion.div>
+
+        {/* 1:1 AI Coaching Results */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-12"
+        >
+          <h2 className="text-2xl font-bold text-white mb-6">1:1 AI Coaching Results</h2>
+          <div className="grid grid-cols-2 gap-3 mb-5">
+            {[
+              { Icon: GraduationCap, color: "text-blue-400", label: "Students", desc: "CGPA improvement path + study AI system" },
+              { Icon: Laptop, color: "text-purple-400", label: "Freelancers", desc: "AI workflow saving 8+ hrs/week" },
+              { Icon: Building, color: "text-amber-400", label: "Business", desc: "3 processes automated in 1 session" },
+              { Icon: Code, color: "text-green-400", label: "Developers", desc: "Copilot/Cursor mastered in 1 hour" },
+            ].map((card) => (
+              <div key={card.label} className="bg-gray-900 rounded-lg p-4">
+                <card.Icon className={`w-5 h-5 mb-2 ${card.color}`} />
+                <div className="font-bold text-white text-sm mb-1">{card.label}</div>
+                <div className="text-xs" style={{ color: "#c9ceda" }}>{card.desc}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-lg font-bold text-white">One 1-hour session can change how you work forever. BDT 799.</p>
         </motion.div>
 
         {/* FAQ */}

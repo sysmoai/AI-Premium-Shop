@@ -1,0 +1,64 @@
+FINAL visual upgrade. Do NOT change any existing text content. Do NOT remove anything.
+Only ADD new sections and ENHANCE existing styling.
+
+Use Lucide React icons + Tailwind CSS only. No SVG drawings. No external images.
+
+IMPORTANT: Trust badges on homepage must show STATIC text: "1,200+" "Since 2022" "30 Days" "5-Min". If there is any count-up animation, REMOVE it and make text static.
+
+=== BUNDLES PAGE (/bundles or wherever bundles are displayed) ===
+
+ADD above the existing bundle cards:
+H2: "Pick Your AI Stack — Save More, Get More"
+
+For EACH existing bundle card, ADD a small context line INSIDE the card (below the bundle name, above the price):
+- Student Essentials: add italic text-gray-400 text-sm: "First step into AI — assignments, research, exam prep"
+- University Pro: add text-sm: "Research papers + premium AI + coaching session. Save BDT 701"
+- Freelancer Bundle: add text-sm: "Complete freelancer toolkit. Freelancers with AI earn 44% more."
+- Business Package: add text-sm: "Full AI transformation. Replace BDT 45,000/mo in costs."
+- B2B Implementation: add text-sm: "Enterprise deployment + 5hr training + 30-day support"
+
+If bundles already show savings, great. If not, add a green pill (bg-green-500/20 text-green-400 text-xs rounded-full px-2 py-0.5) showing "Save BDT X" for each.
+
+=== SUPPORT PAGE (/support) ===
+
+ADD before the FAQ section:
+H2: "1:1 AI Coaching Results"
+4 cards (grid-cols-2 gap-3):
+Each: bg-gray-900 rounded-lg p-4, Lucide icon at top
+- GraduationCap icon text-blue-400 | "Students" | "CGPA improvement path + study AI system"
+- Laptop icon text-purple-400 | "Freelancers" | "AI workflow saving 8+ hrs/week"
+- Building icon text-amber-400 | "Business" | "3 processes automated in 1 session"
+- Code icon text-green-400 | "Developers" | "Copilot/Cursor mastered in 1 hour"
+
+Below: bold text-lg: "One 1-hour session can change how you work forever. BDT 799."
+
+=== GLOBAL FOMO BANNER — ADD TO ALL 9 GUIDE PAGES ===
+
+On EACH of these pages, ADD this section BEFORE the final WhatsApp CTA button:
+/best-ai-for-students, /best-ai-for-freelancers, /best-ai-for-creators,
+/best-ai-for-business, /best-ai-for-developers, /best-ai-for-job-seekers,
+/best-ai-for-designers, /best-ai-for-marketers, /best-ai-for-ecommerce
+
+Create a reusable FomoBanner component if one doesn't exist:
+bg-[#151b3d] border border-red-500/10 rounded-xl p-6 mt-8
+H3: "AI Is No Longer Optional" (text-white text-lg font-bold)
+Text block (text-gray-300 text-sm leading-relaxed):
+"• Students using AI outperform peers in every metric
+• Freelancers with AI earn 44% more (Upwork Research)
+• Businesses save 60-80% on operations (McKinsey)
+• 92% of developers use AI coding tools (GitHub)"
+
+Bold text-white mt-4: "The question is not 'should I use AI?' — it's 'how long can I afford not to?'"
+Button: bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg mt-4
+Text: "Start for BDT 350/mo →" linking to WhatsApp
+
+=== HOMEPAGE POLISH ===
+
+These may already be applied from earlier prompts. Only ADD if not present:
+
+1. Product card hover: on hover add transform scale-[1.02] transition-all duration-200 shadow-lg
+2. Category cards: on hover translateY -4px with accent border glow
+3. How-to-order steps: if step numbers exist, make them w-16 h-16 rounded-full bg-gradient-to-br from-[#f4b942] to-amber-600 flex items-center justify-center text-white font-bold text-xl
+4. Payment badges everywhere: colored pills — bKash bg-[#E2136E] text-white, Nagad bg-[#F6921E], Rocket bg-[#8B2F8B], Bank bg-[#4285f4], Binance bg-[#F0B90B] — all text-xs font-semibold px-3 py-1 rounded-full
+
+Do NOT change any text content. Only ADD/ENHANCE styling.

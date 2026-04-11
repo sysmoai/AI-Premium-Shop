@@ -86,40 +86,20 @@ export function OffersSection() {
                 className="relative rounded-2xl p-6 overflow-hidden shadow-lg shadow-blue-500/20"
                 style={{
                   backgroundColor: "rgba(10,14,39,0.85)",
-                  animation: offer.glowAnimation,
+                  animation: "glow 3s ease-in-out infinite alternate",
                 }}
               >
-                {/* "Limited Time" corner ribbon */}
-                <div
-                  className="absolute top-0 left-0 overflow-hidden"
-                  style={{ width: 90, height: 90 }}
-                  aria-hidden="true"
-                >
-                  <div
-                    className="absolute flex items-center justify-center text-xs font-bold"
-                    style={{
-                      background: "linear-gradient(135deg, #f4b942, #f97316)",
-                      color: "#0a0e27",
-                      width: 120,
-                      height: 28,
-                      top: 20,
-                      left: -30,
-                      transform: "rotate(-45deg)",
-                      fontSize: 10,
-                      letterSpacing: "0.05em",
-                    }}
-                  >
-                    LIMITED TIME
-                  </div>
-                </div>
+                {/* "Limited Time" pill ribbon */}
+                <span className="absolute top-3 left-0 bg-amber-400 text-gray-900 text-[10px] font-bold px-3 py-0.5 rounded-r-full z-10">
+                  LIMITED TIME
+                </span>
 
                 {/* Discount badge with pulse */}
                 <span
-                  className="absolute -top-3 right-5 text-sm font-bold px-4 py-1.5 rounded-full"
+                  className="animate-pulse absolute -top-3 right-5 text-sm font-bold px-4 py-1.5 rounded-full"
                   style={{
                     background: "linear-gradient(135deg, #ec4899, #f97316)",
                     color: "#fff",
-                    animation: "badge-pulse 2s ease-in-out infinite",
                   }}
                 >
                   {offer.badge}

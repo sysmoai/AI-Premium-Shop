@@ -1,0 +1,56 @@
+CONTENT SEO — PART B. Add AIO blocks to ALL brand pages and fix internal links.
+Do NOT change existing content, prices, or styling. Only ADD new sections.
+
+=== ADD "Quick Answers" AIO BLOCK TO EVERY BRAND PAGE ===
+
+For each brand page below, check if "Quick Answers" section exists after the FAQ.
+If YES: verify prices are correct.
+If NO: ADD it using this format:
+
+H2: "Quick Answers — [Brand] Bangladesh"
+4 Q&As, each with bold question and direct answer.
+First sentence MUST contain: [brand] + "Bangladesh" + BDT [price] + "AI Premium Shop"
+
+ADD TO THESE 24 PAGES (use correct prices):
+
+1. /chatgpt-plans-bangladesh — "ChatGPT" — BDT 350 — Plans: "Plus Shared BDT 350 to Pro Personal BDT 29,900" — Delivery: "5-30 min"
+2. /chatgpt-plus-bangladesh — "ChatGPT Plus" — BDT 350 — Plans: "Starter Shared BDT 350, Premium Shared BDT 950, Personal BDT 2,990" — Delivery: "5-30 min"
+3. /chatgpt-business-bangladesh — "ChatGPT Business" — BDT 699 — Plans: "Starter BDT 699, Premium BDT 1,299, Personal BDT 3,990" — Delivery: "5-30 min"
+4. /chatgpt-pro-bangladesh — "ChatGPT Pro" — BDT 4,500 — Plans: "Premium Shared BDT 4,500, Personal BDT 29,900" — Delivery: "2-12 hours"
+5. /chatgpt-go-bangladesh — "ChatGPT Go" — BDT 1,196 — Plans: "Personal BDT 1,196" — Delivery: "2-4 hours"
+6. /claude-pro-bangladesh — "Claude" — BDT 1,495 — Plans: "Premium Shared BDT 1,495, Personal BDT 2,990, Team BDT 3,990, Max 5x BDT 14,950, Max 20x BDT 29,900" — Delivery: "5-15 min"
+7. /midjourney-bangladesh — "Midjourney" — BDT 1,199 — Plans: "Standard Shared BDT 1,199 to Mega BDT 17,940" — Delivery: "5-30 min"
+8. /notion-business-bangladesh — "Notion Business" — BDT 800 — Plans: "Monthly BDT 800, 6-Month BDT 4,800" — Note: "73% off official price" — Delivery: "2-4 hours"
+9. /google-ai-pro-bangladesh — "Google AI Pro" — BDT 500 — Note: "83% off" — Delivery: "5-30 min"
+10. /github-copilot-bangladesh — "GitHub Copilot" — BDT 1,495 — Plans: "Pro BDT 1,495, Pro+ BDT 5,831" — Delivery: "5-30 min"
+11. /cursor-bangladesh — "Cursor" — BDT 2,990 — Plans: "Pro BDT 2,990, Pro+ BDT 8,970" — Delivery: "5-30 min"
+12. /perplexity-pro-bangladesh — "Perplexity Pro" — BDT 350 — Plans: "Shared BDT 350, Personal BDT 2,990, Max BDT 29,900" — Delivery: "5-30 min"
+13. /supergrok-bangladesh — "SuperGrok" — BDT 1,495 — Plans: "Lite BDT 1,495, Full BDT 3,990" — Delivery: "5-30 min"
+14. /runway-bangladesh — "Runway" — BDT 1,794 — Plans: "Standard BDT 1,794, Pro BDT 4,186, Unlimited BDT 11,362" — Delivery: "5-30 min"
+15. /elevenlabs-bangladesh — "ElevenLabs" — BDT 748 — Plans: "Starter BDT 748, Creator BDT 3,289, Pro BDT 14,802" — Delivery: "5-30 min"
+16. /suno-ai-bangladesh — "Suno AI" — BDT 1,495 — Plans: "Pro BDT 1,495, Premier BDT 3,990" — Delivery: "5-30 min"
+17. /manus-ai-bangladesh — "Manus AI" — BDT 2,500 — Plans: "BDT 2,500/mo" — Delivery: "5-30 min"
+18. /ideogram-bangladesh — "Ideogram" — BDT 2,990 — Plans: "Plus BDT 2,990, Pro BDT 8,970" — Delivery: "5-30 min"
+19. /heygen-bangladesh — "HeyGen" — BDT 1,499 — Plans: "Creator Shared BDT 1,499" — Delivery: "5-30 min"
+20. /udio-bangladesh — "Udio" — BDT 499 — Plans: "Pro Shared BDT 499" — Delivery: "5-30 min"
+21. /leonardo-ai-bangladesh — "Leonardo AI" — BDT 599 — Plans: "Shared BDT 599" — Delivery: "5-30 min"
+22. /otter-ai-bangladesh — "Otter.ai" — BDT 799 — Plans: "Pro Shared BDT 799" — Delivery: "5-30 min"
+23. /gamma-bangladesh — "Gamma" — BDT 399 — Plans: "Plus Shared BDT 399" — Delivery: "5-30 min"
+24. /writesonic-bangladesh — "Writesonic" — BDT 799 — Plans: "Shared BDT 799" — Delivery: "5-30 min"
+
+Each AIO block has 4 Q&As:
+Q1: "How much does [Brand] cost in Bangladesh?"
+Q2: "Is [Brand] available in Bangladesh?"
+Q3: "How to buy [Brand] in Bangladesh without credit card?"
+Q4: "Is AI Premium Shop safe for buying [Brand]?"
+
+=== FIX INTERNAL LINKS ===
+
+1. COMPARISON TABLES on brand pages: competitor names must be clickable <a> links to their pages. If plain text, make them links.
+
+2. HOMEPAGE category cards: verify each links to correct brand page.
+
+3. GUIDE PAGES: verify all recommended product links work.
+
+npm run build must pass with zero errors.
+Do NOT change existing content, prices, or styling. Only ADD AIO blocks and fix links.

@@ -11,6 +11,7 @@ import {
   Code, ThumbsUp,
   Users, History, UserPlus, Shield, Building, Rocket,
   BarChart3, Globe, CheckSquare,
+  Type, Languages, Headphones, Copyright,
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
@@ -1708,6 +1709,101 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             Order {meta.displayName} on WhatsApp
           </a>
         </div>
+
+        {/* SuperGrok — Why SuperGrok? */}
+        {brandSlug === "supergrok-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-xl font-bold text-white mb-5">Why SuperGrok?</h2>
+            <div className="rounded-xl p-6 space-y-5" style={{ backgroundColor: "#111827" }}>
+              {[
+                { icon: <Zap className="w-5 h-5 text-blue-400 flex-shrink-0" />, text: "Real-time information from X/Twitter — no other AI has this" },
+                { icon: <Brain className="w-5 h-5 text-blue-400 flex-shrink-0" />, text: "Grok 3 model — competitive with GPT-5 and Claude Opus" },
+                { icon: <Globe className="w-5 h-5 text-blue-400 flex-shrink-0" />, text: "Unfiltered AI — fewer restrictions than other models" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-4">
+                  {item.icon}
+                  <span className="text-sm" style={{ color: "#c9ceda" }}>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Ideogram — Why Ideogram? */}
+        {brandSlug === "ideogram-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-xl font-bold text-white mb-5">Why Ideogram?</h2>
+            <div className="rounded-xl p-6 space-y-5" style={{ backgroundColor: "#111827" }}>
+              {[
+                { icon: <Type className="w-5 h-5 flex-shrink-0" style={{ color: "#8b5cf6" }} />, text: "Perfect text in images — logos, posters, ads with readable text" },
+                { icon: <Palette className="w-5 h-5 flex-shrink-0" style={{ color: "#8b5cf6" }} />, text: "Photorealistic + artistic styles — from product shots to illustrations" },
+                { icon: <Sparkles className="w-5 h-5 flex-shrink-0" style={{ color: "#8b5cf6" }} />, text: "Best text rendering of any AI image tool — Midjourney can't do this" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-4">
+                  {item.icon}
+                  <span className="text-sm" style={{ color: "#c9ceda" }}>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* HeyGen — What HeyGen Creates */}
+        {brandSlug === "heygen-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-xl font-bold text-white mb-5">What HeyGen Creates</h2>
+            <div className="rounded-xl p-6 space-y-5" style={{ backgroundColor: "#111827" }}>
+              {[
+                { icon: <Video className="w-5 h-5 flex-shrink-0" style={{ color: "#f97316" }} />, text: "AI avatar videos — professional spokesperson without hiring anyone" },
+                { icon: <Languages className="w-5 h-5 flex-shrink-0" style={{ color: "#f97316" }} />, text: "Translate your face into 40+ languages — your lips sync perfectly" },
+                { icon: <Monitor className="w-5 h-5 flex-shrink-0" style={{ color: "#f97316" }} />, text: "Product demos, training videos, social ads — all from text" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-4">
+                  {item.icon}
+                  <span className="text-sm" style={{ color: "#c9ceda" }}>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Udio — Why Udio? */}
+        {brandSlug === "udio-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-xl font-bold text-white mb-5">Why Udio?</h2>
+            <div className="rounded-xl p-6 space-y-5" style={{ backgroundColor: "#111827" }}>
+              {[
+                { icon: <Music className="w-5 h-5 flex-shrink-0" style={{ color: "#6366f1" }} />, text: "Full songs from text prompts — vocals, instruments, production" },
+                { icon: <Headphones className="w-5 h-5 flex-shrink-0" style={{ color: "#6366f1" }} />, text: "Higher audio quality than Suno — preferred by music producers" },
+                { icon: <Copyright className="w-5 h-5 flex-shrink-0" style={{ color: "#6366f1" }} />, text: "Commercial license included — use in YouTube, ads, podcasts" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-4">
+                  {item.icon}
+                  <span className="text-sm" style={{ color: "#c9ceda" }}>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Leonardo AI — Why Leonardo AI? */}
+        {brandSlug === "leonardo-ai-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-xl font-bold text-white mb-5">Why Leonardo AI?</h2>
+            <div className="rounded-xl p-6 space-y-5" style={{ backgroundColor: "#111827" }}>
+              {[
+                { icon: <ImageIcon className="w-5 h-5 flex-shrink-0" style={{ color: "#ec4899" }} />, text: "Fine-tuned image generation — train on your own style" },
+                { icon: <Layers className="w-5 h-5 flex-shrink-0" style={{ color: "#ec4899" }} />, text: "Canvas editor — edit, extend, and refine AI images" },
+                { icon: <Zap className="w-5 h-5 flex-shrink-0" style={{ color: "#ec4899" }} />, text: "Fastest generation — 4-second images for rapid iteration" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-4">
+                  {item.icon}
+                  <span className="text-sm" style={{ color: "#c9ceda" }}>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* FAQs */}
         <div className="mb-14">

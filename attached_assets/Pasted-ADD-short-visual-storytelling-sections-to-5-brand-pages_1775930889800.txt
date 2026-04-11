@@ -1,0 +1,56 @@
+ADD short visual storytelling sections to 5 brand pages that currently lack them.
+Do NOT change any existing text content. Only ADD new sections AFTER pricing, BEFORE FAQ.
+
+Use Lucide React icons + Tailwind CSS only. No SVG drawings. No external images.
+
+=== /supergrok-bangladesh ===
+
+ADD after pricing, before FAQ:
+H2: "Why SuperGrok?"
+bg-gray-900 rounded-xl p-6
+3 items with Lucide icons (text-blue-400):
+- Zap icon | "Real-time information from X/Twitter — no other AI has this"
+- Brain icon | "Grok 3 model — competitive with GPT-5 and Claude Opus"
+- Globe icon | "Unfiltered AI — fewer restrictions than other models"
+
+=== /ideogram-bangladesh ===
+
+ADD after pricing, before FAQ:
+H2: "Why Ideogram?"
+bg-gray-900 rounded-xl p-6
+3 items with Lucide icons (text-[#8b5cf6]):
+- Type icon | "Perfect text in images — logos, posters, ads with readable text"
+- Palette icon | "Photorealistic + artistic styles — from product shots to illustrations"
+- Sparkles icon | "Best text rendering of any AI image tool — Midjourney can't do this"
+
+=== /heygen-bangladesh ===
+
+ADD after pricing, before FAQ:
+H2: "What HeyGen Creates"
+bg-gray-900 rounded-xl p-6
+3 items with Lucide icons (text-[#f97316]):
+- Video icon | "AI avatar videos — professional spokesperson without hiring anyone"
+- Languages icon | "Translate your face into 40+ languages — your lips sync perfectly"
+- Presentation icon | "Product demos, training videos, social ads — all from text"
+
+=== /udio-bangladesh ===
+
+ADD after pricing, before FAQ:
+H2: "Why Udio?"
+bg-gray-900 rounded-xl p-6
+3 items with Lucide icons (text-[#6366f1]):
+- Music icon | "Full songs from text prompts — vocals, instruments, production"
+- Headphones icon | "Higher audio quality than Suno — preferred by music producers"
+- Copyright icon | "Commercial license included — use in YouTube, ads, podcasts"
+
+=== /leonardo-ai-bangladesh ===
+
+ADD after pricing, before FAQ:
+H2: "Why Leonardo AI?"
+bg-gray-900 rounded-xl p-6
+3 items with Lucide icons (text-[#ec4899]):
+- Image icon | "Fine-tuned image generation — train on your own style"
+- Layers icon | "Canvas editor — edit, extend, and refine AI images"
+- Zap icon | "Fastest generation — 4-second images for rapid iteration"
+
+Do NOT change any existing text. Only ADD these sections.

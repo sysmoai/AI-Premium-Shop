@@ -92,7 +92,7 @@ export default function ContactPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="Contact — Order AI Tools via WhatsApp | AI Premium Shop"
+        title="Contact AI Premium Shop — WhatsApp Order | bKash &amp; Nagad"
         description="Contact AI Premium Shop on WhatsApp +880 1865-385348. Under 5-min response. 10AM-Midnight, 7 days a week."
         canonical="https://aipremiumshop.com/contact"
       />

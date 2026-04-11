@@ -38,7 +38,7 @@ export default function SupportPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="Support — AI Premium Shop Bangladesh"
+        title="AI Setup Support &amp; 1:1 Coaching — BDT 799/hr | AI Premium Shop"
         description="Get support for your AI subscriptions. WhatsApp: +880 1865-385348. 10 AM to Midnight BST, 7 days a week. 30-day warranty on all orders."
         canonical="https://aipremiumshop.com/support"
       />

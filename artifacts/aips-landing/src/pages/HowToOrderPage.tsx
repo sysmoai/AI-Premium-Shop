@@ -98,7 +98,7 @@ export default function HowToOrderPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="How to Order AI Tools in Bangladesh | bKash Nagad | AI Premium Shop"
+        title="How to Buy AI Tools in Bangladesh via bKash | AI Premium Shop"
         description="Step-by-step guide to ordering AI subscriptions in Bangladesh. Pay with bKash or Nagad. Delivered in minutes. No international card required."
         canonical="https://aipremiumshop.com/how-to-order"
       />

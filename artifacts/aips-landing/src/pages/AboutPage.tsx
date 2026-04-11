@@ -19,7 +19,7 @@ export default function AboutPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="About AI Premium Shop — Bangladesh's Trusted AI Provider Since 2022"
+        title="About AI Premium Shop — 1,200+ Customers Since 2022 | Bangladesh"
         description="AI Premium Shop — 1,200+ customers since 2022. Official AI subscriptions in Bangladesh. bKash payment. WhatsApp support."
         canonical="https://aipremiumshop.com/about"
       />

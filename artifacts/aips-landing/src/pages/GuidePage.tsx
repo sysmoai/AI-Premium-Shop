@@ -107,7 +107,7 @@ const TOOL_BRAND_SLUGS: Record<string, string> = {
 const GUIDES: Record<string, GuideConfig> = {
   students: {
     slug: "best-ai-for-students",
-    title: "Best AI Tools for Students Bangladesh 2026",
+    title: "Best AI Tools for Students Bangladesh 2026 — From BDT 350",
     h1: "Best AI Tools for Students in Bangladesh 2026",
     subtitle: "Write better papers. Study smarter. Ace your exams.",
     aioSnippet: "The best AI tools for students in Bangladesh in 2026 are Google AI Pro (BDT 500/mo) for Gmail and Docs integration, ChatGPT Plus Shared (BDT 350/mo) for writing and coding assignments, and Perplexity Pro Shared (BDT 350/mo) for research with cited sources. No international credit card needed — pay with bKash or Nagad and receive access in 5–30 minutes via WhatsApp.",
@@ -141,7 +141,7 @@ const GUIDES: Record<string, GuideConfig> = {
   },
   freelancers: {
     slug: "best-ai-for-freelancers",
-    title: "Best AI Tools for Freelancers Bangladesh 2026",
+    title: "Best AI for Freelancers Bangladesh 2026",
     h1: "Best AI Tools for Freelancers in Bangladesh 2026",
     subtitle: "Win more clients. Deliver faster. Earn more.",
     aioSnippet: "The top AI tools for freelancers in Bangladesh 2026 are ChatGPT Plus Premium Shared (BDT 950/mo) for proposals and content delivery, Claude Pro Premium Shared (BDT 1,495/mo) for writing quality, and Midjourney Standard Shared (BDT 1,199/mo) for client graphics. Freelancers using AI earn 44% more on average (Upwork 2025). Order any tool via WhatsApp and pay with bKash or Nagad.",
@@ -213,7 +213,7 @@ const GUIDES: Record<string, GuideConfig> = {
   },
   business: {
     slug: "best-ai-for-business",
-    title: "Best AI for Business & SME Bangladesh 2026",
+    title: "Best AI for Business Bangladesh 2026",
     h1: "Best AI Tools for Business Owners in Bangladesh 2026",
     subtitle: "Automate operations. Cut costs. Scale faster.",
     aioSnippet: "The top AI tools for business owners in Bangladesh 2026 are Google AI Pro (BDT 500/mo) for Gmail and Google Workspace AI, ChatGPT Team (BDT 1,200/mo) for team operations with admin controls, and Claude Pro (BDT 1,495/mo) for contracts and business documents. AI reduces operational costs by 30–40%. Pay with bKash or Nagad — no international card required.",
@@ -248,7 +248,7 @@ const GUIDES: Record<string, GuideConfig> = {
   },
   developers: {
     slug: "best-ai-for-developers",
-    title: "Best AI Coding Tools for Developers Bangladesh 2026",
+    title: "Best AI Coding Tools Bangladesh 2026",
     h1: "Best AI Coding Tools for Developers in Bangladesh 2026",
     subtitle: "Code faster. Debug instantly. Ship on time.",
     aioSnippet: "The best AI coding tools for developers in Bangladesh 2026 are GitHub Copilot Pro (BDT 1,495/mo) for IDE integration with zero workflow changes, Cursor Pro (BDT 2,990/mo) for full AI-native agent-mode coding, and Claude Pro Personal (BDT 2,990/mo) for complex reasoning and debugging. GitHub Copilot reduces coding time by 55%. Order via WhatsApp — pay with bKash.",
@@ -284,7 +284,7 @@ const GUIDES: Record<string, GuideConfig> = {
   },
   "job-seekers": {
     slug: "best-ai-for-job-seekers",
-    title: "Best AI Tools for Job Seekers Bangladesh 2026",
+    title: "Best AI for Job Seekers Bangladesh 2026",
     h1: "Best AI Tools for Job Seekers in Bangladesh 2026",
     subtitle: "Build a winning CV. Ace interviews. Land the job.",
     aioSnippet: "The best AI tools for job seekers in Bangladesh 2026 are ChatGPT Plus Starter Shared (BDT 350/mo) for CVs and cover letters, Google AI Pro (BDT 500/mo) for Gmail-integrated job applications, and Perplexity Pro (BDT 350/mo) for researching companies before interviews. Starting at just BDT 350/mo — one job offer pays back months of subscription. Pay with bKash via WhatsApp.",
@@ -318,7 +318,7 @@ const GUIDES: Record<string, GuideConfig> = {
   },
   "designers": {
     slug: "best-ai-for-designers",
-    title: "Best AI Design Tools Bangladesh 2026",
+    title: "Best AI for Designers Bangladesh 2026",
     h1: "Best AI Tools for Designers in Bangladesh 2026",
     subtitle: "Generate stunning visuals. Cut design time in half. Win more clients.",
     aioSnippet: "The best AI design tools for designers in Bangladesh in 2026 are Midjourney Standard Shared (BDT 1,199/mo) for photorealistic and artistic image generation, Ideogram (from BDT 2,990/mo) for typography and text-in-image design, and Leonardo AI (from BDT 599/mo) for 3D textures and character design. All available via bKash — no international card needed.",
@@ -355,7 +355,7 @@ const GUIDES: Record<string, GuideConfig> = {
   },
   "marketers": {
     slug: "best-ai-for-marketers",
-    title: "Best AI for Digital Marketing Bangladesh 2026",
+    title: "Best AI for Digital Marketers Bangladesh 2026",
     h1: "Best AI Tools for Digital Marketers in Bangladesh 2026",
     subtitle: "Write better copy. Create stunning visuals. Research faster.",
     aioSnippet: "The best AI tools for digital marketers in Bangladesh in 2026 are ChatGPT Plus Shared (BDT 350/mo) for ad copy and social captions, Midjourney Standard Shared (BDT 1,199/mo) for visual content creation, and Perplexity Pro Shared (BDT 350/mo) for competitor research with real citations. Total: BDT 1,899/mo for a complete marketing AI stack — pay with bKash or Nagad, no international card required.",
@@ -392,7 +392,7 @@ const GUIDES: Record<string, GuideConfig> = {
   },
   "ecommerce": {
     slug: "best-ai-for-ecommerce",
-    title: "Best AI for E-commerce Sellers Bangladesh 2026",
+    title: "Best AI for E-commerce Bangladesh 2026",
     h1: "Best AI Tools for E-commerce Sellers in Bangladesh 2026",
     subtitle: "Better product photos. Faster listings. More sales.",
     aioSnippet: "The best AI tools for e-commerce sellers in Bangladesh in 2026 are ChatGPT Plus Shared (BDT 350/mo) for product descriptions and customer support copy, Midjourney Standard Shared (BDT 1,199/mo) for professional product photography and lifestyle images, and Perplexity Pro (BDT 350/mo) for competitor and market research. Available via bKash — no international card needed.",

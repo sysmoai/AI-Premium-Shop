@@ -128,7 +128,7 @@ export default function FAQPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="FAQ — AI Subscriptions Bangladesh | AI Premium Shop"
+        title="FAQ — Buy AI Tools Bangladesh via bKash | AI Premium Shop"
         description="Questions about buying AI tools in Bangladesh. Shared vs Personal, payment, delivery, refunds. AI Premium Shop answers."
         canonical="https://aipremiumshop.com/faq"
       />

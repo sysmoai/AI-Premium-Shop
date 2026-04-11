@@ -98,7 +98,7 @@ export default function BestAISubscriptionPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="Best AI Subscription Bangladesh 2026 — Complete Guide | AI Premium Shop"
+        title="Best AI Subscription 2026 Bangladesh — Top 10 | AI Premium Shop"
         description="The best AI subscriptions available in Bangladesh in 2026, ranked by value. ChatGPT, Claude, Google AI Pro, Midjourney and more — with BDT prices and local payment."
         canonical="https://aipremiumshop.com/best-ai-subscription-2026"
       />

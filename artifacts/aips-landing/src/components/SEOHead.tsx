@@ -47,7 +47,7 @@ export function SEOHead({
     setMeta('meta[property="og:url"]', canonicalUrl);
     setMeta('meta[property="og:site_name"]', SITE_NAME);
     setMeta('meta[property="og:type"]', "website");
-    setMeta('meta[property="og:locale"]', "en_US");
+    setMeta('meta[property="og:locale"]', "en_BD");
     setMeta('meta[property="og:image"]', ogImage);
     setMeta('meta[property="og:image:width"]', "1200");
     setMeta('meta[property="og:image:height"]', "630");

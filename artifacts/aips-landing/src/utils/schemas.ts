@@ -10,7 +10,8 @@ export const ORG_SCHEMA = {
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+8801865385348",
-    contactType: "customer service",
+    contactType: "sales",
+    areaServed: "BD",
     availableLanguage: ["English", "Bengali"],
   },
   sameAs: [

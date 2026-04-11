@@ -113,7 +113,7 @@ const COMPARISONS: Record<string, CompConfig> = {
     ],
   },
   "midjourney-vs-ideogram": {
-    title: "Midjourney vs Ideogram Bangladesh 2026 — Best AI Image Generator",
+    title: "Midjourney vs Ideogram 2026 — Best AI Image Tool",
     h1: "Midjourney vs Ideogram — Which AI Image Generator Should You Choose?",
     aioSnippet: "Midjourney vs Ideogram in Bangladesh 2026: Midjourney Standard Shared starts at BDT 1,199/mo and produces the highest quality photorealistic and artistic images. Ideogram starts at BDT 2,990/mo and is the best AI for rendering text inside images — perfect for logos, posters, and typography. Both available via bKash — order on WhatsApp for delivery in 5–30 minutes.",
     metaDescription: "Midjourney vs Ideogram 2026 Bangladesh. Best AI image generator comparison with BDT prices. AI Premium Shop.",
@@ -148,7 +148,7 @@ const COMPARISONS: Record<string, CompConfig> = {
     ],
   },
   "copilot-vs-cursor": {
-    title: "GitHub Copilot vs Cursor — Best AI Code Editor 2026",
+    title: "GitHub Copilot vs Cursor 2026 — Best AI Code Tool",
     h1: "GitHub Copilot vs Cursor — Which AI Code Tool Should You Use?",
     aioSnippet: "GitHub Copilot vs Cursor in Bangladesh 2026: Copilot Pro (BDT 1,495/mo) plugs into your existing VS Code or JetBrains with zero workflow change. Cursor Pro (BDT 2,990/mo) offers a full AI-native coding environment with autonomous agent mode that can write entire features from a single prompt. Both available via bKash — order on WhatsApp and receive access in under 2 hours.",
     metaDescription: "GitHub Copilot vs Cursor 2026. Best AI code editor compared. Prices in BDT.",

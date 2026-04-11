@@ -8,7 +8,7 @@ export default function PrivacyPolicyPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="Privacy Policy — AI Premium Shop"
+        title="Privacy Policy | AI Premium Shop Bangladesh"
         description="Privacy policy for AI Premium Shop. How we handle your data, payments, and WhatsApp communication."
         canonical="https://aipremiumshop.com/privacy-policy"
       />

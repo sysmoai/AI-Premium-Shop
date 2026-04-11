@@ -108,12 +108,16 @@ const BRAND_META: Record<string, {
   description: string;
   accentColor: string;
   filterBySlug?: boolean;
+  seoTitle?: string;
+  seoDescription?: string;
   faqs: { q: string; a: string }[];
 }> = {
 
   "chatgpt-plans-bangladesh": {
     displayName: "ChatGPT",
     tagline: "All ChatGPT Plans — from ৳350/month",
+    seoTitle: "ChatGPT Plans Bangladesh 2026 — From BDT 350 | AI Premium Shop",
+    seoDescription: "All ChatGPT plans Bangladesh from BDT 350. Plus, Business, Pro. bKash/Nagad. 5-30 min delivery. 30-day warranty. AI Premium Shop.",
     description: "ChatGPT by OpenAI is the world's most popular AI assistant. From writing and coding to deep research, image generation, and autonomous agents — ChatGPT handles it all. Choose from Plus (personal productivity), Business (team features), or Pro (unlimited power). Available in Bangladesh via bKash and Nagad from ৳350/month.",
     accentColor: "#10a37f",
     faqs: [
@@ -128,6 +132,8 @@ const BRAND_META: Record<string, {
   "chatgpt-plus-bangladesh": {
     displayName: "ChatGPT Plus",
     tagline: "ChatGPT Plus Bangladesh — from ৳350/month",
+    seoTitle: "Buy ChatGPT Plus Bangladesh — BDT 350/mo | AI Premium Shop",
+    seoDescription: "ChatGPT Plus Bangladesh from BDT 350/mo. GPT-5, DALL-E images, agents, deep research. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
     description: "ChatGPT Plus gives you access to GPT-5 with writing, coding, research, image generation (DALL-E), deep research, and AI agents. Available in three tiers: Starter Shared (৳350), Premium Shared (৳950, fewer users), and Personal (৳2,990, your own account). All plans include bKash, Nagad, and Rocket payment.",
     accentColor: "#10a37f",
     filterBySlug: true,
@@ -143,6 +149,8 @@ const BRAND_META: Record<string, {
   "chatgpt-business-bangladesh": {
     displayName: "ChatGPT Business",
     tagline: "ChatGPT Business Bangladesh — from ৳699/month",
+    seoTitle: "ChatGPT Business Bangladesh — BDT 699/mo | AI Premium Shop",
+    seoDescription: "ChatGPT Business Bangladesh from BDT 699/mo. Team admin controls, data privacy, unlimited GPT-5. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
     description: "ChatGPT Business is built for professional teams. It includes all Plus features plus admin controls, team workspaces, data privacy guarantees, and unlimited usage. Available in Starter Shared (৳699), Premium Shared (৳1,299), and Personal (৳3,990) tiers. Pay via bKash.",
     accentColor: "#10a37f",
     filterBySlug: true,
@@ -158,6 +166,8 @@ const BRAND_META: Record<string, {
   "chatgpt-pro-bangladesh": {
     displayName: "ChatGPT Pro",
     tagline: "ChatGPT Pro Bangladesh — from ৳4,500/month",
+    seoTitle: "ChatGPT Pro Bangladesh — BDT 4,500/mo | AI Premium Shop",
+    seoDescription: "ChatGPT Pro Bangladesh from BDT 4,500/mo. Unlimited GPT-5 Pro, Sora video, deep research. bKash/Nagad. Power users. AI Premium Shop.",
     description: "ChatGPT Pro is the highest tier of ChatGPT — unlimited GPT-5.4 Pro mode, Sora video generation, unlimited deep research, and maximum AI performance. Available as Premium Shared (৳4,500) or Personal (৳29,900). Designed for power users, researchers, and businesses that need the absolute best AI capabilities.",
     accentColor: "#10a37f",
     filterBySlug: true,
@@ -173,6 +183,8 @@ const BRAND_META: Record<string, {
   "chatgpt-go-bangladesh": {
     displayName: "ChatGPT Go",
     tagline: "ChatGPT Go Bangladesh — ৳1,196/month",
+    seoTitle: "ChatGPT Go Bangladesh — BDT 1,196/mo | AI Premium Shop",
+    seoDescription: "ChatGPT Go Bangladesh BDT 1,196/mo. Personal account, GPT-5, image gen, agents. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "ChatGPT Go is the official $8/month plan from OpenAI — your own personal account with GPT-5 access, image generation, deep research, and agent mode. May show occasional ads. AIPS price: ৳1,196/month. A great middle-ground between Plus Shared and Plus Personal.",
     accentColor: "#10a37f",
     filterBySlug: true,
@@ -188,6 +200,8 @@ const BRAND_META: Record<string, {
   "claude-pro-bangladesh": {
     displayName: "Claude",
     tagline: "Claude Pro Bangladesh — from ৳1,495/month",
+    seoTitle: "Claude Pro Bangladesh — From BDT 1,495/mo | AI Premium Shop",
+    seoDescription: "Claude Pro Bangladesh from BDT 1,495/mo. Opus 4.6, 200K context, Claude Code. bKash/Nagad. 5-15 min delivery. AI Premium Shop.",
     description: "Claude by Anthropic is the AI that rivals and often surpasses ChatGPT for writing, coding, and nuanced analysis. Claude Opus 4.6 leads in creative writing, legal documents, research, and complex reasoning. Available from Premium Shared (৳1,495) to Max 20x (৳29,900). Pay via bKash.",
     accentColor: "#d97706",
     faqs: [
@@ -202,6 +216,8 @@ const BRAND_META: Record<string, {
   "gemini-advanced-bangladesh": {
     displayName: "Google AI Pro",
     tagline: "Google AI Pro Bangladesh — ৳500/month",
+    seoTitle: "Google AI Pro Bangladesh — BDT 500/mo 83% Off | AI Premium Shop",
+    seoDescription: "Google AI Pro Bangladesh BDT 500/mo — 83% off. Gemini Pro, 2TB storage, YouTube Premium, Workspace AI. bKash/Nagad. AI Premium Shop.",
     description: "Google AI Pro (formerly Gemini Advanced) is AIPS's most popular special offer. Get the full Google AI Pro subscription — Gemini 3.1 Pro, Deep Research, AI agents, 2TB Google Drive storage, YouTube Premium, and more — for just ৳500/month. Official price: ৳2,990. Save 83%.",
     accentColor: "#4285f4",
     faqs: [
@@ -216,6 +232,8 @@ const BRAND_META: Record<string, {
   "supergrok-bangladesh": {
     displayName: "SuperGrok",
     tagline: "SuperGrok Bangladesh — from ৳1,495/month",
+    seoTitle: "SuperGrok Bangladesh — From BDT 1,495/mo | AI Premium Shop",
+    seoDescription: "SuperGrok Bangladesh from BDT 1,495/mo. Grok 4.1, real-time X data, image & video gen, AI agents. bKash/Nagad. AI Premium Shop.",
     description: "SuperGrok by xAI (Elon Musk's AI company) gives you Grok 4.1 — one of the most intelligent AI models available. Real-time access to X (Twitter) data, AI image generation, HD video generation, and 4x AI agents. Available as Lite (৳1,495) or Standard (৳3,990). Personal accounts only.",
     accentColor: "#1a1a2e",
     faqs: [
@@ -230,6 +248,8 @@ const BRAND_META: Record<string, {
   "perplexity-pro-bangladesh": {
     displayName: "Perplexity Pro",
     tagline: "Perplexity Pro Bangladesh — from ৳350/month",
+    seoTitle: "Perplexity Pro Bangladesh — From BDT 350/mo | AI Premium Shop",
+    seoDescription: "Perplexity Pro Bangladesh from BDT 350/mo. AI research with citations, deep research mode. bKash/Nagad. 5-15 min delivery. AI Premium Shop.",
     description: "Perplexity Pro is the AI research tool that gives you answers with citations — like a search engine powered by GPT-5, Claude, and Gemini. Every answer links to sources. Deep Research mode synthesizes dozens of sources into a comprehensive report. Available from Shared (৳350) to Personal (৳2,990) to Max (৳29,900).",
     accentColor: "#20b2aa",
     faqs: [
@@ -244,6 +264,8 @@ const BRAND_META: Record<string, {
   "midjourney-bangladesh": {
     displayName: "Midjourney",
     tagline: "Midjourney Bangladesh — from ৳1,199/month",
+    seoTitle: "Midjourney Bangladesh — From BDT 1,199/mo | AI Premium Shop",
+    seoDescription: "Midjourney Bangladesh from BDT 1,199/mo. AI image generation. 6 plans. bKash/Nagad. Instant delivery. AI Premium Shop.",
     description: "Midjourney is the world's most acclaimed AI image generator. Artists, designers, and creators worldwide use it for photorealistic images, concept art, product visuals, and stunning illustrations. Available from Standard Shared (৳1,199) to Mega Personal (৳17,940). Pay via bKash.",
     accentColor: "#6366f1",
     faqs: [
@@ -258,6 +280,8 @@ const BRAND_META: Record<string, {
   "ideogram-bangladesh": {
     displayName: "Ideogram",
     tagline: "Ideogram Bangladesh — from ৳2,990/month",
+    seoTitle: "Ideogram AI Bangladesh — From BDT 2,990/mo | AI Premium Shop",
+    seoDescription: "Ideogram AI Bangladesh from BDT 2,990/mo. Best AI for text in images, logos, typography. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "Ideogram is the best AI image generator for text rendering. While other tools distort letters, Ideogram accurately generates readable text inside images — making it essential for logos, social media graphics, thumbnails, and branded content. Personal plans from ৳2,990.",
     accentColor: "#6366f1",
     faqs: [
@@ -272,6 +296,8 @@ const BRAND_META: Record<string, {
   "runway-bangladesh": {
     displayName: "Runway",
     tagline: "Runway Bangladesh — from ৳1,794/month",
+    seoTitle: "Runway AI Bangladesh — From BDT 1,794/mo | AI Premium Shop",
+    seoDescription: "Runway AI Bangladesh from BDT 1,794/mo. Professional AI video generation, Gen-4, 4K. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "Runway is the leading professional AI video generator. Used by filmmakers, YouTubers, and marketing teams worldwide. Generate videos from text, animate images with Gen-4, and produce 4K output. Available from Standard (৳1,794) to Unlimited (৳11,362). Pay via bKash.",
     accentColor: "#111827",
     faqs: [
@@ -286,6 +312,8 @@ const BRAND_META: Record<string, {
   "elevenlabs-bangladesh": {
     displayName: "ElevenLabs",
     tagline: "ElevenLabs Bangladesh — from ৳748/month",
+    seoTitle: "ElevenLabs Bangladesh — From BDT 748/mo | AI Premium Shop",
+    seoDescription: "ElevenLabs Bangladesh from BDT 748/mo. AI voice cloning, 3000+ voices, Bangla support. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "ElevenLabs produces the most human-like AI voice synthesis available. Clone your own voice or use 3,000+ AI voices for narration, audiobooks, YouTube videos, explainers, and dubbing. Available from Starter (৳748) to Pro (৳14,802). Pay via bKash.",
     accentColor: "#111827",
     faqs: [
@@ -300,6 +328,8 @@ const BRAND_META: Record<string, {
   "suno-ai-bangladesh": {
     displayName: "Suno AI",
     tagline: "Suno AI Bangladesh — from ৳1,495/month",
+    seoTitle: "Suno AI Bangladesh — From BDT 1,495/mo | AI Premium Shop",
+    seoDescription: "Suno AI Bangladesh from BDT 1,495/mo. AI music generation, 500 songs/mo, Bangla songs. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "Suno AI creates complete original songs from a text prompt — vocals, instruments, and lyrics included. Generate pop, hip-hop, folk, Bangla fusion, electronic, or any genre in seconds. Pro plan: 2,500 credits (~500 songs) for ৳1,495. Premier: 10,000 credits (~2,000 songs) for ৳3,990.",
     accentColor: "#7c3aed",
     faqs: [
@@ -314,6 +344,8 @@ const BRAND_META: Record<string, {
   "github-copilot-bangladesh": {
     displayName: "GitHub Copilot",
     tagline: "GitHub Copilot Bangladesh — from ৳1,495/month",
+    seoTitle: "GitHub Copilot Bangladesh — BDT 1,495/mo | AI Premium Shop",
+    seoDescription: "GitHub Copilot Bangladesh BDT 1,495/mo. AI code completion in VS Code & JetBrains. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "GitHub Copilot Pro is the most widely used AI coding assistant. It integrates directly into VS Code, JetBrains, Neovim, and other IDEs — providing real-time code completions, inline chat, and automated PR reviews. Available as Pro (৳1,495) or Pro+ (৳5,831) with 5x usage.",
     accentColor: "#6e40c9",
     faqs: [
@@ -328,6 +360,8 @@ const BRAND_META: Record<string, {
   "cursor-bangladesh": {
     displayName: "Cursor",
     tagline: "Cursor Pro Bangladesh — from ৳2,990/month",
+    seoTitle: "Cursor Pro Bangladesh — From BDT 2,990/mo | AI Premium Shop",
+    seoDescription: "Cursor Pro Bangladesh from BDT 2,990/mo. AI-native IDE, agent mode, full codebase context. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "Cursor is the AI-native code editor trusted by engineering teams at OpenAI, Stripe, Figma, and thousands of startups. Built on VS Code — all your extensions work. Cursor understands your entire codebase and can make multi-file edits, explain complex code, and build features end-to-end. From ৳2,990/month.",
     accentColor: "#111827",
     faqs: [
@@ -342,6 +376,8 @@ const BRAND_META: Record<string, {
   "notion-business-bangladesh": {
     displayName: "Notion Business",
     tagline: "Notion Business Bangladesh — from ৳800/month",
+    seoTitle: "Notion Business Bangladesh — BDT 800/mo 73% Off | AI Premium Shop",
+    seoDescription: "Notion Business BDT 800/mo — 73% off. Notion AI, teamspaces, SSO. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "Notion Business is the all-in-one workspace for teams — notes, docs, databases, project management, and Notion AI included. Notion AI writes, summarizes, and answers questions about your workspace content. Available as Monthly (৳800) or 6-Month plan (৳4,800 one-time). 73% off the official price.",
     accentColor: "#111827",
     faqs: [
@@ -356,6 +392,8 @@ const BRAND_META: Record<string, {
   "manus-ai-bangladesh": {
     displayName: "Manus AI",
     tagline: "Manus AI Bangladesh — ৳2,500/month",
+    seoTitle: "Manus AI Bangladesh — BDT 2,500/mo | AI Premium Shop",
+    seoDescription: "Manus AI Bangladesh BDT 2,500/mo. Autonomous AI agent, web browsing, data analysis, report writing. bKash/Nagad. AI Premium Shop.",
     description: "Manus AI is a fully autonomous AI agent — it browses the web, writes code, analyzes data, generates reports, and completes complex multi-step tasks without human intervention. Think of it as an AI employee that handles research, analysis, and automation entirely on its own.",
     accentColor: "#111827",
     faqs: [
@@ -370,6 +408,8 @@ const BRAND_META: Record<string, {
   "leonardo-ai-bangladesh": {
     displayName: "Leonardo AI",
     tagline: "Leonardo AI Bangladesh — from ৳599/month",
+    seoTitle: "Leonardo AI Bangladesh — BDT 599/mo | AI Premium Shop",
+    seoDescription: "Leonardo AI Bangladesh from BDT 599/mo. AI image generation, 3D textures, character design. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
     description: "Leonardo AI is a powerful AI image generator built for creative professionals. Generate stunning visuals, 3D textures, concept art, and photorealistic images. Shared Apprentice plan available from ৳599/month — includes 8,500 tokens and full commercial rights.",
     accentColor: "#7c3aed",
     faqs: [
@@ -384,6 +424,8 @@ const BRAND_META: Record<string, {
   "udio-bangladesh": {
     displayName: "Udio",
     tagline: "Udio Bangladesh — from ৳499/month",
+    seoTitle: "Udio Pro Bangladesh — BDT 499/mo | AI Premium Shop",
+    seoDescription: "Udio Pro Bangladesh from BDT 499/mo. AI music generation, 1200 credits/mo, commercial use. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
     description: "Udio is an advanced AI music generation platform that creates full songs from text prompts. Generate royalty-free music in any genre — pop, hip-hop, classical, electronic, Bangla folk, and more. Shared Pro plan with 1,200 credits/month from ৳499.",
     accentColor: "#ec4899",
     faqs: [
@@ -398,6 +440,8 @@ const BRAND_META: Record<string, {
   "heygen-bangladesh": {
     displayName: "HeyGen",
     tagline: "HeyGen Bangladesh — from ৳1,499/month",
+    seoTitle: "HeyGen Bangladesh — BDT 1,499/mo | AI Premium Shop",
+    seoDescription: "HeyGen Bangladesh BDT 1,499/mo. AI avatar videos, 175+ languages, Bangla support. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
     description: "HeyGen is the leading AI avatar video platform. Create professional videos with 700+ AI avatars in 175+ languages — no camera or editing experience required. Clone your own avatar for authentic AI-generated presentations, training videos, and marketing content.",
     accentColor: "#6366f1",
     faqs: [
@@ -412,6 +456,8 @@ const BRAND_META: Record<string, {
   "otter-ai-bangladesh": {
     displayName: "Otter.ai",
     tagline: "Otter.ai Bangladesh — from ৳799/month",
+    seoTitle: "Otter.ai Pro Bangladesh — BDT 799/mo | AI Premium Shop",
+    seoDescription: "Otter.ai Pro Bangladesh BDT 799/mo. AI meeting transcription, summaries, action items for Zoom & Meet. bKash/Nagad. AI Premium Shop.",
     description: "Otter.ai is the AI meeting assistant that automatically transcribes, summarizes, and captures action items from your meetings. Works with Zoom, Google Meet, and Teams. Stop taking notes — let Otter handle everything so you can focus on the conversation.",
     accentColor: "#3b82f6",
     faqs: [
@@ -426,6 +472,8 @@ const BRAND_META: Record<string, {
   "writesonic-bangladesh": {
     displayName: "Writesonic",
     tagline: "Writesonic Bangladesh — from ৳799/month",
+    seoTitle: "Writesonic Bangladesh — BDT 799/mo | AI Premium Shop",
+    seoDescription: "Writesonic Bangladesh BDT 799/mo. SEO blog posts, ad copy, product descriptions. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
     description: "Writesonic is an AI content writing platform built for marketers, bloggers, and agencies. Generate SEO-optimized blog posts, product descriptions, ad copy, and social media content with GPT-4o. Integrates with SurferSEO for keyword-optimized content that ranks.",
     accentColor: "#6366f1",
     faqs: [
@@ -440,6 +488,8 @@ const BRAND_META: Record<string, {
   "gamma-bangladesh": {
     displayName: "Gamma",
     tagline: "Gamma Bangladesh — from ৳399/month",
+    seoTitle: "Gamma Plus Bangladesh — BDT 399/mo | AI Premium Shop",
+    seoDescription: "Gamma Plus Bangladesh BDT 399/mo. AI presentations, decks, websites from prompts. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
     description: "Gamma creates beautiful presentations, documents, and websites from a single text prompt. Replace boring PowerPoint slides with AI-designed decks that look professionally made. Used by teams at Google, Shopify, and thousands of startups. Shared Plus plan from ৳399.",
     accentColor: "#8b5cf6",
     faqs: [
@@ -454,6 +504,8 @@ const BRAND_META: Record<string, {
   "v0-dev-bangladesh": {
     displayName: "v0.dev",
     tagline: "v0.dev Bangladesh — from ৳999/month",
+    seoTitle: "v0.dev Pro Bangladesh — BDT 999/mo | AI Premium Shop",
+    seoDescription: "v0.dev Pro Bangladesh BDT 999/mo. AI UI builder by Vercel, React + Tailwind code. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
     description: "v0.dev by Vercel is the leading AI web application builder. Describe what you want to build and v0 generates production-ready React code with Tailwind CSS. Deploy instantly to Vercel. Used by professional developers and non-technical founders to ship products 10x faster.",
     accentColor: "#111827",
     faqs: [
@@ -468,6 +520,8 @@ const BRAND_META: Record<string, {
   "replit-bangladesh": {
     displayName: "Replit",
     tagline: "Replit Bangladesh — ৳500/month",
+    seoTitle: "Replit Core Bangladesh — BDT 500/mo | AI Premium Shop",
+    seoDescription: "Replit Core Bangladesh BDT 500/mo — 83% off. AI coding agent, cloud IDE, instant deploy. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "Replit Core is a cloud-based AI development environment. Build, host, and deploy apps with an AI agent that writes code, fixes bugs, and deploys for you — all from your browser. AIPS special pricing: ৳500/month (official price ৳2,990/month). Save 83%.",
     accentColor: "#f26207",
     faqs: [
@@ -525,8 +579,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
   return (
     <PageLayout>
       <SEOHead
-        title={`${meta.displayName} in Bangladesh — ${meta.tagline} | AI Premium Shop`}
-        description={meta.description.slice(0, 160)}
+        title={meta.seoTitle ?? `${meta.displayName} in Bangladesh — ${meta.tagline} | AI Premium Shop`}
+        description={meta.seoDescription ?? meta.description.slice(0, 155)}
         canonical={`https://aipremiumshop.com/${brandSlug}`}
       />
       <script

@@ -147,9 +147,13 @@ function Router() {
 
       {/* Comparison pages */}
       <Route path="/chatgpt-vs-claude">{() => <ComparisonPage compKey="chatgpt-vs-claude" />}</Route>
+      <Route path="/chatgpt-vs-claude-bangladesh">{() => <ComparisonPage compKey="chatgpt-vs-claude" />}</Route>
       <Route path="/chatgpt-vs-gemini">{() => <ComparisonPage compKey="chatgpt-vs-gemini" />}</Route>
       <Route path="/copilot-vs-cursor">{() => <ComparisonPage compKey="copilot-vs-cursor" />}</Route>
       <Route path="/midjourney-vs-ideogram">{() => <ComparisonPage compKey="midjourney-vs-ideogram" />}</Route>
+      <Route path="/chatgpt-plans-comparison-bangladesh">{() => <BrandPage brandSlug="chatgpt-plans-bangladesh" />}</Route>
+      <Route path="/google-ai-pro-bangladesh">{() => <BrandPage brandSlug="gemini-advanced-bangladesh" />}</Route>
+      <Route path="/best-ai-budget-bangladesh">{() => <BudgetPage budgetKey="ai-under-500" />}</Route>
 
       {/* Budget pages */}
       <Route path="/ai-under-500">{() => <BudgetPage budgetKey="ai-under-500" />}</Route>

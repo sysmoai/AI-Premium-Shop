@@ -1,0 +1,84 @@
+ADD content sections to creative brand pages. Do NOT change any existing text content. Do NOT remove anything. Only ADD new sections AFTER existing content, BEFORE the final WhatsApp CTA.
+
+Use Lucide React icons + Tailwind CSS only. No SVG drawings. No external images.
+
+=== /midjourney-bangladesh ===
+
+ADD after the pricing section, before FAQ:
+
+H2: "What You Can Create With Midjourney"
+6-card grid (grid-cols-2 md:grid-cols-3, gap-4):
+Each card: bg-gray-900 rounded-xl p-6, Lucide icon (32px) in brand color at top, bold title, one-line description, small segment pill badge (bg-gray-800 text-xs rounded-full px-3 py-1).
+
+Cards:
+1. Icon: Camera | "Product Photography" | "AI product shots without a studio" | pill: "E-commerce"
+2. Icon: Youtube | "YouTube Thumbnails" | "Viral thumbnails in 30 seconds" | pill: "Creators"
+3. Icon: Palette | "Logo Concepts" | "50 brand concepts in 1 hour" | pill: "Designers"
+4. Icon: Megaphone | "Ad Creatives" | "Facebook/Instagram ads instantly" | pill: "Marketers"
+5. Icon: BookOpen | "Book Covers" | "Professional cover art" | pill: "Authors"
+6. Icon: Home | "Interior Design" | "Room visualization from text" | pill: "Architects"
+
+ADD after the grid:
+H3: "Midjourney Freelance Income Potential"
+bg-gradient-to-r from-[#1a1a2e] to-gray-900 rounded-xl p-6 border border-gray-800
+Bullet list:
+• Logo design with AI concepts: $200-500 per project
+• Social media content pack (30 posts): $300-1,000/month retainer
+• Product photography for e-commerce: $50-200 per product set
+• YouTube thumbnail service: $10-50 per thumbnail
+Bold gold text: "Investment: BDT 1,199/mo | Potential: $1,000-3,000/mo | ROI: 6x-19x"
+
+=== /runway-bangladesh ===
+
+ADD after pricing, before FAQ:
+H2: "What Runway Can Do"
+5 items in a vertical list, each with Lucide icon + text:
+- Video (icon) | "Generate video clips from text descriptions"
+- Scissors (icon) | "Remove backgrounds from any video"
+- Maximize (icon) | "Extend existing video clips with AI"
+- ArrowUpCircle (icon) | "4K upscale any footage"
+- Sparkles (icon) | "Motion graphics without After Effects"
+Style: each item bg-gray-900 rounded-lg p-4 flex items-center gap-4, icon in amber-500.
+
+=== /elevenlabs-bangladesh ===
+
+ADD after pricing, before FAQ:
+H2: "ElevenLabs — Professional Voiceover in Seconds"
+bg-gray-900 rounded-xl p-6
+Text: "Clone your voice and use it in 29 languages. Or choose from hundreds of natural-sounding AI voices."
+4-pill row (flex flex-wrap gap-2): "YouTube Narration" "Podcast Intros" "Ad Voiceover" "Audiobook Creation" — each bg-gray-800 rounded-full px-3 py-1 text-sm
+
+Below: income callout box (border-l-4 border-green-500 bg-gray-900 p-4):
+"Voiceover freelancers charge $50-300/min. ElevenLabs: BDT 748/mo. Create Fiverr voiceover service → $50/project → deliver in 5 min. 20 projects/month = $1,000/mo."
+
+=== /suno-ai-bangladesh ===
+
+ADD after pricing, before FAQ:
+H2: "Create Music From Words"
+bg-gray-900 rounded-xl p-6 with Music icon (Lucide) in purple-500 at top.
+Bullet list: YouTube background music (no copyright) | Brand jingles | Podcast intro/outro | Social media tracks | Full songs with lyrics
+Bold: "2,500 credits/month = ~500 songs. All commercially licensed."
+
+=== /best-ai-for-creators ===
+
+ADD before final CTA:
+H2: "Creator AI Stack — Cost Calculator"
+bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700
+Table or list:
+• ChatGPT BDT 350 (scripts)
+• Midjourney BDT 1,199 (visuals)
+• ElevenLabs BDT 748 (voiceover)
+• Suno AI BDT 1,495 (music)
+• Runway BDT 1,794 (video)
+Total: BDT 5,586/mo (bold, text-xl, text-[#f4b942])
+vs Hiring: BDT 37,000/mo (text-red-400 line-through)
+Save: BDT 31,414/mo (85% savings) — bold green-500
+
+=== /best-ai-for-designers ===
+
+ADD before final CTA:
+H3: "Designer AI Stack ROI"
+Same card style. Midjourney BDT 1,199 + Ideogram BDT 2,990 + ChatGPT BDT 350 = BDT 4,539/mo
+"Output: 50+ client concepts/week" | "Potential: BDT 50,000-100,000+/mo" | "ROI: 11x-22x"
+
+Do NOT change any text content on any page. Only ADD these new sections.

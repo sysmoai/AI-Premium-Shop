@@ -83,7 +83,7 @@ export function OffersSection() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="relative rounded-2xl p-6 overflow-hidden"
+                className="relative rounded-2xl p-6 overflow-hidden shadow-lg shadow-blue-500/20"
                 style={{
                   backgroundColor: "rgba(10,14,39,0.85)",
                   animation: offer.glowAnimation,

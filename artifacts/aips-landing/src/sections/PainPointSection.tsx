@@ -192,7 +192,7 @@ export function PainPointSection() {
               variants={cardVariants}
               whileHover={{ y: -5, boxShadow: `0 0 32px ${card.color}22` }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="group relative rounded-2xl flex flex-col border border-white/10 transition-all duration-300 overflow-hidden"
+              className="group relative rounded-2xl flex flex-col border border-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg overflow-hidden"
               style={{ backgroundColor: "#151b3d" }}
               data-testid={`pain-card-${card.id}`}
             >

@@ -96,13 +96,10 @@ export function WhyUsSection() {
                   className="border-t border-white/10"
                 >
                   <td className="px-5 py-4 font-medium text-white">{row.tool}</td>
-                  <td className="px-5 py-4 line-through" style={{ color: "#c9ceda" }}>{row.direct}</td>
-                  <td className="px-5 py-4 font-semibold" style={{ color: "#f4b942" }}>{row.aips}</td>
+                  <td className="px-5 py-4 text-red-400 line-through">{row.direct}</td>
+                  <td className="px-5 py-4 text-amber-400 text-lg font-bold">{row.aips}</td>
                   <td className="px-5 py-4">
-                    <span
-                      className="font-bold px-2 py-0.5 rounded-full text-xs"
-                      style={{ backgroundColor: "rgba(16,163,127,0.15)", color: "#10a37f" }}
-                    >
+                    <span className="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full text-sm font-bold">
                       {row.save}
                     </span>
                   </td>

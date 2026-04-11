@@ -1,0 +1,98 @@
+VISUAL FIX — CSS ONLY. Do NOT add any new content or sections.
+Only modify the STYLING of existing components. This is a CSS-only update.
+
+Find and update these specific elements:
+
+1. HOMEPAGE HERO SECTION:
+Add these 3 divs as the FIRST children inside the hero section container
+(the section that contains "What Takes You 3 Hours"):
+<div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-amber-500/[0.06] blur-[100px] pointer-events-none" />
+<div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-purple-500/[0.05] blur-[120px] pointer-events-none" />
+<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-pink-500/[0.03] blur-[80px] pointer-events-none" />
+Make sure the hero container has: className includes "relative overflow-hidden"
+
+2. SEGMENT CARDS ("Every Problem Has an AI Solution"):
+Find each of the 6 cards. Add to each card's outermost div:
+- className should include: "transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+- Add as FIRST child inside each card: <div className="h-1 w-full bg-gradient-to-r from-blue-500 to-purple-500" />
+  (Change gradient colors per card: blue/purple for students, emerald/teal for freelancers, 
+   pink/orange for creators, amber/orange for business, indigo/purple for job seekers, 
+   purple/pink for developers)
+
+3. CATEGORY CARDS ("Browse by Category"):
+Find each of the 8 category cards. Add to each:
+- className: add "border-l-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+- Set borderLeftColor per category:
+  AI Assistant: #10a37f, Image: #8b5cf6, Video: #ec4899, Voice: #f97316,
+  Code: #6e40c9, Workspace: #4285f4, Writing: #6366f1, Bundles: #f4b942
+- Make the "from ৳X" price text: className="text-amber-400 font-bold"
+
+4. SPECIAL OFFER CARDS:
+Find the 2 special offer cards (Google AI 83% Off, Notion 73% Off).
+Add to each wrapper: className includes "shadow-lg shadow-blue-500/20"
+Add CSS keyframe in global styles:
+@keyframes glow { from { box-shadow: 0 0 15px rgba(66,133,244,0.15); } to { box-shadow: 0 0 25px rgba(66,133,244,0.25); } }
+Apply: style= animation: 'glow 3s ease-in-out infinite alternate' 
+
+5. PRODUCT CARDS (all pages):
+Find the product card component used across the site.
+Add to each card wrapper: className includes "transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+
+6. HOW TO ORDER STEPS:
+Find the 4 step indicators (currently showing "01" "02" etc).
+Replace the number styling with:
+<div className="w-14 h-14 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-green-500/30">1</div>
+Step 2: from-pink-500 to-rose-600, Step 3: from-blue-500 to-indigo-600, Step 4: from-amber-500 to-yellow-600
+
+7. COMPARISON TABLE:
+Find the "Why 1,200+ Customers Choose Us" table.
+- "You Save" values (88%, 83%, 73%): wrap in <span className="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full text-sm font-bold">
+- "Direct Purchase" values: add className="text-red-400 line-through"
+- "With AIPS" values: add className="text-amber-400 text-lg font-bold"
+
+8. TESTIMONIALS:
+Find the 3 testimonial cards.
+- Avatar circles (R, N, K): change className to include "bg-gradient-to-br" 
+  R: from-blue-500 to-indigo-600
+  N: from-emerald-500 to-teal-600  
+  K: from-amber-500 to-yellow-600
+- Add below each name: <span className="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full text-[10px]">Student</span>
+  (Freelancer for N, Business Owner for K, with matching colors)
+
+9. WHATSAPP FLOATING BUTTON:
+Find the floating WhatsApp button component.
+Add to its className: "animate-[wa-pulse_2s_ease-in-out_infinite]"
+Add to global CSS:
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+10. PAYMENT BADGES:
+Find wherever payment method names are rendered (hero, footer, etc).
+Replace plain text with styled spans:
+bKash: <span className="bg-[#E2136E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">bKash</span>
+Nagad: bg-[#F6921E], Rocket: bg-[#8B2F8B], Bank Transfer: bg-blue-500, Binance: bg-[#F0B90B] text-gray-900
+
+11. FAVICON:
+Create file /public/favicon.svg with this exact content:
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0a0e27"/><text x="16" y="22" text-anchor="middle" fill="#f4b942" font-size="16" font-weight="bold" font-family="system-ui">AI</text></svg>
+In the root layout <head>, add: <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+12. SCROLL REVEAL:
+Create a ScrollReveal wrapper component and apply it to major homepage sections.
+This is the ONLY new component to create. Everything else is modifying existing CSS.
+
+VERIFICATION: After this, the homepage should have:
+- Subtle colored glow behind hero text
+- Gradient strips on segment cards + hover zoom
+- Left colored borders on category cards + hover lift
+- Glowing special offer cards
+- Gradient circle step indicators
+- Green badges + red strikethrough in comparison table
+- Gradient avatar circles on testimonials
+- Pulsing WhatsApp button
+- Colored payment pills
+- Favicon in browser tab
+- Sections fading in on scroll

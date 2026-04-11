@@ -28,11 +28,10 @@ export function PaymentBadges({ className, label = "We Accept" }: PaymentBadgesP
           transition={{ delay: i * 0.05 }}
           viewport={{ once: true }}
           whileHover={{ y: -2, scale: 1.04 }}
-          className="px-3 py-1 rounded-md text-xs font-semibold"
+          className="px-2.5 py-1 rounded-full text-xs font-semibold"
           style={{
             backgroundColor: method.bg,
             color: method.text,
-            borderRadius: "6px",
           }}
           title={method.name}
         >

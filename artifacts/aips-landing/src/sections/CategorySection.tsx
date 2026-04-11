@@ -95,7 +95,7 @@ export function CategorySection() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-sm font-semibold text-white">from ৳{cat.from}</span>
+                    <span className="text-sm font-bold text-amber-400">from ৳{cat.from}</span>
                     <span className="text-xs ml-1.5 px-1.5 py-0.5 rounded" style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#c9ceda" }}>
                       {cat.count} {cat.count === 1 ? "tool" : "tools"}
                     </span>

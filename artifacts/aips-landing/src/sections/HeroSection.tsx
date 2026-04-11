@@ -95,6 +95,10 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
           className="absolute top-2/3 right-1/3 w-56 h-56 rounded-full blur-3xl hero-glow-4"
           style={{ background: "radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%)" }}
         />
+        {/* Accent corner glows */}
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-amber-500/[0.06] blur-[100px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-purple-500/[0.05] blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-pink-500/[0.03] blur-[80px]" />
       </div>
 
       {/* Two-column layout on lg+ */}

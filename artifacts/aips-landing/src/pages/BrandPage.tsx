@@ -774,8 +774,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35, delay: i * 0.07 }}
                     whileHover={{ y: -3, boxShadow: `0 8px 32px ${meta.accentColor}30`, scale: 1.02 }}
-                    className="relative rounded-2xl border border-white/10 flex flex-col overflow-hidden cursor-pointer"
-                    style={{ backgroundColor: "#151b3d", borderLeft: `3px solid ${p.brandColor || meta.accentColor}` }}
+                    className="relative rounded-2xl border border-white/10 border-l-4 flex flex-col overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+                    style={{ backgroundColor: "#151b3d", borderLeftColor: p.brandColor || meta.accentColor }}
                   >
                     <div className="p-5 flex flex-col flex-1 gap-3">
                       <div className="flex items-start justify-between gap-2">

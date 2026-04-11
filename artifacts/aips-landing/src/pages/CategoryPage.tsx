@@ -267,8 +267,8 @@ function ProductCard({ p, accent }: { p: Product; accent: string }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.35 }}
-      className="relative rounded-2xl border border-white/10 flex flex-col overflow-hidden"
-      style={{ backgroundColor: "#151b3d", borderLeft: `3px solid ${p.brandColor}` }}
+      className="relative rounded-2xl border border-white/10 border-l-4 flex flex-col overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+      style={{ backgroundColor: "#151b3d", borderLeftColor: p.brandColor }}
     >
       <div className="p-5 flex flex-col flex-1 gap-3">
         <div className="flex items-start justify-between gap-2">

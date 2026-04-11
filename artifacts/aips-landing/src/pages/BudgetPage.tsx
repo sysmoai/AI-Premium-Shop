@@ -78,8 +78,8 @@ function ProductCard({ product, index }: ProductCardProps) {
       variants={fadeUp}
       initial="hidden"
       animate="visible"
-      className="p-5 rounded-2xl border border-white/10 hover:border-white/20 transition-colors"
-      style={{ backgroundColor: "#151b3d" }}
+      className="p-5 rounded-2xl border border-white/10 border-l-4 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+      style={{ backgroundColor: "#151b3d", borderLeftColor: product.brandColor || "#f4b942" }}
     >
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex-1 min-w-0">

@@ -813,6 +813,80 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
           </div>
         </motion.div>
 
+        {/* Creator AI Stack Calculator */}
+        {guideKey === "creators" && (
+          <motion.div custom={guide.tools.length + 6.8} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
+            <h2 className="text-2xl font-bold text-white mb-6">Creator AI Stack — Cost Calculator</h2>
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700">
+              <div className="space-y-2 text-sm mb-4">
+                {[
+                  { label: "ChatGPT", note: "scripts", price: "BDT 350" },
+                  { label: "Midjourney", note: "visuals", price: "BDT 1,199" },
+                  { label: "ElevenLabs", note: "voiceover", price: "BDT 748" },
+                  { label: "Suno AI", note: "music", price: "BDT 1,495" },
+                  { label: "Runway", note: "video", price: "BDT 1,794" },
+                ].map((item) => (
+                  <div key={item.label} className="flex justify-between items-center py-1 border-b border-white/5">
+                    <span style={{ color: "#c9ceda" }}>{item.label} <span className="text-xs opacity-60">({item.note})</span></span>
+                    <span style={{ color: "#c9ceda" }}>{item.price}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex justify-between items-center py-2 mb-3">
+                <span className="font-bold text-white">Total</span>
+                <span className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT 5,586/mo</span>
+              </div>
+              <div className="flex justify-between items-center py-1 mb-1">
+                <span className="text-sm" style={{ color: "#c9ceda" }}>vs Hiring</span>
+                <span className="text-sm font-semibold line-through" style={{ color: "#ef4444" }}>BDT 37,000/mo</span>
+              </div>
+              <div className="flex justify-between items-center py-1">
+                <span className="text-sm font-bold text-white">Save</span>
+                <span className="text-sm font-bold" style={{ color: "#22c55e" }}>BDT 31,414/mo (85% savings)</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Designer AI Stack ROI */}
+        {guideKey === "designers" && (
+          <motion.div custom={guide.tools.length + 6.8} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
+            <h3 className="text-xl font-bold text-white mb-5">Designer AI Stack ROI</h3>
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700">
+              <div className="space-y-2 text-sm mb-4">
+                {[
+                  { label: "Midjourney", price: "BDT 1,199" },
+                  { label: "Ideogram", price: "BDT 2,990" },
+                  { label: "ChatGPT", price: "BDT 350" },
+                ].map((item) => (
+                  <div key={item.label} className="flex justify-between items-center py-1 border-b border-white/5">
+                    <span style={{ color: "#c9ceda" }}>{item.label}</span>
+                    <span style={{ color: "#c9ceda" }}>{item.price}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex justify-between items-center py-2 mb-4">
+                <span className="font-bold text-white">Total</span>
+                <span className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT 4,539/mo</span>
+              </div>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center gap-2" style={{ color: "#c9ceda" }}>
+                  <span style={{ color: "#a855f7" }}>•</span>
+                  <span>Output: 50+ client concepts/week</span>
+                </div>
+                <div className="flex items-center gap-2" style={{ color: "#c9ceda" }}>
+                  <span style={{ color: "#a855f7" }}>•</span>
+                  <span>Potential: BDT 50,000-100,000+/mo</span>
+                </div>
+                <div className="flex items-center gap-2 font-semibold text-white">
+                  <span style={{ color: "#a855f7" }}>•</span>
+                  <span>ROI: 11x-22x</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         {/* Final CTA */}
         <motion.div custom={guide.tools.length + 7} variants={fadeUp} initial="hidden" animate="visible"
           className="p-8 rounded-2xl text-center border border-white/10"

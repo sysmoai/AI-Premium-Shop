@@ -6,6 +6,8 @@ import {
   Link2, Layers, Clock,
   Bot, Search, Mail, HardDrive, BarChart2, Layout, Play, ImageIcon,
   GraduationCap, Laptop, Briefcase, Monitor,
+  Camera, Youtube, Palette, Megaphone, BookOpen, Home,
+  Video, Scissors, Maximize, ArrowUpCircle, Sparkles, Music,
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
@@ -1357,6 +1359,101 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
               </svg>
             </div>
             <p className="text-center text-sm" style={{ color: "#c9ceda" }}>All Google apps upgraded with AI — on your existing account. One subscription, every tool.</p>
+          </div>
+        )}
+
+        {/* ===== MIDJOURNEY SECTIONS ===== */}
+
+        {brandSlug === "midjourney-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">What You Can Create With Midjourney</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+              {[
+                { Icon: Camera, title: "Product Photography", desc: "AI product shots without a studio", pill: "E-commerce" },
+                { Icon: Youtube, title: "YouTube Thumbnails", desc: "Viral thumbnails in 30 seconds", pill: "Creators" },
+                { Icon: Palette, title: "Logo Concepts", desc: "50 brand concepts in 1 hour", pill: "Designers" },
+                { Icon: Megaphone, title: "Ad Creatives", desc: "Facebook/Instagram ads instantly", pill: "Marketers" },
+                { Icon: BookOpen, title: "Book Covers", desc: "Professional cover art", pill: "Authors" },
+                { Icon: Home, title: "Interior Design", desc: "Room visualization from text", pill: "Architects" },
+              ].map((card) => (
+                <div key={card.title} className="bg-gray-900 rounded-xl p-6">
+                  <card.Icon className="w-8 h-8 mb-3" style={{ color: "#6366f1" }} />
+                  <div className="font-bold text-white mb-1">{card.title}</div>
+                  <p className="text-sm mb-3" style={{ color: "#c9ceda" }}>{card.desc}</p>
+                  <span className="bg-gray-800 text-xs rounded-full px-3 py-1" style={{ color: "#c9ceda" }}>{card.pill}</span>
+                </div>
+              ))}
+            </div>
+            <h3 className="text-xl font-bold text-white mb-4">Midjourney Freelance Income Potential</h3>
+            <div className="bg-gradient-to-r from-[#1a1a2e] to-gray-900 rounded-xl p-6 border border-gray-800">
+              <ul className="space-y-2 text-sm mb-4" style={{ color: "#c9ceda" }}>
+                <li>• Logo design with AI concepts: $200-500 per project</li>
+                <li>• Social media content pack (30 posts): $300-1,000/month retainer</li>
+                <li>• Product photography for e-commerce: $50-200 per product set</li>
+                <li>• YouTube thumbnail service: $10-50 per thumbnail</li>
+              </ul>
+              <p className="font-bold text-sm" style={{ color: "#f4b942" }}>Investment: BDT 1,199/mo | Potential: $1,000-3,000/mo | ROI: 6x-19x</p>
+            </div>
+          </div>
+        )}
+
+        {/* ===== RUNWAY SECTIONS ===== */}
+
+        {brandSlug === "runway-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">What Runway Can Do</h2>
+            <div className="space-y-3">
+              {[
+                { Icon: Video, text: "Generate video clips from text descriptions" },
+                { Icon: Scissors, text: "Remove backgrounds from any video" },
+                { Icon: Maximize, text: "Extend existing video clips with AI" },
+                { Icon: ArrowUpCircle, text: "4K upscale any footage" },
+                { Icon: Sparkles, text: "Motion graphics without After Effects" },
+              ].map((item) => (
+                <div key={item.text} className="bg-gray-900 rounded-lg p-4 flex items-center gap-4">
+                  <item.Icon className="w-5 h-5 flex-shrink-0 text-amber-500" />
+                  <span className="text-sm text-white">{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ===== ELEVENLABS SECTIONS ===== */}
+
+        {brandSlug === "elevenlabs-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">ElevenLabs — Professional Voiceover in Seconds</h2>
+            <div className="bg-gray-900 rounded-xl p-6">
+              <p className="text-sm mb-4" style={{ color: "#c9ceda" }}>Clone your voice and use it in 29 languages. Or choose from hundreds of natural-sounding AI voices.</p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {["YouTube Narration", "Podcast Intros", "Ad Voiceover", "Audiobook Creation"].map((pill) => (
+                  <span key={pill} className="bg-gray-800 rounded-full px-3 py-1 text-sm" style={{ color: "#c9ceda" }}>{pill}</span>
+                ))}
+              </div>
+              <div className="border-l-4 border-green-500 bg-gray-800 p-4 rounded-r-lg">
+                <p className="text-sm" style={{ color: "#c9ceda" }}>Voiceover freelancers charge $50-300/min. ElevenLabs: BDT 748/mo. Create Fiverr voiceover service → $50/project → deliver in 5 min. 20 projects/month = $1,000/mo.</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ===== SUNO AI SECTIONS ===== */}
+
+        {brandSlug === "suno-ai-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">Create Music From Words</h2>
+            <div className="bg-gray-900 rounded-xl p-6">
+              <Music className="w-8 h-8 mb-4" style={{ color: "#a855f7" }} />
+              <ul className="space-y-2 text-sm mb-4" style={{ color: "#c9ceda" }}>
+                <li>• YouTube background music (no copyright)</li>
+                <li>• Brand jingles</li>
+                <li>• Podcast intro/outro</li>
+                <li>• Social media tracks</li>
+                <li>• Full songs with lyrics</li>
+              </ul>
+              <p className="font-bold text-sm text-white">2,500 credits/month = ~500 songs. All commercially licensed.</p>
+            </div>
           </div>
         )}
 

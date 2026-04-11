@@ -519,6 +519,287 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
           </p>
         </motion.div>
 
+        {/* 1A: What ChatGPT Can Do */}
+        {brandSlug === "chatgpt-plans-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-2">What ChatGPT Can Do For You</h2>
+            <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>The world's most capable AI — writing, coding, research, images, and autonomous agents.</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {[
+                {
+                  label: "Write",
+                  desc: "Essays, proposals, emails, ads — professional quality in minutes",
+                  icon: (
+                    <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
+                      <rect x="4" y="6" width="18" height="3" rx="1.5" fill="white" />
+                      <rect x="4" y="12" width="24" height="3" rx="1.5" fill="white" />
+                      <rect x="4" y="18" width="20" height="3" rx="1.5" fill="white" />
+                      <rect x="4" y="24" width="14" height="3" rx="1.5" fill="white" />
+                      <path d="M26 5 L29 8 L20 17 L17 17 L17 14 Z" fill="#10a37f" />
+                    </svg>
+                  ),
+                },
+                {
+                  label: "Code",
+                  desc: "Debug, build features, write tests — 55% faster (GitHub Research)",
+                  icon: (
+                    <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
+                      <rect x="2" y="4" width="28" height="24" rx="3" stroke="white" strokeWidth="2" />
+                      <rect x="4" y="6" width="28" height="2" rx="1" fill="#10a37f" />
+                      <path d="M10 14 L6 18 L10 22" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M22 14 L26 18 L22 22" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M18 13 L14 23" stroke="#10a37f" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                  ),
+                },
+                {
+                  label: "Research",
+                  desc: "Deep research with sources, data analysis, market insights",
+                  icon: (
+                    <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
+                      <circle cx="14" cy="14" r="9" stroke="white" strokeWidth="2" />
+                      <path d="M21 21 L28 28" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+                      <path d="M10 14 H18" stroke="#10a37f" strokeWidth="2" strokeLinecap="round" />
+                      <path d="M14 10 V18" stroke="#10a37f" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                  ),
+                },
+                {
+                  label: "Create",
+                  desc: "Generate images with DALL-E, design assets, presentations",
+                  icon: (
+                    <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
+                      <rect x="4" y="6" width="24" height="20" rx="2" stroke="white" strokeWidth="2" />
+                      <circle cx="11" cy="13" r="3" fill="#10a37f" />
+                      <path d="M4 22 L12 16 L18 20 L22 15 L28 22 Z" fill="white" fillOpacity="0.4" />
+                    </svg>
+                  ),
+                },
+                {
+                  label: "Automate",
+                  desc: "AI Agents do tasks for you — research, email, reports",
+                  icon: (
+                    <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
+                      <rect x="10" y="2" width="12" height="8" rx="2" fill="white" />
+                      <circle cx="16" cy="6" r="2" fill="#10a37f" />
+                      <rect x="8" y="10" width="16" height="14" rx="3" fill="white" />
+                      <rect x="11" y="14" width="4" height="3" rx="1" fill="#10a37f" />
+                      <rect x="17" y="14" width="4" height="3" rx="1" fill="#10a37f" />
+                      <path d="M6 14 H8 M24 14 H26" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                      <path d="M6 20 H8 M24 20 H26" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                      <rect x="12" y="24" width="4" height="4" rx="1" fill="white" />
+                      <rect x="16" y="24" width="4" height="4" rx="1" fill="white" />
+                    </svg>
+                  ),
+                },
+                {
+                  label: "Learn",
+                  desc: "Learn any subject, any language, 24/7 personal tutor",
+                  icon: (
+                    <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
+                      <path d="M16 4 C22 4 28 9 28 16 C28 23 22 28 16 28 C10 28 4 23 4 16 C4 9 10 4 16 4 Z" stroke="white" strokeWidth="2" />
+                      <path d="M13 12 C13 10 15 9 16 9 C18 9 20 10.5 20 13 C20 15 18 16 16 17 L16 19" stroke="#10a37f" strokeWidth="2" strokeLinecap="round" />
+                      <circle cx="16" cy="22" r="1.5" fill="white" />
+                    </svg>
+                  ),
+                },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-xl p-4 border transition-all duration-200"
+                  style={{
+                    backgroundColor: "#0e1535",
+                    borderTop: "3px solid #10a37f",
+                    borderRight: "1px solid rgba(255,255,255,0.08)",
+                    borderBottom: "1px solid rgba(255,255,255,0.08)",
+                    borderLeft: "1px solid rgba(255,255,255,0.08)",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.transform = "scale(1.02)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 20px #10a37f30";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                  }}
+                >
+                  <div className="mb-3">{item.icon}</div>
+                  <div className="font-bold text-white text-sm mb-1">{item.label}</div>
+                  <div className="text-xs leading-relaxed" style={{ color: "#9ca3af" }}>{item.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 1B: Who Uses ChatGPT */}
+        {brandSlug === "chatgpt-plans-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-2">Which ChatGPT Plan Fits Your Life?</h2>
+            <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>Real use cases for real people in Bangladesh.</p>
+            <div className="flex gap-4 overflow-x-auto pb-4 -mx-2 px-2" style={{ scrollbarWidth: "none" }}>
+              {[
+                {
+                  emoji: "🎓",
+                  title: "Students",
+                  accent: "#3b82f6",
+                  pain: "Assignment deadline, English weak, research paper",
+                  solution: "ChatGPT Plus ৳350/mo → A+ grades, research done in 30 min",
+                  outcome: "CGPA 2.8 → 3.5+ possible",
+                  cta: "Order ৳350/mo",
+                  msg: "Hi, I want ChatGPT Plus Starter Shared (৳350/mo) for studies",
+                  svgBg: "#1e3a5f",
+                  svg: (
+                    <svg viewBox="0 0 120 90" width="120" height="90" style={{ display: "block" }}>
+                      <rect x="30" y="50" width="60" height="35" rx="4" fill="#1e40af" />
+                      <rect x="40" y="30" width="40" height="25" rx="2" fill="#2563eb" />
+                      <rect x="45" y="34" width="30" height="3" rx="1" fill="#93c5fd" />
+                      <rect x="45" y="40" width="20" height="2" rx="1" fill="#93c5fd" />
+                      <circle cx="60" cy="22" r="10" fill="#fde68a" />
+                      <rect x="50" y="60" width="20" height="20" rx="2" fill="#1d4ed8" />
+                      <rect x="80" y="45" width="14" height="18" rx="1" fill="#3b82f6" />
+                      <rect x="82" y="47" width="4" height="2" rx="0.5" fill="#bfdbfe" />
+                      <rect x="82" y="51" width="7" height="1" rx="0.5" fill="#bfdbfe" />
+                      <text x="87" y="39" fontSize="9" fill="#fbbf24" fontWeight="bold">A+</text>
+                    </svg>
+                  ),
+                },
+                {
+                  emoji: "💻",
+                  title: "Freelancers",
+                  accent: "#10a37f",
+                  pain: "Can't write proposals, delivery slow, clients leaving",
+                  solution: "ChatGPT Plus ৳350–950/mo → Proposals in 2 min, delivery 50% faster",
+                  outcome: "Freelancers with AI earn 44% more — Upwork 2025",
+                  cta: "Order ৳950/mo",
+                  msg: "Hi, I want ChatGPT Plus Premium Shared (৳950/mo) for freelancing",
+                  svgBg: "#052e16",
+                  svg: (
+                    <svg viewBox="0 0 120 90" width="120" height="90" style={{ display: "block" }}>
+                      <rect x="15" y="30" width="60" height="45" rx="4" fill="#166534" />
+                      <rect x="20" y="35" width="50" height="35" rx="2" fill="#1a1a2e" />
+                      <rect x="22" y="37" width="46" height="3" rx="1" fill="#10a37f" />
+                      <rect x="22" y="42" width="30" height="2" rx="1" fill="#4ade80" />
+                      <rect x="22" y="46" width="20" height="2" rx="1" fill="#4ade80" />
+                      <circle cx="90" cy="25" r="12" fill="#15803d" />
+                      <path d="M86 25 L89 28 L94 21" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" />
+                      <rect x="75" y="55" width="30" height="18" rx="3" fill="#166534" />
+                      <rect x="78" y="58" width="24" height="3" rx="1" fill="#fbbf24" />
+                      <text x="82" y="70" fontSize="7" fill="#4ade80">$$$</text>
+                    </svg>
+                  ),
+                },
+                {
+                  emoji: "💼",
+                  title: "Business Owners",
+                  accent: "#f59e0b",
+                  pain: "Marketing expensive, support staff needed, content slow",
+                  solution: "ChatGPT Business ৳699/mo → 1 person does 10 people's work",
+                  outcome: "Save ৳15,000–50,000/mo in staff costs",
+                  cta: "Order ৳699/mo",
+                  msg: "Hi, I want ChatGPT Business Starter Shared (৳699/mo)",
+                  svgBg: "#451a03",
+                  svg: (
+                    <svg viewBox="0 0 120 90" width="120" height="90" style={{ display: "block" }}>
+                      <rect x="20" y="40" width="80" height="45" rx="4" fill="#78350f" />
+                      <rect x="30" y="25" width="60" height="20" rx="2" fill="#92400e" />
+                      <circle cx="60" cy="20" r="10" fill="#fde68a" />
+                      <rect x="25" y="45" width="15" height="25" rx="1" fill="#b45309" />
+                      <rect x="45" y="45" width="15" height="25" rx="1" fill="#b45309" />
+                      <rect x="65" y="45" width="15" height="25" rx="1" fill="#b45309" />
+                      <path d="M30 55 L50 45 L70 50 L90 38" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" />
+                      <circle cx="90" cy="38" r="4" fill="#f59e0b" />
+                    </svg>
+                  ),
+                },
+                {
+                  emoji: "🔍",
+                  title: "Job Seekers",
+                  accent: "#a855f7",
+                  pain: "CV rejected, interview nervous, no skill roadmap",
+                  solution: "ChatGPT Plus ৳350/mo → Professional CV in 5 min, mock interview",
+                  outcome: "Get hired 2–3 months faster. Starting salary 10–20% higher.",
+                  cta: "Order ৳350/mo",
+                  msg: "Hi, I want ChatGPT Plus Starter Shared (৳350/mo) for job search",
+                  svgBg: "#2e1065",
+                  svg: (
+                    <svg viewBox="0 0 120 90" width="120" height="90" style={{ display: "block" }}>
+                      <rect x="20" y="20" width="50" height="65" rx="3" fill="#581c87" />
+                      <rect x="25" y="25" width="40" height="4" rx="1" fill="#e9d5ff" />
+                      <rect x="25" y="32" width="25" height="2" rx="1" fill="#c4b5fd" />
+                      <rect x="25" y="37" width="35" height="2" rx="1" fill="#c4b5fd" />
+                      <rect x="25" y="42" width="30" height="2" rx="1" fill="#c4b5fd" />
+                      <rect x="25" y="47" width="35" height="2" rx="1" fill="#c4b5fd" />
+                      <circle cx="85" cy="30" r="14" fill="#7c3aed" />
+                      <rect x="78" y="26" width="14" height="10" rx="1" fill="#a855f7" />
+                      <rect x="80" y="38" width="10" height="8" rx="1" fill="#a855f7" />
+                      <path d="M82 29 L84 31 L89 26" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                  ),
+                },
+                {
+                  emoji: "🖥️",
+                  title: "Developers",
+                  accent: "#06b6d4",
+                  pain: "Debugging for hours, client deadlines slipping",
+                  solution: "ChatGPT Pro ৳4,500/mo → Unlimited GPT-5 Pro mode, Sora video, agents",
+                  outcome: "Code 55% faster. Bug fix in seconds, not hours.",
+                  cta: "Order ৳4,500/mo",
+                  msg: "Hi, I want ChatGPT Pro Premium Shared (৳4,500/mo)",
+                  svgBg: "#083344",
+                  svg: (
+                    <svg viewBox="0 0 120 90" width="120" height="90" style={{ display: "block" }}>
+                      <rect x="5" y="15" width="70" height="50" rx="4" fill="#0e7490" />
+                      <rect x="8" y="18" width="64" height="42" rx="2" fill="#0a0e27" />
+                      <rect x="10" y="20" width="60" height="3" rx="1" fill="#06b6d4" />
+                      <text x="12" y="32" fontSize="7" fill="#4ade80" fontFamily="monospace">{"const ai = new GPT5();"}</text>
+                      <text x="12" y="41" fontSize="7" fill="#94a3b8" fontFamily="monospace">{"// build faster"}</text>
+                      <text x="12" y="50" fontSize="7" fill="#4ade80" fontFamily="monospace">{"ai.buildFeature();"}</text>
+                      <circle cx="90" cy="35" r="18" fill="#0891b2" />
+                      <text x="82" y="32" fontSize="10" fill="white" fontWeight="bold">55%</text>
+                      <text x="80" y="43" fontSize="6" fill="#e0f2fe">faster</text>
+                    </svg>
+                  ),
+                },
+              ].map((seg) => {
+                const waLink = `${WHATSAPP}?text=${encodeURIComponent(seg.msg)}`;
+                return (
+                  <div
+                    key={seg.title}
+                    className="flex-shrink-0 rounded-xl border overflow-hidden"
+                    style={{ width: 200, backgroundColor: "#0e1535", borderColor: "rgba(255,255,255,0.1)" }}
+                  >
+                    <div className="flex items-center justify-center py-3" style={{ backgroundColor: seg.svgBg }}>
+                      {seg.svg}
+                    </div>
+                    <div className="p-4">
+                      <div className="font-bold text-white text-sm mb-2">{seg.emoji} {seg.title}</div>
+                      <div className="text-xs mb-2 leading-relaxed" style={{ color: "#ef4444" }}>
+                        <span className="font-semibold">Pain:</span> {seg.pain}
+                      </div>
+                      <div className="text-xs mb-2 leading-relaxed" style={{ color: "#9ca3af" }}>
+                        <span className="font-semibold text-white">Fix:</span> {seg.solution}
+                      </div>
+                      <div className="text-xs mb-3 leading-relaxed font-semibold" style={{ color: seg.accent }}>
+                        ✓ {seg.outcome}
+                      </div>
+                      <a
+                        href={waLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-center text-xs font-semibold py-2 px-3 rounded-lg transition-opacity hover:opacity-90"
+                        style={{ backgroundColor: "#10a37f", color: "#fff" }}
+                      >
+                        {seg.cta}
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Products */}
         {products.length > 0 && (
           <div className="mb-14">
@@ -594,6 +875,105 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   </motion.div>
                 );
               })}
+            </div>
+          </div>
+        )}
+
+        {/* 1C: FOMO Section */}
+        {brandSlug === "chatgpt-plans-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-2">The Cost of NOT Using AI in 2026</h2>
+            <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>Every month without AI, you're falling behind.</p>
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              <div className="rounded-2xl p-5 border" style={{ backgroundColor: "rgba(239,68,68,0.06)", borderColor: "rgba(239,68,68,0.25)" }}>
+                <div className="text-base font-bold mb-4" style={{ color: "#ef4444" }}>❌ Without AI</div>
+                <ul className="space-y-3 text-sm" style={{ color: "#c9ceda" }}>
+                  <li><span className="font-semibold text-white">Students:</span> Assignment takes 3 days. CGPA stuck at 2.8. English writing weak.</li>
+                  <li><span className="font-semibold text-white">Freelancers:</span> 10 proposals → 1 reply. Delivery takes 3–5 days. Earning $200–500/mo.</li>
+                  <li><span className="font-semibold text-white">Business:</span> Hiring 3 staff for content + support + marketing = ৳45,000+/mo cost.</li>
+                  <li><span className="font-semibold text-white">Job Seekers:</span> Generic CV. 50 applications → 2 calls. 6+ months to get hired.</li>
+                </ul>
+              </div>
+              <div className="rounded-2xl p-5 border" style={{ backgroundColor: "rgba(16,163,127,0.06)", borderColor: "rgba(16,163,127,0.25)" }}>
+                <div className="text-base font-bold mb-4" style={{ color: "#10a37f" }}>✅ With ChatGPT (৳350/mo)</div>
+                <ul className="space-y-3 text-sm" style={{ color: "#c9ceda" }}>
+                  <li><span className="font-semibold text-white">Students:</span> Assignment in 2 hours. CGPA 3.5+. Professional English writing.</li>
+                  <li><span className="font-semibold text-white">Freelancers:</span> 10 proposals → 3–4 replies. Delivery 1–2 days. Earning $500–1,500+/mo.</li>
+                  <li><span className="font-semibold text-white">Business:</span> ChatGPT Business ৳699 = 1 person doing 10 people's work.</li>
+                  <li><span className="font-semibold text-white">Job Seekers:</span> ATS-optimized CV. 20 apps → 5–8 calls. Hired in 1–3 months.</li>
+                </ul>
+              </div>
+            </div>
+            <div className="rounded-2xl p-5 border text-center" style={{ backgroundColor: "#10a37f12", borderColor: "#10a37f35" }}>
+              <p className="text-sm font-semibold mb-4 text-white">Start for just <span style={{ color: "#f4b942" }}>৳350/mo</span> — the price of 2 cups of tea.</p>
+              <a
+                href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want to order ChatGPT Plus Starter Shared (৳350/mo)")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                style={{ backgroundColor: "#25d366", color: "#fff" }}
+              >
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M5.418 21.917l.97-3.533A9.91 9.91 0 012 12.01C2 6.477 6.477 2 12.01 2 14.673 2 17.17 3.029 19.065 4.93a9.944 9.944 0 012.926 7.08c-.003 5.533-4.48 10.008-10.01 10.008a10.04 10.04 0 01-4.791-1.217l-3.772.016z" fillRule="evenodd" clipRule="evenodd" opacity=".3"/></svg>
+                Order on WhatsApp
+              </a>
+            </div>
+          </div>
+        )}
+
+        {/* 1D: Agentic AI Highlight */}
+        {brandSlug === "chatgpt-plans-bangladesh" && (
+          <div className="mb-14 rounded-2xl border overflow-hidden" style={{ backgroundColor: "#0e1535", borderColor: "rgba(16,163,127,0.3)" }}>
+            <div className="p-6 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+              <h3 className="text-xl font-bold text-white mb-1">🤖 ChatGPT Pro = Your Own AI Employee</h3>
+              <p className="text-sm" style={{ color: "#c9ceda" }}>This is not a chatbot. This is an AI employee that works 24/7.</p>
+            </div>
+            <div className="p-6">
+              <div className="flex flex-col md:flex-row gap-6 items-start">
+                <div className="flex-shrink-0">
+                  <svg viewBox="0 0 120 120" width="120" height="120">
+                    <circle cx="60" cy="60" r="55" fill="#10a37f15" stroke="#10a37f" strokeWidth="1" strokeDasharray="4 3" />
+                    <rect x="45" y="30" width="30" height="35" rx="6" fill="#10a37f" />
+                    <circle cx="60" cy="24" r="8" fill="#10a37f" />
+                    <circle cx="53" cy="42" r="3" fill="white" />
+                    <circle cx="67" cy="42" r="3" fill="white" />
+                    <rect x="54" y="50" width="12" height="3" rx="1.5" fill="white" fillOpacity="0.5" />
+                    <rect x="45" y="65" width="8" height="20" rx="3" fill="#10a37f" />
+                    <rect x="67" y="65" width="8" height="20" rx="3" fill="#10a37f" />
+                    <rect x="50" y="80" width="8" height="18" rx="3" fill="#10a37f" />
+                    <rect x="62" y="80" width="8" height="18" rx="3" fill="#10a37f" />
+                    <line x1="45" y1="48" x2="15" y2="30" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
+                    <line x1="75" y1="48" x2="105" y2="30" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
+                    <line x1="45" y1="55" x2="10" y2="60" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
+                    <line x1="75" y1="55" x2="110" y2="60" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
+                    <text x="2" y="33" fontSize="7" fill="#10a37f">Write</text>
+                    <text x="96" y="33" fontSize="7" fill="#10a37f">Code</text>
+                    <text x="2" y="63" fontSize="7" fill="#10a37f">Research</text>
+                    <text x="98" y="63" fontSize="7" fill="#10a37f">Email</text>
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm mb-4" style={{ color: "#c9ceda" }}>
+                    ChatGPT Pro (৳4,500/mo shared, ৳29,900 personal) includes:
+                  </p>
+                  <ul className="space-y-2 text-sm mb-5" style={{ color: "#c9ceda" }}>
+                    {[
+                      "Unlimited GPT-5 Pro mode (smartest AI available)",
+                      "Sora video generation",
+                      "Codex agent (writes code autonomously)",
+                      "Deep research agent (researches for hours, delivers report)",
+                      "Custom GPTs for your specific workflow",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <span style={{ color: "#10a37f" }}>✓</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="rounded-xl p-4 border text-sm" style={{ backgroundColor: "#f4b94210", borderColor: "#f4b94230", color: "#f4b942" }}>
+                    📊 "AI agency founders earn $34,000/mo profit with just 5 clients — Medium, March 2026"
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}

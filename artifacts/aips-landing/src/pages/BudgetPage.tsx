@@ -182,6 +182,59 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
           <p className="text-sm font-medium" style={{ color: "#f4b942" }}>{config.highlight}</p>
         </motion.div>
 
+        {/* ChatGPT Hero — Under 500 only */}
+        {budgetKey === "ai-under-500" && (
+          <motion.div custom={1.5} variants={fadeUp} initial="hidden" animate="visible"
+            className="rounded-2xl border mb-10 overflow-hidden"
+            style={{ backgroundColor: "#10a37f0d", borderColor: "rgba(16,163,127,0.35)" }}>
+            <div className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+                  <circle cx="20" cy="20" r="18" fill="#10a37f" />
+                  <path d="M10 30 L18 14 L22 22 L26 18 L30 30 Z" fill="white" />
+                  <circle cx="28" cy="13" r="4" fill="#f4b942" />
+                </svg>
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-widest mb-0.5" style={{ color: "#10a37f" }}>
+                    Best Value Under ৳500
+                  </div>
+                  <div className="font-bold text-white text-lg">ChatGPT Plus Shared — ৳350/mo</div>
+                </div>
+              </div>
+              <p className="text-sm mb-4 leading-relaxed" style={{ color: "#c9ceda" }}>
+                ChatGPT Plus Shared at ৳350/mo is the <strong className="text-white">#1 best-value AI tool in Bangladesh</strong>.
+                It gives you writing, coding, image generation, deep research, and AI agents —
+                all for the price of 2 cups of tea per month.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-5">
+                {["Writing", "Coding", "Research", "Images", "AI Agents", "Deep Research"].map((cap) => (
+                  <span key={cap} className="text-xs px-2.5 py-1 rounded-full"
+                    style={{ backgroundColor: "#10a37f20", color: "#10a37f" }}>
+                    {cap}
+                  </span>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href={`https://wa.me/8801865385348?text=${encodeURIComponent("Hi, I want ChatGPT Plus Starter Shared (৳350/mo)")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: "#25d366", color: "#fff" }}
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Order ৳350/mo
+                </a>
+                <Link href="/chatgpt-plans-bangladesh"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold border border-white/20 text-white hover:bg-white/5 transition-colors text-sm">
+                  View all ChatGPT plans
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         {/* Stats row */}
         <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible"
           className="grid grid-cols-3 gap-4 mb-10">

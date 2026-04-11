@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Tag } from "lucide-react";
+import { Link } from "wouter";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
@@ -216,6 +217,18 @@ export function OffersSection() {
                     ৳{product.price}
                     <span className="text-xs font-normal ml-1" style={{ color: "#c9ceda" }}>/mo</span>
                   </div>
+                  {product.id === "chatgpt-plus-starter" && (
+                    <div className="mt-1.5 space-y-1">
+                      <span className="text-xs px-2 py-0.5 rounded-full" style={{ backgroundColor: "#10a37f20", color: "#10a37f" }}>
+                        Writing · Coding · Research · Images
+                      </span>
+                      <div>
+                        <Link href="/chatgpt-plans-bangladesh" className="text-xs underline decoration-white/20 hover:opacity-80 transition-opacity" style={{ color: "#10a37f" }}>
+                          View all 9 ChatGPT plans →
+                        </Link>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <a

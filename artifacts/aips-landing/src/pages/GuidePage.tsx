@@ -524,6 +524,119 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
           <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{guide.whyText}</p>
         </motion.div>
 
+        {/* Guide-specific ChatGPT callout boxes */}
+        {guideKey === "students" && (
+          <motion.div custom={2.5} variants={fadeUp} initial="hidden" animate="visible"
+            className="rounded-2xl border mb-10 overflow-hidden"
+            style={{ backgroundColor: "rgba(59,130,246,0.05)", borderColor: "rgba(59,130,246,0.25)" }}>
+            <div className="p-6">
+              <div className="text-5xl mb-3">🎓</div>
+              <blockquote className="text-sm leading-relaxed mb-4 italic" style={{ color: "#c9ceda" }}>
+                "ChatGPT ৳350/mo changed how I study. My research papers went from C+ to A.
+                I can explain complex economics theories in simple Bangla now.
+                My CGPA improved from 2.9 to 3.6 in one semester."
+              </blockquote>
+              <p className="text-xs mb-4" style={{ color: "#6b7280" }}>— Based on real student outcomes (anonymized)</p>
+              <p className="text-sm font-semibold text-white mb-3">Every subject. Every assignment. Every exam. One tool.</p>
+              <div className="flex flex-wrap gap-2">
+                {["Economics", "Accounting", "Law", "CSE", "English", "BBA", "Medical", "HSC"].map((tag) => (
+                  <span key={tag} className="text-xs px-2.5 py-1 rounded-full"
+                    style={{ backgroundColor: "rgba(59,130,246,0.15)", color: "#93c5fd" }}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {guideKey === "freelancers" && (
+          <motion.div custom={2.5} variants={fadeUp} initial="hidden" animate="visible"
+            className="rounded-2xl border mb-10 overflow-hidden"
+            style={{ backgroundColor: "rgba(16,163,127,0.05)", borderColor: "rgba(16,163,127,0.25)" }}>
+            <div className="p-6">
+              <div className="text-5xl mb-3">💻</div>
+              <h3 className="text-base font-bold text-white mb-4">Freelancer Income Calculator</h3>
+              <div className="space-y-2 text-sm mb-5" style={{ color: "#c9ceda" }}>
+                <div className="flex justify-between"><span>Without AI: 5 projects × $50</span><span className="font-semibold" style={{ color: "#ef4444" }}>$250/month</span></div>
+                <div className="flex justify-between"><span>With ChatGPT + Midjourney: 12 projects × $80</span><span className="font-semibold" style={{ color: "#10a37f" }}>$960/month</span></div>
+                <div className="border-t border-white/10 pt-2 flex justify-between font-semibold"><span>Extra income/month</span><span style={{ color: "#f4b942" }}>$710 = ৳92,300 BDT</span></div>
+                <div className="flex justify-between text-xs"><span>AI subscription cost</span><span>৳350–1,199/month</span></div>
+                <div className="flex justify-between text-xs font-bold"><span>ROI</span><span style={{ color: "#10a37f" }}>77x–264x return</span></div>
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                {[
+                  { type: "Writer", rec: "ChatGPT Plus ৳350" },
+                  { type: "Designer", rec: "+ Midjourney ৳1,199" },
+                  { type: "Developer", rec: "+ Copilot ৳1,495" },
+                  { type: "VA", rec: "ChatGPT + Notion ৳1,150" },
+                ].map((item) => (
+                  <div key={item.type} className="rounded-lg p-2 border border-white/10" style={{ backgroundColor: "#151b3d" }}>
+                    <div className="font-semibold text-white">{item.type}</div>
+                    <div style={{ color: "#10a37f" }}>{item.rec}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {guideKey === "business" && (
+          <motion.div custom={2.5} variants={fadeUp} initial="hidden" animate="visible"
+            className="rounded-2xl border mb-10 overflow-hidden"
+            style={{ backgroundColor: "rgba(245,158,11,0.05)", borderColor: "rgba(245,158,11,0.25)" }}>
+            <div className="p-6">
+              <div className="text-5xl mb-3">💼</div>
+              <h3 className="text-base font-bold text-white mb-4">Business Cost Savings with AI</h3>
+              <div className="space-y-2 text-sm mb-2">
+                {[
+                  { label: "Content Writer", before: "৳15,000/mo", after: "ChatGPT Business: ৳699/mo" },
+                  { label: "Designer", before: "৳5,000/mo", after: "Midjourney: ৳1,199/mo" },
+                  { label: "Support Staff", before: "৳12,000/mo", after: "AI Agent: ৳699/mo" },
+                  { label: "Marketing Agency", before: "৳50,000/mo", after: "AI Stack: ৳2,497/mo" },
+                ].map((row) => (
+                  <div key={row.label} className="flex items-center gap-3">
+                    <div className="w-32 text-xs font-semibold text-white flex-shrink-0">{row.label}</div>
+                    <div className="text-xs line-through flex-shrink-0" style={{ color: "#ef4444" }}>{row.before}</div>
+                    <div className="text-xs" style={{ color: "#6b7280" }}>→</div>
+                    <div className="text-xs" style={{ color: "#10a37f" }}>{row.after}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 rounded-xl p-3 border text-sm font-bold text-center" style={{ backgroundColor: "#f4b94210", borderColor: "#f4b94230", color: "#f4b942" }}>
+                Total savings: ৳79,000/mo with same or better output
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {guideKey === "job-seekers" && (
+          <motion.div custom={2.5} variants={fadeUp} initial="hidden" animate="visible"
+            className="rounded-2xl border mb-10 overflow-hidden"
+            style={{ backgroundColor: "rgba(99,102,241,0.05)", borderColor: "rgba(99,102,241,0.25)" }}>
+            <div className="p-6">
+              <div className="text-5xl mb-3">🔍</div>
+              <h3 className="text-base font-bold text-white mb-4">Job Search Timeline with AI</h3>
+              <div className="grid grid-cols-2 gap-4 mb-5 text-center">
+                <div className="rounded-xl p-4 border" style={{ backgroundColor: "rgba(239,68,68,0.08)", borderColor: "rgba(239,68,68,0.2)" }}>
+                  <div className="text-2xl font-bold mb-1" style={{ color: "#ef4444" }}>6 months</div>
+                  <div className="text-xs" style={{ color: "#c9ceda" }}>Without AI — average time to get hired</div>
+                </div>
+                <div className="rounded-xl p-4 border" style={{ backgroundColor: "rgba(16,163,127,0.08)", borderColor: "rgba(16,163,127,0.2)" }}>
+                  <div className="text-2xl font-bold mb-1" style={{ color: "#10a37f" }}>1–3 months</div>
+                  <div className="text-xs" style={{ color: "#c9ceda" }}>With AI — average time to get hired</div>
+                </div>
+              </div>
+              <div className="space-y-2 text-sm mb-4" style={{ color: "#c9ceda" }}>
+                <div className="flex justify-between"><span>Every month without a job</span><span className="font-semibold" style={{ color: "#ef4444" }}>৳15,000–30,000 lost</span></div>
+                <div className="flex justify-between"><span>3 months faster = extra earnings</span><span className="font-semibold" style={{ color: "#10a37f" }}>৳45,000–90,000</span></div>
+                <div className="flex justify-between"><span>ChatGPT subscription cost</span><span>৳350/mo</span></div>
+                <div className="border-t border-white/10 pt-2 flex justify-between font-bold"><span>ROI</span><span style={{ color: "#f4b942" }}>128x–257x return</span></div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         {/* Recommended Tools */}
         <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
           <h2 className="text-2xl font-bold text-white mb-2">Recommended Tools</h2>

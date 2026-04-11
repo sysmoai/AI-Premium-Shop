@@ -303,6 +303,75 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
           </div>
         </motion.div>
 
+        {/* Decision Matrix — ChatGPT vs Claude */}
+        {compKey === "chatgpt-vs-claude" && (
+          <motion.div custom={3.8} variants={fadeUp} initial="hidden" animate="visible"
+            className="mb-10 rounded-2xl border overflow-hidden"
+            style={{ backgroundColor: "#0e1535", borderColor: "rgba(16,163,127,0.3)" }}>
+            <div className="p-5 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+              <h2 className="text-xl font-bold text-white">Quick Decision</h2>
+            </div>
+            <div className="p-5 space-y-4 text-sm">
+              <div className="flex items-start gap-3">
+                <span className="text-lg flex-shrink-0">✔</span>
+                <div><span className="font-bold text-white">Choose ChatGPT if:</span> <span style={{ color: "#c9ceda" }}>You want one tool for everything — writing, coding, images, agents, research</span></div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-lg flex-shrink-0">✔</span>
+                <div><span className="font-bold text-white">Choose Claude if:</span> <span style={{ color: "#c9ceda" }}>You write long documents, legal content, or do complex code review</span></div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-lg flex-shrink-0">✔</span>
+                <div><span className="font-bold text-white">Choose BOTH if:</span> <span style={{ color: "#c9ceda" }}>You're a professional who needs the best of both worlds (৳1,845/mo)</span></div>
+              </div>
+            </div>
+            <div className="px-5 pb-5">
+              <div className="text-xs font-semibold mb-3" style={{ color: "#f4b942" }}>Real-world test results:</div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                {[
+                  { cat: "Writing quality", winner: "Claude wins", desc: "Opus 4.6 = #1 on Chatbot Arena" },
+                  { cat: "Coding speed", winner: "ChatGPT wins", desc: "Codex agent builds full features" },
+                  { cat: "Image generation", winner: "ChatGPT wins", desc: "DALL-E built in, Claude has none" },
+                  { cat: "Research", winner: "Tie", desc: "Both excellent for research" },
+                  { cat: "Agents", winner: "ChatGPT wins", desc: "Custom GPTs, deep research, Codex" },
+                  { cat: "Price", winner: "ChatGPT wins", desc: "৳350 vs Claude ৳1,495" },
+                ].map((row) => (
+                  <div key={row.cat} className="rounded-lg p-2.5 border border-white/10" style={{ backgroundColor: "#151b3d" }}>
+                    <div style={{ color: "#c9ceda" }}>{row.cat}</div>
+                    <div className="font-semibold" style={{ color: "#f4b942" }}>{row.winner}</div>
+                    <div style={{ color: "#6b7280" }}>{row.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Decision Matrix — ChatGPT vs Gemini */}
+        {compKey === "chatgpt-vs-gemini" && (
+          <motion.div custom={3.8} variants={fadeUp} initial="hidden" animate="visible"
+            className="mb-10 rounded-2xl border overflow-hidden"
+            style={{ backgroundColor: "#0e1535", borderColor: "rgba(16,163,127,0.3)" }}>
+            <div className="p-5 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+              <h2 className="text-xl font-bold text-white">Quick Decision</h2>
+            </div>
+            <div className="p-5 space-y-4 text-sm">
+              <div className="flex items-start gap-3">
+                <span className="text-lg flex-shrink-0">✔</span>
+                <div><span className="font-bold text-white">Choose ChatGPT if:</span> <span style={{ color: "#c9ceda" }}>You want the most versatile AI with agents + coding + images</span></div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-lg flex-shrink-0">✔</span>
+                <div><span className="font-bold text-white">Choose Google AI if:</span> <span style={{ color: "#c9ceda" }}>You live in Google ecosystem (Gmail, Docs, Drive) and want 2TB storage</span></div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-lg flex-shrink-0">✔</span>
+                <div><span className="font-bold text-white">Choose BOTH if:</span> <span style={{ color: "#c9ceda" }}>ChatGPT for work + Google AI for email/docs (৳850/mo total)</span></div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         {/* Order CTAs */}
         <motion.div custom={4} variants={fadeUp} initial="hidden" animate="visible"
           className="p-8 rounded-2xl border border-white/10 text-center"

@@ -1,0 +1,179 @@
+FULL SITE AUDIT — Automated code-level check. Do NOT change anything. Only REPORT issues.
+
+Run ALL of the following checks and report results in a summary table at the end.
+
+=== CHECK 1: ROUTE VALIDATION ===
+
+List every route registered in the app (from router config).
+For each route, verify:
+- The component renders without errors
+- The page has a <title> tag
+- The page has a <meta name="description">
+- The page has a canonical tag
+
+Count total routes. Report any route that fails.
+
+=== CHECK 2: ALL INTERNAL LINKS ===
+
+Grep the ENTIRE codebase for all <a href="/..."> and <Link to="/..."> internal links.
+Extract every unique internal URL target.
+Cross-reference against registered routes from Check 1.
+
+Report:
+- Total internal links found
+- Any link pointing to a route that DOES NOT EXIST (broken link)
+- Any orphan routes (routes with no internal links pointing to them)
+
+=== CHECK 3: ALL EXTERNAL LINKS ===
+
+Grep for all external links (href starting with http:// or https://).
+List unique external URLs.
+Verify these critical ones exist:
+- wa.me/8801865385348 (WhatsApp)
+- facebook.com/aipremiumshopbd
+- instagram.com/aipremiumshop
+- linkedin.com/showcase/aipremiumshop
+
+Report any external link that looks broken or malformed.
+
+=== CHECK 4: PRODUCT PRICE AUDIT ===
+
+Read the products data file (products.json or similar).
+List every product with: name, price (BDT), brand, status.
+
+Verify:
+- No product has price 0 or null
+- No product has price in USD (must be BDT)
+- Claude cheapest plan is BDT 1,495 (NOT BDT 599)
+- Total active products = 56
+- No duplicate product names
+
+Report any issues.
+
+=== CHECK 5: SEO META TAGS ===
+
+For every page/route, check:
+- <title> exists and is unique (no two pages share a title)
+- <title> contains "Bangladesh" or "AI Premium Shop"
+- <meta name="description"> exists and is unique
+- <meta name="description"> length is 50-160 chars
+- <link rel="canonical"> exists and uses aipremiumshop.com (not Replit dev URL)
+- <meta property="og:title"> exists
+- <meta property="og:description"> exists
+- <meta property="og:image"> exists and points to PNG (not SVG)
+- <meta name="twitter:card"> exists
+
+Count pages with complete SEO vs incomplete. Report any missing tags.
+
+=== CHECK 6: JSON-LD SCHEMA AUDIT ===
+
+Grep for all JSON-LD script blocks (application/ld+json).
+For each schema found, verify:
+- Homepage has Organization schema with sameAs array (3 social URLs)
+- Homepage has WebSite schema with SearchAction
+- Brand pages have Product schema with priceCurrency: "BDT"
+- Pages with FAQ accordions have FAQPage schema
+- All pages have BreadcrumbList schema
+
+Report: pages WITH schemas vs pages WITHOUT. List any page missing expected schema.
+
+=== CHECK 7: RESPONSIVE LAYOUT CHECK ===
+
+Instead of screenshots, do a code-level responsive check:
+- Grep for any fixed width values (w-[specific px]) that could cause overflow
+- Check that no component uses overflow-x: scroll or overflow: hidden that hides content
+- Verify the mobile sticky bar component is included in PageLayout
+- Verify the hamburger menu exists for mobile breakpoint
+- Check that no text uses text-[size] larger than text-4xl without responsive variants
+- Verify max-w-7xl or similar container is used to prevent content overflow
+
+Report any potential responsive issues.
+
+=== CHECK 8: WHATSAPP LINKS AUDIT ===
+
+Grep for ALL instances of "wa.me" in the codebase.
+Verify every WhatsApp link:
+- Uses the number 8801865385348 (not any other number)
+- Has proper URL encoding for prefilled messages
+- Is not broken or malformed
+
+Count total WhatsApp links. Report any with wrong number.
+
+=== CHECK 9: SITEMAP COMPLETENESS ===
+
+Read sitemap.xml (or the sitemap generation code).
+Compare sitemap URLs against all registered routes.
+
+Report:
+- Total URLs in sitemap
+- Any registered route MISSING from sitemap
+- Whether /404 is incorrectly included
+- Whether all URLs use aipremiumshop.com domain
+
+=== CHECK 10: BUILD + TYPESCRIPT ===
+
+Run: npx tsc --noEmit
+Run: npm run build (with required env vars)
+
+Report:
+- TypeScript errors: count
+- Build errors: count
+- Build warnings: count
+- Bundle size (gzipped)
+
+=== CHECK 11: COMPONENT COMPLETENESS ===
+
+Verify these components exist and are rendered:
+- Navbar with Products mega menu
+- Navbar with Bundles mega menu
+- Blog link in navbar
+- Active nav state (useLocation-based)
+- Footer with 5 columns
+- StickyMobileBar in PageLayout
+- BackToTop button
+- ScrollToTop on route change
+- CookieConsent banner
+- SEOHead (or equivalent meta component)
+- FomoBanner component
+- 404 page (catch-all route)
+- GoogleAnalytics component
+- FacebookPixel component
+- WhatsAppTracker component
+
+Report any missing component.
+
+=== CHECK 12: BLOG VERIFICATION ===
+
+Count total blog posts in the blog data/routes.
+Verify each post has:
+- Unique slug
+- Title
+- Meta description
+- Content (more than 100 words)
+- At least 1 internal link to a product page
+- WhatsApp CTA
+
+Report total posts and any issues.
+
+=== FINAL REPORT FORMAT ===
+
+After running all 12 checks, output a summary table:
+
+| # | Check | Result | Issues |
+|---|-------|--------|--------|
+| 1 | Routes | X total, Y passing | [list issues] |
+| 2 | Internal Links | X total, Y broken | [list broken] |
+| 3 | External Links | X total, Y issues | [list issues] |
+| 4 | Product Prices | 56 products, Y issues | [list issues] |
+| 5 | SEO Meta | X complete, Y incomplete | [list missing] |
+| 6 | JSON-LD Schemas | X pages with, Y without | [list missing] |
+| 7 | Responsive | Y potential issues | [list issues] |
+| 8 | WhatsApp Links | X total, all correct? | [list wrong] |
+| 9 | Sitemap | X URLs, Y missing | [list missing] |
+| 10 | Build | errors/warnings | [details] |
+| 11 | Components | X present, Y missing | [list missing] |
+| 12 | Blog | X posts, Y issues | [list issues] |
+
+Then state: "DEPLOY READY: YES" or "DEPLOY READY: NO — fix these first: [list]"
+
+Do NOT make any changes. Only audit and report.

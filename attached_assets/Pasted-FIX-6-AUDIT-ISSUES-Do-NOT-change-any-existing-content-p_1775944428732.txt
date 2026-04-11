@@ -1,0 +1,109 @@
+FIX 6 AUDIT ISSUES. Do NOT change any existing content, prices, or styling.
+
+=== FIX 1: SITEMAP — Wrong blog slugs + missing new posts ===
+
+In sitemap.xml (or the sitemap generation code), fix these:
+
+1. WRONG SLUG: Change "how-to-buy-chatgpt-plus-bangladesh" to "how-to-get-chatgpt-plus-bangladesh"
+2. WRONG SLUG: Change "midjourney-guide-bangladesh" to "midjourney-bangladesh-guide"
+
+3. ADD these 5 missing blog URLs to sitemap:
+   https://aipremiumshop.com/blog/earn-money-with-ai-bangladesh
+   https://aipremiumshop.com/blog/ai-tools-university-students-bangladesh
+   https://aipremiumshop.com/blog/pay-ai-tools-bkash-bangladesh
+   https://aipremiumshop.com/blog/chatgpt-plus-vs-free-bangladesh
+   https://aipremiumshop.com/blog/ai-freelancing-guide-bangladesh
+
+Each with <lastmod> set to today's date.
+
+After fix: sitemap should have 75+ URLs, all with correct slugs matching actual routes.
+
+=== FIX 2: BlogPosting SCHEMA — Add to all 10 blog posts ===
+
+Add BlogPosting JSON-LD schema to every blog post page.
+
+In the blog post component (wherever individual posts render), add this schema:
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "[post title]",
+  "description": "[post meta description]",
+  "datePublished": "2026-04-12",
+  "dateModified": "2026-04-12",
+  "author": {
+    "@type": "Organization",
+    "name": "AI Premium Shop",
+    "url": "https://aipremiumshop.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AI Premium Shop",
+    "url": "https://aipremiumshop.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aipremiumshop.com/blog/[slug]"
+  },
+  "image": "https://aipremiumshop.com/images/og/default-og.png"
+}
+
+Use the post's actual title, description, and slug dynamically.
+This schema should be injected via a <script type="application/ld+json"> tag on every blog post page.
+
+=== FIX 3: OLD BLOG POSTS — Add product links ===
+
+The 5 existing (old) blog posts mention product names in plain text but have no clickable links to product pages.
+
+For EACH of the 5 existing blog posts, find mentions of product/brand names and wrap them in <Link> tags:
+
+- "ChatGPT" or "ChatGPT Plus" → link to /chatgpt-plans-bangladesh
+- "Claude" → link to /claude-pro-bangladesh
+- "Midjourney" → link to /midjourney-bangladesh
+- "Perplexity" → link to /perplexity-pro-bangladesh
+- "GitHub Copilot" or "Copilot" → link to /github-copilot-bangladesh
+- "Notion" → link to /notion-business-bangladesh
+- "Cursor" → link to /cursor-bangladesh
+- "Runway" → link to /runway-bangladesh
+- "ElevenLabs" → link to /elevenlabs-bangladesh
+- "Google AI" or "Gemini" → link to /google-ai-pro-bangladesh
+
+Only link the FIRST mention of each brand in each post. Don't over-link.
+Style: text-[#f4b942] hover:underline (same as other internal links).
+
+=== FIX 4: FomoBanner COMPONENT ===
+
+The audit couldn't find "FomoBanner" by name. It may exist under a different name or be inline code.
+
+Check: is there a component on guide pages that shows "AI Is No Longer Optional" with stats and a green WhatsApp button?
+
+If YES: rename it to FomoBanner (or export it as FomoBanner) for consistency.
+If NO: create a FomoBanner component:
+
+bg-[#151b3d] border border-red-500/10 rounded-xl p-6 mt-8
+H3: "AI Is No Longer Optional" (text-white text-lg font-bold)
+Bullets: Students, Freelancers 44%, Businesses 60-80%, Developers 92%
+Bold closing line + green WhatsApp button "Start for BDT 350/mo →"
+
+Add it to all 9 guide pages before the final CTA (if not already there).
+
+=== FIX 5: 404 PAGE RESPONSIVE ===
+
+On the 404 page, the "404" text uses text-8xl with no responsive variant.
+Change: text-8xl → text-6xl md:text-8xl
+This prevents the number from being too large on small phones.
+
+=== FIX 6: VERIFY ALL FIXES ===
+
+After making fixes 1-5, run these verifications:
+
+1. Count URLs in sitemap.xml → should be 75+
+2. Grep for "how-to-buy-chatgpt" in sitemap → should NOT exist
+3. Grep for "earn-money-with-ai" in sitemap → should exist
+4. Grep for "BlogPosting" in blog post component → should exist
+5. Check any old blog post → product names should be clickable links
+6. Check /best-ai-for-students → FomoBanner section should exist
+7. Check 404 page → "404" text should be text-6xl md:text-8xl
+8. npm run build → zero errors
+
+Report results for all 8 verifications.

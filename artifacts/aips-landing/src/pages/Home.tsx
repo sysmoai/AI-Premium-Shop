@@ -497,6 +497,32 @@ export default function Home() {
         {/* 3. AI AGENTS — The 2026 Game Changer */}
         <div className="scroll-reveal"><AIAgentsSection /></div>
 
+        {/* 3B. AI AGENT ECONOMY */}
+        <div className="scroll-reveal">
+          <div className="max-w-5xl mx-auto px-4 md:px-8 py-12">
+            <div className="rounded-xl p-8 border" style={{ background: "linear-gradient(135deg, #111827 0%, #0a0e27 100%)", borderColor: "rgba(168,85,247,0.2)" }}>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center">The AI Agent Economy</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                {[
+                  { value: "$34K", unit: "/mo profit", label: "Solo AI agency", color: "#f4b942" },
+                  { value: "45%", unit: "higher rates", label: "AI freelancers", color: "#22c55e" },
+                  { value: "18,000%", unit: "growth", label: "AI services on Fiverr", color: "#a855f7" },
+                  { value: "8M", unit: "SMEs", label: "BD needs AI automation", color: "#3b82f6" },
+                ].map((stat) => (
+                  <div key={stat.label} className="text-center">
+                    <div className="text-3xl font-bold mb-1" style={{ color: stat.color }}>{stat.value}</div>
+                    <div className="text-sm text-gray-400 mb-0.5">{stat.unit}</div>
+                    <div className="text-xs text-gray-500">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-center text-sm" style={{ color: "#c9ceda" }}>
+                Start with ChatGPT Pro (BDT 4,500) or Manus AI (BDT 2,500) and build AI agent services.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* 4. SPECIAL OFFERS + BEST SELLERS */}
         <div className="scroll-reveal"><OffersSection /></div>
 

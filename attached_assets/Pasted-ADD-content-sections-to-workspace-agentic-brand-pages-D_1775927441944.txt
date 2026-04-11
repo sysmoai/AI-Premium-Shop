@@ -1,0 +1,76 @@
+ADD content sections to workspace/agentic brand pages. Do NOT change any existing text content. Do NOT remove anything. Only ADD new sections AFTER existing content, BEFORE the final WhatsApp CTA.
+
+Use Lucide React icons + Tailwind CSS only. No SVG drawings. No external images.
+
+=== /notion-business-bangladesh ===
+
+ADD after pricing, before FAQ:
+
+H2: "Notion Business — AI-Powered Workspace"
+bg-gray-900 rounded-xl p-6
+Feature list with Lucide icons (each text-blue-400, 20px):
+- Brain icon | "Notion AI — write, summarize, translate in your workspace"
+- Users icon | "Teamspaces — organize by department"
+- History icon | "90-day version history — never lose work"
+- UserPlus icon | "250 guest collaborators"
+- Shield icon | "SSO + advanced security"
+
+Price comparison box below (bg-gradient-to-r from-gray-900 to-gray-800 rounded-lg p-4):
+"Official: $20/seat = BDT 2,990" (text-red-400 line-through)
+"AIPS Price: BDT 800/mo" (text-3xl font-bold text-[#f4b942])
+"73% OFF" (bg-green-500 text-white text-sm font-bold px-3 py-1 rounded-full inline)
+
+ADD below:
+H3: "Who Needs Notion Business?"
+4 cards grid (grid-cols-2 gap-3):
+- Briefcase icon | "Freelancers" | "Client portal + project tracking" | BDT 800
+- Building icon | "Agencies" | "Team wiki + SOP library" | BDT 800
+- Rocket icon | "Startups" | "Docs, tasks, roadmap, OKRs" | BDT 800
+- GraduationCap icon | "Students" | "Notes + assignment tracker" | BDT 800
+Each: bg-gray-800 rounded-lg p-4
+
+ADD 6-month deal highlight:
+bg-gradient-to-r from-amber-500/10 to-gray-900 border border-amber-500/30 rounded-xl p-6
+"Pay BDT 4,800 once → get 6 months (BDT 800/mo). No monthly renewal hassle."
+Button style link: "Order 6-Month Plan →" in gold
+
+=== /manus-ai-bangladesh ===
+
+ADD after pricing, before FAQ:
+
+H2: "Manus AI — The AI That Does Tasks By Itself"
+bg-gray-900 rounded-xl p-6
+Text: "Manus is NOT a chatbot. It's an AUTONOMOUS AGENT."
+
+5 items with Lucide icons (each text-[#3b82f6]):
+- Search icon | "Researches topics and delivers comprehensive reports"
+- BarChart3 icon | "Analyzes data and creates visualizations"
+- Globe icon | "Browses the web and summarizes findings"
+- FileText icon | "Generates documents and presentations"
+- CheckSquare icon | "Executes multi-step tasks without supervision"
+
+ADD below:
+H3: "The AI Evolution"
+3 horizontal cards (flex gap-4, each flex-1 bg-gray-800 rounded-lg p-4 text-center):
+- "2024" text-gray-500 | "Chatbot" | "AI answers questions"
+- "2025" text-blue-400 | "Copilot" | "AI helps with tasks"
+- "2026" text-green-400 font-bold | "Agent" border-2 border-green-500 | "AI DOES the tasks"
+
+Bold: "Manus AI is at Level 3. BDT 2,500/mo = your autonomous employee."
+
+=== HOMEPAGE ===
+
+FIND the existing "AI Agents" or agentic section on the homepage.
+ADD below it (or if no agentic section exists, add before the final CTA):
+
+bg-gradient-to-br from-gray-900 to-[#0a0e27] rounded-xl p-8 border border-purple-500/20
+H2: "The AI Agent Economy" (text-white)
+4-stat row (grid-cols-2 md:grid-cols-4 gap-4):
+- "$34K" text-3xl text-[#f4b942] font-bold | "/mo profit" text-gray-400 | "Solo AI agency" text-xs text-gray-500
+- "45%" text-3xl text-green-400 font-bold | "higher rates" text-gray-400 | "AI freelancers" text-xs
+- "18,000%" text-3xl text-purple-400 font-bold | "growth" text-gray-400 | "AI services on Fiverr" text-xs
+- "8M" text-3xl text-blue-400 font-bold | "SMEs" text-gray-400 | "BD needs AI automation" text-xs
+
+Below stats: "Start with ChatGPT Pro (BDT 4,500) or Manus AI (BDT 2,500) and build AI agent services."
+
+Do NOT change any text content. Only ADD these new sections.

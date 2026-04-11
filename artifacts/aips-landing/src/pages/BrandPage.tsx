@@ -9,6 +9,8 @@ import {
   Camera, Youtube, Palette, Megaphone, BookOpen, Home,
   Video, Scissors, Maximize, ArrowUpCircle, Sparkles, Music,
   Code, ThumbsUp,
+  Users, History, UserPlus, Shield, Building, Rocket,
+  BarChart3, Globe, CheckSquare,
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
@@ -1455,6 +1457,103 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
               </ul>
               <p className="font-bold text-sm text-white">2,500 credits/month = ~500 songs. All commercially licensed.</p>
             </div>
+          </div>
+        )}
+
+        {/* ===== NOTION SECTIONS ===== */}
+
+        {brandSlug === "notion-business-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">Notion Business — AI-Powered Workspace</h2>
+            <div className="bg-gray-900 rounded-xl p-6 mb-6">
+              <ul className="space-y-4">
+                {[
+                  { Icon: Brain, text: "Notion AI — write, summarize, translate in your workspace" },
+                  { Icon: Users, text: "Teamspaces — organize by department" },
+                  { Icon: History, text: "90-day version history — never lose work" },
+                  { Icon: UserPlus, text: "250 guest collaborators" },
+                  { Icon: Shield, text: "SSO + advanced security" },
+                ].map((item) => (
+                  <li key={item.text} className="flex items-center gap-3 text-sm text-white">
+                    <item.Icon className="w-5 h-5 flex-shrink-0 text-blue-400" />
+                    {item.text}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 bg-gradient-to-r from-gray-900 to-gray-800 rounded-lg p-4 border border-white/10">
+                <div className="text-sm line-through mb-1" style={{ color: "#ef4444" }}>Official: $20/seat = BDT 2,990</div>
+                <div className="text-3xl font-bold mb-2" style={{ color: "#f4b942" }}>BDT 800/mo</div>
+                <span className="inline-block bg-green-500 text-white text-sm font-bold px-3 py-1 rounded-full">73% OFF</span>
+              </div>
+            </div>
+            <h3 className="text-xl font-bold text-white mb-4">Who Needs Notion Business?</h3>
+            <div className="grid grid-cols-2 gap-3 mb-6">
+              {[
+                { Icon: Briefcase, label: "Freelancers", desc: "Client portal + project tracking", price: "BDT 800" },
+                { Icon: Building, label: "Agencies", desc: "Team wiki + SOP library", price: "BDT 800" },
+                { Icon: Rocket, label: "Startups", desc: "Docs, tasks, roadmap, OKRs", price: "BDT 800" },
+                { Icon: GraduationCap, label: "Students", desc: "Notes + assignment tracker", price: "BDT 800" },
+              ].map((card) => (
+                <div key={card.label} className="bg-gray-800 rounded-lg p-4">
+                  <card.Icon className="w-5 h-5 mb-2 text-blue-400" />
+                  <div className="font-bold text-white text-sm mb-1">{card.label}</div>
+                  <div className="text-xs mb-2" style={{ color: "#c9ceda" }}>{card.desc}</div>
+                  <div className="text-xs font-semibold" style={{ color: "#f4b942" }}>{card.price}</div>
+                </div>
+              ))}
+            </div>
+            <div className="rounded-xl p-6 border" style={{ background: "linear-gradient(to right, rgba(245,158,11,0.1), #111827)", borderColor: "rgba(245,158,11,0.3)" }}>
+              <p className="text-sm mb-4" style={{ color: "#c9ceda" }}>
+                Pay BDT 4,800 once → get 6 months (BDT 800/mo). No monthly renewal hassle.
+              </p>
+              <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want Notion Business 6-Month (৳4,800)")}`}
+                target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-semibold text-sm hover:opacity-80 transition-opacity"
+                style={{ color: "#f4b942" }}>
+                Order 6-Month Plan →
+              </a>
+            </div>
+          </div>
+        )}
+
+        {/* ===== MANUS AI SECTIONS ===== */}
+
+        {brandSlug === "manus-ai-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">Manus AI — The AI That Does Tasks By Itself</h2>
+            <div className="bg-gray-900 rounded-xl p-6 mb-6">
+              <p className="text-sm font-bold text-white mb-5">Manus is NOT a chatbot. It's an AUTONOMOUS AGENT.</p>
+              <ul className="space-y-4">
+                {[
+                  { Icon: Search, text: "Researches topics and delivers comprehensive reports" },
+                  { Icon: BarChart3, text: "Analyzes data and creates visualizations" },
+                  { Icon: Globe, text: "Browses the web and summarizes findings" },
+                  { Icon: FileText, text: "Generates documents and presentations" },
+                  { Icon: CheckSquare, text: "Executes multi-step tasks without supervision" },
+                ].map((item) => (
+                  <li key={item.text} className="flex items-center gap-3 text-sm text-white">
+                    <item.Icon className="w-5 h-5 flex-shrink-0" style={{ color: "#3b82f6" }} />
+                    {item.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <h3 className="text-xl font-bold text-white mb-4">The AI Evolution</h3>
+            <div className="flex gap-4 mb-5">
+              {[
+                { year: "2024", label: "Chatbot", desc: "AI answers questions", yearColor: "#6b7280", border: false },
+                { year: "2025", label: "Copilot", desc: "AI helps with tasks", yearColor: "#3b82f6", border: false },
+                { year: "2026", label: "Agent", desc: "AI DOES the tasks", yearColor: "#22c55e", border: true },
+              ].map((item) => (
+                <div key={item.year}
+                  className={`flex-1 bg-gray-800 rounded-lg p-4 text-center ${item.border ? "border-2 border-green-500" : ""}`}>
+                  <div className="text-sm font-semibold mb-1" style={{ color: item.yearColor }}>{item.year}</div>
+                  <div className={`font-bold text-white text-sm mb-1 ${item.border ? "font-bold" : ""}`}>{item.label}</div>
+                  <div className="text-xs" style={{ color: "#c9ceda" }}>{item.desc}</div>
+                </div>
+              ))}
+            </div>
+            <p className="text-sm font-bold text-white">Manus AI is at Level 3. <span style={{ color: "#f4b942" }}>BDT 2,500/mo = your autonomous employee.</span></p>
           </div>
         )}
 

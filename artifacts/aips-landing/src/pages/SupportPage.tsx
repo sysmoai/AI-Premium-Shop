@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { MessageCircle, Clock, Users, HelpCircle, ChevronRight, Star, GraduationCap, Laptop, Building, Code } from "lucide-react";
+import { CommunitySocialCards } from "@/components/CommunitySocialCards";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 
@@ -242,6 +243,46 @@ export default function SupportPage() {
                 <div className="px-5 pb-5 text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{faq.a}</div>
               </details>
             ))}
+          </div>
+        </motion.div>
+
+        {/* Stay Connected */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-10 bg-gray-900 rounded-xl p-6 border border-gray-800"
+        >
+          <h3 className="text-white font-semibold">Stay Connected</h3>
+          <p className="text-gray-400 text-sm mt-2">
+            Join our WhatsApp community for renewal reminders, exclusive deals, and AI tips from fellow users.
+          </p>
+          <div className="flex flex-wrap gap-3 mt-4">
+            <a
+              href="https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#25D366] text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-[#20BD5A] transition-colors"
+            >
+              Join Community
+            </a>
+            <a
+              href="https://whatsapp.com/channel/0029VatCUtC72WTpSObAQF3O"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-gray-700 transition-colors"
+            >
+              Follow Updates
+            </a>
+            <a
+              href="https://www.facebook.com/aipremiumshopbd"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#1877F2] text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-[#1565D8] transition-colors"
+            >
+              Facebook Page
+            </a>
           </div>
         </motion.div>
       </section>

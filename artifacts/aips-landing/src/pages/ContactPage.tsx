@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, MessageSquare, Facebook, Instagram, Linkedin, Mail, Clock, CheckCircle, Users, Radio } from "lucide-react";
+import { MessageCircle, MessageSquare, Mail, Clock, CheckCircle } from "lucide-react";
+import { CommunitySocialCards } from "@/components/CommunitySocialCards";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
@@ -8,73 +9,6 @@ import { PaymentBadges } from "@/components/PaymentBadges";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 
-const CHANNELS = [
-  {
-    icon: MessageCircle,
-    label: "WhatsApp",
-    value: "+880 1865-385348",
-    desc: "Fastest — under 5 min response",
-    href: WHATSAPP,
-    color: "#25d366",
-    primary: true,
-  },
-  {
-    icon: Facebook,
-    label: "Facebook",
-    value: "facebook.com/aipremiumshopbd",
-    desc: "Message us on Facebook",
-    href: "https://www.facebook.com/aipremiumshopbd",
-    color: "#1877f2",
-  },
-  {
-    icon: Users,
-    label: "WA Community",
-    value: "Join our WhatsApp community",
-    desc: "Updates, deals & AI tips",
-    href: "https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc",
-    color: "#25d366",
-  },
-  {
-    icon: Radio,
-    label: "WA Channel",
-    value: "WhatsApp Channel",
-    desc: "Follow for news & offers",
-    href: "https://whatsapp.com/channel/0029VatCUtC72WTpSObAQF3O",
-    color: "#25d366",
-  },
-  {
-    icon: MessageSquare,
-    label: "Messenger",
-    value: "m.me/aipremiumshopbd",
-    desc: "Message on Facebook",
-    href: "https://m.me/aipremiumshopbd",
-    color: "#1877f2",
-  },
-  {
-    icon: Instagram,
-    label: "Instagram",
-    value: "@aipremiumshop",
-    desc: "Follow for updates & deals",
-    href: "https://www.instagram.com/aipremiumshop/",
-    color: "#e1306c",
-  },
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    value: "linkedin.com/showcase/aipremiumshop",
-    desc: "Professional network",
-    href: "https://www.linkedin.com/showcase/aipremiumshop/",
-    color: "#0a66c2",
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: "support@aipremiumshop.com",
-    desc: "For formal inquiries",
-    href: "mailto:support@aipremiumshop.com",
-    color: "#f4b942",
-  },
-];
 
 const AI_TOOLS = [
   "ChatGPT Plus / Pro",
@@ -153,33 +87,23 @@ export default function ContactPage() {
           </a>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-          {CHANNELS.filter((c) => !c.primary).map((c, i) => (
-            <motion.a
-              key={c.label}
-              href={c.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.15 + i * 0.07 }}
-              className="flex items-center gap-4 p-5 rounded-2xl border border-white/10 hover:border-white/30 transition-colors"
-              style={{ backgroundColor: "#151b3d" }}
-            >
-              <div
-                className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ backgroundColor: c.color + "20" }}
-              >
-                <c.icon className="w-5 h-5" style={{ color: c.color }} />
-              </div>
-              <div>
-                <div className="font-semibold text-white text-sm">{c.label}</div>
-                <div className="text-xs mt-0.5" style={{ color: "#c9ceda" }}>{c.value}</div>
-                <div className="text-xs mt-0.5" style={{ color: c.color }}>{c.desc}</div>
-              </div>
-            </motion.a>
-          ))}
+        <div className="mb-4">
+          <CommunitySocialCards cols="2" />
         </div>
+
+        <a
+          href="https://m.me/aipremiumshopbd"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-start gap-4 p-5 rounded-xl border border-[#0084FF]/30 bg-[#0084FF]/10 hover:border-[#0084FF]/60 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg mb-12 cursor-pointer"
+        >
+          <MessageSquare className="w-8 h-8 text-[#0084FF] flex-shrink-0 mt-0.5" />
+          <div>
+            <h3 className="text-white font-bold text-lg">Messenger</h3>
+            <p className="text-gray-400 text-sm mt-1">Quick questions? Message us on Facebook Messenger for fast answers.</p>
+            <div className="text-[#0084FF] font-semibold text-sm mt-2 group-hover:underline">Chat on Messenger →</div>
+          </div>
+        </a>
 
         {/* Contact Form */}
         <motion.div

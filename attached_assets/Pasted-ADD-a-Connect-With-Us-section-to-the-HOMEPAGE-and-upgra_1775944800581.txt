@@ -1,0 +1,115 @@
+ADD a "Connect With Us" section to the HOMEPAGE and upgrade the CONTACT page social section.
+Do NOT change any existing content, prices, or product data.
+Use Lucide React icons + Tailwind CSS only.
+
+=== PART 1: HOMEPAGE — ADD "Join Our Community" SECTION ===
+
+ADD this section on the homepage AFTER the testimonials section, BEFORE the final CTA.
+
+bg-gradient-to-br from-[#0a0e27] to-[#151b3d] rounded-2xl p-8 md:p-12 border border-gray-800
+
+H2: "Join 1,200+ Happy Customers" (text-2xl md:text-3xl font-bold text-white text-center)
+Subline: "Follow us for deals, AI tips, and instant support" (text-gray-400 text-center mt-2)
+
+Below: grid of 6 channel cards (grid-cols-2 md:grid-cols-3 gap-4 mt-8):
+
+CARD 1 — WhatsApp (Primary)
+bg-[#25D366]/10 border border-[#25D366]/30 rounded-xl p-5 hover:border-[#25D366]/60 transition group
+Icon: MessageCircle (Lucide, 32px, text-[#25D366])
+H3: "WhatsApp" (text-white font-bold text-lg mt-3)
+Text: "Order in 2 minutes. Get support in under 5 min. The fastest way to buy AI tools." (text-gray-400 text-sm mt-1)
+Badge: "PRIMARY" (bg-[#25D366] text-white text-xs font-bold px-2 py-0.5 rounded-full mt-3 inline-block)
+CTA: "Message Us →" (text-[#25D366] font-semibold text-sm mt-2 group-hover:underline)
+Link: https://wa.me/8801865385348
+
+CARD 2 — WhatsApp Community
+bg-[#25D366]/5 border border-[#25D366]/20 rounded-xl p-5 hover:border-[#25D366]/40 transition group
+Icon: Users (Lucide, 32px, text-[#25D366])
+H3: "WhatsApp Community" (text-white font-bold text-lg mt-3)
+Text: "Join 1,200+ members. Get exclusive deals, renewal reminders, and AI tips from other users." (text-gray-400 text-sm mt-1)
+Badge: "FREE TO JOIN" (bg-gray-800 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded-full mt-3 inline-block)
+CTA: "Join Community →" (text-[#25D366] font-semibold text-sm mt-2 group-hover:underline)
+Link: https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc
+
+CARD 3 — WhatsApp Channel
+bg-[#25D366]/5 border border-[#25D366]/20 rounded-xl p-5 hover:border-[#25D366]/40 transition group
+Icon: Bell (Lucide, 32px, text-[#25D366])
+H3: "WhatsApp Channel" (text-white font-bold text-lg mt-3)
+Text: "Follow for instant updates on new tools, price drops, and limited offers. No spam — updates only." (text-gray-400 text-sm mt-1)
+Badge: "UPDATES" (bg-gray-800 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded-full mt-3 inline-block)
+CTA: "Follow Channel →" (text-[#25D366] font-semibold text-sm mt-2 group-hover:underline)
+Link: https://whatsapp.com/channel/0029VatCUtC72WTpSObAQF3O
+
+CARD 4 — Facebook Page
+bg-[#1877F2]/10 border border-[#1877F2]/30 rounded-xl p-5 hover:border-[#1877F2]/60 transition group
+Icon: Facebook icon (Lucide or simple SVG, 32px, text-[#1877F2])
+H3: "Facebook" (text-white font-bold text-lg mt-3)
+Text: "Daily AI tips, offer announcements, tutorials, and customer success stories. Like our page!" (text-gray-400 text-sm mt-1)
+Badge: "DAILY TIPS" (bg-[#1877F2]/20 text-[#1877F2] text-xs font-semibold px-2 py-0.5 rounded-full mt-3 inline-block)
+CTA: "Follow on Facebook →" (text-[#1877F2] font-semibold text-sm mt-2 group-hover:underline)
+Link: https://www.facebook.com/aipremiumshopbd
+
+CARD 5 — Instagram
+bg-[#E4405F]/10 border border-[#E4405F]/30 rounded-xl p-5 hover:border-[#E4405F]/60 transition group
+Icon: Instagram icon (Lucide or simple SVG, 32px, text-[#E4405F])
+H3: "Instagram" (text-white font-bold text-lg mt-3)
+Text: "Reels, stories, and visual guides on AI tools. Plan comparisons, pricing cards, and behind-the-scenes." (text-gray-400 text-sm mt-1)
+Badge: "REELS & STORIES" (bg-[#E4405F]/20 text-[#E4405F] text-xs font-semibold px-2 py-0.5 rounded-full mt-3 inline-block)
+CTA: "Follow on Instagram →" (text-[#E4405F] font-semibold text-sm mt-2 group-hover:underline)
+Link: https://www.instagram.com/aipremiumshop/
+
+CARD 6 — LinkedIn
+bg-[#0A66C2]/10 border border-[#0A66C2]/30 rounded-xl p-5 hover:border-[#0A66C2]/60 transition group
+Icon: Linkedin icon (Lucide or simple SVG, 32px, text-[#0A66C2])
+H3: "LinkedIn" (text-white font-bold text-lg mt-3)
+Text: "Professional AI insights for agencies, teams, and businesses. B2B offers and enterprise solutions." (text-gray-400 text-sm mt-1)
+Badge: "B2B & TEAMS" (bg-[#0A66C2]/20 text-[#0A66C2] text-xs font-semibold px-2 py-0.5 rounded-full mt-3 inline-block)
+CTA: "Follow on LinkedIn →" (text-[#0A66C2] font-semibold text-sm mt-2 group-hover:underline)
+Link: https://www.linkedin.com/showcase/aipremiumshop/
+
+All cards: target="_blank" rel="noopener noreferrer".
+All cards: cursor-pointer, entire card is clickable (wrap in <a>).
+Hover: border brightens + slight translateY(-2px) + shadow.
+
+=== PART 2: CONTACT PAGE — UPGRADE SOCIAL SECTION ===
+
+On the /contact page, find the social links section. Replace or upgrade it with the SAME 6 cards from Part 1, but in a 2-column layout (grid-cols-1 md:grid-cols-2 gap-4).
+
+Additionally, add below the 6 cards:
+
+Facebook Messenger card:
+bg-[#0084FF]/10 border border-[#0084FF]/30 rounded-xl p-5
+Icon: MessageSquare (Lucide, 32px, text-[#0084FF])
+H3: "Messenger" (text-white font-bold text-lg mt-3)
+Text: "Quick questions? Message us on Facebook Messenger for fast answers." (text-gray-400 text-sm mt-1)
+CTA: "Chat on Messenger →" (text-[#0084FF] font-semibold text-sm mt-2)
+Link: https://m.me/aipremiumshopbd
+
+=== PART 3: SUPPORT PAGE — ADD COMMUNITY LINKS ===
+
+On the /support page, ADD a small "Join Our Community" section before or after the FAQ:
+
+bg-gray-900 rounded-xl p-6 border border-gray-800
+H3: "Stay Connected" (text-white font-semibold)
+Text: "Join our WhatsApp community for renewal reminders, exclusive deals, and AI tips from fellow users." (text-gray-400 text-sm mt-2)
+
+3 buttons in a row (flex gap-3 mt-4):
+- "Join Community" bg-[#25D366] text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-[#20BD5A] → https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc
+- "Follow Updates" bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-gray-700 → https://whatsapp.com/channel/0029VatCUtC72WTpSObAQF3O
+- "Facebook Page" bg-[#1877F2] text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-[#1565D8] → https://www.facebook.com/aipremiumshopbd
+
+All open in new tab.
+
+=== PART 4: ABOUT PAGE — ADD FULL SOCIAL GRID ===
+
+On the /about page, find the existing social links. If there are only icons, UPGRADE to the same styled card format.
+
+Add H2: "Connect With AI Premium Shop" (text-xl font-bold text-white)
+Below: the same 6 cards from Part 1, in grid-cols-2 md:grid-cols-3 layout.
+
+If the about page already has a social section, replace the simple icons with the richer card format.
+
+=== SAFETY ===
+Do NOT change any product data, prices, or page layouts outside of these specific sections.
+All links must use target="_blank" rel="noopener noreferrer".
+npm run build must pass with zero errors.

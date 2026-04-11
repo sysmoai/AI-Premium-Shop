@@ -14,6 +14,7 @@ import { WhyUsSection } from "@/sections/WhyUsSection";
 import { HowItWorksSection } from "@/sections/HowItWorksSection";
 import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { FinalCTASection } from "@/sections/FinalCTASection";
+import { CommunitySocialCards } from "@/components/CommunitySocialCards";
 
 const FAQS = [
   {
@@ -173,7 +174,20 @@ export default function Home() {
         {/* 9. FAQ — 8 questions */}
         <div className="scroll-reveal"><FAQSection items={FAQS} title="Frequently Asked Questions" /></div>
 
-        {/* 10. FINAL CTA + FOOTER */}
+        {/* 10. JOIN OUR COMMUNITY */}
+        <div className="scroll-reveal">
+          <section className="max-w-6xl mx-auto px-4 md:px-8 py-10">
+            <div className="bg-gradient-to-br from-[#0a0e27] to-[#151b3d] rounded-2xl p-8 md:p-12 border border-gray-800">
+              <h2 className="text-2xl md:text-3xl font-bold text-white text-center">Join 1,200+ Happy Customers</h2>
+              <p className="text-gray-400 text-center mt-2">Follow us for deals, AI tips, and instant support</p>
+              <div className="mt-8">
+                <CommunitySocialCards cols="3" />
+              </div>
+            </div>
+          </section>
+        </div>
+
+        {/* 11. FINAL CTA + FOOTER */}
         <FinalCTASection />
       </main>
 

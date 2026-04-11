@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Users, Package, Layers, Calendar, Clock, Facebook, Instagram, Linkedin } from "lucide-react";
+import { MessageCircle, Users, Package, Layers, Calendar, Clock } from "lucide-react";
+import { CommunitySocialCards } from "@/components/CommunitySocialCards";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
@@ -116,44 +117,10 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="p-8 rounded-2xl border border-white/10 mb-12"
-          style={{ backgroundColor: "#151b3d" }}
+          className="mb-12"
         >
-          <h2 className="text-xl font-bold text-white mb-6">Get in Touch</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-3 p-4 rounded-xl hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: "#25d366" + "20", border: "1px solid #25d36640" }}>
-              <MessageCircle className="w-5 h-5" style={{ color: "#25d366" }} />
-              <div>
-                <div className="text-sm font-semibold text-white">WhatsApp</div>
-                <div className="text-xs" style={{ color: "#c9ceda" }}>+880 1865-385348</div>
-              </div>
-            </a>
-            <a href="https://www.facebook.com/aipremiumshopbd" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-3 p-4 rounded-xl border border-white/10 hover:border-white/30 transition-colors">
-              <Facebook className="w-5 h-5" style={{ color: "#1877f2" }} />
-              <div>
-                <div className="text-sm font-semibold text-white">Facebook</div>
-                <div className="text-xs" style={{ color: "#c9ceda" }}>facebook.com/aipremiumshopbd</div>
-              </div>
-            </a>
-            <a href="https://www.instagram.com/aipremiumshop/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 rounded-xl border border-white/10 hover:border-white/30 transition-colors">
-              <Instagram className="w-5 h-5" style={{ color: "#e1306c" }} />
-              <div>
-                <div className="text-sm font-semibold text-white">Instagram</div>
-                <div className="text-xs" style={{ color: "#c9ceda" }}>@aipremiumshop</div>
-              </div>
-            </a>
-            <a href="mailto:support@aipremiumshop.com"
-              className="flex items-center gap-3 p-4 rounded-xl border border-white/10 hover:border-white/30 transition-colors">
-              <div className="w-5 h-5 flex items-center justify-center">✉️</div>
-              <div>
-                <div className="text-sm font-semibold text-white">Email</div>
-                <div className="text-xs" style={{ color: "#c9ceda" }}>support@aipremiumshop.com</div>
-              </div>
-            </a>
-          </div>
+          <h2 className="text-xl font-bold text-white mb-6">Connect With AI Premium Shop</h2>
+          <CommunitySocialCards cols="3" />
         </motion.div>
 
         <div className="p-8 rounded-2xl text-center border border-white/10" style={{ backgroundColor: "#151b3d" }}>

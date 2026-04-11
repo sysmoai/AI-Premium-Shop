@@ -22,7 +22,7 @@ const CATEGORIES = [
   { icon: Code2,         label: "AI Code & Dev",        meta: "6 tools · from ৳500",   href: "/github-copilot-bangladesh" },
   { icon: Layout,        label: "AI Workspace",         meta: "5 tools · from ৳399",   href: "/notion-business-bangladesh" },
   { icon: Pen,           label: "AI Writing",           meta: "1 tool · ৳799",         href: "/writesonic-bangladesh" },
-  { icon: Package,       label: "Bundles",              meta: "5 packs · from ৳449",   href: "/bundles" },
+  { icon: Package,       label: "Bundle Packs",         meta: "5 packs · from ৳449",   href: "/bundles" },
 ];
 
 const POPULAR_BRANDS = [

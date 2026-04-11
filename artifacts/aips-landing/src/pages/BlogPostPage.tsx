@@ -888,13 +888,13 @@ const POSTS: Record<
       <div className="prose-content">
         <p>Bangladesh's AI adoption is accelerating. In 2026, more professionals, students, freelancers, and businesses are using AI tools than ever before — and the best ones are now accessible at BDT prices without an international credit card.</p>
         <h2>The Top 5 AI Tools for Bangladesh in 2026</h2>
-        <h3>1. ChatGPT Plus — from ৳350/month</h3>
+        <h3>1. <Link href="/chatgpt-plans-bangladesh" className="text-[#f4b942] hover:underline">ChatGPT Plus</Link> — from ৳350/month</h3>
         <p>ChatGPT Plus is the most versatile AI assistant available. With GPT-5 multimodal capabilities, it handles writing, coding, research, image generation, and agent-based automation. The shared plan at ৳350/month is the best starting point for anyone new to AI.</p>
-        <h3>2. Claude Pro — from ৳1,495/month</h3>
+        <h3>2. <Link href="/claude-pro-bangladesh" className="text-[#f4b942] hover:underline">Claude Pro</Link> — from ৳1,495/month</h3>
         <p>Claude Pro is widely regarded as the best AI for writing quality. Its 200K context window, Opus 4.6 model, and Claude Code make it the #1 choice for writers, researchers, and developers who need deep reasoning.</p>
         <h3>3. Google AI Pro — ৳500/month</h3>
         <p>AIPS-exclusive pricing. Full Google AI Pro plan on your own Gmail account. Gemini 3.1 Pro, 2TB storage, AI in Docs, Sheets, Gmail. The best value for professionals who already use Google Workspace.</p>
-        <h3>4. Midjourney — from ৳1,199/month</h3>
+        <h3>4. <Link href="/midjourney-bangladesh" className="text-[#f4b942] hover:underline">Midjourney</Link> — from ৳1,199/month</h3>
         <p>The gold standard for AI image generation. Midjourney's v7 model produces photorealistic and artistic images that no other tool matches. The shared Standard plan gives 15 hours of fast GPU time per month.</p>
         <h3>5. GitHub Copilot Pro — ৳1,495/month</h3>
         <p>For developers, Copilot Pro is the most practical AI investment. Unlimited code completions inside VS Code, JetBrains, and Neovim. Access to 300 premium requests with Claude and GPT-5 models.</p>
@@ -914,9 +914,9 @@ const POSTS: Record<
       <div className="prose-content">
         <p>ChatGPT and Claude are the two most popular AI assistants in the world. Both are available in Bangladesh through AI Premium Shop — but they excel at different things. Here's an honest comparison.</p>
         <h2>Price Comparison (BDT)</h2>
-        <p>ChatGPT Plus Starter Shared: <strong>৳350/month</strong></p>
+        <p><Link href="/chatgpt-plans-bangladesh" className="text-[#f4b942] hover:underline">ChatGPT Plus</Link> Starter Shared: <strong>৳350/month</strong></p>
         <p>ChatGPT Plus Premium Shared: <strong>৳950/month</strong></p>
-        <p>Claude Pro Premium Shared: <strong>৳1,495/month</strong></p>
+        <p><Link href="/claude-pro-bangladesh" className="text-[#f4b942] hover:underline">Claude Pro</Link> Premium Shared: <strong>৳1,495/month</strong></p>
         <h2>Writing Quality</h2>
         <p><strong>Winner: Claude.</strong> Claude Pro with Opus 4.6 produces more nuanced, human-sounding prose. For long-form content — research papers, reports, blog posts — Claude's output requires less editing. ChatGPT is faster but can sound more generic.</p>
         <h2>Coding</h2>
@@ -941,7 +941,7 @@ const POSTS: Record<
         <h2>Step 1: Choose Your Plan</h2>
         <p>AI Premium Shop offers three ChatGPT Plus options:</p>
         <ul>
-          <li><strong>Starter Shared — ৳350/month:</strong> Budget-friendly, 2-7 users on one account. Full GPT-5 access, DALL-E, search, agents.</li>
+          <li><Link href="/chatgpt-plus-bangladesh" className="text-[#f4b942] hover:underline"><strong>Starter Shared — ৳350/month:</strong></Link> Budget-friendly, 2-7 users on one account. Full GPT-5 access, DALL-E, search, agents.</li>
           <li><strong>Premium Shared — ৳950/month:</strong> Fewer users (2-3 max), higher stability, better for daily use.</li>
           <li><strong>Personal — ৳2,990/month:</strong> Your own dedicated account. Full privacy, all features.</li>
         </ul>
@@ -966,11 +966,11 @@ const POSTS: Record<
     content: (
       <div className="prose-content">
         <p>Upwork's 2025 Freelancer Report found that freelancers who use AI tools earn 44% more on average. In Bangladesh, where competition on Fiverr and Upwork is intense, AI tools are now a professional necessity, not a luxury.</p>
-        <h2>1. ChatGPT Plus Premium Shared — ৳950/month</h2>
+        <h2>1. <Link href="/chatgpt-plans-bangladesh" className="text-[#f4b942] hover:underline">ChatGPT Plus</Link> Premium Shared — ৳950/month</h2>
         <p>The single most useful AI tool for freelancers. Write client proposals, deliver content faster, answer emails, research topics, and generate code. Pays for itself with your first successful proposal. Used by writers, marketers, virtual assistants, and developers.</p>
         <h2>2. Claude Pro Premium Shared — ৳1,495/month</h2>
         <p>If you're a writer, Claude Pro produces higher-quality output than ChatGPT. For blog posts, reports, and creative projects, Claude's writing sounds more natural and requires less editing. Many freelancers use Claude as their primary writing tool and ChatGPT for research.</p>
-        <h2>3. Midjourney Standard Shared — ৳1,199/month</h2>
+        <h2>3. <Link href="/midjourney-bangladesh" className="text-[#f4b942] hover:underline">Midjourney</Link> Standard Shared — ৳1,199/month</h2>
         <p>For designers, social media managers, and content creators, Midjourney generates professional-quality images in minutes. Create thumbnails, product mockups, brand visuals, and social media graphics — no design skills required. Unlimited slow-queue generations included.</p>
         <h2>4. GitHub Copilot Pro — ৳1,495/month</h2>
         <p>For developer freelancers, Copilot Pro is the highest-ROI tool available. It handles boilerplate code, suggests entire functions, and speeds up development by 50%+. Works inside VS Code and JetBrains with no workflow changes.</p>
@@ -990,7 +990,7 @@ const POSTS: Record<
     accentColor: "#8b5cf6",
     content: (
       <div className="prose-content">
-        <p>Midjourney is the world's leading AI image generator. In 2026, its v7 model produces images that are consistently the most artistic and photorealistic of any AI tool. Here's everything Bangladeshi users need to know.</p>
+        <p><Link href="/midjourney-bangladesh" className="text-[#f4b942] hover:underline">Midjourney</Link> is the world's leading AI image generator. In 2026, its v7 model produces images that are consistently the most artistic and photorealistic of any AI tool. Here's everything Bangladeshi users need to know.</p>
         <h2>What Can Midjourney Create?</h2>
         <p>Midjourney can create: photorealistic portraits, product photography, architectural visualizations, logo concepts, social media graphics, book covers, YouTube thumbnails, wallpapers, fashion concepts, and abstract art. The quality in 2026 is indistinguishable from professional photography in many styles.</p>
         <h2>Midjourney Plans in Bangladesh (BDT)</h2>
@@ -1009,6 +1009,19 @@ const POSTS: Record<
       </div>
     ),
   },
+};
+
+const POST_SCHEMA_DATES: Record<string, string> = {
+  "earn-money-with-ai-bangladesh": "2026-04-12",
+  "ai-tools-university-students-bangladesh": "2026-04-12",
+  "pay-ai-tools-bkash-bangladesh": "2026-04-12",
+  "chatgpt-plus-vs-free-bangladesh": "2026-04-12",
+  "ai-freelancing-guide-bangladesh": "2026-04-12",
+  "best-ai-tools-bangladesh-2026": "2026-04-01",
+  "chatgpt-vs-claude-bangladesh": "2026-04-01",
+  "how-to-get-chatgpt-plus-bangladesh": "2026-03-01",
+  "ai-tools-for-freelancers-bangladesh": "2026-03-01",
+  "midjourney-bangladesh-guide": "2026-02-01",
 };
 
 interface BlogPostPageProps {
@@ -1042,6 +1055,31 @@ export default function BlogPostPage({ postSlug }: BlogPostPageProps) {
           { name: "Blog", href: "/blog" },
           { name: post.title },
         ]}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.description,
+            "author": { "@type": "Organization", "name": "AI Premium Shop" },
+            "publisher": {
+              "@type": "Organization",
+              "name": "AI Premium Shop",
+              "url": "https://aipremiumshop.com",
+            },
+            "datePublished": POST_SCHEMA_DATES[postSlug] || "2026-04-01",
+            "dateModified": "2026-04-12",
+            "url": `https://aipremiumshop.com/blog/${postSlug}`,
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://aipremiumshop.com/blog/${postSlug}`,
+            },
+          }),
+        }}
       />
 
       {isNewPost ? (

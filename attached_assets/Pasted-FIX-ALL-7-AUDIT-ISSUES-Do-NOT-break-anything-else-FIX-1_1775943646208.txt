@@ -1,0 +1,127 @@
+FIX ALL 7 AUDIT ISSUES. Do NOT break anything else.
+
+=== FIX 1: SITEMAP — 2 WRONG SLUGS ===
+
+In sitemap.xml (or the sitemap generation code), fix these 2 blog URLs:
+
+WRONG: /blog/how-to-buy-chatgpt-plus-bangladesh
+CORRECT: /blog/how-to-get-chatgpt-plus-bangladesh
+
+WRONG: /blog/midjourney-guide-bangladesh
+CORRECT: /blog/midjourney-bangladesh-guide
+
+Find the sitemap data and fix these slugs to match the actual routes.
+
+=== FIX 2: SITEMAP — ADD 5 MISSING BLOG POSTS ===
+
+Add these 5 new blog post URLs to sitemap.xml:
+
+https://aipremiumshop.com/blog/earn-money-with-ai-bangladesh
+https://aipremiumshop.com/blog/ai-tools-university-students-bangladesh
+https://aipremiumshop.com/blog/pay-ai-tools-bkash-bangladesh
+https://aipremiumshop.com/blog/chatgpt-plus-vs-free-bangladesh
+https://aipremiumshop.com/blog/ai-freelancing-guide-bangladesh
+
+Each with <lastmod> set to today's date.
+
+After fix: sitemap should have 77 total URLs (72 existing + 5 new, with 2 corrected).
+
+=== FIX 3: BlogPosting SCHEMA FOR ALL 10 BLOG POSTS ===
+
+Add BlogPosting JSON-LD schema to every blog post page.
+
+In the blog post component (wherever individual posts render), add this schema:
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "[post title]",
+  "description": "[post meta description]",
+  "author": {
+    "@type": "Organization",
+    "name": "AI Premium Shop"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AI Premium Shop",
+    "url": "https://aipremiumshop.com"
+  },
+  "datePublished": "2026-04-12",
+  "dateModified": "2026-04-12",
+  "url": "https://aipremiumshop.com/blog/[slug]",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aipremiumshop.com/blog/[slug]"
+  }
+}
+
+Use the actual post title, description, and slug dynamically.
+This should apply to ALL 10 blog posts automatically.
+
+=== FIX 4: ADD PRODUCT LINKS TO 5 OLD BLOG POSTS ===
+
+The 5 existing (old) blog posts mention products but have no clickable links.
+Find these 5 posts and add <Link> elements where products are mentioned:
+
+1. /blog/best-ai-tools-bangladesh-2026 — wherever it mentions ChatGPT, link to /chatgpt-plans-bangladesh. Wherever it mentions Claude, link to /claude-pro-bangladesh. Wherever it mentions Midjourney, link to /midjourney-bangladesh. Add at least 3 product links.
+
+2. /blog/chatgpt-vs-claude-bangladesh — link "ChatGPT" mentions to /chatgpt-plans-bangladesh and "Claude" mentions to /claude-pro-bangladesh.
+
+3. /blog/ai-tools-for-freelancers-bangladesh — link tool mentions to their product pages (/chatgpt-plans-bangladesh, /midjourney-bangladesh, /best-ai-for-freelancers).
+
+4. /blog/how-to-get-chatgpt-plus-bangladesh — link "ChatGPT Plus" to /chatgpt-plus-bangladesh.
+
+5. /blog/midjourney-bangladesh-guide — link "Midjourney" to /midjourney-bangladesh.
+
+For each post: find the first 2-3 mentions of product names in the text and wrap them in <Link to="/[product-page]"> tags. Style the links as text-[#f4b942] hover:underline.
+
+=== FIX 5: 404 PAGE RESPONSIVE TEXT ===
+
+On the 404 page, the "404" text uses text-8xl which is too large on small phones.
+
+Change: text-8xl
+To: text-6xl md:text-8xl
+
+This makes it smaller on mobile, full size on desktop.
+
+=== FIX 6: FomoBanner COMPONENT ===
+
+The audit says FomoBanner is not found. Check if it was added to GuidePage or as a standalone component.
+
+If FomoBanner does NOT exist as a component:
+Create a simple FomoBanner component:
+
+export function FomoBanner() {
+  return (
+    <div className="bg-[#151b3d] border border-red-500/10 rounded-xl p-6 mt-8">
+      <h3 className="text-white text-lg font-bold">AI Is No Longer Optional</h3>
+      <p className="text-gray-300 text-sm leading-relaxed mt-3">
+        • Students using AI outperform peers in every metric<br/>
+        • Freelancers with AI earn 44% more (Upwork Research)<br/>
+        • Businesses save 60-80% on operations (McKinsey)<br/>
+        • 92% of developers use AI coding tools (GitHub)
+      </p>
+      <p className="text-white font-semibold mt-4">
+        The question is not 'should I use AI?' — it's 'how long can I afford not to?'
+      </p>
+      <a href="https://wa.me/8801865385348" className="inline-block bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg mt-4">
+        Start for BDT 350/mo →
+      </a>
+    </div>
+  );
+}
+
+If it ALREADY exists (maybe inline in GuidePage rather than as a separate component), then the audit just couldn't find it by name — that's fine, skip this fix.
+
+Check: is the FOMO content rendered on guide pages? If yes, skip. If no, add FomoBanner to all 9 guide pages before the final CTA.
+
+=== FIX 7: VERIFY AND REBUILD ===
+
+After all fixes:
+1. Run: npx tsc --noEmit — must be 0 errors
+2. Run: npm run build — must be 0 errors
+3. Count sitemap URLs — should be 77
+4. Verify BlogPosting schema exists: grep for "BlogPosting" — should find it
+5. Verify old blog posts have <Link> tags: grep for product page paths in blog files
+
+Report results for all 5 verifications.

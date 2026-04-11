@@ -8,7 +8,7 @@ export default function NotFound() {
     <PageLayout>
       <section className="min-h-[70vh] flex items-center justify-center px-4 py-20">
         <div className="text-center max-w-lg mx-auto">
-          <div className="text-8xl font-bold" style={{ color: "#f4b942" }}>
+          <div className="text-6xl md:text-8xl font-bold" style={{ color: "#f4b942" }}>
             404
           </div>
 

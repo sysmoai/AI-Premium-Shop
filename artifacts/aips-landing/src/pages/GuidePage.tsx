@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { ChevronDown, MessageCircle, CheckCircle, ArrowRight } from "lucide-react";
+import { ChevronDown, ChevronRight, MessageCircle, CheckCircle, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
@@ -286,6 +286,117 @@ const GUIDES: Record<string, GuideConfig> = {
       { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
     ],
     comparison: { label: "ChatGPT vs Google Gemini — which is easier to start with?", href: "/chatgpt-vs-gemini" },
+  },
+  "designers": {
+    slug: "best-ai-for-designers",
+    title: "Best AI Design Tools Bangladesh 2026",
+    h1: "Best AI Tools for Designers in Bangladesh 2026",
+    subtitle: "Generate stunning visuals. Cut design time in half. Win more clients.",
+    aioSnippet: "The best AI design tools for designers in Bangladesh in 2026 are Midjourney Standard Shared (BDT 1,199/mo) for photorealistic and artistic image generation, Ideogram (from BDT 2,990/mo) for typography and text-in-image design, and Leonardo AI (from BDT 599/mo) for 3D textures and character design. All available via bKash — no international card needed.",
+    metaDescription: "Best AI design tools for designers in Bangladesh 2026. Midjourney, Ideogram, Leonardo AI. BDT prices.",
+    canonical: "https://aipremiumshop.com/best-ai-for-designers",
+    whyHeading: "Why Every Designer Needs AI in 2026",
+    whyText: "AI image generation has fundamentally changed design workflows. Designers who use Midjourney, Ideogram, and Leonardo AI report cutting concept creation time by 70-80%. Generate mood boards in minutes, create client presentations faster, and produce stunning visuals without photography budgets. The top design freelancers on Fiverr and 99designs now use AI as part of every project workflow.",
+    statLine: "Designers using AI tools report 70% faster concept creation — Adobe 2025 Creative Trends Report",
+    tools: [
+      { rank: 1, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "The gold standard for AI image quality. Photorealistic portraits, product renders, artistic illustrations — no other tool matches its output. 15hr fast GPU + unlimited relaxed mode.", badge: "Best Quality", color: "#8b5cf6" },
+      { rank: 2, name: "Ideogram", price: "from BDT 2,990/mo", reason: "The only AI that reliably renders text inside images. Perfect for logos, posters, social media graphics, and typography-heavy designs. 400 priority images/month.", badge: "Best for Text & Logos", color: "#ec4899" },
+      { rank: 3, name: "Leonardo AI", price: "from BDT 599/mo", reason: "Budget image generation with strong 3D textures, character consistency, and motion effects. Great for game assets, product visuals, and UI design concepts.", badge: "Best Budget Option", color: "#f97316" },
+      { rank: 4, name: "ChatGPT Plus — Starter Shared", price: "BDT 350/mo", reason: "Use AI to write design briefs, generate image prompts, write client emails, and research trends. The DALL-E image generation is also included.", badge: "For Workflow", color: "#10a37f" },
+    ],
+    startHere: {
+      name: "Midjourney — Standard Shared",
+      price: "BDT 1,199/mo",
+      reason: "Midjourney produces the highest quality AI images available. Generate unlimited concepts for clients at BDT 1,199/month — far cheaper than any stock photography subscription. Delivered in 5–30 minutes via WhatsApp.",
+    },
+    faqs: [
+      { q: "Which AI image tool is best for logo design?", a: "Ideogram is the best choice for logos and text-heavy designs. It renders text accurately inside images — which Midjourney struggles with. For logos with typography, start with Ideogram. For abstract logos and brand visuals, Midjourney produces better artistic results." },
+      { q: "Can I use AI-generated images for client work commercially?", a: "Yes. Midjourney Standard plans and above include commercial use rights. Ideogram Pro includes commercial use. Leonardo AI Apprentice plan also includes commercial use. Always use these on paid plans for commercial client work." },
+      { q: "Is Leonardo AI good enough compared to Midjourney?", a: "Leonardo AI is excellent for 3D textures, character consistency (same character in multiple images), and budget-conscious projects. Midjourney still produces better overall photorealistic and artistic quality. Many designers use both for different types of projects." },
+      { q: "How fast is image generation?", a: "Midjourney Standard Shared: 1-2 minutes for fast mode, 5-15 minutes for relaxed mode. Ideogram: 30-60 seconds per image. Delivery of your account after ordering: 5-30 minutes via WhatsApp." },
+    ],
+    accentColor: "#8b5cf6",
+    emoji: "🎨",
+    alsoRead: [
+      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
+      { label: "Best AI for Marketers", href: "/best-ai-for-marketers" },
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
+    ],
+    comparison: { label: "Midjourney vs Ideogram — which is better for design?", href: "/midjourney-vs-ideogram" },
+  },
+  "marketers": {
+    slug: "best-ai-for-marketers",
+    title: "Best AI for Digital Marketing Bangladesh 2026",
+    h1: "Best AI Tools for Digital Marketers in Bangladesh 2026",
+    subtitle: "Write better copy. Create stunning visuals. Research faster.",
+    aioSnippet: "The best AI tools for digital marketers in Bangladesh in 2026 are ChatGPT Plus Shared (BDT 350/mo) for ad copy and social captions, Midjourney Standard Shared (BDT 1,199/mo) for visual content creation, and Perplexity Pro Shared (BDT 350/mo) for competitor research with real citations. Total: BDT 1,899/mo for a complete marketing AI stack — pay with bKash or Nagad, no international card required.",
+    metaDescription: "Best AI tools for digital marketers in Bangladesh 2026. ChatGPT, Midjourney, Perplexity. BDT prices.",
+    canonical: "https://aipremiumshop.com/best-ai-for-marketers",
+    whyHeading: "Why AI is Non-Negotiable for Marketers in 2026",
+    whyText: "Digital marketing in 2026 is a speed game. AI tools let marketers produce a week's worth of content in a single afternoon. Write Facebook ads, generate Instagram visuals, research competitor strategies, draft email sequences, and analyze campaign performance — all with AI. Marketers who adopt AI consistently outperform those who don't, regardless of budget. The tools that used to cost thousands of dollars are now available from BDT 350/month.",
+    statLine: "Marketers using AI tools save 5+ hours per week on content creation — HubSpot 2026 Marketing Report",
+    tools: [
+      { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 350/mo", reason: "The essential marketing copywriter. Write ad copy, email campaigns, social media captions, blog posts, and product descriptions. Fastest and cheapest AI tool available.", badge: "Essential", color: "#10a37f" },
+      { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Generate professional marketing visuals — social media graphics, product mockups, campaign imagery — without a photographer or designer. 15hr fast GPU monthly.", badge: "For Visuals", color: "#8b5cf6" },
+      { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 350/mo", reason: "AI-powered market research with real-time citations. Research competitor strategies, industry trends, and consumer behavior in minutes — with source links you can verify.", badge: "For Research", color: "#20b2aa" },
+      { rank: 4, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "Best AI for long-form marketing content. Blog posts, whitepapers, case studies, and email sequences with higher writing quality than ChatGPT.", badge: "For Long-form", color: "#d97706" },
+    ],
+    startHere: {
+      name: "ChatGPT Plus — Starter Shared",
+      price: "BDT 350/mo",
+      reason: "Start with ChatGPT Plus at BDT 350 — the most versatile marketing AI available. Use it for copy, research, strategy, and daily content. When you're ready to scale visuals, add Midjourney.",
+    },
+    faqs: [
+      { q: "Can AI write Facebook and Google Ads?", a: "Yes. ChatGPT is excellent at writing ad copy with specific character limits, calls-to-action, and emotional hooks. Give it your product, target audience, and goals, and it will generate multiple variations in seconds." },
+      { q: "Which AI is best for creating social media content?", a: "ChatGPT for captions, hashtags, and written content. Midjourney for visuals and graphics. Together they form a complete social media content creation stack for under BDT 1,600/month." },
+      { q: "How can AI help with SEO content?", a: "Claude Pro is the best AI for writing long-form SEO content. It produces more natural, human-sounding articles that rank well. For keyword research and competitor analysis, use Perplexity Pro — it gives real-time data with citations." },
+      { q: "Can AI replace a marketing agency?", a: "AI dramatically reduces the need for external agencies for content, copywriting, and basic design. However, strategy, media buying, and campaign management still benefit from human expertise. AI augments marketers — it doesn't replace strategy." },
+    ],
+    accentColor: "#ec4899",
+    emoji: "📈",
+    alsoRead: [
+      { label: "Best AI for Business Owners", href: "/best-ai-for-business" },
+      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
+      { label: "Best AI for Designers", href: "/best-ai-for-designers" },
+    ],
+    comparison: { label: "ChatGPT vs Claude — which writes better marketing copy?", href: "/chatgpt-vs-claude" },
+  },
+  "ecommerce": {
+    slug: "best-ai-for-ecommerce",
+    title: "Best AI for E-commerce Sellers Bangladesh 2026",
+    h1: "Best AI Tools for E-commerce Sellers in Bangladesh 2026",
+    subtitle: "Better product photos. Faster listings. More sales.",
+    aioSnippet: "The best AI tools for e-commerce sellers in Bangladesh in 2026 are ChatGPT Plus Shared (BDT 350/mo) for product descriptions and customer support copy, Midjourney Standard Shared (BDT 1,199/mo) for professional product photography and lifestyle images, and Perplexity Pro (BDT 350/mo) for competitor and market research. Available via bKash — no international card needed.",
+    metaDescription: "Best AI tools for e-commerce sellers in Bangladesh 2026. Product photos, descriptions, customer support AI.",
+    canonical: "https://aipremiumshop.com/best-ai-for-ecommerce",
+    whyHeading: "Why E-commerce Sellers Need AI in 2026",
+    whyText: "Running an e-commerce business in Bangladesh is increasingly competitive. AI tools help sellers write compelling product listings faster, create professional product images without a photography studio, respond to customer queries automatically, and research trending products. Sellers who use AI consistently report better conversion rates and more time to focus on sourcing and scaling. The entire toolkit costs less than one product photoshoot.",
+    statLine: "AI-written product listings outperform manually written ones by 33% in click-through rate — Shopify 2025",
+    tools: [
+      { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 350/mo", reason: "Write compelling product titles and descriptions optimized for search. Draft FAQ responses, customer service templates, and promotional copy. Essential for any e-commerce operation.", badge: "Essential", color: "#10a37f" },
+      { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Generate professional product photography and lifestyle images without a studio. Create background-removed product shots, styled scenes, and banner graphics for social media.", badge: "For Visuals", color: "#8b5cf6" },
+      { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 350/mo", reason: "Research trending products, analyze competitor pricing, and identify market gaps. Get real-time data on what's selling and why — with citations you can verify.", badge: "For Research", color: "#20b2aa" },
+      { rank: 4, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "Write longer-form content like seller profiles, brand stories, and email marketing sequences with higher quality than ChatGPT.", badge: "For Brand Content", color: "#d97706" },
+    ],
+    startHere: {
+      name: "ChatGPT Plus — Starter Shared",
+      price: "BDT 350/mo",
+      reason: "At BDT 350, ChatGPT Plus pays for itself with better product listings alone. Use it to write all your product titles and descriptions in bulk — then add Midjourney when you're ready to upgrade your visuals.",
+    },
+    faqs: [
+      { q: "Can AI write Daraz and Facebook Marketplace listings?", a: "Yes. ChatGPT is excellent at writing product titles and descriptions optimized for search engines and shoppers. Give it your product details (name, specs, price range) and it will write multiple variations. Works for Daraz, Chaldal, Facebook Marketplace, and any other platform." },
+      { q: "Can Midjourney replace product photography?", a: "For digital goods, social media graphics, and lifestyle imagery, yes — Midjourney produces professional results. For products that need to show exact textures and colors (clothing, electronics), traditional photography is still better for e-commerce listings. Many sellers use Midjourney for marketing visuals and traditional photography for listing images." },
+      { q: "How can AI help with customer support?", a: "Use ChatGPT to draft standard response templates for your most common customer questions (shipping times, return policy, size guides). For high-volume stores, Claude Pro's longer context window is better for handling complex customer situations." },
+      { q: "Can AI help me find trending products to sell?", a: "Yes. Perplexity Pro gives you real-time market data with citations. Ask it to research trending products in Bangladesh, popular categories on Daraz, or compare competitor pricing — it'll give you current information with sources." },
+    ],
+    accentColor: "#f97316",
+    emoji: "🛒",
+    alsoRead: [
+      { label: "Best AI for Business Owners", href: "/best-ai-for-business" },
+      { label: "Best AI for Marketers", href: "/best-ai-for-marketers" },
+      { label: "Best AI for Designers", href: "/best-ai-for-designers" },
+    ],
+    comparison: { label: "ChatGPT vs Claude — which writes better product descriptions?", href: "/chatgpt-vs-claude" },
   },
 };
 

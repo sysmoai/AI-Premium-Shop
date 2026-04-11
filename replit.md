@@ -28,7 +28,7 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 
 ## Artifacts
 
-### AIPS - AI Premium Shop (`artifacts/aips-landing`) — PHASE 8 COMPLETE
+### AIPS - AI Premium Shop (`artifacts/aips-landing`) — PHASE 10 BATCH 4 COMPLETE
 
 - **Type**: React + Vite (marketing landing page, SPA)
 - **Preview Path**: `/`

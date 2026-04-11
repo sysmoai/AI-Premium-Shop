@@ -358,10 +358,116 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
           <p className="max-w-2xl leading-relaxed" style={{ color: "#c9ceda" }}>{config.description}</p>
         </div>
 
+        {/* Bundle Breakdown — only for bundles category */}
+        {categoryId === "bundles" && (
+          <div className="mb-12">
+            <h2 className="text-xl font-bold text-white mb-2">Bundle Breakdown</h2>
+            <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>See what's included in each bundle — and how much you save vs buying each tool individually.</p>
+            <div className="space-y-4">
+              {[
+                {
+                  name: "Student Essentials Package", price: 449, tier: "Essentials",
+                  items: [
+                    { tool: "ChatGPT Plus — Starter Shared", value: 350 },
+                    { tool: "AI Setup Guide (personalised)", value: 150 },
+                  ],
+                  savings: 51, color: "#10a37f",
+                  waMsg: "Hi, I want Student Essentials Package (৳449)",
+                },
+                {
+                  name: "University Pro Package", price: 899, tier: "Pro",
+                  items: [
+                    { tool: "ChatGPT Plus — Premium Shared", value: 850 },
+                    { tool: "Perplexity Pro — Shared", value: 350 },
+                    { tool: "AI Study Coaching (30 min)", value: 400 },
+                  ],
+                  savings: 701, color: "#8b5cf6",
+                  waMsg: "Hi, I want University Pro Package (৳899)",
+                },
+                {
+                  name: "Freelancer Bundle", price: 3999, tier: "Bundle",
+                  items: [
+                    { tool: "ChatGPT Plus — Personal", value: 2990 },
+                    { tool: "Midjourney Standard — Shared", value: 1199 },
+                    { tool: "Perplexity Pro — Shared", value: 350 },
+                  ],
+                  savings: 540, color: "#f4b942",
+                  waMsg: "Hi, I want Freelancer Bundle (৳3,999)",
+                },
+                {
+                  name: "Business Package", price: 15000, tier: "Business",
+                  items: [
+                    { tool: "ChatGPT Business — Personal", value: 7490 },
+                    { tool: "Google AI Pro — Personal", value: 500 },
+                    { tool: "Notion AI Business — Personal", value: 2500 },
+                    { tool: "Midjourney Standard — Personal", value: 3490 },
+                    { tool: "Claude Pro — Personal", value: 2990 },
+                    { tool: "2hr AI Setup & Training", value: 1600 },
+                  ],
+                  savings: 3570, color: "#ec4899",
+                  waMsg: "Hi, I want Business Package (৳15,000)",
+                },
+              ].map((bundle, i) => {
+                const total = bundle.items.reduce((s, it) => s + it.value, 0);
+                const waLink = `${WHATSAPP}?text=${encodeURIComponent(bundle.waMsg)}`;
+                return (
+                  <motion.div key={i}
+                    initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }} transition={{ duration: 0.35, delay: i * 0.06 }}
+                    className="p-5 rounded-2xl border border-white/10"
+                    style={{ backgroundColor: "#151b3d" }}>
+                    <div className="flex items-start justify-between flex-wrap gap-3 mb-4">
+                      <div>
+                        <div className="flex items-center gap-2 flex-wrap mb-1">
+                          <h3 className="font-bold text-white text-base">{bundle.name}</h3>
+                          <span className="text-xs px-2 py-0.5 rounded-full font-semibold"
+                            style={{ backgroundColor: bundle.color + "20", color: bundle.color }}>
+                            {bundle.tier}
+                          </span>
+                        </div>
+                        <div className="text-lg font-bold" style={{ color: "#f4b942" }}>
+                          ৳{bundle.price.toLocaleString()}/mo
+                          <span className="text-xs font-medium ml-2" style={{ color: "#25d366" }}>
+                            Save ৳{bundle.savings.toLocaleString()} vs buying separately
+                          </span>
+                        </div>
+                      </div>
+                      <a href={waLink} target="_blank" rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
+                        style={{ backgroundColor: "#25d366", color: "#fff" }}>
+                        <MessageCircle className="w-4 h-4" />
+                        Order Bundle
+                      </a>
+                    </div>
+                    <div className="rounded-xl border border-white/10 overflow-hidden">
+                      <div className="grid grid-cols-[1fr_auto] text-xs font-semibold uppercase tracking-wider border-b border-white/10 px-4 py-2"
+                        style={{ color: "#c9ceda" }}>
+                        <div>Included</div>
+                        <div className="text-right">Value</div>
+                      </div>
+                      {bundle.items.map((item, j) => (
+                        <div key={j} className={`grid grid-cols-[1fr_auto] items-center px-4 py-2.5 ${j > 0 ? "border-t border-white/5" : ""}`}>
+                          <div className="text-sm text-white">{item.tool}</div>
+                          <div className="text-sm text-right" style={{ color: "#c9ceda" }}>৳{item.value.toLocaleString()}</div>
+                        </div>
+                      ))}
+                      <div className="grid grid-cols-[1fr_auto] items-center px-4 py-2.5 border-t border-white/10"
+                        style={{ backgroundColor: "rgba(255,255,255,0.03)" }}>
+                        <div className="text-xs font-semibold" style={{ color: "#c9ceda" }}>Total value</div>
+                        <div className="text-sm font-bold text-right" style={{ color: "#c9ceda" }}>৳{total.toLocaleString()}</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {products.length > 0 ? (
           <>
             <div className="flex items-center gap-3 mb-6">
-              <h2 className="text-xl font-bold text-white">Available Plans</h2>
+              <h2 className="text-xl font-bold text-white">{categoryId === "bundles" ? "All Bundles" : "Available Plans"}</h2>
               <span className="text-xs px-2 py-0.5 rounded-full"
                 style={{ backgroundColor: config.accent + "20", color: config.accent }}>
                 {products.length} plans

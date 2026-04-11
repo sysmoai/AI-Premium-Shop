@@ -1,0 +1,174 @@
+PHASE 10 BATCH 4 — MISSING PAGES + CONTENT + FIXES
+
+This batch fills all remaining content gaps. Do not change existing working pages.
+
+=== PART A: NEW PAGES ===
+
+1. CREATE /support PAGE:
+Title tag: "Support — AI Premium Shop Bangladesh | WhatsApp + 1:1 Coaching"
+Meta: "Get support from AI Premium Shop. WhatsApp response in 5 min. 1:1 AI coaching from BDT 799/hr."
+
+Sections:
+- Hero: "How Can We Help?" with WhatsApp CTA button
+- Order Support: WhatsApp +880 1865-385348, response time badge "< 5 min"
+- 1:1 AI Coaching section:
+  "Need help using your AI tools? We don't just sell — we teach."
+  Packages table:
+  | Package | Price | Sessions | Best For |
+  | Hourly Support | BDT 799/hr | 1 | Quick setup, any tool |
+  | Student Pack | BDT 1,999 | 1 | Students |
+  | Freelancer Pack | BDT 4,999 | 2 | Freelancers |
+  | Business Setup | BDT 12,999 | 3 | SME Owners |
+  Each row has "Book on WhatsApp" button
+- WhatsApp Community: "Join 1,200+ customers" with join link https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc
+- FAQ: 6 support-specific questions
+- Service Hours: 10 AM – Midnight BST, 7 days
+
+Update navbar: Change "Support" link to point to /support
+
+2. CREATE /how-to-order PAGE:
+Title tag: "How to Order AI Tools in Bangladesh | bKash Nagad | AI Premium Shop"
+Meta: "Step-by-step guide to ordering AI subscriptions in Bangladesh. Pay with bKash or Nagad. Delivered in minutes."
+
+Sections:
+- H1: "How to Order — 4 Simple Steps"
+- Step 1: Choose Your Tool (browse /products or ask on WhatsApp)
+- Step 2: Message Us on WhatsApp (+880 1865-385348)
+  "Tell us: which tool, which plan (shared or personal)"
+- Step 3: Pay via bKash, Nagad, Rocket, or Bank Transfer
+  "We'll send you payment details. Pay the exact amount."
+  Show bKash/Nagad logos
+- Step 4: Receive Your Access
+  "Shared: 5-30 minutes. Personal: 2-4 hours."
+  "We'll send credentials via WhatsApp."
+- FAQ: "What if I don't know which tool?", "Can I pay in installments?", "What happens after payment?"
+
+Update footer: "How to Order" link should point to /how-to-order
+
+3. CREATE 3 MISSING COMPARISON PAGES:
+
+/midjourney-vs-ideogram:
+Title: "Midjourney vs Ideogram 2026 — Best AI Image Generator"
+Content: Feature comparison table, price comparison, use case recommendations, verdict, CTAs
+
+/copilot-vs-cursor:
+Title: "GitHub Copilot vs Cursor 2026 — Best AI Code Editor"
+Content: Feature comparison, price comparison (Copilot BDT 1,495 vs Cursor BDT 2,990), use cases, verdict
+
+/best-ai-subscription-2026:
+Title: "Best AI Subscription 2026 Bangladesh — Complete Guide"
+Content: Ranked list of top 10 AI tools by value, comparison table of all categories, budget recommendations
+
+4. CREATE 3 MISSING GUIDE PAGES:
+
+/best-ai-for-designers:
+Title: "Best AI Design Tools Bangladesh 2026"
+Content: Midjourney, Ideogram, Leonardo AI recommendations. Pain points for designers. Price comparison.
+
+/best-ai-for-marketers:
+Title: "Best AI for Digital Marketing Bangladesh 2026"
+Content: ChatGPT for copy, Midjourney for visuals, Perplexity for research. Marketing workflow.
+
+/best-ai-for-ecommerce:
+Title: "Best AI for E-commerce Sellers Bangladesh 2026"
+Content: Product descriptions with ChatGPT, product photos with Midjourney, customer support automation.
+
+All 3 follow the same template as existing guide pages (hero, recommended tools ranked, FAQ, CTA).
+
+=== PART B: FIX EXISTING CONTENT ===
+
+5. FIX BLOG POSTS:
+The /blog page shows 5 cards. Make each card clickable and create the actual blog post pages:
+
+/blog/best-ai-tools-bangladesh-2026:
+  Title: "Best AI Tools in Bangladesh 2026: Complete Guide"
+  Content: 1500-2000 word guide covering all 8 categories, top picks per category with prices,
+  how to buy in BD, bKash payment, conclusion with CTA. Include internal links to
+  category pages and brand pages.
+
+/blog/chatgpt-vs-claude-bangladesh:
+  Title: "ChatGPT vs Claude in Bangladesh 2026: Which is Better?"
+  Content: 1000-1500 word comparison. Features, prices, use cases, verdict.
+  Link to /chatgpt-plans-bangladesh and /claude-pro-bangladesh.
+
+/blog/how-to-get-chatgpt-bangladesh:
+  Title: "How to Get ChatGPT Plus in Bangladesh (No Visa Card Needed)"
+  Content: 800-1000 word step-by-step guide. bKash/Nagad payment.
+  Link to /chatgpt-plans-bangladesh.
+
+/blog/ai-tools-for-freelancers-bangladesh:
+  Title: "5 AI Tools Every Bangladeshi Freelancer Needs in 2026"
+  Content: 1000 word article. 5 tools with prices. Upwork/Fiverr angles.
+  Link to /best-ai-for-freelancers.
+
+/blog/midjourney-guide-bangladesh:
+  Title: "Midjourney in Bangladesh 2026: Full Guide + Pricing"
+  Content: 800-1000 word guide. Plans, pricing, how to order.
+  Link to /midjourney-bangladesh.
+
+Each blog post page has: breadcrumb, H1, author ("AI Premium Shop"), date, content, related posts, WhatsApp CTA.
+
+6. FIX BUNDLE PAGE DETAILS:
+On /bundles, expand each bundle card to show:
+- "What's included:" list of individual products with their standalone prices
+- "Total value: BDT X" (sum of individual prices)
+- "You pay: BDT Y" (bundle price)
+- "You save: BDT Z (X%)" in green
+
+Example for Freelancer Bundle (BDT 3,999):
+  What's included:
+  • ChatGPT Plus Personal (BDT 2,990)
+  • Midjourney Standard Shared (BDT 1,199)
+  • Perplexity Pro Shared (BDT 350)
+  Total value: BDT 4,539
+  You pay: BDT 3,999
+  You save: BDT 540 (12%)
+
+7. FIX BROKEN PAGES:
+Check that these pages load without timeout:
+/refund-policy, /terms, /chatgpt-vs-claude, /chatgpt-vs-gemini,
+/ai-under-500, /best-ai-for-freelancers, /best-ai-for-business
+
+If any page is broken due to rendering issues, fix the rendering.
+If SSR is failing, check for client-only code that breaks on server.
+
+8. ADD KEYWORD TO HOMEPAGE H1:
+The current H1 "What Takes You 3 Hours — AI Does in 15 Minutes" is good emotionally
+but lacks SEO keywords. Add a hidden but semantic H1 for SEO.
+Option: Keep the visual headline as-is, but make it an H2.
+Add an H1 above it (or as the page metadata H1) that says:
+"Premium AI Tools Bangladesh — 57 Subscriptions from BDT 350"
+Style: This can be the small text ABOVE the big headline, in gray, acting as a label.
+Or use: sr-only class (screen reader only) for the SEO H1 if visual change is unwanted.
+
+9. UPDATE FOOTER:
+- Add 3 new guide pages to "Best AI For" column: Designers, Marketers, E-commerce
+- Add "How to Order" link under Support column
+- Add "Privacy Policy" under Support column
+
+10. MOBILE STICKY BOTTOM BAR ON ALL PAGES:
+Ensure the sticky bottom bar ("From BDT 350/mo" + "Order Now" button) appears on ALL pages,
+not just homepage and /products. It should be a global component.
+
+11. UPDATE SITEMAP:
+Add all new page URLs to sitemap.xml:
+/support, /how-to-order, /privacy-policy,
+/midjourney-vs-ideogram, /copilot-vs-cursor, /best-ai-subscription-2026,
+/best-ai-for-designers, /best-ai-for-marketers, /best-ai-for-ecommerce,
+/blog/best-ai-tools-bangladesh-2026, /blog/chatgpt-vs-claude-bangladesh,
+/blog/how-to-get-chatgpt-bangladesh, /blog/ai-tools-for-freelancers-bangladesh,
+/blog/midjourney-guide-bangladesh
+
+=== VERIFICATION ===
+- /support page loads with coaching packages and WhatsApp links
+- /how-to-order loads with 4-step guide
+- /midjourney-vs-ideogram loads with comparison table
+- /copilot-vs-cursor loads
+- /best-ai-for-designers loads with tool recommendations
+- /blog/best-ai-tools-bangladesh-2026 loads with full article
+- All 5 blog cards on /blog are clickable and lead to real articles
+- Bundle cards show individual products and savings
+- All previously broken pages now load (no timeout)
+- Footer shows 9 guide pages, How to Order, Privacy Policy
+- Sticky bottom bar visible on mobile on /about, /faq, /contact
+- /sitemap.xml includes all new URLs

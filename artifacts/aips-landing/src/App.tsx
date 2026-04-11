@@ -24,6 +24,8 @@ import BlogPage from "@/pages/BlogPage";
 import BlogPostPage from "@/pages/BlogPostPage";
 import BrandPage from "@/pages/BrandPage";
 import SupportPage from "@/pages/SupportPage";
+import HowToOrderPage from "@/pages/HowToOrderPage";
+import BestAISubscriptionPage from "@/pages/BestAISubscriptionPage";
 
 const queryClient = new QueryClient();
 
@@ -96,11 +98,16 @@ function Router() {
       <Route path="/best-ai-for-business">{() => <GuidePage guideKey="business" />}</Route>
       <Route path="/best-ai-for-developers">{() => <GuidePage guideKey="developers" />}</Route>
       <Route path="/best-ai-for-job-seekers">{() => <GuidePage guideKey="job-seekers" />}</Route>
+      <Route path="/best-ai-for-designers">{() => <GuidePage guideKey="designers" />}</Route>
+      <Route path="/best-ai-for-marketers">{() => <GuidePage guideKey="marketers" />}</Route>
+      <Route path="/best-ai-for-ecommerce">{() => <GuidePage guideKey="ecommerce" />}</Route>
+      <Route path="/best-ai-subscription-2026" component={BestAISubscriptionPage} />
 
       {/* Comparison pages */}
       <Route path="/chatgpt-vs-claude">{() => <ComparisonPage compKey="chatgpt-vs-claude" />}</Route>
       <Route path="/chatgpt-vs-gemini">{() => <ComparisonPage compKey="chatgpt-vs-gemini" />}</Route>
       <Route path="/copilot-vs-cursor">{() => <ComparisonPage compKey="copilot-vs-cursor" />}</Route>
+      <Route path="/midjourney-vs-ideogram">{() => <ComparisonPage compKey="midjourney-vs-ideogram" />}</Route>
 
       {/* Budget pages */}
       <Route path="/ai-under-500">{() => <BudgetPage budgetKey="ai-under-500" />}</Route>
@@ -113,6 +120,7 @@ function Router() {
       <Route path="/faq" component={FAQPage} />
       <Route path="/pricing" component={PricingPage} />
       <Route path="/support" component={SupportPage} />
+      <Route path="/how-to-order" component={HowToOrderPage} />
       <Route path="/refund-policy" component={RefundPolicyPage} />
       <Route path="/terms" component={TermsPage} />
       <Route path="/privacy-policy" component={PrivacyPolicyPage} />

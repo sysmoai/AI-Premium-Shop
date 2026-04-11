@@ -143,14 +143,36 @@ export default function SupportPage() {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2 flex-wrap">
                 <h2 className="text-xl font-bold text-white">1:1 AI Coaching</h2>
-                <span className="text-sm font-bold px-3 py-1 rounded-full"
-                  style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}>
-                  ৳799 / hour
-                </span>
               </div>
-              <p className="text-sm mb-4 leading-relaxed" style={{ color: "#c9ceda" }}>
-                Get a personalised 1-hour session with an AIPS AI expert. We show you exactly how to use ChatGPT, Midjourney, Claude, or any AI tool for your specific work. Freelancers, students, business owners, and developers all benefit from a single focused session.
+              <p className="text-sm mb-5 leading-relaxed" style={{ color: "#c9ceda" }}>
+                Get a personalised session with an AIPS AI expert. We show you exactly how to use ChatGPT, Midjourney, Claude, or any AI tool for your specific work. Pick the package that fits your needs.
               </p>
+
+              {/* Coaching Packages Table */}
+              <div className="rounded-xl border border-white/10 overflow-hidden mb-5">
+                <div className="grid grid-cols-[1fr_auto_auto] text-xs font-semibold uppercase tracking-wider border-b border-white/10 px-4 py-2.5"
+                  style={{ color: "#c9ceda" }}>
+                  <div>Package</div>
+                  <div className="text-right pr-4">Price</div>
+                  <div className="w-20 text-center">Duration</div>
+                </div>
+                {[
+                  { name: "Quick Start", price: "৳799", duration: "1 hour", desc: "One focused session on any tool" },
+                  { name: "Deep Dive", price: "৳1,499", duration: "2 hours", desc: "Full workflow setup + hands-on practice" },
+                  { name: "Team Training", price: "৳2,999", duration: "3 hours", desc: "For teams of 2–6 — group session" },
+                  { name: "AI Workflow Setup", price: "৳4,999", duration: "Custom", desc: "Full AI stack setup for your business" },
+                ].map((pkg, i) => (
+                  <div key={i} className={`grid grid-cols-[1fr_auto_auto] items-center px-4 py-3 ${i > 0 ? "border-t border-white/5" : ""}`}>
+                    <div>
+                      <div className="text-sm font-semibold text-white">{pkg.name}</div>
+                      <div className="text-xs" style={{ color: "#c9ceda" }}>{pkg.desc}</div>
+                    </div>
+                    <div className="text-sm font-bold text-right pr-4" style={{ color: "#f4b942" }}>{pkg.price}</div>
+                    <div className="w-20 text-center text-xs" style={{ color: "#c9ceda" }}>{pkg.duration}</div>
+                  </div>
+                ))}
+              </div>
+
               <div className="flex flex-wrap gap-2 mb-5">
                 {["ChatGPT for writing", "Midjourney for design", "Cursor for coding", "AI workflow automation", "Prompt engineering"].map((t) => (
                   <span key={t} className="text-xs px-2 py-1 rounded-lg"
@@ -160,7 +182,7 @@ export default function SupportPage() {
                 ))}
               </div>
               <a
-                href={`${WHATSAPP}?text=Hi%2C%20I%27d%20like%20to%20book%20a%201%3A1%20AI%20Coaching%20session%20(BDT%20799%2Fhr)`}
+                href={`${WHATSAPP}?text=Hi%2C%20I%27d%20like%20to%20book%20a%201%3A1%20AI%20Coaching%20session`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"

@@ -29,6 +29,9 @@ const FOOTER_COLS = [
       { label: "Business Owners", href: "/best-ai-for-business" },
       { label: "Job Seekers", href: "/best-ai-for-job-seekers" },
       { label: "Developers", href: "/best-ai-for-developers" },
+      { label: "Designers", href: "/best-ai-for-designers" },
+      { label: "Marketers", href: "/best-ai-for-marketers" },
+      { label: "E-commerce Sellers", href: "/best-ai-for-ecommerce" },
     ],
   },
   {
@@ -44,7 +47,7 @@ const FOOTER_COLS = [
     title: "Support",
     links: [
       { label: "FAQ", href: "/faq" },
-      { label: "How to Order", href: "/#how-it-works" },
+      { label: "How to Order", href: "/how-to-order" },
       { label: "Refund Policy", href: "/refund-policy" },
       { label: "Terms", href: "/terms" },
       { label: "Privacy Policy", href: "/privacy-policy" },

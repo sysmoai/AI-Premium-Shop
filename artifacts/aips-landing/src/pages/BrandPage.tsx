@@ -910,6 +910,434 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
           </div>
         )}
 
+        {/* ===== CLAUDE SECTIONS ===== */}
+
+        {/* Claude 1A: Writing & Code Highlight */}
+        {brandSlug === "claude-pro-bangladesh" && (
+          <div className="mb-14">
+            <div className="text-center mb-8">
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest mb-3" style={{ backgroundColor: "#d9770620", color: "#d97706" }}>The Smartest AI for Writing & Code</span>
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">Claude Opus 4.6 — The World's Best AI for Writing &amp; Code</h2>
+              <p className="text-sm max-w-2xl mx-auto" style={{ color: "#c9ceda" }}>Ranked #1 on Chatbot Arena. SWE-bench leader. 1M token context.</p>
+            </div>
+
+            {/* Document + Code illustration */}
+            <div className="flex justify-center mb-8">
+              <svg viewBox="0 0 320 120" width="320" height="120" aria-hidden="true">
+                {/* Document */}
+                <rect x="20" y="15" width="80" height="95" rx="6" fill="#1e293b" stroke="#d97706" strokeWidth="1.5"/>
+                <rect x="30" y="28" width="60" height="4" rx="2" fill="#d97706" opacity="0.7"/>
+                <rect x="30" y="38" width="50" height="3" rx="1.5" fill="#d97706" opacity="0.3"/>
+                <rect x="30" y="47" width="55" height="3" rx="1.5" fill="#d97706" opacity="0.3"/>
+                <rect x="30" y="56" width="45" height="3" rx="1.5" fill="#d97706" opacity="0.3"/>
+                <rect x="30" y="65" width="52" height="3" rx="1.5" fill="#d97706" opacity="0.3"/>
+                <rect x="30" y="74" width="40" height="3" rx="1.5" fill="#d97706" opacity="0.3"/>
+                {/* Sparkles */}
+                <circle cx="115" cy="25" r="3" fill="#d97706" opacity="0.8"><animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite"/></circle>
+                <circle cx="125" cy="40" r="2" fill="#f4b942" opacity="0.6"><animate attributeName="opacity" values="0.6;0.1;0.6" dur="2.5s" repeatCount="indefinite"/></circle>
+                <circle cx="108" cy="55" r="2.5" fill="#d97706" opacity="0.5"><animate attributeName="opacity" values="0.5;0.1;0.5" dur="1.8s" repeatCount="indefinite"/></circle>
+                {/* Code terminal */}
+                <rect x="155" y="15" width="145" height="95" rx="6" fill="#0f172a" stroke="#10b981" strokeWidth="1.5"/>
+                <rect x="155" y="15" width="145" height="18" rx="6" fill="#1e293b"/>
+                <circle cx="170" cy="24" r="3" fill="#ef4444" opacity="0.8"/>
+                <circle cx="181" cy="24" r="3" fill="#f59e0b" opacity="0.8"/>
+                <circle cx="192" cy="24" r="3" fill="#10b981" opacity="0.8"/>
+                <rect x="165" y="42" width="55" height="4" rx="2" fill="#10b981" opacity="0.6"/>
+                <rect x="165" y="52" width="80" height="4" rx="2" fill="#94a3b8" opacity="0.4"/>
+                <rect x="165" y="62" width="65" height="4" rx="2" fill="#10b981" opacity="0.6"/>
+                <rect x="165" y="72" width="45" height="4" rx="2" fill="#94a3b8" opacity="0.4"/>
+                <rect x="165" y="82" width="70" height="4" rx="2" fill="#10b981" opacity="0.6"/>
+                {/* Bug squash check */}
+                <circle cx="275" cy="60" r="16" fill="#10b981" opacity="0.15"/>
+                <path d="M267 60 L272 65 L283 53" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              </svg>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-4">
+              {[
+                {
+                  icon: "✍️",
+                  title: "Writing",
+                  desc: "#1 on Chatbot Arena for writing quality. Legal documents, research papers, creative content — Claude writes better than any AI.",
+                },
+                {
+                  icon: "💻",
+                  title: "Code",
+                  desc: "Claude Code: autonomous coding agent. Writes, reviews, tests, and fixes entire codebases. Used by professional engineers worldwide.",
+                },
+                {
+                  icon: "🧠",
+                  title: "Thinking",
+                  desc: "1M token context + extended thinking. Feed it your entire thesis, legal case, or codebase — it understands ALL of it.",
+                },
+              ].map((card) => (
+                <div key={card.title} className="rounded-2xl p-5 border-t-[3px]" style={{ backgroundColor: "#0a0e27", borderTopColor: "#d97706", border: "1px solid rgba(217,119,6,0.2)", borderTopWidth: 3 }}>
+                  <div className="text-2xl mb-3">{card.icon}</div>
+                  <h3 className="font-bold text-white mb-2">{card.title}</h3>
+                  <p className="text-sm" style={{ color: "#c9ceda" }}>{card.desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 p-4 rounded-xl text-sm text-center" style={{ backgroundColor: "#d9770610", color: "#d97706" }}>
+              Claude Opus 4.6 scored highest on SWE-bench, GPQA, and Chatbot Arena — the three most trusted AI benchmarks. It is objectively the smartest AI for writing and code analysis.
+            </div>
+          </div>
+        )}
+
+        {/* Claude 1B: Who Uses Claude */}
+        {brandSlug === "claude-pro-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">Who Uses Claude in Bangladesh?</h2>
+            <div className="rounded-2xl overflow-hidden border border-white/10">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr style={{ backgroundColor: "#151b3d" }}>
+                    <th className="text-left px-4 py-3 font-semibold text-white">Segment</th>
+                    <th className="text-left px-4 py-3 font-semibold text-white hidden sm:table-cell">Why Claude</th>
+                    <th className="text-left px-4 py-3 font-semibold text-white hidden md:table-cell">Plan</th>
+                    <th className="text-right px-4 py-3 font-semibold" style={{ color: "#d97706" }}>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { seg: "✍️ Writers & Researchers", why: "Best writing quality of any AI", plan: "Premium Shared", price: "৳1,495", link: "/best-ai-for-students" },
+                    { seg: "⚖️ Lawyers & Legal", why: "Legal document analysis, case research", plan: "Personal", price: "৳2,990", link: "/best-ai-for-business" },
+                    { seg: "🖥️ Developers", why: "Claude Code = autonomous coding agent", plan: "Premium Shared", price: "৳1,495", link: "/best-ai-for-developers" },
+                    { seg: "🎬 Content Creators", why: "Long-form blogs, scripts, newsletters", plan: "Premium Shared", price: "৳1,495", link: "/best-ai-for-creators" },
+                    { seg: "🏢 Agencies", why: "Team plan with admin controls", plan: "Team", price: "৳3,990", link: "/best-ai-for-business" },
+                    { seg: "⚡ Power Users", why: "5x–20x limits, 1M context window", plan: "Max 5x/20x", price: "৳14,950–29,900", link: "/" },
+                  ].map((row, i) => (
+                    <tr key={i} style={{ backgroundColor: i % 2 === 0 ? "#0a0e2788" : "#151b3d88" }}>
+                      <td className="px-4 py-3 text-white font-medium">{row.seg}</td>
+                      <td className="px-4 py-3 hidden sm:table-cell" style={{ color: "#c9ceda" }}>{row.why}</td>
+                      <td className="px-4 py-3 hidden md:table-cell" style={{ color: "#c9ceda" }}>{row.plan}</td>
+                      <td className="px-4 py-3 text-right font-semibold" style={{ color: "#d97706" }}>{row.price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* Claude 1C: FOMO for Writers */}
+        {brandSlug === "claude-pro-bangladesh" && (
+          <div className="mb-14 p-6 rounded-2xl border" style={{ backgroundColor: "rgba(217,119,6,0.06)", borderColor: "rgba(217,119,6,0.3)" }}>
+            <div className="text-base font-bold mb-3" style={{ color: "#d97706" }}>⚠️ If You Write for a Living and You're NOT Using Claude…</div>
+            <p className="text-sm mb-4" style={{ color: "#c9ceda" }}>
+              You're competing with one hand tied behind your back. Every writer using Claude Opus 4.6 produces <strong className="text-white">3× more content at higher quality</strong>. Clients are comparing proposals written by AI-assisted writers against your manual work — and choosing the AI-assisted ones.
+            </p>
+            <div className="grid sm:grid-cols-3 gap-3 text-center text-sm">
+              {[
+                { label: "More content", stat: "3×", sub: "produced per day" },
+                { label: "Faster delivery", stat: "60%", sub: "deadline improvement" },
+                { label: "Higher earnings", stat: "44%", sub: "avg income increase" },
+              ].map((s) => (
+                <div key={s.label} className="p-3 rounded-xl" style={{ backgroundColor: "#d9770615" }}>
+                  <div className="text-2xl font-bold" style={{ color: "#d97706" }}>{s.stat}</div>
+                  <div className="font-semibold text-white">{s.label}</div>
+                  <div className="text-xs mt-0.5" style={{ color: "#9ca3af" }}>{s.sub}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Claude 1D: Agentic Highlight (Max) */}
+        {brandSlug === "claude-pro-bangladesh" && (
+          <div className="mb-14 rounded-2xl border overflow-hidden" style={{ borderColor: "rgba(217,119,6,0.3)" }}>
+            <div className="px-6 py-4" style={{ background: "linear-gradient(135deg, #292108 0%, #1a1508 100%)" }}>
+              <div className="text-sm font-semibold mb-1" style={{ color: "#d97706" }}>⚡ Claude Max — AI That Thinks for Hours</div>
+              <h3 className="text-lg font-bold text-white">৳14,950–৳29,900/mo = AI Partner for Complex Professional Work</h3>
+              <p className="text-sm mt-1" style={{ color: "#c9ceda" }}>This is not a chatbot. This is an AI partner for complex professional work.</p>
+            </div>
+            <div className="p-6" style={{ backgroundColor: "#0a0e27" }}>
+              <div className="grid sm:grid-cols-3 gap-4 mb-4">
+                {[
+                  { icon: "📂", title: "Entire codebase", desc: "Feed Claude your whole project — it understands architecture, dependencies, and logic end-to-end." },
+                  { icon: "📚", title: "Full legal case", desc: "Upload hundreds of pages of case files. Claude reads, cross-references, and finds the key arguments." },
+                  { icon: "🎓", title: "Complete thesis", desc: "1M token window = your entire dissertation. Claude restructures, cites, and polishes everything." },
+                ].map((c) => (
+                  <div key={c.title} className="p-4 rounded-xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
+                    <div className="text-xl mb-2">{c.icon}</div>
+                    <div className="font-semibold text-white text-sm mb-1">{c.title}</div>
+                    <p className="text-xs" style={{ color: "#c9ceda" }}>{c.desc}</p>
+                  </div>
+                ))}
+              </div>
+              <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want Claude Max 5x (৳14,950/mo)")}`} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
+                style={{ backgroundColor: "#d97706", color: "#fff" }}>
+                Order Claude Max →
+              </a>
+            </div>
+          </div>
+        )}
+
+        {/* ===== PERPLEXITY SECTIONS ===== */}
+
+        {/* Perplexity 2A: Research Highlight */}
+        {brandSlug === "perplexity-pro-bangladesh" && (
+          <div className="mb-14">
+            <div className="text-center mb-8">
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest mb-3" style={{ backgroundColor: "#20b2aa20", color: "#20b2aa" }}>The Future of Research</span>
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">Perplexity Pro — AI Research with Real Sources</h2>
+              <p className="text-sm max-w-2xl mx-auto" style={{ color: "#c9ceda" }}>Every answer comes with source links. No hallucinations. Real research in 30 seconds.</p>
+            </div>
+
+            {/* Magnifying glass illustration */}
+            <div className="flex justify-center mb-8">
+              <svg viewBox="0 0 260 110" width="260" height="110" aria-hidden="true">
+                {/* Documents behind glass */}
+                <rect x="10" y="20" width="65" height="80" rx="5" fill="#1e293b" stroke="#20b2aa" strokeWidth="1" opacity="0.5"/>
+                <rect x="18" y="32" width="49" height="4" rx="2" fill="#20b2aa" opacity="0.4"/>
+                <rect x="18" y="42" width="40" height="3" rx="1.5" fill="#94a3b8" opacity="0.3"/>
+                <rect x="18" y="51" width="45" height="3" rx="1.5" fill="#94a3b8" opacity="0.3"/>
+                <rect x="18" y="60" width="35" height="3" rx="1.5" fill="#20b2aa" opacity="0.3"/>
+                <rect x="18" y="69" width="42" height="3" rx="1.5" fill="#94a3b8" opacity="0.3"/>
+                {/* Second doc */}
+                <rect x="55" y="30" width="65" height="70" rx="5" fill="#1e293b" stroke="#20b2aa" strokeWidth="1" opacity="0.7"/>
+                <rect x="63" y="42" width="49" height="4" rx="2" fill="#20b2aa" opacity="0.5"/>
+                <rect x="63" y="52" width="40" height="3" rx="1.5" fill="#94a3b8" opacity="0.4"/>
+                <rect x="63" y="61" width="45" height="3" rx="1.5" fill="#94a3b8" opacity="0.4"/>
+                <rect x="63" y="70" width="35" height="3" rx="1.5" fill="#20b2aa" opacity="0.4"/>
+                {/* Magnifying glass */}
+                <circle cx="155" cy="52" r="36" fill="#0a1628" stroke="#20b2aa" strokeWidth="2.5"/>
+                <circle cx="155" cy="52" r="30" fill="#0d1f40" stroke="#20b2aa" strokeWidth="1" opacity="0.5"/>
+                <line x1="182" y1="79" x2="205" y2="102" stroke="#20b2aa" strokeWidth="5" strokeLinecap="round"/>
+                {/* Answer inside glass */}
+                <rect x="133" y="38" width="44" height="5" rx="2.5" fill="#20b2aa" opacity="0.8"/>
+                <rect x="136" y="49" width="38" height="3" rx="1.5" fill="#94a3b8" opacity="0.5"/>
+                <rect x="136" y="57" width="34" height="3" rx="1.5" fill="#94a3b8" opacity="0.5"/>
+                {/* Citation link icons */}
+                <circle cx="230" cy="25" r="8" fill="#20b2aa" opacity="0.2"/><text x="226" y="29" fontSize="8" fill="#20b2aa">🔗</text>
+                <circle cx="248" cy="50" r="8" fill="#20b2aa" opacity="0.15"/><text x="244" y="54" fontSize="8" fill="#20b2aa">🔗</text>
+                <circle cx="232" cy="75" r="8" fill="#20b2aa" opacity="0.1"/><text x="228" y="79" fontSize="8" fill="#20b2aa">🔗</text>
+              </svg>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-4">
+              {[
+                { icon: "🔗", title: "Citations", desc: "Every answer comes with source links you can verify. No hallucinations. No made-up facts. Real research you can cite." },
+                { icon: "📊", title: "Deep Research", desc: "Ask complex questions, get multi-page reports with data, charts, and cited sources from 20–50 web sources — in minutes." },
+                { icon: "⚡", title: "Real-Time", desc: "Always up to date. Searches the live web. Perfect for market research, competitor analysis, and trending topics." },
+              ].map((card) => (
+                <div key={card.title} className="rounded-2xl p-5 border-t-[3px]" style={{ backgroundColor: "#0a0e27", borderTopColor: "#20b2aa", border: "1px solid rgba(32,178,170,0.2)", borderTopWidth: 3 }}>
+                  <div className="text-2xl mb-3">{card.icon}</div>
+                  <h3 className="font-bold text-white mb-2">{card.title}</h3>
+                  <p className="text-sm" style={{ color: "#c9ceda" }}>{card.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Perplexity 2B: Segment Table */}
+        {brandSlug === "perplexity-pro-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">Who Uses Perplexity Pro in Bangladesh?</h2>
+            <div className="rounded-2xl overflow-hidden border border-white/10">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr style={{ backgroundColor: "#151b3d" }}>
+                    <th className="text-left px-4 py-3 font-semibold text-white">Segment</th>
+                    <th className="text-left px-4 py-3 font-semibold text-white hidden sm:table-cell">Use Case</th>
+                    <th className="text-right px-4 py-3 font-semibold" style={{ color: "#20b2aa" }}>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { seg: "🎓 Students", use: "Thesis citations, paper research with sources", price: "৳350", link: "/best-ai-for-students" },
+                    { seg: "💻 Freelancers", use: "Client industry research before writing proposals", price: "৳350", link: "/best-ai-for-freelancers" },
+                    { seg: "📢 Marketers", use: "Competitor analysis, trend reports, content ideas", price: "৳350", link: "/best-ai-for-business" },
+                    { seg: "🔬 Researchers", use: "Academic paper discovery, data synthesis", price: "৳2,990", link: "/" },
+                    { seg: "🏢 Business", use: "Market research, investment analysis, due diligence", price: "৳29,900", link: "/best-ai-for-business" },
+                  ].map((row, i) => (
+                    <tr key={i} style={{ backgroundColor: i % 2 === 0 ? "#0a0e2788" : "#151b3d88" }}>
+                      <td className="px-4 py-3 text-white font-medium">{row.seg}</td>
+                      <td className="px-4 py-3 hidden sm:table-cell" style={{ color: "#c9ceda" }}>{row.use}</td>
+                      <td className="px-4 py-3 text-right font-semibold" style={{ color: "#20b2aa" }}>{row.price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* Perplexity 2C: vs Google Search */}
+        {brandSlug === "perplexity-pro-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-xl font-bold text-white mb-5">Perplexity vs Google Search</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="rounded-2xl p-5 border" style={{ backgroundColor: "rgba(239,68,68,0.05)", borderColor: "rgba(239,68,68,0.2)" }}>
+                <div className="font-bold mb-3 text-sm" style={{ color: "#ef4444" }}>😩 Old Way — Google Search</div>
+                <ul className="space-y-2 text-sm" style={{ color: "#c9ceda" }}>
+                  {[
+                    "Search query → 10 blue links",
+                    "Open 5 tabs → read for 30 min",
+                    "Piece together scattered facts",
+                    "Manually write citations",
+                    "Maybe find the answer…",
+                  ].map((s, i) => <li key={i} className="flex gap-2"><span style={{ color: "#ef4444" }}>✗</span>{s}</li>)}
+                </ul>
+                <div className="mt-4 text-xs font-semibold" style={{ color: "#ef4444" }}>⏱ 30–60 min per research question</div>
+              </div>
+              <div className="rounded-2xl p-5 border" style={{ backgroundColor: "rgba(32,178,170,0.05)", borderColor: "rgba(32,178,170,0.2)" }}>
+                <div className="font-bold mb-3 text-sm" style={{ color: "#20b2aa" }}>🚀 New Way — Perplexity Pro</div>
+                <ul className="space-y-2 text-sm" style={{ color: "#c9ceda" }}>
+                  {[
+                    "Ask your question naturally",
+                    "Direct answer with cited sources",
+                    "Follow-up questions in the same thread",
+                    "Citations formatted automatically",
+                    "Verified facts in 30 seconds",
+                  ].map((s, i) => <li key={i} className="flex gap-2"><span style={{ color: "#20b2aa" }}>✓</span>{s}</li>)}
+                </ul>
+                <div className="mt-4 text-xs font-semibold" style={{ color: "#20b2aa" }}>⚡ 30 seconds per research question</div>
+              </div>
+            </div>
+            <div className="mt-4 p-4 rounded-xl text-center text-sm" style={{ backgroundColor: "#20b2aa10", color: "#20b2aa" }}>
+              Perplexity saves students <strong>2–3 hours PER research paper</strong>. At ৳350/mo, that's less than <strong>৳12 per hour saved</strong>.
+            </div>
+          </div>
+        )}
+
+        {/* ===== GOOGLE AI PRO SECTIONS ===== */}
+
+        {/* Google AI Pro 3A: Best Value Hero */}
+        {brandSlug === "gemini-advanced-bangladesh" && (
+          <div className="mb-14">
+            <div className="text-center mb-8">
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest mb-3" style={{ backgroundColor: "#4285f420", color: "#4285f4" }}>Best AI Deal in Bangladesh</span>
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">Google AI Pro — The Best Value AI in Bangladesh</h2>
+              <p className="text-sm max-w-xl mx-auto" style={{ color: "#c9ceda" }}>Everything Google has built into one subscription. On your existing Gmail account.</p>
+            </div>
+
+            {/* Price tag SVG */}
+            <div className="flex justify-center mb-8">
+              <svg viewBox="0 0 300 130" width="300" height="130" aria-hidden="true">
+                {/* Strikethrough price */}
+                <text x="30" y="55" fontSize="28" fill="#ef4444" opacity="0.5" fontWeight="bold" fontFamily="sans-serif">৳2,990</text>
+                <line x1="25" y1="45" x2="185" y2="45" stroke="#ef4444" strokeWidth="3" opacity="0.6"/>
+                {/* Main price */}
+                <text x="30" y="100" fontSize="52" fill="#4285f4" fontWeight="bold" fontFamily="sans-serif">৳500</text>
+                {/* Badge */}
+                <rect x="220" y="20" width="68" height="35" rx="10" fill="#4285f4"/>
+                <text x="228" y="35" fontSize="11" fill="white" fontWeight="bold" fontFamily="sans-serif">83% OFF</text>
+                <circle cx="254" cy="39" r="4" fill="white" opacity="0.3"><animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite" additive="sum"/><animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite"/></circle>
+                {/* /month */}
+                <text x="32" y="118" fontSize="13" fill="#94a3b8" fontFamily="sans-serif">/month · Personal Gmail account</text>
+              </svg>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+              {[
+                { icon: "🤖", label: "Gemini 3.1 Pro", desc: "Google's most capable AI model" },
+                { icon: "🔍", label: "Deep Research", desc: "Multi-source research reports in minutes" },
+                { icon: "📧", label: "AI in Gmail", desc: "Write and reply to emails automatically" },
+                { icon: "📝", label: "AI in Google Docs", desc: "Write, summarize, translate documents" },
+                { icon: "📊", label: "AI in Sheets", desc: "Formulas, analysis, charts automatically" },
+                { icon: "📐", label: "AI in Slides", desc: "Create full presentations from a prompt" },
+                { icon: "💾", label: "2TB Google Drive", desc: "Never worry about storage again" },
+                { icon: "🎨", label: "AI Image Gen", desc: "Generate images with Imagen 3" },
+                { icon: "▶️", label: "YouTube Premium", desc: "Ad-free YouTube included" },
+              ].map((item) => (
+                <div key={item.label} className="flex items-start gap-3 p-3 rounded-xl border border-white/10" style={{ backgroundColor: "#0a0e27" }}>
+                  <span className="text-xl flex-shrink-0">{item.icon}</span>
+                  <div>
+                    <div className="font-semibold text-white text-sm">{item.label}</div>
+                    <div className="text-xs mt-0.5" style={{ color: "#9ca3af" }}>{item.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="p-4 rounded-2xl text-center text-sm font-medium" style={{ backgroundColor: "#4285f415", color: "#4285f4" }}>
+              All of this for <strong>৳500/mo</strong> — on YOUR personal Gmail account. This is the biggest AI deal in Bangladesh.
+            </div>
+          </div>
+        )}
+
+        {/* Google AI Pro 3B: Segment Table */}
+        {brandSlug === "gemini-advanced-bangladesh" && (
+          <div className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">Who Benefits Most from Google AI Pro?</h2>
+            <div className="rounded-2xl overflow-hidden border border-white/10">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr style={{ backgroundColor: "#151b3d" }}>
+                    <th className="text-left px-4 py-3 font-semibold text-white">Segment</th>
+                    <th className="text-left px-4 py-3 font-semibold text-white hidden sm:table-cell">Key Benefits</th>
+                    <th className="text-right px-4 py-3 font-semibold" style={{ color: "#4285f4" }}>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { seg: "🎓 Students", benefits: "Gmail AI for applications + Docs AI for assignments + 2TB storage", price: "৳500" },
+                    { seg: "🔍 Job Seekers", benefits: "Gmail AI for cold emails + Docs AI for CV + Slides for presentations", price: "৳500" },
+                    { seg: "💼 Business", benefits: "Gmail + Docs + Sheets + Slides — all AI-powered, one account", price: "৳500" },
+                    { seg: "🔬 Researchers", benefits: "Deep Research + Google Scholar integration + 2TB storage", price: "৳500" },
+                  ].map((row, i) => (
+                    <tr key={i} style={{ backgroundColor: i % 2 === 0 ? "#0a0e2788" : "#151b3d88" }}>
+                      <td className="px-4 py-3 text-white font-medium">{row.seg}</td>
+                      <td className="px-4 py-3 hidden sm:table-cell" style={{ color: "#c9ceda" }}>{row.benefits}</td>
+                      <td className="px-4 py-3 text-right font-bold" style={{ color: "#4285f4" }}>{row.price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* Google AI Pro 3C: Google Ecosystem SVG */}
+        {brandSlug === "gemini-advanced-bangladesh" && (
+          <div className="mb-14 rounded-2xl p-6 border border-white/10" style={{ backgroundColor: "#151b3d" }}>
+            <h2 className="text-xl font-bold text-white mb-6 text-center">AI Everywhere in Google</h2>
+            <div className="flex justify-center mb-4">
+              <svg viewBox="0 0 400 140" width="100%" style={{ display: "block", height: "auto", maxHeight: 160 }} aria-hidden="true">
+                {/* Center hub */}
+                <circle cx="200" cy="70" r="30" fill="#4285f4" opacity="0.15" stroke="#4285f4" strokeWidth="1.5"/>
+                <text x="192" y="66" fontSize="10" fill="#4285f4" fontWeight="bold">Google</text>
+                <text x="196" y="78" fontSize="8" fill="#4285f4">AI Pro</text>
+                {/* Sparkle center */}
+                <circle cx="200" cy="70" r="5" fill="#4285f4"><animate attributeName="r" values="5;8;5" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0.3;0.8" dur="3s" repeatCount="indefinite"/></circle>
+
+                {/* Gmail — left */}
+                <circle cx="55" cy="70" r="24" fill="#1e293b" stroke="#ea4335" strokeWidth="1.5"/>
+                <text x="43" y="67" fontSize="9" fill="#ea4335" fontWeight="bold">Gmail</text>
+                <text x="46" y="78" fontSize="7" fill="#94a3b8">AI write</text>
+                <line x1="79" y1="70" x2="170" y2="70" stroke="#ea4335" strokeWidth="1" strokeDasharray="4 3"><animate attributeName="stroke-dashoffset" values="0;-14" dur="1.5s" repeatCount="indefinite"/></line>
+
+                {/* Docs — top */}
+                <circle cx="200" cy="20" r="24" fill="#1e293b" stroke="#4285f4" strokeWidth="1.5"/>
+                <text x="191" y="17" fontSize="9" fill="#4285f4" fontWeight="bold">Docs</text>
+                <text x="187" y="28" fontSize="7" fill="#94a3b8">AI write</text>
+                <line x1="200" y1="44" x2="200" y2="40" stroke="#4285f4" strokeWidth="1" strokeDasharray="4 3"><animate attributeName="stroke-dashoffset" values="0;-14" dur="1.5s" repeatCount="indefinite"/></line>
+
+                {/* Sheets — top right */}
+                <circle cx="335" cy="25" r="24" fill="#1e293b" stroke="#0f9d58" strokeWidth="1.5"/>
+                <text x="322" y="22" fontSize="9" fill="#0f9d58" fontWeight="bold">Sheets</text>
+                <text x="323" y="33" fontSize="7" fill="#94a3b8">AI charts</text>
+                <line x1="313" y1="40" x2="222" y2="52" stroke="#0f9d58" strokeWidth="1" strokeDasharray="4 3"><animate attributeName="stroke-dashoffset" values="0;-14" dur="1.5s" repeatCount="indefinite"/></line>
+
+                {/* Slides — bottom right */}
+                <circle cx="335" cy="115" r="24" fill="#1e293b" stroke="#f4b300" strokeWidth="1.5"/>
+                <text x="325" y="112" fontSize="9" fill="#f4b300" fontWeight="bold">Slides</text>
+                <text x="319" y="123" fontSize="7" fill="#94a3b8">AI decks</text>
+                <line x1="313" y1="100" x2="222" y2="88" stroke="#f4b300" strokeWidth="1" strokeDasharray="4 3"><animate attributeName="stroke-dashoffset" values="0;-14" dur="1.5s" repeatCount="indefinite"/></line>
+
+                {/* Drive — bottom */}
+                <circle cx="200" cy="120" r="24" fill="#1e293b" stroke="#a142f4" strokeWidth="1.5"/>
+                <text x="191" y="117" fontSize="9" fill="#a142f4" fontWeight="bold">Drive</text>
+                <text x="190" y="128" fontSize="7" fill="#94a3b8">2TB free</text>
+                <line x1="200" y1="96" x2="200" y2="100" stroke="#a142f4" strokeWidth="1" strokeDasharray="4 3"><animate attributeName="stroke-dashoffset" values="0;-14" dur="1.5s" repeatCount="indefinite"/></line>
+              </svg>
+            </div>
+            <p className="text-center text-sm" style={{ color: "#c9ceda" }}>All Google apps upgraded with AI — on your existing account. One subscription, every tool.</p>
+          </div>
+        )}
+
         {/* How to Order */}
         <div className="mb-14 p-6 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
           <h2 className="text-xl font-bold text-white mb-4">How to Order {meta.displayName} in Bangladesh</h2>

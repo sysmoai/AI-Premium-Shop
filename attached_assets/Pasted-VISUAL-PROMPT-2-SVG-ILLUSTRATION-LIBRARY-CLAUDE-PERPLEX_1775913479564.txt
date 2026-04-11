@@ -1,0 +1,229 @@
+VISUAL PROMPT 2 — SVG ILLUSTRATION LIBRARY + CLAUDE + PERPLEXITY + GOOGLE AI
+
+IMPORTANT: The previous SVG storytelling prompt did NOT create actual SVG illustrations.
+The segment cards still show emoji (🎓💻💼) instead of real SVG drawings.
+This prompt MUST create actual inline SVG React components first, then apply them.
+
+=== PRIORITY 1: CREATE SVG ILLUSTRATION COMPONENT LIBRARY ===
+
+Create a file: /components/illustrations/index.tsx (or .jsx)
+Export all illustration components from this file.
+
+STYLE GUIDE FOR ALL SVGs:
+- Use <svg> with viewBox (e.g., viewBox="0 0 200 150") — NOT fixed width/height
+- Pass className prop for sizing (w-[200px] h-[150px] on desktop, w-[120px] h-[90px] mobile)
+- Geometric/minimal style: circles for heads, rounded rects for bodies/desks/devices
+- Skin tone for people: #d4a574
+- Device screens: rounded rect with colored glow (filter or gradient)
+- Navy-700 (#1e293b) for furniture/desks
+- Each illustration uses its segment accent color
+- CSS animations via <style> inside SVG or CSS classes
+- NO external images. Pure SVG paths, rects, circles, text.
+
+CREATE THESE 8 SVG COMPONENTS:
+
+1. StudentStorySVG:
+<svg viewBox="0 0 200 150">
+  <!-- Desk: rounded rect at bottom -->
+  <rect x="30" y="95" width="140" height="8" rx="4" fill="#1e293b"/>
+  <!-- Laptop on desk -->
+  <rect x="60" y="70" width="50" height="30" rx="4" fill="#1e293b" stroke="#4285f4" stroke-width="1"/>
+  <rect x="65" y="75" width="40" height="20" rx="2" fill="#4285f4" opacity="0.2"/>
+  <!-- Chat bubble on screen -->
+  <rect x="72" y="78" width="26" height="10" rx="5" fill="#4285f4" opacity="0.6"/>
+  <!-- Books stack -->
+  <rect x="130" y="80" width="25" height="5" rx="1" fill="#4285f4"/>
+  <rect x="132" y="74" width="25" height="5" rx="1" fill="#6366f1"/>
+  <rect x="131" y="68" width="25" height="5" rx="1" fill="#8b5cf6"/>
+  <!-- Student person -->
+  <circle cx="55" cy="55" r="10" fill="#d4a574"/><!-- head -->
+  <rect x="45" y="65" width="20" height="25" rx="4" fill="#4285f4"/><!-- body -->
+  <!-- A+ paper floating -->
+  <g class="float-animation">
+    <rect x="115" y="45" width="20" height="25" rx="2" fill="white" opacity="0.9" transform="rotate(-5 125 57)"/>
+    <text x="120" y="62" font-size="10" font-weight="bold" fill="#10b981">A+</text>
+  </g>
+  <!-- Clock on wall -->
+  <circle cx="170" cy="30" r="12" fill="none" stroke="#374151" stroke-width="1.5"/>
+  <line x1="170" y1="30" x2="170" y2="22" stroke="#374151" stroke-width="1.5"/>
+  <line x1="170" y1="30" x2="176" y2="30" stroke="#374151" stroke-width="1"/>
+  <!-- Sparkles -->
+  <circle cx="95" cy="65" r="2" fill="#f4b942" opacity="0.4" class="sparkle-1"/>
+  <circle cx="50" cy="45" r="1.5" fill="#f4b942" opacity="0.3" class="sparkle-2"/>
+  <circle cx="110" cy="55" r="2" fill="#f4b942" opacity="0.5" class="sparkle-3"/>
+</svg>
+
+CSS animations (add to global CSS or inside SVG <style>):
+.float-animation { animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+.sparkle-1 { animation: sparkle 2s ease-in-out infinite; }
+.sparkle-2 { animation: sparkle 2s ease-in-out infinite 0.5s; }
+.sparkle-3 { animation: sparkle 2s ease-in-out infinite 1s; }
+@keyframes sparkle { 0%,100% { opacity: 0.2; } 50% { opacity: 0.6; } }
+
+Build similar components for:
+2. FreelancerStorySVG — dual monitors, Upwork text, $ signs floating, green accent (#10a37f)
+3. BusinessStorySVG — desk, WhatsApp icon, growth chart, robot icon, gold accent (#f4b942)
+4. JobSeekerStorySVG — before/after split: crumpled CV → polished CV, indigo accent (#6366f1)
+5. DeveloperStorySVG — code editor, green code lines, bug squashed, rocket, purple accent (#6e40c9)
+6. CreatorStorySVG — camera, YouTube play button, music notes, pink accent (#ec4899)
+7. FOMOSplitSVG — left (red, stressed) vs right (green, productive), full width
+8. AgenticRobotSVG — robot with 4 arms doing tasks, purple accent (#8b5cf6)
+
+For components 2-8, follow the same SVG style as StudentStorySVG:
+- Simple geometric shapes (rects, circles, lines, paths)
+- Segment accent color for highlights
+- Navy-700 for neutral elements
+- Small CSS animations (float, sparkle, pulse)
+- viewBox based, responsive via className
+
+=== PRIORITY 2: APPLY SVGs TO CHATGPT PAGE (FIX) ===
+
+The /chatgpt-plans-bangladesh page has segment cards but NO illustrations.
+Add the SVG components:
+
+- Students card: <StudentStorySVG className="w-[160px] h-[120px] hidden md:block" />
+  Position: right side of card (flex layout: text left, SVG right)
+- Freelancers card: <FreelancerStorySVG /> same positioning
+- Business card: <BusinessStorySVG />
+- Job Seekers card: <JobSeekerStorySVG />
+- Developers card: <DeveloperStorySVG />
+
+Also add:
+- <FOMOSplitSVG className="w-full h-[180px] md:h-[200px]" /> above "The Cost of NOT Using AI" heading
+- <AgenticRobotSVG className="w-[160px] h-[160px] mx-auto" /> inside "ChatGPT Pro = Your Own AI Employee" section
+
+=== PRIORITY 3: APPLY SVGs TO HOMEPAGE ===
+
+The 6 segment cards on homepage ("Every Problem Has an AI Solution"):
+- Students card: <StudentStorySVG className="w-[80px] h-[60px] hidden md:block" />
+- Freelancers: <FreelancerStorySVG /> same size
+- Creators: <CreatorStorySVG />
+- Business: <BusinessStorySVG />
+- Job Seekers: <JobSeekerStorySVG />
+- Developers: <DeveloperStorySVG />
+
+Agentic AI section: <AgenticRobotSVG className="w-[200px] h-[150px] mx-auto mb-8" />
+
+=== PRIORITY 4: CLAUDE + PERPLEXITY + GOOGLE AI CONTENT ===
+
+(Original Visual Prompt 2 content follows below)
+
+VISUAL PROMPT 2 — CLAUDE + PERPLEXITY + GOOGLE AI: STORYTELLING + OUTCOMES
+
+Upgrade all pages where Claude, Perplexity, or Google AI products appear.
+Do NOT rebuild pages. Only ADD new visual sections.
+All visuals in code (SVG, CSS, React). No external image files.
+
+=== CLAUDE (/claude-pro-bangladesh) ===
+
+1A. ADD "WHY CLAUDE IS #1 FOR WRITING & CODE" SECTION:
+H2: "Claude Opus 4.6 — The World's Best AI for Writing & Code"
+
+Visual: SVG illustration of a document being written with golden sparkles
++ code editor with green checkmarks
+
+3 highlight cards:
+- WRITING: Document icon + "#1 on Chatbot Arena for writing quality.
+  Legal documents, research papers, creative content — Claude writes better than any AI."
+- CODE: Terminal icon + "Claude Code: autonomous coding agent.
+  Writes, reviews, tests, and fixes entire codebases. Used by professional engineers."
+- THINKING: Brain icon + "1M token context + extended thinking.
+  Feed it your entire thesis, legal case, or codebase — it understands ALL of it."
+
+Each card: Navy-800 bg, 3px top border in #d97706 gradient
+
+1B. ADD SEGMENT SECTION FOR CLAUDE:
+H2: "Who Uses Claude in Bangladesh?"
+
+| Segment | Why Claude | Plan | Price |
+| Writers & Researchers | Best writing quality of any AI | Premium Shared | ৳1,495 |
+| Lawyers & Legal | Legal document analysis, case research | Personal | ৳2,990 |
+| Developers | Claude Code = autonomous coding agent | Premium Shared | ৳1,495 |
+| Content Creators | Long-form blog posts, scripts, newsletters | Premium Shared | ৳1,495 |
+| Agencies | Team plan with admin controls | Team | ৳3,990 |
+| Power Users | 5x-20x limits, 1M context | Max 5x/20x | ৳14,950-29,900 |
+
+1C. ADD FOMO FOR WRITERS:
+"If you write for a living and you're NOT using Claude Opus 4.6, you're competing
+with one hand tied behind your back. Every writer using Claude produces 3x more
+content at higher quality. Your competitors are already using it."
+
+1D. ADD AGENTIC HIGHLIGHT:
+"Claude Max (৳14,950-29,900/mo) = AI that thinks for HOURS.
+1M token context means you can feed it your entire business documentation,
+your entire codebase, or an entire legal case — and it understands everything.
+This is not a chatbot. This is an AI partner for complex professional work."
+
+Statistic: "Claude Opus 4.6 scored highest on SWE-bench, GPQA, and Chatbot Arena
+— the three most trusted AI benchmarks. It is objectively the smartest AI for
+writing and code analysis."
+
+=== PERPLEXITY (/perplexity-pro-bangladesh) ===
+
+2A. ADD "WHY PERPLEXITY IS THE FUTURE OF RESEARCH" SECTION:
+H2: "Perplexity Pro — AI Research with Real Sources"
+
+Visual: SVG illustration of a magnifying glass over documents with citation links
+
+3 highlight cards:
+- CITATIONS: Link icon + "Every answer comes with source links you can verify.
+  No hallucinations. No made-up facts. Real research."
+- DEEP RESEARCH: Layers icon + "Ask complex questions, get multi-page reports
+  with data, charts, and cited sources — in minutes."
+- REAL-TIME: Clock icon + "Always up to date. Searches the live web.
+  Perfect for market research, competitor analysis, trending topics."
+
+2B. SEGMENT SECTION:
+| Students | Thesis citations, paper research | Shared ৳350 |
+| Freelancers | Client industry research before proposals | Shared ৳350 |
+| Marketers | Competitor analysis, trend reports | Shared ৳350 |
+| Researchers | Academic paper discovery, data analysis | Personal ৳2,990 |
+| Business | Market research, investment analysis | Max ৳29,900 |
+
+2C. PERPLEXITY VS GOOGLE SEARCH visual:
+"Old way: Google search → 10 blue links → open 5 tabs → read for 30 min → maybe find answer
+New way: Perplexity → direct answer with sources → 30 seconds → verified facts
+
+Perplexity saves students 2-3 hours PER research paper.
+At ৳350/mo, that's less than ৳12 per hour saved."
+
+=== GOOGLE AI PRO (/gemini-advanced-bangladesh) ===
+
+3A. ADD "BEST VALUE IN AI" HERO SECTION:
+H2: "Google AI Pro — The Best AI Deal in Bangladesh"
+
+Visual: Large price tag SVG showing "৳500" with strikethrough "৳2,990"
+and "83% OFF" badge with animated pulse
+
+Highlight what ৳500 gets you:
+- Gemini 3.1 Pro (latest model)
+- Deep Research agent
+- AI in Gmail (write emails automatically)
+- AI in Google Docs (write documents, summarize, translate)
+- AI in Google Sheets (formulas, analysis, charts automatically)
+- AI in Google Slides (create presentations from a prompt)
+- 2TB Google Drive storage
+- AI image generation
+- AI video generation
+
+"All of this for ৳500/mo. On YOUR personal Gmail account.
+This is the biggest AI deal in Bangladesh."
+
+3B. SEGMENT SECTION:
+| Students | Gmail AI for applications + Docs AI for assignments + 2TB storage | ৳500 |
+| Job Seekers | Gmail AI for cold emails + Docs AI for CV + Slides for presentations | ৳500 |
+| Business | Gmail + Docs + Sheets + Slides all AI-powered | ৳500 |
+| Researchers | Deep Research + Google Scholar integration | ৳500 |
+
+3C. "GOOGLE ECOSYSTEM" VISUAL:
+SVG showing Google apps connected: Gmail → Docs → Sheets → Slides → Drive
+All with small AI sparkle icons. Center text: "AI everywhere in Google"
+
+=== VERIFICATION ===
+- [ ] /claude-pro-bangladesh has writing/code highlight, segment table, FOMO, agentic section
+- [ ] /perplexity-pro-bangladesh has research highlight, citation visual, vs Google Search
+- [ ] /gemini-advanced-bangladesh has best-value visual, Google ecosystem diagram
+- [ ] All segment tables link to guide pages
+- [ ] All sections have SVG illustrations
+- [ ] Mobile responsive

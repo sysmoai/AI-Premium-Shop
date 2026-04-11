@@ -456,6 +456,14 @@
   to { stroke-dashoffset: 0; }
 }
 
+@keyframes travelDot {
+  0%   { left: 2px;              opacity: 0; }
+  8%   { left: 2px;              opacity: 1; }
+  78%  { left: calc(100% - 12px); opacity: 1; }
+  92%  { left: calc(100% - 12px); opacity: 0; }
+  100% { left: calc(100% - 12px); opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none !important; }
   .glow-offer-blue, .glow-offer-dark { animation: none !important; }

@@ -27,7 +27,7 @@ const FAQS = [
   },
   {
     q: "Do you have a WhatsApp Community?",
-    a: "Yes! Join our WhatsApp Community to get AI tips, product updates, exclusive discount codes, and connect with 1,200+ AI users in Bangladesh.",
+    a: "Yes! Join our WhatsApp Community to get AI tips, product updates, exclusive discount codes, and connect with 10,000+ AI users in Bangladesh.",
   },
   {
     q: "What payment methods do you support?",
@@ -112,7 +112,7 @@ export default function SupportPage() {
           >
             <Users className="w-5 h-5 mb-3" style={{ color: "#3b82f6" }} />
             <div className="font-bold text-white mb-1 text-sm">Community</div>
-            <div className="text-xs" style={{ color: "#c9ceda" }}>1,200+ members</div>
+            <div className="text-xs" style={{ color: "#c9ceda" }}>10,000+ members</div>
             <div className="text-xs" style={{ color: "#c9ceda" }}>AI tips & discount codes</div>
             <a
               href={COMMUNITY}

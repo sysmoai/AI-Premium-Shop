@@ -9,7 +9,7 @@ import { PaymentBadges } from "@/components/PaymentBadges";
 const WHATSAPP = "https://wa.me/8801865385348";
 
 const STATS = [
-  { icon: Users, value: "1,200+", label: "Happy customers" },
+  { icon: Users, value: "10,000+", label: "Happy customers" },
   { icon: Package, value: "56", label: "AI tools available" },
   { icon: Layers, value: "19", label: "Leading brands" },
   { icon: Calendar, value: "2022", label: "Founded" },
@@ -20,8 +20,8 @@ export default function AboutPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="About AI Premium Shop — 1,200+ Customers Since 2022 | Bangladesh"
-        description="AI Premium Shop — 1,200+ customers since 2022. Official AI subscriptions in Bangladesh. bKash payment. WhatsApp support."
+        title="About AI Premium Shop — 10,000+ Customers Since 2022 | Bangladesh"
+        description="AI Premium Shop — 10,000+ customers since 2022. Official AI subscriptions in Bangladesh. bKash payment. WhatsApp support."
         canonical="https://aipremiumshop.com/about"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "About" }]} />
@@ -53,10 +53,10 @@ export default function AboutPage() {
           >
             <h2 className="text-xl font-bold text-white mb-4">Our Story</h2>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>
-              Founded in 2022, AI Premium Shop is Bangladesh&apos;s most trusted source for premium AI tool subscriptions. We started with a simple idea: make the world&apos;s best AI tools accessible to everyone in Bangladesh — without needing an international credit card.
+              AI Premium Shop (AIPS) has served 10,000+ Bangladeshi customers since 2022 with premium AI subscriptions. Founded by Emon Hossain, AIPS delivers ChatGPT, Claude, Midjourney, and more via WhatsApp-first sales with bKash/Nagad payments.
             </p>
             <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
-              Today, we serve over 1,200 customers across the country. Students, freelancers, content creators, developers, and business owners trust us to deliver authentic AI subscriptions quickly, affordably, and with real human support.
+              We started with a simple idea: make the world&apos;s best AI tools accessible to everyone in Bangladesh — without needing an international credit card. Today, students, freelancers, content creators, developers, and business owners trust us to deliver authentic AI subscriptions quickly, affordably, and with real human support.
             </p>
           </motion.div>
 

@@ -188,7 +188,7 @@ export default function Home() {
         <div className="scroll-reveal">
           <section className="max-w-6xl mx-auto px-4 md:px-8 py-10">
             <div className="bg-gradient-to-br from-[#0a0e27] to-[#151b3d] rounded-2xl p-8 md:p-12 border border-gray-800">
-              <h2 className="text-2xl md:text-3xl font-bold text-white text-center">Join 1,200+ Happy Customers</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white text-center">Join 10,000+ Happy Customers</h2>
               <p className="text-gray-400 text-center mt-2">Follow us for deals, AI tips, and instant support</p>
               <div className="mt-8">
                 <CommunitySocialCards cols="3" />

@@ -68,7 +68,7 @@ export function WhyUsSection() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-semibold text-white"
           >
-            Why 1,200+ Customers Choose Us
+            Why 10,000+ Customers Choose Us
           </motion.h2>
         </div>
 

@@ -584,7 +584,7 @@ const POSTS: Record<
           items={[
             { value: "5", label: "Payment methods" },
             { value: "5-30 min", label: "Delivery time" },
-            { value: "1,200+", label: "Happy customers" },
+            { value: "10,000+", label: "Happy customers" },
             { value: "0", label: "Credit cards needed" },
           ]}
         />
@@ -628,11 +628,11 @@ const POSTS: Record<
 
         <h2 className="text-xl font-bold text-white mt-8 mb-4">Is It Safe?</h2>
         <p className="text-gray-300 leading-relaxed">
-          AI Premium Shop has served over 1,200 customers since launch with zero disputes. Every order includes a 30-day warranty — if your account stops working, we replace it for free. Our WhatsApp number is publicly listed and we operate with full transparency.
+          AI Premium Shop has served over 10,000 customers since launch with zero disputes. Every order includes a 30-day warranty — if your account stops working, we replace it for free. Our WhatsApp number is publicly listed and we operate with full transparency.
         </p>
 
         <CalloutBox>
-          <strong className="text-white">1,200+ customers. 30-day warranty on all accounts. Zero disputes.</strong> Message us on WhatsApp anytime for support — we respond within minutes during business hours.
+          <strong className="text-white">10,000+ customers. 30-day warranty on all accounts. Zero disputes.</strong> Message us on WhatsApp anytime for support — we respond within minutes during business hours.
         </CalloutBox>
 
         <p className="text-gray-300 leading-relaxed">

@@ -10,7 +10,7 @@ const WHATSAPP = "https://wa.me/8801865385348";
 const FAQS = [
   {
     q: "What is AI Premium Shop?",
-    a: "AI Premium Shop is Bangladesh's most trusted source for premium AI subscriptions. We provide access to ChatGPT Plus, Claude Pro, Midjourney, GitHub Copilot, and 30+ more tools — with local payment via bKash, Nagad, Rocket, or bank transfer. Founded in 2022, we've served over 1,200 customers across Bangladesh.",
+    a: "AI Premium Shop is Bangladesh's most trusted source for premium AI subscriptions. We provide access to ChatGPT Plus, Claude Pro, Midjourney, GitHub Copilot, and 30+ more tools — with local payment via bKash, Nagad, Rocket, or bank transfer. Founded in 2022, we've served over 10,000 customers across Bangladesh.",
   },
   {
     q: "What's the difference between Shared and Personal accounts?",
@@ -26,7 +26,7 @@ const FAQS = [
   },
   {
     q: "Is it safe to buy AI subscriptions this way?",
-    a: "Yes. Shared accounts work through legitimate plan-sharing — the same way families share Netflix. Personal accounts use official platform billing. We've maintained 1,200+ satisfied customers since 2022 with zero security incidents. All accounts come with a 30-day replacement warranty.",
+    a: "Yes. Shared accounts work through legitimate plan-sharing — the same way families share Netflix. Personal accounts use official platform billing. We've maintained 10,000+ satisfied customers since 2022 with zero security incidents. All accounts come with a 30-day replacement warranty.",
   },
   {
     q: "What if my account stops working?",

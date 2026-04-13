@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, MessageSquare, Mail, Clock, CheckCircle } from "lucide-react";
+import { MessageCircle, MessageSquare, Mail, Clock, CheckCircle, MapPin } from "lucide-react";
 import { CommunitySocialCards } from "@/components/CommunitySocialCards";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
@@ -250,7 +250,7 @@ export default function ContactPage() {
           <div className="p-6 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
             <Clock className="w-5 h-5 mb-3" style={{ color: "#f4b942" }} />
             <h3 className="font-bold text-white mb-2">Service Hours</h3>
-            <p className="text-sm" style={{ color: "#c9ceda" }}>10 AM to Midnight BST</p>
+            <p className="text-sm" style={{ color: "#c9ceda" }}>10 AM – Midnight BST</p>
             <p className="text-sm" style={{ color: "#c9ceda" }}>7 days a week, including holidays</p>
             <p className="text-xs mt-3" style={{ color: "#f4b942" }}>WhatsApp response: under 5 minutes</p>
           </div>
@@ -259,6 +259,18 @@ export default function ContactPage() {
             <h3 className="font-bold text-white mb-2">Payment Methods</h3>
             <p className="text-sm mb-3" style={{ color: "#c9ceda" }}>We accept all local and international payment methods:</p>
             <PaymentBadges label="" className="justify-start" />
+          </div>
+          <div className="p-6 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
+            <div className="w-5 h-5 mb-3 text-lg">📍</div>
+            <h3 className="font-bold text-white mb-2">Location</h3>
+            <p className="text-sm" style={{ color: "#c9ceda" }}>Dhaka, Bangladesh</p>
+          </div>
+          <div className="p-6 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
+            <Mail className="w-5 h-5 mb-3" style={{ color: "#f4b942" }} />
+            <h3 className="font-bold text-white mb-2">Email</h3>
+            <a href="mailto:NotionBusiness@aipremiumshop.com" className="text-sm hover:underline" style={{ color: "#c9ceda" }}>
+              NotionBusiness@aipremiumshop.com
+            </a>
           </div>
         </motion.div>
       </section>

@@ -74,7 +74,7 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-semibold text-white"
           >
-            Trusted by 1,200+ Customers Across Bangladesh
+            Trusted by 10,000+ Customers Across Bangladesh
           </motion.h2>
         </div>
 

@@ -1,0 +1,32 @@
+You are fixing 4 critical trust issues on the AIPS website (aipremiumshop.com). Fix ALL 4 in this single session. The site uses Next.js. Auto-detect the framework version and file structure.
+
+FIX 1 — ABOUT PAGE:
+Find the About page component/route. REMOVE all template/agency team content (fake team bios, stock photos, agency descriptions). REPLACE with:
+- Brand story: "AI Premium Shop (AIPS) has served 10,000+ Bangladeshi customers since 2022 with premium AI subscriptions."
+- Founder: "Founded by Emon Hossain, AIPS delivers ChatGPT, Claude, Midjourney, and more via WhatsApp-first sales with bKash/Nagad payments."
+- Keep WhatsApp CTA linking to wa.me/8801865385348.
+
+FIX 2 — CONTACT PAGE:
+Find the Contact page component/route. REMOVE the San Francisco address completely. REPLACE with:
+- Location: "Dhaka, Bangladesh"
+- WhatsApp: "+880 1865-385348" with link to wa.me/8801865385348
+- Email: "NotionBusiness@aipremiumshop.com"
+- Hours: "10 AM – Midnight BST"
+- Remove any other placeholder contact information.
+
+FIX 3 — PRODUCT PAGES:
+Search ALL product page components for any phone numbers, email addresses, or contact details that are NOT "+880 1865-385348" or "NotionBusiness@aipremiumshop.com". REPLACE all demo/placeholder contacts with the real AIPS details. Ensure every product page WhatsApp CTA links to wa.me/8801865385348.
+
+FIX 4 — NEWSLETTER FORM:
+Find the newsletter/subscribe form component. Check what the form action/endpoint is. If it points to a placeholder or broken URL: Option A (preferred) — Remove the newsletter section entirely. Option B — Replace with a working Formspree form that sends to NotionBusiness@aipremiumshop.com. If removing, also remove any "Subscribe" CTAs that reference the broken form.
+
+VERIFICATION:
+After all 4 fixes, run these checks:
+1. grep -rn "San Francisco" — must return 0 matches
+2. grep -rn "template\|placeholder\|demo@" — must return 0 matches in page content
+3. Verify About page renders real AIPS content
+4. Verify Contact page shows Dhaka, Bangladesh
+5. Check 3 random product pages — all show correct WhatsApp number
+6. Newsletter form either removed or submits without error
+
+Report all changes made.

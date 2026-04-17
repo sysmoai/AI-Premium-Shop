@@ -38,9 +38,9 @@ const FAQS = [
       "Refunds are available within 15 minutes of delivery if there's a service mismatch. Tool and subscription fees are non-refundable.",
   },
   {
-    question: "Is this official and legal?",
+    question: "Are these working subscriptions? How does it work?",
     answer:
-      "Yes. We provide official, verified subscriptions. No hacked or unauthorized access.",
+      "Yes. We provide working paid subscriptions — no hacked or unauthorized access. Shared plans let 2–7 users split a legitimate subscription (similar to family sharing). Personal plans are dedicated accounts with full privacy. Every order includes a 30-day replacement warranty.",
   },
   {
     question: "I'm new to AI — which tool should I start with?",
@@ -112,7 +112,7 @@ export default function Home() {
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
         title="AI Premium Shop — Premium AI Tools Bangladesh | From BDT 350"
-        description="56 premium AI tools in Bangladesh. ChatGPT from BDT 350. Pay via bKash/Nagad. 5-min WhatsApp delivery. 30-day warranty. Order now."
+        description="Buy ChatGPT, Claude, Google AI Pro, Midjourney, Copilot, and more in Bangladesh. Local payment via bKash/Nagad. Fast WhatsApp delivery. From BDT 350/month."
         canonical="https://aipremiumshop.com/"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(ORG_SCHEMA) }} />

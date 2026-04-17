@@ -21,7 +21,7 @@ export default function AboutPage() {
     <PageLayout>
       <SEOHead
         title="About AI Premium Shop — 10,000+ Customers Since 2022 | Bangladesh"
-        description="AI Premium Shop — 10,000+ customers since 2022. Official AI subscriptions in Bangladesh. bKash payment. WhatsApp support."
+        description="AI Premium Shop — Bangladesh's WhatsApp-first AI subscription store. 10,000+ customers since 2022. 56 tools including ChatGPT, Claude, Midjourney. Pay with bKash/Nagad. Real human support, 10 AM–Midnight BST."
         canonical="https://aipremiumshop.com/about"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "About" }]} />

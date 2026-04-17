@@ -51,7 +51,7 @@ export default function ContactPage() {
     <PageLayout>
       <SEOHead
         title="Contact AI Premium Shop — WhatsApp Order | bKash &amp; Nagad"
-        description="Contact AI Premium Shop on WhatsApp +880 1865-385348. Under 5-min response. 10AM-Midnight, 7 days a week."
+        description="Contact AI Premium Shop in Dhaka, Bangladesh. WhatsApp +880 1865-385348, Messenger, or email. Under 5-minute response, 10 AM to Midnight BST."
         canonical="https://aipremiumshop.com/contact"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Contact" }]} />

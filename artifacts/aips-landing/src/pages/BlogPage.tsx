@@ -12,6 +12,7 @@ import {
   Star,
   Briefcase,
   Image,
+  Code2,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
@@ -127,6 +128,17 @@ const POSTS = [
     gradient: "bg-gradient-to-br from-violet-600 to-purple-900",
     icon: Image,
     accentColor: "#8b5cf6",
+  },
+  {
+    slug: "openai-codex-vs-claude-code-bangladesh-2026",
+    title: "OpenAI Codex vs Claude Code in Bangladesh — What Changed in April 2026?",
+    excerpt: "OpenAI launched Codex on April 16, 2026. Claude Code already exists. Cursor and Replit are in the mix. Here's what changed and what it means for Bangladesh developers.",
+    category: "🛠️ Developers",
+    readTime: "6 min read",
+    date: "Apr 17, 2026",
+    gradient: "bg-gradient-to-br from-cyan-600 to-blue-900",
+    icon: Code2,
+    accentColor: "#06b6d4",
   },
 ];
 

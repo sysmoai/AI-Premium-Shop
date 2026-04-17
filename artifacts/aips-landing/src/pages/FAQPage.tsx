@@ -26,7 +26,7 @@ const FAQS = [
   },
   {
     q: "Is it safe to buy AI subscriptions this way?",
-    a: "Yes. Shared accounts work through legitimate plan-sharing — the same way families share Netflix. Personal accounts use official platform billing. We've maintained 10,000+ satisfied customers since 2022 with zero security incidents. All accounts come with a 30-day replacement warranty.",
+    a: "Yes. We provide working paid subscriptions — no hacked or unauthorized access. Shared accounts work through legitimate plan-sharing (similar to family sharing on streaming services). Personal accounts are dedicated accounts under your control. We've maintained 10,000+ satisfied customers since 2022. All accounts come with a 30-day replacement warranty.",
   },
   {
     q: "What if my account stops working?",

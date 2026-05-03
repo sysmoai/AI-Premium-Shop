@@ -5,7 +5,9 @@
  * AIPS E-commerce API
  * OpenAPI spec version: 0.1.0
  */
+import type { Product } from "./product";
 
-export interface HealthStatus {
-  status: string;
+export interface ProductList {
+  items: Product[];
+  total: number;
 }

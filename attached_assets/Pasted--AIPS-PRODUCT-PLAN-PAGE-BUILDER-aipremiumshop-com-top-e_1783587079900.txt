@@ -1,0 +1,116 @@
+=== AIPS PRODUCT & PLAN PAGE BUILDER — aipremiumshop.com — top e-commerce experience, break nothing ===
+
+ROLE
+You are my senior full-stack + conversion + SEO engineer. aipremiumshop.com is ALREADY LIVE (Next.js on Replit). Build a best-in-class, reusable PRODUCT PAGE + PLAN/PACKAGE system for EVERY product in my catalog — the quality of a top global e-commerce store (Amazon / Apple / best-in-class SaaS pricing pages) but tuned for Bangladesh. Work ADDITIVELY on the existing build; never break current pages, prices, routes, or design.
+
+SOURCE OF TRUTH & GOLDEN RULES
+- USE MY NOTION WORKSPACE as the source of truth: products, prices, brand.json values, categories, the full tool list, and the "Bangladesh AI Subscription Market Research + Strategy" page. Re-check Notion whenever info is missing/unclear/stale before guessing or hitting the web. Notion prices + brand facts override everything.
+- Additive & incremental; reuse existing components/data/styles; no mass refactor; back up (git) before each step.
+- NEVER change CEO-set BDT prices. Formula (officialUSD * 130 * 1.15, round ৳10) only fills EMPTY tiers and powers the "direct abroad" strike-through. Anything questionable -> /data/price-review.json for my approval, never auto-applied.
+- Never claim "official/authorized distributor" — say "access to authentic subscriptions" + show the trademark disclaimer.
+- Work NON-STOP: report after each product/batch and immediately continue. Pause only on breakage that can't auto-rollback, a price/data approval, or a destructive change.
+- Match theme: bg #0a0e27 / #151b3d, gold #f4b942, success #10b981, purple #8b5cf6; fonts Inter + Noto Sans Bengali; 1200px container; 8pt grid; 12px radius. Mobile-first.
+
+=== STEP 1: DATA MODEL (extend products.json, do NOT wipe it) ===
+For every product ensure these fields exist (add if missing, never delete existing):
+- slug, name, brand, category, logo, gallery[] (screenshots/mockups/demo), tagline
+- descriptionEN, descriptionBN
+- plans[]: for EACH plan/package -> { planName, tierLevel, priceBDT (CEO-set, FINAL), officialUSD, billingCycle, deliveryType (shared | personal | team), whatsIncluded[], features[], limitations[], bestFor, seats, durationOptions[] (1mo/3mo/6mo/12mo each with its BDT price), inStock }
+- higherPlanUpsell: { targetPlan, whatYouUnlock[] } — what the next tier adds (more limits/seats/features)
+- uniqueSellingPoints[] (AIPS-specific: instant delivery, 30-day warranty, own-account not shared, bKash/Nagad, Bangla human support, refund)
+- useCasesBD[] (3-6 local scenarios), whyBuyFromAIPS
+- faq[] (8+ Q&A in EN + BN)
+- activationType (instant-auto | manual-assisted), estimatedDeliveryTime
+- trust: { warrantyDays, refundPolicy, reviewCount, rating }
+- relatedProducts[], bundleSuggestions[]
+- seo: { title, metaDescription, canonical, ogImage, keywords[] } (include "{name} price in Bangladesh", "{name} bKash", "{name} koto taka")
+- deliveryMethod (email | account-credentials | invite-link | activation-on-your-account | license-key), estimatedDeliveryTime
+- specs: { platforms, devices, regions, languages, deviceLimit }
+- stock: { status (in/low/out), unitsNote }, badges[] (bestseller | new | limited | popular)
+- renewal: { reminderDays, autoReminder true/false }, expiryTracked
+- reviews[]: { name, rating, text, verifiedBuyer, date, photo? }, ratingBreakdown (5->1 stars)
+- competitorCompare[]: { seller, price, risk } (for the honest "AIPS vs direct vs reseller" table)
+- coupon: { eligible, codesFrom (Notion) }, referralEligible
+- videoDemoUrl, howItWorksSteps[]
+- lastVerifiedDate, priceUpdatedDate (content freshness)
+
+=== STEP 2: PRODUCT PAGE TEMPLATE (one reusable component, top e-commerce anatomy) ===
+Build /app/products/[slug]/page.tsx as SSG (generateStaticParams / force-static) so view-source shows full HTML. Reuse existing header/footer/CTA. Sections in order:
+1. Breadcrumb (Home > Category > Product) + BreadcrumbList schema.
+2. HERO: logo, name, tagline, star rating + review count, short EN/BN blurb, trust badges (instant delivery, warranty, bKash), "from ৳X" price, primary CTA.
+3. AIO QUICK-ANSWER (first 200 words): "{Product} price in Bangladesh is ৳X/month at AI Premium Shop (aipremiumshop.com). Pay with bKash or Nagad, no international card needed. Instant delivery 5-15 min. 30-day warranty. Trusted by 3,000+ customers since 2024."
+4. MEDIA GALLERY: screenshots/mockups/short demo, all optimized (WebP/AVIF, next/image, alt text, lazy-load).
+5. PLAN / PACKAGE SELECTOR (core): a card grid + comparison for EVERY plan of this product. Each plan card shows: big BDT price, duration selector (1/3/6/12 mo), what's included, feature list, LIMITATIONS clearly labeled, seats/delivery type, "Best for", badges ("Most popular", "Best value"). Selecting a plan updates the sticky buy box + checkout.
+6. HIGHER-PLAN UPSELL: directly under the selected plan show "Need more? Upgrade to {higher plan}" listing the extra features/limits/seats it unlocks. Also show "direct abroad cost" strike-through to prove savings.
+7. FULL COMPARISON MATRIX across all plans (feature rows × plan columns with checkmark / cross / limit values) — like top SaaS pricing pages.
+8. FEATURES & BENEFITS (icon list) -> then USE CASES for BD users (freelancer/creator/dev/student/SME).
+9. UNIQUE SELLING POINTS: why buy from AIPS vs going direct or grey-market — instant activation, warranty, OWN account (not shared login), bKash/Nagad, Bangla human support, refund, no ban risk.
+10. INSTANT ACTIVATION explainer (STEP 3) + delivery ETA.
+11. TRUST: verified reviews/testimonials with rating summary, payment badges, security note, warranty + refund, "3,000+ customers".
+12. FAQ accordion (EN + BN) + FAQPage schema.
+13. RELATED PRODUCTS + BUNDLE CROSS-SELL ("pairs well with...").
+14. STICKY MOBILE BUY BAR: price + "Order" / "Order on WhatsApp" always visible on scroll.
+15. Product + Offer JSON-LD (offers.price = BDT, priceCurrency BDT, availability InStock, aggregateRating) + per-plan offer entries.
+16. SOCIAL PROOF & URGENCY (honest only): "X bought this week", recent-order ticker, "most popular in {category}", low-stock/limited-slot nudge, verified-buyer review count + rating breakdown.
+17. COMPARE-ON-PAGE: small "AIPS vs buying direct vs local reseller" table (price, safety, warranty, payment, ban risk) so the buyer instantly sees why AIPS wins.
+18. RENEWAL & LTV: "we'll remind you before it expires" note; longer plans show best per-month value ("save with 6/12-mo").
+19. COUPON / REFERRAL: promo-code field at checkout + "refer a friend, both save" (only if enabled in Notion).
+20. HOW IT WORKS (3 icons): Choose plan -> Pay bKash/Nagad -> Get instant access.
+21. RECENTLY VIEWED + FREQUENTLY BOUGHT TOGETHER + related bundles (drives AOV).
+22. STICKY DESKTOP BUY BOX (right rail) mirroring the mobile buy bar; price + CTA always in view.
+23. CONTENT FRESHNESS: visible "Price last verified: {date}" so buyers and LLMs trust it's current.
+
+=== STEP 3: INSTANT SUBSCRIPTION ACTIVATION FLOW (reusable for ALL AIPS services) ===
+Build one consistent order -> activate flow used by every product/plan:
+- CTA -> choose plan + duration -> Checkout OR "Order on WhatsApp" (prefilled message: product + plan + duration + price).
+- Payment: bKash / Nagad / Rocket first (no intl card needed) — show the bKash payment link; card optional.
+- Order capture: save order (product, plan, duration, price, contact, payment ref) to a lightweight orders store/DB or form endpoint; notify admin instantly (WhatsApp/email).
+- Activation status states shown to buyer: Order received -> Payment verified -> Activating -> Delivered, with ETA (5-15 min for instant tools; label manual-assisted tools clearly).
+- Auto-instant where possible (credential/invite/key delivery); manual-assisted otherwise with live WhatsApp handoff.
+- Post-purchase: deliver access + setup guide (EN/BN) + warranty terms + support link + a review request.
+- bKash/Nagad VERIFICATION built for BD reality: after paying, buyer submits Transaction ID + optional screenshot upload; admin verifies -> status becomes "Payment verified". Never require an international card.
+- DELIVERY METHOD shown before purchase per product (email / account credentials / invite link / activation-on-your-account / license key) so expectations are clear.
+- ORDER TRACKING page (/track): customer checks live status by order ID or phone/WhatsApp number.
+- ABANDONED-ORDER RECOVERY: if payment isn't completed, trigger a WhatsApp follow-up with the saved order.
+- RENEWAL AUTOMATION: store expiry date; send WhatsApp/email reminder N days before expiry with a 1-click reorder link (repeat revenue / LTV).
+- WARRANTY CLAIM path: "report an issue" opens WhatsApp prefilled with the order context.
+
+=== STEP 3B: ANALYTICS & CONVERSION TRACKING (every product/plan) ===
+Fire GA4 ecommerce + Meta Pixel events with product + plan + price: view_item, select_item (plan chosen), add_to_cart / begin_checkout, purchase, and whatsapp_click (per product). Persist an order/funnel log server-side for bKash reconciliation and to see which products/plans convert best. Add a lightweight admin view of orders + revenue.
+
+=== STEP 3C: DISCOVERY & NAVIGATION (so product pages actually get found) ===
+- Category pages (/category/[slug]) listing products with filters (price band, category, delivery type shared/personal/team, "instant") + sort (popular / price / newest).
+- On-site search with autocomplete across products.
+- Cross-product COMPARISON pages (e.g., "ChatGPT vs Claude vs Gemini in Bangladesh") each linking to the product pages.
+- Internal-linking silo: product <-> category <-> comparison <-> relevant blog/guide; breadcrumbs everywhere.
+- CollectionPage + ItemList schema on category pages; WebSite SearchAction schema on homepage.
+
+=== STEP 3D: ACCESSIBILITY, TRUST & LEGAL (top quality, safe) ===
+- WCAG AA: keyboard nav, visible focus states, ARIA labels, alt text, sufficient contrast on the dark theme, respect prefers-reduced-motion.
+- Secure-checkout + privacy badges; clearly explain data handling for shared vs own-account delivery.
+- Legal pages linked in footer: Refund/Warranty Policy, Terms, Privacy, Trademark Disclaimer ("All product names/logos are trademarks of their owners; AIPS provides access to authentic subscriptions and is not an official distributor").
+- Error/empty states: friendly 404 for a missing product (with search + popular products) and graceful fallback if any data field is missing.
+
+=== STEP 4: PER-PRODUCT + PER-PACKAGE ROLLOUT ===
+Generate a page for EVERY product using the template, pulling REAL data from Notion/products.json. Work in batches of 5:
+- Fill every plan with features + LIMITATIONS + higher-plan upsell + USPs + FAQ + SEO.
+- Verify: page renders full HTML, prices match CEO-set values exactly, all schema validates.
+- Report the batch, then continue automatically to the next.
+Also build PACKAGE/BUNDLE pages (Student Essentials, University Pro, Freelancer, Business, B2B) with the same anatomy + "you save ৳X vs buying separately" math.
+
+=== STEP 5: FINAL QUALITY CHECK (every page, every angle) ===
+- Every plan shows price + inclusions + LIMITATIONS + higher-plan upsell.
+- Instant-activation flow works end-to-end with bKash.
+- Trust + USP + reviews present; Bangla blocks on all money pages.
+- SEO: unique title/meta/canonical/OG; Product + Offer + FAQ + Breadcrumb schema valid in Rich Results Test.
+- Speed: mobile LCP < 2.5s, CLS < 0.1; images optimized; loading SKELETONS (never "Loading..." text).
+- Fully mobile-responsive; theme consistent; no broken/blurry assets; alt text everywhere.
+- Analytics events fire (view_item / select_item / begin_checkout / purchase / whatsapp_click); order log + admin view work.
+- Category + search + comparison pages work; internal links + breadcrumbs everywhere; CollectionPage / ItemList schema valid.
+- Accessibility AA passes; legal pages linked; 404 / empty states graceful.
+- bKash payment verification + order tracking + abandoned-order recovery + renewal reminder all work end-to-end.
+- Content freshness: each page shows a "Price last verified" date; renewal reminders scheduled.
+- ZERO regressions vs before (no page/price/route lost).
+
+START NOW: read Notion for the catalog + prices, build STEP 1-3 (data model + reusable template + activation flow), plus STEPS 3B-3D (analytics + discovery/search/comparison + accessibility/legal), then roll out per-product and per-package in STEP 4 non-stop, reporting after each batch and continuing.
+=== END ===

@@ -1,0 +1,80 @@
+=== AIPS MARKET + COMPETITOR + CATALOG ENGINE — aipremiumshop.com — become BD's #1 AI subscription store, break nothing ===
+
+ROLE
+You are my senior market analyst + full-stack + SEO/conversion engineer. aipremiumshop.com is ALREADY LIVE (Next.js on Replit). Make it the #1 AI-subscription e-commerce in Bangladesh: always up-to-date, complete catalog, best positioning, and every sales-driving system. Work ADDITIVELY on the existing build; never break current pages, prices, routes, or design.
+
+SOURCE OF TRUTH & GOLDEN RULES
+- USE MY NOTION WORKSPACE as source of truth (products, prices, brand.json, categories, tool list, "Bangladesh AI Subscription Market Research + Strategy"). Re-check Notion when info is missing/unclear/stale before guessing. Notion prices + brand facts override everything.
+- Additive & incremental; reuse existing components/data/styles; back up (git) before each step; work NON-STOP and report after each batch.
+- NEVER change CEO-set BDT prices. Formula (officialUSD * 130 * 1.15, round ৳10) only fills EMPTY tiers + powers the "direct abroad" strike-through. Questionable prices -> /data/price-review.json for approval.
+- POSITIONING: promote "authentic/genuine OFFICIAL subscriptions at official price", "instant delivery 5-15 min", "trusted by 3,000+ since 2024", "fast Bangla support", "pay bKash/Nagad", "30-day warranty". Do NOT claim "authorized distributor/partner"; always keep the trademark disclaimer.
+
+=== STEP 1: GET THE LATEST INFO (real-time refresh of everything) ===
+For every product (existing + new), visit the OFFICIAL site and capture the latest: plans, official USD price, all tiers, features, LIMITATIONS, latest model/version names, new tiers, and region/BD availability. Update officialUSD and marketing copy; log any price change old->new + source in /data/price-review.json. NEVER auto-change the CEO-set BDT price. Record lastVerifiedDate per product.
+Official sources include: openai.com/chatgpt/pricing, claude.com/pricing, one.google.com/about/ai-premium + gemini.google/bd, x.ai, perplexity.ai/pro, midjourney.com, ideogram.ai, runwayml.com/pricing, elevenlabs.io/pricing, suno.com, github.com/features/copilot/plans, cursor.com/pricing, notion.so/pricing, manus.im, grammarly.com/plans, quillbot.com, canva.com/pricing, capcut.com, adobe.com/products/firefly, jasper.ai, copy.ai, heygen.com, synthesia.io, ahrefs.com, semrush.com, surferseo.com, microsoft.com/microsoft-365-copilot. Verify each on your run date; do not trust stale numbers.
+
+=== STEP 2: BD E-COMMERCE COMPETITOR ANALYSIS ===
+Research the top Bangladeshi AI-subscription sellers and build a competitor matrix. Start with (verify + find more): OneBrain, AdobeWala, Digital Product BD, IT Mart, PAN BD, MangoMind BD, SubscriptionsBD, Digital Deck, AI Buy BD, DeltaBox IT, Daraz AI-subscription listings, plus active Facebook/WhatsApp/Telegram sellers.
+For EACH competitor capture: products sold, price (BDT), delivery method (shared vs personal vs activation), payment methods, trust signals (reviews, warranty, refund), site quality, and the keywords they rank for.
+Output /data/competitor-analysis.json + a readable report with: (a) where AIPS is MISSING products, (b) where AIPS pricing/positioning is weaker, (c) content/SEO gaps, (d) trust gaps, (e) category gaps. Rank every gap by revenue impact.
+
+=== STEP 3: FILL ALL GAPS — COMPLETE THE CATALOG + CATEGORIES ===
+Add every missing product competitors sell + every probable AI-tool category. Ensure the catalog covers these CATEGORIES (create category pages for each present one):
+- AI Assistants / LLM Chat (ChatGPT, Claude, Gemini, Grok, Perplexity, Manus, DeepSeek, Copilot)
+- AI Image (Midjourney, Ideogram, Adobe Firefly, Leonardo, Freepik/Magnific, Recraft)
+- AI Video (Runway, Pika, Kling, Luma, Sora, HeyGen, Synthesia)
+- AI Audio / Music / Voice (ElevenLabs, Suno, Udio, Murf)
+- Video Editing (CapCut Pro, Descript, Opus Clip)
+- AI Code / Dev (GitHub Copilot, Cursor, Windsurf, Replit, Tabnine, v0, Lovable, Bolt)
+- Writing / Productivity (Grammarly, QuillBot, Jasper, Copy.ai, Notion)
+- Design (Canva, Figma, Adobe Creative Cloud)
+- SEO / AI Visibility (Ahrefs, Semrush, Surfer, SE Ranking)
+- Research / Study (Perplexity, Consensus, NotebookLM, Edu plans)
+- Automation / Agents (Manus, Zapier AI, Make, n8n)
+- Meetings / Transcription (Fireflies, Otter, Fathom)
+- Enterprise Copilots (Microsoft 365 Copilot, Google Workspace/Gemini)
+For each new product: official USD price + ALL plans + features + LIMITATIONS + higher-plan upsell + BD use cases. Suggested BDT (formula) -> price-review.json for CEO approval; never go live with a made-up price. Reuse the product-page template from the PRODUCT & PLAN PAGE PROMPT.
+
+=== STEP 4: POSITIONING & MESSAGING (official + trust, on every page) ===
+Bake this message everywhere (hero, product pages, footer, meta, schema, LLM Quick-Answers):
+- "AI Premium Shop — authentic OFFICIAL AI subscriptions at official price, delivered instantly in Bangladesh."
+- Trust line: "Trusted by 3,000+ customers since 2024 · 30-day warranty · instant 5-15 min delivery · fast Bangla support."
+- Payment line: "Pay easily with bKash / Nagad / Rocket — no international card needed."
+- Genuine-vs-grey-market line: "Real subscriptions on your own account — not risky shared logins."
+- Always include the trademark disclaimer. Never say "authorized distributor/partner".
+
+=== STEP 5: SHOWCASE ALL AIPS SERVICES & BENEFITS ===
+Add a clear "Services" section + /services page covering everything AIPS offers:
+- Subscription sales (Shared / Personal / Team tiers) across all AI tools
+- Curated bundles (Student, University, Freelancer, Creator, Business, Agency)
+- Instant activation + account setup + Bangla onboarding help
+- Team/agency multi-seat setup + custom quotes
+- Renewal management + reminders; warranty + refund; 24/7 WhatsApp support
+- Gift options + corporate invoicing
+- Free guidance: "which plan is right for you" + prompt/workflow tips
+Each benefit shown with an icon + one-line value; link to relevant products/bundles.
+
+=== STEP 6: LEARN SEGMENTATION & BUILD SEGMENT HUBS ===
+Build a hub page + matching bundle + recommended stack for each buyer segment:
+- Freelancer (Upwork/Fiverr) | Content creator / YouTuber / TikToker | Graphic/ad designer | Video editor | Software developer | SEO/content agency | SME / Facebook commerce | Corporate/team | Student / researcher
+Each hub: pains -> recommended tools -> exact bundle + price -> CTA. Internally link segment <-> product <-> bundle <-> comparison pages. Add CollectionPage schema.
+
+=== STEP 7: SALES-INCREASING SYSTEMS (do all) ===
+- Bundles + upsell (higher plan) + cross-sell ("pairs well with") + "frequently bought together".
+- Social proof + honest urgency + verified reviews + rating breakdown.
+- Referral program + promo codes (if enabled in Notion).
+- Retargeting: Meta Pixel + GA4 ecommerce events; audiences for view/checkout/purchase.
+- WhatsApp + email remarketing: abandoned-order recovery + renewal reminders + win-back.
+- Exit-intent / first-order discount offer (honest).
+- Comparison pages (AIPS vs competitors; tool vs tool) + "official {tool} subscription in Bangladesh" SEO/AIO/GEO pages so AI answer engines cite AIPS.
+- Trust bar + payment badges on every money page; sticky buy box; live-order ticker.
+
+=== STEP 8: QUALITY + SAFETY (every angle) ===
+- Prices safe (CEO-set untouched; new prices only via price-review.json).
+- SEO: unique title/meta/canonical/OG; Product+Offer+FAQ+Breadcrumb+CollectionPage schema valid.
+- Speed: mobile LCP < 2.5s, CLS < 0.1; optimized images; skeletons not "Loading...".
+- Mobile responsive; theme consistent; accessibility AA; Bangla blocks on money pages.
+- ZERO regressions (no page/price/route lost).
+
+START NOW: read Notion, run STEP 1 (latest info) + STEP 2 (competitor + gap analysis) and give me the ranked Gap List, then continue STEPS 3-7 non-stop — backing up and reporting after each batch — pausing only for price approvals or destructive changes.
+=== END ===

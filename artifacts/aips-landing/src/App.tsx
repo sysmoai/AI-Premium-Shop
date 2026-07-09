@@ -104,6 +104,10 @@ function Router() {
       <Route path="/murf-ai-bangladesh">{() => <BrandPage brandSlug="murf-ai-bangladesh" />}</Route>
 
       {/* Brand pages — AI Video Editing */}
+      <Route path="/freepik-premium-bangladesh">{() => <BrandPage brandSlug="freepik-premium-bangladesh" />}</Route>
+      <Route path="/kling-ai-bangladesh">{() => <BrandPage brandSlug="kling-ai-bangladesh" />}</Route>
+      <Route path="/synthesia-bangladesh">{() => <BrandPage brandSlug="synthesia-bangladesh" />}</Route>
+      <Route path="/windsurf-bangladesh">{() => <BrandPage brandSlug="windsurf-bangladesh" />}</Route>
       <Route path="/capcut-pro-bangladesh">{() => <BrandPage brandSlug="capcut-pro-bangladesh" />}</Route>
 
       {/* Brand pages — ChatGPT */}

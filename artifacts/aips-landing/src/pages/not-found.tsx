@@ -25,7 +25,7 @@ export default function NotFound() {
               href="/"
               className="bg-[#f4b942] text-[#0a0e27] font-bold py-3 px-6 rounded-lg hover:bg-amber-400 transition-colors"
             >
-              Browse All 76 AI Tools
+              Browse All 80 AI Tools
             </Link>
             <a
               href={WHATSAPP}

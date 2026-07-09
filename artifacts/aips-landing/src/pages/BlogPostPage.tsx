@@ -906,7 +906,7 @@ const POSTS: Record<
         <h3>5. GitHub Copilot Pro — ৳1,495/month</h3>
         <p>For developers, Copilot Pro is the most practical AI investment. Unlimited code completions inside VS Code, JetBrains, and Neovim. Access to 300 premium requests with Claude and GPT-5 models.</p>
         <h2>How to Get Started</h2>
-        <p>All 76 AI tools are available through AI Premium Shop. Order on WhatsApp: share which tool you want, confirm payment via bKash/Nagad/Rocket, and receive your account within minutes.</p>
+        <p>All 80 AI tools are available through AI Premium Shop. Order on WhatsApp: share which tool you want, confirm payment via bKash/Nagad/Rocket, and receive your account within minutes.</p>
       </div>
     ),
   },

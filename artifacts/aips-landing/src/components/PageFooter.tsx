@@ -71,7 +71,7 @@ export function PageFooter() {
               <span className="text-lg font-bold text-white">AI PREMIUM SHOP</span>
             </a>
             <p className="text-sm text-gray-400 mt-2 max-w-xs leading-relaxed">
-              Premium AI subscriptions in Bangladesh. 76 tools. Local payment. Instant delivery.
+              Premium AI subscriptions in Bangladesh. 80 tools. Local payment. Instant delivery.
             </p>
             <div className="flex items-center gap-3 mt-4">
               <a href="https://www.facebook.com/aipremiumshopbd" target="_blank" rel="noopener noreferrer"

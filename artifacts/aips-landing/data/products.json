@@ -6135,6 +6135,580 @@
       ],
       "relatedProducts": [],
       "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "freepik-premium-shared",
+      "name": "Freepik Premium — Shared",
+      "slug": "freepik-premium-bangladesh",
+      "brand": "Freepik",
+      "brandSlug": "freepik-premium-bangladesh",
+      "provider": "Freepik",
+      "brandColor": "#1273eb",
+      "category": "ai-image",
+      "price": 450,
+      "officialUSD": 11.59,
+      "tier": "Premium Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "Freepik Premium gives you unlimited access to millions of premium vectors, photos, PSDs, and icons — plus AI image generation, AI reimagine, and AI upscaler. Perfect for Bangladeshi designers and marketers.",
+      "capabilities": [
+        "vectors",
+        "photos",
+        "icons",
+        "ai-image-gen",
+        "ai-reimagine",
+        "ai-upscaler"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Freepik Premium (৳450/mo)",
+      "status": "Active",
+      "descriptionBN": "Freepik Premium — কোটি কোটি প্রিমিয়াম ভেক্টর, ফটো, PSD ও আইকনের অসীম অ্যাক্সেস। AI ছবি তৈরি, AI রিইমাজিন এবং AI আপস্কেলার সহ। ডিজাইনার ও মার্কেটারদের জন্য আদর্শ।",
+      "useCases": [
+        "সোশ্যাল মিডিয়া গ্রাফিক্স ও পোস্টার ডিজাইন",
+        "ব্র্যান্ডিং ও লোগো ক্রিয়েশন",
+        "ওয়েবসাইট ও অ্যাপ UI এসেট তৈরি",
+        "মার্কেটিং ম্যাটেরিয়াল ও ব্যানার ডিজাইন",
+        "প্রেজেন্টেশন ও রিপোর্ট ভিজ্যুয়াল"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। ৫-১৫ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.freepik.com/pricing",
+      "plans": [
+        {
+          "planName": "Premium Shared",
+          "tierLevel": 1,
+          "priceBDT": 450,
+          "officialUSD": 11.59,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Unlimited premium downloads",
+            "AI image generation",
+            "AI reimagine tool",
+            "AI upscaler",
+            "No daily download limit"
+          ],
+          "features": [
+            "vectors",
+            "photos",
+            "icons",
+            "ai-image-gen",
+            "ai-reimagine",
+            "ai-upscaler"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Occasional login refresh needed"
+          ],
+          "bestFor": "Designers, marketers, content creators needing stock assets",
+          "seats": 4,
+          "badge": "New",
+          "inStock": true
+        },
+        {
+          "planName": "Premium Plus Shared",
+          "tierLevel": 2,
+          "priceBDT": 890,
+          "officialUSD": 22.99,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Everything in Premium",
+            "AI video generation",
+            "Premium Plus exclusive assets",
+            "Higher AI generation limits"
+          ],
+          "features": [
+            "vectors",
+            "photos",
+            "icons",
+            "ai-image-gen",
+            "ai-video-gen",
+            "ai-reimagine",
+            "ai-upscaler"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account"
+          ],
+          "bestFor": "Agencies and heavy users needing video + images",
+          "seats": 3,
+          "badge": "Premium",
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 3,
+          "priceBDT": 1730,
+          "officialUSD": 11.59,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Your own Freepik Premium account",
+            "Unlimited downloads on your account",
+            "AI generation on your own credentials",
+            "Full privacy and control"
+          ],
+          "features": [
+            "vectors",
+            "photos",
+            "icons",
+            "ai-image-gen",
+            "ai-reimagine",
+            "ai-upscaler"
+          ],
+          "limitations": [
+            "Single user only",
+            "Standard AI generation limits apply"
+          ],
+          "bestFor": "Professional designers who need full control",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Freepik Premium?",
+          "a": "Freepik Premium gives you unlimited downloads of millions of premium vectors, photos, PSD files, and icons — plus AI-powered image generation, reimagine, and upscaling tools."
+        },
+        {
+          "q": "Is Freepik Premium safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated Freepik account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "kling-ai-starter-shared",
+      "name": "Kling AI — Starter Shared",
+      "slug": "kling-ai-bangladesh",
+      "brand": "Kling AI",
+      "brandSlug": "kling-ai-bangladesh",
+      "provider": "Kling AI",
+      "brandColor": "#ff6b35",
+      "category": "ai-video",
+      "price": 270,
+      "officialUSD": 7,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "Kling AI creates stunning AI videos from text and images. Leading Chinese text-to-video model known for cinematic quality, character consistency, and motion realism. Perfect for Bangladeshi creators.",
+      "capabilities": [
+        "text-to-video",
+        "image-to-video",
+        "character-consistency",
+        "cinematic-quality",
+        "motion-realism"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Kling AI (৳270/mo)",
+      "status": "Active",
+      "descriptionBN": "Kling AI — টেক্সট ও ছবি থেকে চমৎকার AI ভিডিও তৈরি করে। চীনের সেরা টেক্সট-টু-ভিডিও মডেল, সিনেমাটিক কোয়ালিটি, ক্যারেক্টার কনসিস্টেন্সি এবং মোশন রিয়েলিজম।",
+      "useCases": [
+        "টিকটক ও ইনস্টাগ্রাম রিলস তৈরি",
+        "প্রোডাক্ট প্রমো ভিডিও",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিয়েশন",
+        "অ্যানিমেশন ও স্টোরিটেলিং",
+        "ব্যবসায়িক মার্কেটিং ভিডিও"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। ৫-১৫ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://klingai.com/",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 270,
+          "officialUSD": 7,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Text-to-video generation",
+            "Image-to-video generation",
+            "Cinematic quality output",
+            "Character consistency",
+            "Motion realism"
+          ],
+          "features": [
+            "text-to-video",
+            "image-to-video",
+            "character-consistency",
+            "cinematic-quality",
+            "motion-realism"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Limited generations per day"
+          ],
+          "bestFor": "Budget creators exploring AI video",
+          "seats": 6,
+          "badge": "New",
+          "inStock": true
+        },
+        {
+          "planName": "Pro Shared",
+          "tierLevel": 2,
+          "priceBDT": 980,
+          "officialUSD": 26,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Everything in Starter",
+            "Higher generation limits",
+            "Priority processing",
+            "4K output quality",
+            "Advanced camera controls"
+          ],
+          "features": [
+            "text-to-video",
+            "image-to-video",
+            "character-consistency",
+            "cinematic-quality",
+            "4k-output",
+            "motion-realism"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account"
+          ],
+          "bestFor": "Professional creators and agencies",
+          "seats": 3,
+          "badge": "Pro",
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 3,
+          "priceBDT": 1050,
+          "officialUSD": 7,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Your own Kling AI account",
+            "Full generation credits",
+            "Highest quality output",
+            "Full privacy and control"
+          ],
+          "features": [
+            "text-to-video",
+            "image-to-video",
+            "character-consistency",
+            "cinematic-quality",
+            "motion-realism"
+          ],
+          "limitations": [
+            "Single user only",
+            "Standard generation limits apply"
+          ],
+          "bestFor": "Serious creators needing dedicated access",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Kling AI?",
+          "a": "Kling AI is a leading text-to-video and image-to-video AI platform from China. It creates cinematic-quality videos with character consistency and realistic motion. Popular among content creators in Bangladesh."
+        },
+        {
+          "q": "Is Kling AI better than Runway?",
+          "a": "Different strengths. Kling AI excels at cinematic quality and character consistency — great for storytelling. Runway offers more advanced editing and effects. Many creators use both."
+        },
+        {
+          "q": "Is Kling AI safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "synthesia-starter-shared",
+      "name": "Synthesia — Starter Shared",
+      "slug": "synthesia-bangladesh",
+      "brand": "Synthesia",
+      "brandSlug": "synthesia-bangladesh",
+      "provider": "Synthesia",
+      "brandColor": "#5b5fc7",
+      "category": "ai-video",
+      "price": 700,
+      "officialUSD": 18,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "Synthesia creates professional AI avatar videos in minutes. 140+ AI avatars, 120+ languages, and custom avatar creation. Perfect for corporate training, marketing, and education in Bangladesh.",
+      "capabilities": [
+        "ai-avatars",
+        "text-to-video",
+        "multi-language",
+        "custom-avatars",
+        "corporate-training"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Synthesia (৳700/mo)",
+      "status": "Active",
+      "descriptionBN": "Synthesia — AI avatar ভিডিও তৈরি করুন মিনিটের মধ্যে। ১৪০+ AI avatar, ১২০+ ভাষা, কাস্টম avatar তৈরি। কর্পোরেট ট্রেনিং, মার্কেটিং ও শিক্ষার জন্য আদর্শ।",
+      "useCases": [
+        "কর্পোরেট ট্রেনিং ও অনবোর্ডিং ভিডিও",
+        "মার্কেটিং ও প্রোডাক্ট ডেমো ভিডিও",
+        "শিক্ষামূলক কনটেন্ট ও টিউটোরিয়াল",
+        "মাল্টিলিঙ্গুয়াল কনটেন্ট ক্রিয়েশন",
+        "সোশ্যাল মিডিয়া ও অ্যাড ক্যাম্পেইন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। ৫-১৫ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.synthesia.io/pricing",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 700,
+          "officialUSD": 18,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "140+ AI avatars",
+            "120+ languages",
+            "Text-to-video generation",
+            "Basic video templates",
+            "Screen recording"
+          ],
+          "features": [
+            "ai-avatars",
+            "text-to-video",
+            "multi-language",
+            "screen-recording",
+            "templates"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No custom avatar creation",
+            "Limited video length"
+          ],
+          "bestFor": "Small businesses and educators on a budget",
+          "seats": 5,
+          "badge": "New",
+          "inStock": true
+        },
+        {
+          "planName": "Creator Shared",
+          "tierLevel": 2,
+          "priceBDT": 2490,
+          "officialUSD": 64,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Everything in Starter",
+            "Custom avatar creation",
+            "Higher video limits",
+            "Priority support",
+            "Brand kit integration"
+          ],
+          "features": [
+            "ai-avatars",
+            "custom-avatars",
+            "text-to-video",
+            "multi-language",
+            "screen-recording",
+            "templates",
+            "brand-kit"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account"
+          ],
+          "bestFor": "Agencies and content creators needing custom avatars",
+          "seats": 3,
+          "badge": "Creator",
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 3,
+          "priceBDT": 2690,
+          "officialUSD": 18,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Your own Synthesia account",
+            "Full avatar library access",
+            "Custom avatar on personal plan",
+            "Full privacy and control"
+          ],
+          "features": [
+            "ai-avatars",
+            "custom-avatars",
+            "text-to-video",
+            "multi-language",
+            "screen-recording",
+            "templates"
+          ],
+          "limitations": [
+            "Single user only",
+            "Standard video limits apply"
+          ],
+          "bestFor": "Businesses needing dedicated avatar video platform",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Synthesia?",
+          "a": "Synthesia is the world's #1 AI video generation platform for business. Create professional videos with AI avatars in 120+ languages — no camera, no studio, no actors needed."
+        },
+        {
+          "q": "Is Synthesia better than HeyGen?",
+          "a": "Synthesia is stronger for corporate and educational content with 140+ avatars. HeyGen focuses more on social media and personal branding. Choose based on your use case."
+        },
+        {
+          "q": "Is Synthesia safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "windsurf-pro-shared",
+      "name": "Windsurf Pro — Shared",
+      "slug": "windsurf-bangladesh",
+      "brand": "Windsurf",
+      "brandSlug": "windsurf-bangladesh",
+      "provider": "Codeium",
+      "brandColor": "#0ea5e9",
+      "category": "ai-code",
+      "price": 590,
+      "officialUSD": 15,
+      "tier": "Pro Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "Windsurf by Codeium is an AI-native IDE with cascade agent mode — the AI can plan, write, test, and debug code autonomously. Supports 70+ languages and frameworks. Perfect for Bangladeshi developers.",
+      "capabilities": [
+        "cascade-agent",
+        "code-completion",
+        "debugging",
+        "70-languages",
+        "autonomous-coding"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Windsurf Pro (৳590/mo)",
+      "status": "Active",
+      "descriptionBN": "Windsurf (Codeium) — AI-native IDE ক্যাসকেড এজেন্ট মোড সহ। AI নিজে থেকে প্ল্যান, লিখুন, টেস্ট ও ডিবাগ করতে পারে। ৭০+ ভাষা ও ফ্রেমওয়ার্ক সাপোর্ট।",
+      "useCases": [
+        "ফুলস্ট্যাক ওয়েব অ্যাপ ডেভেলপমেন্ট",
+        "মোবাইল অ্যাপ ডেভেলপমেন্ট (iOS/Android)",
+        "AI/ML প্রজেক্ট ও ডেটা সায়েন্স",
+        "ফ্রিল্যান্স ক্লায়েন্ট প্রজেক্ট",
+        "স্টার্টআপ MVP ও প্রোটোটাইপিং"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। ৫-১৫ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://codeium.com/windsurf",
+      "plans": [
+        {
+          "planName": "Pro Shared",
+          "tierLevel": 1,
+          "priceBDT": 590,
+          "officialUSD": 15,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Cascade agent mode",
+            "AI code completion",
+            "Debugging assistance",
+            "70+ language support",
+            "Unlimited autocomplete"
+          ],
+          "features": [
+            "cascade-agent",
+            "code-completion",
+            "debugging",
+            "70-languages",
+            "autonomous-coding"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Cascade usage limits apply"
+          ],
+          "bestFor": "Developers exploring AI agent coding",
+          "seats": 4,
+          "badge": "New",
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 2240,
+          "officialUSD": 15,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Your own Windsurf Pro account",
+            "Full cascade agent access",
+            "Unlimited autocomplete",
+            "Full privacy and control"
+          ],
+          "features": [
+            "cascade-agent",
+            "code-completion",
+            "debugging",
+            "70-languages",
+            "autonomous-coding"
+          ],
+          "limitations": [
+            "Single user only",
+            "Standard cascade limits apply"
+          ],
+          "bestFor": "Professional developers needing dedicated AI IDE",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Windsurf?",
+          "a": "Windsurf by Codeium is an AI-native IDE with Cascade agent mode — the AI can autonomously plan, write, test, and debug code. It's like having a senior developer pair-programming with you 24/7. Supports 70+ languages."
+        },
+        {
+          "q": "How is Windsurf different from Cursor?",
+          "a": "Windsurf's Cascade agent is more autonomous — it can plan multi-step tasks and execute them. Cursor is more interactive with composer mode. Both are excellent; many developers use both for different workflows."
+        },
+        {
+          "q": "Is Windsurf safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
     }
   ]
 }

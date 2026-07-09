@@ -59,9 +59,9 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     seoTitle: "AI Image Generator — Midjourney, Ideogram Bangladesh",
     subtitle: "Midjourney, Ideogram, Leonardo AI — text-to-image",
     description:
-      "Create stunning visuals with AI. Generate images from text prompts, design logos, and produce photorealistic graphics. Midjourney for artistic quality, Ideogram for perfect text rendering, Leonardo AI for 3D and motion. All available in Bangladesh via bKash — no international card needed.",
+      "Create stunning visuals with AI. Generate images from text prompts, design logos, and produce photorealistic graphics. Midjourney for artistic quality, Ideogram for perfect text rendering, Leonardo AI for 3D and motion. Freepik Premium gives you millions of premium vectors, photos, icons, and AI image generation. All available in Bangladesh via bKash — no international card needed.",
     metaDescription:
-      "Midjourney, Ideogram, Leonardo AI in Bangladesh. From BDT 599. AI image generation. bKash/Nagad payment.",
+      "Midjourney, Ideogram, Leonardo AI, Freepik in Bangladesh. From BDT 190. AI image generation. bKash/Nagad payment.",
     accent: "#8b5cf6",
     faqs: [
       { q: "Which AI image tool is best for logo design?", a: "Ideogram is the best for logos and text-heavy designs — it renders text perfectly inside images. For artistic or photorealistic images, Midjourney Standard Plan is the top choice." },
@@ -86,9 +86,9 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     seoTitle: "AI Video Generator — Runway, HeyGen Bangladesh",
     subtitle: "Runway, HeyGen — text-to-video & AI avatars",
     description:
-      "Generate and edit videos with AI. Runway Gen-4 for professional video generation. HeyGen for AI avatar videos in 15+ languages. Pika Labs creates cinematic text-to-video clips. Opus Clip transforms long videos into viral Shorts. Descript Pro edits video by editing text. CapCut Pro is the #1 video editor for TikTok, Reels & Shorts. All accessible in Bangladesh with bKash payment.",
+      "Generate and edit videos with AI. Runway Gen-4 for professional video generation. HeyGen for AI avatar videos in 15+ languages. Kling AI creates cinematic text-to-video with character consistency. Synthesia makes professional AI avatar videos in 120+ languages. Pika Labs creates cinematic text-to-video clips. Opus Clip transforms long videos into viral Shorts. Descript Pro edits video by editing text. CapCut Pro is the #1 video editor for TikTok, Reels & Shorts. All accessible in Bangladesh with bKash payment.",
     metaDescription:
-      "Runway & HeyGen AI video in Bangladesh. From BDT 1,499. AI video generation & avatars. Local payment.",
+      "Runway, HeyGen, Kling AI, Synthesia in Bangladesh. From BDT 270. AI video generation & avatars. Local payment.",
     accent: "#ec4899",
     faqs: [
       { q: "What can I make with Runway?", a: "Runway Gen-4 creates video from text prompts or reference images, applies motion effects, removes backgrounds from video, and provides advanced editing tools used by professional filmmakers and video editors." },
@@ -138,9 +138,9 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     seoTitle: "AI Coding Tools — GitHub Copilot, Cursor Bangladesh",
     subtitle: "GitHub Copilot, Cursor, v0.dev, Replit",
     description:
-      "Code faster with AI pair programming. GitHub Copilot Pro integrates directly into VS Code, JetBrains, and Neovim. Cursor is the AI-native editor trusted by teams at OpenAI, Stripe, and Figma. v0.dev generates complete React UIs from text. Replit's agent builds full-stack apps — all available in Bangladesh via bKash from ৳500/month.",
+      "Code faster with AI pair programming. GitHub Copilot Pro integrates directly into VS Code, JetBrains, and Neovim. Cursor and Windsurf are AI-native editors with agent mode that can autonomously plan, write, test, and debug code. v0.dev generates complete React UIs from text. Replit's agent builds full-stack apps — all available in Bangladesh via bKash from ৳500/month.",
     metaDescription:
-      "GitHub Copilot, Cursor, v0.dev, Replit in Bangladesh. From BDT 500. AI coding tools. bKash/Nagad.",
+      "GitHub Copilot, Cursor, Windsurf, v0.dev, Replit in Bangladesh. From BDT 500. AI coding tools. bKash/Nagad.",
     accent: "#06b6d4",
     faqs: [
       { q: "GitHub Copilot vs Cursor — which is better?", a: "GitHub Copilot integrates into your existing IDE (VS Code, JetBrains, Vim). Cursor is a standalone AI-first IDE built on VS Code. Cursor is more powerful for AI-driven development; Copilot is more convenient if you already use a specific IDE." },

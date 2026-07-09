@@ -114,7 +114,7 @@ export default function BestAISubscriptionPage() {
             Best AI Subscription Bangladesh 2026 — Complete Guide
           </h1>
           <p className="text-lg mb-4" style={{ color: "#c9ceda" }}>
-            76 premium AI tools ranked by value, use case, and price. All available in Bangladesh via bKash — no international card needed.
+            80 premium AI tools ranked by value, use case, and price. All available in Bangladesh via bKash — no international card needed.
           </p>
         </motion.div>
 

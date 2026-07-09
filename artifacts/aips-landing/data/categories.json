@@ -16,8 +16,8 @@
     "industrySubtitle": "Midjourney, Ideogram, Leonardo AI",
     "icon": "Image",
     "from": 190,
-    "count": 10,
-    "description": "Create stunning visuals with AI. Generate images from text, edit photos, and design graphics. Midjourney for artistic quality, Ideogram for perfect text rendering, Leonardo AI for 3D and motion."
+    "count": 11,
+    "description": "Create stunning visuals with AI. Generate images from text, edit photos, and design graphics. Midjourney for artistic quality, Ideogram for perfect text rendering, Leonardo AI for 3D and motion, Freepik for millions of premium assets."
   },
   {
     "id": "ai-video",
@@ -25,9 +25,9 @@
     "displayName": "AI Video",
     "industrySubtitle": "Runway, HeyGen — video & AI avatars",
     "icon": "Video",
-    "from": 1499,
-    "count": 11,
-    "description": "Generate and edit videos with AI. Text-to-video, image-to-video, 4K upscaling, and AI avatar creation. Runway Gen-4, HeyGen, and CapCut Pro are the leading platforms for video creation and editing."
+    "from": 270,
+    "count": 13,
+    "description": "Generate and edit videos with AI. Text-to-video, image-to-video, 4K upscaling, and AI avatar creation. Runway, HeyGen, Kling AI, Synthesia, and CapCut Pro are the leading platforms for video creation and editing."
   },
   {
     "id": "ai-voice-music",
@@ -46,8 +46,8 @@
     "industrySubtitle": "GitHub Copilot, Cursor, v0.dev, Replit",
     "icon": "Code2",
     "from": 500,
-    "count": 6,
-    "description": "Code faster with AI pair programming. GitHub Copilot integrates into your IDE. Cursor is the AI-native editor used by teams at OpenAI, Stripe, and Figma. v0.dev builds UIs from prompts."
+    "count": 7,
+    "description": "Code faster with AI pair programming. GitHub Copilot integrates into your IDE. Cursor and Windsurf are AI-native editors used by top teams. v0.dev builds UIs from prompts."
   },
   {
     "id": "ai-workspace",

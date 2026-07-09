@@ -8,7 +8,7 @@ const STEPS = [
     number: "01",
     Icon: ShoppingCart,
     title: "Choose Your AI Tool",
-    description: "Browse our catalog of 76 premium AI tools and pick the one that fits your work and budget.",
+    description: "Browse our catalog of 80 premium AI tools and pick the one that fits your work and budget.",
     color: "#f4b942",
     gradientTo: "#f97316",
   },

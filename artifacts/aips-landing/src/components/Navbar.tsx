@@ -15,13 +15,14 @@ import productsData from "../../data/products.json";
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
 const CATEGORIES = [
-  { icon: MessageSquare, label: "AI Chat & Assistant", meta: "21 tools · from ৳350",  href: "/products" },
-  { icon: Image,         label: "AI Image & Design",   meta: "9 tools · from ৳599",   href: "/midjourney-bangladesh" },
-  { icon: Video,         label: "AI Video",             meta: "5 tools · from ৳399", href: "/runway-bangladesh" },
-  { icon: Music,         label: "AI Voice & Music",     meta: "6 tools · from ৳499",   href: "/elevenlabs-bangladesh" },
+  { icon: MessageSquare, label: "AI Chat & Assistant", meta: "22 tools · from ৳350",  href: "/products" },
+  { icon: Image,         label: "AI Image & Design",   meta: "10 tools · from ৳190",   href: "/midjourney-bangladesh" },
+  { icon: Video,         label: "AI Video",             meta: "11 tools · from ৳399", href: "/runway-bangladesh" },
+  { icon: Music,         label: "AI Voice & Music",     meta: "8 tools · from ৳499",   href: "/elevenlabs-bangladesh" },
   { icon: Code2,         label: "AI Code & Dev",        meta: "6 tools · from ৳500",   href: "/github-copilot-bangladesh" },
-  { icon: Layout,        label: "AI Workspace",         meta: "5 tools · from ৳399",   href: "/notion-business-bangladesh" },
-  { icon: Pen,           label: "AI Writing",           meta: "1 tool · ৳799",         href: "/writesonic-bangladesh" },
+  { icon: Layout,        label: "AI Workspace",         meta: "11 tools · from ৳399",   href: "/notion-business-bangladesh" },
+  { icon: Pen,           label: "AI Writing",           meta: "7 tools · ৳799",         href: "/writesonic-bangladesh" },
+  { icon: Palette,       label: "AI Design",            meta: "2 tools · from ৳190",  href: "/canva-pro-bangladesh" },
   { icon: Package,       label: "Bundle Packs",         meta: "5 packs · from ৳449",   href: "/bundles" },
 ];
 
@@ -162,7 +163,7 @@ function SearchOverlay({ onClose }: { onClose: () => void }) {
 
         {query.trim().length <= 1 && (
           <div className="text-center py-6 text-sm" style={{ color: "#c9ceda" }}>
-            Type to search 56 premium AI tools
+            Type to search 76 premium AI tools
           </div>
         )}
       </motion.div>

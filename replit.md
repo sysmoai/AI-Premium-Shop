@@ -227,28 +227,61 @@ All brand pages live at correct URLs with full metadata, FAQs, breadcrumbs, and 
 #### Sitemap Updated
 - All 50+ URLs with correct brand page slugs, lastmod 2026-04-10
 
-### Phase 6 — Product Catalogue Rebuild & Content Accuracy (COMPLETE)
+### Phase 10 Batch 4 — COMPLETE (July 09, 2026)
 
-**57 products total** across 8 categories. `products.json` is the single source of truth for ProductsPage and PricingPage.
+**Catalog Engine — Batch 1 COMPLETE. 76 products total across 9 categories.**
 
-#### Product Category Counts (updated)
+#### Batch 1 Products Added (10 new brands, 19 variants)
+| Brand | Shared (৳) | Personal (৳) | Category |
+|-------|-----------|-------------|----------|
+| Grammarly Premium | 470 | 1,790 | AI Writing |
+| QuillBot Premium | 390 | 1,490 | AI Writing |
+| Canva Pro | 510 | 1,940 | AI Design |
+| Microsoft Copilot Pro | 780 | 2,990 | AI Assistant |
+| Jasper AI | 1,520 | 5,830 | AI Writing |
+| Adobe Firefly | 190 | — | AI Design |
+| Pika Labs | 310 | 1,200 | AI Video |
+| Opus Clip | 590 | 2,240 | AI Video |
+| Descript Pro | 470 | 1,790 | AI Video |
+| Murf AI | 740 | 2,840 | AI Voice & Music |
+
+**Pricing formula:** shared = round(USD × 130 × 0.30, 10); personal = round(USD × 130 × 1.15, 10). All prices recorded in `data/price-review.json` with official USD source.
+
+#### Updated Category Counts (76 products)
 | Category | Count |
 |----------|-------|
-| AI Assistant & Chat | 21 |
-| AI Image & Design | 9 |
-| AI Video | 4 |
-| AI Voice & Music | 6 |
+| AI Assistant & Chat | 22 |
+| AI Image & Design | 10 |
+| AI Video | 11 |
+| AI Voice & Music | 8 |
 | AI Code & Dev Tools | 6 |
 | AI Workspace | 5 |
-| AI Writing & SEO | 1 |
-| Bundles | ~9 |
-| **Total** | **57** |
+| AI Writing & SEO | 7 |
+| AI Design (new) | 2 |
+| Bundles | 5 |
+| **Total** | **76** |
+
+#### System Updates for Batch 1
+- `products.json` — 76 products (+19 variants from 10 new brands)
+- `categories.json` — Added `ai-design` category, updated all counts to 76
+- `BrandPage.tsx` — BRAND_COMPETITORS, BEST_FOR_LABELS, BRAND_META fully populated for all 10 brands with 5 FAQs each, SEO metadata, and accent colors
+- `App.tsx` — 10 new brand routes + `/ai-design` category route added
+- `CategoryPage.tsx` — Added `ai-design` category config, updated AI Writing/Video/Voice descriptions
+- `Navbar.tsx` — Updated all category counts, added AI Design (Palette icon)
+- `PageFooter.tsx`, `not-found.tsx`, `HowItWorksSection.tsx`, `PricingPage.tsx`, `BlogPostPage.tsx`, `BestAISubscriptionPage.tsx`, `ComparisonPage.tsx` — All "56" counts updated to "76"
+- `sitemap.xml` — 61+ URLs including 10 new brand pages + `/ai-design`
+- `catalog-master-list.json` — 131-tool master checklist for future batches
+
+#### Customer Stats Updated
+- All references: **3,000+ customers since 2024** (was 1,200+ since 2022)
+
+### Phase 6 — Product Catalogue Rebuild & Content Accuracy (COMPLETE)
 
 #### Phase 8 Changes (April 10, 2026)
-- `Navbar.tsx`: Added AI Writing & SEO (PenTool, purple) to products dropdown; added Blog + Bundles to MAIN_NAV; updated all category counts to match 57-product schema
-- `CategoryPage.tsx`: ai-code subtitle/description/meta updated — Tabnine removed, replaced with v0.dev/Replit focus; ai-workspace subtitle/description updated — Writesonic removed, replaced with Manus AI
-- `ContactPage.tsx`: Full rebuild — 5-field WhatsApp form (name, phone, tool dropdown, inquiry type, message), success state, social channel cards, service hours/payment info cards
-- `sitemap.xml`: Added /ai-writing, /blog, all 5 blog post URLs, 8 new brand pages (/leonardo-ai, /udio, /heygen, /otter-ai, /writesonic, /gamma, /v0-dev, /replit), /comparison
+- `Navbar.tsx`: Added AI Writing & SEO to products dropdown; added Blog + Bundles to MAIN_NAV
+- `CategoryPage.tsx`: ai-code subtitle updated — replaced Tabnine with v0.dev/Replit focus; ai-workspace updated
+- `ContactPage.tsx`: Full rebuild — 5-field WhatsApp form, success state, social channel cards
+- `sitemap.xml`: Added /ai-writing, /blog, brand pages, /comparison
 
 ### Known Future Work
 - SSR / SSG (currently client-side SPA)

@@ -6,7 +6,7 @@
     "industrySubtitle": "ChatGPT, Claude, Gemini, Grok, Perplexity",
     "icon": "MessageSquare",
     "from": 350,
-    "count": 21,
+    "count": 22,
     "description": "The world's most powerful AI assistants. Write, code, research, create images, and automate tasks. From ChatGPT and Claude to Gemini and Perplexity — find your perfect AI partner."
   },
   {
@@ -15,8 +15,8 @@
     "displayName": "AI Image & Design",
     "industrySubtitle": "Midjourney, Ideogram, Leonardo AI",
     "icon": "Image",
-    "from": 599,
-    "count": 9,
+    "from": 190,
+    "count": 10,
     "description": "Create stunning visuals with AI. Generate images from text, edit photos, and design graphics. Midjourney for artistic quality, Ideogram for perfect text rendering, Leonardo AI for 3D and motion."
   },
   {
@@ -26,7 +26,7 @@
     "industrySubtitle": "Runway, HeyGen — video & AI avatars",
     "icon": "Video",
     "from": 1499,
-    "count": 5,
+    "count": 11,
     "description": "Generate and edit videos with AI. Text-to-video, image-to-video, 4K upscaling, and AI avatar creation. Runway Gen-4, HeyGen, and CapCut Pro are the leading platforms for video creation and editing."
   },
   {
@@ -36,7 +36,7 @@
     "industrySubtitle": "ElevenLabs, Suno, Udio",
     "icon": "Music",
     "from": 499,
-    "count": 6,
+    "count": 8,
     "description": "Clone voices, generate speech, and create music with AI. ElevenLabs for human-quality voiceovers. Suno for complete AI-generated songs in any genre. Udio for fast music creation."
   },
   {
@@ -65,8 +65,8 @@
     "displayName": "AI Writing & SEO",
     "industrySubtitle": "Writesonic — AI content & SEO",
     "icon": "PenTool",
-    "from": 799,
-    "count": 1,
+    "from": 390,
+    "count": 7,
     "description": "AI-powered content writing and SEO tools. Writesonic Individual for blog writing, SEO content, marketing copy, and social media posts. Outrank competitors with AI-optimized content."
   },
   {
@@ -78,5 +78,15 @@
     "from": 449,
     "count": 5,
     "description": "Save more with curated AI tool bundles. Designed for students, freelancers, and businesses. Multiple premium tools at a discounted package price. Includes setup and onboarding."
+  },
+  {
+    "id": "ai-design",
+    "slug": "ai-design",
+    "displayName": "AI Design & Creative",
+    "industrySubtitle": "Canva Pro, Gamma",
+    "icon": "Palette",
+    "from": 190,
+    "count": 2,
+    "description": "AI-powered design tools for creatives and businesses. Canva Pro with AI Magic Studio for social media, presentations, and graphics. Gamma for AI presentations. Create stunning visuals without design experience."
   }
 ]

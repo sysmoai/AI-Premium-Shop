@@ -140,7 +140,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-lg md:text-xl text-gray-400 max-w-2xl mb-8 leading-relaxed"
           >
-            56 premium AI tools. Local payment via{" "}
+            76 premium AI tools. Local payment via{" "}
             <span className="inline-block bg-[#E2136E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">bKash</span>{" "}
             and{" "}
             <span className="inline-block bg-[#F6921E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">Nagad</span>.
@@ -287,7 +287,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             ))}
           </div>
           <div className="mt-4 text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>
-            56 tools · Local payment
+            76 tools · Local payment
           </div>
         </motion.div>
       </div>

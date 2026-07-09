@@ -88,7 +88,20 @@ function Router() {
       <Route path="/ai-code">{() => <CategoryPage categoryId="ai-code" />}</Route>
       <Route path="/ai-workspace">{() => <CategoryPage categoryId="ai-workspace" />}</Route>
       <Route path="/ai-writing">{() => <CategoryPage categoryId="ai-writing" />}</Route>
+      <Route path="/ai-design">{() => <CategoryPage categoryId="ai-design" />}</Route>
       <Route path="/bundles">{() => <CategoryPage categoryId="bundles" />}</Route>
+
+      {/* Brand pages — Batch 1 Additions */}
+      <Route path="/grammarly-premium-bangladesh">{() => <BrandPage brandSlug="grammarly-premium-bangladesh" />}</Route>
+      <Route path="/quillbot-premium-bangladesh">{() => <BrandPage brandSlug="quillbot-premium-bangladesh" />}</Route>
+      <Route path="/canva-pro-bangladesh">{() => <BrandPage brandSlug="canva-pro-bangladesh" />}</Route>
+      <Route path="/microsoft-copilot-pro-bangladesh">{() => <BrandPage brandSlug="microsoft-copilot-pro-bangladesh" />}</Route>
+      <Route path="/jasper-ai-bangladesh">{() => <BrandPage brandSlug="jasper-ai-bangladesh" />}</Route>
+      <Route path="/adobe-firefly-bangladesh">{() => <BrandPage brandSlug="adobe-firefly-bangladesh" />}</Route>
+      <Route path="/pika-labs-bangladesh">{() => <BrandPage brandSlug="pika-labs-bangladesh" />}</Route>
+      <Route path="/opus-clip-bangladesh">{() => <BrandPage brandSlug="opus-clip-bangladesh" />}</Route>
+      <Route path="/descript-pro-bangladesh">{() => <BrandPage brandSlug="descript-pro-bangladesh" />}</Route>
+      <Route path="/murf-ai-bangladesh">{() => <BrandPage brandSlug="murf-ai-bangladesh" />}</Route>
 
       {/* Brand pages — AI Video Editing */}
       <Route path="/capcut-pro-bangladesh">{() => <BrandPage brandSlug="capcut-pro-bangladesh" />}</Route>

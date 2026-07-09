@@ -28,6 +28,7 @@ import BrandPage from "@/pages/BrandPage";
 import SupportPage from "@/pages/SupportPage";
 import HowToOrderPage from "@/pages/HowToOrderPage";
 import BestAISubscriptionPage from "@/pages/BestAISubscriptionPage";
+import ProductPage from "@/pages/ProductPage";
 
 const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20an%20AI%20subscription";
 
@@ -159,6 +160,9 @@ function Router() {
       <Route path="/ai-under-500">{() => <BudgetPage budgetKey="ai-under-500" />}</Route>
       <Route path="/ai-under-1000">{() => <BudgetPage budgetKey="ai-under-1000" />}</Route>
       <Route path="/ai-under-3000">{() => <BudgetPage budgetKey="ai-under-3000" />}</Route>
+
+      {/* Product detail pages */}
+      <Route path="/product/:slug">{(params) => <ProductPage productSlug={params.slug} />}</Route>
 
       {/* Info pages */}
       <Route path="/about" component={AboutPage} />

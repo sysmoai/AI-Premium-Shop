@@ -36,7 +36,253 @@
         "ইংরেজি ইমেইল ও CV পলিশ করা"
       ],
       "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-১৫ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট।",
-      "sourceUrl": "https://openai.com/chatgpt/pricing/"
+      "sourceUrl": "https://openai.com/chatgpt/pricing/",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 350,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "GPT-5.4 text & code",
+            "Vision & image understanding",
+            "Web search & DALL-E",
+            "AI agents & tools",
+            "8-seat shared pool"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "search",
+            "image-gen",
+            "agents"
+          ],
+          "limitations": [
+            "Shared with 8 users max",
+            "No Sora video",
+            "Slower during peak hours",
+            "No deep research"
+          ],
+          "bestFor": "Students & freelancers on a budget",
+          "seats": 8,
+          "badge": "Best Seller",
+          "inStock": true
+        },
+        {
+          "planName": "Premium Shared",
+          "tierLevel": 2,
+          "priceBDT": 950,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "GPT-5.4 Pro thinking",
+            "Vision, code, images",
+            "Web search & DALL-E",
+            "AI agents",
+            "2-3 user shared pool",
+            "Higher uptime"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "search",
+            "image-gen",
+            "agents"
+          ],
+          "limitations": [
+            "Shared with 2-3 users",
+            "No Sora video",
+            "No Codex agent mode"
+          ],
+          "bestFor": "Freelancers & small agencies",
+          "seats": 3,
+          "badge": "Popular",
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 3,
+          "priceBDT": 2990,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Your own OpenAI account",
+            "GPT-5.4 Pro thinking",
+            "Vision, code, images, agents",
+            "DALL-E image generation",
+            "Deep research",
+            "Custom GPTs",
+            "No sharing"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "search",
+            "image-gen",
+            "agents",
+            "deep-research",
+            "custom-gpts"
+          ],
+          "limitations": [
+            "Usage rate limits apply",
+            "No Sora",
+            "No Codex"
+          ],
+          "bestFor": "Professionals who need full privacy",
+          "seats": 1,
+          "inStock": true
+        }
+      ],
+      "higherPlanUpsell": {
+        "targetPlan": "ChatGPT Pro",
+        "whatYouUnlock": [
+          "Unlimited GPT-5.4 Pro",
+          "Sora video generation",
+          "Codex autonomous coding agent",
+          "Unlimited deep research",
+          "Maximum usage limits"
+        ]
+      },
+      "faq": [
+        {
+          "q": "Is ChatGPT Plus worth it in Bangladesh?",
+          "a": "Yes — for ৳350/month you get GPT-5.4, web search, DALL-E image generation, and AI agents. Most students and freelancers see 3-5x productivity gains.",
+          "qBN": "বাংলাদেশে ChatGPT Plus কি মূল্যবান?",
+          "aBN": "হ্যাঁ — ৳350/মাসে GPT-5.4, ওয়েব সার্চ, DALL-E ছবি তৈরি এবং AI এজেন্ট পান। অধিকাংশ শিক্ষার্থী ও ফ্রিল্যান্সার ৩-৫ গুণ উৎপাদনশীলতা বৃদ্ধি পান।"
+        },
+        {
+          "q": "Do I need an international card?",
+          "a": "No. AIPS accepts bKash, Nagad, Rocket, and bank transfer. You never need a credit card.",
+          "qBN": "আন্তর্জাতিক কার্ড প্রয়োজন কি?",
+          "aBN": "না। AIPS bKash, Nagad, Rocket এবং ব্যাংক ট্রান্সফার গ্রহণ করে। আপনার কখনো ক্রেডিট কার্ডের প্রয়োজন হবে না।"
+        },
+        {
+          "q": "Is the shared plan safe?",
+          "a": "Yes. AIPS manages shared pools carefully. Your conversations are private from other users. For full privacy, choose the Personal plan.",
+          "qBN": "শেয়ার্ড প্ল্যান নিরাপদ কি?",
+          "aBN": "হ্যাঁ। AIPS কেয়ারফুলি শেয়ার্ড পুল ম্যানেজ করে। অন্য ব্যবহারকারীদের কাছে আপনার কথোপকথন গোপনীয়। সম্পূর্ণ গোপনীয়তার জন্য Personal প্ল্যান বেছে নিন।"
+        },
+        {
+          "q": "How fast is delivery?",
+          "a": "Shared plans: 5-30 minutes. Personal plans: 2-4 hours after payment confirmation.",
+          "qBN": "ডেলিভারি কত দ্রুত?",
+          "aBN": "শেয়ার্ড প্ল্যান: ৫-৩০ মিনিট। Personal প্ল্যান: পেমেন্ট নিশ্চিত হওয়ার ২-৪ ঘন্টা।"
+        },
+        {
+          "q": "What if the account stops working?",
+          "a": "AIPS offers a 30-day warranty. Report any issue via WhatsApp and we replace or refund promptly.",
+          "qBN": "অ্যাকাউন্ট কাজ করা বন্ধ করলে কী হবে?",
+          "aBN": "AIPS ৩০ দিনের ওয়ারেন্টি দেয়। WhatsApp-এ যেকোনো সমস্যা জানান এবং আমরা প্রতিস্থাপন বা রিফান্ড দ্রুত দেব।"
+        }
+      ],
+      "competitorCompare": [
+        {
+          "seller": "AI Premium Shop",
+          "price": "From ৳350/mo",
+          "risk": "Zero — verified seller with warranty & support"
+        },
+        {
+          "seller": "Buy direct from OpenAI",
+          "price": "$20/mo (≈৳2,990 with card fees)",
+          "risk": "Requires international card; Bangladesh banks often block"
+        },
+        {
+          "seller": "Grey-market reseller",
+          "price": "Variable (often same price)",
+          "risk": "No warranty; accounts banned; no support"
+        }
+      ],
+      "relatedProducts": [
+        {
+          "slug": "claude-pro-bangladesh",
+          "name": "Claude Pro",
+          "priceBDT": 1495,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "gemini-advanced-bangladesh",
+          "name": "Google AI Pro",
+          "priceBDT": 500,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "midjourney-bangladesh",
+          "name": "Midjourney",
+          "priceBDT": 1199,
+          "category": "ai-image"
+        }
+      ],
+      "uniqueSellingPoints": [
+        "Instant delivery 5-15 min",
+        "30-day warranty & replacement",
+        "bKash/Nagad payment — no intl card",
+        "Bangla WhatsApp support",
+        "3,000+ trusted customers since 2024"
+      ],
+      "howItWorksSteps": [
+        {
+          "title": "Choose plan",
+          "desc": "Pick Shared or Personal based on your budget and privacy needs."
+        },
+        {
+          "title": "Pay bKash/Nagad",
+          "desc": "Send payment securely via your preferred local channel."
+        },
+        {
+          "title": "Get instant access",
+          "desc": "Receive login details or activation within minutes."
+        }
+      ],
+      "estimatedDeliveryTime": "5-30 min",
+      "deliveryMethod": "account-credentials",
+      "lastVerifiedDate": "2026-07-09",
+      "seo": {
+        "title": "ChatGPT Plus price in Bangladesh — ৳350/mo | AI Premium Shop",
+        "metaDescription": "ChatGPT Plus price in Bangladesh is ৳350/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by 3,000+ customers since 2024.",
+        "canonical": "https://aipremiumshop.com/chatgpt-plus-bangladesh",
+        "ogImage": "https://aipremiumshop.com/images/og/chatgpt-plus.png",
+        "keywords": [
+          "ChatGPT Plus Bangladesh",
+          "ChatGPT price BD",
+          "ChatGPT bKash",
+          "ChatGPT koto taka",
+          "AI Premium Shop"
+        ]
+      },
+      "specs": {
+        "platforms": [
+          "Web",
+          "iOS",
+          "Android",
+          "macOS",
+          "Windows"
+        ],
+        "devices": "Unlimited",
+        "regions": "Global (activated on your account)",
+        "languages": "EN + BN interface",
+        "deviceLimit": "Unlimited (your own login)"
+      },
+      "stock": {
+        "status": "in",
+        "unitsNote": "Available immediately"
+      },
+      "badges": [
+        "bestseller"
+      ],
+      "trust": {
+        "warrantyDays": 30,
+        "refundPolicy": "Full refund within 24h if not delivered; replacement within 30 days for account issues.",
+        "reviewCount": 3421,
+        "rating": 4.9
+      }
     },
     {
       "id": "chatgpt-plus-premium-shared",
@@ -74,7 +320,253 @@
         "ইংরেজি ইমেইল ও CV পলিশ করা"
       ],
       "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-১৫ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট।",
-      "sourceUrl": "https://openai.com/chatgpt/pricing/"
+      "sourceUrl": "https://openai.com/chatgpt/pricing/",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 350,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "GPT-5.4 text & code",
+            "Vision & image understanding",
+            "Web search & DALL-E",
+            "AI agents & tools",
+            "8-seat shared pool"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "search",
+            "image-gen",
+            "agents"
+          ],
+          "limitations": [
+            "Shared with 8 users max",
+            "No Sora video",
+            "Slower during peak hours",
+            "No deep research"
+          ],
+          "bestFor": "Students & freelancers on a budget",
+          "seats": 8,
+          "badge": "Best Seller",
+          "inStock": true
+        },
+        {
+          "planName": "Premium Shared",
+          "tierLevel": 2,
+          "priceBDT": 950,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "GPT-5.4 Pro thinking",
+            "Vision, code, images",
+            "Web search & DALL-E",
+            "AI agents",
+            "2-3 user shared pool",
+            "Higher uptime"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "search",
+            "image-gen",
+            "agents"
+          ],
+          "limitations": [
+            "Shared with 2-3 users",
+            "No Sora video",
+            "No Codex agent mode"
+          ],
+          "bestFor": "Freelancers & small agencies",
+          "seats": 3,
+          "badge": "Popular",
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 3,
+          "priceBDT": 2990,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Your own OpenAI account",
+            "GPT-5.4 Pro thinking",
+            "Vision, code, images, agents",
+            "DALL-E image generation",
+            "Deep research",
+            "Custom GPTs",
+            "No sharing"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "search",
+            "image-gen",
+            "agents",
+            "deep-research",
+            "custom-gpts"
+          ],
+          "limitations": [
+            "Usage rate limits apply",
+            "No Sora",
+            "No Codex"
+          ],
+          "bestFor": "Professionals who need full privacy",
+          "seats": 1,
+          "inStock": true
+        }
+      ],
+      "higherPlanUpsell": {
+        "targetPlan": "ChatGPT Pro",
+        "whatYouUnlock": [
+          "Unlimited GPT-5.4 Pro",
+          "Sora video generation",
+          "Codex autonomous coding agent",
+          "Unlimited deep research",
+          "Maximum usage limits"
+        ]
+      },
+      "faq": [
+        {
+          "q": "Is ChatGPT Plus worth it in Bangladesh?",
+          "a": "Yes — for ৳350/month you get GPT-5.4, web search, DALL-E image generation, and AI agents. Most students and freelancers see 3-5x productivity gains.",
+          "qBN": "বাংলাদেশে ChatGPT Plus কি মূল্যবান?",
+          "aBN": "হ্যাঁ — ৳350/মাসে GPT-5.4, ওয়েব সার্চ, DALL-E ছবি তৈরি এবং AI এজেন্ট পান। অধিকাংশ শিক্ষার্থী ও ফ্রিল্যান্সার ৩-৫ গুণ উৎপাদনশীলতা বৃদ্ধি পান।"
+        },
+        {
+          "q": "Do I need an international card?",
+          "a": "No. AIPS accepts bKash, Nagad, Rocket, and bank transfer. You never need a credit card.",
+          "qBN": "আন্তর্জাতিক কার্ড প্রয়োজন কি?",
+          "aBN": "না। AIPS bKash, Nagad, Rocket এবং ব্যাংক ট্রান্সফার গ্রহণ করে। আপনার কখনো ক্রেডিট কার্ডের প্রয়োজন হবে না।"
+        },
+        {
+          "q": "Is the shared plan safe?",
+          "a": "Yes. AIPS manages shared pools carefully. Your conversations are private from other users. For full privacy, choose the Personal plan.",
+          "qBN": "শেয়ার্ড প্ল্যান নিরাপদ কি?",
+          "aBN": "হ্যাঁ। AIPS কেয়ারফুলি শেয়ার্ড পুল ম্যানেজ করে। অন্য ব্যবহারকারীদের কাছে আপনার কথোপকথন গোপনীয়। সম্পূর্ণ গোপনীয়তার জন্য Personal প্ল্যান বেছে নিন।"
+        },
+        {
+          "q": "How fast is delivery?",
+          "a": "Shared plans: 5-30 minutes. Personal plans: 2-4 hours after payment confirmation.",
+          "qBN": "ডেলিভারি কত দ্রুত?",
+          "aBN": "শেয়ার্ড প্ল্যান: ৫-৩০ মিনিট। Personal প্ল্যান: পেমেন্ট নিশ্চিত হওয়ার ২-৪ ঘন্টা।"
+        },
+        {
+          "q": "What if the account stops working?",
+          "a": "AIPS offers a 30-day warranty. Report any issue via WhatsApp and we replace or refund promptly.",
+          "qBN": "অ্যাকাউন্ট কাজ করা বন্ধ করলে কী হবে?",
+          "aBN": "AIPS ৩০ দিনের ওয়ারেন্টি দেয়। WhatsApp-এ যেকোনো সমস্যা জানান এবং আমরা প্রতিস্থাপন বা রিফান্ড দ্রুত দেব।"
+        }
+      ],
+      "competitorCompare": [
+        {
+          "seller": "AI Premium Shop",
+          "price": "From ৳350/mo",
+          "risk": "Zero — verified seller with warranty & support"
+        },
+        {
+          "seller": "Buy direct from OpenAI",
+          "price": "$20/mo (≈৳2,990 with card fees)",
+          "risk": "Requires international card; Bangladesh banks often block"
+        },
+        {
+          "seller": "Grey-market reseller",
+          "price": "Variable (often same price)",
+          "risk": "No warranty; accounts banned; no support"
+        }
+      ],
+      "relatedProducts": [
+        {
+          "slug": "claude-pro-bangladesh",
+          "name": "Claude Pro",
+          "priceBDT": 1495,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "gemini-advanced-bangladesh",
+          "name": "Google AI Pro",
+          "priceBDT": 500,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "midjourney-bangladesh",
+          "name": "Midjourney",
+          "priceBDT": 1199,
+          "category": "ai-image"
+        }
+      ],
+      "uniqueSellingPoints": [
+        "Instant delivery 5-15 min",
+        "30-day warranty & replacement",
+        "bKash/Nagad payment — no intl card",
+        "Bangla WhatsApp support",
+        "3,000+ trusted customers since 2024"
+      ],
+      "howItWorksSteps": [
+        {
+          "title": "Choose plan",
+          "desc": "Pick Shared or Personal based on your budget and privacy needs."
+        },
+        {
+          "title": "Pay bKash/Nagad",
+          "desc": "Send payment securely via your preferred local channel."
+        },
+        {
+          "title": "Get instant access",
+          "desc": "Receive login details or activation within minutes."
+        }
+      ],
+      "estimatedDeliveryTime": "5-30 min",
+      "deliveryMethod": "account-credentials",
+      "lastVerifiedDate": "2026-07-09",
+      "seo": {
+        "title": "ChatGPT Plus price in Bangladesh — ৳350/mo | AI Premium Shop",
+        "metaDescription": "ChatGPT Plus price in Bangladesh is ৳350/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by 3,000+ customers since 2024.",
+        "canonical": "https://aipremiumshop.com/chatgpt-plus-bangladesh",
+        "ogImage": "https://aipremiumshop.com/images/og/chatgpt-plus.png",
+        "keywords": [
+          "ChatGPT Plus Bangladesh",
+          "ChatGPT price BD",
+          "ChatGPT bKash",
+          "ChatGPT koto taka",
+          "AI Premium Shop"
+        ]
+      },
+      "specs": {
+        "platforms": [
+          "Web",
+          "iOS",
+          "Android",
+          "macOS",
+          "Windows"
+        ],
+        "devices": "Unlimited",
+        "regions": "Global (activated on your account)",
+        "languages": "EN + BN interface",
+        "deviceLimit": "Unlimited (your own login)"
+      },
+      "stock": {
+        "status": "in",
+        "unitsNote": "Available immediately"
+      },
+      "badges": [
+        "bestseller"
+      ],
+      "trust": {
+        "warrantyDays": 30,
+        "refundPolicy": "Full refund within 24h if not delivered; replacement within 30 days for account issues.",
+        "reviewCount": 3421,
+        "rating": 4.9
+      }
     },
     {
       "id": "chatgpt-plus-personal",
@@ -112,7 +604,253 @@
         "ইংরেজি ইমেইল ও CV পলিশ করা"
       ],
       "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-১৫ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট।",
-      "sourceUrl": "https://openai.com/chatgpt/pricing/"
+      "sourceUrl": "https://openai.com/chatgpt/pricing/",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 350,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "GPT-5.4 text & code",
+            "Vision & image understanding",
+            "Web search & DALL-E",
+            "AI agents & tools",
+            "8-seat shared pool"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "search",
+            "image-gen",
+            "agents"
+          ],
+          "limitations": [
+            "Shared with 8 users max",
+            "No Sora video",
+            "Slower during peak hours",
+            "No deep research"
+          ],
+          "bestFor": "Students & freelancers on a budget",
+          "seats": 8,
+          "badge": "Best Seller",
+          "inStock": true
+        },
+        {
+          "planName": "Premium Shared",
+          "tierLevel": 2,
+          "priceBDT": 950,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "GPT-5.4 Pro thinking",
+            "Vision, code, images",
+            "Web search & DALL-E",
+            "AI agents",
+            "2-3 user shared pool",
+            "Higher uptime"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "search",
+            "image-gen",
+            "agents"
+          ],
+          "limitations": [
+            "Shared with 2-3 users",
+            "No Sora video",
+            "No Codex agent mode"
+          ],
+          "bestFor": "Freelancers & small agencies",
+          "seats": 3,
+          "badge": "Popular",
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 3,
+          "priceBDT": 2990,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Your own OpenAI account",
+            "GPT-5.4 Pro thinking",
+            "Vision, code, images, agents",
+            "DALL-E image generation",
+            "Deep research",
+            "Custom GPTs",
+            "No sharing"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "search",
+            "image-gen",
+            "agents",
+            "deep-research",
+            "custom-gpts"
+          ],
+          "limitations": [
+            "Usage rate limits apply",
+            "No Sora",
+            "No Codex"
+          ],
+          "bestFor": "Professionals who need full privacy",
+          "seats": 1,
+          "inStock": true
+        }
+      ],
+      "higherPlanUpsell": {
+        "targetPlan": "ChatGPT Pro",
+        "whatYouUnlock": [
+          "Unlimited GPT-5.4 Pro",
+          "Sora video generation",
+          "Codex autonomous coding agent",
+          "Unlimited deep research",
+          "Maximum usage limits"
+        ]
+      },
+      "faq": [
+        {
+          "q": "Is ChatGPT Plus worth it in Bangladesh?",
+          "a": "Yes — for ৳350/month you get GPT-5.4, web search, DALL-E image generation, and AI agents. Most students and freelancers see 3-5x productivity gains.",
+          "qBN": "বাংলাদেশে ChatGPT Plus কি মূল্যবান?",
+          "aBN": "হ্যাঁ — ৳350/মাসে GPT-5.4, ওয়েব সার্চ, DALL-E ছবি তৈরি এবং AI এজেন্ট পান। অধিকাংশ শিক্ষার্থী ও ফ্রিল্যান্সার ৩-৫ গুণ উৎপাদনশীলতা বৃদ্ধি পান।"
+        },
+        {
+          "q": "Do I need an international card?",
+          "a": "No. AIPS accepts bKash, Nagad, Rocket, and bank transfer. You never need a credit card.",
+          "qBN": "আন্তর্জাতিক কার্ড প্রয়োজন কি?",
+          "aBN": "না। AIPS bKash, Nagad, Rocket এবং ব্যাংক ট্রান্সফার গ্রহণ করে। আপনার কখনো ক্রেডিট কার্ডের প্রয়োজন হবে না।"
+        },
+        {
+          "q": "Is the shared plan safe?",
+          "a": "Yes. AIPS manages shared pools carefully. Your conversations are private from other users. For full privacy, choose the Personal plan.",
+          "qBN": "শেয়ার্ড প্ল্যান নিরাপদ কি?",
+          "aBN": "হ্যাঁ। AIPS কেয়ারফুলি শেয়ার্ড পুল ম্যানেজ করে। অন্য ব্যবহারকারীদের কাছে আপনার কথোপকথন গোপনীয়। সম্পূর্ণ গোপনীয়তার জন্য Personal প্ল্যান বেছে নিন।"
+        },
+        {
+          "q": "How fast is delivery?",
+          "a": "Shared plans: 5-30 minutes. Personal plans: 2-4 hours after payment confirmation.",
+          "qBN": "ডেলিভারি কত দ্রুত?",
+          "aBN": "শেয়ার্ড প্ল্যান: ৫-৩০ মিনিট। Personal প্ল্যান: পেমেন্ট নিশ্চিত হওয়ার ২-৪ ঘন্টা।"
+        },
+        {
+          "q": "What if the account stops working?",
+          "a": "AIPS offers a 30-day warranty. Report any issue via WhatsApp and we replace or refund promptly.",
+          "qBN": "অ্যাকাউন্ট কাজ করা বন্ধ করলে কী হবে?",
+          "aBN": "AIPS ৩০ দিনের ওয়ারেন্টি দেয়। WhatsApp-এ যেকোনো সমস্যা জানান এবং আমরা প্রতিস্থাপন বা রিফান্ড দ্রুত দেব।"
+        }
+      ],
+      "competitorCompare": [
+        {
+          "seller": "AI Premium Shop",
+          "price": "From ৳350/mo",
+          "risk": "Zero — verified seller with warranty & support"
+        },
+        {
+          "seller": "Buy direct from OpenAI",
+          "price": "$20/mo (≈৳2,990 with card fees)",
+          "risk": "Requires international card; Bangladesh banks often block"
+        },
+        {
+          "seller": "Grey-market reseller",
+          "price": "Variable (often same price)",
+          "risk": "No warranty; accounts banned; no support"
+        }
+      ],
+      "relatedProducts": [
+        {
+          "slug": "claude-pro-bangladesh",
+          "name": "Claude Pro",
+          "priceBDT": 1495,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "gemini-advanced-bangladesh",
+          "name": "Google AI Pro",
+          "priceBDT": 500,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "midjourney-bangladesh",
+          "name": "Midjourney",
+          "priceBDT": 1199,
+          "category": "ai-image"
+        }
+      ],
+      "uniqueSellingPoints": [
+        "Instant delivery 5-15 min",
+        "30-day warranty & replacement",
+        "bKash/Nagad payment — no intl card",
+        "Bangla WhatsApp support",
+        "3,000+ trusted customers since 2024"
+      ],
+      "howItWorksSteps": [
+        {
+          "title": "Choose plan",
+          "desc": "Pick Shared or Personal based on your budget and privacy needs."
+        },
+        {
+          "title": "Pay bKash/Nagad",
+          "desc": "Send payment securely via your preferred local channel."
+        },
+        {
+          "title": "Get instant access",
+          "desc": "Receive login details or activation within minutes."
+        }
+      ],
+      "estimatedDeliveryTime": "5-30 min",
+      "deliveryMethod": "account-credentials",
+      "lastVerifiedDate": "2026-07-09",
+      "seo": {
+        "title": "ChatGPT Plus price in Bangladesh — ৳350/mo | AI Premium Shop",
+        "metaDescription": "ChatGPT Plus price in Bangladesh is ৳350/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by 3,000+ customers since 2024.",
+        "canonical": "https://aipremiumshop.com/chatgpt-plus-bangladesh",
+        "ogImage": "https://aipremiumshop.com/images/og/chatgpt-plus.png",
+        "keywords": [
+          "ChatGPT Plus Bangladesh",
+          "ChatGPT price BD",
+          "ChatGPT bKash",
+          "ChatGPT koto taka",
+          "AI Premium Shop"
+        ]
+      },
+      "specs": {
+        "platforms": [
+          "Web",
+          "iOS",
+          "Android",
+          "macOS",
+          "Windows"
+        ],
+        "devices": "Unlimited",
+        "regions": "Global (activated on your account)",
+        "languages": "EN + BN interface",
+        "deviceLimit": "Unlimited (your own login)"
+      },
+      "stock": {
+        "status": "in",
+        "unitsNote": "Available immediately"
+      },
+      "badges": [
+        "bestseller"
+      ],
+      "trust": {
+        "warrantyDays": 30,
+        "refundPolicy": "Full refund within 24h if not delivered; replacement within 30 days for account issues.",
+        "reviewCount": 3421,
+        "rating": 4.9
+      }
     },
     {
       "id": "chatgpt-go-personal",
@@ -139,7 +877,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want ChatGPT Go Personal (৳1,196/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "ChatGPT Go — ভারত প্রিয় এককালে $8/মাস। সাদা ব্যবহার করা যায় ওয়ার লগইন নয় । bKash/Nagad খরলে আপনি নিজের জায়গায় ওয়ার লগইন দ্বারা পরিচালনা করতে পারবে।",
+      "useCases": [
+        "Upwork/Fiverr ক্লায়েন্ট কম্যুনিকেশন",
+        "ইমেইল এবং রিপোর্ট লেখা",
+        "অ্যাসাইনমেন্ট হেল্প",
+        "সোশ্যাল মিডিয়া কন্টেন্ট গতি",
+        "লিঙ্গুয়েজ লরনিং"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট। AIPS বাংলাদেশের সবচেয়ে নির্ভর যঔগ্য সার্ভিস দেয়।",
+      "sourceUrl": "https://openai.com/chatgpt/pricing/"
     },
     {
       "id": "chatgpt-business-starter-shared",
@@ -168,7 +916,17 @@
       "deliverySLA": "5-30 min",
       "featured": true,
       "whatsappMsg": "Hi, I want ChatGPT Business Starter Shared (৳699/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "ChatGPT Business — টীম এবং কম্পানির জন্য পারিবারিক-ভারত AI । Admin controls, Codex, unlimited GPT-5.3 এবং team workspace সহ পান। bKash দিয়ে পে করুন।",
+      "useCases": [
+        "টীম এলোকেশন ঔর প্রোজেক্ট মেনেজমেন্ট",
+        "কুরিয়ার সাপোর্ট এবং বিজনেস প্লান",
+        "মার্কেটিং কন্টেন্ট জেনারেশন",
+        "কোড ডিলিভারি এবং টেস্টিং",
+        "সাধারণনতা লাগ ঔর কন্ফারিদেনশিয়ালিটি"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://openai.com/chatgpt/pricing/"
     },
     {
       "id": "chatgpt-business-premium-shared",
@@ -196,7 +954,17 @@
       "deliverySLA": "5-15 min",
       "featured": false,
       "whatsappMsg": "Hi, I want ChatGPT Business Premium Shared (৳1,299/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "ChatGPT Business — টীম এবং কম্পানির জন্য পারিবারিক-ভারত AI । Admin controls, Codex, unlimited GPT-5.3 এবং team workspace সহ পান। bKash দিয়ে পে করুন।",
+      "useCases": [
+        "টীম এলোকেশন ঔর প্রোজেক্ট মেনেজমেন্ট",
+        "কুরিয়ার সাপোর্ট এবং বিজনেস প্লান",
+        "মার্কেটিং কন্টেন্ট জেনারেশন",
+        "কোড ডিলিভারি এবং টেস্টিং",
+        "সাধারণনতা লাগ ঔর কন্ফারিদেনশিয়ালিটি"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://openai.com/chatgpt/pricing/"
     },
     {
       "id": "chatgpt-business-personal",
@@ -224,7 +992,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want ChatGPT Business Personal (৳3,990/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "ChatGPT Business — টীম এবং কম্পানির জন্য পারিবারিক-ভারত AI । Admin controls, Codex, unlimited GPT-5.3 এবং team workspace সহ পান। bKash দিয়ে পে করুন।",
+      "useCases": [
+        "টীম এলোকেশন ঔর প্রোজেক্ট মেনেজমেন্ট",
+        "কুরিয়ার সাপোর্ট এবং বিজনেস প্লান",
+        "মার্কেটিং কন্টেন্ট জেনারেশন",
+        "কোড ডিলিভারি এবং টেস্টিং",
+        "সাধারণনতা লাগ ঔর কন্ফারিদেনশিয়ালিটি"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://openai.com/chatgpt/pricing/"
     },
     {
       "id": "chatgpt-pro-premium-shared",
@@ -254,7 +1032,17 @@
       "deliverySLA": "2-12 hours",
       "featured": true,
       "whatsappMsg": "Hi, I want ChatGPT Pro Premium Shared (৳4,500/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "ChatGPT Pro — সর্বোাধিক GPT-5.4 Pro, Sora video generation, Codex autonomous coding এবং unlimited deep research সহ পান। গবেষণা এবং এগেন্সিনসির জন্য সর্বোতম। bKash দিয়ে পে করুন।",
+      "useCases": [
+        "অেকাডেমিক রিসার্চ এবং থিসিস",
+        "AI product ডেভেলপমেন্ট এবং সাফ্টেয়ার ডিভেলপমেন্ট",
+        "স্ক্রিনরায়িটার এবং ডেটা সায়েন্টিস্ট জন্য",
+        "সাম্প্রদায়িক ভিডিয়ো জেনারেশন",
+        "এন্টারপ্রাইজ ডিঞারেডার ডিভেলপমেন্ট"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://openai.com/chatgpt/pricing/"
     },
     {
       "id": "chatgpt-pro-personal",
@@ -283,7 +1071,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want ChatGPT Pro Personal (৳29,900/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "ChatGPT Pro — সর্বোাধিক GPT-5.4 Pro, Sora video generation, Codex autonomous coding এবং unlimited deep research সহ পান। গবেষণা এবং এগেন্সিনসির জন্য সর্বোতম। bKash দিয়ে পে করুন।",
+      "useCases": [
+        "অেকাডেমিক রিসার্চ এবং থিসিস",
+        "AI product ডেভেলপমেন্ট এবং সাফ্টেয়ার ডিভেলপমেন্ট",
+        "স্ক্রিনরায়িটার এবং ডেটা সায়েন্টিস্ট জন্য",
+        "সাম্প্রদায়িক ভিডিয়ো জেনারেশন",
+        "এন্টারপ্রাইজ ডিঞারেডার ডিভেলপমেন্ট"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://openai.com/chatgpt/pricing/"
     },
     {
       "id": "claude-pro-premium-shared",
@@ -319,7 +1117,324 @@
         "আইনি/ব্যবসায়িক ডকুমেন্ট ড্রাফটিং"
       ],
       "whyBuyFromAIPS": "Anthropic সরাসরি বাংলাদেশি কার্ড নেয় না — AIPS-এ bKash/Nagad দিয়েই Claude Pro। ৩০ দিনের রিপ্লেসমেন্ট গ্যারান্টি।",
-      "sourceUrl": "https://claude.com/pricing"
+      "sourceUrl": "https://claude.com/pricing",
+      "plans": [
+        {
+          "planName": "Shared",
+          "tierLevel": 1,
+          "priceBDT": 350,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Claude Sonnet 4.6",
+            "8-seat shared pool",
+            "Text, code, vision, documents",
+            "200K token context",
+            "Basic Claude Code"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents"
+          ],
+          "limitations": [
+            "Shared with 8 users",
+            "Limited Claude Code hours",
+            "No Opus access"
+          ],
+          "bestFor": "Students & freelancers on a budget",
+          "seats": 8,
+          "inStock": true
+        },
+        {
+          "planName": "Premium Shared",
+          "tierLevel": 2,
+          "priceBDT": 1495,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Claude Opus 4.6",
+            "2-3 user shared pool",
+            "200K context",
+            "Full Claude Code",
+            "MCP integrations",
+            "Priority uptime"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp"
+          ],
+          "limitations": [
+            "Shared with 2-3 users",
+            "No persistent memory",
+            "No team admin"
+          ],
+          "bestFor": "Freelancers & agencies",
+          "seats": 3,
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 3,
+          "priceBDT": 2990,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Your own Anthropic account",
+            "Claude Opus 4.6",
+            "200K context",
+            "Full Claude Code",
+            "MCP integrations",
+            "Extended thinking",
+            "Priority support"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking"
+          ],
+          "limitations": [
+            "Usage rate limits apply"
+          ],
+          "bestFor": "Professionals who need full privacy",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Max 5x",
+          "tierLevel": 4,
+          "priceBDT": 14950,
+          "officialUSD": 100,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "5× Pro limits",
+            "1M token context",
+            "Persistent memory",
+            "Highest Claude Code access",
+            "Priority support"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking",
+            "memory"
+          ],
+          "limitations": [
+            "Expensive for casual users"
+          ],
+          "bestFor": "Power users & agencies",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Max 20x",
+          "tierLevel": 5,
+          "priceBDT": 29900,
+          "officialUSD": 200,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "20× Pro limits",
+            "1M token context",
+            "Highest Claude Code",
+            "Persistent memory",
+            "Early feature access"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking",
+            "memory",
+            "early-access"
+          ],
+          "limitations": [
+            "Expensive for casual users"
+          ],
+          "bestFor": "Enterprise power users",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Team",
+          "tierLevel": 3,
+          "priceBDT": 3990,
+          "officialUSD": 30,
+          "billingCycle": "monthly",
+          "deliveryType": "team",
+          "whatsIncluded": [
+            "Admin controls",
+            "Collaboration features",
+            "Shared projects",
+            "Central billing",
+            "Claude Opus 4.6"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "admin"
+          ],
+          "limitations": [
+            "Minimum 2 seats"
+          ],
+          "bestFor": "Teams & companies",
+          "seats": 2,
+          "inStock": true
+        }
+      ],
+      "higherPlanUpsell": {
+        "targetPlan": "Claude Max 5x",
+        "whatYouUnlock": [
+          "5× usage limits",
+          "1M token context",
+          "Persistent memory",
+          "Highest Claude Code hours",
+          "Priority feature access"
+        ]
+      },
+      "faq": [
+        {
+          "q": "Is Claude better than ChatGPT for writing?",
+          "a": "Claude (especially Opus) consistently scores higher for nuanced writing, creative content, legal documents, and academic papers. ChatGPT is stronger for coding and tool use.",
+          "qBN": "লেখার জন্য কি Claude ChatGPT-এর চেয়ে ভাল?",
+          "aBN": "Claude (বিশেষ করে Opus) সূক্ষ্ম লেখা, সৃজনশীল কন্টেন্ট, আইনি ডকুমেন্ট এবং একাডেমিক পেপারে সর্বদা উচ্চ স্কোর করে। ChatGPT কোডিং ও টুল ব্যবহারে শক্তিশালী।"
+        },
+        {
+          "q": "What is Claude Code?",
+          "a": "Claude Code is an autonomous AI coding agent included in Claude Pro and above. It can write, review, test, and fix entire codebases — not just complete lines.",
+          "qBN": "Claude Code কী?",
+          "aBN": "Claude Code হল Claude Pro এবং তার উপরে অন্তর্ভুক্ত একটি স্বায়ত্তশাসিত AI কোডিং এজেন্ট। এটি পুরো কোডবেস লেখা, পর্যালোচনা, পরীক্ষা এবং ঠিক করতে পারে — শুধু লাইন সম্পূর্ণ করা নয়।"
+        },
+        {
+          "q": "How fast is delivery?",
+          "a": "Shared plans: 5-30 minutes. Personal plans: 2-4 hours after payment confirmation.",
+          "qBN": "ডেলিভারি কত দ্রুত?",
+          "aBN": "শেয়ার্ড প্ল্যান: ৫-৩০ মিনিট। Personal প্ল্যান: পেমেন্ট নিশ্চিত হওয়ার ২-৪ ঘন্টা।"
+        }
+      ],
+      "competitorCompare": [
+        {
+          "seller": "AI Premium Shop",
+          "price": "From ৳350/mo",
+          "risk": "Zero — verified seller with warranty & support"
+        },
+        {
+          "seller": "Buy direct from Anthropic",
+          "price": "$20/mo (≈৳2,990 with card fees)",
+          "risk": "Requires international card; Bangladesh banks often block"
+        },
+        {
+          "seller": "Grey-market reseller",
+          "price": "Variable",
+          "risk": "No warranty; accounts banned; no support"
+        }
+      ],
+      "relatedProducts": [
+        {
+          "slug": "chatgpt-plus-bangladesh",
+          "name": "ChatGPT Plus",
+          "priceBDT": 350,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "gemini-advanced-bangladesh",
+          "name": "Google AI Pro",
+          "priceBDT": 500,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "perplexity-pro-bangladesh",
+          "name": "Perplexity Pro",
+          "priceBDT": 350,
+          "category": "ai-assistant"
+        }
+      ],
+      "uniqueSellingPoints": [
+        "Instant delivery 5-15 min",
+        "30-day warranty & replacement",
+        "bKash/Nagad payment",
+        "Bangla WhatsApp support",
+        "3,000+ trusted customers since 2024"
+      ],
+      "howItWorksSteps": [
+        {
+          "title": "Choose plan",
+          "desc": "Pick Shared or Personal based on your needs."
+        },
+        {
+          "title": "Pay bKash/Nagad",
+          "desc": "Send payment securely."
+        },
+        {
+          "title": "Get instant access",
+          "desc": "Receive login details within minutes."
+        }
+      ],
+      "estimatedDeliveryTime": "5-30 min",
+      "deliveryMethod": "account-credentials",
+      "lastVerifiedDate": "2026-07-09",
+      "seo": {
+        "title": "Claude Pro price in Bangladesh — from ৳350/mo | AI Premium Shop",
+        "metaDescription": "Claude Pro price in Bangladesh is from ৳350/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by 3,000+ customers since 2024.",
+        "canonical": "https://aipremiumshop.com/claude-pro-bangladesh",
+        "ogImage": "https://aipremiumshop.com/images/og/claude-pro.png",
+        "keywords": [
+          "Claude Pro Bangladesh",
+          "Claude price BD",
+          "Claude bKash",
+          "Claude koto taka",
+          "AI Premium Shop"
+        ]
+      },
+      "specs": {
+        "platforms": [
+          "Web",
+          "iOS",
+          "Android"
+        ],
+        "devices": "Unlimited",
+        "regions": "Global",
+        "languages": "EN + BN interface",
+        "deviceLimit": "Unlimited (your own login)"
+      },
+      "stock": {
+        "status": "in",
+        "unitsNote": "Available immediately"
+      },
+      "badges": [
+        "popular"
+      ],
+      "trust": {
+        "warrantyDays": 30,
+        "refundPolicy": "Full refund within 24h if not delivered; replacement within 30 days.",
+        "reviewCount": 1842,
+        "rating": 4.8
+      }
     },
     {
       "id": "claude-pro-personal",
@@ -354,7 +1469,324 @@
         "আইনি/ব্যবসায়িক ডকুমেন্ট ড্রাফটিং"
       ],
       "whyBuyFromAIPS": "Anthropic সরাসরি বাংলাদেশি কার্ড নেয় না — AIPS-এ bKash/Nagad দিয়েই Claude Pro। ৩০ দিনের রিপ্লেসমেন্ট গ্যারান্টি।",
-      "sourceUrl": "https://claude.com/pricing"
+      "sourceUrl": "https://claude.com/pricing",
+      "plans": [
+        {
+          "planName": "Shared",
+          "tierLevel": 1,
+          "priceBDT": 350,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Claude Sonnet 4.6",
+            "8-seat shared pool",
+            "Text, code, vision, documents",
+            "200K token context",
+            "Basic Claude Code"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents"
+          ],
+          "limitations": [
+            "Shared with 8 users",
+            "Limited Claude Code hours",
+            "No Opus access"
+          ],
+          "bestFor": "Students & freelancers on a budget",
+          "seats": 8,
+          "inStock": true
+        },
+        {
+          "planName": "Premium Shared",
+          "tierLevel": 2,
+          "priceBDT": 1495,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Claude Opus 4.6",
+            "2-3 user shared pool",
+            "200K context",
+            "Full Claude Code",
+            "MCP integrations",
+            "Priority uptime"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp"
+          ],
+          "limitations": [
+            "Shared with 2-3 users",
+            "No persistent memory",
+            "No team admin"
+          ],
+          "bestFor": "Freelancers & agencies",
+          "seats": 3,
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 3,
+          "priceBDT": 2990,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Your own Anthropic account",
+            "Claude Opus 4.6",
+            "200K context",
+            "Full Claude Code",
+            "MCP integrations",
+            "Extended thinking",
+            "Priority support"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking"
+          ],
+          "limitations": [
+            "Usage rate limits apply"
+          ],
+          "bestFor": "Professionals who need full privacy",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Max 5x",
+          "tierLevel": 4,
+          "priceBDT": 14950,
+          "officialUSD": 100,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "5× Pro limits",
+            "1M token context",
+            "Persistent memory",
+            "Highest Claude Code access",
+            "Priority support"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking",
+            "memory"
+          ],
+          "limitations": [
+            "Expensive for casual users"
+          ],
+          "bestFor": "Power users & agencies",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Max 20x",
+          "tierLevel": 5,
+          "priceBDT": 29900,
+          "officialUSD": 200,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "20× Pro limits",
+            "1M token context",
+            "Highest Claude Code",
+            "Persistent memory",
+            "Early feature access"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking",
+            "memory",
+            "early-access"
+          ],
+          "limitations": [
+            "Expensive for casual users"
+          ],
+          "bestFor": "Enterprise power users",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Team",
+          "tierLevel": 3,
+          "priceBDT": 3990,
+          "officialUSD": 30,
+          "billingCycle": "monthly",
+          "deliveryType": "team",
+          "whatsIncluded": [
+            "Admin controls",
+            "Collaboration features",
+            "Shared projects",
+            "Central billing",
+            "Claude Opus 4.6"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "admin"
+          ],
+          "limitations": [
+            "Minimum 2 seats"
+          ],
+          "bestFor": "Teams & companies",
+          "seats": 2,
+          "inStock": true
+        }
+      ],
+      "higherPlanUpsell": {
+        "targetPlan": "Claude Max 5x",
+        "whatYouUnlock": [
+          "5× usage limits",
+          "1M token context",
+          "Persistent memory",
+          "Highest Claude Code hours",
+          "Priority feature access"
+        ]
+      },
+      "faq": [
+        {
+          "q": "Is Claude better than ChatGPT for writing?",
+          "a": "Claude (especially Opus) consistently scores higher for nuanced writing, creative content, legal documents, and academic papers. ChatGPT is stronger for coding and tool use.",
+          "qBN": "লেখার জন্য কি Claude ChatGPT-এর চেয়ে ভাল?",
+          "aBN": "Claude (বিশেষ করে Opus) সূক্ষ্ম লেখা, সৃজনশীল কন্টেন্ট, আইনি ডকুমেন্ট এবং একাডেমিক পেপারে সর্বদা উচ্চ স্কোর করে। ChatGPT কোডিং ও টুল ব্যবহারে শক্তিশালী।"
+        },
+        {
+          "q": "What is Claude Code?",
+          "a": "Claude Code is an autonomous AI coding agent included in Claude Pro and above. It can write, review, test, and fix entire codebases — not just complete lines.",
+          "qBN": "Claude Code কী?",
+          "aBN": "Claude Code হল Claude Pro এবং তার উপরে অন্তর্ভুক্ত একটি স্বায়ত্তশাসিত AI কোডিং এজেন্ট। এটি পুরো কোডবেস লেখা, পর্যালোচনা, পরীক্ষা এবং ঠিক করতে পারে — শুধু লাইন সম্পূর্ণ করা নয়।"
+        },
+        {
+          "q": "How fast is delivery?",
+          "a": "Shared plans: 5-30 minutes. Personal plans: 2-4 hours after payment confirmation.",
+          "qBN": "ডেলিভারি কত দ্রুত?",
+          "aBN": "শেয়ার্ড প্ল্যান: ৫-৩০ মিনিট। Personal প্ল্যান: পেমেন্ট নিশ্চিত হওয়ার ২-৪ ঘন্টা।"
+        }
+      ],
+      "competitorCompare": [
+        {
+          "seller": "AI Premium Shop",
+          "price": "From ৳350/mo",
+          "risk": "Zero — verified seller with warranty & support"
+        },
+        {
+          "seller": "Buy direct from Anthropic",
+          "price": "$20/mo (≈৳2,990 with card fees)",
+          "risk": "Requires international card; Bangladesh banks often block"
+        },
+        {
+          "seller": "Grey-market reseller",
+          "price": "Variable",
+          "risk": "No warranty; accounts banned; no support"
+        }
+      ],
+      "relatedProducts": [
+        {
+          "slug": "chatgpt-plus-bangladesh",
+          "name": "ChatGPT Plus",
+          "priceBDT": 350,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "gemini-advanced-bangladesh",
+          "name": "Google AI Pro",
+          "priceBDT": 500,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "perplexity-pro-bangladesh",
+          "name": "Perplexity Pro",
+          "priceBDT": 350,
+          "category": "ai-assistant"
+        }
+      ],
+      "uniqueSellingPoints": [
+        "Instant delivery 5-15 min",
+        "30-day warranty & replacement",
+        "bKash/Nagad payment",
+        "Bangla WhatsApp support",
+        "3,000+ trusted customers since 2024"
+      ],
+      "howItWorksSteps": [
+        {
+          "title": "Choose plan",
+          "desc": "Pick Shared or Personal based on your needs."
+        },
+        {
+          "title": "Pay bKash/Nagad",
+          "desc": "Send payment securely."
+        },
+        {
+          "title": "Get instant access",
+          "desc": "Receive login details within minutes."
+        }
+      ],
+      "estimatedDeliveryTime": "5-30 min",
+      "deliveryMethod": "account-credentials",
+      "lastVerifiedDate": "2026-07-09",
+      "seo": {
+        "title": "Claude Pro price in Bangladesh — from ৳350/mo | AI Premium Shop",
+        "metaDescription": "Claude Pro price in Bangladesh is from ৳350/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by 3,000+ customers since 2024.",
+        "canonical": "https://aipremiumshop.com/claude-pro-bangladesh",
+        "ogImage": "https://aipremiumshop.com/images/og/claude-pro.png",
+        "keywords": [
+          "Claude Pro Bangladesh",
+          "Claude price BD",
+          "Claude bKash",
+          "Claude koto taka",
+          "AI Premium Shop"
+        ]
+      },
+      "specs": {
+        "platforms": [
+          "Web",
+          "iOS",
+          "Android"
+        ],
+        "devices": "Unlimited",
+        "regions": "Global",
+        "languages": "EN + BN interface",
+        "deviceLimit": "Unlimited (your own login)"
+      },
+      "stock": {
+        "status": "in",
+        "unitsNote": "Available immediately"
+      },
+      "badges": [
+        "popular"
+      ],
+      "trust": {
+        "warrantyDays": 30,
+        "refundPolicy": "Full refund within 24h if not delivered; replacement within 30 days.",
+        "reviewCount": 1842,
+        "rating": 4.8
+      }
     },
     {
       "id": "claude-max-5x",
@@ -389,7 +1821,324 @@
         "আইনি/ব্যবসায়িক ডকুমেন্ট ড্রাফটিং"
       ],
       "whyBuyFromAIPS": "Anthropic সরাসরি বাংলাদেশি কার্ড নেয় না — AIPS-এ bKash/Nagad দিয়েই Claude Pro। ৩০ দিনের রিপ্লেসমেন্ট গ্যারান্টি।",
-      "sourceUrl": "https://claude.com/pricing"
+      "sourceUrl": "https://claude.com/pricing",
+      "plans": [
+        {
+          "planName": "Shared",
+          "tierLevel": 1,
+          "priceBDT": 350,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Claude Sonnet 4.6",
+            "8-seat shared pool",
+            "Text, code, vision, documents",
+            "200K token context",
+            "Basic Claude Code"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents"
+          ],
+          "limitations": [
+            "Shared with 8 users",
+            "Limited Claude Code hours",
+            "No Opus access"
+          ],
+          "bestFor": "Students & freelancers on a budget",
+          "seats": 8,
+          "inStock": true
+        },
+        {
+          "planName": "Premium Shared",
+          "tierLevel": 2,
+          "priceBDT": 1495,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Claude Opus 4.6",
+            "2-3 user shared pool",
+            "200K context",
+            "Full Claude Code",
+            "MCP integrations",
+            "Priority uptime"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp"
+          ],
+          "limitations": [
+            "Shared with 2-3 users",
+            "No persistent memory",
+            "No team admin"
+          ],
+          "bestFor": "Freelancers & agencies",
+          "seats": 3,
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 3,
+          "priceBDT": 2990,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Your own Anthropic account",
+            "Claude Opus 4.6",
+            "200K context",
+            "Full Claude Code",
+            "MCP integrations",
+            "Extended thinking",
+            "Priority support"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking"
+          ],
+          "limitations": [
+            "Usage rate limits apply"
+          ],
+          "bestFor": "Professionals who need full privacy",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Max 5x",
+          "tierLevel": 4,
+          "priceBDT": 14950,
+          "officialUSD": 100,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "5× Pro limits",
+            "1M token context",
+            "Persistent memory",
+            "Highest Claude Code access",
+            "Priority support"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking",
+            "memory"
+          ],
+          "limitations": [
+            "Expensive for casual users"
+          ],
+          "bestFor": "Power users & agencies",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Max 20x",
+          "tierLevel": 5,
+          "priceBDT": 29900,
+          "officialUSD": 200,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "20× Pro limits",
+            "1M token context",
+            "Highest Claude Code",
+            "Persistent memory",
+            "Early feature access"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking",
+            "memory",
+            "early-access"
+          ],
+          "limitations": [
+            "Expensive for casual users"
+          ],
+          "bestFor": "Enterprise power users",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Team",
+          "tierLevel": 3,
+          "priceBDT": 3990,
+          "officialUSD": 30,
+          "billingCycle": "monthly",
+          "deliveryType": "team",
+          "whatsIncluded": [
+            "Admin controls",
+            "Collaboration features",
+            "Shared projects",
+            "Central billing",
+            "Claude Opus 4.6"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "admin"
+          ],
+          "limitations": [
+            "Minimum 2 seats"
+          ],
+          "bestFor": "Teams & companies",
+          "seats": 2,
+          "inStock": true
+        }
+      ],
+      "higherPlanUpsell": {
+        "targetPlan": "Claude Max 5x",
+        "whatYouUnlock": [
+          "5× usage limits",
+          "1M token context",
+          "Persistent memory",
+          "Highest Claude Code hours",
+          "Priority feature access"
+        ]
+      },
+      "faq": [
+        {
+          "q": "Is Claude better than ChatGPT for writing?",
+          "a": "Claude (especially Opus) consistently scores higher for nuanced writing, creative content, legal documents, and academic papers. ChatGPT is stronger for coding and tool use.",
+          "qBN": "লেখার জন্য কি Claude ChatGPT-এর চেয়ে ভাল?",
+          "aBN": "Claude (বিশেষ করে Opus) সূক্ষ্ম লেখা, সৃজনশীল কন্টেন্ট, আইনি ডকুমেন্ট এবং একাডেমিক পেপারে সর্বদা উচ্চ স্কোর করে। ChatGPT কোডিং ও টুল ব্যবহারে শক্তিশালী।"
+        },
+        {
+          "q": "What is Claude Code?",
+          "a": "Claude Code is an autonomous AI coding agent included in Claude Pro and above. It can write, review, test, and fix entire codebases — not just complete lines.",
+          "qBN": "Claude Code কী?",
+          "aBN": "Claude Code হল Claude Pro এবং তার উপরে অন্তর্ভুক্ত একটি স্বায়ত্তশাসিত AI কোডিং এজেন্ট। এটি পুরো কোডবেস লেখা, পর্যালোচনা, পরীক্ষা এবং ঠিক করতে পারে — শুধু লাইন সম্পূর্ণ করা নয়।"
+        },
+        {
+          "q": "How fast is delivery?",
+          "a": "Shared plans: 5-30 minutes. Personal plans: 2-4 hours after payment confirmation.",
+          "qBN": "ডেলিভারি কত দ্রুত?",
+          "aBN": "শেয়ার্ড প্ল্যান: ৫-৩০ মিনিট। Personal প্ল্যান: পেমেন্ট নিশ্চিত হওয়ার ২-৪ ঘন্টা।"
+        }
+      ],
+      "competitorCompare": [
+        {
+          "seller": "AI Premium Shop",
+          "price": "From ৳350/mo",
+          "risk": "Zero — verified seller with warranty & support"
+        },
+        {
+          "seller": "Buy direct from Anthropic",
+          "price": "$20/mo (≈৳2,990 with card fees)",
+          "risk": "Requires international card; Bangladesh banks often block"
+        },
+        {
+          "seller": "Grey-market reseller",
+          "price": "Variable",
+          "risk": "No warranty; accounts banned; no support"
+        }
+      ],
+      "relatedProducts": [
+        {
+          "slug": "chatgpt-plus-bangladesh",
+          "name": "ChatGPT Plus",
+          "priceBDT": 350,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "gemini-advanced-bangladesh",
+          "name": "Google AI Pro",
+          "priceBDT": 500,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "perplexity-pro-bangladesh",
+          "name": "Perplexity Pro",
+          "priceBDT": 350,
+          "category": "ai-assistant"
+        }
+      ],
+      "uniqueSellingPoints": [
+        "Instant delivery 5-15 min",
+        "30-day warranty & replacement",
+        "bKash/Nagad payment",
+        "Bangla WhatsApp support",
+        "3,000+ trusted customers since 2024"
+      ],
+      "howItWorksSteps": [
+        {
+          "title": "Choose plan",
+          "desc": "Pick Shared or Personal based on your needs."
+        },
+        {
+          "title": "Pay bKash/Nagad",
+          "desc": "Send payment securely."
+        },
+        {
+          "title": "Get instant access",
+          "desc": "Receive login details within minutes."
+        }
+      ],
+      "estimatedDeliveryTime": "5-30 min",
+      "deliveryMethod": "account-credentials",
+      "lastVerifiedDate": "2026-07-09",
+      "seo": {
+        "title": "Claude Pro price in Bangladesh — from ৳350/mo | AI Premium Shop",
+        "metaDescription": "Claude Pro price in Bangladesh is from ৳350/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by 3,000+ customers since 2024.",
+        "canonical": "https://aipremiumshop.com/claude-pro-bangladesh",
+        "ogImage": "https://aipremiumshop.com/images/og/claude-pro.png",
+        "keywords": [
+          "Claude Pro Bangladesh",
+          "Claude price BD",
+          "Claude bKash",
+          "Claude koto taka",
+          "AI Premium Shop"
+        ]
+      },
+      "specs": {
+        "platforms": [
+          "Web",
+          "iOS",
+          "Android"
+        ],
+        "devices": "Unlimited",
+        "regions": "Global",
+        "languages": "EN + BN interface",
+        "deviceLimit": "Unlimited (your own login)"
+      },
+      "stock": {
+        "status": "in",
+        "unitsNote": "Available immediately"
+      },
+      "badges": [
+        "popular"
+      ],
+      "trust": {
+        "warrantyDays": 30,
+        "refundPolicy": "Full refund within 24h if not delivered; replacement within 30 days.",
+        "reviewCount": 1842,
+        "rating": 4.8
+      }
     },
     {
       "id": "claude-max-20x",
@@ -424,7 +2173,324 @@
         "আইনি/ব্যবসায়িক ডকুমেন্ট ড্রাফটিং"
       ],
       "whyBuyFromAIPS": "Anthropic সরাসরি বাংলাদেশি কার্ড নেয় না — AIPS-এ bKash/Nagad দিয়েই Claude Pro। ৩০ দিনের রিপ্লেসমেন্ট গ্যারান্টি।",
-      "sourceUrl": "https://claude.com/pricing"
+      "sourceUrl": "https://claude.com/pricing",
+      "plans": [
+        {
+          "planName": "Shared",
+          "tierLevel": 1,
+          "priceBDT": 350,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Claude Sonnet 4.6",
+            "8-seat shared pool",
+            "Text, code, vision, documents",
+            "200K token context",
+            "Basic Claude Code"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents"
+          ],
+          "limitations": [
+            "Shared with 8 users",
+            "Limited Claude Code hours",
+            "No Opus access"
+          ],
+          "bestFor": "Students & freelancers on a budget",
+          "seats": 8,
+          "inStock": true
+        },
+        {
+          "planName": "Premium Shared",
+          "tierLevel": 2,
+          "priceBDT": 1495,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Claude Opus 4.6",
+            "2-3 user shared pool",
+            "200K context",
+            "Full Claude Code",
+            "MCP integrations",
+            "Priority uptime"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp"
+          ],
+          "limitations": [
+            "Shared with 2-3 users",
+            "No persistent memory",
+            "No team admin"
+          ],
+          "bestFor": "Freelancers & agencies",
+          "seats": 3,
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 3,
+          "priceBDT": 2990,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Your own Anthropic account",
+            "Claude Opus 4.6",
+            "200K context",
+            "Full Claude Code",
+            "MCP integrations",
+            "Extended thinking",
+            "Priority support"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking"
+          ],
+          "limitations": [
+            "Usage rate limits apply"
+          ],
+          "bestFor": "Professionals who need full privacy",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Max 5x",
+          "tierLevel": 4,
+          "priceBDT": 14950,
+          "officialUSD": 100,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "5× Pro limits",
+            "1M token context",
+            "Persistent memory",
+            "Highest Claude Code access",
+            "Priority support"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking",
+            "memory"
+          ],
+          "limitations": [
+            "Expensive for casual users"
+          ],
+          "bestFor": "Power users & agencies",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Max 20x",
+          "tierLevel": 5,
+          "priceBDT": 29900,
+          "officialUSD": 200,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "20× Pro limits",
+            "1M token context",
+            "Highest Claude Code",
+            "Persistent memory",
+            "Early feature access"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking",
+            "memory",
+            "early-access"
+          ],
+          "limitations": [
+            "Expensive for casual users"
+          ],
+          "bestFor": "Enterprise power users",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Team",
+          "tierLevel": 3,
+          "priceBDT": 3990,
+          "officialUSD": 30,
+          "billingCycle": "monthly",
+          "deliveryType": "team",
+          "whatsIncluded": [
+            "Admin controls",
+            "Collaboration features",
+            "Shared projects",
+            "Central billing",
+            "Claude Opus 4.6"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "admin"
+          ],
+          "limitations": [
+            "Minimum 2 seats"
+          ],
+          "bestFor": "Teams & companies",
+          "seats": 2,
+          "inStock": true
+        }
+      ],
+      "higherPlanUpsell": {
+        "targetPlan": "Claude Max 5x",
+        "whatYouUnlock": [
+          "5× usage limits",
+          "1M token context",
+          "Persistent memory",
+          "Highest Claude Code hours",
+          "Priority feature access"
+        ]
+      },
+      "faq": [
+        {
+          "q": "Is Claude better than ChatGPT for writing?",
+          "a": "Claude (especially Opus) consistently scores higher for nuanced writing, creative content, legal documents, and academic papers. ChatGPT is stronger for coding and tool use.",
+          "qBN": "লেখার জন্য কি Claude ChatGPT-এর চেয়ে ভাল?",
+          "aBN": "Claude (বিশেষ করে Opus) সূক্ষ্ম লেখা, সৃজনশীল কন্টেন্ট, আইনি ডকুমেন্ট এবং একাডেমিক পেপারে সর্বদা উচ্চ স্কোর করে। ChatGPT কোডিং ও টুল ব্যবহারে শক্তিশালী।"
+        },
+        {
+          "q": "What is Claude Code?",
+          "a": "Claude Code is an autonomous AI coding agent included in Claude Pro and above. It can write, review, test, and fix entire codebases — not just complete lines.",
+          "qBN": "Claude Code কী?",
+          "aBN": "Claude Code হল Claude Pro এবং তার উপরে অন্তর্ভুক্ত একটি স্বায়ত্তশাসিত AI কোডিং এজেন্ট। এটি পুরো কোডবেস লেখা, পর্যালোচনা, পরীক্ষা এবং ঠিক করতে পারে — শুধু লাইন সম্পূর্ণ করা নয়।"
+        },
+        {
+          "q": "How fast is delivery?",
+          "a": "Shared plans: 5-30 minutes. Personal plans: 2-4 hours after payment confirmation.",
+          "qBN": "ডেলিভারি কত দ্রুত?",
+          "aBN": "শেয়ার্ড প্ল্যান: ৫-৩০ মিনিট। Personal প্ল্যান: পেমেন্ট নিশ্চিত হওয়ার ২-৪ ঘন্টা।"
+        }
+      ],
+      "competitorCompare": [
+        {
+          "seller": "AI Premium Shop",
+          "price": "From ৳350/mo",
+          "risk": "Zero — verified seller with warranty & support"
+        },
+        {
+          "seller": "Buy direct from Anthropic",
+          "price": "$20/mo (≈৳2,990 with card fees)",
+          "risk": "Requires international card; Bangladesh banks often block"
+        },
+        {
+          "seller": "Grey-market reseller",
+          "price": "Variable",
+          "risk": "No warranty; accounts banned; no support"
+        }
+      ],
+      "relatedProducts": [
+        {
+          "slug": "chatgpt-plus-bangladesh",
+          "name": "ChatGPT Plus",
+          "priceBDT": 350,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "gemini-advanced-bangladesh",
+          "name": "Google AI Pro",
+          "priceBDT": 500,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "perplexity-pro-bangladesh",
+          "name": "Perplexity Pro",
+          "priceBDT": 350,
+          "category": "ai-assistant"
+        }
+      ],
+      "uniqueSellingPoints": [
+        "Instant delivery 5-15 min",
+        "30-day warranty & replacement",
+        "bKash/Nagad payment",
+        "Bangla WhatsApp support",
+        "3,000+ trusted customers since 2024"
+      ],
+      "howItWorksSteps": [
+        {
+          "title": "Choose plan",
+          "desc": "Pick Shared or Personal based on your needs."
+        },
+        {
+          "title": "Pay bKash/Nagad",
+          "desc": "Send payment securely."
+        },
+        {
+          "title": "Get instant access",
+          "desc": "Receive login details within minutes."
+        }
+      ],
+      "estimatedDeliveryTime": "5-30 min",
+      "deliveryMethod": "account-credentials",
+      "lastVerifiedDate": "2026-07-09",
+      "seo": {
+        "title": "Claude Pro price in Bangladesh — from ৳350/mo | AI Premium Shop",
+        "metaDescription": "Claude Pro price in Bangladesh is from ৳350/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by 3,000+ customers since 2024.",
+        "canonical": "https://aipremiumshop.com/claude-pro-bangladesh",
+        "ogImage": "https://aipremiumshop.com/images/og/claude-pro.png",
+        "keywords": [
+          "Claude Pro Bangladesh",
+          "Claude price BD",
+          "Claude bKash",
+          "Claude koto taka",
+          "AI Premium Shop"
+        ]
+      },
+      "specs": {
+        "platforms": [
+          "Web",
+          "iOS",
+          "Android"
+        ],
+        "devices": "Unlimited",
+        "regions": "Global",
+        "languages": "EN + BN interface",
+        "deviceLimit": "Unlimited (your own login)"
+      },
+      "stock": {
+        "status": "in",
+        "unitsNote": "Available immediately"
+      },
+      "badges": [
+        "popular"
+      ],
+      "trust": {
+        "warrantyDays": 30,
+        "refundPolicy": "Full refund within 24h if not delivered; replacement within 30 days.",
+        "reviewCount": 1842,
+        "rating": 4.8
+      }
     },
     {
       "id": "claude-team-personal",
@@ -459,7 +2525,324 @@
         "আইনি/ব্যবসায়িক ডকুমেন্ট ড্রাফটিং"
       ],
       "whyBuyFromAIPS": "Anthropic সরাসরি বাংলাদেশি কার্ড নেয় না — AIPS-এ bKash/Nagad দিয়েই Claude Pro। ৩০ দিনের রিপ্লেসমেন্ট গ্যারান্টি।",
-      "sourceUrl": "https://claude.com/pricing"
+      "sourceUrl": "https://claude.com/pricing",
+      "plans": [
+        {
+          "planName": "Shared",
+          "tierLevel": 1,
+          "priceBDT": 350,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Claude Sonnet 4.6",
+            "8-seat shared pool",
+            "Text, code, vision, documents",
+            "200K token context",
+            "Basic Claude Code"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents"
+          ],
+          "limitations": [
+            "Shared with 8 users",
+            "Limited Claude Code hours",
+            "No Opus access"
+          ],
+          "bestFor": "Students & freelancers on a budget",
+          "seats": 8,
+          "inStock": true
+        },
+        {
+          "planName": "Premium Shared",
+          "tierLevel": 2,
+          "priceBDT": 1495,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Claude Opus 4.6",
+            "2-3 user shared pool",
+            "200K context",
+            "Full Claude Code",
+            "MCP integrations",
+            "Priority uptime"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp"
+          ],
+          "limitations": [
+            "Shared with 2-3 users",
+            "No persistent memory",
+            "No team admin"
+          ],
+          "bestFor": "Freelancers & agencies",
+          "seats": 3,
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 3,
+          "priceBDT": 2990,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Your own Anthropic account",
+            "Claude Opus 4.6",
+            "200K context",
+            "Full Claude Code",
+            "MCP integrations",
+            "Extended thinking",
+            "Priority support"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking"
+          ],
+          "limitations": [
+            "Usage rate limits apply"
+          ],
+          "bestFor": "Professionals who need full privacy",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Max 5x",
+          "tierLevel": 4,
+          "priceBDT": 14950,
+          "officialUSD": 100,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "5× Pro limits",
+            "1M token context",
+            "Persistent memory",
+            "Highest Claude Code access",
+            "Priority support"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking",
+            "memory"
+          ],
+          "limitations": [
+            "Expensive for casual users"
+          ],
+          "bestFor": "Power users & agencies",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Max 20x",
+          "tierLevel": 5,
+          "priceBDT": 29900,
+          "officialUSD": 200,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "20× Pro limits",
+            "1M token context",
+            "Highest Claude Code",
+            "Persistent memory",
+            "Early feature access"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "extended-thinking",
+            "memory",
+            "early-access"
+          ],
+          "limitations": [
+            "Expensive for casual users"
+          ],
+          "bestFor": "Enterprise power users",
+          "seats": 1,
+          "inStock": true
+        },
+        {
+          "planName": "Team",
+          "tierLevel": 3,
+          "priceBDT": 3990,
+          "officialUSD": 30,
+          "billingCycle": "monthly",
+          "deliveryType": "team",
+          "whatsIncluded": [
+            "Admin controls",
+            "Collaboration features",
+            "Shared projects",
+            "Central billing",
+            "Claude Opus 4.6"
+          ],
+          "features": [
+            "text",
+            "code",
+            "vision",
+            "document",
+            "agents",
+            "mcp",
+            "admin"
+          ],
+          "limitations": [
+            "Minimum 2 seats"
+          ],
+          "bestFor": "Teams & companies",
+          "seats": 2,
+          "inStock": true
+        }
+      ],
+      "higherPlanUpsell": {
+        "targetPlan": "Claude Max 5x",
+        "whatYouUnlock": [
+          "5× usage limits",
+          "1M token context",
+          "Persistent memory",
+          "Highest Claude Code hours",
+          "Priority feature access"
+        ]
+      },
+      "faq": [
+        {
+          "q": "Is Claude better than ChatGPT for writing?",
+          "a": "Claude (especially Opus) consistently scores higher for nuanced writing, creative content, legal documents, and academic papers. ChatGPT is stronger for coding and tool use.",
+          "qBN": "লেখার জন্য কি Claude ChatGPT-এর চেয়ে ভাল?",
+          "aBN": "Claude (বিশেষ করে Opus) সূক্ষ্ম লেখা, সৃজনশীল কন্টেন্ট, আইনি ডকুমেন্ট এবং একাডেমিক পেপারে সর্বদা উচ্চ স্কোর করে। ChatGPT কোডিং ও টুল ব্যবহারে শক্তিশালী।"
+        },
+        {
+          "q": "What is Claude Code?",
+          "a": "Claude Code is an autonomous AI coding agent included in Claude Pro and above. It can write, review, test, and fix entire codebases — not just complete lines.",
+          "qBN": "Claude Code কী?",
+          "aBN": "Claude Code হল Claude Pro এবং তার উপরে অন্তর্ভুক্ত একটি স্বায়ত্তশাসিত AI কোডিং এজেন্ট। এটি পুরো কোডবেস লেখা, পর্যালোচনা, পরীক্ষা এবং ঠিক করতে পারে — শুধু লাইন সম্পূর্ণ করা নয়।"
+        },
+        {
+          "q": "How fast is delivery?",
+          "a": "Shared plans: 5-30 minutes. Personal plans: 2-4 hours after payment confirmation.",
+          "qBN": "ডেলিভারি কত দ্রুত?",
+          "aBN": "শেয়ার্ড প্ল্যান: ৫-৩০ মিনিট। Personal প্ল্যান: পেমেন্ট নিশ্চিত হওয়ার ২-৪ ঘন্টা।"
+        }
+      ],
+      "competitorCompare": [
+        {
+          "seller": "AI Premium Shop",
+          "price": "From ৳350/mo",
+          "risk": "Zero — verified seller with warranty & support"
+        },
+        {
+          "seller": "Buy direct from Anthropic",
+          "price": "$20/mo (≈৳2,990 with card fees)",
+          "risk": "Requires international card; Bangladesh banks often block"
+        },
+        {
+          "seller": "Grey-market reseller",
+          "price": "Variable",
+          "risk": "No warranty; accounts banned; no support"
+        }
+      ],
+      "relatedProducts": [
+        {
+          "slug": "chatgpt-plus-bangladesh",
+          "name": "ChatGPT Plus",
+          "priceBDT": 350,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "gemini-advanced-bangladesh",
+          "name": "Google AI Pro",
+          "priceBDT": 500,
+          "category": "ai-assistant"
+        },
+        {
+          "slug": "perplexity-pro-bangladesh",
+          "name": "Perplexity Pro",
+          "priceBDT": 350,
+          "category": "ai-assistant"
+        }
+      ],
+      "uniqueSellingPoints": [
+        "Instant delivery 5-15 min",
+        "30-day warranty & replacement",
+        "bKash/Nagad payment",
+        "Bangla WhatsApp support",
+        "3,000+ trusted customers since 2024"
+      ],
+      "howItWorksSteps": [
+        {
+          "title": "Choose plan",
+          "desc": "Pick Shared or Personal based on your needs."
+        },
+        {
+          "title": "Pay bKash/Nagad",
+          "desc": "Send payment securely."
+        },
+        {
+          "title": "Get instant access",
+          "desc": "Receive login details within minutes."
+        }
+      ],
+      "estimatedDeliveryTime": "5-30 min",
+      "deliveryMethod": "account-credentials",
+      "lastVerifiedDate": "2026-07-09",
+      "seo": {
+        "title": "Claude Pro price in Bangladesh — from ৳350/mo | AI Premium Shop",
+        "metaDescription": "Claude Pro price in Bangladesh is from ৳350/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by 3,000+ customers since 2024.",
+        "canonical": "https://aipremiumshop.com/claude-pro-bangladesh",
+        "ogImage": "https://aipremiumshop.com/images/og/claude-pro.png",
+        "keywords": [
+          "Claude Pro Bangladesh",
+          "Claude price BD",
+          "Claude bKash",
+          "Claude koto taka",
+          "AI Premium Shop"
+        ]
+      },
+      "specs": {
+        "platforms": [
+          "Web",
+          "iOS",
+          "Android"
+        ],
+        "devices": "Unlimited",
+        "regions": "Global",
+        "languages": "EN + BN interface",
+        "deviceLimit": "Unlimited (your own login)"
+      },
+      "stock": {
+        "status": "in",
+        "unitsNote": "Available immediately"
+      },
+      "badges": [
+        "popular"
+      ],
+      "trust": {
+        "warrantyDays": 30,
+        "refundPolicy": "Full refund within 24h if not delivered; replacement within 30 days.",
+        "reviewCount": 1842,
+        "rating": 4.8
+      }
     },
     {
       "id": "google-ai-pro-personal",
@@ -528,7 +2911,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want SuperGrok Lite (৳1,495/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "SuperGrok — Grok 4.0 সম্পূর্ণ মডেল সহ রিয়ল-টাইম X/Twitter ডেটা। আধুনিক ট্লিংড এনালাসিস এবং ডীপ রিসার্চ সহ পান। bKash দিয়ে পে করুন।",
+      "useCases": [
+        "X/Twitter তথ্য এনালাসিস এবং ট্রেন্ড এলার্ট",
+        "রিয়ল-টাইম নিউস সামারি এবং সিংথেসিস",
+        "বিদ্যুত প্রেসারেশন এবং সোশ্যাল মেডিয়া",
+        "সিভিলার নাকামুলার এবং পালিটিক্যাল এনালাসিস",
+        "ভারত এবং বাংলাদেশ নিউস এবং সার্বে"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://x.com/i/grok"
     },
     {
       "id": "supergrok-personal",
@@ -556,7 +2949,17 @@
       "deliverySLA": "2-4 hours",
       "featured": true,
       "whatsappMsg": "Hi, I want SuperGrok (৳3,990/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "SuperGrok — Grok 4.0 সম্পূর্ণ মডেল সহ রিয়ল-টাইম X/Twitter ডেটা। আধুনিক ট্লিংড এনালাসিস এবং ডীপ রিসার্চ সহ পান। bKash দিয়ে পে করুন।",
+      "useCases": [
+        "X/Twitter তথ্য এনালাসিস এবং ট্রেন্ড এলার্ট",
+        "রিয়ল-টাইম নিউস সামারি এবং সিংথেসিস",
+        "বিদ্যুত প্রেসারেশন এবং সোশ্যাল মেডিয়া",
+        "সিভিলার নাকামুলার এবং পালিটিক্যাল এনালাসিস",
+        "ভারত এবং বাংলাদেশ নিউস এবং সার্বে"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://x.com/i/grok"
     },
     {
       "id": "perplexity-pro-shared",
@@ -580,7 +2983,17 @@
       "deliverySLA": "5-15 min",
       "featured": true,
       "whatsappMsg": "Hi, I want Perplexity Pro Shared (৳350/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Perplexity Pro — AI-powered web research এবং সার্চ জিতে citations সহ পান। 300+ Pro searches/day, real-time information, এবং academic research ক্রাফ্ট সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "একাডেমিক রিসার্চ এবং থিসিস",
+        "মার্কেট রিসার্চ এবং কম্পিটিটর অেনালাসিস",
+        "কন্টেন্ট ক্রিযেশন এবং SEO খুড়লত রিসার্চ",
+        "কাস্টমার সার্ট এবং তথ্য বিল্ড রিসার্চ",
+        "সোশ্যাল মেডিয়া মেনিটরিং"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://www.perplexity.ai/pro"
     },
     {
       "id": "perplexity-pro-personal",
@@ -604,7 +3017,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want Perplexity Pro Personal (৳2,990/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Perplexity Pro — AI-powered web research এবং সার্চ জিতে citations সহ পান। 300+ Pro searches/day, real-time information, এবং academic research ক্রাফ্ট সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "একাডেমিক রিসার্চ এবং থিসিস",
+        "মার্কেট রিসার্চ এবং কম্পিটিটর অেনালাসিস",
+        "কন্টেন্ট ক্রিযেশন এবং SEO খুড়লত রিসার্চ",
+        "কাস্টমার সার্ট এবং তথ্য বিল্ড রিসার্চ",
+        "সোশ্যাল মেডিয়া মেনিটরিং"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://www.perplexity.ai/pro"
     },
     {
       "id": "perplexity-max-personal",
@@ -628,7 +3051,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want Perplexity Max (৳29,900/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Perplexity Pro — AI-powered web research এবং সার্চ জিতে citations সহ পান। 300+ Pro searches/day, real-time information, এবং academic research ক্রাফ্ট সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "একাডেমিক রিসার্চ এবং থিসিস",
+        "মার্কেট রিসার্চ এবং কম্পিটিটর অেনালাসিস",
+        "কন্টেন্ট ক্রিযেশন এবং SEO খুড়লত রিসার্চ",
+        "কাস্টমার সার্ট এবং তথ্য বিল্ড রিসার্চ",
+        "সোশ্যাল মেডিয়া মেনিটরিং"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://www.perplexity.ai/pro"
     },
     {
       "id": "midjourney-std-shared",
@@ -847,7 +3280,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want Ideogram Plus (৳2,990/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Ideogram — AI ছবি তৈরি জাহ লেখা সহ সর্বোতমে রেন্ডার করতে পারে। Brand logos, social media posts, marketing materials এবং product images তৈরি করতে পারে। bKash দিয়ে পে করুন।",
+      "useCases": [
+        "ব্রেন্ড লগো ডিজায়ন",
+        "সোশ্যাল মিডিয়া লাস্ট",
+        "প্রোডাক্ট ফোটোগ্রাফি তৈরি",
+        "মার্কেটিং মেটিরিয়াল ডিজায়ন",
+        "ব্যানার এবং প্রিণ্ট ডিজায়ন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://ideogram.ai/"
     },
     {
       "id": "ideogram-pro-personal",
@@ -870,7 +3313,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want Ideogram Pro (৳8,970/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Ideogram — AI ছবি তৈরি জাহ লেখা সহ সর্বোতমে রেন্ডার করতে পারে। Brand logos, social media posts, marketing materials এবং product images তৈরি করতে পারে। bKash দিয়ে পে করুন।",
+      "useCases": [
+        "ব্রেন্ড লগো ডিজায়ন",
+        "সোশ্যাল মিডিয়া লাস্ট",
+        "প্রোডাক্ট ফোটোগ্রাফি তৈরি",
+        "মার্কেটিং মেটিরিয়াল ডিজায়ন",
+        "ব্যানার এবং প্রিণ্ট ডিজায়ন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://ideogram.ai/"
     },
     {
       "id": "leonardo-ai-shared",
@@ -893,7 +3346,17 @@
       "deliverySLA": "5-30 min",
       "featured": false,
       "whatsappMsg": "Hi, I want Leonardo AI Shared (৳599/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Leonardo AI — Midjourney-এর বিকল্প একটি budget-friendly AI ছবি তৈরি টুল। Free tier সহ পান, সর্বেধিক ভাল঵িটি এবং সাধারণ কাস্টমাইজেশন সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "বাজেট AI ছবি তৈরি",
+        "গেম এসেট তৈরি",
+        "সোশ্যাল মিডিয়া কন্টেন্ট তৈরি",
+        "চিল্ড্রেন্স এবং বিক্তোরিয়়াল গ্রাফিকস",
+        "তীরের থিলে ডিজায়ন এবং এনিমেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://leonardo.ai/"
     },
     {
       "id": "runway-std-personal",
@@ -918,7 +3381,17 @@
       "deliverySLA": "2-4 hours",
       "featured": true,
       "whatsappMsg": "Hi, I want Runway Standard (৳1,794/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Runway — প্রোফেশনাল AI ভিডিও তৈরি টুল। Text-to-video, image-to-video, বিডিও এডিটিং এবং তথে ভিডিও জেনারেশন চে রে সম্ভব। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "যুটিউব ভিডিও এডিটিং",
+        "সোশ্যাল মিডিয়া এড ক্রিযেশন",
+        "মুভি ট্রেলার এবং শর্ট ফিল্ম তৈরি",
+        "বিজনেস প্রেজেন্টেশন এবং এনিমেশন",
+        "কামার্শিয়াল ভিডিও সার্ভিসেস"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://runwayml.com/"
     },
     {
       "id": "runway-pro-personal",
@@ -942,7 +3415,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want Runway Pro (৳4,186/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Runway — প্রোফেশনাল AI ভিডিও তৈরি টুল। Text-to-video, image-to-video, বিডিও এডিটিং এবং তথে ভিডিও জেনারেশন চে রে সম্ভব। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "যুটিউব ভিডিও এডিটিং",
+        "সোশ্যাল মিডিয়া এড ক্রিযেশন",
+        "মুভি ট্রেলার এবং শর্ট ফিল্ম তৈরি",
+        "বিজনেস প্রেজেন্টেশন এবং এনিমেশন",
+        "কামার্শিয়াল ভিডিও সার্ভিসেস"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://runwayml.com/"
     },
     {
       "id": "runway-unlimited-personal",
@@ -966,7 +3449,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want Runway Unlimited (৳11,362/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Runway — প্রোফেশনাল AI ভিডিও তৈরি টুল। Text-to-video, image-to-video, বিডিও এডিটিং এবং তথে ভিডিও জেনারেশন চে রে সম্ভব। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "যুটিউব ভিডিও এডিটিং",
+        "সোশ্যাল মিডিয়া এড ক্রিযেশন",
+        "মুভি ট্রেলার এবং শর্ট ফিল্ম তৈরি",
+        "বিজনেস প্রেজেন্টেশন এবং এনিমেশন",
+        "কামার্শিয়াল ভিডিও সার্ভিসেস"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://runwayml.com/"
     },
     {
       "id": "heygen-creator-shared",
@@ -989,7 +3482,17 @@
       "deliverySLA": "5-30 min",
       "featured": false,
       "whatsappMsg": "Hi, I want HeyGen Creator Shared (৳1,499/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "HeyGen — AI avatar তৈরি এবং ভিডিও ট্রান্সলেশন টুল। আধুনিক থেকে AI avatar, তাদের থেকে কথা অনুভাদ চে রে সম্ভব। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "যুটিউব চ্যানেল বিডিও তৈরি",
+        "লান্গুয়েজ লরনিং এবং সিংকরনাইজেশন",
+        "এডুকেশনল কন্টেন্ট তৈরি",
+        "কল সেন্টার থেকে ভিডিও জেনারেশন",
+        "সোশ্যাল মেডিয়া কন্টেন্ট তৈরি"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://www.heygen.com/"
     },
     {
       "id": "elevenlabs-starter-personal",
@@ -1011,7 +3514,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want ElevenLabs Starter (৳748/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "ElevenLabs — সর্বশেষ AI voice cloning এবং text-to-speech টুল। ভারত এবং বাংলা ভাষার AI voiceover, audiobook তৈরি, podcast এবং e-learning content সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "বাংলা ভাষার AI voiceover এবং audiobook তৈরি",
+        "যুটিউব এবং সোশ্যাল মিডিয়া ন্যারেশন",
+        "ডাবিং এবং podcast voiceover",
+        "এল-লেরনিং কন্টেন্ট এবং এ-কমার্জ ভাইস",
+        "কথা ক্লোনিং এবং ভার্চুয়াল ডেমো"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://elevenlabs.io/"
     },
     {
       "id": "elevenlabs-creator-personal",
@@ -1033,7 +3546,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want ElevenLabs Creator (৳3,289/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "ElevenLabs — সর্বশেষ AI voice cloning এবং text-to-speech টুল। ভারত এবং বাংলা ভাষার AI voiceover, audiobook তৈরি, podcast এবং e-learning content সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "বাংলা ভাষার AI voiceover এবং audiobook তৈরি",
+        "যুটিউব এবং সোশ্যাল মিডিয়া ন্যারেশন",
+        "ডাবিং এবং podcast voiceover",
+        "এল-লেরনিং কন্টেন্ট এবং এ-কমার্জ ভাইস",
+        "কথা ক্লোনিং এবং ভার্চুয়াল ডেমো"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://elevenlabs.io/"
     },
     {
       "id": "elevenlabs-pro-personal",
@@ -1055,7 +3578,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want ElevenLabs Pro (৳14,802/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "ElevenLabs — সর্বশেষ AI voice cloning এবং text-to-speech টুল। ভারত এবং বাংলা ভাষার AI voiceover, audiobook তৈরি, podcast এবং e-learning content সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "বাংলা ভাষার AI voiceover এবং audiobook তৈরি",
+        "যুটিউব এবং সোশ্যাল মিডিয়া ন্যারেশন",
+        "ডাবিং এবং podcast voiceover",
+        "এল-লেরনিং কন্টেন্ট এবং এ-কমার্জ ভাইস",
+        "কথা ক্লোনিং এবং ভার্চুয়াল ডেমো"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://elevenlabs.io/"
     },
     {
       "id": "suno-pro-personal",
@@ -1078,7 +3611,17 @@
       "deliverySLA": "2-4 hours",
       "featured": true,
       "whatsappMsg": "Hi, I want Suno AI Pro (৳1,495/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Suno AI — ছবি তৈরি AI গান এবং গীত জেনারেশন টুল। সূদু লেখা সহ AI গান তৈরি করতে পারে। রিয়েল রিঘ, মেসীক ভিডিও সাম্ন্দারি ও সাউন্ডট্রাকে আপনার AI তৈরি করুন। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "রিয়েল রিঘ এবং মুসিক ভিডিও সাম্ন্দারি",
+        "পডকাস্ট এবং এ-কমার্জ ভাইস নিয়ে",
+        "যুটিউব এবং সোশ্যাল মিডিয়া ভেগ্রাউন্ড মিলুস",
+        "আধুনিক AI গান তৈরি জন্য",
+        "বানানী ভাষার AI গান এবং ভোয়স কেরিগেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://suno.com/"
     },
     {
       "id": "suno-premier-personal",
@@ -1100,7 +3643,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want Suno AI Premier (৳3,990/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Suno AI — ছবি তৈরি AI গান এবং গীত জেনারেশন টুল। সূদু লেখা সহ AI গান তৈরি করতে পারে। রিয়েল রিঘ, মেসীক ভিডিও সাম্ন্দারি ও সাউন্ডট্রাকে আপনার AI তৈরি করুন। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "রিয়েল রিঘ এবং মুসিক ভিডিও সাম্ন্দারি",
+        "পডকাস্ট এবং এ-কমার্জ ভাইস নিয়ে",
+        "যুটিউব এবং সোশ্যাল মিডিয়া ভেগ্রাউন্ড মিলুস",
+        "আধুনিক AI গান তৈরি জন্য",
+        "বানানী ভাষার AI গান এবং ভোয়স কেরিগেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://suno.com/"
     },
     {
       "id": "udio-pro-shared",
@@ -1122,7 +3675,17 @@
       "deliverySLA": "5-30 min",
       "featured": false,
       "whatsappMsg": "Hi, I want Udio Pro Shared (৳499/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Udio — AI-powered music জেনারেশন টুল। দুসরা লিংক কি স্তম্ভ কে সূদু লেখা সহ AI গান তৈরি করুন। ভারত এবং বাংলাদেশ জন্য সম্পূর্ণ AI মুসিক সার্ভিস। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "মুসিক প্রোডাক্শন এবং AI গান তৈরি",
+        "যুটিউব এবং সোশ্যাল মেডিয়া ব্যাকগ্রাউন্ড মিলু",
+        "এ-কমার্জ ভাইস এবং পডকাস্ট সাম্ন্দারি",
+        "বানানী জাতিয় AI বাও লিরিকস",
+        "মুভি ট্রেলার ঔর থিম্বেল সার্স"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://www.udio.com/"
     },
     {
       "id": "github-copilot-pro-personal",
@@ -1209,7 +3772,17 @@
       "deliverySLA": "2-4 hours",
       "featured": true,
       "whatsappMsg": "Hi, I want Cursor Pro (৳2,990/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Cursor — AI-native IDE সাহ পরিপূর্ণ AI coding agent। VS Code-এর সারা বিশেষ জন্য agent mode, composer, এবং সিম্লেশন সহ পান। সাফ্টোয়ার ডিভেলপমেন্টের সারা ডেভেলপমেন্টের জন্য সেরা এক টুল। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "সাফ্টেয়ার ডিভেলপমেন্ট",
+        "ওয়েব ডিজায়ন এবং রি্যাক্ট ডিভেলপমেন্ট",
+        "মোবাইল এপ ডিভেলপমেন্ট",
+        "এতরাচাল ওয়েব সার্ভিসেস",
+        "ক্লাউড এপ্লিকেশন সার্ভিস ডেভেলপমেন্ট"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://www.cursor.com/"
     },
     {
       "id": "cursor-proplus-personal",
@@ -1232,7 +3805,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want Cursor Pro+ (৳8,970/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Cursor — AI-native IDE সাহ পরিপূর্ণ AI coding agent। VS Code-এর সারা বিশেষ জন্য agent mode, composer, এবং সিম্লেশন সহ পান। সাফ্টোয়ার ডিভেলপমেন্টের সারা ডেভেলপমেন্টের জন্য সেরা এক টুল। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "সাফ্টেয়ার ডিভেলপমেন্ট",
+        "ওয়েব ডিজায়ন এবং রি্যাক্ট ডিভেলপমেন্ট",
+        "মোবাইল এপ ডিভেলপমেন্ট",
+        "এতরাচাল ওয়েব সার্ভিসেস",
+        "ক্লাউড এপ্লিকেশন সার্ভিস ডেভেলপমেন্ট"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://www.cursor.com/"
     },
     {
       "id": "v0-dev-shared",
@@ -1255,7 +3838,17 @@
       "deliverySLA": "5-30 min",
       "featured": false,
       "whatsappMsg": "Hi, I want v0.dev Pro Shared (৳999/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "v0.dev — Vercel-এর AI UI তৈরি টুল। React + Tailwind CSS কোড জেনারেশন, নেট ডেতা ছাড়াই। সাদা তেকনিকাল এবং নোন-টেকনিকাল উপদের দুসের জন্য সর্বশেষ টুল। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "লান্ডিঙ পেয়াজ এবং UI কোম্পোনেন্ট তৈরি",
+        "ফার্ম এবং ডেশবোর্ড তৈরি",
+        "এতরাচাল ওয়েব এপ্লিকেশন তৈরি",
+        "সাদা তেকনিকাল ব্যবহারকারী জন্য",
+        "নোন-টেকনিকাল ফাউন্ডার এবং স্টার্টউপ ডেভেলপমেন্ট"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://v0.dev/"
     },
     {
       "id": "replit-core-personal",
@@ -1279,7 +3872,17 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want Replit Core (৳500/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Replit Core — AI কোডিং এডার সহ ক্লাউড ডেভেলপমেন্ট এনভাইরমেন্ট। দেশের কুন থেকে ব্রাউজার দিয়ে ব্যধিত হয়ে AI এটি কোড লিখুন, debug করুন এবং deploy করুন। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "ওয়েব ডিজায়ন এবং ডেভেলপমেন্ট",
+        "মোবাইল এপ ডিভেলপমেন্ট",
+        "এতরাচাল সার্ভিস সার্ভিস ডেভেলপমেন্ট",
+        "স্ক্রিপ্ট নিউ তৈরি",
+        "ক্লাউদ AI agent জেনারেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://replit.com/"
     },
     {
       "id": "notion-business-monthly",
@@ -1304,7 +3907,17 @@
       "deliverySLA": "2-4 hours",
       "featured": true,
       "whatsappMsg": "Hi, I want Notion Business Monthly (৳800/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Notion AI — টীম ওয়ার্কস্পেস এবং AI কন্টেন্ট মেনেজমেন্ট নিলে কাজ করুন। লেখা লেখা, ডাকুমেন্ট লেখা, প্রোজেক্ট মেনেজ করা এবং AI সার্স খুড়ল সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "টীম লেখা এবং প্রোজেক্ট লিনুক",
+        "কন্টেন্ট কেলেন্ডার এবং ব্লোগ তৈরি",
+        "সুনেশন এবং লেন্ডিং ক্রাফিট এডেড করা",
+        "দেশের কুন থেকে কলাবেরেট কাজ",
+        "ক্লাইন্ট কম্যুনিকেশন এবং ছুটি সার্ভিস"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://www.notion.so/"
     },
     {
       "id": "notion-business-6m",
@@ -1328,7 +3941,17 @@
       "deliverySLA": "2-4 hours",
       "featured": true,
       "whatsappMsg": "Hi, I want Notion Business 6-Month (৳4,800)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Notion AI — টীম ওয়ার্কস্পেস এবং AI কন্টেন্ট মেনেজমেন্ট নিলে কাজ করুন। লেখা লেখা, ডাকুমেন্ট লেখা, প্রোজেক্ট মেনেজ করা এবং AI সার্স খুড়ল সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "টীম লেখা এবং প্রোজেক্ট লিনুক",
+        "কন্টেন্ট কেলেন্ডার এবং ব্লোগ তৈরি",
+        "সুনেশন এবং লেন্ডিং ক্রাফিট এডেড করা",
+        "দেশের কুন থেকে কলাবেরেট কাজ",
+        "ক্লাইন্ট কম্যুনিকেশন এবং ছুটি সার্ভিস"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://www.notion.so/"
     },
     {
       "id": "manus-ai-personal",
@@ -1353,7 +3976,17 @@
       "deliverySLA": "2-12 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want Manus AI (৳2,500/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Manus AI — এক সেলবের্স AI এজেন্ট জদি সাহ অনেক কাজ চে রে পারে। লেখা লেখা, research, কোডিং এবং ভিডিও এডিটিং করা সহ পান। সারা চে রে AI তৈরি করে। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "সাদা তেকনিকাল কাজ লিনুক",
+        "একাডেমিক রিসার্চ ও লেখা",
+        "জদি টেস্ট এবং রিলিজ অতীত করা",
+        "মল্টি-স্টেপ AI ওয়ার্কফ্লো এটীড করা",
+        "তথ্য এনালাসিস এবং রিপোর্ট সামারি"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://manus.im/"
     },
     {
       "id": "otter-ai-shared",
@@ -1376,7 +4009,17 @@
       "deliverySLA": "5-30 min",
       "featured": false,
       "whatsappMsg": "Hi, I want Otter.ai Pro Shared (৳799/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Otter AI — AI meeting assistant এবং ট্রান্সক্রিপ্ট সার্ভিস। মিটিং-বুলা সময়ে AI অটো ট্রান্সক্রাইব করে, সারামিরী লেখা এবং সিার্ট করে। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "মিটিং নোট লেখা এবং সারামিরী",
+        "একাদেমিক ক্লাস ট্রান্সক্রিপ্ট",
+        "অন্তর্জাতিক এবং ছাত্র কোলের সিার্ট",
+        "কল কামেরা লেখা",
+        "঵াইস নোট এবং সিার্ট করা"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://otter.ai/"
     },
     {
       "id": "gamma-plus-shared",
@@ -1399,7 +4042,17 @@
       "deliverySLA": "5-30 min",
       "featured": false,
       "whatsappMsg": "Hi, I want Gamma Plus Shared (৳399/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Gamma — AI প্রেজেন্টেশন তৈরি টুল। সাদা তেকনিকাল আধুনিক থেকে ডেসের জন্য সর্বশেষ টুল। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "সাদা তেকনিকাল প্রেজেন্টেশন",
+        "পিচ তৈরি বিজনেস",
+        "বানানী থেকে ব্লুকেস লেখা",
+        "ওয়েব সার্ভিস এবং ল্যান্ডিং পেয়াজ",
+        "সাদা তেকনিকাল থেকে কলাবেরেট করা"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://gamma.app/"
     },
     {
       "id": "writesonic-shared",
@@ -1422,7 +4075,17 @@
       "deliverySLA": "5-30 min",
       "featured": false,
       "whatsappMsg": "Hi, I want Writesonic Shared (৳799/mo)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "Writesonic — AI writing assistant সহ SEO ওপ্টিমাইজ করা সার্বসেশন টুল। Blog posts, landing pages, এড কনুবার্সশন এবং সোশ্যাল মেডিয়া কন্টেন্ট লেখা সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "ব্লগ পোস্ট এবং SEO ওপ্টিমাইজ করা",
+        "ল্যান্ডিং পেয়াজ এবং এড কনুবার্সশন",
+        "সোশ্যাল মেডিয়া কন্টেন্ট লেখা",
+        "এতরাচাল এমেইল সিরিস",
+        "প্রেস রিলিজ এবং ন্যুজ এর্টিকল"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
+      "sourceUrl": "https://writesonic.com/"
     },
     {
       "id": "student-essentials",
@@ -1445,7 +4108,16 @@
       "deliverySLA": "5-30 min",
       "featured": false,
       "whatsappMsg": "Hi, I want Student Essentials Package (৳449)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "শিক্ষার্থী AI প্যাকেজ — ChatGPT Plus, Google AI Pro, এবং Canva Pro সহ পান। অেসানমেন্ট, লেখা, ছবি, লরনিং এবং প্রেজেন্টেশন সর্বাতক টুল। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "অ্যাসানমেন্ট এবং লেখা",
+        "ছবি তৈরি এবং লরনিং",
+        "প্রেজেন্টেশন এবং ডিজায়ন",
+        "সোশ্যাল মেডিয়া কন্টেন্ট",
+        "বানানী গার্দ এবং সাদানু কাজ"
+      ],
+      "whyBuyFromAIPS": "৳9 টুল একসাথে সারে পান। ফালা মুক্ত সে সেয়ে প্রিয়। bKash/Nagad খরলে সরল ওয়ার্সার এবং সাধারণ জন্য সেয়ে ভালে।"
     },
     {
       "id": "university-pro",
@@ -1469,7 +4141,16 @@
       "deliverySLA": "5-30 min",
       "featured": false,
       "whatsappMsg": "Hi, I want University Pro Package (৳899)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "শিক্ষার্থী AI প্যাকেজ — ChatGPT Plus, Google AI Pro, এবং Canva Pro সহ পান। অেসানমেন্ট, লেখা, ছবি, লরনিং এবং প্রেজেন্টেশন সর্বাতক টুল। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "অ্যাসানমেন্ট এবং লেখা",
+        "ছবি তৈরি এবং লরনিং",
+        "প্রেজেন্টেশন এবং ডিজায়ন",
+        "সোশ্যাল মেডিয়া কন্টেন্ট",
+        "বানানী গার্দ এবং সাদানু কাজ"
+      ],
+      "whyBuyFromAIPS": "৳9 টুল একসাথে সারে পান। ফালা মুক্ত সে সেয়ে প্রিয়। bKash/Nagad খরলে সরল ওয়ার্সার এবং সাধারণ জন্য সেয়ে ভালে।"
     },
     {
       "id": "freelancer-bundle",
@@ -1493,7 +4174,16 @@
       "deliverySLA": "2-4 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want Freelancer Bundle (৳3,999)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "ফ্রীলান্সার AI বান্ডিল — ChatGPT Plus, Claude Pro, Midjourney, এবং Notion AI সহ পান। ক্লায়েন্ট কম্যুনিকেশন, বীডিও এডিটিং, লরনিং এবং প্রেজেন্ট লিনুক সর্বাতক সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "ক্লায়েন্ট কম্যুনিকেশন এবং সারস",
+        "ভিডিও এডিটিং ও রিতিক",
+        "গ্রাফিকস ঔর রিদায়ার ডিজায়ন",
+        "লরনিং এবং ডেলিভারি সার্ভিস",
+        "প্রেজেন্ট লিনুক এবং ওয়ার্কস্পেস সার্ভিস"
+      ],
+      "whyBuyFromAIPS": "৳9 টুল একসাথে সারে পান। ফালা মুক্ত সে সেয়ে প্রিয়। bKash/Nagad খরলে সরল ওয়ার্সার এবং সাধারণ জন্য় সেয়ে ভালে।"
     },
     {
       "id": "business-package",
@@ -1518,7 +4208,16 @@
       "deliverySLA": "2-12 hours",
       "featured": false,
       "whatsappMsg": "Hi, I want Business Package (৳15,000)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "বিজনেস AI প্যাকেজ — ChatGPT Business, Claude Team, এবং AI analytics টুলস সহ পান। টীম লেখা, কলাবেরেশন, প্রোজেক্ট মেনেজমেন্ট এবং AI সাতেস সর্বাতক সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "টীম লেখা এবং কলাবেরেশন",
+        "প্রোজেক্ট লিনুক এবং লরনিং",
+        "এই AI বিতি এবং এনালাসিস",
+        "সাতেস রিপোর্ট এবং সাতেস সার্স",
+        "জদি টেস্ট এবং রিলিজ"
+      ],
+      "whyBuyFromAIPS": "৳9 টুল একসাথে সারে পান। ফালা মুক্ত সে সেয়ে প্রিয়। bKash/Nagad খরলে সরল ওয়ার্সার এবং সাধারণ জন্য় সেয়ে ভালে।"
     },
     {
       "id": "b2b-implementation",
@@ -1543,7 +4242,16 @@
       "deliverySLA": "Custom",
       "featured": false,
       "whatsappMsg": "Hi, I want B2B Implementation (৳25,000)",
-      "status": "Active"
+      "status": "Active",
+      "descriptionBN": "B2B AI Implementation — কম্পানী তথ্য সার্স এবং সাতেস বিতে AI কন্টেন্ট সার্স। প্রোডাক্ট চেল করা, টীম চেল করা, এবং মিনিগ করা সহ পান। bKash/Nagad দিয়ে পে করুন।",
+      "useCases": [
+        "কম্পানী AI সাতেস সার্স",
+        "গীত কুশল ঔর সাতেস বিত সার্স",
+        "প্রোডাক্ট সিলেকশন এবং টীম মেনেজ",
+        "ট্রেনিং এবং অন্বর্দ সারে",
+        "এই থিংকিং কাস্টমাইজেশন এবং AI পরামরস"
+      ],
+      "whyBuyFromAIPS": "৳9 টুল একসাথে সারে পান। ফালা মুক্ত সে সেয়ে প্রিয়। bKash/Nagad খরলে সরল ওয়ার্সার এবং সাধারণ জন্য় সেয়ে ভালে।"
     }
   ]
 }

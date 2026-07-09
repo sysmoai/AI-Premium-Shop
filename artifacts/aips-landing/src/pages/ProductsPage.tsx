@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle, Filter, ArrowUpDown, ChevronRight } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
@@ -30,6 +30,7 @@ type SortKey = "price-asc" | "price-desc" | "name";
 interface Product {
   id: string;
   name: string;
+  slug: string;
   brand: string;
   brandColor: string;
   category: string;
@@ -45,6 +46,7 @@ interface Product {
 }
 
 function ProductCard({ p }: { p: Product }) {
+  const [, navigate] = useLocation();
   const waLink = `${WHATSAPP}?text=${encodeURIComponent(p.whatsappMsg ?? `Hi, I want to order ${p.name} (BDT ${p.price})`)}`;
   return (
     <motion.div
@@ -104,6 +106,14 @@ function ProductCard({ p }: { p: Product }) {
             <MessageCircle className="w-4 h-4" />
             Order
           </a>
+          <button
+            onClick={() => navigate(`/product/${p.slug}`)}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity flex-shrink-0 ml-2"
+            style={{ backgroundColor: "rgba(244,185,66,0.12)", color: "#f4b942", border: "1px solid rgba(244,185,66,0.25)" }}
+          >
+            <ChevronRight className="w-4 h-4" />
+            Details
+          </button>
         </div>
       </div>
     </motion.div>

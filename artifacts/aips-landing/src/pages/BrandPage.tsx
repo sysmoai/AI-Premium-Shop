@@ -1942,7 +1942,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             },
             {
               q: `Is ${meta.displayName} available in Bangladesh?`,
-              a: `Yes. AI Premium Shop (AIPS) offers official ${meta.displayName} subscriptions in Bangladesh. All plans are delivered within 5–30 minutes via WhatsApp after payment confirmation. We have served 10,000+ customers since 2022.`,
+              a: `Yes. AI Premium Shop (AIPS) offers official ${meta.displayName} subscriptions in Bangladesh. All plans are delivered within 5–30 minutes via WhatsApp after payment confirmation. We have served 3,000+ customers since 2024.`,
             },
             {
               q: `How do I buy ${meta.displayName} in Bangladesh without a credit card?`,
@@ -1950,7 +1950,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             },
             {
               q: `Is it safe to buy ${meta.displayName} through AI Premium Shop?`,
-              a: `Yes. AIPS provides working paid ${meta.displayName} subscriptions — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. Over 10,000 customers served since 2022.`,
+              a: `Yes. AIPS provides working paid ${meta.displayName} subscriptions — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. Over 3,000 customers served since 2024.`,
             },
           ];
           return (

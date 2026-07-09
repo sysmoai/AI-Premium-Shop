@@ -1,0 +1,29 @@
+{
+  "_readme": "Price discrepancies found between the live site (data/products.json) and the Notion catalog (AIPS — Catalog — Products, queried 2026-07-09). NOTHING here is auto-applied. Live site prices are unchanged. CEO approval required before any change.",
+  "_note": "Site entries are per-variant (e.g. Shared vs Personal), while Notion 'Starting Price BDT' is the lowest variant. A mismatch may simply mean the site lists a higher tier — flagged anyway for review.",
+  "source": "Notion database: AIPS — Catalog — Products (data source 48285403-f0dd-4a02-9e6f-d9b7ed93dcd1)",
+  "reviewItems": [
+    { "siteSlug": "chatgpt-plus-bangladesh", "sitePricesBDT": [950, 2990], "notionStartingPriceBDT": 350, "notionSlug": "chatgpt-plus", "status": "pending-approval" },
+    { "siteSlug": "chatgpt-business-bangladesh", "sitePricesBDT": [699, 3990], "notionStartingPriceBDT": 1299, "notionSlug": "chatgpt-business", "status": "pending-approval" },
+    { "siteSlug": "claude-pro-bangladesh", "sitePricesBDT": [1495, 2990, 3990, 14950, 29900], "notionStartingPriceBDT": 350, "notionSlug": "claude-pro", "status": "pending-approval" },
+    { "siteSlug": "perplexity-pro-bangladesh", "sitePricesBDT": [2990, 29900], "notionStartingPriceBDT": 350, "notionSlug": "perplexity-pro", "status": "pending-approval" },
+    { "siteSlug": "leonardo-ai-bangladesh", "sitePricesBDT": [599], "notionStartingPriceBDT": 999, "notionSlug": "leonardo-ai", "status": "pending-approval" },
+    { "siteSlug": "github-copilot-bangladesh", "sitePricesBDT": [1495, 5831], "notionStartingPriceBDT": 899, "notionSlug": "github-copilot", "status": "pending-approval" },
+    { "siteSlug": "manus-ai-bangladesh", "sitePricesBDT": [2500], "notionStartingPriceBDT": 999, "notionSlug": "manus-ai", "status": "pending-approval" }
+  ],
+  "missingFromSite": {
+    "_note": "65 Notion-active products vs ~30 tools on site. High-priority additions per SAFE UPGRADE Phase 3 and Notion catalog (Notion suggested starting BDT shown). Pending approval before going live.",
+    "products": [
+      { "notionSlug": "capcut-pro-ai", "name": "CapCut Pro (AI)", "notionStartingPriceBDT": 399, "priority": "highest" },
+      { "notionSlug": "grammarly-premium", "name": "Grammarly Premium", "notionStartingPriceBDT": null, "priority": "high" },
+      { "notionSlug": "quillbot-premium", "name": "QuillBot Premium", "notionStartingPriceBDT": 399, "priority": "high" },
+      { "notionSlug": "canva-pro-ai", "name": "Canva Pro (AI)", "notionStartingPriceBDT": null, "priority": "high" },
+      { "notionSlug": "microsoft-copilot-pro", "name": "Microsoft Copilot Pro", "notionStartingPriceBDT": 999, "priority": "medium" },
+      { "notionSlug": "wordtune-premium", "name": "Wordtune Premium", "notionStartingPriceBDT": 399, "priority": "medium" },
+      { "notionSlug": "murf-ai-pro", "name": "Murf AI Pro", "notionStartingPriceBDT": 499, "priority": "medium" },
+      { "notionSlug": "descript-pro", "name": "Descript Pro", "notionStartingPriceBDT": 1099, "priority": "medium" },
+      { "notionSlug": "jasper-ai-creator", "name": "Jasper AI Creator", "notionStartingPriceBDT": 1299, "priority": "medium" },
+      { "notionSlug": "adobe-firefly", "name": "Adobe Firefly", "notionStartingPriceBDT": 1099, "priority": "medium" }
+    ]
+  }
+}

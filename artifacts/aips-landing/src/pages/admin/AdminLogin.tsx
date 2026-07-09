@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
-import { useAdminLogin, useAdminMe } from "@workspace/api-client-react";
+import { useAdminLogin, useAdminMe, getAdminMeQueryKey } from "@workspace/api-client-react";
 
 export default function AdminLogin() {
   useEffect(() => {
     document.title = "Admin Login — AIPS";
   }, []);
   const [, setLocation] = useLocation();
-  const me = useAdminMe({ query: { retry: false } });
+  const me = useAdminMe({ query: { retry: false, queryKey: getAdminMeQueryKey() } });
 
   useEffect(() => {
     if (me.data) setLocation("/admin");

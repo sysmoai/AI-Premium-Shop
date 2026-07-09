@@ -1,9 +1,9 @@
 import { ShoppingCart } from "lucide-react";
 import { Link, useLocation } from "wouter";
-import { useGetCart } from "@workspace/api-client-react";
+import { useGetCart, getGetCartQueryKey } from "@workspace/api-client-react";
 
 export function CartButton() {
-  const { data } = useGetCart({ query: { staleTime: 5_000 } });
+  const { data } = useGetCart({ query: { staleTime: 5_000, queryKey: getGetCartQueryKey() } });
   const count = data?.itemCount ?? 0;
   const [location] = useLocation();
   if (location.startsWith("/admin")) return null;

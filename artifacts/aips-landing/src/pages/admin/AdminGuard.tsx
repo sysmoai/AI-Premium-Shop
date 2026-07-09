@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
-import { useAdminMe } from "@workspace/api-client-react";
+import { useAdminMe, getAdminMeQueryKey } from "@workspace/api-client-react";
 
 export function AdminGuard({ children }: { children: React.ReactNode }) {
   const [, setLocation] = useLocation();
-  const { data, isLoading, isError } = useAdminMe({ query: { retry: false } });
+  const { data, isLoading, isError } = useAdminMe({ query: { retry: false, queryKey: getAdminMeQueryKey() } });
   useEffect(() => {
     if (!isLoading && (isError || !data)) setLocation("/admin/login");
   }, [isLoading, isError, data, setLocation]);

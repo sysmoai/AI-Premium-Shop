@@ -1,1 +1,2 @@
 - [Dependency vulnerability fixes via pnpm overrides](dependency-audit-overrides.md) — use pnpm-workspace.yaml `overrides` (with scoped selectors like `pkg>subpkg`) to force patched transitive versions; always restart workflows after, since running dev servers cache old vite/module paths.
+- [AIPS safe-upgrade rules](aips-safe-upgrade-rules.md) — never auto-change site prices; Notion catalog is source of truth but price changes go to price-review.json for approval.

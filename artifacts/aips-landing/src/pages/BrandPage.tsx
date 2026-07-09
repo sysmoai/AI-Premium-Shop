@@ -57,6 +57,7 @@ const BRAND_COMPETITORS: Record<string, {
   "notion-business-bangladesh": { name1: "Google AI Pro", slug1: "/gemini-advanced-bangladesh", price1: "BDT 500", strength1: "AI in Gmail, Docs, Sheets + 2TB storage", name2: "Otter.ai", slug2: "/otter-ai-bangladesh", price2: "from BDT 799", strength2: "Meeting transcription & AI notes" },
   "replit-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", price1: "BDT 1,495", strength1: "Best IDE code completion plugin", name2: "Cursor Pro", slug2: "/cursor-bangladesh", price2: "from BDT 2,990", strength2: "Full AI-native coding environment" },
   "v0-dev-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", price1: "BDT 1,495", strength1: "Best for general backend/frontend coding", name2: "Replit Core", slug2: "/replit-bangladesh", price2: "BDT 500", strength2: "Cloud dev environment with AI" },
+  "capcut-pro-bangladesh": { name1: "Runway", slug1: "/runway-bangladesh", price1: "from BDT 1,794", strength1: "Professional AI video generation", name2: "Canva Pro", slug2: "/products", price2: "from BDT 499", strength2: "Design + video templates" },
 };
 
 const BEST_FOR_LABELS: Record<string, string> = {
@@ -81,6 +82,7 @@ const BEST_FOR_LABELS: Record<string, string> = {
   "manus-ai-bangladesh":         "Autonomous AI agent",
   "replit-bangladesh":           "Cloud dev environment with AI",
   "v0-dev-bangladesh":           "AI-powered UI component generation",
+  "capcut-pro-bangladesh":       "#1 video editor for TikTok, Reels & Shorts",
 };
 
 interface Product {
@@ -532,6 +534,24 @@ const BRAND_META: Record<string, {
       { q: "How fast is delivery?", a: "Replit Core personal accounts are delivered within 2–4 hours after payment confirmation." },
     ],
   },
+
+  "capcut-pro-bangladesh": {
+    displayName: "CapCut Pro",
+    tagline: "CapCut Pro Bangladesh — from ৳399/month",
+    seoTitle: "CapCut Pro Bangladesh — BDT 399/mo | AI Premium Shop",
+    seoDescription: "CapCut Pro Bangladesh from BDT 399/mo. AI video editing for TikTok, Reels, Shorts. Auto-captions, keyframe, 4K. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
+    description: "CapCut Pro is the #1 video editing app for TikTok, Instagram Reels, and YouTube Shorts. AI effects, auto-captions, keyframe animation, 4K export, no watermark. The tool powering Bangladesh's creator economy. Shared from ৳399/month, Personal ৳1,195/month. Pay via bKash or Nagad.",
+    accentColor: "#161823",
+    filterBySlug: true,
+    faqs: [
+      { q: "What can I do with CapCut Pro?", a: "CapCut Pro gives you professional video editing for TikTok, Instagram Reels, and YouTube Shorts. Features include AI effects, auto-captions, keyframe animation, 4K export, no watermark, advanced transitions, and background removal." },
+      { q: "Is CapCut Pro safe to buy through AIPS?", a: "Yes. AIPS provides working CapCut Pro access — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. We have served 3,000+ customers since 2024." },
+      { q: "How do I buy CapCut Pro in Bangladesh without a credit card?", a: "Message AI Premium Shop on WhatsApp (+880 1865-385348). Choose your plan. Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes. No international credit card needed." },
+      { q: "What's the difference between shared and personal?", a: "Shared (৳399): Access CapCut Pro features through a shared pool — great for budget users. Personal (৳1,195): Your own dedicated CapCut Pro account with full control — best for professionals and agencies." },
+      { q: "How fast is delivery?", a: "CapCut Pro shared plans: 5–30 minutes. Personal plans: 2–4 hours. The clock starts after payment confirmation on WhatsApp." },
+    ],
+  },
+
 };
 
 interface BrandPageProps {

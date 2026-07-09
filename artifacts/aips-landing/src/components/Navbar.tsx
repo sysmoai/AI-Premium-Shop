@@ -17,7 +17,7 @@ const WHATSAPP_LINK = "https://wa.me/8801865385348";
 const CATEGORIES = [
   { icon: MessageSquare, label: "AI Chat & Assistant", meta: "21 tools · from ৳350",  href: "/products" },
   { icon: Image,         label: "AI Image & Design",   meta: "9 tools · from ৳599",   href: "/midjourney-bangladesh" },
-  { icon: Video,         label: "AI Video",             meta: "4 tools · from ৳1,499", href: "/runway-bangladesh" },
+  { icon: Video,         label: "AI Video",             meta: "5 tools · from ৳399", href: "/runway-bangladesh" },
   { icon: Music,         label: "AI Voice & Music",     meta: "6 tools · from ৳499",   href: "/elevenlabs-bangladesh" },
   { icon: Code2,         label: "AI Code & Dev",        meta: "6 tools · from ৳500",   href: "/github-copilot-bangladesh" },
   { icon: Layout,        label: "AI Workspace",         meta: "5 tools · from ৳399",   href: "/notion-business-bangladesh" },

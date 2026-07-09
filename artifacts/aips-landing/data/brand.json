@@ -6,8 +6,8 @@
   "domain": "aipremiumshop.com",
   "url": "https://aipremiumshop.com",
   "owner": "Emon Hossain",
-  "foundedYear": 2022,
-  "customersServed": "1,200+",
+  "foundedYear": 2024,
+  "customersServed": "3,000+",
   "market": "Bangladesh",
   "currency": "BDT",
   "currencySymbol": "৳",
@@ -37,8 +37,8 @@
     "cardBorder": "rgba(244, 185, 66, 0.2)"
   },
   "trustBadges": [
-    {"text": "1,200+ Customers", "icon": "users"},
-    {"text": "Since 2022", "icon": "calendar"},
+    {"text": "3,000+ Customers", "icon": "users"},
+    {"text": "Since 2024", "icon": "calendar"},
     {"text": "30-Day Warranty", "icon": "shield"},
     {"text": "5-Min Response", "icon": "message-circle"}
   ],

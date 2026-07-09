@@ -44,7 +44,11 @@ export function ProductCard({ product, className, onClick }: ProductCardProps) {
       {product.logo && (
         <img
           src={product.logo}
-          alt={product.name}
+          alt={`${product.name} logo`}
+          width={40}
+          height={40}
+          loading="lazy"
+          decoding="async"
           className="w-10 h-10 rounded-lg mb-4 object-contain"
         />
       )}

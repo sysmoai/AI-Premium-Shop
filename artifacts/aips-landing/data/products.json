@@ -3359,6 +3359,127 @@
       "sourceUrl": "https://leonardo.ai/"
     },
     {
+      "id": "capcut-pro-starter-shared",
+      "name": "CapCut Pro — Starter Shared",
+      "slug": "capcut-pro-bangladesh",
+      "brand": "CapCut",
+      "brandSlug": "capcut-pro-bangladesh",
+      "provider": "ByteDance",
+      "brandColor": "#161823",
+      "category": "ai-video",
+      "price": 399,
+      "officialUSD": 7.99,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "P0 Hot Add",
+      "description": "CapCut Pro — the #1 video editing app for TikTok, Reels & Shorts. AI effects, auto-captions, keyframe animation, 4K export, no watermark. Shared access.",
+      "capabilities": [
+        "video-edit",
+        "auto-captions",
+        "ai-effects",
+        "keyframe",
+        "4k-export"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want CapCut Pro Starter Shared (৳399/mo)",
+      "status": "Active",
+      "descriptionBN": "CapCut Pro — টিকটক, রিলস ও শর্টসের জন্য সেরা ভিডিও এডিটর। AI ইফেক্ট, অটো ক্যাপশন, কিফ্রেম অ্যানিমেশন, 4K এক্সপোর্ট। bKash/Nagad দিয়ে পেমেন্ট, ৫-১৫ মিনিটে ডেলিভারি।",
+      "useCases": [
+        "টিকটক/ইনস্টাগ্রাম রিলস এডিটিং",
+        "যুটিউব শর্টস তৈরি",
+        "ফেসবুক পেজ কনটেন্ট ও অ্যাড ভিডিও",
+        "ফ্রিল্যান্স ভিডিও এডিটিং (Fiverr/Upwork)",
+        "ব্যবসায়িক প্রোডাক্ট ভিডিও তৈরি"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। ৫-১৫ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, Bangla WhatsApp সাপোর্ট। Competitors sell shared credentials — AIPS gives you safe access.",
+      "sourceUrl": "https://www.capcut.com/pricing",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 399,
+          "officialUSD": 7.99,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "CapCut Pro all features",
+            "AI effects & filters",
+            "Auto-captions & subtitles",
+            "Keyframe animation",
+            "4K export, no watermark",
+            "Shared pool access"
+          ],
+          "features": [
+            "video-edit",
+            "auto-captions",
+            "ai-effects",
+            "keyframe",
+            "4k-export"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Occasional login refresh needed"
+          ],
+          "bestFor": "Content creators, TikTokers, students on budget",
+          "seats": 4,
+          "badge": "P0 Hot Add",
+          "inStock": true
+        },
+        {
+          "planName": "Premium Personal",
+          "tierLevel": 2,
+          "priceBDT": 1195,
+          "officialUSD": 7.99,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Dedicated CapCut Pro account",
+            "All Pro features on your own login",
+            "AI effects & filters",
+            "Auto-captions & subtitles",
+            "Keyframe animation",
+            "4K export, no watermark"
+          ],
+          "features": [
+            "video-edit",
+            "auto-captions",
+            "ai-effects",
+            "keyframe",
+            "4k-export"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Professional video editors, agencies, serious creators",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        { "q": "What can I do with CapCut Pro?", "a": "CapCut Pro gives you professional video editing for TikTok, Instagram Reels, and YouTube Shorts. Features include AI effects, auto-captions, keyframe animation, 4K export, no watermark, advanced transitions, and background removal." },
+        { "q": "Is CapCut Pro safe to buy through AIPS?", "a": "Yes. AIPS provides working CapCut Pro access — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. We have served 3,000+ customers since 2024." },
+        { "q": "How do I buy CapCut Pro in Bangladesh without a credit card?", "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Choose your plan. Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes. No international credit card needed." },
+        { "q": "What's the difference between shared and personal?", "a": "Shared (৳399): Access CapCut Pro features through a shared pool — great for budget users. Personal (৳1,195): Your own dedicated CapCut Pro account with full control — best for professionals and agencies." }
+      ],
+      "competitorCompare": {
+        "rows": [
+          { "feature": "Price in BD", "aips": "৳399 shared / ৳1,195 personal", "competitor": "৳299–৳700 shared (various resellers)", "winner": "AIPS" },
+          { "feature": "Payment", "aips": "bKash / Nagad / Rocket", "competitor": "bKash only (most)", "winner": "AIPS" },
+          { "feature": "Account type", "aips": "Shared + Personal options", "competitor": "Shared only (most)", "winner": "AIPS" },
+          { "feature": "Warranty", "aips": "30-day replacement", "competitor": "None stated", "winner": "AIPS" },
+          { "feature": "Support", "aips": "WhatsApp + Bangla", "competitor": "Limited", "winner": "AIPS" }
+        ]
+      },
+      "relatedProducts": [
+        { "slug": "runway-bangladesh", "name": "Runway" },
+        { "slug": "elevenlabs-bangladesh", "name": "ElevenLabs" },
+        { "slug": "canva-pro-bangladesh", "name": "Canva Pro" }
+      ]
+    },
+    {
       "id": "runway-std-personal",
       "name": "Runway Standard — Personal",
       "slug": "runway-bangladesh",

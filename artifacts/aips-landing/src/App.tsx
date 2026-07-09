@@ -90,6 +90,9 @@ function Router() {
       <Route path="/ai-writing">{() => <CategoryPage categoryId="ai-writing" />}</Route>
       <Route path="/bundles">{() => <CategoryPage categoryId="bundles" />}</Route>
 
+      {/* Brand pages — AI Video Editing */}
+      <Route path="/capcut-pro-bangladesh">{() => <BrandPage brandSlug="capcut-pro-bangladesh" />}</Route>
+
       {/* Brand pages — ChatGPT */}
       <Route path="/chatgpt-plans-bangladesh">{() => <BrandPage brandSlug="chatgpt-plans-bangladesh" />}</Route>
       <Route path="/chatgpt-plus-bangladesh">{() => <BrandPage brandSlug="chatgpt-plus-bangladesh" />}</Route>

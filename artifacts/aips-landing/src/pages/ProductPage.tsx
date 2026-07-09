@@ -548,13 +548,20 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
           <div className="mb-14">
             <h2 className="text-2xl font-bold text-white mb-6">Related Products</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {product.relatedProducts.map((rp) => (
-                <Link key={rp.slug} href={`/${rp.slug}`} className="rounded-xl border border-white/10 p-4 block hover:border-white/20 transition-colors" style={{ backgroundColor: "#151b3d" }}>
-                  <div className="text-sm font-semibold text-white mb-1">{rp.name}</div>
-                  <div className="text-sm font-bold" style={{ color: "#f4b942" }}>{formatBDT(rp.priceBDT)}</div>
-                  <div className="text-xs mt-1 capitalize" style={{ color: "#c9ceda" }}>{rp.category}</div>
-                </Link>
-              ))}
+              {product.relatedProducts.map((rp) => {
+                const arr = Array.isArray(productsData) ? productsData : (productsData as any).products || [];
+                const all = arr as ProductDetail[];
+                const rpProduct = all.find((p: ProductDetail) => p.slug === rp.slug);
+                const price = rp.priceBDT ?? rpProduct?.plans?.[0]?.priceBDT ?? 0;
+                const cat = rp.category ?? rpProduct?.category ?? "";
+                return (
+                  <Link key={rp.slug} href={`/${rp.slug}`} className="rounded-xl border border-white/10 p-4 block hover:border-white/20 transition-colors" style={{ backgroundColor: "#151b3d" }}>
+                    <div className="text-sm font-semibold text-white mb-1">{rp.name}</div>
+                    {price > 0 && <div className="text-sm font-bold" style={{ color: "#f4b942" }}>{formatBDT(price)}</div>}
+                    {cat && <div className="text-xs mt-1 capitalize" style={{ color: "#c9ceda" }}>{cat}</div>}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         )}

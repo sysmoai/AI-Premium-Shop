@@ -3459,24 +3459,76 @@
         }
       ],
       "faq": [
-        { "q": "What can I do with CapCut Pro?", "a": "CapCut Pro gives you professional video editing for TikTok, Instagram Reels, and YouTube Shorts. Features include AI effects, auto-captions, keyframe animation, 4K export, no watermark, advanced transitions, and background removal." },
-        { "q": "Is CapCut Pro safe to buy through AIPS?", "a": "Yes. AIPS provides working CapCut Pro access — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. We have served 3,000+ customers since 2024." },
-        { "q": "How do I buy CapCut Pro in Bangladesh without a credit card?", "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Choose your plan. Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes. No international credit card needed." },
-        { "q": "What's the difference between shared and personal?", "a": "Shared (৳399): Access CapCut Pro features through a shared pool — great for budget users. Personal (৳1,195): Your own dedicated CapCut Pro account with full control — best for professionals and agencies." }
+        {
+          "q": "What can I do with CapCut Pro?",
+          "a": "CapCut Pro gives you professional video editing for TikTok, Instagram Reels, and YouTube Shorts. Features include AI effects, auto-captions, keyframe animation, 4K export, no watermark, advanced transitions, and background removal."
+        },
+        {
+          "q": "Is CapCut Pro safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working CapCut Pro access — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy CapCut Pro in Bangladesh without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Choose your plan. Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes. No international credit card needed."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared (৳399): Access CapCut Pro features through a shared pool — great for budget users. Personal (৳1,195): Your own dedicated CapCut Pro account with full control — best for professionals and agencies."
+        }
       ],
       "competitorCompare": {
         "rows": [
-          { "feature": "Price in BD", "aips": "৳399 shared / ৳1,195 personal", "competitor": "৳299–৳700 shared (various resellers)", "winner": "AIPS" },
-          { "feature": "Payment", "aips": "bKash / Nagad / Rocket", "competitor": "bKash only (most)", "winner": "AIPS" },
-          { "feature": "Account type", "aips": "Shared + Personal options", "competitor": "Shared only (most)", "winner": "AIPS" },
-          { "feature": "Warranty", "aips": "30-day replacement", "competitor": "None stated", "winner": "AIPS" },
-          { "feature": "Support", "aips": "WhatsApp + Bangla", "competitor": "Limited", "winner": "AIPS" }
+          {
+            "feature": "Price in BD",
+            "aips": "৳399 shared / ৳1,195 personal",
+            "competitor": "৳299–৳700 shared (various resellers)",
+            "winner": "AIPS"
+          },
+          {
+            "feature": "Payment",
+            "aips": "bKash / Nagad / Rocket",
+            "competitor": "bKash only (most)",
+            "winner": "AIPS"
+          },
+          {
+            "feature": "Account type",
+            "aips": "Shared + Personal options",
+            "competitor": "Shared only (most)",
+            "winner": "AIPS"
+          },
+          {
+            "feature": "Warranty",
+            "aips": "30-day replacement",
+            "competitor": "None stated",
+            "winner": "AIPS"
+          },
+          {
+            "feature": "Support",
+            "aips": "WhatsApp + Bangla",
+            "competitor": "Limited",
+            "winner": "AIPS"
+          }
         ]
       },
       "relatedProducts": [
-        { "slug": "runway-bangladesh", "name": "Runway" },
-        { "slug": "elevenlabs-bangladesh", "name": "ElevenLabs" },
-        { "slug": "canva-pro-bangladesh", "name": "Canva Pro" }
+        {
+          "slug": "runway-bangladesh",
+          "name": "Runway",
+          "priceBDT": 1794,
+          "category": "ai-video"
+        },
+        {
+          "slug": "elevenlabs-bangladesh",
+          "name": "ElevenLabs",
+          "priceBDT": 499,
+          "category": "ai-voice-music"
+        },
+        {
+          "slug": "canva-pro-bangladesh",
+          "name": "Canva Pro",
+          "priceBDT": 499,
+          "category": "ai-image"
+        }
       ]
     },
     {
@@ -4373,6 +4425,1716 @@
         "এই থিংকিং কাস্টমাইজেশন এবং AI পরামরস"
       ],
       "whyBuyFromAIPS": "৳9 টুল একসাথে সারে পান। ফালা মুক্ত সে সেয়ে প্রিয়। bKash/Nagad খরলে সরল ওয়ার্সার এবং সাধারণ জন্য় সেয়ে ভালে।"
+    },
+    {
+      "id": "grammarly-premium-starter-shared",
+      "name": "Grammarly Premium — Starter Shared",
+      "slug": "grammarly-premium-bangladesh",
+      "brand": "Grammarly",
+      "brandSlug": "grammarly-premium-bangladesh",
+      "provider": "Grammarly",
+      "brandColor": "#6366f1",
+      "category": "ai-writing",
+      "price": 470,
+      "officialUSD": 12,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "AI-powered writing assistant for grammar, spelling, tone, and clarity. Essential for students, professionals, and content creators in Bangladesh. Shared access.",
+      "capabilities": [
+        "grammar-check",
+        "spell-check",
+        "tone-detection",
+        "plagiarism-check",
+        "clarity-improvements"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Grammarly Premium (৳470/mo)",
+      "status": "Active",
+      "descriptionBN": "Grammarly Premium — ব্যাকরণ, বানান, টোন ও পরিষ্কারতার জন্য AI পাওয়ারড রাইটিং অ্যাসিস্ট্যান্ট। শিক্ষার্থী, পেশাদার ও কনটেন্ট ক্রিয়েটরদের জন্য অপরিহার্য।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্টে ডেলিভারি। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.grammarly.com/plans",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 470,
+          "officialUSD": 12,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Grammar Check",
+            "Spell Check",
+            "Tone Detection",
+            "Plagiarism Check",
+            "Clarity Improvements"
+          ],
+          "features": [
+            "grammar-check",
+            "spell-check",
+            "tone-detection",
+            "plagiarism-check",
+            "clarity-improvements"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Occasional login refresh needed"
+          ],
+          "bestFor": "Students",
+          "seats": 4,
+          "badge": "New",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Grammarly Premium?",
+          "a": "AI-powered writing assistant for grammar, spelling, tone, and clarity. Essential for students, professionals, and content creators in Bangladesh."
+        },
+        {
+          "q": "Is Grammarly Premium safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "grammarly-premium-personal",
+      "name": "Grammarly Premium — Personal",
+      "slug": "grammarly-premium-bangladesh",
+      "brand": "Grammarly",
+      "brandSlug": "grammarly-premium-bangladesh",
+      "provider": "Grammarly",
+      "brandColor": "#6366f1",
+      "category": "ai-writing",
+      "price": 1790,
+      "officialUSD": 12,
+      "tier": "Personal",
+      "accessType": "personal",
+      "badge": "Own Account",
+      "description": "AI-powered writing assistant for grammar, spelling, tone, and clarity. Essential for students, professionals, and content creators in Bangladesh. Your own dedicated account.",
+      "capabilities": [
+        "grammar-check",
+        "spell-check",
+        "tone-detection",
+        "plagiarism-check",
+        "clarity-improvements"
+      ],
+      "deliverySLA": "2-4 hours",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Grammarly Premium (৳1790/mo)",
+      "status": "Active",
+      "descriptionBN": "Grammarly Premium — ব্যাকরণ, বানান, টোন ও পরিষ্কারতার জন্য AI পাওয়ারড রাইটিং অ্যাসিস্ট্যান্ট। শিক্ষার্থী, পেশাদার ও কনটেন্ট ক্রিয়েটরদের জন্য অপরিহার্য।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.grammarly.com/plans",
+      "plans": [
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 1790,
+          "officialUSD": 12,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Grammar Check on your own account",
+            "Spell Check on your own account",
+            "Tone Detection on your own account",
+            "Plagiarism Check on your own account",
+            "Clarity Improvements on your own account"
+          ],
+          "features": [
+            "grammar-check",
+            "spell-check",
+            "tone-detection",
+            "plagiarism-check",
+            "clarity-improvements"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Students, writers, professionals who write in English",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Grammarly Premium?",
+          "a": "AI-powered writing assistant for grammar, spelling, tone, and clarity. Essential for students, professionals, and content creators in Bangladesh."
+        },
+        {
+          "q": "Is Grammarly Premium safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 2–4 hours."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "quillbot-premium-starter-shared",
+      "name": "QuillBot Premium — Starter Shared",
+      "slug": "quillbot-premium-bangladesh",
+      "brand": "QuillBot",
+      "brandSlug": "quillbot-premium-bangladesh",
+      "provider": "QuillBot",
+      "brandColor": "#6366f1",
+      "category": "ai-writing",
+      "price": 390,
+      "officialUSD": 9.95,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "AI paraphrasing, summarizing, grammar checking, and plagiarism detection. Perfect for Bangladeshi students writing thesis and assignments in English. Shared access.",
+      "capabilities": [
+        "paraphrase",
+        "summarizer",
+        "grammar-check",
+        "plagiarism-check",
+        "citation-generator",
+        "translator"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want QuillBot Premium (৳390/mo)",
+      "status": "Active",
+      "descriptionBN": "QuillBot Premium — AI প্যারাফ্রেজিং, সারাংশ, ব্যাকরণ পরীক্ষা এবং প্লাগিয়ারিজম ডিটেকশন। ইংরেজিতে থিসিস ও অ্যাসাইনমেন্ট লেখার জন্য পারফেক্ট।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্টে ডেলিভারি। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://quillbot.com/premium",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 390,
+          "officialUSD": 9.95,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Paraphrase",
+            "Summarizer",
+            "Grammar Check",
+            "Plagiarism Check",
+            "Citation Generator",
+            "Translator"
+          ],
+          "features": [
+            "paraphrase",
+            "summarizer",
+            "grammar-check",
+            "plagiarism-check",
+            "citation-generator",
+            "translator"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Occasional login refresh needed"
+          ],
+          "bestFor": "Students",
+          "seats": 4,
+          "badge": "New",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is QuillBot Premium?",
+          "a": "AI paraphrasing, summarizing, grammar checking, and plagiarism detection. Perfect for Bangladeshi students writing thesis and assignments in English."
+        },
+        {
+          "q": "Is QuillBot Premium safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "quillbot-premium-personal",
+      "name": "QuillBot Premium — Personal",
+      "slug": "quillbot-premium-bangladesh",
+      "brand": "QuillBot",
+      "brandSlug": "quillbot-premium-bangladesh",
+      "provider": "QuillBot",
+      "brandColor": "#6366f1",
+      "category": "ai-writing",
+      "price": 1490,
+      "officialUSD": 9.95,
+      "tier": "Personal",
+      "accessType": "personal",
+      "badge": "Own Account",
+      "description": "AI paraphrasing, summarizing, grammar checking, and plagiarism detection. Perfect for Bangladeshi students writing thesis and assignments in English. Your own dedicated account.",
+      "capabilities": [
+        "paraphrase",
+        "summarizer",
+        "grammar-check",
+        "plagiarism-check",
+        "citation-generator",
+        "translator"
+      ],
+      "deliverySLA": "2-4 hours",
+      "featured": false,
+      "whatsappMsg": "Hi, I want QuillBot Premium (৳1490/mo)",
+      "status": "Active",
+      "descriptionBN": "QuillBot Premium — AI প্যারাফ্রেজিং, সারাংশ, ব্যাকরণ পরীক্ষা এবং প্লাগিয়ারিজম ডিটেকশন। ইংরেজিতে থিসিস ও অ্যাসাইনমেন্ট লেখার জন্য পারফেক্ট।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://quillbot.com/premium",
+      "plans": [
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 1490,
+          "officialUSD": 9.95,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Paraphrase on your own account",
+            "Summarizer on your own account",
+            "Grammar Check on your own account",
+            "Plagiarism Check on your own account",
+            "Citation Generator on your own account",
+            "Translator on your own account"
+          ],
+          "features": [
+            "paraphrase",
+            "summarizer",
+            "grammar-check",
+            "plagiarism-check",
+            "citation-generator",
+            "translator"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Students, researchers, content writers needing paraphrasing",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is QuillBot Premium?",
+          "a": "AI paraphrasing, summarizing, grammar checking, and plagiarism detection. Perfect for Bangladeshi students writing thesis and assignments in English."
+        },
+        {
+          "q": "Is QuillBot Premium safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 2–4 hours."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "canva-pro-starter-shared",
+      "name": "Canva Pro — Starter Shared",
+      "slug": "canva-pro-bangladesh",
+      "brand": "Canva",
+      "brandSlug": "canva-pro-bangladesh",
+      "provider": "Canva",
+      "brandColor": "#6366f1",
+      "category": "ai-design",
+      "price": 510,
+      "officialUSD": 12.99,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "All-in-one design tool with AI Magic Studio, 100M+ stock assets, brand kit, and background remover. The #1 design platform for Bangladeshi creators and SMEs. Shared access.",
+      "capabilities": [
+        "ai-design",
+        "magic-studio",
+        "background-remover",
+        "brand-kit",
+        "stock-assets",
+        "social-media-templates"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Canva Pro (৳510/mo)",
+      "status": "Active",
+      "descriptionBN": "Canva Pro — AI Magic Studio, ১০ কোটির বেশি স্টক অ্যাসেট, ব্র্যান্ড কিট ও ব্যাকগ্রাউন্ড রিমুভার সহ অল-ইন-ওয়ান ডিজাইন টুল। বাংলাদেশি ক্রিয়েটর ও SME-দের জন্য #1।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্টে ডেলিভারি। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.canva.com/pricing",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 510,
+          "officialUSD": 12.99,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Ai Design",
+            "Magic Studio",
+            "Background Remover",
+            "Brand Kit",
+            "Stock Assets",
+            "Social Media Templates"
+          ],
+          "features": [
+            "ai-design",
+            "magic-studio",
+            "background-remover",
+            "brand-kit",
+            "stock-assets",
+            "social-media-templates"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Occasional login refresh needed"
+          ],
+          "bestFor": "Social media managers",
+          "seats": 4,
+          "badge": "New",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Canva Pro?",
+          "a": "All-in-one design tool with AI Magic Studio, 100M+ stock assets, brand kit, and background remover. The #1 design platform for Bangladeshi creators and SMEs."
+        },
+        {
+          "q": "Is Canva Pro safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "canva-pro-personal",
+      "name": "Canva Pro — Personal",
+      "slug": "canva-pro-bangladesh",
+      "brand": "Canva",
+      "brandSlug": "canva-pro-bangladesh",
+      "provider": "Canva",
+      "brandColor": "#6366f1",
+      "category": "ai-design",
+      "price": 1940,
+      "officialUSD": 12.99,
+      "tier": "Personal",
+      "accessType": "personal",
+      "badge": "Own Account",
+      "description": "All-in-one design tool with AI Magic Studio, 100M+ stock assets, brand kit, and background remover. The #1 design platform for Bangladeshi creators and SMEs. Your own dedicated account.",
+      "capabilities": [
+        "ai-design",
+        "magic-studio",
+        "background-remover",
+        "brand-kit",
+        "stock-assets",
+        "social-media-templates"
+      ],
+      "deliverySLA": "2-4 hours",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Canva Pro (৳1940/mo)",
+      "status": "Active",
+      "descriptionBN": "Canva Pro — AI Magic Studio, ১০ কোটির বেশি স্টক অ্যাসেট, ব্র্যান্ড কিট ও ব্যাকগ্রাউন্ড রিমুভার সহ অল-ইন-ওয়ান ডিজাইন টুল। বাংলাদেশি ক্রিয়েটর ও SME-দের জন্য #1।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.canva.com/pricing",
+      "plans": [
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 1940,
+          "officialUSD": 12.99,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Ai Design on your own account",
+            "Magic Studio on your own account",
+            "Background Remover on your own account",
+            "Brand Kit on your own account",
+            "Stock Assets on your own account",
+            "Social Media Templates on your own account"
+          ],
+          "features": [
+            "ai-design",
+            "magic-studio",
+            "background-remover",
+            "brand-kit",
+            "stock-assets",
+            "social-media-templates"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Social media managers, marketers, small business owners, students",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Canva Pro?",
+          "a": "All-in-one design tool with AI Magic Studio, 100M+ stock assets, brand kit, and background remover. The #1 design platform for Bangladeshi creators and SMEs."
+        },
+        {
+          "q": "Is Canva Pro safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 2–4 hours."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "microsoft-copilot-pro-starter-shared",
+      "name": "Microsoft Copilot Pro — Starter Shared",
+      "slug": "microsoft-copilot-pro-bangladesh",
+      "brand": "Microsoft",
+      "brandSlug": "microsoft-copilot-pro-bangladesh",
+      "provider": "Microsoft",
+      "brandColor": "#6366f1",
+      "category": "ai-assistant",
+      "price": 780,
+      "officialUSD": 20,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "AI assistant integrated into Word, Excel, PowerPoint, Outlook, and Teams. GPT-4 powered productivity for professionals and students using Microsoft 365. Shared access.",
+      "capabilities": [
+        "word-ai",
+        "excel-ai",
+        "powerpoint-ai",
+        "outlook-ai",
+        "teams-ai",
+        "gpt4"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Microsoft Copilot Pro (৳780/mo)",
+      "status": "Active",
+      "descriptionBN": "Microsoft Copilot Pro — Word, Excel, PowerPoint, Outlook ও Teams-এ ইন্টিগ্রেটেড AI অ্যাসিস্ট্যান্ট। GPT-4 পাওয়ারড প্রোডাক্টিভিটি।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্টে ডেলিভারি। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.microsoft.com/en-us/microsoft-copilot/plans",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 780,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Word Ai",
+            "Excel Ai",
+            "Powerpoint Ai",
+            "Outlook Ai",
+            "Teams Ai",
+            "Gpt4"
+          ],
+          "features": [
+            "word-ai",
+            "excel-ai",
+            "powerpoint-ai",
+            "outlook-ai",
+            "teams-ai",
+            "gpt4"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Occasional login refresh needed"
+          ],
+          "bestFor": "Office workers",
+          "seats": 4,
+          "badge": "New",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Microsoft Copilot Pro?",
+          "a": "AI assistant integrated into Word, Excel, PowerPoint, Outlook, and Teams. GPT-4 powered productivity for professionals and students using Microsoft 365."
+        },
+        {
+          "q": "Is Microsoft Copilot Pro safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "microsoft-copilot-pro-personal",
+      "name": "Microsoft Copilot Pro — Personal",
+      "slug": "microsoft-copilot-pro-bangladesh",
+      "brand": "Microsoft",
+      "brandSlug": "microsoft-copilot-pro-bangladesh",
+      "provider": "Microsoft",
+      "brandColor": "#6366f1",
+      "category": "ai-assistant",
+      "price": 2990,
+      "officialUSD": 20,
+      "tier": "Personal",
+      "accessType": "personal",
+      "badge": "Own Account",
+      "description": "AI assistant integrated into Word, Excel, PowerPoint, Outlook, and Teams. GPT-4 powered productivity for professionals and students using Microsoft 365. Your own dedicated account.",
+      "capabilities": [
+        "word-ai",
+        "excel-ai",
+        "powerpoint-ai",
+        "outlook-ai",
+        "teams-ai",
+        "gpt4"
+      ],
+      "deliverySLA": "2-4 hours",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Microsoft Copilot Pro (৳2990/mo)",
+      "status": "Active",
+      "descriptionBN": "Microsoft Copilot Pro — Word, Excel, PowerPoint, Outlook ও Teams-এ ইন্টিগ্রেটেড AI অ্যাসিস্ট্যান্ট। GPT-4 পাওয়ারড প্রোডাক্টিভিটি।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.microsoft.com/en-us/microsoft-copilot/plans",
+      "plans": [
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 2990,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Word Ai on your own account",
+            "Excel Ai on your own account",
+            "Powerpoint Ai on your own account",
+            "Outlook Ai on your own account",
+            "Teams Ai on your own account",
+            "Gpt4 on your own account"
+          ],
+          "features": [
+            "word-ai",
+            "excel-ai",
+            "powerpoint-ai",
+            "outlook-ai",
+            "teams-ai",
+            "gpt4"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Office workers, students, professionals using Microsoft 365",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Microsoft Copilot Pro?",
+          "a": "AI assistant integrated into Word, Excel, PowerPoint, Outlook, and Teams. GPT-4 powered productivity for professionals and students using Microsoft 365."
+        },
+        {
+          "q": "Is Microsoft Copilot Pro safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 2–4 hours."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "jasper-ai-starter-shared",
+      "name": "Jasper AI Creator — Starter Shared",
+      "slug": "jasper-ai-bangladesh",
+      "brand": "Jasper",
+      "brandSlug": "jasper-ai-bangladesh",
+      "provider": "Jasper",
+      "brandColor": "#6366f1",
+      "category": "ai-writing",
+      "price": 1520,
+      "officialUSD": 39,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "AI marketing copywriter for blogs, ads, emails, and social media. Built for teams and agencies creating content at scale. Shared access.",
+      "capabilities": [
+        "blog-writing",
+        "ad-copy",
+        "email-writing",
+        "social-media",
+        "seo-content",
+        "brand-voice"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Jasper AI Creator (৳1520/mo)",
+      "status": "Active",
+      "descriptionBN": "Jasper AI — ব্লগ, অ্যাড, ইমেইল ও সোশ্যাল মিডিয়ার জন্য AI মার্কেটিং কপিরাইটার। টিম ও এজেন্সির জন্য তৈরি।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্টে ডেলিভারি। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.jasper.ai/pricing",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 1520,
+          "officialUSD": 39,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Blog Writing",
+            "Ad Copy",
+            "Email Writing",
+            "Social Media",
+            "Seo Content",
+            "Brand Voice"
+          ],
+          "features": [
+            "blog-writing",
+            "ad-copy",
+            "email-writing",
+            "social-media",
+            "seo-content",
+            "brand-voice"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Occasional login refresh needed"
+          ],
+          "bestFor": "Marketing agencies",
+          "seats": 4,
+          "badge": "New",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Jasper AI Creator?",
+          "a": "AI marketing copywriter for blogs, ads, emails, and social media. Built for teams and agencies creating content at scale."
+        },
+        {
+          "q": "Is Jasper AI Creator safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "jasper-ai-personal",
+      "name": "Jasper AI Creator — Personal",
+      "slug": "jasper-ai-bangladesh",
+      "brand": "Jasper",
+      "brandSlug": "jasper-ai-bangladesh",
+      "provider": "Jasper",
+      "brandColor": "#6366f1",
+      "category": "ai-writing",
+      "price": 5830,
+      "officialUSD": 39,
+      "tier": "Personal",
+      "accessType": "personal",
+      "badge": "Own Account",
+      "description": "AI marketing copywriter for blogs, ads, emails, and social media. Built for teams and agencies creating content at scale. Your own dedicated account.",
+      "capabilities": [
+        "blog-writing",
+        "ad-copy",
+        "email-writing",
+        "social-media",
+        "seo-content",
+        "brand-voice"
+      ],
+      "deliverySLA": "2-4 hours",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Jasper AI Creator (৳5830/mo)",
+      "status": "Active",
+      "descriptionBN": "Jasper AI — ব্লগ, অ্যাড, ইমেইল ও সোশ্যাল মিডিয়ার জন্য AI মার্কেটিং কপিরাইটার। টিম ও এজেন্সির জন্য তৈরি।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.jasper.ai/pricing",
+      "plans": [
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 5830,
+          "officialUSD": 39,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Blog Writing on your own account",
+            "Ad Copy on your own account",
+            "Email Writing on your own account",
+            "Social Media on your own account",
+            "Seo Content on your own account",
+            "Brand Voice on your own account"
+          ],
+          "features": [
+            "blog-writing",
+            "ad-copy",
+            "email-writing",
+            "social-media",
+            "seo-content",
+            "brand-voice"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Marketing agencies, content teams, ecommerce sellers",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Jasper AI Creator?",
+          "a": "AI marketing copywriter for blogs, ads, emails, and social media. Built for teams and agencies creating content at scale."
+        },
+        {
+          "q": "Is Jasper AI Creator safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 2–4 hours."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "adobe-firefly-starter-shared",
+      "name": "Adobe Firefly — Starter Shared",
+      "slug": "adobe-firefly-bangladesh",
+      "brand": "Adobe",
+      "brandSlug": "adobe-firefly-bangladesh",
+      "provider": "Adobe",
+      "brandColor": "#6366f1",
+      "category": "ai-image",
+      "price": 190,
+      "officialUSD": 4.99,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "AI image generation, generative fill, and text effects from Adobe. Integrates with Photoshop and Express. Safe for commercial use. Shared access.",
+      "capabilities": [
+        "image-gen",
+        "generative-fill",
+        "text-effects",
+        "commercial-safe",
+        "photoshop-integration"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Adobe Firefly (৳190/mo)",
+      "status": "Active",
+      "descriptionBN": "Adobe Firefly — AI ছবি তৈরি, জেনারেটিভ ফিল ও টেক্সট ইফেক্ট। Photoshop ও Express-এ ইন্টিগ্রেটেড। বাণিজ্যিক ব্যবহারের জন্য নিরাপদ।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্টে ডেলিভারি। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.adobe.com/products/firefly.html",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 190,
+          "officialUSD": 4.99,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Image Gen",
+            "Generative Fill",
+            "Text Effects",
+            "Commercial Safe",
+            "Photoshop Integration"
+          ],
+          "features": [
+            "image-gen",
+            "generative-fill",
+            "text-effects",
+            "commercial-safe",
+            "photoshop-integration"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Occasional login refresh needed"
+          ],
+          "bestFor": "Designers",
+          "seats": 4,
+          "badge": "New",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Adobe Firefly?",
+          "a": "AI image generation, generative fill, and text effects from Adobe. Integrates with Photoshop and Express. Safe for commercial use."
+        },
+        {
+          "q": "Is Adobe Firefly safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "pika-labs-starter-shared",
+      "name": "Pika Labs — Starter Shared",
+      "slug": "pika-labs-bangladesh",
+      "brand": "Pika",
+      "brandSlug": "pika-labs-bangladesh",
+      "provider": "Pika",
+      "brandColor": "#6366f1",
+      "category": "ai-video",
+      "price": 310,
+      "officialUSD": 8,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "Text-to-video AI generation. Create cinematic videos from prompts. Fast, creative video tool for Bangladeshi creators making Shorts and Reels. Shared access.",
+      "capabilities": [
+        "text-to-video",
+        "image-to-video",
+        "video-editing",
+        "ai-effects"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Pika Labs (৳310/mo)",
+      "status": "Active",
+      "descriptionBN": "Pika Labs — টেক্সট-টু-ভিডিও AI জেনারেশন। প্রম্পট থেকে সিনেমাটিক ভিডিও তৈরি করুন। বাংলাদেশি ক্রিয়েটরদের জন্য দ্রুত ও সৃজনশীল।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্টে ডেলিভারি। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://pika.art/pricing",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 310,
+          "officialUSD": 8,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Text To Video",
+            "Image To Video",
+            "Video Editing",
+            "Ai Effects"
+          ],
+          "features": [
+            "text-to-video",
+            "image-to-video",
+            "video-editing",
+            "ai-effects"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Occasional login refresh needed"
+          ],
+          "bestFor": "Content creators",
+          "seats": 4,
+          "badge": "New",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Pika Labs?",
+          "a": "Text-to-video AI generation. Create cinematic videos from prompts. Fast, creative video tool for Bangladeshi creators making Shorts and Reels."
+        },
+        {
+          "q": "Is Pika Labs safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "pika-labs-personal",
+      "name": "Pika Labs — Personal",
+      "slug": "pika-labs-bangladesh",
+      "brand": "Pika",
+      "brandSlug": "pika-labs-bangladesh",
+      "provider": "Pika",
+      "brandColor": "#6366f1",
+      "category": "ai-video",
+      "price": 1200,
+      "officialUSD": 8,
+      "tier": "Personal",
+      "accessType": "personal",
+      "badge": "Own Account",
+      "description": "Text-to-video AI generation. Create cinematic videos from prompts. Fast, creative video tool for Bangladeshi creators making Shorts and Reels. Your own dedicated account.",
+      "capabilities": [
+        "text-to-video",
+        "image-to-video",
+        "video-editing",
+        "ai-effects"
+      ],
+      "deliverySLA": "2-4 hours",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Pika Labs (৳1200/mo)",
+      "status": "Active",
+      "descriptionBN": "Pika Labs — টেক্সট-টু-ভিডিও AI জেনারেশন। প্রম্পট থেকে সিনেমাটিক ভিডিও তৈরি করুন। বাংলাদেশি ক্রিয়েটরদের জন্য দ্রুত ও সৃজনশীল।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://pika.art/pricing",
+      "plans": [
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 1200,
+          "officialUSD": 8,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Text To Video on your own account",
+            "Image To Video on your own account",
+            "Video Editing on your own account",
+            "Ai Effects on your own account"
+          ],
+          "features": [
+            "text-to-video",
+            "image-to-video",
+            "video-editing",
+            "ai-effects"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Content creators, TikTokers, video editors making short-form content",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Pika Labs?",
+          "a": "Text-to-video AI generation. Create cinematic videos from prompts. Fast, creative video tool for Bangladeshi creators making Shorts and Reels."
+        },
+        {
+          "q": "Is Pika Labs safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 2–4 hours."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "opus-clip-starter-shared",
+      "name": "Opus Clip — Starter Shared",
+      "slug": "opus-clip-bangladesh",
+      "brand": "Opus",
+      "brandSlug": "opus-clip-bangladesh",
+      "provider": "Opus",
+      "brandColor": "#6366f1",
+      "category": "ai-video",
+      "price": 590,
+      "officialUSD": 15,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "AI-powered video repurposing. Automatically turns long videos into viral Shorts, Reels, and TikTok clips with captions and hooks. Shared access.",
+      "capabilities": [
+        "video-repurpose",
+        "auto-captions",
+        "viral-hooks",
+        "shorts-maker",
+        "reels-maker"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Opus Clip (৳590/mo)",
+      "status": "Active",
+      "descriptionBN": "Opus Clip — AI ভিডিও রিপারপোজিং। লম্বা ভিডিও থেকে অটোমেটিক্যালি ভাইরাল শর্টস, রিলস ও টিকটক ক্লিপ তৈরি করে ক্যাপশন ও হুক সহ।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্টে ডেলিভারি। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.opus.pro/pricing",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 590,
+          "officialUSD": 15,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Video Repurpose",
+            "Auto Captions",
+            "Viral Hooks",
+            "Shorts Maker",
+            "Reels Maker"
+          ],
+          "features": [
+            "video-repurpose",
+            "auto-captions",
+            "viral-hooks",
+            "shorts-maker",
+            "reels-maker"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Occasional login refresh needed"
+          ],
+          "bestFor": "YouTubers",
+          "seats": 4,
+          "badge": "New",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Opus Clip?",
+          "a": "AI-powered video repurposing. Automatically turns long videos into viral Shorts, Reels, and TikTok clips with captions and hooks."
+        },
+        {
+          "q": "Is Opus Clip safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "opus-clip-personal",
+      "name": "Opus Clip — Personal",
+      "slug": "opus-clip-bangladesh",
+      "brand": "Opus",
+      "brandSlug": "opus-clip-bangladesh",
+      "provider": "Opus",
+      "brandColor": "#6366f1",
+      "category": "ai-video",
+      "price": 2240,
+      "officialUSD": 15,
+      "tier": "Personal",
+      "accessType": "personal",
+      "badge": "Own Account",
+      "description": "AI-powered video repurposing. Automatically turns long videos into viral Shorts, Reels, and TikTok clips with captions and hooks. Your own dedicated account.",
+      "capabilities": [
+        "video-repurpose",
+        "auto-captions",
+        "viral-hooks",
+        "shorts-maker",
+        "reels-maker"
+      ],
+      "deliverySLA": "2-4 hours",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Opus Clip (৳2240/mo)",
+      "status": "Active",
+      "descriptionBN": "Opus Clip — AI ভিডিও রিপারপোজিং। লম্বা ভিডিও থেকে অটোমেটিক্যালি ভাইরাল শর্টস, রিলস ও টিকটক ক্লিপ তৈরি করে ক্যাপশন ও হুক সহ।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.opus.pro/pricing",
+      "plans": [
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 2240,
+          "officialUSD": 15,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Video Repurpose on your own account",
+            "Auto Captions on your own account",
+            "Viral Hooks on your own account",
+            "Shorts Maker on your own account",
+            "Reels Maker on your own account"
+          ],
+          "features": [
+            "video-repurpose",
+            "auto-captions",
+            "viral-hooks",
+            "shorts-maker",
+            "reels-maker"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "YouTubers, podcasters, coaches repurposing long content",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Opus Clip?",
+          "a": "AI-powered video repurposing. Automatically turns long videos into viral Shorts, Reels, and TikTok clips with captions and hooks."
+        },
+        {
+          "q": "Is Opus Clip safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 2–4 hours."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "descript-pro-starter-shared",
+      "name": "Descript Pro — Starter Shared",
+      "slug": "descript-pro-bangladesh",
+      "brand": "Descript",
+      "brandSlug": "descript-pro-bangladesh",
+      "provider": "Descript",
+      "brandColor": "#6366f1",
+      "category": "ai-video",
+      "price": 470,
+      "officialUSD": 12,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "AI video and podcast editing. Edit video by editing text. Auto-transcription, overdub voice cloning, and screen recording. Perfect for Bangladeshi podcasters. Shared access.",
+      "capabilities": [
+        "text-based-editing",
+        "auto-transcription",
+        "overdub",
+        "screen-recording",
+        "podcast-editing"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Descript Pro (৳470/mo)",
+      "status": "Active",
+      "descriptionBN": "Descript Pro — AI ভিডিও ও পডকাস্ট এডিটিং। টেক্সট এডিট করে ভিডিও এডিট করুন। অটো ট্রান্সক্রিপশন, ওভারডাব ভয়েস ক্লোনিং।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্টে ডেলিভারি। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.descript.com/pricing",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 470,
+          "officialUSD": 12,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Text Based Editing",
+            "Auto Transcription",
+            "Overdub",
+            "Screen Recording",
+            "Podcast Editing"
+          ],
+          "features": [
+            "text-based-editing",
+            "auto-transcription",
+            "overdub",
+            "screen-recording",
+            "podcast-editing"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Occasional login refresh needed"
+          ],
+          "bestFor": "Podcasters",
+          "seats": 4,
+          "badge": "New",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Descript Pro?",
+          "a": "AI video and podcast editing. Edit video by editing text. Auto-transcription, overdub voice cloning, and screen recording. Perfect for Bangladeshi podcasters."
+        },
+        {
+          "q": "Is Descript Pro safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "descript-pro-personal",
+      "name": "Descript Pro — Personal",
+      "slug": "descript-pro-bangladesh",
+      "brand": "Descript",
+      "brandSlug": "descript-pro-bangladesh",
+      "provider": "Descript",
+      "brandColor": "#6366f1",
+      "category": "ai-video",
+      "price": 1790,
+      "officialUSD": 12,
+      "tier": "Personal",
+      "accessType": "personal",
+      "badge": "Own Account",
+      "description": "AI video and podcast editing. Edit video by editing text. Auto-transcription, overdub voice cloning, and screen recording. Perfect for Bangladeshi podcasters. Your own dedicated account.",
+      "capabilities": [
+        "text-based-editing",
+        "auto-transcription",
+        "overdub",
+        "screen-recording",
+        "podcast-editing"
+      ],
+      "deliverySLA": "2-4 hours",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Descript Pro (৳1790/mo)",
+      "status": "Active",
+      "descriptionBN": "Descript Pro — AI ভিডিও ও পডকাস্ট এডিটিং। টেক্সট এডিট করে ভিডিও এডিট করুন। অটো ট্রান্সক্রিপশন, ওভারডাব ভয়েস ক্লোনিং।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://www.descript.com/pricing",
+      "plans": [
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 1790,
+          "officialUSD": 12,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Text Based Editing on your own account",
+            "Auto Transcription on your own account",
+            "Overdub on your own account",
+            "Screen Recording on your own account",
+            "Podcast Editing on your own account"
+          ],
+          "features": [
+            "text-based-editing",
+            "auto-transcription",
+            "overdub",
+            "screen-recording",
+            "podcast-editing"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Podcasters, YouTubers, educators creating video content",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Descript Pro?",
+          "a": "AI video and podcast editing. Edit video by editing text. Auto-transcription, overdub voice cloning, and screen recording. Perfect for Bangladeshi podcasters."
+        },
+        {
+          "q": "Is Descript Pro safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 2–4 hours."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "murf-ai-starter-shared",
+      "name": "Murf AI — Starter Shared",
+      "slug": "murf-ai-bangladesh",
+      "brand": "Murf",
+      "brandSlug": "murf-ai-bangladesh",
+      "provider": "Murf",
+      "brandColor": "#6366f1",
+      "category": "ai-voice-music",
+      "price": 740,
+      "officialUSD": 19,
+      "tier": "Starter Shared",
+      "accessType": "shared",
+      "badge": "New",
+      "description": "AI text-to-speech with 120+ voices in 20+ languages. Studio-quality voiceovers for videos, ads, e-learning, and presentations in Bangla-accented English. Shared access.",
+      "capabilities": [
+        "text-to-speech",
+        "voice-cloning",
+        "120-voices",
+        "20-languages",
+        "studio-quality"
+      ],
+      "deliverySLA": "5-30 min",
+      "featured": true,
+      "whatsappMsg": "Hi, I want Murf AI (৳740/mo)",
+      "status": "Active",
+      "descriptionBN": "Murf AI — ১২০+ ভয়েস, ২০+ ভাষায় AI টেক্সট-টু-স্পিচ। ভিডিও, অ্যাড, ই-লার্নিং ও প্রেজেন্টেশনের জন্য স্টুডিও-কোয়ালিটি ভয়েসওভার।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্টে ডেলিভারি। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://murf.ai/pricing",
+      "plans": [
+        {
+          "planName": "Starter Shared",
+          "tierLevel": 1,
+          "priceBDT": 740,
+          "officialUSD": 19,
+          "billingCycle": "monthly",
+          "deliveryType": "shared",
+          "whatsIncluded": [
+            "Text To Speech",
+            "Voice Cloning",
+            "120 Voices",
+            "20 Languages",
+            "Studio Quality"
+          ],
+          "features": [
+            "text-to-speech",
+            "voice-cloning",
+            "120-voices",
+            "20-languages",
+            "studio-quality"
+          ],
+          "limitations": [
+            "Shared with other users",
+            "No dedicated personal account",
+            "Occasional login refresh needed"
+          ],
+          "bestFor": "Video creators",
+          "seats": 4,
+          "badge": "New",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Murf AI?",
+          "a": "AI text-to-speech with 120+ voices in 20+ languages. Studio-quality voiceovers for videos, ads, e-learning, and presentations in Bangla-accented English."
+        },
+        {
+          "q": "Is Murf AI safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
+    },
+    {
+      "id": "murf-ai-personal",
+      "name": "Murf AI — Personal",
+      "slug": "murf-ai-bangladesh",
+      "brand": "Murf",
+      "brandSlug": "murf-ai-bangladesh",
+      "provider": "Murf",
+      "brandColor": "#6366f1",
+      "category": "ai-voice-music",
+      "price": 2840,
+      "officialUSD": 19,
+      "tier": "Personal",
+      "accessType": "personal",
+      "badge": "Own Account",
+      "description": "AI text-to-speech with 120+ voices in 20+ languages. Studio-quality voiceovers for videos, ads, e-learning, and presentations in Bangla-accented English. Your own dedicated account.",
+      "capabilities": [
+        "text-to-speech",
+        "voice-cloning",
+        "120-voices",
+        "20-languages",
+        "studio-quality"
+      ],
+      "deliverySLA": "2-4 hours",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Murf AI (৳2840/mo)",
+      "status": "Active",
+      "descriptionBN": "Murf AI — ১২০+ ভয়েস, ২০+ ভাষায় AI টেক্সট-টু-স্পিচ। ভিডিও, অ্যাড, ই-লার্নিং ও প্রেজেন্টেশনের জন্য স্টুডিও-কোয়ালিটি ভয়েসওভার।",
+      "useCases": [
+        "এলাকা লেখা ও কনটেন্ট তৈরি",
+        "ফ্রিলান্স কাজ ও ক্লায়েন্ট কমিউনিকেশন",
+        "ব্যাপসায়িক প্রোডাক্ট ভিডিও তৈরি",
+        "শিক্ষার্থীদের অ্যাসায়নমেন্ট ও থিসিস",
+        "সোশ্যাল মিডিয়া কনটেন্ট ক্রিযেশন"
+      ],
+      "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পেমেন্ট। সাথে 30 দিনের ওয়ারেন্টি এবং Bangla WhatsApp সাপোর্ট।",
+      "sourceUrl": "https://murf.ai/pricing",
+      "plans": [
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 2840,
+          "officialUSD": 19,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Text To Speech on your own account",
+            "Voice Cloning on your own account",
+            "120 Voices on your own account",
+            "20 Languages on your own account",
+            "Studio Quality on your own account"
+          ],
+          "features": [
+            "text-to-speech",
+            "voice-cloning",
+            "120-voices",
+            "20-languages",
+            "studio-quality"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Video creators, educators, marketers needing voiceovers",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is Murf AI?",
+          "a": "AI text-to-speech with 120+ voices in 20+ languages. Studio-quality voiceovers for videos, ads, e-learning, and presentations in Bangla-accented English."
+        },
+        {
+          "q": "Is Murf AI safe to buy through AIPS?",
+          "a": "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 3,000+ customers since 2024."
+        },
+        {
+          "q": "How do I buy without a credit card?",
+          "a": "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 2–4 hours."
+        },
+        {
+          "q": "What's the difference between shared and personal?",
+          "a": "Shared: Access through a shared pool — budget-friendly. Personal: Your own dedicated account — full control and privacy."
+        }
+      ],
+      "relatedProducts": [],
+      "lastVerifiedDate": "2026-07-09"
     }
   ]
 }

@@ -86,7 +86,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     seoTitle: "AI Video Generator — Runway, HeyGen Bangladesh",
     subtitle: "Runway, HeyGen — text-to-video & AI avatars",
     description:
-      "Generate and edit videos with AI. Text-to-video, image-to-video, 4K upscaling, and AI avatar creation. Runway Gen-4 is the leading platform used by filmmakers worldwide. HeyGen creates professional talking-head videos with AI avatars in 15+ languages — all accessible in Bangladesh with bKash payment.",
+      "Generate and edit videos with AI. Runway Gen-4 for professional video generation. HeyGen for AI avatar videos in 15+ languages. Pika Labs creates cinematic text-to-video clips. Opus Clip transforms long videos into viral Shorts. Descript Pro edits video by editing text. CapCut Pro is the #1 video editor for TikTok, Reels & Shorts. All accessible in Bangladesh with bKash payment.",
     metaDescription:
       "Runway & HeyGen AI video in Bangladesh. From BDT 1,499. AI video generation & avatars. Local payment.",
     accent: "#ec4899",
@@ -112,7 +112,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     seoTitle: "AI Voice & Music — ElevenLabs, Suno Bangladesh",
     subtitle: "ElevenLabs, Suno AI — voice cloning & music generation",
     description:
-      "Clone voices, generate speech, and create music with AI. ElevenLabs produces human-quality voiceovers in 29+ languages for content creators, podcasters, and businesses. Suno creates complete AI-generated songs — lyrics, vocals, and instrumentation — in any genre. Now available in Bangladesh via local payment.",
+      "Clone voices, generate speech, and create music with AI. ElevenLabs produces human-quality voiceovers in 29+ languages. Murf AI offers 120+ studio-quality AI voices across 20+ languages. Suno creates complete AI-generated songs in any genre. Udio generates royalty-free music with 1,200+ credits. Now available in Bangladesh via local payment.",
     metaDescription:
       "ElevenLabs, Suno AI, Udio in Bangladesh. From BDT 499. Voice cloning & AI music. Local payment.",
     accent: "#f97316",
@@ -189,11 +189,11 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     id: "ai-writing",
     displayName: "AI Writing & SEO",
     seoTitle: "AI Writing & SEO Tools — Writesonic Bangladesh",
-    subtitle: "Writesonic — AI content writing, SEO & marketing copy",
+    subtitle: "Grammarly, QuillBot, Jasper, Writesonic — AI writing & marketing",
     description:
-      "AI-powered content writing and SEO tools. Writesonic Individual generates SEO-optimized blog posts, product descriptions, marketing copy, and social media content. Outrank competitors with AI-driven content at a fraction of the cost of hiring writers.",
+      "AI-powered writing, grammar checking, and content creation for students, professionals, and marketers. Grammarly Premium perfects English writing with real-time grammar, tone, and plagiarism checking. QuillBot Premium is the #1 AI paraphrasing tool for students. Jasper AI creates marketing copy for agencies. Writesonic generates SEO-optimized blog posts and social content. All available in Bangladesh via bKash or Nagad.",
     metaDescription:
-      "AI writing tools in Bangladesh 2026. Writesonic Individual shared from BDT 799/mo. SEO content, blog writing, marketing copy. Pay with bKash, Nagad, Rocket.",
+      "AI writing tools in Bangladesh 2026. Grammarly, QuillBot, Jasper, Writesonic from BDT 390/mo. Grammar checking, paraphrasing, SEO content. Pay with bKash, Nagad, Rocket.",
     accent: "#6366f1",
     faqs: [
       { q: "What is Writesonic used for?", a: "Writesonic is an AI content writing platform. It can generate SEO blog posts, product descriptions, ad copy, email campaigns, and social media content from short prompts. It uses GPT-4o and integrates with SurferSEO for keyword-optimized content." },
@@ -211,6 +211,32 @@ const CATEGORIES: Record<string, CategoryConfig> = {
       { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
       { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
       { label: "Best AI for Business", href: "/best-ai-for-business" },
+    ],
+  },
+  "ai-design": {
+    id: "ai-design",
+    displayName: "AI Design",
+    seoTitle: "AI Design Tools — Canva Pro, Adobe Firefly Bangladesh",
+    subtitle: "Canva Pro, Adobe Firefly — AI-powered graphic design",
+    description:
+      "Create professional designs with AI. Canva Pro's Magic Studio generates images, edits photos, writes copy, and animates designs. Adobe Firefly produces commercially safe AI images inside Photoshop and Express. Perfect for Bangladeshi social media managers, marketers, and small businesses.",
+    metaDescription:
+      "Canva Pro, Adobe Firefly in Bangladesh. From BDT 190. AI design tools. bKash/Nagad. Instant delivery.",
+    accent: "#7c3aed",
+    faqs: [
+      { q: "What's the difference between Canva Pro and Adobe Firefly?", a: "Canva Pro is an all-in-one design platform with AI tools, 100M+ stock assets, and templates for non-designers. Adobe Firefly is AI image generation built into Adobe Creative Cloud — best for designers already using Photoshop and Illustrator." },
+      { q: "Can I use these designs commercially?", a: "Yes. Canva Pro and Adobe Firefly both include commercial licenses. Canva Pro content can be sold; Firefly images are trained on licensed Adobe Stock data." },
+      { q: "Is Canva Pro good for beginners?", a: "Absolutely. Canva Pro is designed for non-designers. Drag-and-drop templates plus AI tools make professional design accessible to everyone." },
+      { q: "How fast is delivery?", a: "Shared accounts: 5-30 minutes. Personal accounts: 2-4 hours. Pay via bKash or Nagad." },
+    ],
+    related: [
+      { label: "AI Image & Design", href: "/ai-image" },
+      { label: "AI Video", href: "/ai-video" },
+      { label: "All Products", href: "/products" },
+    ],
+    guides: [
+      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
+      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
     ],
   },
   "bundles": {

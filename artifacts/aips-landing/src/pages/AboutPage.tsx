@@ -21,7 +21,7 @@ export default function AboutPage() {
     <PageLayout>
       <SEOHead
         title="About AI Premium Shop — 3,000+ Customers Since 2024 | Bangladesh"
-        description="AI Premium Shop — Bangladesh's WhatsApp-first AI subscription store. 3,000+ customers since 2024. 57 tools including ChatGPT, Claude, Midjourney. Pay with bKash/Nagad. Real human support, 10 AM–Midnight BST."
+        description="AI Premium Shop — Bangladesh's WhatsApp-first AI subscription store. 3,000+ customers since 2024. 76 tools including ChatGPT, Claude, Midjourney. Pay with bKash/Nagad. Real human support, 10 AM–Midnight BST."
         canonical="https://aipremiumshop.com/about"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "About" }]} />
@@ -69,7 +69,7 @@ export default function AboutPage() {
           >
             <h2 className="text-xl font-bold text-white mb-4">What We Offer</h2>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>
-              56 premium AI tools from 19 leading brands including ChatGPT, Claude, Midjourney, GitHub Copilot, Runway, ElevenLabs, and more. Shared and personal accounts available. Prices start at just BDT 350 per month.
+              76 premium AI tools from 19 leading brands including ChatGPT, Claude, Midjourney, GitHub Copilot, Runway, ElevenLabs, and more. Shared and personal accounts available. Prices start at just BDT 350 per month.
             </p>
             <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
               All plans come with 30-day replacement warranty, under-5-minute WhatsApp response, and local payment via bKash, Nagad, Rocket, or bank transfer.

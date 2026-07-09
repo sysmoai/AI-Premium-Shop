@@ -1,0 +1,90 @@
+=== AIPS COMPLETE-THE-CATALOG ENGINE — aipremiumshop.com — find EVERY AI subscription and add it with official price, break nothing ===
+
+ROLE
+You are my senior market researcher + catalog engineer. aipremiumshop.com is ALREADY LIVE (Next.js on Replit). Your ONE mission: make the catalog COMPLETE — every AI subscription a Bangladeshi freelancer, creator, developer, student, SME, or agency might want must exist as a product with its official price. Work ADDITIVELY; never break existing pages, prices, routes, or design.
+
+GOLDEN RULES
+- USE MY NOTION WORKSPACE as source of truth (current products, prices, brand.json, categories, tool list). Re-check Notion before guessing. Notion prices/brand facts override everything.
+- Additive only; reuse existing components/data/template; back up (git) before each batch; work NON-STOP; report after each batch.
+- Every new product needs a VERIFIED official USD price from the official site (record source URL + lastVerifiedDate). Compute suggested BDT = round((USD*130)*1.15, ৳10) and write it to /data/price-review.json for my approval — NEVER publish a made-up or unverified price, and NEVER change an existing CEO-set price.
+- Positioning stays "authentic OFFICIAL subscriptions at official price"; keep the trademark disclaimer; never claim "authorized distributor/partner".
+
+=== STEP 1: BUILD THE MASTER LIST ===
+Start from the MASTER CHECKLIST below. Mark each: already-in-catalog / missing / not-applicable-for-BD. Do NOT skip any without a reason logged.
+
+=== STEP 2: DISCOVER ANYTHING NOT ON THE LIST ===
+Expand beyond the checklist so nothing is missed. Cross-reference:
+- Every product each BD competitor sells (OneBrain, AdobeWala, Digital Product BD, IT Mart, PAN BD, Daraz, Facebook/Telegram sellers).
+- AI tool directories (Futurepedia, There's An AI For That, Product Hunt, G2 categories, Toolify).
+- "Best AI tools 2026" lists + Google Trends Bangladesh for AI-tool queries.
+- App Store / Play Store top AI apps in Bangladesh.
+Add any real, subscription-based AI tool with genuine BD demand to the master list.
+
+=== STEP 3: GET OFFICIAL PRICING FOR EACH ===
+For every missing tool, visit its OFFICIAL pricing page and capture: all plans/tiers, official USD (or local) price, billing cycles, features, LIMITATIONS per tier, latest model/version, seats, and region/BD availability + accepted payment methods. Record sourceUrl + lastVerifiedDate. If a tool has no public price (custom/enterprise), mark "custom — contact".
+
+=== STEP 4: ADD EACH MISSING PRODUCT (using the existing product template) ===
+For every missing tool, create a product entry + page reusing the PRODUCT & PLAN PAGE template: name, brand, category, logo, plans[] (with priceBDT from price-review.json once I approve, officialUSD, features, limitations, deliveryType, durationOptions), descriptions EN+BN, useCasesBD, USPs, FAQ, SEO. Assign it to the correct category (create the category if missing). Work in batches of 5-8, verify build + schema, report, and continue.
+
+=== STEP 5: VERIFY COMPLETENESS ===
+- Every checklist item is either live or logged with a reason it was skipped.
+- Every new product has an official price source + lastVerifiedDate; every suggested BDT price is in price-review.json awaiting my approval (nothing fake is live).
+- Categories are complete and each has a category page.
+- ZERO regressions; existing products/prices untouched.
+Output /data/catalog-coverage.json (total tools, added, pending price approval, skipped+reason).
+
+=== MASTER CHECKLIST OF AI SUBSCRIPTIONS (verify + add the missing ones) ===
+
+[AI ASSISTANTS / LLM CHAT]
+ChatGPT, Claude, Google Gemini / Google AI, Grok (x.ai), Perplexity, Microsoft Copilot Pro, Meta AI, DeepSeek, Mistral Le Chat, Manus, Poe, Pi, Qwen Chat, Kimi, You.com
+
+[AI IMAGE]
+Midjourney, Ideogram, Adobe Firefly, Leonardo AI, Freepik AI, Magnific, Recraft, Stability/DreamStudio, Playground AI, Krea, Flux (Black Forest Labs), Photoroom, Clipdrop, Civitai
+
+[AI VIDEO / AVATAR]
+Runway, Pika, Kling, Luma Dream Machine, OpenAI Sora, Google Veo, MiniMax/Hailuo, Haiper, LTX Studio, Higgsfield, HeyGen, Synthesia, D-ID, Captions, Argil, Vizard
+
+[AI AUDIO / MUSIC / VOICE]
+ElevenLabs, Suno, Udio, Murf, PlayHT, Resemble AI, LALAL.AI, Adobe Podcast, Speechify, WellSaid Labs
+
+[VIDEO EDITING]
+CapCut Pro, Descript, Opus Clip, Veed.io, Filmora
+
+[AI CODE / DEV]
+GitHub Copilot, Cursor, Windsurf (Codeium), Replit, Tabnine, Amazon Q Developer, v0 (Vercel), Lovable, Bolt.new, Devin, Sourcegraph Cody, Qodo, Augment
+
+[WRITING / PRODUCTIVITY]
+Grammarly, QuillBot, Jasper, Copy.ai, Writesonic, Rytr, Wordtune, Sudowrite, HyperWrite, Notion
+
+[DESIGN / CREATIVE]
+Canva, Figma, Adobe Creative Cloud, Adobe Express, Framer, Gamma, Beautiful.ai, Looka, Designs.ai
+
+[PRESENTATION]
+Gamma, Tome, Plus AI, Decktopus, Beautiful.ai
+
+[SEO / MARKETING / SOCIAL AI]
+Ahrefs, Semrush, Surfer SEO, SE Ranking, Moz, Frase, MarketMuse, AdCreative.ai, Predis.ai, Simplified, Ocoya
+
+[RESEARCH / STUDY]
+Perplexity, Consensus, NotebookLM, Elicit, SciSpace, Scholarcy, Wolfram, Turnitin
+
+[AUTOMATION / AGENTS]
+Manus, Zapier, Make, n8n, Relay.app, Lindy, Gumloop
+
+[MEETINGS / TRANSCRIPTION]
+Fireflies, Otter.ai, Fathom, tl;dv, Read AI, Krisp
+
+[CUSTOMER SUPPORT / CHATBOT]
+Intercom Fin, Zendesk AI, Tidio, Chatbase
+
+[ENTERPRISE COPILOTS]
+Microsoft 365 Copilot, Google Gemini for Workspace, Slack AI, Salesforce Einstein
+
+[CREATIVE ASSETS / STOCK (commonly resold in BD)]
+Envato Elements, Freepik Premium, Storyblocks, Motion Array
+
+[LEARNING (AI-adjacent, high BD demand — include if you sell them)]
+Coursera Plus, LinkedIn Premium/Learning, Skillshare, DataCamp
+
+START NOW: read Notion, build STEP 1 master list + STEP 2 discovery, then fetch official pricing (STEP 3) and add missing products in batches (STEP 4) non-stop — sending every suggested BDT price to price-review.json for my approval and reporting after each batch.
+=== END ===

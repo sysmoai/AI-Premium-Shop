@@ -1,0 +1,1 @@
+- [Dependency vulnerability fixes via pnpm overrides](dependency-audit-overrides.md) — use pnpm-workspace.yaml `overrides` (with scoped selectors like `pkg>subpkg`) to force patched transitive versions; always restart workflows after, since running dev servers cache old vite/module paths.

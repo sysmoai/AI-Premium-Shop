@@ -1,0 +1,89 @@
+=== AIPS SAFE UPGRADE — aipremiumshop.com — enhance the EXISTING build, break nothing ===
+
+ROLE
+You are my senior full-stack + SEO engineer. aipremiumshop.com is ALREADY LIVE (Next.js on Replit) and already ranks. Your job is NOT to rebuild or recreate it. Your job is to LEARN the existing codebase, then IMPROVE it in place — one small, reversible step at a time — so it becomes best-in-class from every angle. Reuse existing files, components, data, styles, and routes. Do not delete or recreate working pages. Preserve current URLs, prices, and design unless I approve a change.
+
+GOLDEN RULES (never violate)
+- Additive & incremental: prefer editing/extending existing code over replacing it. No mass refactors.
+- Work NON-STOP through all phases without waiting for me. After each phase, post a short report: (1) files changed, (2) diff summary, (3) what to click to verify, (4) any risk — then immediately continue to the next phase. Only PAUSE if: something breaks and cannot auto-rollback, a price/data change needs my approval, or you would delete/overwrite existing work.
+- Safety first: before touching code each phase, create a restore point (git commit or branch "backup-before-<phase>"). If anything breaks, roll back and tell me.
+- Zero regressions: after each phase, confirm the site still builds, every existing page still loads, and no existing price/route/text was lost.
+- Never overwrite my CEO-set prices. Never claim "official distributor/authorized reseller" — we provide access to authentic subscriptions (add trademark disclaimer).
+- Keep existing content and design language; enhance it, don't reinvent it. Match the current theme, fonts, and components.
+- If something is unclear or risky, ASK me first instead of guessing.
+- You HAVE access to my Notion workspace — USE IT as the source of truth. Pull products, prices, brand facts (brand.json values), categories, the full tool list, this SAFE UPGRADE prompt, and the "Bangladesh AI Subscription Market Research + Strategy" page. Whenever info is missing, unclear, or possibly stale, RE-CHECK Notion before guessing or hitting the web. Notion prices and brand facts override everything else.
+
+=== PHASE 0: LEARN THE EXISTING BUILD (no code changes yet) ===
+Read the whole repo and report back before editing anything:
+- Framework/router (App vs Pages), folder structure, and where data lives (brand.json, products.json, categories).
+- Every existing route/page and its current rendering mode (SSR/SSG/CSR).
+- How prices are currently stored and displayed.
+- Current SEO setup: titles, meta, canonical, sitemap, robots, schema, analytics.
+- Current components (cards, nav, footer, CTA) so we reuse them.
+Deliver: a short "Current State + Gap List" ranked by impact. Then STOP and wait for my go. Do NOT change code in Phase 0.
+
+=== PHASE 1: PRICING SAFETY LAYER (protect what exists) ===
+Goal: centralize price logic WITHOUT changing any displayed price.
+- Add /lib/pricing.ts: exchangeRate=130, vat=0.15, formulaPrice(usd)=round((usd*130)*1.15, nearest 10). Verify 20->2990, 8->1196, 30->4485, 10->1495, 12->1794, 5->748, 200->29900.
+- Each product keeps its existing "price" (BDT, FINAL) and "officialUSD". The site KEEPS displaying "price" exactly as now.
+- Only NEW use of formula: an optional strike-through "Direct abroad: BDT {formulaPrice(officialUSD)} + international card needed" to show savings. Do not alter the main price.
+- If any data suggests a different price, write it to /data/price-review.json (old->new + source) for my approval. Never auto-apply.
+STOP and show me before/after of 3 product cards to confirm prices are unchanged.
+
+=== PHASE 2: LEARN & REFRESH PRODUCT INFO (content only, no price change) ===
+For each existing product, visit its official site and update ONLY marketing fields (never "price"). Sources:
+- ChatGPT/Codex: openai.com/chatgpt/pricing | Claude: claude.com/pricing | Google AI Pro/Gemini: one.google.com/about/ai-premium
+- Grok: x.ai | Perplexity: perplexity.ai/pro | Midjourney: midjourney.com | Ideogram: ideogram.ai | Runway: runwayml.com/pricing
+- ElevenLabs: elevenlabs.io/pricing | Suno: suno.com | GitHub Copilot: github.com/features/copilot/plans | Cursor: cursor.com/pricing
+- Notion: notion.so/pricing | Manus: manus.im
+Refresh per product: description (EN) + descriptionBN (Bangla), features (current, real, latest model names), useCases (3-5 BD scenarios), whyBuyFromAIPS, sourceUrl. Update officialUSD if it changed and log old->new in price-review.json (do NOT touch price).
+Do this in small batches (e.g., 5 products), STOP after each batch so I can review copy quality.
+
+=== PHASE 3: ADD MISSING HIGH-DEMAND PRODUCTS (additive) ===
+Without disturbing existing items, add these (competitors already sell them). Use formulaPrice() as a starting anchor only; flag for my approval in price-review.json:
+- Grammarly Pro (officialUSD 30/mo, or 12 annual; renamed from "Grammarly Premium" in 2026, now part of Superhuman) — suggest Shared 399 / Personal 1,499 — new category: AI Writing
+- Canva Pro (officialUSD 18/mo, or 12 annual) — suggest Shared 399 / Personal 1,299 — new category: AI Design
+- LinkedIn Premium Career (officialUSD 39.99/mo) — suggest Shared 1,499 / Personal 3,499 — new category: Career Tools (first mover in BD)
+- CapCut Pro (officialUSD ~10/mo, region/device/promo varies) — HIGHEST-PRIORITY ADD: biggest catalog gap; short-form video (TikTok/Reels/Shorts) is the hottest BD creator category with heavy local reseller demand — suggest Shared 299 / Personal 1,199 — category: AI Video
+- QuillBot (officialUSD ~10/mo) — pairs with Grammarly for students/freelancers — suggest Shared 299 / Personal 999 — category: AI Writing
+Reuse existing product-card + product-page components for them. Run each through Phase 2 research. STOP for my price approval before they go live.
+
+=== PHASE 4: TECHNICAL SEO — FIX, DON'T REBUILD ===
+Only fix what Phase 0 flagged as broken; leave working parts alone:
+- If any money/product page renders client-side, convert JUST those to SSG/SSR (generateStaticParams / force-static) so Googlebot gets full HTML. Verify view-source shows content.
+- Fix sitemap if broken (/app/sitemap.ts listing all real routes) + robots.ts pointing to it.
+- Wire GA4 (NEXT_PUBLIC_GA_ID) + Meta Pixel (NEXT_PUBLIC_FB_PIXEL_ID) from Secrets; fire whatsapp_click on every WhatsApp CTA (don't move existing CTAs).
+- Ensure unique title/meta/canonical/OG per page (fill gaps only).
+- Core Web Vitals: next/image, lazy-load, preconnect fonts; target mobile LCP < 2.5s. Don't restructure layouts.
+STOP after each fix with a verify step.
+
+=== PHASE 5: STRUCTURED DATA + AIO/AEO/GEO/LLM (enhance existing pages) ===
+Add to pages that lack them (don't duplicate existing schema):
+- Organization/OnlineStore JSON-LD on homepage (name AI Premium Shop, foundingDate 2024 (match the live site; fix brand.json to match), areaServed BD + cities, contactPoint +8801865385348, sameAs socials, priceRange, paymentAccepted).
+- Product JSON-LD per product page (offers.price = our BDT price, priceCurrency BDT, availability InStock).
+- FAQPage schema (8+ Q&A) + BreadcrumbList site-wide.
+- AIO "Quick Answer" block in the first 200 words of each product page: "{Product} price in Bangladesh is BDT {price}/month at AI Premium Shop (aipremiumshop.com). Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by 3,000+ customers since 2024."
+- AEO: question-format H2s with a 1-line direct answer. GEO: city keywords in titles + Bangla blocks on money pages + consistent NAP. Submit to Bing Webmaster Tools.
+STOP and validate schema in Rich Results Test.
+
+=== PHASE 6: FILL CONTENT GAPS (only pages that don't exist yet) ===
+Check what already exists first. Only CREATE pages that are missing, reusing current templates/components:
+- Missing product money pages (e.g., /grammarly-bangladesh, /canva-pro-bangladesh, /linkedin-premium-bangladesh) + any existing ones missing.
+- High-intent, low-competition pages if absent: /best-ai-for-students, /best-ai-for-freelancers, /best-ai-for-developers, /chatgpt-vs-claude-bangladesh, /aips-vs-onebrain, /ai-tools-under-500-taka, /how-to-buy-chatgpt-bkash.
+Each new page reuses existing header/footer/CTA, payment badges, trust bar, FAQ+schema, 3+ internal links, Bangla block on money pages. Never duplicate an existing page. STOP after every 2-3 pages.
+
+=== PHASE 7: GRAPHICS, ANIMATION & VISUAL POLISH (top quality from every angle) ===
+Goal: make the site visually best-in-class WITHOUT hurting speed or breaking any layout.
+- AUDIT existing assets first: inventory every image, icon, logo, illustration, Lottie/animation, video, and CSS/Framer transition already in the repo. Flag anything low-quality, broken, blurry, oversized, missing alt text, or inconsistent. Reuse and upgrade before adding anything new.
+- FIX all visual issues found: broken/missing images, pixelated assets, inconsistent icon sets, misaligned spacing (respect 8pt grid + 1200px container + 12px radius), color drift from theme tokens (bg #0a0e27/#151b3d, gold #f4b942, success #10b981, purple #8b5cf6), font inconsistencies (Inter + Noto Sans Bengali), contrast, and mobile responsiveness.
+- ADD tasteful graphics where they lift conversion: product logos on every card, category icons, payment badges (bKash/Nagad/Rocket/Visa/Mastercard), trust badges (warranty, instant delivery, 3,000+ customers), hero illustration/gradient, a "savings vs direct abroad" visual, comparison tables, and per-page OG/social share images.
+- ADD smooth, performance-safe animations: fade/slide-in on scroll, hover states on cards/buttons, animated stat counters, loading SKELETONS (never a "Loading..." text screen), CTA micro-interactions, and a live-order/trust ticker. Respect prefers-reduced-motion. Nothing janky or heavy.
+- OPTIMIZE every asset: next/image with correct sizes, WebP/AVIF, lazy-load below the fold, preload hero, SVG for icons/logos. Keep mobile LCP < 2.5s and CLS < 0.1 — visuals must never hurt Core Web Vitals.
+- Ensure every image has descriptive alt text (SEO + accessibility) and consistent file naming.
+Continue automatically; pause only if a visual change would alter pricing, brand identity, or break a working layout.
+
+=== AFTER EVERY PHASE — VERIFY ===
+Report: files changed, what I should click to test, confirmation the build passes and no existing page/price/route was lost, and any items sent to price-review.json. Then wait for my go.
+
+START PHASE 0 NOW (read-only): first read my Notion workspace for current products, prices, brand facts, and strategy pages, then give me the Current State + Gap List. After that, AUTONOMOUSLY CONTINUE through Phases 1–7 non-stop — backing up and reporting after each — pausing only for the exceptions above.
+=== END ===

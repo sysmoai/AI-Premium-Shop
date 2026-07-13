@@ -79,7 +79,7 @@ export default function Home() {
       "name": "AI Premium Shop",
       "url": "https://aipremiumshop.com",
       "logo": "https://aipremiumshop.com/images/brand/aips-logo.png",
-      "foundingDate": "2022",
+      "foundingDate": "2024",
       "description": "Bangladesh's most trusted source for premium AI subscriptions. ChatGPT, Claude, Midjourney, and 30+ tools with local payment via bKash and Nagad.",
       "contactPoint": {
         "@type": "ContactPoint",

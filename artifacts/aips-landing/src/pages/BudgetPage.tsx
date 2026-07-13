@@ -307,7 +307,7 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
             </a>
             <Link href="/products"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold border border-white/20 text-white hover:bg-white/5 transition-colors">
-              Browse All 56 Tools
+              Browse All 80 Tools
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

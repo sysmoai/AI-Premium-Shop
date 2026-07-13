@@ -281,7 +281,7 @@ export default function BestAISubscriptionPage() {
             </a>
             <Link href="/products"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold border border-white/15 text-white hover:bg-white/5 transition-colors">
-              Browse All 56 Tools
+              Browse All 80 Tools
             </Link>
           </div>
         </motion.div>

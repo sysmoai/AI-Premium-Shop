@@ -2362,7 +2362,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
               { label: "AI Image & Design", href: "/ai-image" },
               { label: "AI Code & Dev Tools", href: "/ai-code" },
               { label: "AI Voice & Music", href: "/ai-voice-music" },
-              { label: "All 56 Products", href: "/products" },
+              { label: "All 80 Products", href: "/products" },
             ].map((link) => (
               <a key={link.href} href={link.href}
                 onClick={(e) => { e.preventDefault(); navigate(link.href); }}

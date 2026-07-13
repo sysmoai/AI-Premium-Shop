@@ -10,9 +10,9 @@ const WHATSAPP = "https://wa.me/8801865385348";
 
 const STATS = [
   { icon: Users, value: "3,000+", label: "Happy customers" },
-  { icon: Package, value: "56", label: "AI tools available" },
+  { icon: Package, value: "80", label: "AI tools available" },
   { icon: Layers, value: "19", label: "Leading brands" },
-  { icon: Calendar, value: "2022", label: "Founded" },
+  { icon: Calendar, value: "2024", label: "Founded" },
   { icon: Clock, value: "<5 min", label: "WhatsApp response" },
 ];
 

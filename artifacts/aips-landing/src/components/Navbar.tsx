@@ -373,7 +373,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
 
                 <div className="flex justify-between items-center border-t border-gray-800 pt-4 mt-4"
                   style={{ background: "linear-gradient(to right, rgba(244,185,66,0.06), transparent)" }}>
-                  <span className="text-gray-400 text-sm">56 Premium AI Tools · bKash/Nagad · 5-30 min delivery</span>
+                  <span className="text-gray-400 text-sm">80 Premium AI Tools · bKash/Nagad · 5-30 min delivery</span>
                   <a href="/pricing" onClick={(e) => { e.preventDefault(); go("/pricing"); }}
                     className="text-sm font-medium hover:underline flex items-center gap-1"
                     style={{ color: "#f4b942" }}>

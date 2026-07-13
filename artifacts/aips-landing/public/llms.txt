@@ -1,0 +1,77 @@
+# AI Premium Shop — llms.txt
+# Helps LLMs and AI crawlers understand this site for discovery and citation.
+# Format: llms.txt standard (https://llmstxt.org)
+
+## Site Info
+name: AI Premium Shop (AIPS)
+domain: aipremiumshop.com
+description: Bangladesh's #1 AI subscription marketplace. 80 premium AI tools — ChatGPT, Claude, Midjourney, Gemini, Freepik, Kling AI, Windsurf — from BDT 270/mo via bKash/Nagad.
+tagline: Premium AI Tools in Bangladesh — From BDT 270/month
+founded: 2024
+customers: 3,000+
+products: 80
+categories: 9
+payments: bKash, Nagad, Rocket, Bank Transfer
+contact: +8801865385348
+
+## Key Pages
+- Home: https://aipremiumshop.com/
+- All Products: https://aipremiumshop.com/products
+- Pricing: https://aipremiumshop.com/pricing
+- ChatGPT Plans: https://aipremiumshop.com/chatgpt-plans-bangladesh
+- Claude Plans: https://aipremiumshop.com/claude-pro-bangladesh
+- Gemini: https://aipremiumshop.com/gemini-advanced-bangladesh
+- Midjourney: https://aipremiumshop.com/midjourney-bangladesh
+- About: https://aipremiumshop.com/about
+- FAQ: https://aipremiumshop.com/faq
+- Contact: https://aipremiumshop.com/contact
+- How to Order: https://aipremiumshop.com/how-to-order
+- Blog: https://aipremiumshop.com/blog
+- Sitemap: https://aipremiumshop.com/sitemap.xml
+- Robots: https://aipremiumshop.com/robots.txt
+
+## Categories
+- AI Assistant & Chat (22 products): https://aipremiumshop.com/ai-assistant — ChatGPT, Claude, Gemini, Grok, Perplexity
+- AI Image & Design (11): https://aipremiumshop.com/ai-image — Midjourney, Ideogram, Leonardo AI, Freepik
+- AI Video (13): https://aipremiumshop.com/ai-video — Runway, HeyGen, Kling AI, Synthesia, CapCut Pro
+- AI Voice & Music (8): https://aipremiumshop.com/ai-voice-music — ElevenLabs, Suno, Udio, Murf
+- AI Code & Dev (7): https://aipremiumshop.com/ai-code — GitHub Copilot, Cursor, v0.dev, Windsurf, Replit
+- AI Workspace (5): https://aipremiumshop.com/ai-workspace — Notion, Manus, Otter.ai, Gamma
+- AI Writing & SEO (7): https://aipremiumshop.com/ai-writing — Writesonic, Grammarly, QuillBot, Jasper
+- AI Design & Creative (2): https://aipremiumshop.com/ai-design — Canva Pro
+- Bundles (5): https://aipremiumshop.com/bundles — Student, Freelancer, Business stacks
+
+## Product Pages
+- ChatGPT Plus Shared (৳350): https://aipremiumshop.com/product/chatgpt-plus-bangladesh
+- ChatGPT Plus Premium Shared (৳950): https://aipremiumshop.com/product/chatgpt-plus-bangladesh
+- Claude Pro Shared (৳1,495): https://aipremiumshop.com/product/claude-pro-bangladesh
+- Gemini Advanced Shared (৳500): https://aipremiumshop.com/product/gemini-advanced-bangladesh
+- Midjourney Shared (৳1,199): https://aipremiumshop.com/product/midjourney-bangladesh
+- GitHub Copilot Shared (৳1,495): https://aipremiumshop.com/product/github-copilot-bangladesh
+- SuperGrok Shared (৳350): https://aipremiumshop.com/product/supergrok-bangladesh
+- Perplexity Pro Shared (৳350): https://aipremiumshop.com/product/perplexity-pro-bangladesh
+- ElevenLabs Shared (৳499): https://aipremiumshop.com/product/elevenlabs-bangladesh
+- Runway Shared (৳599): https://aipremiumshop.com/product/runway-bangladesh
+- Cursor Shared (৳600): https://aipremiumshop.com/product/cursor-bangladesh
+- Freepik Premium Shared (৳450): https://aipremiumshop.com/product/freepik-premium-bangladesh
+- Kling AI Shared (৳270): https://aipremiumshop.com/product/kling-ai-bangladesh
+- Synthesia Shared (৳700): https://aipremiumshop.com/product/synthesia-bangladesh
+- Windsurf Pro Shared (৳590): https://aipremiumshop.com/product/windsurf-bangladesh
+- CapCut Pro Shared (৳299): https://aipremiumshop.com/product/capcut-pro-bangladesh
+- Grammarly Premium Shared (৳470): https://aipremiumshop.com/product/grammarly-premium-bangladesh
+- QuillBot Premium Shared (৳390): https://aipremiumshop.com/product/quillbot-premium-bangladesh
+- Canva Pro Shared (৳510): https://aipremiumshop.com/product/canva-pro-bangladesh
+- Microsoft Copilot Pro Shared (৳780): https://aipremiumshop.com/product/microsoft-copilot-pro-bangladesh
+
+## SEO Guides (for humans + crawlers)
+- Best AI Subscription 2026: https://aipremiumshop.com/best-ai-subscription-2026
+- Best AI for Students: https://aipremiumshop.com/best-ai-for-students
+- Best AI for Freelancers: https://aipremiumshop.com/best-ai-for-freelancers
+- Best AI for Business: https://aipremiumshop.com/best-ai-for-business
+- Best AI for Developers: https://aipremiumshop.com/best-ai-for-developers
+- Best AI for Designers: https://aipremiumshop.com/best-ai-for-designers
+- Best AI for Marketers: https://aipremiumshop.com/best-ai-for-marketers
+- Best AI for Creators: https://aipremiumshop.com/best-ai-for-creators
+- AI Under 500 BDT: https://aipremiumshop.com/ai-under-500
+- AI Under 1000 BDT: https://aipremiumshop.com/ai-under-1000
+- Best AI Budget Bangladesh: https://aipremiumshop.com/best-ai-budget-bangladesh

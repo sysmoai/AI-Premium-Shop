@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, MessageCircle } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { faqSchema, breadcrumbSchema } from "@/utils/schemas";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 
@@ -199,39 +200,21 @@ function FAQItem({ faq, index }: { faq: { q: string; a: string }; index: number 
 }
 
 export default function FAQPage() {
-  useEffect(() => {
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": FAQS.map((faq) => ({
-        "@type": "Question",
-        "name": faq.q,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.a,
-        },
-      })),
-    };
-    let script = document.getElementById("faq-jsonld") as HTMLScriptElement | null;
-    if (!script) {
-      script = document.createElement("script");
-      script.id = "faq-jsonld";
-      script.type = "application/ld+json";
-      document.head.appendChild(script);
-    }
-    script.textContent = JSON.stringify(schema);
-    return () => {
-      const el = document.getElementById("faq-jsonld");
-      if (el) el.remove();
-    };
-  }, []);
-
   return (
     <PageLayout>
       <SEOHead
         title="FAQ — AI Subscription Bangladesh | bKash/Nagad Payment | AI Premium Shop"
         description="80+ AI subscriptions in Bangladesh. ChatGPT Plus BDT 350, Claude Pro, Midjourney. bKash/Nagad payment, 30-day warranty, WhatsApp support. All questions answered."
         canonical="https://aipremiumshop.com/faq"
+        jsonLd={[
+          faqSchema(FAQS),
+          breadcrumbSchema([{ name: "Home", href: "/" }, { name: "FAQ" }]),
+        ]}
+        hreflang={{
+          en: "/faq",
+          bn: "/faq",
+          "x-default": "/faq",
+        }}
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "FAQ" }]} />
 

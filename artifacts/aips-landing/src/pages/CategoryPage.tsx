@@ -6,7 +6,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { BrandIcon } from "@/components/BrandIcon";
-import { faqSchema, schemaJson } from "@/utils/schemas";
+import { faqSchema, breadcrumbSchema } from "@/utils/schemas";
 import productsData from "../../data/products.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -372,8 +372,11 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
         title={config.seoTitle}
         description={config.metaDescription}
         canonical={`https://aipremiumshop.com/${categoryId}`}
+        jsonLd={[
+          faqSchema(config.faqs),
+          breadcrumbSchema([{ name: "Home", href: "/" }, { name: config.displayName }]),
+        ]}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(faqSchema(config.faqs)) }} />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: config.displayName }]} />
 
       <section className="max-w-7xl mx-auto px-4 md:px-8 py-14">

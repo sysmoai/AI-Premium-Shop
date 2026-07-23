@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { SEOHead } from "@/components/SEOHead";
-import { ORG_SCHEMA, WEBSITE_SCHEMA, schemaJson } from "@/utils/schemas";
+import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema, schemaJson } from "@/utils/schemas";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { FAQSection } from "@/components/FAQSection";
 
@@ -72,51 +72,18 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "AI Premium Shop",
-      "url": "https://aipremiumshop.com",
-      "logo": "https://aipremiumshop.com/images/brand/aips-logo.png",
-      "foundingDate": "2024",
-      "description": "Bangladesh's most trusted source for premium AI subscriptions. ChatGPT, Claude, Midjourney, and 30+ tools with local payment via bKash and Nagad.",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+8801865385348",
-        "contactType": "sales",
-        "availableLanguage": "English",
-        "contactOption": "TollFree"
-      },
-      "sameAs": [
-        "https://www.facebook.com/aipremiumshopbd",
-        "https://www.instagram.com/aipremiumshop/",
-        "https://www.linkedin.com/showcase/aipremiumshop/"
-      ]
-    };
-    let script = document.getElementById("org-jsonld") as HTMLScriptElement | null;
-    if (!script) {
-      script = document.createElement("script");
-      script.id = "org-jsonld";
-      script.type = "application/ld+json";
-      document.head.appendChild(script);
-    }
-    script.textContent = JSON.stringify(schema);
-    return () => {
-      const el = document.getElementById("org-jsonld");
-      if (el) el.remove();
-    };
-  }, []);
-
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
         title="AI Premium Shop — Premium AI Tools Bangladesh | From BDT 350"
         description="Buy ChatGPT, Claude, Google AI Pro, Midjourney, Copilot, and more in Bangladesh. Local payment via bKash/Nagad. Fast WhatsApp delivery. From BDT 350/month."
         canonical="https://aipremiumshop.com/"
+        jsonLd={[
+          ORG_SCHEMA,
+          WEBSITE_SCHEMA,
+          breadcrumbSchema([{ name: "Home" }]),
+        ]}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(ORG_SCHEMA) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(WEBSITE_SCHEMA) }} />
 
       <Navbar />
 

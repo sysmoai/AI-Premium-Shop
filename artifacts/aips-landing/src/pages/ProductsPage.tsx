@@ -5,7 +5,7 @@ import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { productListSchema, schemaJson } from "@/utils/schemas";
+import { productListSchema, breadcrumbSchema } from "@/utils/schemas";
 import productsData from "../../data/products.json";
 import categoriesData from "../../data/categories.json";
 
@@ -151,8 +151,11 @@ export default function ProductsPage() {
         title="All 80 AI Tools — Prices in BDT | AI Premium Shop Bangladesh"
         description="Browse 80 AI subscriptions. ChatGPT, Claude, Midjourney & more. Prices in BDT. Local payment. Fast delivery. AI Premium Shop."
         canonical="https://aipremiumshop.com/products"
+        jsonLd={[
+          productListSchema(ALL),
+          breadcrumbSchema([{ name: "Home", href: "/" }, { name: "All Products" }]),
+        ]}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(productListSchema(ALL)) }} />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "All Products" }]} />
 
       <section className="max-w-7xl mx-auto px-4 md:px-8 py-14">

@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare Pages
+name: Deploy
 
 on:
   push:
@@ -9,23 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
-
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build
-        run: pnpm run build
-
-      - name: Install Wrangler
-        run: npm install -g wrangler
-
-      - name: Deploy
-        run: wrangler pages deploy artifacts/aips-landing/dist/public --project-name=ai-premium-shop
+          node-version: 22
+      - run: npm install -g pnpm
+      - run: pnpm install
+      - run: pnpm run build
+      - run: npm install -g wrangler
+      - run: wrangler pages deploy artifacts/aips-landing/dist/public --project-name=ai-premium-shop

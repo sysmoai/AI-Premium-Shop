@@ -121,7 +121,7 @@ const USP_DEFAULT = [
   "Your own account (not shared) on Personal plans",
   "Pay with bKash / Nagad / Rocket / Bank — no international card needed",
   "Bangla human support via WhatsApp",
-  "3,000+ trusted customers since 2024",
+  "thousands trusted customers since 2024",
 ];
 
 const HOW_IT_WORKS_DEFAULT = [
@@ -175,7 +175,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
 
   const seo = product.seo ?? {
     title: `${product.name} price in Bangladesh — ${formatBDT(fromPrice)}/mo | AI Premium Shop`,
-    metaDescription: `${product.name} price in Bangladesh is ${formatBDT(fromPrice)}/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by 3,000+ customers since 2024.`,
+    metaDescription: `${product.name} price in Bangladesh is ${formatBDT(fromPrice)}/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by a growing community of customers since 2024.`,
     canonical: `${SITE}/${product.slug}`,
     ogImage: product.logo ?? "https://aipremiumshop.com/images/og/default-og.png",
     keywords: [product.name, `${product.name} price in Bangladesh`, `${product.name} bKash`, `${product.name} koto taka`, "AI Premium Shop", "Bangladesh AI subscription"],
@@ -268,7 +268,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
             {product.name} price in Bangladesh is {formatBDT(fromPrice)}/month at AI Premium Shop (aipremiumshop.com)
           </h2>
           <p className="leading-relaxed" style={{ color: "#c9ceda" }}>
-            Pay with bKash or Nagad — no international card needed. Instant delivery in {product.estimatedDeliveryTime ?? "5–15 minutes"}. 30-day warranty on every order. Trusted by 3,000+ customers since 2024. AIPS provides access to authentic {product.brand} subscriptions; all product names and logos are trademarks of their respective owners.
+            Pay with bKash or Nagad — no international card needed. Instant delivery in {product.estimatedDeliveryTime ?? "5–15 minutes"}. 30-day warranty on every order. Trusted by a growing community of customers since 2024. AIPS provides access to authentic {product.brand} subscriptions; all product names and logos are trademarks of their respective owners.
           </p>
         </div>
 
@@ -513,7 +513,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
             </div>
             <div>
               <Users className="w-6 h-6 mx-auto mb-2" style={{ color: "#10b981" }} />
-              <div className="font-bold text-white">3,000+ customers</div>
+              <div className="font-bold text-white">a growing community of customers</div>
               <div className="text-xs" style={{ color: "#c9ceda" }}>Trusted since 2024</div>
             </div>
           </div>

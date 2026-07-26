@@ -20,7 +20,7 @@ const SOCIAL_CARDS = [
   {
     icon: Users,
     label: "WhatsApp Community",
-    desc: "Join 3,000+ members. Get exclusive deals, renewal reminders, and AI tips from other users.",
+    desc: "Join thousands members. Get exclusive deals, renewal reminders, and AI tips from other users.",
     badge: "FREE TO JOIN",
     badgeClass: "bg-gray-800 text-gray-300",
     cta: "Join Community →",

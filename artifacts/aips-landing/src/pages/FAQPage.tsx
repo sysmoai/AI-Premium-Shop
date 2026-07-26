@@ -12,11 +12,11 @@ const FAQS = [
   // === General Questions (from Notion SEO FAQ + existing) ===
   {
     q: "What is AI Premium Shop?",
-    a: "AI Premium Shop (AIPS) is Bangladesh's #1 AI subscription provider operating since 2024. We provide official access to 80+ AI tools including ChatGPT Plus, Claude Pro, Midjourney, GitHub Copilot, Gemini Advanced, and more. Pay with bKash, Nagad, or Rocket. Instant delivery. 3,000+ customers served.",
+    a: "AI Premium Shop (AIPS) is Bangladesh's #1 AI subscription provider operating since 2024. We provide official access to 80+ AI tools including ChatGPT Plus, Claude Pro, Midjourney, GitHub Copilot, Gemini Advanced, and more. Pay with bKash, Nagad, or Rocket. Instant delivery. a growing community of customers served.",
   },
   {
     q: "Is AI Premium Shop legit and trustworthy?",
-    a: "Yes. AIPS has operated since 2024 with 3,000+ verified customers. We offer 30-day warranty on all subscriptions, WhatsApp support with 5-minute response time, and operate transparently with published refund and privacy policies.",
+    a: "Yes. AIPS has operated since 2024 with thousands verified customers. We offer 30-day warranty on all subscriptions, WhatsApp support with 5-minute response time, and operate transparently with published refund and privacy policies.",
   },
   {
     q: "Which AI tools are available at AI Premium Shop?",

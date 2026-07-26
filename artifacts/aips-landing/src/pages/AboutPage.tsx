@@ -9,7 +9,7 @@ import { PaymentBadges } from "@/components/PaymentBadges";
 const WHATSAPP = "https://wa.me/8801865385348";
 
 const STATS = [
-  { icon: Users, value: "3,000+", label: "Happy customers" },
+  { icon: Users, value: "thousands", label: "Happy customers" },
   { icon: Package, value: "80", label: "AI tools available" },
   { icon: Layers, value: "19", label: "Leading brands" },
   { icon: Calendar, value: "2024", label: "Founded" },
@@ -20,8 +20,8 @@ export default function AboutPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="About AI Premium Shop — 3,000+ Customers Since 2024 | Bangladesh"
-        description="AI Premium Shop — Bangladesh's WhatsApp-first AI subscription store. 3,000+ customers since 2024. 80 tools including ChatGPT, Claude, Midjourney. Pay with bKash/Nagad. Real human support, 10 AM–Midnight BST."
+        title="About AI Premium Shop — a growing community of customers since 2024 | Bangladesh"
+        description="AI Premium Shop — Bangladesh's WhatsApp-first AI subscription store. a growing community of customers since 2024. 80 tools including ChatGPT, Claude, Midjourney. Pay with bKash/Nagad. Real human support, 10 AM–Midnight BST."
         canonical="https://aipremiumshop.com/about"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "About" }]} />
@@ -53,7 +53,7 @@ export default function AboutPage() {
           >
             <h2 className="text-xl font-bold text-white mb-4">Our Story</h2>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>
-              AI Premium Shop (AIPS) has served 3,000+ Bangladeshi customers since 2024 with premium AI subscriptions. Founded by Emon Hossain, AIPS delivers ChatGPT, Claude, Midjourney, and more via WhatsApp-first sales with bKash/Nagad payments.
+              AI Premium Shop (AIPS) has served thousands Bangladeshi customers since 2024 with premium AI subscriptions. Founded by Emon Hossain, AIPS delivers ChatGPT, Claude, Midjourney, and more via WhatsApp-first sales with bKash/Nagad payments.
             </p>
             <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
               We started with a simple idea: make the world&apos;s best AI tools accessible to everyone in Bangladesh — without needing an international credit card. Today, students, freelancers, content creators, developers, and business owners trust us to deliver authentic AI subscriptions quickly, affordably, and with real human support.

@@ -591,7 +591,7 @@ const POSTS: Record<
           items={[
             { value: "5", label: "Payment methods" },
             { value: "5-30 min", label: "Delivery time" },
-            { value: "3,000+", label: "Happy customers" },
+            { value: "thousands", label: "Happy customers" },
             { value: "0", label: "Credit cards needed" },
           ]}
         />
@@ -639,7 +639,7 @@ const POSTS: Record<
         </p>
 
         <CalloutBox>
-          <strong className="text-white">3,000+ customers. 30-day warranty on all accounts. Zero disputes.</strong> Message us on WhatsApp anytime for support — we respond within minutes during business hours.
+          <strong className="text-white">a growing community of customers. 30-day warranty on all accounts. Zero disputes.</strong> Message us on WhatsApp anytime for support — we respond within minutes during business hours.
         </CalloutBox>
 
         <p className="text-gray-300 leading-relaxed">

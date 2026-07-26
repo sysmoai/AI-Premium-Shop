@@ -9,7 +9,7 @@ interface TrustBadge {
 }
 
 const defaultBadges: TrustBadge[] = [
-  { icon: <Users className="w-5 h-5" />, label: "Customers Served", value: "3,000+" },
+  { icon: <Users className="w-5 h-5" />, label: "Customers Served", value: "thousands" },
   { icon: <Calendar className="w-5 h-5" />, label: "Established", value: "Since 2024" },
   { icon: <Shield className="w-5 h-5" />, label: "Warranty", value: "30 Days" },
   { icon: <Clock className="w-5 h-5" />, label: "Response Time", value: "< 5 Min" },

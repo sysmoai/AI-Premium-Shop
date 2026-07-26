@@ -1,18 +1,14 @@
-﻿name: Deploy to Cloudflare Pages
+name: Deploy to Cloudflare Pages
 
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -23,32 +19,13 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-        continue-on-error: true
+        run: pnpm install
 
-      - name: Build project
-        run: pnpm run build || echo "Build optional for this project"
-        continue-on-error: true
+      - name: Build
+        run: pnpm run build
 
       - name: Install Wrangler
         run: npm install -g wrangler
 
-      - name: Deploy to Cloudflare Pages
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: |
-          # For monorepo: deploy the built frontend
-          DEPLOY_DIR="artifacts/aips-landing/dist/public"
-
-          if [ ! -d "$DEPLOY_DIR" ]; then
-            # Fallback to other possible locations
-            DEPLOY_DIR="dist"
-          fi
-
-          if [ ! -d "$DEPLOY_DIR" ]; then
-            DEPLOY_DIR="."
-          fi
-
-          echo "Deploying from: $DEPLOY_DIR"
-          wrangler pages deploy "$DEPLOY_DIR" --project-name="ai-premium-shop"
-        continue-on-error: true
+      - name: Deploy
+        run: wrangler pages deploy artifacts/aips-landing/dist/public --project-name=ai-premium-shop

@@ -1,0 +1,18 @@
+name: Deploy SYSmoAI Website (CF Pages)
+on:
+  push:
+    branches: [main]
+    paths: ['artifacts/sysmoai-website/**']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: 'pnpm', cache-dependency-path: artifacts/sysmoai-website/pnpm-lock.yaml }
+      - run: cd artifacts/sysmoai-website && pnpm install --frozen-lockfile && pnpm build
+      - uses: cloudflare/wrangler-action@v3
+        with: { apiToken: '${{ secrets.CF_API_TOKEN }}', accountId: '${{ secrets.CF_ACCOUNT_ID }}', command: 'pages deploy artifacts/sysmoai-website/dist --project-name=sysmoai-website --branch=main' }

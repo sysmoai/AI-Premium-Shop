@@ -35,11 +35,18 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          if [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
-            echo "Deploying with Account ID..."
-            wrangler pages deploy . --project-name=${{ github.event.repository.name }} || true
-          else
-            echo "Account ID not set, deployment will use OAuth flow on first run"
-            wrangler pages deploy . --project-name=${{ github.event.repository.name }} || true
+          # For monorepo: deploy the built frontend
+          DEPLOY_DIR="artifacts/aips-landing/dist/public"
+
+          if [ ! -d "$DEPLOY_DIR" ]; then
+            # Fallback to other possible locations
+            DEPLOY_DIR="dist"
           fi
+
+          if [ ! -d "$DEPLOY_DIR" ]; then
+            DEPLOY_DIR="."
+          fi
+
+          echo "Deploying from: $DEPLOY_DIR"
+          wrangler pages deploy "$DEPLOY_DIR" --project-name="ai-premium-shop"
         continue-on-error: true

@@ -9,7 +9,7 @@
  },
  "executiveSummary": {
   "biggestOpportunity": "Payment friction: 239M MFS accounts vs 2.95M credit cards. AIPS fills the gap with bKash/Nagad + trust (warranty, own-account, instant human support).",
-  "biggestThreat": "Google sells localized Gemini in BDT (AI Plus ৳600, AI Pro ৳2,500). AIPS ৳500 Gemini undercuts Google itself — advertise this.",
+  "biggestThreat": "Google sells localized Gemini in BDT (AI Plus ৳600, AI Pro ৳2,500). AIPS ৳499 Gemini undercuts Google itself — advertise this.",
   "p0Gap": "CapCut Pro — massive short-form-video demand + heavy local reseller activity. Currently missing from catalog. Must add immediately.",
   "positioning": "Authentic official subscriptions at official price, instant delivery, trusted & fast. Never claim 'authorized distributor/partner'."
  },
@@ -230,7 +230,7 @@
     "refund": "Google policy",
     "siteQuality": "Excellent"
    },
-   "aipsCounter": "AIPS Gemini ৳500 undercuts Google's own ৳600 price + adds personal support + faster delivery"
+   "aipsCounter": "AIPS Gemini ৳499 undercuts Google's own ৳600 price + adds personal support + faster delivery"
   }
  ],
  "gapAnalysis": {
@@ -350,7 +350,7 @@
   ],
   "pricingGaps": [
    {
-    "issue": "AIPS Gemini ৳500 undercuts Google's official ৳600",
+    "issue": "AIPS Gemini ৳499 undercuts Google's official ৳600",
     "action": "Advertise 'cheaper than Google's own price' on all Gemini pages"
    },
    {

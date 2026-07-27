@@ -37,7 +37,7 @@ const SPECIAL_OFFERS = [
 ];
 
 const BEST_SELLERS = [
-  { id: "chatgpt-plus-starter", name: "ChatGPT Plus Starter Shared", price: 350, badge: "Best Seller", color: "#10a37f", msg: "Hi, I want ChatGPT Plus Starter Shared (৳350/mo)" },
+  { id: "chatgpt-plus-starter", name: "ChatGPT Plus Starter Shared", price: 499, badge: "Best Seller", color: "#10a37f", msg: "Hi, I want ChatGPT Plus Starter Shared (৳499/mo)" },
   { id: "perplexity-pro-shared", name: "Perplexity Pro Shared", price: 350, badge: null, color: "#20b2aa", msg: "Hi, I want Perplexity Pro Shared (৳350/mo)" },
   { id: "google-ai-pro-bs", name: "Google AI Pro", price: 500, badge: "83% Off", color: "#4285f4", msg: "Hi, I want Google AI Pro (৳500/mo)" },
   { id: "chatgpt-business", name: "ChatGPT Business Starter Shared", price: 699, badge: null, color: "#10a37f", msg: "Hi, I want ChatGPT Business Starter Shared (৳699/mo)" },

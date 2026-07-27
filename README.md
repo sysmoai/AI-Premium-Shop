@@ -201,3 +201,4 @@ All AIPS repos were consolidated here — see `docs/CONSOLIDATION_REPORT.md` and
 - `docs/` — consolidation & migration documentation
 - `media/` — screenshots, static-site archive, and `backups/*.bundle` (full git history of the retired repos; restore with `git clone <name>.bundle`)
 - `config/` — environment variable templates (never commit real secrets)
+# Deployment trigger

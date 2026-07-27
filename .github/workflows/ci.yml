@@ -26,6 +26,8 @@ jobs:
     # Requires the NOTION_API_KEY repository secret; skips when absent
     # (e.g. on forks) so external PRs still get CI.
     runs-on: ubuntu-latest
+    env:
+      NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -37,7 +39,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - name: Check catalog drift against Notion
-        if: ${{ secrets.NOTION_API_KEY != '' }}
+        if: env.NOTION_API_KEY != ''
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
         run: pnpm tsx scripts/src/import-from-notion.ts --check

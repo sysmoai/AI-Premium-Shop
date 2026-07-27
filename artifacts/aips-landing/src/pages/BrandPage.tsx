@@ -37,14 +37,14 @@ const BRAND_COMPETITORS: Record<string, {
   name2: string; slug2: string; price2: string; strength2: string;
   compPage?: string;
 }> = {
-  "chatgpt-plans-bangladesh": { name1: "Claude", slug1: "/claude-pro-bangladesh", price1: "from BDT 1,495", strength1: "#1 for writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 500", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
-  "chatgpt-plus-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", price1: "from BDT 1,495", strength1: "#1 for writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 500", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
-  "chatgpt-business-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", price1: "from BDT 1,495", strength1: "Best writing quality, long documents", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 500", strength2: "Google Workspace integration" },
+  "chatgpt-plans-bangladesh": { name1: "Claude", slug1: "/claude-pro-bangladesh", price1: "from BDT 1,495", strength1: "#1 for writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 499", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
+  "chatgpt-plus-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", price1: "from BDT 1,495", strength1: "#1 for writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 499", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
+  "chatgpt-business-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", price1: "from BDT 1,495", strength1: "Best writing quality, long documents", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 499", strength2: "Google Workspace integration" },
   "chatgpt-pro-bangladesh": { name1: "Claude Max 5x", slug1: "/claude-pro-bangladesh", price1: "from BDT 14,950", strength1: "Extended thinking, 1M context window", name2: "GitHub Copilot Pro", slug2: "/github-copilot-bangladesh", price2: "BDT 1,495", strength2: "Best AI coding tool in VS Code" },
-  "claude-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 350", strength1: "All-rounder: images, agents, web search", name2: "Perplexity Pro", slug2: "/perplexity-pro-bangladesh", price2: "from BDT 350", strength2: "AI-powered web research with citations", compPage: "/chatgpt-vs-claude" },
-  "gemini-advanced-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 350", strength1: "Image gen, coding agents, widest capabilities", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Writing quality & long document analysis", compPage: "/chatgpt-vs-gemini" },
-  "supergrok-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 350", strength1: "More affordable, image generation", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Best writing & reasoning quality" },
-  "perplexity-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 350", strength1: "Broader AI capabilities, image gen", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Long document analysis, best writing" },
+  "claude-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 499", strength1: "All-rounder: images, agents, web search", name2: "Perplexity Pro", slug2: "/perplexity-pro-bangladesh", price2: "from BDT 350", strength2: "AI-powered web research with citations", compPage: "/chatgpt-vs-claude" },
+  "gemini-advanced-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 499", strength1: "Image gen, coding agents, widest capabilities", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Writing quality & long document analysis", compPage: "/chatgpt-vs-gemini" },
+  "supergrok-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 499", strength1: "More affordable, image generation", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Best writing & reasoning quality" },
+  "perplexity-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 499", strength1: "Broader AI capabilities, image gen", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Long document analysis, best writing" },
   "midjourney-bangladesh": { name1: "Ideogram", slug1: "/ideogram-bangladesh", price1: "from BDT 2,990", strength1: "Text in images, typography design", name2: "Leonardo AI", slug2: "/leonardo-ai-bangladesh", price2: "from BDT 599", strength2: "Budget image generation, character consistency" },
   "ideogram-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", price1: "from BDT 1,199", strength1: "Highest quality photorealistic & artistic images", name2: "Leonardo AI", slug2: "/leonardo-ai-bangladesh", price2: "from BDT 599", strength2: "Budget image generation" },
   "leonardo-ai-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", price1: "from BDT 1,199", strength1: "Best quality images across all styles", name2: "Ideogram", slug2: "/ideogram-bangladesh", price2: "from BDT 2,990", strength2: "Text in images & typography" },
@@ -54,7 +54,7 @@ const BRAND_COMPETITORS: Record<string, {
   "suno-ai-bangladesh": { name1: "ElevenLabs", slug1: "/elevenlabs-bangladesh", price1: "from BDT 748", strength1: "Voice cloning & audio production", name2: "Udio", slug2: "/udio-bangladesh", price2: "from BDT 499", strength2: "Budget AI music generation" },
   "github-copilot-bangladesh": { name1: "Cursor Pro", slug1: "/cursor-bangladesh", price1: "from BDT 2,990", strength1: "AI-native editor with autonomous agent mode", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Best for complex code reasoning", compPage: "/copilot-vs-cursor" },
   "cursor-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", price1: "BDT 1,495", strength1: "Works in existing VS Code/JetBrains IDE", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Long context code review & reasoning", compPage: "/copilot-vs-cursor" },
-  "notion-business-bangladesh": { name1: "Google AI Pro", slug1: "/gemini-advanced-bangladesh", price1: "BDT 500", strength1: "AI in Gmail, Docs, Sheets + 2TB storage", name2: "Otter.ai", slug2: "/otter-ai-bangladesh", price2: "from BDT 799", strength2: "Meeting transcription & AI notes" },
+  "notion-business-bangladesh": { name1: "Google AI Pro", slug1: "/gemini-advanced-bangladesh", price1: "BDT 499", strength1: "AI in Gmail, Docs, Sheets + 2TB storage", name2: "Otter.ai", slug2: "/otter-ai-bangladesh", price2: "from BDT 799", strength2: "Meeting transcription & AI notes" },
   "replit-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", price1: "BDT 1,495", strength1: "Best IDE code completion plugin", name2: "Cursor Pro", slug2: "/cursor-bangladesh", price2: "from BDT 2,990", strength2: "Full AI-native coding environment" },
   "v0-dev-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", price1: "BDT 1,495", strength1: "Best for general backend/frontend coding", name2: "Replit Core", slug2: "/replit-bangladesh", price2: "BDT 500", strength2: "Cloud dev environment with AI" },
   "freepik-premium-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", price1: "from BDT 1,199", strength1: "Best AI image generation", name2: "Canva Pro", slug2: "/canva-pro-bangladesh", price2: "from BDT 510", strength2: "All-in-one design with AI Magic Studio" },
@@ -62,11 +62,11 @@ const BRAND_COMPETITORS: Record<string, {
   "synthesia-bangladesh": { name1: "HeyGen", slug1: "/heygen-bangladesh", price1: "from BDT 1,499", strength1: "AI avatars & video translation", name2: "Runway", slug2: "/runway-bangladesh", price2: "from BDT 1,794", strength2: "Professional AI video creation" },
   "windsurf-bangladesh": { name1: "Cursor", slug1: "/cursor-bangladesh", price1: "from BDT 2,990", strength1: "AI-native IDE with agent mode", name2: "GitHub Copilot", slug2: "/github-copilot-bangladesh", price2: "from BDT 1,495", strength2: "AI coding assistant for VS Code" },
   "capcut-pro-bangladesh": { name1: "Runway", slug1: "/runway-bangladesh", price1: "from BDT 1,794", strength1: "Professional AI video generation", name2: "Canva Pro", slug2: "/products", price2: "from BDT 499", strength2: "Design + video templates" },
-  "grammarly-premium-bangladesh": { name1: "QuillBot", slug1: "/quillbot-premium-bangladesh", price1: "from BDT 390", strength1: "AI paraphrasing and citation tool", name2: "ChatGPT Plus", slug2: "/chatgpt-plans-bangladesh", price2: "from BDT 350", strength2: "All-rounder AI for writing and research" },
-  "quillbot-premium-bangladesh": { name1: "Grammarly Premium", slug1: "/grammarly-premium-bangladesh", price1: "from BDT 470", strength1: "Grammar, tone, and plagiarism checking", name2: "ChatGPT Plus", slug2: "/chatgpt-plans-bangladesh", price2: "from BDT 350", strength2: "Broader AI writing assistant" },
+  "grammarly-premium-bangladesh": { name1: "QuillBot", slug1: "/quillbot-premium-bangladesh", price1: "from BDT 390", strength1: "AI paraphrasing and citation tool", name2: "ChatGPT Plus", slug2: "/chatgpt-plans-bangladesh", price2: "from BDT 499", strength2: "All-rounder AI for writing and research" },
+  "quillbot-premium-bangladesh": { name1: "Grammarly Premium", slug1: "/grammarly-premium-bangladesh", price1: "from BDT 470", strength1: "Grammar, tone, and plagiarism checking", name2: "ChatGPT Plus", slug2: "/chatgpt-plans-bangladesh", price2: "from BDT 499", strength2: "Broader AI writing assistant" },
   "canva-pro-bangladesh": { name1: "Adobe Firefly", slug1: "/adobe-firefly-bangladesh", price1: "from BDT 190", strength1: "AI image generation inside Photoshop", name2: "Gamma", slug2: "/gamma-bangladesh", price2: "from BDT 399", strength2: "AI presentations and documents" },
-  "microsoft-copilot-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 350", strength1: "More affordable with image generation", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 500", strength2: "AI in Gmail, Docs, and 2TB storage" },
-  "jasper-ai-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 350", strength1: "General-purpose AI writing", name2: "Writesonic", slug2: "/writesonic-bangladesh", price2: "BDT 799", strength2: "AI writing tool for SEO content" },
+  "microsoft-copilot-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 499", strength1: "More affordable with image generation", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 499", strength2: "AI in Gmail, Docs, and 2TB storage" },
+  "jasper-ai-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 499", strength1: "General-purpose AI writing", name2: "Writesonic", slug2: "/writesonic-bangladesh", price2: "BDT 799", strength2: "AI writing tool for SEO content" },
   "adobe-firefly-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", price1: "from BDT 1,199", strength1: "Highest artistic quality AI images", name2: "Canva Pro", slug2: "/canva-pro-bangladesh", price2: "from BDT 510", strength2: "All-in-one design with AI Magic Studio" },
   "pika-labs-bangladesh": { name1: "Runway", slug1: "/runway-bangladesh", price1: "from BDT 1,794", strength1: "Professional AI video generation", name2: "CapCut Pro", slug2: "/capcut-pro-bangladesh", price2: "from BDT 399", strength2: "Video editing for TikTok and Reels" },
   "opus-clip-bangladesh": { name1: "CapCut Pro", slug1: "/capcut-pro-bangladesh", price1: "from BDT 399", strength1: "Video editing with AI effects", name2: "Pika Labs", slug2: "/pika-labs-bangladesh", price2: "from BDT 310", strength2: "Text-to-video AI generation" },
@@ -145,14 +145,14 @@ const BRAND_META: Record<string, {
 
   "chatgpt-plans-bangladesh": {
     displayName: "ChatGPT",
-    tagline: "All ChatGPT Plans — from ৳350/month",
-    seoTitle: "ChatGPT Plans Bangladesh 2026 — From BDT 350 | AI Premium Shop",
-    seoDescription: "All ChatGPT plans Bangladesh from BDT 350. Plus, Business, Pro. bKash/Nagad. 5-30 min delivery. 30-day warranty. AI Premium Shop.",
-    description: "ChatGPT by OpenAI is the world's most popular AI assistant. From writing and coding to deep research, image generation, and autonomous agents — ChatGPT handles it all. Choose from Plus (personal productivity), Business (team features), or Pro (unlimited power). Available in Bangladesh via bKash and Nagad from ৳350/month.",
+    tagline: "All ChatGPT Plans — from ৳499/month",
+    seoTitle: "ChatGPT Plans Bangladesh 2026 — From BDT 499 | AI Premium Shop",
+    seoDescription: "All ChatGPT plans Bangladesh from BDT 499. Plus, Business, Pro. bKash/Nagad. 5-30 min delivery. 30-day warranty. AI Premium Shop.",
+    description: "ChatGPT by OpenAI is the world's most popular AI assistant. From writing and coding to deep research, image generation, and autonomous agents — ChatGPT handles it all. Choose from Plus (personal productivity), Business (team features), or Pro (unlimited power). Available in Bangladesh via bKash and Nagad from ৳499/month.",
     accentColor: "#10a37f",
     faqs: [
-      { q: "What is the difference between ChatGPT Plus, Business, and Pro?", a: "ChatGPT Plus is for personal use — writing, coding, research, and image generation from ৳350. ChatGPT Business adds team admin controls, unlimited usage, and data privacy from ৳699. ChatGPT Pro is for power users — unlimited GPT-5.4 Pro, Sora video, and agents from ৳4,500." },
-      { q: "Which ChatGPT plan is best for students in Bangladesh?", a: "ChatGPT Plus Starter Shared at ৳350/month is ideal for students. It covers essay writing, research, code, and image generation. For higher stability, the Plus Premium Shared at ৳950 has fewer users per account." },
+      { q: "What is the difference between ChatGPT Plus, Business, and Pro?", a: "ChatGPT Plus is for personal use — writing, coding, research, and image generation from ৳499. ChatGPT Business adds team admin controls, unlimited usage, and data privacy from ৳699. ChatGPT Pro is for power users — unlimited GPT-5.4 Pro, Sora video, and agents from ৳4,500." },
+      { q: "Which ChatGPT plan is best for students in Bangladesh?", a: "ChatGPT Plus Starter Shared at ৳499/month is ideal for students. It covers essay writing, research, code, and image generation. For higher stability, the Plus Premium Shared at ৳999 has fewer users per account." },
       { q: "What is a shared vs personal ChatGPT account?", a: "Shared: 2–7 users share a subscription — lower cost, slightly less availability. Personal: your own dedicated account — full privacy, all features, best performance. For privacy-sensitive work, always choose personal." },
       { q: "Can ChatGPT generate images in Bangladesh?", a: "Yes. All ChatGPT Plus, Business, and Pro plans include DALL-E image generation. You can create images directly in the chat interface by describing what you want." },
       { q: "How fast is delivery?", a: "ChatGPT Shared plans: 5–30 minutes. Personal plans: 2–4 hours. The clock starts after payment confirmation on WhatsApp." },
@@ -161,10 +161,10 @@ const BRAND_META: Record<string, {
 
   "chatgpt-plus-bangladesh": {
     displayName: "ChatGPT Plus",
-    tagline: "ChatGPT Plus Bangladesh — from ৳350/month",
-    seoTitle: "Buy ChatGPT Plus Bangladesh — BDT 350/mo | AI Premium Shop",
-    seoDescription: "ChatGPT Plus Bangladesh from BDT 350/mo. GPT-5.4 Thinking, DALL-E images, agents, deep research, Projects. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
-    description: "ChatGPT Plus gives you access to GPT-5.4 Thinking with writing, coding, research, image generation (DALL-E), deep research, AI agents, Projects, and custom GPTs. Available in three tiers: Starter Shared (৳350), Premium Shared (৳950, fewer users), and Personal (৳2,990, your own account). Features and limits can vary as OpenAI updates ChatGPT. All plans payable via bKash, Nagad, or Rocket.",
+    tagline: "ChatGPT Plus Bangladesh — from ৳499/month",
+    seoTitle: "Buy ChatGPT Plus Bangladesh — BDT 499/mo | AI Premium Shop",
+    seoDescription: "ChatGPT Plus Bangladesh from BDT 499/mo. GPT-5.4 Thinking, DALL-E images, agents, deep research, Projects. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
+    description: "ChatGPT Plus gives you access to GPT-5.4 Thinking with writing, coding, research, image generation (DALL-E), deep research, AI agents, Projects, and custom GPTs. Available in three tiers: Starter Shared (৳499), Premium Shared (৳999, fewer users), and Personal (৳2,990, your own account). Features and limits can vary as OpenAI updates ChatGPT. All plans payable via bKash, Nagad, or Rocket.",
     accentColor: "#10a37f",
     filterBySlug: true,
     faqs: [
@@ -245,16 +245,16 @@ const BRAND_META: Record<string, {
 
   "gemini-advanced-bangladesh": {
     displayName: "Google AI Pro",
-    tagline: "Google AI Pro Bangladesh — ৳500/month",
-    seoTitle: "Google AI Pro Bangladesh — BDT 500/mo 83% Off | AI Premium Shop",
-    seoDescription: "Google AI Pro Bangladesh BDT 500/mo — 83% off. Gemini Pro, 2TB storage, YouTube Premium, Workspace AI. bKash/Nagad. AI Premium Shop.",
-    description: "Google AI Pro (formerly Gemini Advanced) is AIPS's most popular special offer. Get the full Google AI Pro subscription — Gemini 3.1 Pro, Deep Research, AI agents, 2TB Google Drive storage, YouTube Premium, and more — for just ৳500/month. Official price: ৳2,990. Save 83%.",
+    tagline: "Google AI Pro Bangladesh — ৳499/month",
+    seoTitle: "Google AI Pro Bangladesh — BDT 499/mo 83% Off | AI Premium Shop",
+    seoDescription: "Google AI Pro Bangladesh BDT 499/mo — 83% off. Gemini Pro, 2TB storage, YouTube Premium, Workspace AI. bKash/Nagad. AI Premium Shop.",
+    description: "Google AI Pro (formerly Gemini Advanced) is AIPS's most popular special offer. Get the full Google AI Pro subscription — Gemini 3.1 Pro, Deep Research, AI agents, 2TB Google Drive storage, YouTube Premium, and more — for just ৳499/month. Official price: ৳2,990. Save 83%.",
     accentColor: "#4285f4",
     faqs: [
       { q: "What is Google AI Pro?", a: "Google AI Pro is Google's premium AI subscription. It includes Gemini 3.1 Pro (Google's most intelligent model), Deep Research, AI agents, Workspace AI features, 2TB Google Drive storage, YouTube Premium, and Google One benefits." },
-      { q: "Why is AIPS selling Google AI Pro at ৳500?", a: "AI Premium Shop negotiates special volume pricing for Bangladesh customers. The ৳500 price is an AIPS exclusive promotional rate — you cannot get this price directly from Google." },
+      { q: "Why is AIPS selling Google AI Pro at ৳499?", a: "AI Premium Shop negotiates special volume pricing for Bangladesh customers. The ৳499 price is an AIPS exclusive promotional rate — you cannot get this price directly from Google." },
       { q: "Does Google AI Pro work with my existing Gmail?", a: "Yes. Google AI Pro is activated on YOUR existing Gmail or Google account. All features — Gemini in Gmail, Docs, Drive, and Google Search — work seamlessly with your current account." },
-      { q: "Is Google AI Pro better than ChatGPT Plus?", a: "Both are excellent. Google AI Pro includes 2TB storage and YouTube Premium — added value beyond AI. Gemini 3.1 Pro excels at multimodal tasks (combining text, image, code). For most users, Google AI Pro at ৳500 offers outstanding value vs ChatGPT Plus at ৳350+." },
+      { q: "Is Google AI Pro better than ChatGPT Plus?", a: "Both are excellent. Google AI Pro includes 2TB storage and YouTube Premium — added value beyond AI. Gemini 3.1 Pro excels at multimodal tasks (combining text, image, code). For most users, Google AI Pro at ৳499 offers outstanding value vs ChatGPT Plus at ৳499+." },
       { q: "How fast is delivery?", a: "Google AI Pro activation is delivered within 5–15 minutes — the fastest delivery of any product in our catalog." },
     ],
   },
@@ -1033,10 +1033,10 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   iconBg: "bg-blue-500/10",
                   borderClass: "border-blue-500",
                   pain: "Assignment deadline, English weak, research paper",
-                  solution: "ChatGPT Plus ৳350/mo → A+ grades, research done in 30 min",
+                  solution: "ChatGPT Plus ৳499/mo → A+ grades, research done in 30 min",
                   outcome: "CGPA 2.8 → 3.5+ possible",
                   cta: "Order ৳350/mo",
-                  msg: "Hi, I want ChatGPT Plus Starter Shared (৳350/mo) for studies",
+                  msg: "Hi, I want ChatGPT Plus Starter Shared (৳499/mo) for studies",
                   svgBg: "#0b1a3a",
                   svg: <StudentStorySVG />,
                 },
@@ -1047,10 +1047,10 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   iconBg: "bg-emerald-500/10",
                   borderClass: "border-emerald-500",
                   pain: "Can't write proposals, delivery slow, clients leaving",
-                  solution: "ChatGPT Plus ৳350–950/mo → Proposals in 2 min, delivery 50% faster",
+                  solution: "ChatGPT Plus ৳499–999/mo → Proposals in 2 min, delivery 50% faster",
                   outcome: "Freelancers with AI earn 44% more — Upwork 2025",
                   cta: "Order ৳950/mo",
-                  msg: "Hi, I want ChatGPT Plus Premium Shared (৳950/mo) for freelancing",
+                  msg: "Hi, I want ChatGPT Plus Premium Shared (৳999/mo) for freelancing",
                   svgBg: "#021a0e",
                   svg: <FreelancerStorySVG />,
                 },
@@ -1075,10 +1075,10 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   iconBg: "bg-indigo-500/10",
                   borderClass: "border-indigo-500",
                   pain: "CV rejected, interview nervous, no skill roadmap",
-                  solution: "ChatGPT Plus ৳350/mo → Professional CV in 5 min, mock interview",
+                  solution: "ChatGPT Plus ৳499/mo → Professional CV in 5 min, mock interview",
                   outcome: "Get hired 2–3 months faster. Starting salary 10–20% higher.",
                   cta: "Order ৳350/mo",
-                  msg: "Hi, I want ChatGPT Plus Starter Shared (৳350/mo) for job search",
+                  msg: "Hi, I want ChatGPT Plus Starter Shared (৳499/mo) for job search",
                   svgBg: "#120530",
                   svg: <JobSeekerStorySVG />,
                 },
@@ -1236,7 +1236,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 </ul>
               </div>
               <div className="bg-emerald-500/5 border-l-4 border-emerald-500 rounded-lg p-6">
-                <div className="text-emerald-400 font-bold text-lg mb-4">✅ With ChatGPT (৳350/mo)</div>
+                <div className="text-emerald-400 font-bold text-lg mb-4">✅ With ChatGPT (৳499/mo)</div>
                 <ul className="space-y-3 text-sm" style={{ color: "#c9ceda" }}>
                   <li><span className="font-semibold text-white">Students:</span> Assignment in 2 hours. CGPA 3.5+. Professional English writing.</li>
                   <li><span className="font-semibold text-white">Freelancers:</span> 10 proposals → 3–4 replies. Delivery 1–2 days. Earning $500–1,500+/mo.</li>
@@ -1248,7 +1248,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             <div className="rounded-2xl p-5 border text-center" style={{ backgroundColor: "#10a37f12", borderColor: "#10a37f35" }}>
               <p className="text-sm font-semibold mb-4 text-white">Start for just <span style={{ color: "#f4b942" }}>৳350/mo</span> — the price of 2 cups of tea.</p>
               <a
-                href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want to order ChatGPT Plus Starter Shared (৳350/mo)")}`}
+                href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want to order ChatGPT Plus Starter Shared (৳499/mo)")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"

@@ -45,7 +45,7 @@ const FAQS = [
   {
     question: "I'm new to AI — which tool should I start with?",
     answer:
-      "Start with ChatGPT Plus Starter Shared (BDT 350/mo). It's our most popular plan and covers writing, coding, research, and image generation. Most beginners find it's all they need. If you're unsure, message us on WhatsApp and we'll recommend the best tool for your specific work in 2 minutes.",
+      "Start with ChatGPT Plus Starter Shared (BDT 499/mo). It's our most popular plan and covers writing, coding, research, and image generation. Most beginners find it's all they need. If you're unsure, message us on WhatsApp and we'll recommend the best tool for your specific work in 2 minutes.",
   },
   {
     question: "What's the difference between Shared and Personal?",
@@ -76,7 +76,7 @@ export default function Home() {
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
         title="AI Premium Shop — Premium AI Tools Bangladesh | From BDT 350"
-        description="Buy ChatGPT, Claude, Google AI Pro, Midjourney, Copilot, and more in Bangladesh. Local payment via bKash/Nagad. Fast WhatsApp delivery. From BDT 350/month."
+        description="Buy ChatGPT, Claude, Google AI Pro, Midjourney, Copilot, and more in Bangladesh. Local payment via bKash/Nagad. Fast WhatsApp delivery. From BDT 499/month."
         canonical="https://aipremiumshop.com/"
         jsonLd={[
           ORG_SCHEMA,

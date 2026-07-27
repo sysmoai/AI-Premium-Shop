@@ -25,7 +25,7 @@ const FAQS = [
   // === Pricing and Payment (from Notion SEO FAQ) ===
   {
     q: "What is the cheapest AI subscription in Bangladesh?",
-    a: "ChatGPT Plus shared seat at BDT 350/month is the most affordable premium AI subscription in Bangladesh. Canva Pro at BDT 190/month and Adobe Firefly at BDT 190/month are also available at entry-level prices.",
+    a: "ChatGPT Plus shared seat at BDT 499/month is the most affordable premium AI subscription in Bangladesh. Canva Pro at BDT 190/month and Adobe Firefly at BDT 190/month are also available at entry-level prices.",
   },
   {
     q: "What payment methods does AI Premium Shop accept?",
@@ -72,7 +72,7 @@ const FAQS = [
   // === ChatGPT Plus Bangladesh (from Notion SEO FAQ) ===
   {
     q: "ChatGPT Plus price in Bangladesh 2026?",
-    a: "ChatGPT Plus shared: BDT 350/month. Premium shared: BDT 950/month. Personal account: BDT 2,990/month. ChatGPT Pro: BDT 4,500/month. All via bKash or Nagad at AI Premium Shop.",
+    a: "ChatGPT Plus shared: BDT 499/month. Premium shared: BDT 999/month. Personal account: BDT 2,990/month. ChatGPT Pro: BDT 4,500/month. All via bKash or Nagad at AI Premium Shop.",
   },
   {
     q: "Does ChatGPT Plus shared account include GPT-5?",
@@ -124,7 +124,7 @@ const FAQS = [
   // === What AI for me (existing, updated pricing) ===
   {
     q: "What AI tool is best for my work?",
-    a: "It depends on your needs:\n\n• Students: ChatGPT Plus Shared (BDT 350) or Google AI Pro (BDT 499)\n• Freelancers: ChatGPT Plus Private (BDT 2,990) or Claude Pro Premium Shared (BDT 1,399)\n• Developers: GitHub Copilot Shared (BDT 500) or Cursor Pro (BDT 1,100)\n• Content Creators: Midjourney Standard (BDT 1,499) + Suno Pro (BDT 499)\n• Business: ChatGPT Team (BDT 699) + Notion Business (BDT 399)\n\nNot sure? Message us on WhatsApp and we'll recommend the perfect tool.",
+    a: "It depends on your needs:\n\n• Students: ChatGPT Plus Shared (BDT 499) or Google AI Pro (BDT 499)\n• Freelancers: ChatGPT Plus Private (BDT 2,990) or Claude Pro Premium Shared (BDT 1,399)\n• Developers: GitHub Copilot Shared (BDT 499) or Cursor Pro (BDT 1,100)\n• Content Creators: Midjourney Standard (BDT 1,499) + Suno Pro (BDT 499)\n• Business: ChatGPT Team (BDT 699) + Notion Business (BDT 399)\n\nNot sure? Message us on WhatsApp and we'll recommend the perfect tool.",
   },
   // === Refunds & Policies (existing) ===
   {
@@ -204,7 +204,7 @@ export default function FAQPage() {
     <PageLayout>
       <SEOHead
         title="FAQ — AI Subscription Bangladesh | bKash/Nagad Payment | AI Premium Shop"
-        description="80+ AI subscriptions in Bangladesh. ChatGPT Plus BDT 350, Claude Pro, Midjourney. bKash/Nagad payment, 30-day warranty, WhatsApp support. All questions answered."
+        description="80+ AI subscriptions in Bangladesh. ChatGPT Plus BDT 499, Claude Pro, Midjourney. bKash/Nagad payment, 30-day warranty, WhatsApp support. All questions answered."
         canonical="https://aipremiumshop.com/faq"
         jsonLd={[
           faqSchema(FAQS),

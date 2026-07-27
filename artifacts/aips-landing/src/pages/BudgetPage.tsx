@@ -36,7 +36,7 @@ const BUDGETS: Record<string, BudgetConfig> = {
     metaDescription: "AI tools under BDT 500 in Bangladesh. ChatGPT BDT 350, Google AI BDT 500. Cheapest premium AI.",
     canonical: "https://aipremiumshop.com/ai-under-500",
     nextTier: { label: "See tools under BDT 1,000", href: "/ai-under-1000" },
-    highlight: "Start with ChatGPT Plus at just BDT 350 — Bangladesh's most affordable AI subscription.",
+    highlight: "Start with ChatGPT Plus at just BDT 499 — Bangladesh's most affordable AI subscription.",
   },
   "ai-under-1000": {
     maxPrice: 1000,
@@ -205,11 +205,11 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
                   <div className="text-xs font-bold uppercase tracking-widest mb-0.5" style={{ color: "#10a37f" }}>
                     Best Value Under ৳500
                   </div>
-                  <div className="font-bold text-white text-lg">ChatGPT Plus Shared — ৳350/mo</div>
+                  <div className="font-bold text-white text-lg">ChatGPT Plus Shared — ৳499/mo</div>
                 </div>
               </div>
               <p className="text-sm mb-4 leading-relaxed" style={{ color: "#c9ceda" }}>
-                ChatGPT Plus Shared at ৳350/mo is the <strong className="text-white">#1 best-value AI tool in Bangladesh</strong>.
+                ChatGPT Plus Shared at ৳499/mo is the <strong className="text-white">#1 best-value AI tool in Bangladesh</strong>.
                 It gives you writing, coding, image generation, deep research, and AI agents —
                 all for the price of 2 cups of tea per month.
               </p>
@@ -223,7 +223,7 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
-                  href={`https://wa.me/8801865385348?text=${encodeURIComponent("Hi, I want ChatGPT Plus Starter Shared (৳350/mo)")}`}
+                  href={`https://wa.me/8801865385348?text=${encodeURIComponent("Hi, I want ChatGPT Plus Starter Shared (৳499/mo)")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"

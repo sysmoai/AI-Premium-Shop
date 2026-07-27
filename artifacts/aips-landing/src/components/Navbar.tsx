@@ -27,10 +27,10 @@ const CATEGORIES = [
 ];
 
 const POPULAR_BRANDS = [
-  { name: "ChatGPT",         price: "from ৳350",   badge: "9 plans",    badgeGreen: false, href: "/chatgpt-plans-bangladesh" },
+  { name: "ChatGPT",         price: "from ৳499",   badge: "9 plans",    badgeGreen: false, href: "/chatgpt-plans-bangladesh" },
   { name: "Claude",          price: "from ৳1,495", badge: "5 plans",    badgeGreen: false, href: "/claude-pro-bangladesh" },
   { name: "Midjourney",      price: "from ৳1,199", badge: "6 plans",    badgeGreen: false, href: "/midjourney-bangladesh" },
-  { name: "Google AI Pro",   price: "from ৳500",   badge: "83% OFF",    badgeGreen: true,  href: "/gemini-advanced-bangladesh" },
+  { name: "Google AI Pro",   price: "from ৳499",   badge: "83% OFF",    badgeGreen: true,  href: "/gemini-advanced-bangladesh" },
   { name: "GitHub Copilot",  price: "from ৳1,495", badge: "",           badgeGreen: false, href: "/github-copilot-bangladesh" },
   { name: "Cursor",          price: "from ৳2,990", badge: "",           badgeGreen: false, href: "/cursor-bangladesh" },
   { name: "Notion Business", price: "from ৳800",   badge: "73% OFF",    badgeGreen: true,  href: "/notion-business-bangladesh" },

@@ -23,8 +23,8 @@ const BRAND_NAMES = [
 
 const HERO_CARDS = [
   { name: "Midjourney", price: "৳1,199", color: "#8b5cf6", rotate: "-5deg", opacity: 0.65, zIndex: 1 },
-  { name: "Google AI Pro", price: "৳500", color: "#4285f4", rotate: "0deg", opacity: 0.82, zIndex: 2 },
-  { name: "ChatGPT Plus", price: "৳350", color: "#10a37f", rotate: "5deg", opacity: 1, zIndex: 3 },
+  { name: "Google AI Pro", price: "৳499", color: "#4285f4", rotate: "0deg", opacity: 0.82, zIndex: 2 },
+  { name: "ChatGPT Plus", price: "৳499", color: "#10a37f", rotate: "5deg", opacity: 1, zIndex: 3 },
 ];
 
 function TrustBadge({

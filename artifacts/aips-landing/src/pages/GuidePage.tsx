@@ -110,14 +110,14 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI Tools for Students Bangladesh 2026 — From BDT 350",
     h1: "Best AI Tools for Students in Bangladesh 2026",
     subtitle: "Write better papers. Study smarter. Ace your exams.",
-    aioSnippet: "The best AI tools for students in Bangladesh in 2026 are Google AI Pro (BDT 500/mo) for Gmail and Docs integration, ChatGPT Plus Shared (BDT 350/mo) for writing and coding assignments, and Perplexity Pro Shared (BDT 350/mo) for research with cited sources. No international credit card needed — pay with bKash or Nagad and receive access in 5–30 minutes via WhatsApp.",
-    metaDescription: "Best AI tools for students in Bangladesh 2026. Google AI BDT 500. ChatGPT BDT 350. Study smarter.",
+    aioSnippet: "The best AI tools for students in Bangladesh in 2026 are Google AI Pro (BDT 499/mo) for Gmail and Docs integration, ChatGPT Plus Shared (BDT 499/mo) for writing and coding assignments, and Perplexity Pro Shared (BDT 499/mo) for research with cited sources. No international credit card needed — pay with bKash or Nagad and receive access in 5–30 minutes via WhatsApp.",
+    metaDescription: "Best AI tools for students in Bangladesh 2026. Google AI BDT 499. ChatGPT BDT 499. Study smarter.",
     canonical: "https://aipremiumshop.com/best-ai-for-students",
     whyHeading: "Why AI Matters for Students",
     whyText: "AI tools have become essential study companions — like having a tutor available at 2 AM. Whether you're writing research papers, solving math problems, debugging code assignments, or preparing for exams, AI accelerates learning significantly. Students who use AI tools consistently report submitting higher-quality work in less time. The best part: you can access the same tools used by university students in the US and UK — at Bangladesh prices.",
     tools: [
-      { rank: 1, name: "Google AI Pro", price: "BDT 500/mo", reason: "Best value. Deep Research for papers, 2TB storage, works with Gmail and Google Docs. 83% off official price.", badge: "Best Value", color: "#4285f4" },
-      { rank: 2, name: "ChatGPT Plus — Starter Shared", price: "BDT 350/mo", reason: "Cheapest way to access GPT-5.4. Great for assignments, essays, coding, and exam prep.", badge: "Cheapest", color: "#10a37f" },
+      { rank: 1, name: "Google AI Pro", price: "BDT 499/mo", reason: "Best value. Deep Research for papers, 2TB storage, works with Gmail and Google Docs. 83% off official price.", badge: "Best Value", color: "#4285f4" },
+      { rank: 2, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Cheapest way to access GPT-5.4. Great for assignments, essays, coding, and exam prep.", badge: "Cheapest", color: "#10a37f" },
       { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 350/mo", reason: "AI research engine with real citations and source links. Perfect for thesis and academic papers.", badge: "For Research", color: "#20b2aa" },
     ],
     startHere: {
@@ -127,7 +127,7 @@ const GUIDES: Record<string, GuideConfig> = {
     },
     faqs: [
       { q: "Is AI allowed for university assignments?", a: "AI is a study tool, like a calculator. Use it to research, draft, and learn — but always submit your own work. Most universities allow AI as a research aid. Check your institution's specific policy on AI-assisted writing." },
-      { q: "Which is cheaper — ChatGPT or Google AI Pro?", a: "ChatGPT Plus Shared is BDT 350. Google AI Pro is BDT 500 but includes 2TB storage, Workspace AI, and more features. If you use Gmail and Google Docs, Google AI Pro is better value." },
+      { q: "Which is cheaper — ChatGPT or Google AI Pro?", a: "ChatGPT Plus Shared is BDT 499. Google AI Pro is BDT 499 but includes 2TB storage, Workspace AI, and more features. If you use Gmail and Google Docs, Google AI Pro is better value." },
       { q: "Can I use these for coding assignments?", a: "Yes. Both ChatGPT and Google AI Pro can write, debug, and explain code in any programming language — Python, Java, C++, JavaScript, and more." },
       { q: "Do I need a credit card?", a: "No. Pay with bKash or Nagad. No international card or bank account needed. We deliver directly to your WhatsApp after payment." },
     ],
@@ -144,14 +144,14 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for Freelancers Bangladesh 2026",
     h1: "Best AI Tools for Freelancers in Bangladesh 2026",
     subtitle: "Win more clients. Deliver faster. Earn more.",
-    aioSnippet: "The top AI tools for freelancers in Bangladesh 2026 are ChatGPT Plus Premium Shared (BDT 950/mo) for proposals and content delivery, Claude Pro Premium Shared (BDT 1,495/mo) for writing quality, and Midjourney Standard Shared (BDT 1,199/mo) for client graphics. Freelancers using AI earn 44% more on average (Upwork 2025). Order any tool via WhatsApp and pay with bKash or Nagad.",
+    aioSnippet: "The top AI tools for freelancers in Bangladesh 2026 are ChatGPT Plus Premium Shared (BDT 999/mo) for proposals and content delivery, Claude Pro Premium Shared (BDT 1,495/mo) for writing quality, and Midjourney Standard Shared (BDT 1,199/mo) for client graphics. Freelancers using AI earn 44% more on average (Upwork 2025). Order any tool via WhatsApp and pay with bKash or Nagad.",
     metaDescription: "Best AI tools for freelancers Bangladesh 2026. Earn 44% more with AI. From BDT 350. Upwork & Fiverr.",
     canonical: "https://aipremiumshop.com/best-ai-for-freelancers",
     whyHeading: "Why AI is a Freelancer's Competitive Advantage",
     whyText: "Freelancers who use AI tools earn 44% more on average (Upwork 2025 Report). AI tools let you write proposals faster, deliver projects on tighter deadlines, and take on more clients simultaneously. Whether you're a writer, designer, developer, or marketer, AI multiplies your output without multiplying your hours. These tools pay for themselves with your first client win.",
     statLine: "Freelancers who use AI earn 44% more on average — Upwork 2025 Report",
     tools: [
-      { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 950/mo", reason: "Write proposals, emails, and content 10x faster. Higher stability than starter plan.", badge: "Top Pick", color: "#10a37f" },
+      { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 999/mo", reason: "Write proposals, emails, and content 10x faster. Higher stability than starter plan.", badge: "Top Pick", color: "#10a37f" },
       { rank: 2, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "#1 ranked AI for writing quality. Extended thinking for complex client projects.", badge: "Best Writing", color: "#d97706" },
       { rank: 3, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Create client graphics, thumbnails, and mockups. Unlimited image generation.", badge: "For Design", color: "#8b5cf6" },
       { rank: 4, name: "GitHub Copilot Pro — Individual", price: "BDT 1,495/mo", reason: "For developer freelancers. Code 50% faster. Works in VS Code and JetBrains.", badge: "For Devs", color: "#6e40c9" },
@@ -164,7 +164,7 @@ const GUIDES: Record<string, GuideConfig> = {
     faqs: [
       { q: "Which AI tool is best for writing client proposals?", a: "ChatGPT Plus and Claude Pro are both excellent for proposals. Claude Pro has slightly better writing quality, while ChatGPT is better for proposals that require research or data." },
       { q: "Can I use AI-generated content for client work?", a: "Most clients allow AI-assisted work as long as the final deliverable meets their quality standards. Always review and edit AI outputs. Disclose AI usage if your client contract requires it." },
-      { q: "How much can I save compared to direct subscriptions?", a: "Significantly. ChatGPT Plus costs $20/month officially (≈BDT 2,400 with exchange and fees). With AIPS you pay BDT 350–950 depending on the plan — saving 60–85%." },
+      { q: "How much can I save compared to direct subscriptions?", a: "Significantly. ChatGPT Plus costs $20/month officially (≈BDT 2,400 with exchange and fees). With AIPS you pay BDT 499–950 depending on the plan — saving 60–85%." },
       { q: "Can I get multiple tools at a discount?", a: "Yes. Message us on WhatsApp about bundle pricing. We offer package discounts when you take multiple subscriptions together." },
     ],
     accentColor: "#10a37f",
@@ -180,13 +180,13 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for Content Creators Bangladesh 2026",
     h1: "Best AI Tools for Content Creators in Bangladesh 2026",
     subtitle: "Create faster. Edit smarter. Grow your audience.",
-    aioSnippet: "The best AI tools for content creators in Bangladesh 2026 are ChatGPT Plus (BDT 950/mo) for scripting, Midjourney Standard Shared (BDT 1,199/mo) for thumbnails, ElevenLabs (BDT 748/mo) for voiceovers, and Suno AI Pro (BDT 1,495/mo) for copyright-free music. All accessible via bKash or Nagad payment through WhatsApp — no international card required.",
+    aioSnippet: "The best AI tools for content creators in Bangladesh 2026 are ChatGPT Plus (BDT 999/mo) for scripting, Midjourney Standard Shared (BDT 1,199/mo) for thumbnails, ElevenLabs (BDT 748/mo) for voiceovers, and Suno AI Pro (BDT 1,495/mo) for copyright-free music. All accessible via bKash or Nagad payment through WhatsApp — no international card required.",
     metaDescription: "Best AI for content creators Bangladesh 2026. Script, thumbnail, music — all AI. From BDT 350.",
     canonical: "https://aipremiumshop.com/best-ai-for-creators",
     whyHeading: "Why AI is a Creator's Superpower",
     whyText: "Content creation in 2026 is an arms race. YouTube channels, TikTok accounts, and social media pages that use AI produce more content, at higher quality, with less burnout. AI handles the repetitive parts — writing captions, generating thumbnails, creating voiceovers, composing background music — so you can focus on strategy and audience connection. Creators who adopted AI tools in 2024 grew their channels 3x faster on average.",
     tools: [
-      { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 950/mo", reason: "Scripts, captions, content calendars, viral hooks — all in minutes.", badge: "For Scripts", color: "#10a37f" },
+      { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 999/mo", reason: "Scripts, captions, content calendars, viral hooks — all in minutes.", badge: "For Scripts", color: "#10a37f" },
       { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "AI thumbnails and graphics without hiring a designer. Unlimited generations.", badge: "For Thumbnails", color: "#8b5cf6" },
       { rank: 3, name: "ElevenLabs — Starter Plan", price: "BDT 748/mo", reason: "Ultra-realistic AI voiceovers. Clone your own voice. Supports 29 languages.", badge: "For Voiceovers", color: "#f97316" },
       { rank: 4, name: "Suno AI — Pro Plan", price: "BDT 1,495/mo", reason: "Create background music and jingles with no copyright issues. Commercial use included.", badge: "For Music", color: "#f59e0b" },
@@ -216,13 +216,13 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for Business Bangladesh 2026",
     h1: "Best AI Tools for Business Owners in Bangladesh 2026",
     subtitle: "Automate operations. Cut costs. Scale faster.",
-    aioSnippet: "The top AI tools for business owners in Bangladesh 2026 are Google AI Pro (BDT 500/mo) for Gmail and Google Workspace AI, ChatGPT Team (BDT 1,200/mo) for team operations with admin controls, and Claude Pro (BDT 1,495/mo) for contracts and business documents. AI reduces operational costs by 30–40%. Pay with bKash or Nagad — no international card required.",
+    aioSnippet: "The top AI tools for business owners in Bangladesh 2026 are Google AI Pro (BDT 499/mo) for Gmail and Google Workspace AI, ChatGPT Team (BDT 1,200/mo) for team operations with admin controls, and Claude Pro (BDT 1,495/mo) for contracts and business documents. AI reduces operational costs by 30–40%. Pay with bKash or Nagad — no international card required.",
     metaDescription: "Best AI for business owners Bangladesh 2026. Automate sales, support, content. From BDT 500.",
     canonical: "https://aipremiumshop.com/best-ai-for-business",
     whyHeading: "Why Businesses in Bangladesh Are Adopting AI Now",
     whyText: "AI is no longer a luxury for large corporations. Small and medium businesses in Bangladesh are using AI to draft contracts, analyze sales data, manage customer communications, and run marketing campaigns — all at a fraction of the cost of hiring specialists. Businesses that adopt AI tools reduce operational costs by 30–40% while increasing output quality. The window to get ahead of competitors who haven't adopted AI yet is closing fast.",
     tools: [
-      { rank: 1, name: "Google AI Pro", price: "BDT 500/mo", reason: "Gmail AI, Google Docs AI, Sheets AI — AI built into tools your team already uses daily.", badge: "Best for Teams", color: "#4285f4" },
+      { rank: 1, name: "Google AI Pro", price: "BDT 499/mo", reason: "Gmail AI, Google Docs AI, Sheets AI — AI built into tools your team already uses daily.", badge: "Best for Teams", color: "#4285f4" },
       { rank: 2, name: "ChatGPT Team", price: "BDT 1,200/mo", reason: "Team AI assistant with admin controls and privacy. Unlimited GPT-5.4 for the whole team.", badge: "For Operations", color: "#10a37f" },
       { rank: 3, name: "Notion AI — Plus Plan", price: "BDT 550/mo", reason: "AI workspace for docs, projects, SOPs, and team collaboration. Replaces multiple tools.", badge: "For Docs", color: "#000000" },
       { rank: 4, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "Best AI for drafting contracts, reports, and long-form business documents.", badge: "For Writing", color: "#d97706" },
@@ -287,14 +287,14 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for Job Seekers Bangladesh 2026",
     h1: "Best AI Tools for Job Seekers in Bangladesh 2026",
     subtitle: "Build a winning CV. Ace interviews. Land the job.",
-    aioSnippet: "The best AI tools for job seekers in Bangladesh 2026 are ChatGPT Plus Starter Shared (BDT 350/mo) for CVs and cover letters, Google AI Pro (BDT 500/mo) for Gmail-integrated job applications, and Perplexity Pro (BDT 350/mo) for researching companies before interviews. Starting at just BDT 350/mo — one job offer pays back months of subscription. Pay with bKash via WhatsApp.",
+    aioSnippet: "The best AI tools for job seekers in Bangladesh 2026 are ChatGPT Plus Starter Shared (BDT 499/mo) for CVs and cover letters, Google AI Pro (BDT 499/mo) for Gmail-integrated job applications, and Perplexity Pro (BDT 499/mo) for researching companies before interviews. Starting at just BDT 499/mo — one job offer pays back months of subscription. Pay with bKash via WhatsApp.",
     metaDescription: "Best AI for job seekers Bangladesh 2026. CV builder, interview prep, skill roadmap. From BDT 350.",
     canonical: "https://aipremiumshop.com/best-ai-for-job-seekers",
     whyHeading: "Why AI Gives Job Seekers an Edge",
     whyText: "Job hunting in Bangladesh has never been more competitive. AI tools help you write stronger CVs, craft personalized cover letters, research companies before interviews, and practice answering difficult questions. Candidates who use AI to prepare their applications consistently report more callbacks and better interview performance. The best part: you can tailor your application to each job in minutes instead of hours.",
     tools: [
-      { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 350/mo", reason: "Write professional CVs, cover letters, and LinkedIn summaries in minutes. Most affordable option.", badge: "Start Here", color: "#10a37f" },
-      { rank: 2, name: "Google AI Pro", price: "BDT 500/mo", reason: "Gmail AI for job applications. Google Docs AI for CV formatting. 2TB storage included.", badge: "Best Value", color: "#4285f4" },
+      { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Write professional CVs, cover letters, and LinkedIn summaries in minutes. Most affordable option.", badge: "Start Here", color: "#10a37f" },
+      { rank: 2, name: "Google AI Pro", price: "BDT 499/mo", reason: "Gmail AI for job applications. Google Docs AI for CV formatting. 2TB storage included.", badge: "Best Value", color: "#4285f4" },
       { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 350/mo", reason: "Research companies before interviews. Get industry insights with citations and sources.", badge: "For Research", color: "#20b2aa" },
     ],
     startHere: {
@@ -331,7 +331,7 @@ const GUIDES: Record<string, GuideConfig> = {
       { rank: 1, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "The gold standard for AI image quality. Photorealistic portraits, product renders, artistic illustrations — no other tool matches its output. 15hr fast GPU + unlimited relaxed mode.", badge: "Best Quality", color: "#8b5cf6" },
       { rank: 2, name: "Ideogram", price: "from BDT 2,990/mo", reason: "The only AI that reliably renders text inside images. Perfect for logos, posters, social media graphics, and typography-heavy designs. 400 priority images/month.", badge: "Best for Text & Logos", color: "#ec4899" },
       { rank: 3, name: "Leonardo AI", price: "from BDT 599/mo", reason: "Budget image generation with strong 3D textures, character consistency, and motion effects. Great for game assets, product visuals, and UI design concepts.", badge: "Best Budget Option", color: "#f97316" },
-      { rank: 4, name: "ChatGPT Plus — Starter Shared", price: "BDT 350/mo", reason: "Use AI to write design briefs, generate image prompts, write client emails, and research trends. The DALL-E image generation is also included.", badge: "For Workflow", color: "#10a37f" },
+      { rank: 4, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Use AI to write design briefs, generate image prompts, write client emails, and research trends. The DALL-E image generation is also included.", badge: "For Workflow", color: "#10a37f" },
     ],
     startHere: {
       name: "Midjourney — Standard Shared",
@@ -358,14 +358,14 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for Digital Marketers Bangladesh 2026",
     h1: "Best AI Tools for Digital Marketers in Bangladesh 2026",
     subtitle: "Write better copy. Create stunning visuals. Research faster.",
-    aioSnippet: "The best AI tools for digital marketers in Bangladesh in 2026 are ChatGPT Plus Shared (BDT 350/mo) for ad copy and social captions, Midjourney Standard Shared (BDT 1,199/mo) for visual content creation, and Perplexity Pro Shared (BDT 350/mo) for competitor research with real citations. Total: BDT 1,899/mo for a complete marketing AI stack — pay with bKash or Nagad, no international card required.",
+    aioSnippet: "The best AI tools for digital marketers in Bangladesh in 2026 are ChatGPT Plus Shared (BDT 499/mo) for ad copy and social captions, Midjourney Standard Shared (BDT 1,199/mo) for visual content creation, and Perplexity Pro Shared (BDT 499/mo) for competitor research with real citations. Total: BDT 1,899/mo for a complete marketing AI stack — pay with bKash or Nagad, no international card required.",
     metaDescription: "Best AI tools for digital marketers in Bangladesh 2026. ChatGPT, Midjourney, Perplexity. BDT prices.",
     canonical: "https://aipremiumshop.com/best-ai-for-marketers",
     whyHeading: "Why AI is Non-Negotiable for Marketers in 2026",
     whyText: "Digital marketing in 2026 is a speed game. AI tools let marketers produce a week's worth of content in a single afternoon. Write Facebook ads, generate Instagram visuals, research competitor strategies, draft email sequences, and analyze campaign performance — all with AI. Marketers who adopt AI consistently outperform those who don't, regardless of budget. The tools that used to cost thousands of dollars are now available from BDT 350/month.",
     statLine: "Marketers using AI tools save 5+ hours per week on content creation — HubSpot 2026 Marketing Report",
     tools: [
-      { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 350/mo", reason: "The essential marketing copywriter. Write ad copy, email campaigns, social media captions, blog posts, and product descriptions. Fastest and cheapest AI tool available.", badge: "Essential", color: "#10a37f" },
+      { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "The essential marketing copywriter. Write ad copy, email campaigns, social media captions, blog posts, and product descriptions. Fastest and cheapest AI tool available.", badge: "Essential", color: "#10a37f" },
       { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Generate professional marketing visuals — social media graphics, product mockups, campaign imagery — without a photographer or designer. 15hr fast GPU monthly.", badge: "For Visuals", color: "#8b5cf6" },
       { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 350/mo", reason: "AI-powered market research with real-time citations. Research competitor strategies, industry trends, and consumer behavior in minutes — with source links you can verify.", badge: "For Research", color: "#20b2aa" },
       { rank: 4, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "Best AI for long-form marketing content. Blog posts, whitepapers, case studies, and email sequences with higher writing quality than ChatGPT.", badge: "For Long-form", color: "#d97706" },
@@ -373,7 +373,7 @@ const GUIDES: Record<string, GuideConfig> = {
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
       price: "BDT 350/mo",
-      reason: "Start with ChatGPT Plus at BDT 350 — the most versatile marketing AI available. Use it for copy, research, strategy, and daily content. When you're ready to scale visuals, add Midjourney.",
+      reason: "Start with ChatGPT Plus at BDT 499 — the most versatile marketing AI available. Use it for copy, research, strategy, and daily content. When you're ready to scale visuals, add Midjourney.",
     },
     faqs: [
       { q: "Can AI write Facebook and Google Ads?", a: "Yes. ChatGPT is excellent at writing ad copy with specific character limits, calls-to-action, and emotional hooks. Give it your product, target audience, and goals, and it will generate multiple variations in seconds." },
@@ -395,14 +395,14 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for E-commerce Bangladesh 2026",
     h1: "Best AI Tools for E-commerce Sellers in Bangladesh 2026",
     subtitle: "Better product photos. Faster listings. More sales.",
-    aioSnippet: "The best AI tools for e-commerce sellers in Bangladesh in 2026 are ChatGPT Plus Shared (BDT 350/mo) for product descriptions and customer support copy, Midjourney Standard Shared (BDT 1,199/mo) for professional product photography and lifestyle images, and Perplexity Pro (BDT 350/mo) for competitor and market research. Available via bKash — no international card needed.",
+    aioSnippet: "The best AI tools for e-commerce sellers in Bangladesh in 2026 are ChatGPT Plus Shared (BDT 499/mo) for product descriptions and customer support copy, Midjourney Standard Shared (BDT 1,199/mo) for professional product photography and lifestyle images, and Perplexity Pro (BDT 499/mo) for competitor and market research. Available via bKash — no international card needed.",
     metaDescription: "Best AI tools for e-commerce sellers in Bangladesh 2026. Product photos, descriptions, customer support AI.",
     canonical: "https://aipremiumshop.com/best-ai-for-ecommerce",
     whyHeading: "Why E-commerce Sellers Need AI in 2026",
     whyText: "Running an e-commerce business in Bangladesh is increasingly competitive. AI tools help sellers write compelling product listings faster, create professional product images without a photography studio, respond to customer queries automatically, and research trending products. Sellers who use AI consistently report better conversion rates and more time to focus on sourcing and scaling. The entire toolkit costs less than one product photoshoot.",
     statLine: "AI-written product listings outperform manually written ones by 33% in click-through rate — Shopify 2025",
     tools: [
-      { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 350/mo", reason: "Write compelling product titles and descriptions optimized for search. Draft FAQ responses, customer service templates, and promotional copy. Essential for any e-commerce operation.", badge: "Essential", color: "#10a37f" },
+      { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Write compelling product titles and descriptions optimized for search. Draft FAQ responses, customer service templates, and promotional copy. Essential for any e-commerce operation.", badge: "Essential", color: "#10a37f" },
       { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Generate professional product photography and lifestyle images without a studio. Create background-removed product shots, styled scenes, and banner graphics for social media.", badge: "For Visuals", color: "#8b5cf6" },
       { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 350/mo", reason: "Research trending products, analyze competitor pricing, and identify market gaps. Get real-time data on what's selling and why — with citations you can verify.", badge: "For Research", color: "#20b2aa" },
       { rank: 4, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "Write longer-form content like seller profiles, brand stories, and email marketing sequences with higher quality than ChatGPT.", badge: "For Brand Content", color: "#d97706" },
@@ -410,7 +410,7 @@ const GUIDES: Record<string, GuideConfig> = {
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
       price: "BDT 350/mo",
-      reason: "At BDT 350, ChatGPT Plus pays for itself with better product listings alone. Use it to write all your product titles and descriptions in bulk — then add Midjourney when you're ready to upgrade your visuals.",
+      reason: "At BDT 499, ChatGPT Plus pays for itself with better product listings alone. Use it to write all your product titles and descriptions in bulk — then add Midjourney when you're ready to upgrade your visuals.",
     },
     faqs: [
       { q: "Can AI write Daraz and Facebook Marketplace listings?", a: "Yes. ChatGPT is excellent at writing product titles and descriptions optimized for search engines and shoppers. Give it your product details (name, specs, price range) and it will write multiple variations. Works for Daraz, Chaldal, Facebook Marketplace, and any other platform." },
@@ -577,7 +577,7 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
             <div className="p-6">
               <div className="text-5xl mb-3">🎓</div>
               <blockquote className="text-sm leading-relaxed mb-4 italic" style={{ color: "#c9ceda" }}>
-                "ChatGPT ৳350/mo changed how I study. My research papers went from C+ to A.
+                "ChatGPT ৳499/mo changed how I study. My research papers went from C+ to A.
                 I can explain complex economics theories in simple Bangla now.
                 My CGPA improved from 2.9 to 3.6 in one semester."
               </blockquote>
@@ -611,7 +611,7 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
               </div>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 {[
-                  { type: "Writer", rec: "ChatGPT Plus ৳350" },
+                  { type: "Writer", rec: "ChatGPT Plus ৳499" },
                   { type: "Designer", rec: "+ Midjourney ৳1,199" },
                   { type: "Developer", rec: "+ Copilot ৳1,495" },
                   { type: "VA", rec: "ChatGPT + Notion ৳1,150" },
@@ -675,7 +675,7 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
               <div className="space-y-2 text-sm mb-4" style={{ color: "#c9ceda" }}>
                 <div className="flex justify-between"><span>Every month without a job</span><span className="font-semibold" style={{ color: "#ef4444" }}>৳15,000–30,000 lost</span></div>
                 <div className="flex justify-between"><span>3 months faster = extra earnings</span><span className="font-semibold" style={{ color: "#10a37f" }}>৳45,000–90,000</span></div>
-                <div className="flex justify-between"><span>ChatGPT subscription cost</span><span>৳350/mo</span></div>
+                <div className="flex justify-between"><span>ChatGPT subscription cost</span><span>৳499/mo</span></div>
                 <div className="border-t border-white/10 pt-2 flex justify-between font-bold"><span>ROI</span><span style={{ color: "#f4b942" }}>128x–257x return</span></div>
               </div>
             </div>
@@ -850,7 +850,7 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
             <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700">
               <div className="space-y-2 text-sm mb-4">
                 {[
-                  { label: "ChatGPT", note: "scripts", price: "BDT 350" },
+                  { label: "ChatGPT", note: "scripts", price: "BDT 499" },
                   { label: "Midjourney", note: "visuals", price: "BDT 1,199" },
                   { label: "ElevenLabs", note: "voiceover", price: "BDT 748" },
                   { label: "Suno AI", note: "music", price: "BDT 1,495" },
@@ -887,7 +887,7 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
                 {[
                   { label: "Midjourney", price: "BDT 1,199" },
                   { label: "Ideogram", price: "BDT 2,990" },
-                  { label: "ChatGPT", price: "BDT 350" },
+                  { label: "ChatGPT", price: "BDT 499" },
                 ].map((item) => (
                   <div key={item.label} className="flex justify-between items-center py-1 border-b border-white/5">
                     <span style={{ color: "#c9ceda" }}>{item.label}</span>

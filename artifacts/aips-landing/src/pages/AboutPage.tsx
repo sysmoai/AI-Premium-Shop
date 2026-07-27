@@ -69,7 +69,7 @@ export default function AboutPage() {
           >
             <h2 className="text-xl font-bold text-white mb-4">What We Offer</h2>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>
-              80 premium AI tools from 20 leading brands including ChatGPT, Claude, Midjourney, GitHub Copilot, Runway, ElevenLabs, and more. Shared and personal accounts available. Prices start at just BDT 350 per month.
+              80 premium AI tools from 20 leading brands including ChatGPT, Claude, Midjourney, GitHub Copilot, Runway, ElevenLabs, and more. Shared and personal accounts available. Prices start at just BDT 499 per month.
             </p>
             <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
               All plans come with 30-day replacement warranty, under-5-minute WhatsApp response, and local payment via bKash, Nagad, Rocket, or bank transfer.

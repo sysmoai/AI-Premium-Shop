@@ -14,13 +14,13 @@ const fadeUp = {
 
 const TOP_TOOLS = [
   {
-    rank: 1, name: "ChatGPT Plus", price: "from BDT 350/mo", badge: "Best All-Rounder",
+    rank: 1, name: "ChatGPT Plus", price: "from BDT 499/mo", badge: "Best All-Rounder",
     badgeColor: "#10a37f", slug: "/chatgpt-plans-bangladesh",
     why: "Most versatile AI available. Writing, coding, image generation, web search, and autonomous agents in one tool. Cheapest entry point in our catalog.",
     bestFor: ["Students", "Writers", "Developers", "Everyone"],
   },
   {
-    rank: 2, name: "Google AI Pro", price: "BDT 500/mo", badge: "Best Value",
+    rank: 2, name: "Google AI Pro", price: "BDT 499/mo", badge: "Best Value",
     badgeColor: "#4285f4", slug: "/gemini-advanced-bangladesh",
     why: "Personal Gmail account, 2TB Drive storage, and AI in every Google app — for just BDT 500/month. Unbeatable value for Google Workspace users.",
     bestFor: ["Professionals", "Students", "Job seekers"],
@@ -79,7 +79,7 @@ const CATEGORY_TABLE = [
   { category: "AI Writing", best: "Claude Pro", price: "BDT 1,495/mo", runner: "ChatGPT Plus", slug: "/claude-pro-bangladesh" },
   { category: "AI Coding", best: "GitHub Copilot Pro", price: "BDT 1,495/mo", runner: "Cursor Pro", slug: "/github-copilot-bangladesh" },
   { category: "AI Images", best: "Midjourney", price: "BDT 1,199/mo", runner: "Ideogram", slug: "/midjourney-bangladesh" },
-  { category: "AI Research", best: "Perplexity Pro", price: "BDT 350/mo", runner: "ChatGPT Plus", slug: "/perplexity-pro-bangladesh" },
+  { category: "AI Research", best: "Perplexity Pro", price: "BDT 499/mo", runner: "ChatGPT Plus", slug: "/perplexity-pro-bangladesh" },
   { category: "AI Video", best: "Runway", price: "BDT 1,794/mo", runner: "HeyGen", slug: "/runway-bangladesh" },
   { category: "AI Voice", best: "ElevenLabs", price: "BDT 748/mo", runner: "HeyGen", slug: "/elevenlabs-bangladesh" },
   { category: "AI Music", best: "Suno AI", price: "BDT 1,495/mo", runner: "Udio", slug: "/suno-ai-bangladesh" },
@@ -87,7 +87,7 @@ const CATEGORY_TABLE = [
 ];
 
 const BUDGET_RECS = [
-  { budget: "Under BDT 500", title: "Best starter combo", tools: "ChatGPT Plus (BDT 350) + Perplexity Pro (BDT 350)", href: "/ai-under-500" },
+  { budget: "Under BDT 500", title: "Best starter combo", tools: "ChatGPT Plus (BDT 499) + Perplexity Pro (BDT 350)", href: "/ai-under-500" },
   { budget: "BDT 500–1,000", title: "Best solo tool", tools: "Google AI Pro (BDT 500) — personal account, 2TB Drive, AI in all Google apps", href: "/ai-under-1000" },
   { budget: "BDT 1,000–2,000", title: "Writer's stack", tools: "Claude Pro (BDT 1,495) — the best writing quality, 1M context", href: "/ai-under-3000" },
   { budget: "BDT 2,000+", title: "Developer stack", tools: "Cursor Pro (BDT 2,990) — full AI-native coding environment with agent mode", href: "/ai-under-3000" },
@@ -123,7 +123,7 @@ export default function BestAISubscriptionPage() {
           className="p-5 rounded-2xl border mb-10"
           style={{ backgroundColor: "rgba(244,185,66,0.06)", borderColor: "rgba(244,185,66,0.25)" }}>
           <p className="text-sm leading-relaxed" style={{ color: "#e8d5a3" }}>
-            The best AI subscription in Bangladesh in 2026 depends on your use case: for the best all-round value, ChatGPT Plus Shared starts at BDT 350/month. For the best writing quality, Claude Pro starts at BDT 1,495/month. For the best value overall, Google AI Pro at BDT 500/month includes a personal Gmail account and 2TB storage. For developers, GitHub Copilot Pro (BDT 1,495/month) offers the highest return on investment. All available via bKash or Nagad — delivery in 5–30 minutes on WhatsApp.
+            The best AI subscription in Bangladesh in 2026 depends on your use case: for the best all-round value, ChatGPT Plus Shared starts at BDT 499/month. For the best writing quality, Claude Pro starts at BDT 1,495/month. For the best value overall, Google AI Pro at BDT 499/month includes a personal Gmail account and 2TB storage. For developers, GitHub Copilot Pro (BDT 1,495/month) offers the highest return on investment. All available via bKash or Nagad — delivery in 5–30 minutes on WhatsApp.
           </p>
         </motion.div>
 

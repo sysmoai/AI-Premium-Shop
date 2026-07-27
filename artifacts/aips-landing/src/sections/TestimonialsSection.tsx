@@ -4,7 +4,7 @@ import { Star } from "lucide-react";
 const TESTIMONIALS = [
   {
     id: 1,
-    quote: "Got ChatGPT Plus for just BDT 350. Delivered in 10 minutes. Incredible service.",
+    quote: "Got ChatGPT Plus for just BDT 499. Delivered in 10 minutes. Incredible service.",
     name: "Rafiq",
     role: "Student",
     initials: "R",

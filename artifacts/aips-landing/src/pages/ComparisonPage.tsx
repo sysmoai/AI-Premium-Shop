@@ -63,11 +63,11 @@ const COMPARISONS: Record<string, CompConfig> = {
       { feature: "Savings vs official", a: "~88%", b: "~80%" },
     ],
     verdict: "Both are world-class AI tools available at Bangladesh prices. Your choice depends on your primary use case.",
-    verdictA: "Choose ChatGPT if you want an all-in-one tool that does everything — text, images, web search, code, and agents. It's also the cheapest option at BDT 350.",
+    verdictA: "Choose ChatGPT if you want an all-in-one tool that does everything — text, images, web search, code, and agents. It's also the cheapest option at BDT 499.",
     verdictB: "Choose Claude if you need the best writing quality, the longest document analysis (1M token context), or the most advanced reasoning. Claude is ranked #1 on the independent Chatbot Arena benchmark.",
-    buyBothText: "ChatGPT Plus Shared (BDT 350) + Claude Pro Premium Shared (BDT 1,495) = BDT 1,845/mo total — get the best of both worlds for writing and everything else.",
+    buyBothText: "ChatGPT Plus Shared (BDT 499) + Claude Pro Premium Shared (BDT 1,495) = BDT 1,845/mo total — get the best of both worlds for writing and everything else.",
     whoTable: [
-      { persona: "Students on a tight budget", pick: "ChatGPT Plus Shared — BDT 350", reason: "Cheapest AI in our catalog. Covers writing, coding, and research." },
+      { persona: "Students on a tight budget", pick: "ChatGPT Plus Shared — BDT 499", reason: "Cheapest AI in our catalog. Covers writing, coding, and research." },
       { persona: "Copywriters & content writers", pick: "Claude Pro — BDT 1,495", reason: "Ranked #1 for writing quality on independent benchmarks." },
       { persona: "Developers & researchers", pick: "ChatGPT Plus", reason: "Image gen, agents, web search, and code — one comprehensive tool." },
     ],
@@ -80,7 +80,7 @@ const COMPARISONS: Record<string, CompConfig> = {
   "chatgpt-vs-gemini": {
     title: "ChatGPT vs Gemini Bangladesh 2026 — Full Comparison",
     h1: "ChatGPT vs Google AI Pro — Which Should You Choose?",
-    aioSnippet: "ChatGPT vs Google AI Pro in Bangladesh 2026: ChatGPT Plus Shared is BDT 350/mo (shared account, cheapest AI tool available). Google AI Pro is BDT 500/mo and includes your own Gmail account, 2TB Google Drive storage, and AI built into Docs, Sheets, and Slides. Google AI Pro is the better value for anyone using Google Workspace daily. Both available via bKash — no international card needed.",
+    aioSnippet: "ChatGPT vs Google AI Pro in Bangladesh 2026: ChatGPT Plus Shared is BDT 499/mo (shared account, cheapest AI tool available). Google AI Pro is BDT 499/mo and includes your own Gmail account, 2TB Google Drive storage, and AI built into Docs, Sheets, and Slides. Google AI Pro is the better value for anyone using Google Workspace daily. Both available via bKash — no international card needed.",
     metaDescription: "ChatGPT vs Gemini in Bangladesh 2026. Full comparison with BD prices. AI Premium Shop.",
     canonical: "https://aipremiumshop.com/chatgpt-vs-gemini",
     productA: { name: "ChatGPT Plus", color: "#10a37f", orderText: "Order ChatGPT" },
@@ -98,12 +98,12 @@ const COMPARISONS: Record<string, CompConfig> = {
       { feature: "Savings vs official", a: "~88%", b: "~83%" },
     ],
     verdict: "Both are excellent — the right choice depends on your existing tools and workflow.",
-    verdictA: "Choose ChatGPT if you want the cheapest AI option (BDT 350) and primarily need AI for writing, coding, and chatting. Best for students on a tight budget.",
-    verdictB: "Google AI Pro at BDT 500 is the best-value tool in our catalog. You get a personal account (not shared), 2TB storage, and AI built into Gmail, Docs, Sheets, and Slides. For anyone who uses Google Workspace daily, this is the clear winner.",
-    buyBothText: "ChatGPT Plus Shared (BDT 350) + Google AI Pro (BDT 500) = BDT 850/mo — one for AI chat, one for your Google Workspace.",
+    verdictA: "Choose ChatGPT if you want the cheapest AI option (BDT 499) and primarily need AI for writing, coding, and chatting. Best for students on a tight budget.",
+    verdictB: "Google AI Pro at BDT 499 is the best-value tool in our catalog. You get a personal account (not shared), 2TB storage, and AI built into Gmail, Docs, Sheets, and Slides. For anyone who uses Google Workspace daily, this is the clear winner.",
+    buyBothText: "ChatGPT Plus Shared (BDT 499) + Google AI Pro (BDT 499) = BDT 850/mo — one for AI chat, one for your Google Workspace.",
     whoTable: [
-      { persona: "Students on a tight budget", pick: "ChatGPT Plus Shared — BDT 350", reason: "Cheapest AI tool in our catalog." },
-      { persona: "Google Workspace users", pick: "Google AI Pro — BDT 500", reason: "AI in Gmail, Docs, Sheets + 2TB storage + personal account." },
+      { persona: "Students on a tight budget", pick: "ChatGPT Plus Shared — BDT 499", reason: "Cheapest AI tool in our catalog." },
+      { persona: "Google Workspace users", pick: "Google AI Pro — BDT 499", reason: "AI in Gmail, Docs, Sheets + 2TB storage + personal account." },
       { persona: "Job seekers & writers", pick: "Google AI Pro", reason: "Personal Gmail account is more professional for job applications." },
     ],
     relatedGuides: [
@@ -349,7 +349,7 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
                   { cat: "Image generation", winner: "ChatGPT wins", desc: "DALL-E built in, Claude has none" },
                   { cat: "Research", winner: "Tie", desc: "Both excellent for research" },
                   { cat: "Agents", winner: "ChatGPT wins", desc: "Custom GPTs, deep research, Codex" },
-                  { cat: "Price", winner: "ChatGPT wins", desc: "৳350 vs Claude ৳1,495" },
+                  { cat: "Price", winner: "ChatGPT wins", desc: "৳499 vs Claude ৳1,495" },
                 ].map((row) => (
                   <div key={row.cat} className="rounded-lg p-2.5 border border-white/10" style={{ backgroundColor: "#151b3d" }}>
                     <div style={{ color: "#c9ceda" }}>{row.cat}</div>

@@ -33,11 +33,11 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     description:
       "The world's most powerful AI assistants. Write, code, research, create images, and automate tasks. From ChatGPT and Claude to Gemini and Perplexity — find your perfect AI partner. All plans available with local payment via bKash, Nagad, or Rocket.",
     metaDescription:
-      "ChatGPT, Claude, Gemini, Grok, Perplexity in Bangladesh. From BDT 350. Shared & Personal. bKash/Nagad. Fast delivery.",
+      "ChatGPT, Claude, Gemini, Grok, Perplexity in Bangladesh. From BDT 499. Shared & Personal. bKash/Nagad. Fast delivery.",
     accent: "#10a37f",
     faqs: [
       { q: "What's the difference between Shared and Personal accounts?", a: "Shared accounts are cost-effective: you access the same plan as other users (no chat history sharing). Personal accounts are yours alone — full privacy, custom settings, and no usage limits from others." },
-      { q: "Which AI assistant is best for students in Bangladesh?", a: "ChatGPT Plus Shared (BDT 350) is the best starter. For more demanding work, Claude Pro Premium Shared (BDT 1,495) offers the best writing and analysis — ranked #1 on Chatbot Arena." },
+      { q: "Which AI assistant is best for students in Bangladesh?", a: "ChatGPT Plus Shared (BDT 499) is the best starter. For more demanding work, Claude Pro Premium Shared (BDT 1,495) offers the best writing and analysis — ranked #1 on Chatbot Arena." },
       { q: "Can I switch models after ordering?", a: "Yes — you get access to all models within your plan. ChatGPT Plus includes GPT-5.4, image generation, web search, and AI agents. Claude Pro includes all Claude models including Opus 4.6." },
       { q: "How fast is delivery?", a: "Most AI assistant accounts are delivered within 5–30 minutes of payment confirmation, even at midnight." },
     ],
@@ -402,7 +402,7 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
                   context: "First step into AI — assignments, research, exam prep",
                   contextItalic: true,
                   items: [
-                    { tool: "ChatGPT Plus — Starter Shared", value: 350 },
+                    { tool: "ChatGPT Plus — Starter Shared", value: 499 },
                     { tool: "AI Setup Guide (personalised)", value: 150 },
                   ],
                   savings: 51, color: "#10a37f",

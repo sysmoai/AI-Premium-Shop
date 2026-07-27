@@ -3,7 +3,7 @@ import { Zap, CreditCard, Shield, Headphones } from "lucide-react";
 
 const COMPARISON = [
   { tool: "ChatGPT Plus", direct: "BDT 2,990/mo", aips: "BDT 499/mo", save: "83%" },
-  { tool: "Google AI Pro", direct: "BDT 2,990/mo", aips: "BDT 500/mo", save: "83%" },
+  { tool: "Google AI Pro", direct: "BDT 2,990/mo", aips: "BDT 499/mo", save: "83%" },
   { tool: "Notion Business", direct: "BDT 2,990/mo", aips: "BDT 800/mo", save: "73%" },
 ];
 

@@ -54,8 +54,8 @@ const POSTS = [
   },
   {
     slug: "chatgpt-plus-vs-free-bangladesh",
-    title: "ChatGPT Plus vs Free — Worth BDT 350? Bangladesh Review",
-    excerpt: "Is ChatGPT Plus worth BDT 350/mo? Honest comparison: GPT-5, DALL-E, agents, deep research.",
+    title: "ChatGPT Plus vs Free — Worth BDT 499? Bangladesh Review",
+    excerpt: "Is ChatGPT Plus worth BDT 499/mo? Honest comparison: GPT-5, DALL-E, agents, deep research.",
     category: "🔍 Comparison",
     readTime: "5 min read",
     date: "Apr 12, 2026",
@@ -99,7 +99,7 @@ const POSTS = [
   {
     slug: "how-to-get-chatgpt-plus-bangladesh",
     title: "How to Get ChatGPT Plus in Bangladesh (No Visa Card Needed)",
-    excerpt: "Step-by-step guide to activating ChatGPT Plus in Bangladesh using bKash or Nagad — from BDT 350/month. No international credit card required.",
+    excerpt: "Step-by-step guide to activating ChatGPT Plus in Bangladesh using bKash or Nagad — from BDT 499/month. No international credit card required.",
     category: "How-to",
     readTime: "4 min read",
     date: "March 2026",

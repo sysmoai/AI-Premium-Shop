@@ -87,8 +87,8 @@ const CATEGORY_TABLE = [
 ];
 
 const BUDGET_RECS = [
-  { budget: "Under BDT 500", title: "Best starter combo", tools: "ChatGPT Plus (BDT 499) + Perplexity Pro (BDT 350)", href: "/ai-under-500" },
-  { budget: "BDT 500–1,000", title: "Best solo tool", tools: "Google AI Pro (BDT 500) — personal account, 2TB Drive, AI in all Google apps", href: "/ai-under-1000" },
+  { budget: "Under BDT 500", title: "Best starter combo", tools: "ChatGPT Plus (BDT 499) + Perplexity Pro (BDT 499)", href: "/ai-under-500" },
+  { budget: "BDT 500–1,000", title: "Best solo tool", tools: "Google AI Pro (BDT 499) — personal account, 2TB Drive, AI in all Google apps", href: "/ai-under-1000" },
   { budget: "BDT 1,000–2,000", title: "Writer's stack", tools: "Claude Pro (BDT 1,495) — the best writing quality, 1M context", href: "/ai-under-3000" },
   { budget: "BDT 2,000+", title: "Developer stack", tools: "Cursor Pro (BDT 2,990) — full AI-native coding environment with agent mode", href: "/ai-under-3000" },
 ];

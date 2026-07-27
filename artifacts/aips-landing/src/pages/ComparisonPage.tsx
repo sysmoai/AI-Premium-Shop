@@ -45,7 +45,7 @@ const COMPARISONS: Record<string, CompConfig> = {
   "chatgpt-vs-claude": {
     title: "ChatGPT vs Claude Bangladesh 2026 — Which is Better?",
     h1: "ChatGPT vs Claude — Which One Is Right for You?",
-    aioSnippet: "ChatGPT vs Claude in Bangladesh 2026: ChatGPT Plus Shared starts at BDT 350/mo and excels as an all-rounder (images, web search, code, agents). Claude Pro starts at BDT 1,495/mo and is ranked #1 for writing quality and long-document reasoning (1M token context). Both available via bKash or Nagad — delivery in 5–30 minutes via WhatsApp.",
+    aioSnippet: "ChatGPT vs Claude in Bangladesh 2026: ChatGPT Plus Shared starts at BDT 499/mo and excels as an all-rounder (images, web search, code, agents). Claude Pro starts at BDT 1,495/mo and is ranked #1 for writing quality and long-document reasoning (1M token context). Both available via bKash or Nagad — delivery in 5–30 minutes via WhatsApp.",
     metaDescription: "ChatGPT vs Claude in Bangladesh 2026. Features, prices, which is better. AI Premium Shop.",
     canonical: "https://aipremiumshop.com/chatgpt-vs-claude",
     productA: { name: "ChatGPT (OpenAI)", color: "#10a37f", orderText: "Order ChatGPT" },

@@ -1,0 +1,15 @@
+run = "pnpm run dev"
+entrypoint = "index.js"
+hidden = [".config", ".next"]
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+build = "pnpm install --frozen-lockfile && pnpm build"
+run = "sh -c 'cp -r dist/public/* dist/ 2>/dev/null; pnpm exec http-server dist -p 3000'"
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 3000
+externalPort = 80

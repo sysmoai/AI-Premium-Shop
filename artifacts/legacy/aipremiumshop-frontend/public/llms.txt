@@ -1,0 +1,97 @@
+# AI Premium Shop (AIPS)
+
+> Bangladesh's #1 premium AI subscription shop. We offer shared and personal-account plans for ChatGPT, Claude, Midjourney, Cursor, and 70+ other AI tools at BDT-friendly prices, delivered within minutes via bKash, Nagad, or Rocket.
+
+Canonical domain: https://aipremiumshop.com/
+
+## Priority pages
+
+- [All Products](https://aipremiumshop.com/products) — full catalogue of 76+ AI subscriptions with BDT pricing
+- [Pricing](https://aipremiumshop.com/pricing) — sortable, filterable pricing table across all categories
+- [Bundles & Packages](https://aipremiumshop.com/bundles) — curated multi-tool bundles at discounted rates
+
+## Category pages
+
+- [AI Assistant & Chat](https://aipremiumshop.com/ai-assistant) — ChatGPT, Claude, Gemini, Perplexity, Grok, Microsoft Copilot (22 tools)
+- [AI Image & Design](https://aipremiumshop.com/ai-image) — Midjourney, Ideogram, Leonardo AI, Canva Pro (10 tools)
+- [AI Video](https://aipremiumshop.com/ai-video) — Runway, HeyGen, Pika Labs, Opus Clip, Descript (11 tools)
+- [AI Voice & Music](https://aipremiumshop.com/ai-voice-music) — ElevenLabs, Suno AI, Udio, Murf AI (8 tools)
+- [AI Code & Dev Tools](https://aipremiumshop.com/ai-code) — GitHub Copilot, Cursor, v0.dev, Replit (6 tools)
+- [AI Workspace](https://aipremiumshop.com/ai-workspace) — Notion Business, Manus AI, Otter AI, Gamma (5 tools)
+- [AI Writing & SEO](https://aipremiumshop.com/ai-writing) — Grammarly Premium, QuillBot, Jasper AI, Writesonic (7 tools)
+- [AI Design](https://aipremiumshop.com/ai-design) — Adobe Firefly, Canva Pro (2 tools)
+
+## Brand pages
+
+- [ChatGPT Plans Bangladesh](https://aipremiumshop.com/chatgpt-plans-bangladesh)
+- [ChatGPT Plus Bangladesh](https://aipremiumshop.com/chatgpt-plus-bangladesh)
+- [ChatGPT Pro Bangladesh](https://aipremiumshop.com/chatgpt-pro-bangladesh)
+- [ChatGPT Business Bangladesh](https://aipremiumshop.com/chatgpt-business-bangladesh)
+- [Claude Pro Bangladesh](https://aipremiumshop.com/claude-pro-bangladesh)
+- [Gemini Advanced Bangladesh](https://aipremiumshop.com/gemini-advanced-bangladesh)
+- [SuperGrok Bangladesh](https://aipremiumshop.com/supergrok-bangladesh)
+- [Perplexity Pro Bangladesh](https://aipremiumshop.com/perplexity-pro-bangladesh)
+- [Microsoft Copilot Pro Bangladesh](https://aipremiumshop.com/microsoft-copilot-pro-bangladesh)
+- [Midjourney Bangladesh](https://aipremiumshop.com/midjourney-bangladesh)
+- [Ideogram Bangladesh](https://aipremiumshop.com/ideogram-bangladesh)
+- [Leonardo AI Bangladesh](https://aipremiumshop.com/leonardo-ai-bangladesh)
+- [Adobe Firefly Bangladesh](https://aipremiumshop.com/adobe-firefly-bangladesh)
+- [Canva Pro Bangladesh](https://aipremiumshop.com/canva-pro-bangladesh)
+- [Runway Bangladesh](https://aipremiumshop.com/runway-bangladesh)
+- [HeyGen Bangladesh](https://aipremiumshop.com/heygen-bangladesh)
+- [Pika Labs Bangladesh](https://aipremiumshop.com/pika-labs-bangladesh)
+- [Opus Clip Bangladesh](https://aipremiumshop.com/opus-clip-bangladesh)
+- [Descript Pro Bangladesh](https://aipremiumshop.com/descript-pro-bangladesh)
+- [ElevenLabs Bangladesh](https://aipremiumshop.com/elevenlabs-bangladesh)
+- [Suno AI Bangladesh](https://aipremiumshop.com/suno-ai-bangladesh)
+- [Udio Bangladesh](https://aipremiumshop.com/udio-bangladesh)
+- [Murf AI Bangladesh](https://aipremiumshop.com/murf-ai-bangladesh)
+- [GitHub Copilot Bangladesh](https://aipremiumshop.com/github-copilot-bangladesh)
+- [Cursor Bangladesh](https://aipremiumshop.com/cursor-bangladesh)
+- [v0.dev Bangladesh](https://aipremiumshop.com/v0-dev-bangladesh)
+- [Replit Bangladesh](https://aipremiumshop.com/replit-bangladesh)
+- [Notion Business Bangladesh](https://aipremiumshop.com/notion-business-bangladesh)
+- [Manus AI Bangladesh](https://aipremiumshop.com/manus-ai-bangladesh)
+- [Otter AI Bangladesh](https://aipremiumshop.com/otter-ai-bangladesh)
+- [Gamma Bangladesh](https://aipremiumshop.com/gamma-bangladesh)
+- [Grammarly Premium Bangladesh](https://aipremiumshop.com/grammarly-premium-bangladesh)
+- [QuillBot Premium Bangladesh](https://aipremiumshop.com/quillbot-premium-bangladesh)
+- [Jasper AI Bangladesh](https://aipremiumshop.com/jasper-ai-bangladesh)
+- [Writesonic Bangladesh](https://aipremiumshop.com/writesonic-bangladesh)
+
+## Buying guides (by audience)
+
+- [Best AI Tools for Students in Bangladesh](https://aipremiumshop.com/best-ai-for-students)
+- [Best AI Tools for Freelancers in Bangladesh](https://aipremiumshop.com/best-ai-for-freelancers)
+- [Best AI Tools for Content Creators in Bangladesh](https://aipremiumshop.com/best-ai-for-creators)
+- [Best AI Tools for Business Owners in Bangladesh](https://aipremiumshop.com/best-ai-for-business)
+- [Best AI Tools for Developers in Bangladesh](https://aipremiumshop.com/best-ai-for-developers)
+- [Best AI Tools for Job Seekers in Bangladesh](https://aipremiumshop.com/best-ai-for-job-seekers)
+
+## Blog
+
+- [Blog](https://aipremiumshop.com/blog) — articles, tips, and news about AI tools available in Bangladesh
+
+## Comparison pages
+
+- [ChatGPT vs Claude in Bangladesh](https://aipremiumshop.com/chatgpt-vs-claude)
+- [ChatGPT vs Gemini in Bangladesh](https://aipremiumshop.com/chatgpt-vs-gemini)
+- [GitHub Copilot vs Cursor in Bangladesh](https://aipremiumshop.com/copilot-vs-cursor)
+
+## Budget pages
+
+- [AI Tools Under BDT 500](https://aipremiumshop.com/ai-under-500)
+- [AI Tools Under BDT 1,000](https://aipremiumshop.com/ai-under-1000)
+- [AI Tools Under BDT 3,000](https://aipremiumshop.com/ai-under-3000)
+
+## Support & information
+
+- [FAQ](https://aipremiumshop.com/faq) — 12 common questions about ordering, payment, and delivery
+- [About](https://aipremiumshop.com/about) — who we are and how AIPS works
+- [Contact](https://aipremiumshop.com/contact) — WhatsApp and social channels
+- [Refund & Replacement Policy](https://aipremiumshop.com/refund-policy)
+- [Terms of Service](https://aipremiumshop.com/terms)
+
+## Structured data
+
+- [XML Sitemap](https://aipremiumshop.com/sitemap.xml) — all 61+ indexed URLs with priorities and last-modified dates

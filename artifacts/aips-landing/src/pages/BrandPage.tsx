@@ -229,10 +229,10 @@ const BRAND_META: Record<string, {
 
   "claude-pro-bangladesh": {
     displayName: "Claude",
-    tagline: "Claude Pro Bangladesh — from ৳1,495/month",
+    tagline: "Claude Pro Bangladesh — from ৳1,590/month",
     seoTitle: "Claude Pro Bangladesh — From BDT 1,495/mo | AI Premium Shop",
     seoDescription: "Claude Pro Bangladesh from BDT 1,495/mo. Opus 4.6, 200K context, Claude Code. bKash/Nagad. 5-15 min delivery. AI Premium Shop.",
-    description: "Claude by Anthropic is the AI that rivals and often surpasses ChatGPT for writing, coding, and nuanced analysis. Claude Opus 4.6 leads in creative writing, legal documents, research, and complex reasoning. Available from Premium Shared (৳1,495) to Max 20x (৳29,900). Pay via bKash.",
+    description: "Claude by Anthropic is the AI that rivals and often surpasses ChatGPT for writing, coding, and nuanced analysis. Claude Opus 4.6 leads in creative writing, legal documents, research, and complex reasoning. Available from Premium Shared (৳1,590) to Max 20x (৳29,900). Pay via bKash.",
     accentColor: "#d97706",
     faqs: [
       { q: "Is Claude better than ChatGPT for writing?", a: "Claude (especially Opus) consistently scores higher for nuanced writing, creative content, legal documents, and academic papers. ChatGPT is stronger for coding and tool use. Most professionals use both." },
@@ -245,16 +245,16 @@ const BRAND_META: Record<string, {
 
   "gemini-advanced-bangladesh": {
     displayName: "Google AI Pro",
-    tagline: "Google AI Pro Bangladesh — ৳499/month",
+    tagline: "Google AI Pro Bangladesh — ৳599/month",
     seoTitle: "Google AI Pro Bangladesh — BDT 499/mo 83% Off | AI Premium Shop",
     seoDescription: "Google AI Pro Bangladesh BDT 499/mo — 83% off. Gemini Pro, 2TB storage, YouTube Premium, Workspace AI. bKash/Nagad. AI Premium Shop.",
-    description: "Google AI Pro (formerly Gemini Advanced) is AIPS's most popular special offer. Get the full Google AI Pro subscription — Gemini 3.1 Pro, Deep Research, AI agents, 2TB Google Drive storage, YouTube Premium, and more — for just ৳499/month. Official price: ৳2,990. Save 83%.",
+    description: "Google AI Pro (formerly Gemini Advanced) is AIPS's most popular special offer. Get the full Google AI Pro subscription — Gemini 3.1 Pro, Deep Research, AI agents, 2TB Google Drive storage, YouTube Premium, and more — for just ৳599/month. Official price: ৳2,990. Save 83%.",
     accentColor: "#4285f4",
     faqs: [
       { q: "What is Google AI Pro?", a: "Google AI Pro is Google's premium AI subscription. It includes Gemini 3.1 Pro (Google's most intelligent model), Deep Research, AI agents, Workspace AI features, 2TB Google Drive storage, YouTube Premium, and Google One benefits." },
-      { q: "Why is AIPS selling Google AI Pro at ৳499?", a: "AI Premium Shop negotiates special volume pricing for Bangladesh customers. The ৳499 price is an AIPS exclusive promotional rate — you cannot get this price directly from Google." },
+      { q: "Why is AIPS selling Google AI Pro at ৳599?", a: "AI Premium Shop negotiates special volume pricing for Bangladesh customers. The ৳599 price is an AIPS exclusive promotional rate — you cannot get this price directly from Google." },
       { q: "Does Google AI Pro work with my existing Gmail?", a: "Yes. Google AI Pro is activated on YOUR existing Gmail or Google account. All features — Gemini in Gmail, Docs, Drive, and Google Search — work seamlessly with your current account." },
-      { q: "Is Google AI Pro better than ChatGPT Plus?", a: "Both are excellent. Google AI Pro includes 2TB storage and YouTube Premium — added value beyond AI. Gemini 3.1 Pro excels at multimodal tasks (combining text, image, code). For most users, Google AI Pro at ৳499 offers outstanding value vs ChatGPT Plus at ৳499+." },
+      { q: "Is Google AI Pro better than ChatGPT Plus?", a: "Both are excellent. Google AI Pro includes 2TB storage and YouTube Premium — added value beyond AI. Gemini 3.1 Pro excels at multimodal tasks (combining text, image, code). For most users, Google AI Pro at ৳599 offers outstanding value vs ChatGPT Plus at ৳499+." },
       { q: "How fast is delivery?", a: "Google AI Pro activation is delivered within 5–15 minutes — the fastest delivery of any product in our catalog." },
     ],
   },
@@ -264,12 +264,12 @@ const BRAND_META: Record<string, {
     tagline: "SuperGrok Bangladesh — from ৳1,495/month",
     seoTitle: "SuperGrok Bangladesh — From BDT 1,495/mo | AI Premium Shop",
     seoDescription: "SuperGrok Bangladesh from BDT 1,495/mo. Grok 4.1, real-time X data, image & video gen, AI agents. bKash/Nagad. AI Premium Shop.",
-    description: "SuperGrok by xAI (Elon Musk's AI company) gives you Grok 4.1 — one of the most intelligent AI models available. Real-time access to X (Twitter) data, AI image generation, HD video generation, and 4x AI agents. Available as Lite (৳1,495) or Standard (৳3,990). Personal accounts only.",
+    description: "SuperGrok by xAI (Elon Musk's AI company) gives you Grok 4.1 — one of the most intelligent AI models available. Real-time access to X (Twitter) data, AI image generation, HD video generation, and 4x AI agents. Available as Lite (৳1,699) or Standard (৳4,990). Personal accounts only.",
     accentColor: "#1a1a2e",
     faqs: [
       { q: "What is SuperGrok?", a: "SuperGrok is the premium tier of Grok by xAI. It gives you access to Grok 4.1 — xAI's most powerful model — plus real-time X (Twitter) data, image/video generation, DeepSearch, and AI agents. Available as Lite ($10/mo) or Standard ($30/mo)." },
       { q: "What makes Grok unique?", a: "Grok has real-time access to X (Twitter) data, which no other AI has. This makes it uniquely valuable for tracking news, trends, market sentiment, and real-time events. It's also uncensored on most topics." },
-      { q: "What is the difference between SuperGrok Lite and Standard?", a: "Lite (৳1,495): Grok 4, image/video generation, 2x longer chat context. Standard (৳3,990): Grok 4.1 unlimited, DeepSearch, HD images, 30-second videos, 4x AI agents, real-time X data." },
+      { q: "What is the difference between SuperGrok Lite and Standard?", a: "Lite (৳1,699): Grok 4, image/video generation, 2x longer chat context. Standard (৳4,990): Grok 4.1 unlimited, DeepSearch, HD images, 30-second videos, 4x AI agents, real-time X data." },
       { q: "Can SuperGrok generate videos?", a: "Yes. SuperGrok Lite includes AI video generation. SuperGrok Standard includes HD 30-second video generation from text prompts." },
       { q: "How fast is delivery?", a: "SuperGrok Personal accounts are delivered within 2–4 hours after payment confirmation." },
     ],
@@ -277,16 +277,16 @@ const BRAND_META: Record<string, {
 
   "perplexity-pro-bangladesh": {
     displayName: "Perplexity Pro",
-    tagline: "Perplexity Pro Bangladesh — from ৳350/month",
+    tagline: "Perplexity Pro Bangladesh — from ৳599/month",
     seoTitle: "Perplexity Pro Bangladesh — From BDT 350/mo | AI Premium Shop",
     seoDescription: "Perplexity Pro Bangladesh from BDT 350/mo. AI research with citations, deep research mode. bKash/Nagad. 5-15 min delivery. AI Premium Shop.",
-    description: "Perplexity Pro is the AI research tool that gives you answers with citations — like a search engine powered by GPT-5, Claude, and Gemini. Every answer links to sources. Deep Research mode synthesizes dozens of sources into a comprehensive report. Available from Shared (৳350) to Personal (৳2,990) to Max (৳29,900).",
+    description: "Perplexity Pro is the AI research tool that gives you answers with citations — like a search engine powered by GPT-5, Claude, and Gemini. Every answer links to sources. Deep Research mode synthesizes dozens of sources into a comprehensive report. Available from Shared (৳599) to Personal (৳2,950) to Max (৳10,990).",
     accentColor: "#20b2aa",
     faqs: [
       { q: "What is Perplexity Pro?", a: "Perplexity Pro is a premium AI research assistant. It searches the web in real time and gives you sourced, cited answers. Unlike ChatGPT, every response links to the original sources — making it ideal for research, fact-checking, and staying current." },
       { q: "What is Perplexity Deep Research?", a: "Deep Research is Perplexity's most powerful feature. It reads 20–50 web sources and synthesizes them into a detailed research report. Used by students, journalists, consultants, and analysts for comprehensive topic research." },
       { q: "Is Perplexity Pro better than Google for research?", a: "For synthesized answers with citations, yes. Perplexity reads multiple sources and summarizes them — saving hours vs reading individual pages. For discovering new pages, Google is still useful alongside Perplexity." },
-      { q: "What is Perplexity Max?", a: "Perplexity Max at ৳29,900/month gives unlimited deep research, access to all frontier AI models, and maximum data handling for enterprise-level research." },
+      { q: "What is Perplexity Max?", a: "Perplexity Max at ৳10,990/month gives unlimited deep research, access to all frontier AI models, and maximum data handling for enterprise-level research." },
       { q: "How fast is delivery?", a: "Shared plans: 5–15 minutes. Personal plan: 2–4 hours after payment." },
     ],
   },
@@ -316,7 +316,7 @@ const BRAND_META: Record<string, {
     accentColor: "#6366f1",
     faqs: [
       { q: "Why is Ideogram better for text in images?", a: "Ideogram was specifically trained to render readable text inside AI-generated images. Midjourney and Stable Diffusion often distort text. Ideogram produces clean, accurate typography — essential for logos, thumbnails, and marketing graphics." },
-      { q: "What is Ideogram Plus vs Pro?", a: "Plus (৳2,990): 1000 priority credits/month + unlimited slow generation. For regular use. Pro (৳8,970): 3500 priority credits/month + batch generation — for high-volume designers and agencies." },
+      { q: "What is Ideogram Plus vs Pro?", a: "Plus (৳2,990): 1000 priority credits/month + unlimited slow generation. For regular use. Pro (৳3,990): 3500 priority credits/month + batch generation — for high-volume designers and agencies." },
       { q: "Can I use Ideogram for YouTube thumbnails?", a: "Yes. Ideogram is popular for YouTube thumbnails because it can accurately add text overlays to striking AI-generated backgrounds. This saves significant time vs manual Photoshop work." },
       { q: "Does Ideogram support Bangla text in images?", a: "Ideogram works best with English text, but can handle some Bangla characters. For Bangla text rendering, results may vary — test with a few prompts before committing to heavy use." },
       { q: "How fast is delivery?", a: "Ideogram Personal accounts are delivered within 2–4 hours after payment confirmation." },
@@ -357,15 +357,15 @@ const BRAND_META: Record<string, {
 
   "suno-ai-bangladesh": {
     displayName: "Suno AI",
-    tagline: "Suno AI Bangladesh — from ৳1,495/month",
+    tagline: "Suno AI Bangladesh — from ৳4,990/month",
     seoTitle: "Suno AI Bangladesh — From BDT 1,495/mo | AI Premium Shop",
     seoDescription: "Suno AI Bangladesh from BDT 1,495/mo. AI music generation, 500 songs/mo, Bangla songs. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
-    description: "Suno AI creates complete original songs from a text prompt — vocals, instruments, and lyrics included. Generate pop, hip-hop, folk, Bangla fusion, electronic, or any genre in seconds. Pro plan: 2,500 credits (~500 songs) for ৳1,495. Premier: 10,000 credits (~2,000 songs) for ৳3,990.",
+    description: "Suno AI creates complete original songs from a text prompt — vocals, instruments, and lyrics included. Generate pop, hip-hop, folk, Bangla fusion, electronic, or any genre in seconds. Pro plan: 2,500 credits (~500 songs) for ৳4,990. Premier: 10,000 credits (~2,000 songs) for ৳3,990.",
     accentColor: "#7c3aed",
     faqs: [
       { q: "What is Suno AI?", a: "Suno AI is an AI music generator that creates complete original songs from text prompts. You describe the mood, genre, topic, and style — Suno writes the lyrics, composes the melody, and generates a full song with vocals and instruments in seconds." },
       { q: "Can Suno AI make Bangla songs?", a: "Yes. Suno AI supports Bangla lyrics and music generation. You can request Bangla folk (baul), modern Bangla pop, or Bangla hip-hop. Quality is improving with each model version." },
-      { q: "How many songs can I make per month?", a: "Suno Pro (৳1,495): ~500 songs/month (2,500 credits, ~5 per song). Premier (৳3,990): ~2,000 songs/month (10,000 credits). More than enough for professional content creators." },
+      { q: "How many songs can I make per month?", a: "Suno Pro (৳4,990): ~500 songs/month (2,500 credits, ~5 per song). Premier (৳3,990): ~2,000 songs/month (10,000 credits). More than enough for professional content creators." },
       { q: "Can I use Suno AI music in YouTube videos?", a: "Yes. Suno Pro and Premier plans include commercial use rights. You can use generated music in YouTube videos, social media, client work, and products." },
       { q: "How fast is delivery?", a: "Suno AI Personal accounts are delivered within 2–4 hours after payment confirmation." },
     ],
@@ -380,7 +380,7 @@ const BRAND_META: Record<string, {
     accentColor: "#6e40c9",
     faqs: [
       { q: "What IDEs does GitHub Copilot work with?", a: "GitHub Copilot works with VS Code, IntelliJ IDEA, PyCharm, WebStorm, Neovim, Vim, and Azure Data Studio. It integrates seamlessly — once installed, completions appear as you type." },
-      { q: "What is the difference between Copilot Pro and Pro+?", a: "Pro (৳1,495): unlimited completions + 300 premium requests/month using Claude and GPT-5 models. Pro+ (৳5,831): 1,500 premium requests/month (5× more) + highest model access. For heavy AI-assisted coding, choose Pro+." },
+      { q: "What is the difference between Copilot Pro and Pro+?", a: "Pro (৳1,590): unlimited completions + 300 premium requests/month using Claude and GPT-5 models. Pro+ (৳5,831): 1,500 premium requests/month (5× more) + highest model access. For heavy AI-assisted coding, choose Pro+." },
       { q: "Does GitHub Copilot write entire files or just lines?", a: "Both. Copilot can complete single lines, suggest entire functions, generate classes, write tests, and with Copilot Workspace, can plan and implement multi-file changes across a repository." },
       { q: "How does GitHub Copilot compare to Cursor?", a: "Copilot installs as a plugin in your existing IDE — minimal disruption to your workflow. Cursor is a standalone IDE with deeper AI integration and codebase-level awareness. Many developers use both." },
       { q: "How fast is delivery?", a: "GitHub Copilot Personal accounts are delivered within 2–4 hours after payment confirmation." },
@@ -421,7 +421,7 @@ const BRAND_META: Record<string, {
 
   "manus-ai-bangladesh": {
     displayName: "Manus AI",
-    tagline: "Manus AI Bangladesh — ৳2,500/month",
+    tagline: "Manus AI Bangladesh — ৳5,990/month",
     seoTitle: "Manus AI Bangladesh — BDT 2,500/mo | AI Premium Shop",
     seoDescription: "Manus AI Bangladesh BDT 2,500/mo. Autonomous AI agent, web browsing, data analysis, report writing. bKash/Nagad. AI Premium Shop.",
     description: "Manus AI is a fully autonomous AI agent — it browses the web, writes code, analyzes data, generates reports, and completes complex multi-step tasks without human intervention. Think of it as an AI employee that handles research, analysis, and automation entirely on its own.",
@@ -437,10 +437,10 @@ const BRAND_META: Record<string, {
 
   "leonardo-ai-bangladesh": {
     displayName: "Leonardo AI",
-    tagline: "Leonardo AI Bangladesh — from ৳599/month",
+    tagline: "Leonardo AI Bangladesh — from ৳499/month",
     seoTitle: "Leonardo AI Bangladesh — BDT 599/mo | AI Premium Shop",
     seoDescription: "Leonardo AI Bangladesh from BDT 599/mo. AI image generation, 3D textures, character design. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
-    description: "Leonardo AI is a powerful AI image generator built for creative professionals. Generate stunning visuals, 3D textures, concept art, and photorealistic images. Shared Apprentice plan available from ৳599/month — includes 8,500 tokens and full commercial rights.",
+    description: "Leonardo AI is a powerful AI image generator built for creative professionals. Generate stunning visuals, 3D textures, concept art, and photorealistic images. Shared Apprentice plan available from ৳499/month — includes 8,500 tokens and full commercial rights.",
     accentColor: "#7c3aed",
     faqs: [
       { q: "What is Leonardo AI best for?", a: "Leonardo AI excels at game assets, concept art, character design, product photography, and stylized illustrations. Its fine-tuning capabilities let you train on your own style." },
@@ -735,27 +735,27 @@ const BRAND_META: Record<string, {
 
   "freepik-premium-bangladesh": {
     displayName: "Freepik Premium",
-    tagline: "Freepik Premium Bangladesh — from ৳450/month",
+    tagline: "Freepik Premium Bangladesh — from ৳499/month",
     seoTitle: "Freepik Premium Bangladesh — BDT 450/mo | AI Premium Shop",
     seoDescription: "Freepik Premium Bangladesh from BDT 450/mo. Unlimited premium vectors, photos, icons. AI image generation, reimagine, upscaler. bKash/Nagad. 5-30 min. AI Premium Shop.",
-    description: "Freepik Premium gives you unlimited access to millions of premium vectors, photos, PSDs, and icons — plus AI image generation, AI reimagine, and AI upscaler. Perfect for Bangladeshi designers and marketers. Shared from ৳450/month, Premium Plus ৳890, Personal ৳1,730. Pay via bKash or Nagad.",
+    description: "Freepik Premium gives you unlimited access to millions of premium vectors, photos, PSDs, and icons — plus AI image generation, AI reimagine, and AI upscaler. Perfect for Bangladeshi designers and marketers. Shared from ৳499/month, Premium Plus ৳890, Personal ৳1,730. Pay via bKash or Nagad.",
     accentColor: "#1273eb",
     filterBySlug: true,
     faqs: [
       { q: "What is Freepik Premium?", a: "Freepik Premium gives you unlimited downloads of millions of premium vectors, photos, PSD files, and icons — plus AI-powered image generation, reimagine, and upscaling tools." },
       { q: "Is Freepik Premium safe to buy through AIPS?", a: "Yes. AIPS provides working access with a 30-day replacement warranty. We have served a growing community of customers since 2024." },
       { q: "How do I buy without a credit card?", a: "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes." },
-      { q: "What's the difference between shared and personal?", a: "Shared (৳450): Access through a shared pool — budget-friendly. Personal (৳1,730): Your own dedicated Freepik account — full control and privacy." },
+      { q: "What's the difference between shared and personal?", a: "Shared (৳499): Access through a shared pool — budget-friendly. Personal (৳1,730): Your own dedicated Freepik account — full control and privacy." },
       { q: "How fast is delivery?", a: "Freepik Premium shared plans: 5–30 minutes. Personal plans: 2–4 hours." },
     ],
   },
 
   "kling-ai-bangladesh": {
     displayName: "Kling AI",
-    tagline: "Kling AI Bangladesh — from ৳270/month",
+    tagline: "Kling AI Bangladesh — from ৳799/month",
     seoTitle: "Kling AI Bangladesh — BDT 270/mo | AI Premium Shop",
     seoDescription: "Kling AI Bangladesh from BDT 270/mo. Cinematic text-to-video and image-to-video AI. Character consistency, motion realism. bKash/Nagad. 5-30 min. AI Premium Shop.",
-    description: "Kling AI creates stunning AI videos from text and images. Leading Chinese text-to-video model known for cinematic quality, character consistency, and motion realism. Perfect for Bangladeshi creators. Shared from ৳270/month, Pro Shared ৳980, Personal ৳1,050. Pay via bKash or Nagad.",
+    description: "Kling AI creates stunning AI videos from text and images. Leading Chinese text-to-video model known for cinematic quality, character consistency, and motion realism. Perfect for Bangladeshi creators. Shared from ৳799/month, Pro Shared ৳980, Personal ৳1,050. Pay via bKash or Nagad.",
     accentColor: "#ff6b35",
     filterBySlug: true,
     faqs: [
@@ -803,17 +803,17 @@ const BRAND_META: Record<string, {
 
   "capcut-pro-bangladesh": {
     displayName: "CapCut Pro",
-    tagline: "CapCut Pro Bangladesh — from ৳399/month",
+    tagline: "CapCut Pro Bangladesh — from ৳299/month",
     seoTitle: "CapCut Pro Bangladesh — BDT 399/mo | AI Premium Shop",
     seoDescription: "CapCut Pro Bangladesh from BDT 399/mo. AI video editing for TikTok, Reels, Shorts. Auto-captions, keyframe, 4K. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
-    description: "CapCut Pro is the #1 video editing app for TikTok, Instagram Reels, and YouTube Shorts. AI effects, auto-captions, keyframe animation, 4K export, no watermark. The tool powering Bangladesh's creator economy. Shared from ৳399/month, Personal ৳1,195/month. Pay via bKash or Nagad.",
+    description: "CapCut Pro is the #1 video editing app for TikTok, Instagram Reels, and YouTube Shorts. AI effects, auto-captions, keyframe animation, 4K export, no watermark. The tool powering Bangladesh's creator economy. Shared from ৳299/month, Personal ৳1,195/month. Pay via bKash or Nagad.",
     accentColor: "#161823",
     filterBySlug: true,
     faqs: [
       { q: "What can I do with CapCut Pro?", a: "CapCut Pro gives you professional video editing for TikTok, Instagram Reels, and YouTube Shorts. Features include AI effects, auto-captions, keyframe animation, 4K export, no watermark, advanced transitions, and background removal." },
       { q: "Is CapCut Pro safe to buy through AIPS?", a: "Yes. AIPS provides working CapCut Pro access — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. We have served a growing community of customers since 2024." },
       { q: "How do I buy CapCut Pro in Bangladesh without a credit card?", a: "Message AI Premium Shop on WhatsApp (+880 1865-385348). Choose your plan. Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes. No international credit card needed." },
-      { q: "What's the difference between shared and personal?", a: "Shared (৳399): Access CapCut Pro features through a shared pool — great for budget users. Personal (৳1,195): Your own dedicated CapCut Pro account with full control — best for professionals and agencies." },
+      { q: "What's the difference between shared and personal?", a: "Shared (৳299): Access CapCut Pro features through a shared pool — great for budget users. Personal (৳1,195): Your own dedicated CapCut Pro account with full control — best for professionals and agencies." },
       { q: "How fast is delivery?", a: "CapCut Pro shared plans: 5–30 minutes. Personal plans: 2–4 hours. The clock starts after payment confirmation on WhatsApp." },
     ],
   },
@@ -1383,7 +1383,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   {[
                     { seg: "✍️ Writers & Researchers", why: "Best writing quality of any AI", plan: "Premium Shared", price: "৳1,495", link: "/best-ai-for-students" },
                     { seg: "⚖️ Lawyers & Legal", why: "Legal document analysis, case research", plan: "Personal", price: "৳2,990", link: "/best-ai-for-business" },
-                    { seg: "🖥️ Developers", why: "Claude Code = autonomous coding agent", plan: "Premium Shared", price: "৳1,495", link: "/best-ai-for-developers" },
+                    { seg: "🖥️ Developers", why: "Claude Code = autonomous coding agent", plan: "Premium Shared", price: "৳1,590", link: "/best-ai-for-developers" },
                     { seg: "🎬 Content Creators", why: "Long-form blogs, scripts, newsletters", plan: "Premium Shared", price: "৳1,495", link: "/best-ai-for-creators" },
                     { seg: "🏢 Agencies", why: "Team plan with admin controls", plan: "Team", price: "৳3,990", link: "/best-ai-for-business" },
                     { seg: "⚡ Power Users", why: "5x–20x limits, 1M context window", plan: "Max 5x/20x", price: "৳14,950–29,900", link: "/" },
@@ -1589,7 +1589,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
               </div>
             </div>
             <div className="mt-4 p-4 rounded-xl text-center text-sm" style={{ backgroundColor: "#20b2aa10", color: "#20b2aa" }}>
-              Perplexity saves students <strong>2–3 hours PER research paper</strong>. At ৳350/mo, that's less than <strong>৳12 per hour saved</strong>.
+              Perplexity saves students <strong>2–3 hours PER research paper</strong>. At ৳599/mo, that's less than <strong>৳12 per hour saved</strong>.
             </div>
           </div>
         )}

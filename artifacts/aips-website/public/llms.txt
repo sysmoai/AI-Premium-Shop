@@ -1,0 +1,84 @@
+# AI Premium Shop (AIPS) — llms.txt
+# Bangladesh trusted AI subscription marketplace
+# 3,000+ customers since 2024. 86 products, 41 brands, 8 categories.
+
+## Site
+domain: aipremiumshop.com
+canonical: https://aipremiumshop.com
+description: Premium AI tools in Bangladesh from ৳299/mo. ChatGPT, Claude, Midjourney, Gemini, Freepik, Windsurf & 80+ more. bKash/Nagad. 5-15 min delivery.
+
+## Core Pages
+- Home: https://aipremiumshop.com/
+- Products: https://aipremiumshop.com/products
+- About: https://aipremiumshop.com/about
+- FAQ: https://aipremiumshop.com/faq
+- Contact: https://aipremiumshop.com/contact
+- Sitemap: https://aipremiumshop.com/sitemap.xml
+- Robots: https://aipremiumshop.com/robots.txt
+
+## Categories (8)
+- AI Assistant & Chat (23): https://aipremiumshop.com/category/ai-assistant
+- AI Code & Dev (10): https://aipremiumshop.com/category/ai-code
+- AI Image & Design (14): https://aipremiumshop.com/category/ai-image
+- AI Video (7): https://aipremiumshop.com/category/ai-video
+- AI Voice & Music (11): https://aipremiumshop.com/category/ai-voice-music
+- AI Workspace (10): https://aipremiumshop.com/category/ai-workspace
+- AI Writing & SEO (6): https://aipremiumshop.com/category/ai-writing
+- Bundles & Packages (5): https://aipremiumshop.com/category/bundles
+
+## Products (41 brands)
+- Replit — Replit Core (from ৳299): https://aipremiumshop.com/products/replit-bangladesh
+- Meta AI — Meta AI Premium (from ৳299): https://aipremiumshop.com/products/meta-ai-bangladesh
+- ChatGPT — ChatGPT Plus (from ৳350): https://aipremiumshop.com/products/chatgpt-plus-bangladesh
+- Perplexity — Perplexity Pro (from ৳350): https://aipremiumshop.com/products/perplexity-pro-bangladesh
+- Gamma — Gamma Plus (from ৳399): https://aipremiumshop.com/products/gamma-bangladesh
+- Codeium — Codeium (from ৳399): https://aipremiumshop.com/products/codeium-bangladesh
+- Mistral AI — Mistral AI (from ৳399): https://aipremiumshop.com/products/mistral-ai-bangladesh
+- AI Premium Shop — Student Essentials Package (from ৳449): https://aipremiumshop.com/products/student-package-bangladesh
+- Udio — Udio Pro (from ৳499): https://aipremiumshop.com/products/udio-bangladesh
+- Canva — Canva Pro (from ৳499): https://aipremiumshop.com/products/canva-pro-bangladesh
+- Murf.ai — Murf.ai (from ৳499): https://aipremiumshop.com/products/murf-ai-bangladesh
+- Copy.ai — Copy.ai (from ৳499): https://aipremiumshop.com/products/copy-ai-bangladesh
+- Coda — Coda AI (from ৳499): https://aipremiumshop.com/products/coda-ai-bangladesh
+- Google — Google AI Pro (Gemini Advanced) (from ৳500): https://aipremiumshop.com/products/gemini-advanced-bangladesh
+- Leonardo AI — Leonardo AI (from ৳599): https://aipremiumshop.com/products/leonardo-ai-bangladesh
+- Adobe — Adobe Firefly (from ৳599): https://aipremiumshop.com/products/adobe-firefly-bangladesh
+- Play.ht — Play.ht (from ৳599): https://aipremiumshop.com/products/play-ht-bangladesh
+- ChatGPT — ChatGPT Business (from ৳699): https://aipremiumshop.com/products/chatgpt-business-bangladesh
+- ElevenLabs — ElevenLabs Starter (from ৳748): https://aipremiumshop.com/products/elevenlabs-bangladesh
+- Otter.ai — Otter.ai Pro (from ৳799): https://aipremiumshop.com/products/otter-ai-bangladesh
+- Writesonic — Writesonic Individual (from ৳799): https://aipremiumshop.com/products/writesonic-bangladesh
+- Notion — Notion Business (from ৳800): https://aipremiumshop.com/products/notion-business-bangladesh
+- v0.dev — v0.dev Pro (from ৳999): https://aipremiumshop.com/products/v0-dev-bangladesh
+- ChatGPT — ChatGPT Go (from ৳1196): https://aipremiumshop.com/products/chatgpt-go-bangladesh
+- Midjourney — Midjourney Standard (from ৳1199): https://aipremiumshop.com/products/midjourney-bangladesh
+- Manus — Manus AI (from ৳1199): https://aipremiumshop.com/products/manus-ai-bangladesh
+- Claude — Claude Pro (from ৳1495): https://aipremiumshop.com/products/claude-pro-bangladesh
+- Grok — SuperGrok Lite (from ৳1495): https://aipremiumshop.com/products/supergrok-bangladesh
+- Suno — Suno AI Pro (from ৳1495): https://aipremiumshop.com/products/suno-ai-bangladesh
+- GitHub — GitHub Copilot Pro (from ৳1495): https://aipremiumshop.com/products/github-copilot-bangladesh
+- HeyGen — HeyGen Creator (from ৳1499): https://aipremiumshop.com/products/heygen-bangladesh
+- Jasper — Jasper (from ৳1499): https://aipremiumshop.com/products/jasper-bangladesh
+- Runway — Runway Standard (from ৳1794): https://aipremiumshop.com/products/runway-bangladesh
+- Luma — Luma Dream Machine (from ৳1990): https://aipremiumshop.com/products/luma-dream-machine-bangladesh
+- Ideogram — Ideogram Plus (from ৳2990): https://aipremiumshop.com/products/ideogram-bangladesh
+- Cursor — Cursor Pro (from ৳2990): https://aipremiumshop.com/products/cursor-bangladesh
+- Pika — Pika Labs (from ৳2990): https://aipremiumshop.com/products/pika-labs-bangladesh
+- AI Premium Shop — Freelancer Bundle (from ৳3999): https://aipremiumshop.com/products/freelancer-bundle-bangladesh
+- ChatGPT — ChatGPT Pro (from ৳4500): https://aipremiumshop.com/products/chatgpt-pro-bangladesh
+- AI Premium Shop — Business Package (from ৳15000): https://aipremiumshop.com/products/business-package-bangladesh
+- AI Premium Shop — B2B Implementation Service (from ৳25000): https://aipremiumshop.com/products/b2b-implementation-bangladesh
+
+## Comparisons
+- /chatgpt-vs-claude: https://aipremiumshop.com/chatgpt-vs-claude
+- /chatgpt-vs-gemini: https://aipremiumshop.com/chatgpt-vs-gemini
+- /copilot-vs-cursor: https://aipremiumshop.com/copilot-vs-cursor
+- /midjourney-vs-ideogram: https://aipremiumshop.com/midjourney-vs-ideogram
+- /midjourney-vs-leonardo: https://aipremiumshop.com/midjourney-vs-leonardo
+- /canva-vs-adobe: https://aipremiumshop.com/canva-vs-adobe
+- /suno-vs-udio: https://aipremiumshop.com/suno-vs-udio
+
+## Blog
+- https://aipremiumshop.com/blog/best-ai-tools-bangladesh-2026
+- https://aipremiumshop.com/blog/how-to-get-chatgpt-plus-bangladesh
+- https://aipremiumshop.com/blog/pay-ai-tools-bkash-bangladesh

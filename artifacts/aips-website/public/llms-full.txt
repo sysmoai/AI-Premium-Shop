@@ -1,0 +1,459 @@
+# AI Premium Shop (AIPS) — llms.txt
+# Bangladesh trusted AI subscription marketplace
+# 3,000+ customers since 2024. 86 products, 41 brands, 8 categories.
+
+## Full Product Catalog
+
+## Site
+domain: aipremiumshop.com
+canonical: https://aipremiumshop.com
+description: Premium AI tools in Bangladesh from ৳299/mo. ChatGPT, Claude, Midjourney, Gemini, Freepik, Windsurf & 80+ more. bKash/Nagad. 5-15 min delivery.
+
+## Core Pages
+- Home: https://aipremiumshop.com/
+- Products: https://aipremiumshop.com/products
+- About: https://aipremiumshop.com/about
+- FAQ: https://aipremiumshop.com/faq
+- Contact: https://aipremiumshop.com/contact
+- Sitemap: https://aipremiumshop.com/sitemap.xml
+- Robots: https://aipremiumshop.com/robots.txt
+
+## Categories (8)
+- AI Assistant & Chat (23): https://aipremiumshop.com/category/ai-assistant
+- AI Code & Dev (10): https://aipremiumshop.com/category/ai-code
+- AI Image & Design (14): https://aipremiumshop.com/category/ai-image
+- AI Video (7): https://aipremiumshop.com/category/ai-video
+- AI Voice & Music (11): https://aipremiumshop.com/category/ai-voice-music
+- AI Workspace (10): https://aipremiumshop.com/category/ai-workspace
+- AI Writing & SEO (6): https://aipremiumshop.com/category/ai-writing
+- Bundles & Packages (5): https://aipremiumshop.com/category/bundles
+
+## Products (41 brands)
+- Replit — Replit Core (from ৳299): https://aipremiumshop.com/products/replit-bangladesh
+- Meta AI — Meta AI Premium (from ৳299): https://aipremiumshop.com/products/meta-ai-bangladesh
+- ChatGPT — ChatGPT Plus (from ৳350): https://aipremiumshop.com/products/chatgpt-plus-bangladesh
+- Perplexity — Perplexity Pro (from ৳350): https://aipremiumshop.com/products/perplexity-pro-bangladesh
+- Gamma — Gamma Plus (from ৳399): https://aipremiumshop.com/products/gamma-bangladesh
+- Codeium — Codeium (from ৳399): https://aipremiumshop.com/products/codeium-bangladesh
+- Mistral AI — Mistral AI (from ৳399): https://aipremiumshop.com/products/mistral-ai-bangladesh
+- AI Premium Shop — Student Essentials Package (from ৳449): https://aipremiumshop.com/products/student-package-bangladesh
+- Udio — Udio Pro (from ৳499): https://aipremiumshop.com/products/udio-bangladesh
+- Canva — Canva Pro (from ৳499): https://aipremiumshop.com/products/canva-pro-bangladesh
+- Murf.ai — Murf.ai (from ৳499): https://aipremiumshop.com/products/murf-ai-bangladesh
+- Copy.ai — Copy.ai (from ৳499): https://aipremiumshop.com/products/copy-ai-bangladesh
+- Coda — Coda AI (from ৳499): https://aipremiumshop.com/products/coda-ai-bangladesh
+- Google — Google AI Pro (Gemini Advanced) (from ৳500): https://aipremiumshop.com/products/gemini-advanced-bangladesh
+- Leonardo AI — Leonardo AI (from ৳599): https://aipremiumshop.com/products/leonardo-ai-bangladesh
+- Adobe — Adobe Firefly (from ৳599): https://aipremiumshop.com/products/adobe-firefly-bangladesh
+- Play.ht — Play.ht (from ৳599): https://aipremiumshop.com/products/play-ht-bangladesh
+- ChatGPT — ChatGPT Business (from ৳699): https://aipremiumshop.com/products/chatgpt-business-bangladesh
+- ElevenLabs — ElevenLabs Starter (from ৳748): https://aipremiumshop.com/products/elevenlabs-bangladesh
+- Otter.ai — Otter.ai Pro (from ৳799): https://aipremiumshop.com/products/otter-ai-bangladesh
+- Writesonic — Writesonic Individual (from ৳799): https://aipremiumshop.com/products/writesonic-bangladesh
+- Notion — Notion Business (from ৳800): https://aipremiumshop.com/products/notion-business-bangladesh
+- v0.dev — v0.dev Pro (from ৳999): https://aipremiumshop.com/products/v0-dev-bangladesh
+- ChatGPT — ChatGPT Go (from ৳1196): https://aipremiumshop.com/products/chatgpt-go-bangladesh
+- Midjourney — Midjourney Standard (from ৳1199): https://aipremiumshop.com/products/midjourney-bangladesh
+- Manus — Manus AI (from ৳1199): https://aipremiumshop.com/products/manus-ai-bangladesh
+- Claude — Claude Pro (from ৳1495): https://aipremiumshop.com/products/claude-pro-bangladesh
+- Grok — SuperGrok Lite (from ৳1495): https://aipremiumshop.com/products/supergrok-bangladesh
+- Suno — Suno AI Pro (from ৳1495): https://aipremiumshop.com/products/suno-ai-bangladesh
+- GitHub — GitHub Copilot Pro (from ৳1495): https://aipremiumshop.com/products/github-copilot-bangladesh
+- HeyGen — HeyGen Creator (from ৳1499): https://aipremiumshop.com/products/heygen-bangladesh
+- Jasper — Jasper (from ৳1499): https://aipremiumshop.com/products/jasper-bangladesh
+- Runway — Runway Standard (from ৳1794): https://aipremiumshop.com/products/runway-bangladesh
+- Luma — Luma Dream Machine (from ৳1990): https://aipremiumshop.com/products/luma-dream-machine-bangladesh
+- Ideogram — Ideogram Plus (from ৳2990): https://aipremiumshop.com/products/ideogram-bangladesh
+- Cursor — Cursor Pro (from ৳2990): https://aipremiumshop.com/products/cursor-bangladesh
+- Pika — Pika Labs (from ৳2990): https://aipremiumshop.com/products/pika-labs-bangladesh
+- AI Premium Shop — Freelancer Bundle (from ৳3999): https://aipremiumshop.com/products/freelancer-bundle-bangladesh
+- ChatGPT — ChatGPT Pro (from ৳4500): https://aipremiumshop.com/products/chatgpt-pro-bangladesh
+- AI Premium Shop — Business Package (from ৳15000): https://aipremiumshop.com/products/business-package-bangladesh
+- AI Premium Shop — B2B Implementation Service (from ৳25000): https://aipremiumshop.com/products/b2b-implementation-bangladesh
+
+## Comparisons
+- /chatgpt-vs-claude: https://aipremiumshop.com/chatgpt-vs-claude
+- /chatgpt-vs-gemini: https://aipremiumshop.com/chatgpt-vs-gemini
+- /copilot-vs-cursor: https://aipremiumshop.com/copilot-vs-cursor
+- /midjourney-vs-ideogram: https://aipremiumshop.com/midjourney-vs-ideogram
+- /midjourney-vs-leonardo: https://aipremiumshop.com/midjourney-vs-leonardo
+- /canva-vs-adobe: https://aipremiumshop.com/canva-vs-adobe
+- /suno-vs-udio: https://aipremiumshop.com/suno-vs-udio
+
+## Blog
+- https://aipremiumshop.com/blog/best-ai-tools-bangladesh-2026
+- https://aipremiumshop.com/blog/how-to-get-chatgpt-plus-bangladesh
+- https://aipremiumshop.com/blog/pay-ai-tools-bkash-bangladesh
+
+### Replit — Replit Core
+URL: https://aipremiumshop.com/products/replit-bangladesh
+Category: AI Code & Dev
+Variants:
+  - Replit Core - Shared: ৳299/mo ($20 official, shared)
+  - Replit Core - Personal: ৳500/mo ($20 official, personal)
+Description: AI Premium Shop SPECIAL —” Replit Core at ৳500. Cloud IDE with AI Agent, deploy and host apps. Build anything with AI.
+Capabilities: code, agents
+
+### Meta AI — Meta AI Premium
+URL: https://aipremiumshop.com/products/meta-ai-bangladesh
+Category: AI Assistant & Chat
+Variants:
+  - Meta AI Premium - Shared: ৳299/mo ($4.99 official, shared)
+Description: Shared Meta AI Premium. Llama 4, real-time image gen, WhatsApp/Instagram integration. Budget-friendly AI access.
+Capabilities: text, vision, image-gen, agents
+
+### ChatGPT — ChatGPT Plus
+URL: https://aipremiumshop.com/products/chatgpt-plus-bangladesh
+Category: AI Assistant & Chat
+Variants:
+  - ChatGPT Plus - Starter Shared: ৳350/mo ($20 official, shared)
+  - ChatGPT Plus - Premium Shared: ৳950/mo ($20 official, shared)
+  - ChatGPT Plus - Personal: ৳2990/mo ($20 official, personal)
+Description: Budget-friendly shared ChatGPT Plus. GPT-5 series for text, code, vision, search, DALL-E, AI agents.
+Capabilities: text, code, vision, search, image-gen, agents
+
+### Perplexity — Perplexity Pro
+URL: https://aipremiumshop.com/products/perplexity-pro-bangladesh
+Category: AI Assistant & Chat
+Variants:
+  - Perplexity Pro - Shared: ৳350/mo ($20 official, shared)
+  - Perplexity Pro - Personal: ৳2990/mo ($20 official, personal)
+  - Perplexity Max - Personal: ৳29900/mo ($200 official, personal)
+Description: Shared Perplexity Pro. AI-powered deep research with citations. 300+ Pro searches/day.
+Capabilities: text, search, document
+
+### Gamma — Gamma Plus
+URL: https://aipremiumshop.com/products/gamma-bangladesh
+Category: AI Workspace
+Variants:
+  - Gamma Plus - Shared: ৳399/mo ($8 official, shared)
+  - Gamma - Personal: ৳1199/mo ($8 official, personal)
+Description: Shared Gamma Plus. AI presentations, docs, websites. Remove branding, advanced AI image models.
+Capabilities: text, workspace
+
+### Codeium — Codeium
+URL: https://aipremiumshop.com/products/codeium-bangladesh
+Category: AI Code & Dev
+Variants:
+  - Codeium - Shared: ৳399/mo ($12 official, shared)
+  - Codeium - Personal: ৳1490/mo ($12 official, personal)
+Description: Shared Codeium Pro. Full autocomplete, 500+ fast requests/mo, 70+ IDE support. Best free Copilot alternative.
+Capabilities: code, agents
+
+### Mistral AI — Mistral AI
+URL: https://aipremiumshop.com/products/mistral-ai-bangladesh
+Category: AI Assistant & Chat
+Variants:
+  - Mistral AI - Shared: ৳399/mo ($14.99 official, shared)
+  - Mistral AI - Personal: ৳1990/mo ($14.99 official, personal)
+Description: Shared Mistral AI Pro. Mistral Large, Codestral, Le Chat. Best open-source reasoning model. EU-hosted, privacy-first.
+Capabilities: text, code, vision, agents
+
+### AI Premium Shop — Student Essentials Package
+URL: https://aipremiumshop.com/products/student-package-bangladesh
+Category: Bundles & Packages
+Variants:
+  - Student Essentials Package: ৳449/mo ($8 official, bundle)
+  - University Pro Package: ৳899/mo ($20 official, bundle)
+Description: AI bundle for students. ChatGPT Shared + AI setup guide. Perfect starting point.
+Capabilities: text, code
+
+### Udio — Udio Pro
+URL: https://aipremiumshop.com/products/udio-bangladesh
+Category: AI Voice & Music
+Variants:
+  - Udio Pro - Shared: ৳499/mo ($10 official, shared)
+  - Udio - Personal: ৳1990/mo ($10 official, personal)
+Description: Shared Udio Pro. 1200 credits/mo, generate up to 8 songs at once, all features. AI music creation.
+Capabilities: music
+
+### Canva — Canva Pro
+URL: https://aipremiumshop.com/products/canva-pro-bangladesh
+Category: AI Image & Design
+Variants:
+  - Canva Pro - Shared: ৳499/mo ($12.99 official, shared)
+  - Canva Pro - Personal: ৳1990/mo ($12.99 official, personal)
+Description: Shared Canva Pro. 100M+ stock assets, Magic Studio AI, 1TB storage, brand kit, background remover. Perfect for BD creators.
+Capabilities: image-gen, image-edit, text, workspace
+
+### Murf.ai — Murf.ai
+URL: https://aipremiumshop.com/products/murf-ai-bangladesh
+Category: AI Voice & Music
+Variants:
+  - Murf.ai - Shared: ৳499/mo ($19 official, shared)
+  - Murf.ai - Personal: ৳1990/mo ($19 official, personal)
+Description: Shared Murf.ai. 120+ AI voices, 20+ languages, voice cloning, commercial license. Perfect for BD YouTubers and educators.
+Capabilities: voice, text
+
+### Copy.ai — Copy.ai
+URL: https://aipremiumshop.com/products/copy-ai-bangladesh
+Category: AI Writing & SEO
+Variants:
+  - Copy.ai - Shared: ৳499/mo ($36 official, shared)
+  - Copy.ai - Personal: ৳1990/mo ($36 official, personal)
+Description: Shared Copy.ai Pro. 90+ tools, blog wizard, sales copy, social media. Budget-friendly for BD startups.
+Capabilities: text, agents
+
+### Coda — Coda AI
+URL: https://aipremiumshop.com/products/coda-ai-bangladesh
+Category: AI Workspace
+Variants:
+  - Coda AI - Shared: ৳499/mo ($10 official, shared)
+  - Coda AI - Personal: ৳1990/mo ($10 official, personal)
+Description: Shared Coda AI. AI writing assistant, data analysis, automation workflows, 100+ integrations. Docs + spreadsheets + apps.
+Capabilities: workspace, text, agents
+
+### Google — Google AI Pro (Gemini Advanced)
+URL: https://aipremiumshop.com/products/gemini-advanced-bangladesh
+Category: AI Assistant & Chat
+Variants:
+  - Google AI Pro (Gemini Advanced) - Personal: ৳500/mo ($19.99 official, personal)
+Description: AI Premium Shop SPECIAL —” ৳500 only (official ৳2,990). Full Google AI Pro on YOUR Gmail. Gemini 3.1 Pro, Deep Research, image gen, video gen, AI agents, 2TB storage.
+Capabilities: text, code, vision, document, search, image-gen, video-gen, agents, workspace
+
+### Leonardo AI — Leonardo AI
+URL: https://aipremiumshop.com/products/leonardo-ai-bangladesh
+Category: AI Image & Design
+Variants:
+  - Leonardo AI - Shared: ৳599/mo ($12 official, shared)
+  - Leonardo AI - Personal: ৳2990/mo ($12 official, personal)
+Description: Shared Leonardo AI Apprentice. 8,500 tokens/mo, private generations, full commercial rights.
+Capabilities: image-gen, image-edit
+
+### Adobe — Adobe Firefly
+URL: https://aipremiumshop.com/products/adobe-firefly-bangladesh
+Category: AI Image & Design
+Variants:
+  - Adobe Firefly - Shared: ৳599/mo ($4.99 official, shared)
+  - Adobe Firefly - Personal: ৳2490/mo ($4.99 official, personal)
+Description: Shared Adobe Firefly. Generative fill, text-to-image, vector recolor, 3D-to-image. Commercial-safe training.
+Capabilities: image-gen, image-edit, text
+
+### Play.ht — Play.ht
+URL: https://aipremiumshop.com/products/play-ht-bangladesh
+Category: AI Voice & Music
+Variants:
+  - Play.ht - Shared: ৳599/mo ($31.2 official, shared)
+  - Play.ht - Personal: ৳2490/mo ($31.2 official, personal)
+Description: Shared Play.ht. 900+ AI voices, 140+ languages, ultra-realistic voice cloning, SSML support. Great for podcasts.
+Capabilities: voice, text
+
+### ChatGPT — ChatGPT Business
+URL: https://aipremiumshop.com/products/chatgpt-business-bangladesh
+Category: AI Assistant & Chat
+Variants:
+  - ChatGPT Business - Starter Shared: ৳699/mo ($25 official, shared)
+  - ChatGPT Business - Premium Shared: ৳1299/mo ($25 official, shared)
+  - ChatGPT Business - Personal: ৳3990/mo ($30 official, personal)
+Description: Shared ChatGPT Business seat. Team workspace, admin controls, full GPT-5 access, Codex agent.
+Capabilities: text, code, vision, document, search, image-gen, agents
+
+### ElevenLabs — ElevenLabs Starter
+URL: https://aipremiumshop.com/products/elevenlabs-bangladesh
+Category: AI Voice & Music
+Variants:
+  - ElevenLabs Starter - Personal: ৳748/mo ($5 official, personal)
+  - ElevenLabs Creator - Personal: ৳3289/mo ($22 official, personal)
+  - ElevenLabs Pro - Personal: ৳14802/mo ($99 official, personal)
+Description: ElevenLabs Starter. 30K characters TTS/mo, instant voice cloning, commercial license.
+Capabilities: voice
+
+### Otter.ai — Otter.ai Pro
+URL: https://aipremiumshop.com/products/otter-ai-bangladesh
+Category: AI Workspace
+Variants:
+  - Otter.ai Pro - Shared: ৳799/mo ($16.99 official, shared)
+  - Otter.ai - Personal: ৳1990/mo ($16.99 official, personal)
+Description: Shared Otter.ai Pro. AI meeting transcription, summaries, action items. 6000 min/mo.
+Capabilities: text, workspace
+
+### Writesonic — Writesonic Individual
+URL: https://aipremiumshop.com/products/writesonic-bangladesh
+Category: AI Writing & SEO
+Variants:
+  - Writesonic Individual - Shared: ৳799/mo ($16 official, shared)
+  - Writesonic - Personal: ৳1990/mo ($16 official, personal)
+Description: Shared Writesonic Individual. AI SEO content writing, 100 credits/mo, GPT-4o access.
+Capabilities: text, search
+
+### Notion — Notion Business
+URL: https://aipremiumshop.com/products/notion-business-bangladesh
+Category: AI Workspace
+Variants:
+  - Notion Business - Monthly: ৳800/mo ($20 official, personal)
+  - Notion Business - 6 Month Plan: ৳4800/mo ($120 official, personal)
+Description: Official Notion Business Plan. Notion AI included, teamspaces, SSO, 90-day history.
+Capabilities: workspace, text, agents
+
+### v0.dev — v0.dev Pro
+URL: https://aipremiumshop.com/products/v0-dev-bangladesh
+Category: AI Code & Dev
+Variants:
+  - v0.dev Pro - Shared: ৳999/mo ($20 official, shared)
+  - v0.dev - Personal: ৳2990/mo ($20 official, personal)
+Description: Shared v0.dev Pro. AI web app builder by Vercel. Build apps and sites with AI prompts. Deploy instantly.
+Capabilities: code, agents
+
+### ChatGPT — ChatGPT Go
+URL: https://aipremiumshop.com/products/chatgpt-go-bangladesh
+Category: AI Assistant & Chat
+Variants:
+  - ChatGPT Go - Personal: ৳1196/mo ($8 official, personal)
+Description: ChatGPT Go —” official $8/mo plan. GPT-5, image gen, deep research, agent mode. May show ads.
+Capabilities: text, code, vision, search, image-gen, agents
+
+### Midjourney — Midjourney Standard
+URL: https://aipremiumshop.com/products/midjourney-bangladesh
+Category: AI Image & Design
+Variants:
+  - Midjourney Standard - Shared: ৳1199/mo ($30 official, shared)
+  - Midjourney Standard - Premium Shared: ৳2399/mo ($30 official, shared)
+  - Midjourney Standard - Personal: ৳3990/mo ($30 official, personal)
+  - Midjourney Pro - Shared: ৳4788/mo ($60 official, shared)
+  - Midjourney Pro - Personal: ৳8970/mo ($60 official, personal)
+  - Midjourney Mega - Personal: ৳17940/mo ($120 official, personal)
+Description: Shared Midjourney Standard. 15hr fast GPU, extended relax mode, image + video gen.
+Capabilities: image-gen, video-gen
+
+### Manus — Manus AI
+URL: https://aipremiumshop.com/products/manus-ai-bangladesh
+Category: AI Workspace
+Variants:
+  - Manus AI - Shared: ৳1199/mo ($20 official, shared)
+  - Manus AI - Personal: ৳2500/mo ($20 official, personal)
+Description: Manus AI autonomous agent. Research, data analysis, report generation, web automation.
+Capabilities: agents, text, code, search
+
+### Claude — Claude Pro
+URL: https://aipremiumshop.com/products/claude-pro-bangladesh
+Category: AI Assistant & Chat
+Variants:
+  - Claude Pro - Premium Shared: ৳1495/mo ($20 official, shared)
+  - Claude Pro - Personal: ৳2990/mo ($20 official, personal)
+  - Claude Team - Personal Seat: ৳3990/mo ($30 official, personal)
+  - Claude Max 5x - Personal: ৳14950/mo ($100 official, personal)
+  - Claude Max 20x - Personal: ৳29900/mo ($200 official, personal)
+Description: Premium shared Claude Pro. Higher reliability, fewer users. Opus 4.6, Claude Code, MCP integrations.
+Capabilities: text, code, vision, document, agents
+
+### Grok — SuperGrok Lite
+URL: https://aipremiumshop.com/products/supergrok-bangladesh
+Category: AI Assistant & Chat
+Variants:
+  - SuperGrok Lite - Personal: ৳1495/mo ($10 official, personal)
+  - SuperGrok - Personal: ৳3990/mo ($30 official, personal)
+Description: SuperGrok Lite. Grok 4, AI image & video gen, 2x longer chat, AI agent.
+Capabilities: text, code, vision, search, image-gen, video-gen, agents
+
+### Suno — Suno AI Pro
+URL: https://aipremiumshop.com/products/suno-ai-bangladesh
+Category: AI Voice & Music
+Variants:
+  - Suno AI Pro - Personal: ৳1495/mo ($10 official, personal)
+  - Suno AI Premier - Personal: ৳3990/mo ($30 official, personal)
+Description: Suno AI Pro. 2500 credits/mo (~500 songs), v5.5 model, commercial rights.
+Capabilities: music
+
+### GitHub — GitHub Copilot Pro
+URL: https://aipremiumshop.com/products/github-copilot-bangladesh
+Category: AI Code & Dev
+Variants:
+  - GitHub Copilot Pro - Personal: ৳1495/mo ($10 official, personal)
+  - GitHub Copilot Pro+ - Personal: ৳5831/mo ($39 official, personal)
+Description: GitHub Copilot Pro. Full code completions, 300 premium requests/mo, Claude/GPT-5 models.
+Capabilities: code
+
+### HeyGen — HeyGen Creator
+URL: https://aipremiumshop.com/products/heygen-bangladesh
+Category: AI Video
+Variants:
+  - HeyGen Creator - Shared: ৳1499/mo ($29 official, shared)
+  - HeyGen - Personal: ৳4990/mo ($29 official, personal)
+Description: Shared HeyGen Creator. AI avatar videos, 700+ stock avatars, voice cloning, 175+ languages. Full-length videos.
+Capabilities: video-gen, voice
+
+### Jasper — Jasper
+URL: https://aipremiumshop.com/products/jasper-bangladesh
+Category: AI Writing & SEO
+Variants:
+  - Jasper - Shared: ৳1499/mo ($49 official, shared)
+  - Jasper - Personal: ৳5990/mo ($49 official, personal)
+Description: Shared Jasper Pro. AI marketing copy, SEO mode, brand voice, 50+ templates. For BD agencies and marketers.
+Capabilities: text, search, agents
+
+### Runway — Runway Standard
+URL: https://aipremiumshop.com/products/runway-bangladesh
+Category: AI Video
+Variants:
+  - Runway Standard - Personal: ৳1794/mo ($12 official, personal)
+  - Runway Pro - Personal: ৳4186/mo ($28 official, personal)
+  - Runway Full Access - Personal: ৳11362/mo ($76 official, personal)
+Description: Runway Standard. 625 credits/mo, Gen-4 video, image gen, 4K upscale.
+Capabilities: video-gen, video-edit, image-gen
+
+### Luma — Luma Dream Machine
+URL: https://aipremiumshop.com/products/luma-dream-machine-bangladesh
+Category: AI Video
+Variants:
+  - Luma Dream Machine - Personal: ৳1990/mo ($9.99 official, personal)
+Description: Luma Dream Machine. Photorealistic video generation, fast inference, camera motion controls, 120s generations.
+Capabilities: video-gen, image-gen
+
+### Ideogram — Ideogram Plus
+URL: https://aipremiumshop.com/products/ideogram-bangladesh
+Category: AI Image & Design
+Variants:
+  - Ideogram Plus - Personal: ৳2990/mo ($20 official, personal)
+  - Ideogram Pro - Personal: ৳8970/mo ($60 official, personal)
+Description: Ideogram Plus. Best AI text rendering. 1000 priority credits/mo, extended slow mode.
+Capabilities: image-gen, image-edit
+
+### Cursor — Cursor Pro
+URL: https://aipremiumshop.com/products/cursor-bangladesh
+Category: AI Code & Dev
+Variants:
+  - Cursor Pro - Personal: ৳2990/mo ($20 official, personal)
+  - Cursor Pro+ - Personal: ৳8970/mo ($60 official, personal)
+Description: Cursor Pro AI code editor. Claude, GPT-5, Gemini models. Full completions, cloud agents.
+Capabilities: code, agents
+
+### Pika — Pika Labs
+URL: https://aipremiumshop.com/products/pika-labs-bangladesh
+Category: AI Video
+Variants:
+  - Pika Labs - Personal: ৳2990/mo ($10 official, personal)
+Description: Pika Labs Pro. Text-to-video, image-to-video, video-to-video, 1080p export, 10s clips, lip sync. Create viral shorts.
+Capabilities: video-gen, video-edit, image-gen
+
+### AI Premium Shop — Freelancer Bundle
+URL: https://aipremiumshop.com/products/freelancer-bundle-bangladesh
+Category: Bundles & Packages
+Variants:
+  - Freelancer Bundle: ৳3999/mo ($50 official, bundle)
+Description: AI toolkit for freelancers. ChatGPT Personal + Midjourney + Perplexity. Save ৳789.
+Capabilities: text, code, image-gen
+
+### ChatGPT — ChatGPT Pro
+URL: https://aipremiumshop.com/products/chatgpt-pro-bangladesh
+Category: AI Assistant & Chat
+Variants:
+  - ChatGPT Pro - Premium Shared: ৳4500/mo ($200 official, shared)
+  - ChatGPT Pro - Personal: ৳29900/mo ($200 official, personal)
+Description: Shared ChatGPT Pro. Full GPT-5 access.4 Pro mode, Sora video, advanced deep research, highest performance.
+Capabilities: text, code, vision, document, search, image-gen, video-gen, agents
+
+### AI Premium Shop — Business Package
+URL: https://aipremiumshop.com/products/business-package-bangladesh
+Category: Bundles & Packages
+Variants:
+  - Business Package: ৳15000/mo ($150 official, bundle)
+Description: Full AI stack for businesses. ChatGPT Biz + Google AI + Notion + Midjourney + Claude + 2hr setup.
+Capabilities: text, code, image-gen, workspace
+
+### AI Premium Shop — B2B Implementation Service
+URL: https://aipremiumshop.com/products/b2b-implementation-bangladesh
+Category: Bundles & Packages
+Variants:
+  - B2B Implementation Service: ৳25000/mo ($300 official, bundle)
+Description: Full AI implementation for B2B. Custom setup, 5hr training, workflow automation, 30-day support.
+Capabilities: text, code, workspace, agents

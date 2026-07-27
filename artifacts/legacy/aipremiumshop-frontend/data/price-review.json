@@ -1,0 +1,246 @@
+{
+  "_readme": "Price discrepancies found between the live site (data/products.json) and the Notion catalog (AIPS — Catalog — Products, queried 2026-07-09). NOTHING here is auto-applied. Live site prices are unchanged. CEO approval required before any change.",
+  "_note": "Site entries are per-variant (e.g. Shared vs Personal), while Notion 'Starting Price BDT' is the lowest variant. A mismatch may simply mean the site lists a higher tier — flagged anyway for review.",
+  "source": "Notion database: AIPS — Catalog — Products (data source 48285403-f0dd-4a02-9e6f-d9b7ed93dcd1)",
+  "reviewItems": [
+    {
+      "siteSlug": "chatgpt-plus-bangladesh",
+      "sitePricesBDT": [
+        950,
+        2990
+      ],
+      "notionStartingPriceBDT": 350,
+      "notionSlug": "chatgpt-plus",
+      "status": "pending-approval"
+    },
+    {
+      "siteSlug": "chatgpt-business-bangladesh",
+      "sitePricesBDT": [
+        699,
+        3990
+      ],
+      "notionStartingPriceBDT": 1299,
+      "notionSlug": "chatgpt-business",
+      "status": "pending-approval"
+    },
+    {
+      "siteSlug": "claude-pro-bangladesh",
+      "sitePricesBDT": [
+        1495,
+        2990,
+        3990,
+        14950,
+        29900
+      ],
+      "notionStartingPriceBDT": 350,
+      "notionSlug": "claude-pro",
+      "status": "pending-approval"
+    },
+    {
+      "siteSlug": "perplexity-pro-bangladesh",
+      "sitePricesBDT": [
+        2990,
+        29900
+      ],
+      "notionStartingPriceBDT": 350,
+      "notionSlug": "perplexity-pro",
+      "status": "pending-approval"
+    },
+    {
+      "siteSlug": "leonardo-ai-bangladesh",
+      "sitePricesBDT": [
+        599
+      ],
+      "notionStartingPriceBDT": 999,
+      "notionSlug": "leonardo-ai",
+      "status": "pending-approval"
+    },
+    {
+      "siteSlug": "github-copilot-bangladesh",
+      "sitePricesBDT": [
+        1495,
+        5831
+      ],
+      "notionStartingPriceBDT": 899,
+      "notionSlug": "github-copilot",
+      "status": "pending-approval"
+    },
+    {
+      "siteSlug": "manus-ai-bangladesh",
+      "sitePricesBDT": [
+        2500
+      ],
+      "notionStartingPriceBDT": 999,
+      "notionSlug": "manus-ai",
+      "status": "pending-approval"
+    },
+    {
+      "siteSlug": "grammarly-premium-bangladesh",
+      "name": "Grammarly Premium",
+      "officialUSD": 12,
+      "computedPersonalBDT": 1790,
+      "computedSharedBDT": 470,
+      "formula": "round($12 * 130 * 1.15, 10) = personal ৳1790; shared at 30% ratio = ৳470",
+      "sourceUrl": "https://www.grammarly.com/plans",
+      "status": "pending-approval",
+      "batch": "batch-1",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "quillbot-premium-bangladesh",
+      "name": "QuillBot Premium",
+      "officialUSD": 9.95,
+      "computedPersonalBDT": 1490,
+      "computedSharedBDT": 390,
+      "formula": "round($9.95 * 130 * 1.15, 10) = personal ৳1490; shared at 30% ratio = ৳390",
+      "sourceUrl": "https://quillbot.com/premium",
+      "status": "pending-approval",
+      "batch": "batch-1",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "canva-pro-bangladesh",
+      "name": "Canva Pro",
+      "officialUSD": 12.99,
+      "computedPersonalBDT": 1940,
+      "computedSharedBDT": 510,
+      "formula": "round($12.99 * 130 * 1.15, 10) = personal ৳1940; shared at 30% ratio = ৳510",
+      "sourceUrl": "https://www.canva.com/pricing",
+      "status": "pending-approval",
+      "batch": "batch-1",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "microsoft-copilot-pro-bangladesh",
+      "name": "Microsoft Copilot Pro",
+      "officialUSD": 20,
+      "computedPersonalBDT": 2990,
+      "computedSharedBDT": 780,
+      "formula": "round($20 * 130 * 1.15, 10) = personal ৳2990; shared at 30% ratio = ৳780",
+      "sourceUrl": "https://www.microsoft.com/en-us/microsoft-copilot/plans",
+      "status": "pending-approval",
+      "batch": "batch-1",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "jasper-ai-bangladesh",
+      "name": "Jasper AI Creator",
+      "officialUSD": 39,
+      "computedPersonalBDT": 5830,
+      "computedSharedBDT": 1520,
+      "formula": "round($39 * 130 * 1.15, 10) = personal ৳5830; shared at 30% ratio = ৳1520",
+      "sourceUrl": "https://www.jasper.ai/pricing",
+      "status": "pending-approval",
+      "batch": "batch-1",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "adobe-firefly-bangladesh",
+      "name": "Adobe Firefly",
+      "officialUSD": 4.99,
+      "computedPersonalBDT": 750,
+      "computedSharedBDT": 190,
+      "formula": "round($4.99 * 130 * 1.15, 10) = personal ৳750; shared at 30% ratio = ৳190",
+      "sourceUrl": "https://www.adobe.com/products/firefly.html",
+      "status": "pending-approval",
+      "batch": "batch-1",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "pika-labs-bangladesh",
+      "name": "Pika Labs",
+      "officialUSD": 8,
+      "computedPersonalBDT": 1200,
+      "computedSharedBDT": 310,
+      "formula": "round($8 * 130 * 1.15, 10) = personal ৳1200; shared at 30% ratio = ৳310",
+      "sourceUrl": "https://pika.art/pricing",
+      "status": "pending-approval",
+      "batch": "batch-1",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "opus-clip-bangladesh",
+      "name": "Opus Clip",
+      "officialUSD": 15,
+      "computedPersonalBDT": 2240,
+      "computedSharedBDT": 590,
+      "formula": "round($15 * 130 * 1.15, 10) = personal ৳2240; shared at 30% ratio = ৳590",
+      "sourceUrl": "https://www.opus.pro/pricing",
+      "status": "pending-approval",
+      "batch": "batch-1",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "descript-pro-bangladesh",
+      "name": "Descript Pro",
+      "officialUSD": 12,
+      "computedPersonalBDT": 1790,
+      "computedSharedBDT": 470,
+      "formula": "round($12 * 130 * 1.15, 10) = personal ৳1790; shared at 30% ratio = ৳470",
+      "sourceUrl": "https://www.descript.com/pricing",
+      "status": "pending-approval",
+      "batch": "batch-1",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "murf-ai-bangladesh",
+      "name": "Murf AI",
+      "officialUSD": 19,
+      "computedPersonalBDT": 2840,
+      "computedSharedBDT": 740,
+      "formula": "round($19 * 130 * 1.15, 10) = personal ৳2840; shared at 30% ratio = ৳740",
+      "sourceUrl": "https://murf.ai/pricing",
+      "status": "pending-approval",
+      "batch": "batch-1",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "freepik-premium-bangladesh",
+      "name": "Freepik Premium",
+      "officialUSD": 11.59,
+      "computedPersonalBDT": 1730,
+      "computedSharedBDT": 450,
+      "formula": "round($11.59 * 130 * 1.15, 10) = personal ৳1730; shared at 30% ratio = ৳450",
+      "sourceUrl": "https://www.freepik.com/pricing",
+      "status": "pending-approval",
+      "batch": "batch-2",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "kling-ai-bangladesh",
+      "name": "Kling AI",
+      "officialUSD": 7,
+      "computedPersonalBDT": 1050,
+      "computedSharedBDT": 270,
+      "formula": "round($7 * 130 * 1.15, 10) = personal ৳1050; shared at 30% ratio = ৳270",
+      "sourceUrl": "https://klingai.com/",
+      "status": "pending-approval",
+      "batch": "batch-2",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "synthesia-bangladesh",
+      "name": "Synthesia",
+      "officialUSD": 18,
+      "computedPersonalBDT": 2690,
+      "computedSharedBDT": 700,
+      "formula": "round($18 * 130 * 1.15, 10) = personal ৳2690; shared at 30% ratio = ৳700",
+      "sourceUrl": "https://www.synthesia.io/pricing",
+      "status": "pending-approval",
+      "batch": "batch-2",
+      "addedDate": "2026-07-09"
+    },
+    {
+      "siteSlug": "windsurf-bangladesh",
+      "name": "Windsurf Pro",
+      "officialUSD": 15,
+      "computedPersonalBDT": 2240,
+      "computedSharedBDT": 590,
+      "formula": "round($15 * 130 * 1.15, 10) = personal ৳2240; shared at 30% ratio = ৳590",
+      "sourceUrl": "https://codeium.com/windsurf",
+      "status": "pending-approval",
+      "batch": "batch-2",
+      "addedDate": "2026-07-09"
+    }
+  ]
+}

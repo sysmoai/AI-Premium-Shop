@@ -349,7 +349,7 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
                   { cat: "Image generation", winner: "ChatGPT wins", desc: "DALL-E built in, Claude has none" },
                   { cat: "Research", winner: "Tie", desc: "Both excellent for research" },
                   { cat: "Agents", winner: "ChatGPT wins", desc: "Custom GPTs, deep research, Codex" },
-                  { cat: "Price", winner: "ChatGPT wins", desc: "৳499 vs Claude ৳1,495" },
+                  { cat: "Price", winner: "ChatGPT wins", desc: "৳499 vs Claude ৳1,590" },
                 ].map((row) => (
                   <div key={row.cat} className="rounded-lg p-2.5 border border-white/10" style={{ backgroundColor: "#151b3d" }}>
                     <div style={{ color: "#c9ceda" }}>{row.cat}</div>

@@ -1,0 +1,59 @@
+{
+  "version": "v4-total-mastery",
+  "timestamp": "2026-05-20T01:00:00+06:00",
+  "agent": "Kimi Code — AIPS-DOMINATOR",
+  "status": "Phase 1-3 in progress, Phase 4 pending deploy",
+  "repo": {
+    "path": "/c/Users/emonh/AI Premium Shop/01-phoenix-website/",
+    "remote": "https://github.com/sysmoai/aips-website",
+    "branch": "main",
+    "head": "32fc9aa",
+    "commits_ahead_of_origin": 0
+  },
+  "build": {
+    "framework": "Next.js 16.2.4",
+    "router": "App Router",
+    "rendering": "Static Export (SSG)",
+    "styling": "Tailwind CSS v4",
+    "ui": "shadcn/ui",
+    "orm": "Drizzle ORM",
+    "database": "Supabase (not connected)",
+    "pages_rendered": 47,
+    "build_status": "PASS",
+    "lint_status": "PASS (1 warning)",
+    "typecheck_status": "PASS"
+  },
+  "products": {
+    "total_skus": 56,
+    "product_groups": 30,
+    "categories": 8,
+    "source": "Live site JS bundle extraction"
+  },
+  "deployment": {
+    "target": "Cloudflare Pages — project aips-landing",
+    "domain": "aipremiumshop.com",
+    "status": "BLOCKED — invalid API token",
+    "preview_url": "https://sysmoai.github.io/aips-website/",
+    "preview_status": "LIVE",
+    "gh_pages_branch": "gh-pages"
+  },
+  "seo": {
+    "robots_ai_friendly": true,
+    "sitemap_dynamic": true,
+    "llms_txt": true,
+    "schema_types": ["Organization", "WebSite", "Product", "Offer", "FAQPage", "HowTo", "Article", "BreadcrumbList"],
+    "hreflang": ["en-BD", "bn-BD", "x-default"]
+  },
+  "blockers": [
+    "Cloudflare API token invalid (cflt_KzY2... returns 1000)",
+    "GitHub Actions disabled on sysmoai account (billing)",
+    "Notion API token blank in .env",
+    "Browser bridge shared with 2nd Kimi instance (GCP/Notion work)"
+  ],
+  "active_work": [
+    "SEO/AIO/GEO cheatsheet research (subagent)",
+    "Gap analysis on Phoenix build (subagent)",
+    "BD competitor intel (subagent)",
+    "AIPS OS Knowledge Map creation"
+  ]
+}

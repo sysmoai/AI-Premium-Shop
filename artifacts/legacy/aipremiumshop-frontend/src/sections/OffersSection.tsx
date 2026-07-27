@@ -1,0 +1,224 @@
+import { motion } from "framer-motion";
+import { ArrowRight, Zap } from "lucide-react";
+import { Link } from "wouter";
+
+const makeOrderLink = (product: string) =>
+  `https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20${encodeURIComponent(product)}`;
+
+const SPECIAL_OFFERS = [
+  {
+    id: "google-ai-pro",
+    name: "Google AI Pro",
+    price: 500,
+    officialPrice: 2990,
+    pctOff: 83,
+    description:
+      "Gemini 3.1 Pro, Deep Research, 2TB storage, AI agents. Official price BDT 2,990 — compare at OpenAI.com.",
+    color: "#4285f4",
+    accentBg: "rgba(66,133,244,0.08)",
+    accentBorder: "rgba(66,133,244,0.25)",
+  },
+  {
+    id: "notion-business",
+    name: "Notion Business",
+    price: 800,
+    officialPrice: 2990,
+    pctOff: 73,
+    description:
+      "Notion AI included, teamspaces, advanced permissions & SSO. Official price BDT 2,990 — compare at Notion.so.",
+    color: "#e5e7eb",
+    accentBg: "rgba(229,231,235,0.06)",
+    accentBorder: "rgba(229,231,235,0.15)",
+  },
+];
+
+const BEST_SELLERS = [
+  { id: "chatgpt-plus-starter", name: "ChatGPT Plus Starter Shared", price: 350, badge: "Best Seller", color: "#10a37f", msg: "Hi, I want ChatGPT Plus Starter Shared (৳350/mo)" },
+  { id: "perplexity-pro-shared", name: "Perplexity Pro Shared", price: 350, badge: null, color: "#20b2aa", msg: "Hi, I want Perplexity Pro Shared (৳350/mo)" },
+  { id: "google-ai-pro-bs", name: "Google AI Pro", price: 500, badge: "vs BDT 2,990 official", color: "#4285f4", msg: "Hi, I want Google AI Pro (৳500/mo)" },
+  { id: "chatgpt-business", name: "ChatGPT Business Starter Shared", price: 699, badge: null, color: "#10a37f", msg: "Hi, I want ChatGPT Business Starter Shared (৳699/mo)" },
+  { id: "midjourney", name: "Midjourney Standard Shared", price: 1199, badge: "Popular", color: "#8b5cf6", msg: "Hi, I want Midjourney Standard Shared (৳1,199/mo)" },
+  { id: "claude-premium", name: "Claude Pro Premium Shared", price: 1495, badge: null, color: "#d97706", msg: "Hi, I want Claude Pro Premium Shared (৳1,495/mo)" },
+];
+
+export function OffersSection() {
+  return (
+    <section
+      id="offers"
+      className="py-24 px-4"
+      style={{ backgroundColor: "#151b3d" }}
+    >
+      <div className="max-w-6xl mx-auto">
+
+        {/* Special Offers */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-bold text-white"
+            >
+              Special Offers
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-sm mt-2"
+              style={{ color: "#c9ceda" }}
+            >
+              Prices compared to official subscription cost. Verify at the provider's website.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {SPECIAL_OFFERS.map((offer, i) => (
+              <motion.div
+                key={offer.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -4 }}
+                className={`relative rounded-2xl p-6 pt-8 transition-all duration-300 ${i === 0 ? "glow-offer-blue" : "glow-offer-dark"}`}
+                style={{
+                  backgroundColor: offer.accentBg,
+                  border: `1px solid ${offer.accentBorder}`,
+                }}
+              >
+                {/* % Off badge — top-left */}
+                <div className="absolute top-0 left-0">
+                  <span
+                    className="inline-flex items-center gap-1 text-sm font-bold px-3 py-1.5 rounded-tl-2xl rounded-br-lg text-white"
+                    style={{ background: "linear-gradient(135deg, #ec4899, #f97316)" }}
+                  >
+                    <Zap className="w-3.5 h-3.5" />
+                    {offer.pctOff}% vs official
+                  </span>
+                </div>
+
+                {/* Price row */}
+                <div className="mb-3">
+                  <div className="flex items-baseline gap-3 mb-1">
+                    <span className="text-3xl font-black text-white">৳{offer.price}</span>
+                    <span className="text-lg line-through text-red-400">
+                      ৳{offer.officialPrice}
+                    </span>
+                    <span className="text-xs" style={{ color: "#c9ceda" }}>/month</span>
+                  </div>
+                  <h3 className="text-lg font-bold" style={{ color: offer.color }}>
+                    {offer.name}
+                  </h3>
+                </div>
+
+                <p className="text-sm mb-6 leading-relaxed" style={{ color: "#c9ceda" }}>
+                  {offer.description}
+                </p>
+
+                <a
+                  href={makeOrderLink(offer.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-lg text-center flex items-center justify-center gap-2 transition-colors duration-200"
+                >
+                  Check Availability
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Best Sellers */}
+        <div>
+          <div className="text-center mb-12">
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-sm font-semibold uppercase tracking-widest mb-3"
+              style={{ color: "#f4b942" }}
+            >
+              Most Ordered
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-bold text-white"
+            >
+              Best Sellers
+            </motion.h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {BEST_SELLERS.map((product, i) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.07 }}
+                whileHover={{ y: -2, boxShadow: `0 8px 32px rgba(244,185,66,0.15)` }}
+                className="relative bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-[#f4b942]/40 flex flex-col transition-all duration-200"
+                data-testid={`best-seller-${product.id}`}
+              >
+                <div className="h-[3px] w-full flex-shrink-0" style={{ backgroundColor: product.color }} />
+
+                <div className="p-5 flex flex-col flex-1">
+                  {product.badge && (
+                    <span
+                      className="absolute top-5 right-4 text-xs font-semibold px-2 py-0.5 rounded-full"
+                      style={{ background: "linear-gradient(135deg, #ec4899, #f97316)", color: "#fff" }}
+                    >
+                      {product.badge}
+                    </span>
+                  )}
+
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: product.color }} />
+                    <span className="font-bold text-white text-sm">{product.name}</span>
+                  </div>
+
+                  <div className="text-xl font-bold mb-3" style={{ color: "#f4b942" }}>
+                    ৳{product.price}
+                    <span className="text-xs font-normal ml-1 text-gray-400">/mo</span>
+                  </div>
+
+                  {product.id === "chatgpt-plus-starter" && (
+                    <div className="mb-3 space-y-1">
+                      <span className="text-xs px-2 py-0.5 rounded-full" style={{ backgroundColor: "#10a37f20", color: "#10a37f" }}>
+                        Writing · Coding · Research · Images
+                      </span>
+                      <div>
+                        <Link href="/chatgpt-plans-bangladesh" className="text-xs underline decoration-white/20 hover:opacity-80 transition-opacity" style={{ color: "#10a37f" }}>
+                          View all ChatGPT plans →
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="mt-auto">
+                    <a
+                      href={`https://wa.me/8801865385348?text=${encodeURIComponent(product.msg)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2 px-4 rounded-lg font-bold text-sm flex items-center justify-center gap-1.5 transition-colors duration-200"
+                      style={{ backgroundColor: "#f4b942", color: "#0a0e27" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#fbbf24")}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f4b942")}
+                    >
+                      Check Availability
+                      <ArrowRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

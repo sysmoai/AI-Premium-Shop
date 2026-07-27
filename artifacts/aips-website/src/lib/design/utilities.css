@@ -1,0 +1,55 @@
+/* Cinematic motion utilities with reduced-motion support */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scalePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.15); }
+}
+
+@layer utilities {
+  .animate-fade-in { animation: fadeIn 0.5s ease-out; }
+  .animate-slide-up { animation: slideUp 0.6s ease-out; }
+  .animate-scale-pulse { animation: scalePulse 3s ease-in-out infinite; }
+  .animate-glow-pulse { animation: glowPulse 3s ease-in-out infinite; }
+
+  .glass-card {
+    @apply rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm;
+  }
+  
+  .glass-card-md {
+    @apply rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-md;
+  }
+  
+  .glass-card-lg {
+    @apply rounded-2xl border border-white/[0.1] bg-white/[0.06] backdrop-blur-lg;
+  }
+
+  .text-glow {
+    @apply text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.15)];
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-scale-pulse,
+    .animate-glow-pulse {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

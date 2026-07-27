@@ -1,0 +1,150 @@
+{
+  "_meta": {
+    "generated": "2026-07-09",
+    "source": "Web research + Notion Bangladesh AI Subscription Market Research + Strategy (Jul 2026)",
+    "methodology": "Searched active BD AI-subscription sellers; captured products, prices, delivery, payment, trust signals. Ranked gaps by revenue impact based on BD freelancer/creator demand data.",
+    "totalCompetitorsResearched": 8,
+    "aipsCurrentProducts": 56,
+    "notionActiveProducts": 65
+  },
+  "executiveSummary": {
+    "biggestOpportunity": "Payment friction: 239M MFS accounts vs 2.95M credit cards. AIPS fills the gap with bKash/Nagad + trust (warranty, own-account, instant human support).",
+    "biggestThreat": "Google sells localized Gemini in BDT (AI Plus ৳600, AI Pro ৳2,500). AIPS ৳500 Gemini undercuts Google itself — advertise this.",
+    "p0Gap": "CapCut Pro — massive short-form-video demand + heavy local reseller activity. Currently missing from catalog. Must add immediately.",
+    "positioning": "Authentic official subscriptions at official price, instant delivery, trusted & fast. Never claim 'authorized distributor/partner'."
+  },
+  "competitors": [
+    {
+      "name": "OneBrain",
+      "url": "onebrain.app",
+      "contact": "01316084721 (WhatsApp/bKash)",
+      "positioning": "BD's #1 AI platform — all-in-one subscription",
+      "productsSold": ["ChatGPT", "Claude", "Gemini", "DeepSeek", "DALL-E", "Midjourney alternative", "Sora", "AI Agents"],
+      "pricesBDT": {
+        "ChatGPT": "৳299",
+        "Claude": "৳299",
+        "Gemini": "৳299",
+        "DeepSeek": "৳299",
+        "All-in-one": "৳999"
+      },
+      "deliveryMethod": "Shared credentials (token-based)",
+      "paymentMethods": ["bKash", "Nagad"],
+      "trustSignals": { "reviews": "High FB presence", "warranty": "Unclear", "refund": "Unclear", "siteQuality": "Basic web app" },
+      "seoKeywords": ["ChatGPT Bangladesh", "AI subscription BD", "bKash ChatGPT"],
+      "aipsCounter": "Position against shared-credential risk; sell own-account + 30-day warranty + instant human support"
+    },
+    {
+      "name": "Netflix Mart BD",
+      "url": "netflixmartbd.net",
+      "productsSold": ["CapCut Pro", "Netflix", "Spotify", "YouTube Premium", "ChatGPT"],
+      "pricesBDT": { "CapCut Pro": "৳299–৳1,250/mo" },
+      "deliveryMethod": "Shared credentials",
+      "paymentMethods": ["bKash"],
+      "trustSignals": { "reviews": "Mixed", "warranty": "None stated", "refund": "None stated", "siteQuality": "Basic" },
+      "aipsCounter": "AIPS CapCut Pro at ৳399 with warranty + own-account + instant delivery beats shared-credential risk"
+    },
+    {
+      "name": "Digitally Buy",
+      "url": "digitallybuy.com",
+      "productsSold": ["CapCut Pro", "Canva", "ChatGPT", " various digital subs"],
+      "pricesBDT": { "CapCut Pro": "From ৳350" },
+      "deliveryMethod": "Shared credentials",
+      "paymentMethods": ["bKash", "Nagad"],
+      "trustSignals": { "reviews": "Moderate", "warranty": "Limited", "refund": "Limited", "siteQuality": "Basic storefront" },
+      "aipsCounter": "Competitive on price but AIPS wins on trust stack (warranty + own-account + instant support)"
+    },
+    {
+      "name": "Digital Products BD",
+      "url": "digitalproductsbd.com",
+      "productsSold": ["CapCut Pro", "Canva", "Adobe", "ChatGPT", " various tools"],
+      "pricesBDT": { "CapCut Pro": "From ৳700" },
+      "deliveryMethod": "Shared / activation",
+      "paymentMethods": ["bKash"],
+      "trustSignals": { "reviews": "Moderate", "warranty": "Limited", "refund": "Limited", "siteQuality": "Basic" },
+      "aipsCounter": "AIPS undercuts on CapCut + adds warranty + own-account guarantee"
+    },
+    {
+      "name": "BD Subscription",
+      "url": "bdsubscription.com (est)",
+      "productsSold": ["CapCut Pro", "Netflix", "Spotify", " various streaming + AI"],
+      "pricesBDT": { "CapCut Pro": "From ৳700/yr ৳9,900" },
+      "deliveryMethod": "Shared credentials",
+      "paymentMethods": ["bKash"],
+      "trustSignals": { "reviews": "Limited", "warranty": "None", "refund": "None", "siteQuality": "Basic" },
+      "aipsCounter": "AIPS monthly option (৳399) more accessible than yearly commitment"
+    },
+    {
+      "name": "AdobeWala",
+      "url": "adobewala.com (est)",
+      "productsSold": ["Adobe Creative Cloud", "Photoshop", "Illustrator", "Premiere Pro"],
+      "pricesBDT": { "Adobe CC": "৳1,500–৳3,500/mo" },
+      "deliveryMethod": "Shared / cracked",
+      "paymentMethods": ["bKash"],
+      "trustSignals": { "reviews": "Mixed", "warranty": "None", "refund": "None", "siteQuality": "Basic" },
+      "aipsCounter": "AIPS should add Adobe Firefly (official, safe) as alternative to grey-market Adobe CC"
+    },
+    {
+      "name": "IT Mart / PAN BD / MangoMind BD",
+      "url": "Various Facebook/WhatsApp sellers",
+      "productsSold": ["ChatGPT", "Claude", "Midjourney", "Canva", "CapCut", "Various AI tools"],
+      "pricesBDT": { "ChatGPT": "৳300–৳500", "Midjourney": "৳800–৳1,500", "Canva": "৳200–৳500" },
+      "deliveryMethod": "Shared credentials / Edu invites",
+      "paymentMethods": ["bKash", "Nagad", "Rocket"],
+      "trustSignals": { "reviews": "High volume, low trust", "warranty": "Rare", "refund": "Rare", "siteQuality": "No site — Facebook/WhatsApp only" },
+      "aipsCounter": "AIPS's full website + warranty + transparent pricing + brand pages = massive trust advantage"
+    },
+    {
+      "name": "Google (Official localized)",
+      "url": "gemini.google/bd",
+      "productsSold": ["Gemini AI Plus", "Gemini AI Pro"],
+      "pricesBDT": { "AI Plus": "৳600/mo", "AI Pro": "৳2,500/mo" },
+      "deliveryMethod": "Official direct purchase (bKash/Nagad enabled)",
+      "paymentMethods": ["bKash", "Nagad", "Credit card"],
+      "trustSignals": { "reviews": "Official", "warranty": "Standard Google", "refund": "Google policy", "siteQuality": "Excellent" },
+      "aipsCounter": "AIPS Gemini ৳500 undercuts Google's own ৳600 price + adds personal support + faster delivery"
+    }
+  ],
+  "gapAnalysis": {
+    "missingProducts": [
+      { "rank": 1, "product": "CapCut Pro", "priority": "P0", "impact": "Highest", "reason": "Massive BD short-form-video demand (TikTok/Reels/Shorts); heaviest local reseller activity; 49.8M YouTube reach; creator economy core tool. Competitors selling at ৳299–৳700. AIPS can capture creator segment.", "suggestedStartingBDT": 399, "officialUSD": 7.99, "category": "ai-video" },
+      { "rank": 2, "product": "QuillBot Premium", "priority": "P1", "impact": "High", "reason": "Paraphrase/grammar for students & freelancers; pairs with Grammarly. Official $8.33/mo (annual). Large student market.", "suggestedStartingBDT": 399, "officialUSD": 8.33, "category": "ai-writing" },
+      { "rank": 3, "product": "Canva Pro (AI)", "priority": "P1", "impact": "High", "reason": "Massive BD creator/designer demand. Official $12.99/mo. Competitors selling shared at ৳200–৳500. AIPS can sell own-account with warranty.", "suggestedStartingBDT": 499, "officialUSD": 12.99, "category": "ai-image" },
+      { "rank": 4, "product": "Grammarly Premium", "priority": "P1", "impact": "High", "reason": "Core tool for freelancers, students, job seekers. Official $12/mo. Large addressable market. Pairs with QuillBot.", "suggestedStartingBDT": 499, "officialUSD": 12.00, "category": "ai-writing" },
+      { "rank": 5, "product": "Adobe Firefly", "priority": "P1", "impact": "High", "reason": "Commercial-safe AI design for pro designers/agencies. Std $9.99/mo, Pro $19.99/mo. Alternative to grey-market Adobe CC from AdobeWala.", "suggestedStartingBDT": 699, "officialUSD": 9.99, "category": "ai-image" },
+      { "rank": 6, "product": "Microsoft Copilot Pro", "priority": "P2", "impact": "Medium", "reason": "Office 365 + AI integration for corporate/SME users. Official $20/mo. BD corporate segment growing.", "suggestedStartingBDT": 999, "officialUSD": 20.00, "category": "ai-workspace" },
+      { "rank": 7, "product": "Jasper AI / Copy.ai", "priority": "P2", "impact": "Medium", "reason": "Brand-voice marketing copy for content agencies. High ARPU but smaller addressable market in BD.", "suggestedStartingBDT": 1299, "officialUSD": 39.00, "category": "ai-writing" },
+      { "rank": 8, "product": "Ahrefs / Semrush / Surfer", "priority": "P2", "impact": "Medium", "reason": "SEO/AI-visibility for agencies. High ARPU. Smaller but valuable niche.", "suggestedStartingBDT": 1499, "officialUSD": 99.00, "category": "ai-writing" }
+    ],
+    "categoryGaps": [
+      { "category": "video-editing", "missing": true, "products": ["CapCut Pro", "Descript", "Opus Clip"], "note": "Currently only 'AI Video' (gen) exists. Need 'Video Editing' category for CapCut, Descript." },
+      { "category": "design", "missing": true, "products": ["Canva Pro", "Adobe Firefly", "Figma"], "note": "Currently 'AI Image & Design' covers gen only. Need standalone Design category." },
+      { "category": "seo-visibility", "missing": true, "products": ["Ahrefs", "Semrush", "Surfer"], "note": "High-ARPU agency niche. Currently under AI Writing & SEO (1 product)." }
+    ],
+    "pricingGaps": [
+      { "issue": "AIPS Gemini ৳500 undercuts Google's official ৳600", "action": "Advertise 'cheaper than Google's own price' on all Gemini pages" },
+      { "issue": "OneBrain sells ChatGPT at ৳299 (shared token)", "action": "Position AIPS shared ChatGPT ৳350 as 'own-account, not risky shared token' + warranty" },
+      { "issue": "CapCut resellers at ৳299–৳700", "action": "AIPS CapCut ৳399 with warranty + own-account = trust premium at minimal price delta" }
+    ],
+    "contentSeoGaps": [
+      { "gap": "No 'CapCut Pro Bangladesh' page", "keywords": ["CapCut Pro price Bangladesh", "CapCut Pro bKash", "CapCut Pro BD"], "searchVolume": "High" },
+      { "gap": "No 'Canva Pro Bangladesh' page", "keywords": ["Canva Pro price Bangladesh", "Canva Pro bKash"], "searchVolume": "High" },
+      { "gap": "No 'Grammarly Bangladesh' page", "keywords": ["Grammarly price Bangladesh", "Grammarly bKash"], "searchVolume": "Medium-High" },
+      { "gap": "No segment hub pages", "keywords": ["best AI for YouTubers Bangladesh", "AI tools for freelancers BD"], "searchVolume": "Medium" },
+      { "gap": "No competitor comparison pages", "keywords": ["AIPS vs OneBrain", "best AI subscription Bangladesh"], "searchVolume": "Medium" }
+    ],
+    "trustGaps": [
+      { "gap": "No verified review system", "impact": "Medium", "action": "Add honest review section with rating breakdown" },
+      { "gap": "No live order ticker", "impact": "Low-Medium", "action": "Add 'recently ordered' ticker for social proof" },
+      { "gap": "No referral program visible", "impact": "Medium", "action": "Add referral/promo code system if enabled in Notion" }
+    ]
+  },
+  "recommendedActions": [
+    "1. ADD CapCut Pro IMMEDIATELY (P0). Create product entry + brand page + add to ai-video category + sitemap + navbar.",
+    "2. Bake positioning on every page: 'authentic official subscriptions at official price · 3,000+ customers · 30-day warranty · 5-15 min delivery · bKash/Nagad'.",
+    "3. Create 'Services' page showcasing all AIPS offerings (bundles, setup, team quotes, renewal, gifts, invoicing).",
+    "4. Build segment hub pages: Freelancer, Creator, Developer, Student, Business — each with recommended stack + bundle + CTA.",
+    "5. Add 'CapCut Pro Bangladesh' as first new brand page; replicate pattern for Canva, Grammarly, QuillBot.",
+    "6. Update sitemap with all new product/brand URLs.",
+    "7. Run typecheck + screenshot verification after each batch."
+  ]
+}

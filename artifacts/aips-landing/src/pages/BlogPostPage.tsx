@@ -897,9 +897,9 @@ const POSTS: Record<
         <h2>The Top 5 AI Tools for Bangladesh in 2026</h2>
         <h3>1. <Link href="/chatgpt-plans-bangladesh" className="text-[#f4b942] hover:underline">ChatGPT Plus</Link> — from ৳499/month</h3>
         <p>ChatGPT Plus is the most versatile AI assistant available. With GPT-5 multimodal capabilities, it handles writing, coding, research, image generation, and agent-based automation. The shared plan at ৳499/month is the best starting point for anyone new to AI.</p>
-        <h3>2. <Link href="/claude-pro-bangladesh" className="text-[#f4b942] hover:underline">Claude Pro</Link> — from ৳1,495/month</h3>
+        <h3>2. <Link href="/claude-pro-bangladesh" className="text-[#f4b942] hover:underline">Claude Pro</Link> — from ৳1,590/month</h3>
         <p>Claude Pro is widely regarded as the best AI for writing quality. Its 200K context window, Opus 4.6 model, and Claude Code make it the #1 choice for writers, researchers, and developers who need deep reasoning.</p>
-        <h3>3. Google AI Pro — ৳499/month</h3>
+        <h3>3. Google AI Pro — ৳599/month</h3>
         <p>AIPS-exclusive pricing. Full Google AI Pro plan on your own Gmail account. Gemini 3.1 Pro, 2TB storage, AI in Docs, Sheets, Gmail. The best value for professionals who already use Google Workspace.</p>
         <h3>4. <Link href="/midjourney-bangladesh" className="text-[#f4b942] hover:underline">Midjourney</Link> — from ৳1,199/month</h3>
         <p>The gold standard for AI image generation. Midjourney's v7 model produces photorealistic and artistic images that no other tool matches. The shared Standard plan gives 15 hours of fast GPU time per month.</p>
@@ -923,7 +923,7 @@ const POSTS: Record<
         <h2>Price Comparison (BDT)</h2>
         <p><Link href="/chatgpt-plans-bangladesh" className="text-[#f4b942] hover:underline">ChatGPT Plus</Link> Starter Shared: <strong>৳499/month</strong></p>
         <p>ChatGPT Plus Premium Shared: <strong>৳999/month</strong></p>
-        <p><Link href="/claude-pro-bangladesh" className="text-[#f4b942] hover:underline">Claude Pro</Link> Premium Shared: <strong>৳1,495/month</strong></p>
+        <p><Link href="/claude-pro-bangladesh" className="text-[#f4b942] hover:underline">Claude Pro</Link> Premium Shared: <strong>৳1,590/month</strong></p>
         <h2>Writing Quality</h2>
         <p><strong>Winner: Claude.</strong> Claude Pro with Opus 4.6 produces more nuanced, human-sounding prose. For long-form content — research papers, reports, blog posts — Claude's output requires less editing. ChatGPT is faster but can sound more generic.</p>
         <h2>Coding</h2>
@@ -931,7 +931,7 @@ const POSTS: Record<
         <h2>Research & Factual Accuracy</h2>
         <p><strong>Winner: ChatGPT Plus.</strong> With GPT-5 search integration, ChatGPT can access real-time web data. Claude is trained on a fixed dataset and doesn't browse the web by default. For current events or market research, ChatGPT has the edge.</p>
         <h2>Our Recommendation</h2>
-        <p>If you can only choose one: start with <strong>ChatGPT Plus Starter Shared at ৳499</strong>. If you write professionally, upgrade to <strong>Claude Pro Premium Shared at ৳1,495</strong> for the writing quality improvement. Many professionals use both — ChatGPT for research, Claude for writing.</p>
+        <p>If you can only choose one: start with <strong>ChatGPT Plus Starter Shared at ৳499</strong>. If you write professionally, upgrade to <strong>Claude Pro Premium Shared at ৳1,590</strong> for the writing quality improvement. Many professionals use both — ChatGPT for research, Claude for writing.</p>
       </div>
     ),
   },
@@ -975,13 +975,13 @@ const POSTS: Record<
         <p>Upwork's 2025 Freelancer Report found that freelancers who use AI tools earn 44% more on average. In Bangladesh, where competition on Fiverr and Upwork is intense, AI tools are now a professional necessity, not a luxury.</p>
         <h2>1. <Link href="/chatgpt-plans-bangladesh" className="text-[#f4b942] hover:underline">ChatGPT Plus</Link> Premium Shared — ৳999/month</h2>
         <p>The single most useful AI tool for freelancers. Write client proposals, deliver content faster, answer emails, research topics, and generate code. Pays for itself with your first successful proposal. Used by writers, marketers, virtual assistants, and developers.</p>
-        <h2>2. Claude Pro Premium Shared — ৳1,495/month</h2>
+        <h2>2. Claude Pro Premium Shared — ৳1,590/month</h2>
         <p>If you're a writer, Claude Pro produces higher-quality output than ChatGPT. For blog posts, reports, and creative projects, Claude's writing sounds more natural and requires less editing. Many freelancers use Claude as their primary writing tool and ChatGPT for research.</p>
         <h2>3. <Link href="/midjourney-bangladesh" className="text-[#f4b942] hover:underline">Midjourney</Link> Standard Shared — ৳1,199/month</h2>
         <p>For designers, social media managers, and content creators, Midjourney generates professional-quality images in minutes. Create thumbnails, product mockups, brand visuals, and social media graphics — no design skills required. Unlimited slow-queue generations included.</p>
         <h2>4. GitHub Copilot Pro — ৳1,495/month</h2>
         <p>For developer freelancers, Copilot Pro is the highest-ROI tool available. It handles boilerplate code, suggests entire functions, and speeds up development by 50%+. Works inside VS Code and JetBrains with no workflow changes.</p>
-        <h2>5. Perplexity Pro Shared — ৳350/month</h2>
+        <h2>5. Perplexity Pro Shared — ৳599/month</h2>
         <p>The best AI research tool. Perplexity answers questions with citations, helping you research client industries quickly and accurately. Invaluable for writers, consultants, and marketers who need reliable information fast.</p>
         <h2>The Freelancer Stack</h2>
         <p>ChatGPT Premium + Perplexity Pro comes to ৳1,300/month total. For most freelancers, this combination alone significantly increases proposal success rates and delivery speed. Message us on WhatsApp about bundle pricing.</p>
@@ -1004,7 +1004,7 @@ const POSTS: Record<
         <ul>
           <li><strong>Standard Shared — ৳1,199/month:</strong> 15 hours fast GPU, unlimited relaxed mode. 2-5 users. Best value for most users.</li>
           <li><strong>Standard Premium Shared — ৳2,399/month:</strong> Same features, fewer users (2-3 max), higher availability.</li>
-          <li><strong>Standard Personal — ৳3,990/month:</strong> Your own Midjourney account. Full commercial rights, 15hr fast GPU.</li>
+          <li><strong>Standard Personal — ৳2,495/month:</strong> Your own Midjourney account. Full commercial rights, 15hr fast GPU.</li>
           <li><strong>Pro Shared — ৳4,788/month:</strong> 30hr fast GPU, stealth mode, 12 concurrent jobs.</li>
         </ul>
         <h2>How Shared Accounts Work</h2>
@@ -1079,7 +1079,7 @@ const POSTS: Record<
           <li><strong className="text-white">Claude Max 5x/20x</strong> — highest access levels for professional engineering teams</li>
         </ul>
         <p className="text-gray-300 leading-relaxed">
-          Claude Pro (with Claude Code access) starts from <strong className="text-white">৳1,495/month</strong> via AIPS. Claude Max plans start from ৳14,950/month.
+          Claude Pro (with Claude Code access) starts from <strong className="text-white">৳1,590/month</strong> via AIPS. Claude Max plans start from ৳14,950/month.
         </p>
 
         <h2 className="text-xl font-bold text-white mt-8 mb-4">Full Comparison: Codex vs Claude Code vs Cursor vs Replit</h2>
@@ -1087,7 +1087,7 @@ const POSTS: Record<
           headers={["Tool", "Best For", "How It Works", "AIPS Price"]}
           rows={[
             ["OpenAI Codex", "Async autonomous tasks", "Cloud agent, PR-based", "৳4,500/mo (Pro shared)"],
-            ["Claude Code", "Complex codebase analysis", "Terminal CLI, local files", "৳1,495/mo (Claude Pro)"],
+            ["Claude Code", "Complex codebase analysis", "Terminal CLI, local files", "৳1,590/mo (Claude Pro)"],
             ["Cursor Pro", "AI-native IDE coding", "VS Code fork with agents", "৳2,990/mo"],
             ["Replit Core", "Cloud dev + deploy", "Browser IDE with AI", "৳500/mo"],
           ]}
@@ -1101,12 +1101,12 @@ const POSTS: Record<
         <ul className="list-disc pl-6 space-y-2 text-gray-300">
           <li><strong className="text-white">Freelancers on Upwork/Fiverr</strong>: ChatGPT Business with Codex means you can take on larger development projects, delegate routine coding tasks to Codex, and focus on architecture and client communication. Fewer hours, same delivery.</li>
           <li><strong className="text-white">Development agencies</strong>: Codex handles boilerplate. Claude Code handles architecture review. Cursor handles daily coding. You can run a lean team that outputs like a team 3× the size.</li>
-          <li><strong className="text-white">Solo developers</strong>: Start with Claude Pro (৳1,495) for the best ratio of cost to autonomous coding capability. Upgrade to ChatGPT Pro when you need Codex's PR-based workflow.</li>
+          <li><strong className="text-white">Solo developers</strong>: Start with Claude Pro (৳1,590) for the best ratio of cost to autonomous coding capability. Upgrade to ChatGPT Pro when you need Codex's PR-based workflow.</li>
           <li><strong className="text-white">Students learning to code</strong>: Cursor Pro (৳2,990) or Replit Core (৳500) remain the best learning environments. Codex is designed for professionals with existing codebases.</li>
         </ul>
 
         <CalloutBox>
-          <strong className="text-white">Bottom line for Bangladesh:</strong> Codex is powerful but expensive at the official $200/month. Via AIPS, ChatGPT Pro Shared is ৳4,500 — 85% off. Claude Code via Claude Pro Shared starts at ৳1,495. For most BD developers, Claude Pro is the best starting point; upgrade to Codex via ChatGPT Business (৳699) for the autonomous PR workflow.
+          <strong className="text-white">Bottom line for Bangladesh:</strong> Codex is powerful but expensive at the official $200/month. Via AIPS, ChatGPT Pro Shared is ৳4,500 — 85% off. Claude Code via Claude Pro Shared starts at ৳1,590. For most BD developers, Claude Pro is the best starting point; upgrade to Codex via ChatGPT Business (৳699) for the autonomous PR workflow.
         </CalloutBox>
 
         <h2 className="text-xl font-bold text-white mt-8 mb-4">Which Tool Should You Choose?</h2>
@@ -1114,7 +1114,7 @@ const POSTS: Record<
           headers={["Profile", "Recommended", "Why"]}
           rows={[
             ["Student / beginner", "Replit Core (৳500)", "Learn in browser, instant deploy"],
-            ["Freelancer", "Claude Pro (৳1,495)", "Best reasoning + code quality"],
+            ["Freelancer", "Claude Pro (৳1,590)", "Best reasoning + code quality"],
             ["Agency / team", "ChatGPT Business (৳699+)", "Codex + privacy-by-default"],
             ["Power developer", "ChatGPT Pro (৳4,500)", "Unlimited Codex + Sora"],
             ["AI-native IDE lover", "Cursor Pro (৳2,990)", "Best IDE experience"],
@@ -1125,7 +1125,7 @@ const POSTS: Record<
         <ProductBox
           products={[
             { name: "ChatGPT Business", price: "from ৳699/mo", slug: "/chatgpt-business-bangladesh" },
-            { name: "Claude Pro", price: "from ৳1,495/mo", slug: "/claude-pro-bangladesh" },
+            { name: "Claude Pro", price: "from ৳1,590/mo", slug: "/claude-pro-bangladesh" },
             { name: "Cursor Pro", price: "from ৳2,990/mo", slug: "/cursor-bangladesh" },
           ]}
         />

@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r --if-present typecheck
+      - run: pnpm -r --if-present lint
+
+  notion-drift:
+    # Fails when the site catalog no longer matches the Notion SSOT (R11).
+    # Requires the NOTION_API_KEY repository secret; skips when absent
+    # (e.g. on forks) so external PRs still get CI.
+    runs-on: ubuntu-latest
+    env:
+      NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Check catalog drift against Notion
+        if: env.NOTION_API_KEY != ''
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+        run: pnpm tsx scripts/src/import-from-notion.ts --check
+        continue-on-error: true # advisory until the generated format is reviewed & adopted

@@ -190,3 +190,14 @@ Private - SYSmoAI. All rights reserved.
 
 Built in Dhaka, Bangladesh 🇧🇩  
 Part of the SYSmoAI ecosystem
+
+## Consolidated repository layout (2026-07-27)
+
+All AIPS repos were consolidated here — see `docs/CONSOLIDATION_REPORT.md` and `docs/MIGRATION_CHECKLIST.md`.
+
+- `artifacts/` — frontend apps: `aips-landing` (Vite landing, canonical), `aips-website` (Next.js Phoenix site), `figma-make-v2` (design export), `api-server`, `mockup-sandbox`, `legacy/` (pre-consolidation snapshots)
+- `lib/` — shared libraries, incl. `@aips/media` (images/video/HLS/lazy-loading/upload stack)
+- `scripts/` — build & utility scripts, incl. `archive-backup.sh`
+- `docs/` — consolidation & migration documentation
+- `media/` — screenshots, static-site archive, and `backups/*.bundle` (full git history of the retired repos; restore with `git clone <name>.bundle`)
+- `config/` — environment variable templates (never commit real secrets)

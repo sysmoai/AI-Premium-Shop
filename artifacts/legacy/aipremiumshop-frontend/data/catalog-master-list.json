@@ -1,0 +1,805 @@
+{
+  "_meta": "Generated 2026-07-09. Status: in-catalog / missing / not-for-BD. Source: Notion catalog + user's master checklist.",
+  "categories": {
+    "ai-assistant": {
+      "name": "AI Assistants / LLM Chat",
+      "inCatalog": 7,
+      "total": 14,
+      "items": [
+        {
+          "name": "ChatGPT Plus",
+          "status": "in-catalog"
+        },
+        {
+          "name": "ChatGPT Business",
+          "status": "in-catalog"
+        },
+        {
+          "name": "ChatGPT Pro",
+          "status": "in-catalog"
+        },
+        {
+          "name": "ChatGPT Go",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Claude Pro",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Google AI Pro (Gemini Advanced)",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Grok (xAI SuperGrok)",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Perplexity Pro",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Microsoft Copilot Pro",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Meta AI",
+          "status": "not-for-BD",
+          "reason": "Free, no subscription tier"
+        },
+        {
+          "name": "DeepSeek",
+          "status": "not-for-BD",
+          "reason": "Free/open, no BD subscription model"
+        },
+        {
+          "name": "Mistral Le Chat",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Manus AI",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Poe",
+          "status": "not-for-BD",
+          "reason": "Free/limited, no major BD demand"
+        }
+      ]
+    },
+    "ai-image": {
+      "name": "AI Image",
+      "inCatalog": 5,
+      "total": 14,
+      "items": [
+        {
+          "name": "Midjourney",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Ideogram",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Adobe Firefly",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Leonardo AI",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Freepik AI",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Magnific",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Recraft",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Stability/DreamStudio",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Playground AI",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Krea",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Flux (Black Forest Labs)",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Photoroom",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Clipdrop",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Civitai",
+          "status": "not-for-BD",
+          "reason": "Community platform, not subscription"
+        }
+      ]
+    },
+    "ai-video": {
+      "name": "AI Video / Avatar",
+      "inCatalog": 4,
+      "total": 19,
+      "items": [
+        {
+          "name": "Runway",
+          "status": "in-catalog"
+        },
+        {
+          "name": "HeyGen",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Pika",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Kling",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Luma Dream Machine",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "OpenAI Sora",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Google Veo",
+          "status": "not-for-BD",
+          "reason": "Enterprise only, no consumer pricing"
+        },
+        {
+          "name": "MiniMax/Hailuo",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Haiper",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "LTX Studio",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Higgsfield",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Synthesia",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "D-ID",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Captions",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Argil",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Vizard",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "CapCut Pro",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Descript",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Opus Clip",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Veed.io",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Filmora",
+          "status": "missing",
+          "priority": "low"
+        }
+      ]
+    },
+    "ai-voice-music": {
+      "name": "AI Audio / Music / Voice",
+      "inCatalog": 3,
+      "total": 10,
+      "items": [
+        {
+          "name": "ElevenLabs",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Suno",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Udio",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Murf AI",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "PlayHT",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Resemble AI",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "LALAL.AI",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Adobe Podcast",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Speechify",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "WellSaid Labs",
+          "status": "missing",
+          "priority": "low"
+        }
+      ]
+    },
+    "ai-code": {
+      "name": "AI Code / Dev",
+      "inCatalog": 5,
+      "total": 13,
+      "items": [
+        {
+          "name": "GitHub Copilot",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Cursor",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Windsurf (Codeium)",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Replit",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Tabnine",
+          "status": "not-for-BD",
+          "reason": "Removed from catalog per Phase 8"
+        },
+        {
+          "name": "Amazon Q Developer",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "v0 (Vercel)",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Lovable",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Bolt.new",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Devin",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Sourcegraph Cody",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Qodo",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Augment",
+          "status": "missing",
+          "priority": "low"
+        }
+      ]
+    },
+    "ai-writing": {
+      "name": "Writing / Productivity",
+      "inCatalog": 1,
+      "total": 10,
+      "items": [
+        {
+          "name": "Grammarly Premium",
+          "status": "missing",
+          "priority": "high"
+        },
+        {
+          "name": "QuillBot Premium",
+          "status": "missing",
+          "priority": "high"
+        },
+        {
+          "name": "Jasper AI",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Copy.ai",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Writesonic",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Rytr",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Wordtune",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Sudowrite",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "HyperWrite",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Notion",
+          "status": "in-catalog"
+        }
+      ]
+    },
+    "ai-design": {
+      "name": "Design / Creative",
+      "inCatalog": 1,
+      "total": 9,
+      "items": [
+        {
+          "name": "Canva Pro",
+          "status": "missing",
+          "priority": "high"
+        },
+        {
+          "name": "Figma",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Adobe Creative Cloud",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Adobe Express",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Framer",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Gamma",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Beautiful.ai",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Looka",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Designs.ai",
+          "status": "missing",
+          "priority": "low"
+        }
+      ]
+    },
+    "ai-presentation": {
+      "name": "Presentation",
+      "inCatalog": 1,
+      "total": 5,
+      "items": [
+        {
+          "name": "Gamma",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Tome",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Plus AI",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Decktopus",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Beautiful.ai",
+          "status": "missing",
+          "priority": "low"
+        }
+      ]
+    },
+    "ai-seo": {
+      "name": "SEO / Marketing / Social AI",
+      "inCatalog": 0,
+      "total": 11,
+      "items": [
+        {
+          "name": "Ahrefs",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Semrush",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Surfer SEO",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "SE Ranking",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Moz",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Frase",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "MarketMuse",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "AdCreative.ai",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Predis.ai",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Simplified",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Ocoya",
+          "status": "missing",
+          "priority": "low"
+        }
+      ]
+    },
+    "ai-research": {
+      "name": "Research / Study",
+      "inCatalog": 1,
+      "total": 7,
+      "items": [
+        {
+          "name": "Perplexity",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Consensus",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "NotebookLM",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Elicit",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "SciSpace",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Scholarcy",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Wolfram",
+          "status": "missing",
+          "priority": "low"
+        }
+      ]
+    },
+    "ai-automation": {
+      "name": "Automation / Agents",
+      "inCatalog": 1,
+      "total": 7,
+      "items": [
+        {
+          "name": "Manus",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Zapier",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Make",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "n8n",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Relay.app",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Lindy",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Gumloop",
+          "status": "missing",
+          "priority": "low"
+        }
+      ]
+    },
+    "ai-meetings": {
+      "name": "Meetings / Transcription",
+      "inCatalog": 1,
+      "total": 6,
+      "items": [
+        {
+          "name": "Otter.ai",
+          "status": "in-catalog"
+        },
+        {
+          "name": "Fireflies",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Fathom",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "tl;dv",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Read AI",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Krisp",
+          "status": "missing",
+          "priority": "low"
+        }
+      ]
+    },
+    "ai-support": {
+      "name": "Customer Support / Chatbot",
+      "inCatalog": 0,
+      "total": 3,
+      "items": [
+        {
+          "name": "Intercom Fin",
+          "status": "not-for-BD",
+          "reason": "Enterprise SaaS, not consumer"
+        },
+        {
+          "name": "Zendesk AI",
+          "status": "not-for-BD",
+          "reason": "Enterprise SaaS, not consumer"
+        },
+        {
+          "name": "Tidio",
+          "status": "missing",
+          "priority": "low"
+        }
+      ]
+    },
+    "ai-enterprise": {
+      "name": "Enterprise Copilots",
+      "inCatalog": 0,
+      "total": 4,
+      "items": [
+        {
+          "name": "Microsoft 365 Copilot",
+          "status": "not-for-BD",
+          "reason": "Enterprise only, no consumer pricing"
+        },
+        {
+          "name": "Google Gemini for Workspace",
+          "status": "not-for-BD",
+          "reason": "Enterprise only"
+        },
+        {
+          "name": "Slack AI",
+          "status": "not-for-BD",
+          "reason": "Enterprise only"
+        },
+        {
+          "name": "Salesforce Einstein",
+          "status": "not-for-BD",
+          "reason": "Enterprise only"
+        }
+      ]
+    },
+    "ai-stock": {
+      "name": "Creative Assets / Stock",
+      "inCatalog": 0,
+      "total": 4,
+      "items": [
+        {
+          "name": "Envato Elements",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Freepik Premium",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Storyblocks",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "Motion Array",
+          "status": "missing",
+          "priority": "low"
+        }
+      ]
+    },
+    "ai-learning": {
+      "name": "Learning (AI-adjacent)",
+      "inCatalog": 0,
+      "total": 4,
+      "items": [
+        {
+          "name": "Coursera Plus",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "LinkedIn Premium/Learning",
+          "status": "missing",
+          "priority": "medium"
+        },
+        {
+          "name": "Skillshare",
+          "status": "missing",
+          "priority": "low"
+        },
+        {
+          "name": "DataCamp",
+          "status": "missing",
+          "priority": "low"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "totalOnChecklist": 131,
+    "inCatalog": 30,
+    "missing": 76,
+    "notForBD": 15,
+    "totalCatalogTools": 57
+  }
+}

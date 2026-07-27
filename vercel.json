@@ -1,6 +1,6 @@
 {
-  "buildCommand": "pnpm run build",
-  "outputDirectory": "artifacts",
+  "buildCommand": "BASE_PATH=/ PORT=3000 pnpm --filter @workspace/aips-landing run build",
+  "outputDirectory": "artifacts/aips-landing/dist/public",
   "framework": null,
-  "installCommand": "pnpm install"
+  "installCommand": "pnpm install --no-frozen-lockfile"
 }

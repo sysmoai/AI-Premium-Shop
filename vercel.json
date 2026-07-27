@@ -1,6 +1,6 @@
 {
-  "buildCommand": "echo skip-build",
-  "outputDirectory": "artifacts/aips-landing",
+  "buildCommand": "BASE_PATH=/ pnpm --filter @workspace/aips-landing run build",
+  "outputDirectory": "artifacts/aips-landing/dist/public",
   "framework": null,
-  "installCommand": "echo skip-install"
+  "installCommand": "pnpm install --no-frozen-lockfile"
 }

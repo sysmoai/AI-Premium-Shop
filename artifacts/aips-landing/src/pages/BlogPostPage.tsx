@@ -377,7 +377,7 @@ const POSTS: Record<
 
         <IncomeCalculator
           inputLabel="Tool Cost"
-          inputValue="BDT 350/mo"
+          inputValue="BDT 499/mo"
           outputLabel="Students × Fee"
           outputValue="10 × BDT 3,000"
           roiLabel="Monthly Income"
@@ -1041,7 +1041,7 @@ const POSTS: Record<
             { value: "Apr 16", label: "Codex launched" },
             { value: "~$200/mo", label: "Codex (ChatGPT Pro)" },
             { value: "~$100/mo", label: "Claude Code (Claude Max)" },
-            { value: "BDT 350+", label: "Access via AIPS" },
+            { value: "BDT 499+", label: "Access via AIPS" },
           ]}
         />
 

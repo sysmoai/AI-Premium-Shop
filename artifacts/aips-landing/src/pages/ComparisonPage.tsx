@@ -57,7 +57,7 @@ const COMPARISONS: Record<string, CompConfig> = {
       { feature: "Video generation", a: "Yes (Sora — Pro only)", b: false },
       { feature: "Code assistant", a: "Codex agent in ChatGPT", b: "Claude Code terminal" },
       { feature: "Context window", a: "128K tokens", b: "200K–1M tokens" },
-      { feature: "Shared price (AIPS)", a: "From BDT 350/mo", b: "From BDT 1,495/mo" },
+      { feature: "Shared price (AIPS)", a: "From BDT 499/mo", b: "From BDT 1,495/mo" },
       { feature: "Personal price (AIPS)", a: "BDT 2,990/mo", b: "BDT 2,990/mo" },
       { feature: "Web search", a: true, b: false },
       { feature: "Savings vs official", a: "~88%", b: "~80%" },
@@ -86,7 +86,7 @@ const COMPARISONS: Record<string, CompConfig> = {
     productA: { name: "ChatGPT Plus", color: "#10a37f", orderText: "Order ChatGPT" },
     productB: { name: "Google AI Pro", color: "#4285f4", orderText: "Order Google AI Pro" },
     rows: [
-      { feature: "AIPS price", a: "BDT 350/mo (shared)", b: "BDT 500/mo (personal)" },
+      { feature: "AIPS price", a: "BDT 499/mo (shared)", b: "BDT 500/mo (personal)" },
       { feature: "Account type", a: "Shared access", b: "Your own Gmail account" },
       { feature: "AI Model", a: "GPT-5.4", b: "Gemini 2.5 Pro" },
       { feature: "Storage", a: "None", b: "2TB Google Drive" },

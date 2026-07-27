@@ -122,7 +122,7 @@ const GUIDES: Record<string, GuideConfig> = {
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
-      price: "BDT 350/mo",
+      price: "BDT 499/mo",
       reason: "The most affordable AI tool in our catalog. Access GPT-5.4 for writing, coding, and research. Delivered in 5–30 minutes via bKash or Nagad.",
     },
     faqs: [
@@ -158,7 +158,7 @@ const GUIDES: Record<string, GuideConfig> = {
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
-      price: "BDT 350/mo",
+      price: "BDT 499/mo",
       reason: "Start with the essentials. Use ChatGPT to write proposals, respond to clients, and draft content. Upgrade to Premium Shared once you've landed your first clients.",
     },
     faqs: [
@@ -194,7 +194,7 @@ const GUIDES: Record<string, GuideConfig> = {
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
-      price: "BDT 350/mo",
+      price: "BDT 499/mo",
       reason: "Start with ChatGPT for content planning, scripts, and captions. Then add Midjourney for thumbnails when you're ready to upgrade your visual game.",
     },
     faqs: [
@@ -299,8 +299,8 @@ const GUIDES: Record<string, GuideConfig> = {
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
-      price: "BDT 350/mo",
-      reason: "At BDT 350, this is the best investment for your job search. Use it to write and refine your CV, draft cover letters, practice interview questions, and research companies. One job offer pays back months of subscription.",
+      price: "BDT 499/mo",
+      reason: "At BDT 499, this is the best investment for your job search. Use it to write and refine your CV, draft cover letters, practice interview questions, and research companies. One job offer pays back months of subscription.",
     },
     faqs: [
       { q: "Can AI write my CV for me?", a: "Yes. ChatGPT and Google AI Pro can generate a professional CV from bullet points you provide. You input your experience and skills, and AI formats it into a polished, ATS-friendly document. Always review and personalize before sending." },
@@ -372,7 +372,7 @@ const GUIDES: Record<string, GuideConfig> = {
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
-      price: "BDT 350/mo",
+      price: "BDT 499/mo",
       reason: "Start with ChatGPT Plus at BDT 499 — the most versatile marketing AI available. Use it for copy, research, strategy, and daily content. When you're ready to scale visuals, add Midjourney.",
     },
     faqs: [
@@ -409,7 +409,7 @@ const GUIDES: Record<string, GuideConfig> = {
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
-      price: "BDT 350/mo",
+      price: "BDT 499/mo",
       reason: "At BDT 499, ChatGPT Plus pays for itself with better product listings alone. Use it to write all your product titles and descriptions in bulk — then add Midjourney when you're ready to upgrade your visuals.",
     },
     faqs: [

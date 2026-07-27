@@ -81,7 +81,7 @@ export default function PricingPage() {
           <p className="text-sm mb-4 max-w-3xl leading-relaxed" style={{ color: "#c9ceda" }}>
             When you buy directly from AI providers, you need an international credit card and pay in USD plus bank fees.
             Example: ChatGPT Plus costs $20/mo = approximately BDT 2,990 after exchange and fees.
-            With AI Premium Shop, you pay BDT 350 for shared access or BDT 2,990 for a personal account —
+            With AI Premium Shop, you pay BDT 499 for shared access or BDT 2,990 for a personal account —
             using bKash or Nagad. No international card needed. No bank fees.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">

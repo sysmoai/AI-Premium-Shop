@@ -1,5 +1,6 @@
 import { buildMetadata } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { CheckCircle2, Clock, MessageCircle, Zap, DollarSign, Shield, Globe, Users } from "lucide-react";
 
@@ -101,8 +102,8 @@ export default function DifferentPage() {
             <div className="glass-card rounded-2xl p-8 border border-[#f4b942] border-opacity-20">
               <h2 className="text-xl font-bold text-[#f4b942]">Built for Bangladeshi Customers</h2>
               <p className="mt-3 text-[0.9375rem] leading-relaxed text-[#8a91a8]">
-                International providers don't understand Bangladeshi payment systems, customer support needs,
-                or pricing expectations. We do. AI Premium Shop is built specifically for you—with local
+                International providers don&apos;t understand Bangladeshi payment systems, customer support needs,
+                or pricing expectations. We do. AI Premium Shop is built specifically for you&mdash;with local
                 payments, Bengali support, affordable pricing, and 30-minute delivery guarantee.
               </p>
             </div>
@@ -332,12 +333,12 @@ export default function DifferentPage() {
                 >
                   Order Now
                 </a>
-                <a
+                <Link
                   href="/products"
                   className="rounded-lg border border-[#f4b942] border-opacity-30 px-6 py-3 font-semibold text-[#f4b942] hover:bg-[#f4b942] hover:bg-opacity-10 transition"
                 >
                   Browse Products
-                </a>
+                </Link>
               </div>
             </div>
           </div>

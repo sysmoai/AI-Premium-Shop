@@ -129,7 +129,7 @@ export default function SecurityPage() {
                     </li>
                     <li className="flex gap-3">
                       <span className="text-[#f4b942] font-semibold shrink-0">3.</span>
-                      <span>We mark the order as "Payment Verified" in our secure database</span>
+                      <span>We mark the order as &quot;Payment Verified&quot; in our secure database</span>
                     </li>
                     <li className="flex gap-3">
                       <span className="text-[#f4b942] font-semibold shrink-0">4.</span>

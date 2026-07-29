@@ -1,7 +1,7 @@
 import { buildMetadata } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
-import { CheckCircle2, Clock, Zap, DollarSign, Shield, AlertCircle, MessageCircle } from "lucide-react";
+import { CheckCircle2, Clock, Zap, DollarSign, Shield, AlertCircle } from "lucide-react";
 
 export const metadata: Metadata = buildMetadata({
   title: "30-Day Money-Back Guarantee — AI Premium Shop",
@@ -261,7 +261,7 @@ export default function GuaranteePage() {
             <div className="rounded-2xl border border-[#f4b942] border-opacity-30 bg-white bg-opacity-5 p-8 text-center">
               <h2 className="text-2xl font-bold text-white">Ready to Try Risk-Free?</h2>
               <p className="mt-3 text-[#8a91a8]">
-                Order your subscription now with zero risk. If it's not right for you, get your money back.
+                Order your subscription now with zero risk. If it&apos;s not right for you, get your money back.
               </p>
               <a
                 href={`https://wa.me/${process.env.NEXT_PUBLIC_WA_PRIMARY ?? "8801865385348"}?text=Hi,%20I'm%20interested%20in%20ordering%20with%20the%2030-day%20money-back%20guarantee.`}

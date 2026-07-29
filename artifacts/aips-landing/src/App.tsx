@@ -171,6 +171,13 @@ function Router() {
       <Route path="/best-ai-for-ecommerce">{() => <GuidePage guideKey="ecommerce" />}</Route>
       <Route path="/best-ai-subscription-2026" component={BestAISubscriptionPage} />
 
+      {/* New Segment Guide Pages */}
+      <Route path="/guides/students" component={StudentsGuide} />
+      <Route path="/guides/freelancers" component={FreelancersGuide} />
+      <Route path="/guides/creators" component={CreatorsGuide} />
+      <Route path="/guides/smallbusiness" component={SMBGuide} />
+      <Route path="/guides/educators" component={EducatorsGuide} />
+
       {/* Comparison pages */}
       <Route path="/chatgpt-vs-claude">{() => <ComparisonPage compKey="chatgpt-vs-claude" />}</Route>
       <Route path="/chatgpt-vs-claude-bangladesh">{() => <ComparisonPage compKey="chatgpt-vs-claude" />}</Route>

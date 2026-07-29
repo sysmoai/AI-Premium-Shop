@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { SEOHead } from "@/components/SEOHead";
 import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema, schemaJson } from "@/utils/schemas";
@@ -6,6 +6,12 @@ import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { FAQSection } from "@/components/FAQSection";
 
 import { HeroSection } from "@/sections/HeroSection";
+import { SegmentSelector } from "@/sections/SegmentSelector";
+import { SegmentHeroContent } from "@/sections/SegmentHeroContent";
+import { BrandShowcaseSection } from "@/sections/BrandShowcaseSection";
+import { PricingTiersSection } from "@/sections/PricingTiersSection";
+import { FeaturedProductsSection } from "@/sections/FeaturedProductsSection";
+import { PaymentMethodsSection } from "@/sections/PaymentMethodsSection";
 import { PainPointSection } from "@/sections/PainPointSection";
 import { AIAgentsSection } from "@/sections/AIAgentsSection";
 import { OffersSection } from "@/sections/OffersSection";
@@ -15,6 +21,8 @@ import { HowItWorksSection } from "@/sections/HowItWorksSection";
 import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { FinalCTASection } from "@/sections/FinalCTASection";
 import { CommunitySocialCards } from "@/components/CommunitySocialCards";
+
+type Segment = "students" | "freelancers" | "creators" | "smbs" | "educators" | null;
 
 const FAQS = [
   {
@@ -60,6 +68,9 @@ const FAQS = [
 ];
 
 export default function Home() {
+  const [selectedSegment, setSelectedSegment] = useState<Segment>(null);
+  const [showSegmentSelector, setShowSegmentSelector] = useState(true);
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -71,6 +82,11 @@ export default function Home() {
     document.querySelectorAll(".scroll-reveal").forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
+
+  const handleSegmentSelect = (segment: Segment) => {
+    setSelectedSegment(segment);
+    setShowSegmentSelector(false);
+  };
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
@@ -87,11 +103,34 @@ export default function Home() {
 
       <Navbar />
 
-      <main>
-        {/* 1. HERO */}
-        <HeroSection />
+      {/* Segment Selector Modal */}
+      <SegmentSelector isOpen={showSegmentSelector} onSelect={handleSegmentSelect} />
 
-        {/* 2. FIND YOUR SOLUTION — 6 pain-point cards */}
+      <main>
+        {/* 1. HERO - Segment Aware */}
+        {selectedSegment ? (
+          <section className="min-h-screen flex items-center justify-center py-20" style={{ backgroundColor: "#0a0e27" }}>
+            <div className="max-w-4xl mx-auto px-4 md:px-8">
+              <SegmentHeroContent segment={selectedSegment} />
+            </div>
+          </section>
+        ) : (
+          <HeroSection />
+        )}
+
+        {/* 2. BRAND SHOWCASE — Top 20 brands */}
+        <div className="scroll-reveal"><BrandShowcaseSection /></div>
+
+        {/* 3. PRICING TIERS — Visual pricing cards */}
+        <div className="scroll-reveal"><PricingTiersSection /></div>
+
+        {/* 4. FEATURED PRODUCTS — Top 12 products */}
+        <div className="scroll-reveal"><FeaturedProductsSection /></div>
+
+        {/* 5. PAYMENT METHODS — All 5 payment options */}
+        <div className="scroll-reveal"><PaymentMethodsSection /></div>
+
+        {/* 6. FIND YOUR SOLUTION — 6 pain-point cards */}
         <div className="scroll-reveal"><PainPointSection /></div>
 
         {/* 3. AI AGENTS — The 2026 Game Changer */}

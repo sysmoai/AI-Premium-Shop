@@ -1907,7 +1907,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             <h3 className="text-xl font-bold text-white mb-4">The AI Evolution</h3>
             <div className="flex gap-4 mb-5">
               {[
-                { year: "2024", label: "Chatbot", desc: "AI answers questions", yearColor: "#6b7280", border: false },
+                { year: "2026", label: "Chatbot", desc: "AI answers questions", yearColor: "#6b7280", border: false },
                 { year: "2025", label: "Copilot", desc: "AI helps with tasks", yearColor: "#3b82f6", border: false },
                 { year: "2026", label: "Agent", desc: "AI DOES the tasks", yearColor: "#22c55e", border: true },
               ].map((item) => (

@@ -6,7 +6,7 @@ export const ORG_SCHEMA = {
   url: "https://aipremiumshop.com",
   logo: "https://aipremiumshop.com/images/brand/aips-logo.png",
   description: "Bangladesh's trusted source for premium AI tool subscriptions.",
-  foundingDate: "2024",
+  foundingDate: "2026",
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+8801865385348",

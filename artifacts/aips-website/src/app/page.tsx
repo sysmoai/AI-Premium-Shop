@@ -21,6 +21,7 @@ import {
 import Link from "next/link";
 import { getFeaturedItems, getWhatsappUrl } from "@/lib/data/products";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { HeroVideo } from "@/components/public/hero-video";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = buildMetadata({
@@ -193,58 +194,9 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Right: Visual */}
-              <div className="relative hidden lg:block">
-                <div className="relative rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 backdrop-blur-sm">
-                  {/* Glow border */}
-                  <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-white/[0.08] to-transparent pointer-events-none" />
-
-                  <div className="relative space-y-3">
-                    {/* Search bar mock */}
-                    <div className="flex items-center gap-3 rounded-xl bg-white/[0.04] border border-white/[0.06] px-4 py-3">
-                      <Search className="size-4 text-[#5b6280]" />
-                      <span className="text-[0.8125rem] text-[#5b6280]">What AI tool do you need?</span>
-                    </div>
-
-                    {/* Product cards */}
-                    {featuredProducts.slice(0, 3).map((p, i) => (
-                      <Link
-                        key={p.id}
-                        href={`/products/${p.slug}`}
-                        className="flex items-center justify-between rounded-xl bg-white/[0.03] border border-white/[0.06] px-4 py-3 transition-all duration-300 hover:bg-white/[0.06] hover:border-white/[0.1]"
-                        style={{ animationDelay: `${i * 100}ms` }}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className={`size-10 rounded-lg bg-gradient-to-br ${getCategoryGradient(p.category)} flex items-center justify-center`}>
-                            <span className="text-[0.625rem] font-bold text-white/80">{p.brand.slice(0, 2).toUpperCase()}</span>
-                          </div>
-                          <div>
-                            <p className="text-[0.8125rem] font-semibold text-white">{p.name}</p>
-                            <p className="text-[0.6875rem] text-[#5b6280]">{p.tier}</p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-[0.8125rem] font-semibold text-white">৳{p.price.toLocaleString("en-BD")}</p>
-                          <p className="text-[0.625rem] text-[#5b6280]">{p.accessType}</p>
-                        </div>
-                      </Link>
-                    ))}
-
-                    {/* Trust badges */}
-                    <div className="grid grid-cols-3 gap-2 pt-2">
-                      {([
-                        [ShieldCheck, "Verified"],
-                        [Clock, "Fast"],
-                        [Users, "Trusted"],
-                      ] as const).map(([Icon, label]) => (
-                        <div key={label} className="flex flex-col items-center gap-1.5 rounded-lg bg-white/[0.02] border border-white/[0.05] py-3">
-                          <Icon className="size-4 text-[#f4b942]" />
-                          <span className="text-[0.625rem] text-[#5b6280]">{label}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+              {/* Right: Hero Video */}
+              <div className="relative">
+                <HeroVideo />
               </div>
             </div>
           </div>

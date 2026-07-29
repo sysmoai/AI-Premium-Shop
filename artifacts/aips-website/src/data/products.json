@@ -156,7 +156,9 @@
    "freelancers"
   ],
   "icon": "🤖",
-  "official": "ChatGPT"
+  "official": "ChatGPT",
+  "officialIcon": "https://openai.com/favicon.ico",
+  "displayName": "ChatGPT Plus"
  },
  {
   "id": "chatgpt-plus-premium-shared",
@@ -311,7 +313,9 @@
   },
   "price_last_verified": "2026-07-27",
   "icon": "🤖",
-  "official": "ChatGPT"
+  "official": "ChatGPT",
+  "officialIcon": "https://openai.com/favicon.ico",
+  "displayName": "ChatGPT Plus"
  },
  {
   "id": "chatgpt-plus-personal",
@@ -466,7 +470,9 @@
    "rating": 4.9
   },
   "icon": "🤖",
-  "official": "ChatGPT"
+  "official": "ChatGPT",
+  "officialIcon": "https://openai.com/favicon.ico",
+  "displayName": "ChatGPT Plus"
  },
  {
   "id": "chatgpt-go-personal",
@@ -504,7 +510,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট। AIPS বাংলাদেশের সবচেয়ে নির্ভর যঔগ্য সার্ভিস দেয়।",
   "icon": "🔧",
-  "official": "ChatGPT Go - Personal"
+  "official": "ChatGPT Go - Personal",
+  "displayName": "ChatGPT Go"
  },
  {
   "id": "chatgpt-business-starter-shared",
@@ -544,7 +551,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "ChatGPT Business - Starter Shared"
+  "official": "ChatGPT Business - Starter Shared",
+  "displayName": "ChatGPT Business"
  },
  {
   "id": "chatgpt-business-premium-shared",
@@ -583,7 +591,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "ChatGPT Business - Premium Shared"
+  "official": "ChatGPT Business - Premium Shared",
+  "displayName": "ChatGPT Business"
  },
  {
   "id": "chatgpt-business-personal",
@@ -622,7 +631,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "ChatGPT Business - Personal"
+  "official": "ChatGPT Business - Personal",
+  "displayName": "ChatGPT Business"
  },
  {
   "id": "chatgpt-pro-premium-shared",
@@ -663,7 +673,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "ChatGPT Pro - Premium Shared"
+  "official": "ChatGPT Pro - Premium Shared",
+  "displayName": "ChatGPT Pro"
  },
  {
   "id": "chatgpt-pro-personal",
@@ -703,7 +714,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "ChatGPT Pro - Personal"
+  "official": "ChatGPT Pro - Personal",
+  "displayName": "ChatGPT Pro"
  },
  {
   "id": "claude-pro-premium-shared",
@@ -847,7 +859,9 @@
    "researchers"
   ],
   "icon": "🧠",
-  "official": "Claude"
+  "official": "Claude",
+  "officialIcon": "https://www.anthropic.com/favicon.ico",
+  "displayName": "Claude Pro"
  },
  {
   "id": "claude-pro-personal",
@@ -987,7 +1001,9 @@
    "rating": 4.8
   },
   "icon": "🧠",
-  "official": "Claude"
+  "official": "Claude",
+  "officialIcon": "https://www.anthropic.com/favicon.ico",
+  "displayName": "Claude Pro"
  },
  {
   "id": "claude-max-5x",
@@ -1126,7 +1142,9 @@
    "rating": 4.8
   },
   "icon": "🧠",
-  "official": "Claude"
+  "official": "Claude",
+  "officialIcon": "https://www.anthropic.com/favicon.ico",
+  "displayName": "Claude Max 5x"
  },
  {
   "id": "claude-max-20x",
@@ -1265,7 +1283,9 @@
    "rating": 4.8
   },
   "icon": "🧠",
-  "official": "Claude"
+  "official": "Claude",
+  "officialIcon": "https://www.anthropic.com/favicon.ico",
+  "displayName": "Claude Max 20x"
  },
  {
   "id": "claude-team-personal",
@@ -1404,7 +1424,9 @@
    "rating": 4.8
   },
   "icon": "🧠",
-  "official": "Claude"
+  "official": "Claude",
+  "officialIcon": "https://www.anthropic.com/favicon.ico",
+  "displayName": "Claude Team"
  },
  {
   "id": "google-ai-pro-personal",
@@ -1447,7 +1469,9 @@
   "whyBuyFromAIPS": "অফিসিয়াল ৳2,990-এর জায়গায় মাত্র ৳499 — নিজের Gmail-এই অ্যাক্টিভেশন। bKash/Nagad পেমেন্ট, ৫-১৫ মিনিটে ডেলিভারি।",
   "price_last_verified": "2026-07-27",
   "icon": "✨",
-  "official": "Gemini"
+  "official": "Gemini",
+  "officialIcon": "https://www.google.com/favicon.ico",
+  "displayName": "Google AI Pro (Gemini Advanced)"
  },
  {
   "id": "supergrok-lite-personal",
@@ -1486,7 +1510,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "SuperGrok Lite - Personal"
+  "official": "SuperGrok Lite - Personal",
+  "displayName": "SuperGrok Lite"
  },
  {
   "id": "supergrok-personal",
@@ -1526,7 +1551,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "SuperGrok - Personal"
+  "official": "SuperGrok - Personal",
+  "displayName": "SuperGrok"
  },
  {
   "id": "perplexity-pro-shared",
@@ -1566,7 +1592,9 @@
    "researchers"
   ],
   "icon": "🔍",
-  "official": "Perplexity"
+  "official": "Perplexity",
+  "officialIcon": "https://www.perplexity.ai/favicon.ico",
+  "displayName": "Perplexity Pro"
  },
  {
   "id": "perplexity-pro-personal",
@@ -1601,7 +1629,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔍",
-  "official": "Perplexity"
+  "official": "Perplexity",
+  "officialIcon": "https://www.perplexity.ai/favicon.ico",
+  "displayName": "Perplexity Pro"
  },
  {
   "id": "perplexity-max-personal",
@@ -1636,7 +1666,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔍",
-  "official": "Perplexity"
+  "official": "Perplexity",
+  "officialIcon": "https://www.perplexity.ai/favicon.ico",
+  "displayName": "Perplexity Max"
  },
  {
   "id": "midjourney-std-shared",
@@ -1674,7 +1706,9 @@
    "designers"
   ],
   "icon": "🎨",
-  "official": "Midjourney"
+  "official": "Midjourney",
+  "officialIcon": "🎨",
+  "displayName": "Midjourney Standard"
  },
  {
   "id": "midjourney-std-premium-shared",
@@ -1707,7 +1741,9 @@
   ],
   "whyBuyFromAIPS": "Midjourney-র international card লাগে — AIPS-এ bKash/Nagad-এই হয়ে যায়। শেয়ার্ড থেকে পার্সোনাল, সব প্ল্যান।",
   "icon": "🎨",
-  "official": "Midjourney"
+  "official": "Midjourney",
+  "officialIcon": "🎨",
+  "displayName": "Midjourney Standard"
  },
  {
   "id": "midjourney-std-personal",
@@ -1740,7 +1776,9 @@
   ],
   "whyBuyFromAIPS": "Midjourney-র international card লাগে — AIPS-এ bKash/Nagad-এই হয়ে যায়। শেয়ার্ড থেকে পার্সোনাল, সব প্ল্যান।",
   "icon": "🎨",
-  "official": "Midjourney"
+  "official": "Midjourney",
+  "officialIcon": "🎨",
+  "displayName": "Midjourney Standard"
  },
  {
   "id": "midjourney-pro-shared",
@@ -1774,7 +1812,9 @@
   ],
   "whyBuyFromAIPS": "Midjourney-র international card লাগে — AIPS-এ bKash/Nagad-এই হয়ে যায়। শেয়ার্ড থেকে পার্সোনাল, সব প্ল্যান।",
   "icon": "🎨",
-  "official": "Midjourney"
+  "official": "Midjourney",
+  "officialIcon": "🎨",
+  "displayName": "Midjourney Pro"
  },
  {
   "id": "midjourney-pro-personal",
@@ -1808,7 +1848,9 @@
   ],
   "whyBuyFromAIPS": "Midjourney-র international card লাগে — AIPS-এ bKash/Nagad-এই হয়ে যায়। শেয়ার্ড থেকে পার্সোনাল, সব প্ল্যান।",
   "icon": "🎨",
-  "official": "Midjourney"
+  "official": "Midjourney",
+  "officialIcon": "🎨",
+  "displayName": "Midjourney Pro"
  },
  {
   "id": "midjourney-mega-personal",
@@ -1842,7 +1884,9 @@
   ],
   "whyBuyFromAIPS": "Midjourney-র international card লাগে — AIPS-এ bKash/Nagad-এই হয়ে যায়। শেয়ার্ড থেকে পার্সোনাল, সব প্ল্যান।",
   "icon": "🎨",
-  "official": "Midjourney"
+  "official": "Midjourney",
+  "officialIcon": "🎨",
+  "displayName": "Midjourney Mega"
  },
  {
   "id": "ideogram-plus-personal",
@@ -1876,7 +1920,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🌈",
-  "official": "Ideogram"
+  "official": "Ideogram",
+  "officialIcon": "🌈",
+  "displayName": "Ideogram Plus"
  },
  {
   "id": "ideogram-pro-personal",
@@ -1910,7 +1956,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🌈",
-  "official": "Ideogram"
+  "official": "Ideogram",
+  "officialIcon": "🌈",
+  "displayName": "Ideogram Pro"
  },
  {
   "id": "leonardo-ai-shared",
@@ -1944,7 +1992,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🎭",
-  "official": "Leonardo AI"
+  "official": "Leonardo AI",
+  "officialIcon": "🖼️",
+  "displayName": "Leonardo AI"
  },
  {
   "id": "runway-std-personal",
@@ -1980,7 +2030,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "Runway Standard - Personal"
+  "official": "Runway Standard - Personal",
+  "displayName": "Runway Standard"
  },
  {
   "id": "runway-pro-personal",
@@ -2015,7 +2066,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "Runway Pro - Personal"
+  "official": "Runway Pro - Personal",
+  "displayName": "Runway Pro"
  },
  {
   "id": "runway-full-access-personal",
@@ -2048,7 +2100,8 @@
    "Marketing video editing with AI assistance"
   ],
   "icon": "🔧",
-  "official": "Runway Full Access - Personal"
+  "official": "Runway Full Access - Personal",
+  "displayName": "Runway Full Access"
  },
  {
   "id": "heygen-creator-shared",
@@ -2082,7 +2135,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "HeyGen Creator - Shared"
+  "official": "HeyGen Creator - Shared",
+  "displayName": "HeyGen Creator"
  },
  {
   "id": "elevenlabs-starter-personal",
@@ -2115,7 +2169,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "ElevenLabs Starter - Personal"
+  "official": "ElevenLabs Starter - Personal",
+  "officialIcon": "🔊",
+  "displayName": "ElevenLabs Starter"
  },
  {
   "id": "elevenlabs-creator-personal",
@@ -2148,7 +2204,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "ElevenLabs Creator - Personal"
+  "official": "ElevenLabs Creator - Personal",
+  "officialIcon": "🔊",
+  "displayName": "ElevenLabs Creator"
  },
  {
   "id": "elevenlabs-pro-personal",
@@ -2181,7 +2239,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "ElevenLabs Pro - Personal"
+  "official": "ElevenLabs Pro - Personal",
+  "officialIcon": "🔊",
+  "displayName": "ElevenLabs Pro"
  },
  {
   "id": "suno-pro-personal",
@@ -2215,7 +2275,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "Suno AI Pro - Personal"
+  "official": "Suno AI Pro - Personal",
+  "displayName": "Suno AI Pro"
  },
  {
   "id": "suno-premier-personal",
@@ -2248,7 +2309,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "Suno AI Premier - Personal"
+  "official": "Suno AI Premier - Personal",
+  "displayName": "Suno AI Premier"
  },
  {
   "id": "udio-pro-shared",
@@ -2281,7 +2343,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🎵",
-  "official": "Udio"
+  "official": "Udio",
+  "officialIcon": "🎵",
+  "displayName": "Udio Pro"
  },
  {
   "id": "github-copilot-pro-personal",
@@ -2318,7 +2382,9 @@
    "freelancers"
   ],
   "icon": "💻",
-  "official": "GitHub Copilot"
+  "official": "GitHub Copilot",
+  "officialIcon": "💻",
+  "displayName": "GitHub Copilot Pro"
  },
  {
   "id": "github-copilot-proplus-personal",
@@ -2350,7 +2416,9 @@
   ],
   "whyBuyFromAIPS": "bKash/Nagad দিয়ে পেমেন্ট, নিজের GitHub অ্যাকাউন্টে অ্যাক্টিভেশন, ৩০ দিনের ওয়ারেন্টি।",
   "icon": "💻",
-  "official": "GitHub Copilot"
+  "official": "GitHub Copilot",
+  "officialIcon": "💻",
+  "displayName": "GitHub Copilot Pro+"
  },
  {
   "id": "cursor-pro-personal",
@@ -2385,7 +2453,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "Cursor Pro - Personal"
+  "official": "Cursor Pro - Personal",
+  "displayName": "Cursor Pro"
  },
  {
   "id": "cursor-proplus-personal",
@@ -2419,7 +2488,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "Cursor Pro+ - Personal"
+  "official": "Cursor Pro+ - Personal",
+  "displayName": "Cursor Pro+"
  },
  {
   "id": "v0-dev-shared",
@@ -2453,7 +2523,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🚀",
-  "official": "v0.dev"
+  "official": "v0.dev",
+  "officialIcon": "🚀",
+  "displayName": "v0.dev Pro"
  },
  {
   "id": "replit-core-personal",
@@ -2488,7 +2560,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "Replit Core - Personal"
+  "official": "Replit Core - Personal",
+  "officialIcon": "☁️",
+  "displayName": "Replit Core"
  },
  {
   "id": "notion-business-monthly",
@@ -2527,7 +2601,9 @@
    "students"
   ],
   "icon": "📚",
-  "official": "Notion"
+  "official": "Notion",
+  "officialIcon": "📚",
+  "displayName": "Notion Business"
  },
  {
   "id": "notion-business-6m",
@@ -2563,7 +2639,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "📚",
-  "official": "Notion"
+  "official": "Notion",
+  "officialIcon": "📚",
+  "displayName": "Notion Business"
  },
  {
   "id": "manus-ai-personal",
@@ -2599,7 +2677,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "Manus AI - Personal"
+  "official": "Manus AI - Personal",
+  "displayName": "Manus AI"
  },
  {
   "id": "otter-ai-shared",
@@ -2633,7 +2712,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "🔧",
-  "official": "Otter.ai Pro - Shared"
+  "official": "Otter.ai Pro - Shared",
+  "officialIcon": "🎙️",
+  "displayName": "Otter.ai Pro"
  },
  {
   "id": "gamma-plus-shared",
@@ -2667,7 +2748,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "📊",
-  "official": "Gamma"
+  "official": "Gamma",
+  "officialIcon": "📊",
+  "displayName": "Gamma Plus"
  },
  {
   "id": "writesonic-shared",
@@ -2701,7 +2784,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
   "icon": "✒️",
-  "official": "Writesonic"
+  "official": "Writesonic",
+  "officialIcon": "✒️",
+  "displayName": "Writesonic Individual"
  },
  {
   "id": "student-essentials",
@@ -2735,7 +2820,8 @@
   ],
   "whyBuyFromAIPS": "৳9 টুল একসাথে সারে পান। ফালা মুক্ত সে সেয়ে প্রিয়। bKash/Nagad খরলে সরল ওয়ার্সার এবং সাধারণ জন্য সেয়ে ভালে।",
   "icon": "🔧",
-  "official": "Student Essentials Package"
+  "official": "Student Essentials Package",
+  "displayName": "Student Essentials Package"
  },
  {
   "id": "university-pro",
@@ -2770,7 +2856,8 @@
   ],
   "whyBuyFromAIPS": "৳9 টুল একসাথে সারে পান। ফালা মুক্ত সে সেয়ে প্রিয়। bKash/Nagad খরলে সরল ওয়ার্সার এবং সাধারণ জন্য সেয়ে ভালে।",
   "icon": "🔧",
-  "official": "University Pro Package"
+  "official": "University Pro Package",
+  "displayName": "University Pro Package"
  },
  {
   "id": "freelancer-bundle",
@@ -2805,7 +2892,8 @@
   ],
   "whyBuyFromAIPS": "৳9 টুল একসাথে সারে পান। ফালা মুক্ত সে সেয়ে প্রিয়। bKash/Nagad খরলে সরল ওয়ার্সার এবং সাধারণ জন্য় সেয়ে ভালে।",
   "icon": "🔧",
-  "official": "Freelancer Bundle"
+  "official": "Freelancer Bundle",
+  "displayName": "Freelancer Bundle"
  },
  {
   "id": "business-package",
@@ -2841,7 +2929,8 @@
   ],
   "whyBuyFromAIPS": "৳9 টুল একসাথে সারে পান। ফালা মুক্ত সে সেয়ে প্রিয়। bKash/Nagad খরলে সরল ওয়ার্সার এবং সাধারণ জন্য় সেয়ে ভালে।",
   "icon": "🔧",
-  "official": "Business Package"
+  "official": "Business Package",
+  "displayName": "Business Package"
  },
  {
   "id": "b2b-implementation",
@@ -2877,7 +2966,8 @@
   ],
   "whyBuyFromAIPS": "৳9 টুল একসাথে সারে পান। ফালা মুক্ত সে সেয়ে প্রিয়। bKash/Nagad খরলে সরল ওয়ার্সার এবং সাধারণ জন্য় সেয়ে ভালে।",
   "icon": "🔧",
-  "official": "B2B Implementation Service"
+  "official": "B2B Implementation Service",
+  "displayName": "B2B Implementation Service"
  },
  {
   "id": "leonardo-ai-personal",
@@ -2911,7 +3001,9 @@
    "Game & animation asset generation"
   ],
   "icon": "🎭",
-  "official": "Leonardo AI"
+  "official": "Leonardo AI",
+  "officialIcon": "🖼️",
+  "displayName": "Leonardo AI"
  },
  {
   "id": "heygen-personal",
@@ -2945,7 +3037,8 @@
    "Corporate training & e-learning videos"
   ],
   "icon": "🔧",
-  "official": "HeyGen - Personal"
+  "official": "HeyGen - Personal",
+  "displayName": "HeyGen"
  },
  {
   "id": "udio-personal",
@@ -2977,7 +3070,9 @@
    "Audio branding & sonic identity creation"
   ],
   "icon": "🎵",
-  "official": "Udio"
+  "official": "Udio",
+  "officialIcon": "🎵",
+  "displayName": "Udio"
  },
  {
   "id": "v0-dev-personal",
@@ -3011,7 +3106,9 @@
    "Fullstack application scaffolding"
   ],
   "icon": "🚀",
-  "official": "v0.dev"
+  "official": "v0.dev",
+  "officialIcon": "🚀",
+  "displayName": "v0.dev"
  },
  {
   "id": "replit-shared",
@@ -3043,7 +3140,9 @@
    "Full-stack development in the cloud"
   ],
   "icon": "🔧",
-  "official": "Replit Core - Shared"
+  "official": "Replit Core - Shared",
+  "officialIcon": "☁️",
+  "displayName": "Replit Core"
  },
  {
   "id": "manus-ai-shared",
@@ -3077,7 +3176,8 @@
    "Accessibility technology for disabled users"
   ],
   "icon": "🔧",
-  "official": "Manus AI - Shared"
+  "official": "Manus AI - Shared",
+  "displayName": "Manus AI"
  },
  {
   "id": "otter-ai-personal",
@@ -3111,7 +3211,9 @@
    "Meeting intelligence & action item extraction"
   ],
   "icon": "🔧",
-  "official": "Otter.ai - Personal"
+  "official": "Otter.ai - Personal",
+  "officialIcon": "🎙️",
+  "displayName": "Otter.ai"
  },
  {
   "id": "gamma-personal",
@@ -3145,7 +3247,9 @@
    "Professional presentations without design skills"
   ],
   "icon": "📊",
-  "official": "Gamma"
+  "official": "Gamma",
+  "officialIcon": "📊",
+  "displayName": "Gamma"
  },
  {
   "id": "writesonic-personal",
@@ -3179,7 +3283,9 @@
    "Ad copy generation for Google & Facebook"
   ],
   "icon": "✒️",
-  "official": "Writesonic"
+  "official": "Writesonic",
+  "officialIcon": "✒️",
+  "displayName": "Writesonic"
  },
  {
   "id": "canva-pro-shared",
@@ -3219,7 +3325,9 @@
    "designers"
   ],
   "icon": "🖌️",
-  "official": "Canva Pro"
+  "official": "Canva Pro",
+  "officialIcon": "🖌️",
+  "displayName": "Canva Pro"
  },
  {
   "id": "canva-pro-personal",
@@ -3275,7 +3383,9 @@
   ],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🖌️",
-  "official": "Canva Pro"
+  "official": "Canva Pro",
+  "officialIcon": "🖌️",
+  "displayName": "Canva Pro"
  },
  {
   "id": "adobe-firefly-shared",
@@ -3308,7 +3418,9 @@
    "Professional photo editing with AI"
   ],
   "icon": "✨",
-  "official": "Adobe Firefly"
+  "official": "Adobe Firefly",
+  "officialIcon": "✨",
+  "displayName": "Adobe Firefly"
  },
  {
   "id": "adobe-firefly-personal",
@@ -3342,7 +3454,9 @@
    "Professional photo editing with AI"
   ],
   "icon": "✨",
-  "official": "Adobe Firefly"
+  "official": "Adobe Firefly",
+  "officialIcon": "✨",
+  "displayName": "Adobe Firefly"
  },
  {
   "id": "pika-labs-personal",
@@ -3397,7 +3511,8 @@
   ],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🔧",
-  "official": "Pika Labs - Personal"
+  "official": "Pika Labs - Personal",
+  "displayName": "Pika Labs"
  },
  {
   "id": "luma-dream-machine-personal",
@@ -3430,7 +3545,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-৩০ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট। ৩,০০০+ কাস্টমার ২০২৪ সাল থেকে।",
   "icon": "🔧",
-  "official": "Luma Dream Machine - Personal"
+  "official": "Luma Dream Machine - Personal",
+  "displayName": "Luma Dream Machine"
  },
  {
   "id": "murf-ai-shared",
@@ -3462,7 +3578,9 @@
    "Commercial voice production"
   ],
   "icon": "🎤",
-  "official": "Murf AI"
+  "official": "Murf AI",
+  "officialIcon": "🎤",
+  "displayName": "Murf.ai"
  },
  {
   "id": "murf-ai-personal",
@@ -3517,7 +3635,9 @@
   ],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🎤",
-  "official": "Murf AI"
+  "official": "Murf AI",
+  "officialIcon": "🎤",
+  "displayName": "Murf.ai"
  },
  {
   "id": "play-ht-shared",
@@ -3550,7 +3670,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-৩০ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট। ৩,০০০+ কাস্টমার ২০২৪ সাল থেকে।",
   "icon": "🔧",
-  "official": "Play.ht - Shared"
+  "official": "Play.ht - Shared",
+  "displayName": "Play.ht"
  },
  {
   "id": "play-ht-personal",
@@ -3584,7 +3705,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-৩০ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট। ৩,০০০+ কাস্টমার ২০২৪ সাল থেকে।",
   "icon": "🔧",
-  "official": "Play.ht - Personal"
+  "official": "Play.ht - Personal",
+  "displayName": "Play.ht"
  },
  {
   "id": "jasper-shared",
@@ -3617,7 +3739,9 @@
    "SEO-optimized content generation"
   ],
   "icon": "📖",
-  "official": "Jasper"
+  "official": "Jasper",
+  "officialIcon": "📖",
+  "displayName": "Jasper"
  },
  {
   "id": "jasper-personal",
@@ -3652,7 +3776,9 @@
    "Brand voice customization"
   ],
   "icon": "📖",
-  "official": "Jasper"
+  "official": "Jasper",
+  "officialIcon": "📖",
+  "displayName": "Jasper"
  },
  {
   "id": "copy-ai-shared",
@@ -3685,7 +3811,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-৩০ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট। ৩,০০০+ কাস্টমার ২০২৪ সাল থেকে।",
   "icon": "🔧",
-  "official": "Copy.ai - Shared"
+  "official": "Copy.ai - Shared",
+  "displayName": "Copy.ai"
  },
  {
   "id": "copy-ai-personal",
@@ -3719,7 +3846,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-৩০ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট। ৩,০০০+ কাস্টমার ২০২৪ সাল থেকে।",
   "icon": "🔧",
-  "official": "Copy.ai - Personal"
+  "official": "Copy.ai - Personal",
+  "displayName": "Copy.ai"
  },
  {
   "id": "codeium-shared",
@@ -3752,7 +3880,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-৩০ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট। ৩,০০০+ কাস্টমার ২০২৪ সাল থেকে।",
   "icon": "🔧",
-  "official": "Codeium"
+  "official": "Codeium",
+  "officialIcon": "🔧",
+  "displayName": "Codeium"
  },
  {
   "id": "codeium-personal",
@@ -3786,7 +3916,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-৩০ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট। ৩,০০০+ কাস্টমার ২০২৪ সাল থেকে।",
   "icon": "🔧",
-  "official": "Codeium"
+  "official": "Codeium",
+  "officialIcon": "🔧",
+  "displayName": "Codeium"
  },
  {
   "id": "coda-ai-shared",
@@ -3820,7 +3952,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-৩০ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট। ৩,০০০+ কাস্টমার ২০২৪ সাল থেকে।",
   "icon": "🔧",
-  "official": "Coda AI - Shared"
+  "official": "Coda AI - Shared",
+  "displayName": "Coda AI"
  },
  {
   "id": "coda-ai-personal",
@@ -3854,7 +3987,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-৩০ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট। ৩,০০০+ কাস্টমার ২০২৪ সাল থেকে।",
   "icon": "🔧",
-  "official": "Coda AI - Personal"
+  "official": "Coda AI - Personal",
+  "displayName": "Coda AI"
  },
  {
   "id": "meta-ai-shared",
@@ -3889,7 +4023,9 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-৩০ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট। ৩,০০০+ কাস্টমার ২০২৪ সাল থেকে।",
   "icon": "🎯",
-  "official": "Meta AI"
+  "official": "Meta AI",
+  "officialIcon": "https://www.meta.com/favicon.ico",
+  "displayName": "Meta AI Premium"
  },
  {
   "id": "mistral-ai-shared",
@@ -3924,7 +4060,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-৩০ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট। ৩,০০০+ কাস্টমার ২০২৪ সাল থেকে।",
   "icon": "🔧",
-  "official": "Mistral AI - Shared"
+  "official": "Mistral AI - Shared",
+  "displayName": "Mistral AI"
  },
  {
   "id": "mistral-ai-personal",
@@ -3959,7 +4096,8 @@
   ],
   "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad-এ পেমেন্ট। ৫-৩০ মিনিটে ডেলিভারি, ৩০ দিনের ওয়ারেন্টি, WhatsApp সাপোর্ট। ৩,০০০+ কাস্টমার ২০২৪ সাল থেকে।",
   "icon": "🔧",
-  "official": "Mistral AI - Personal"
+  "official": "Mistral AI - Personal",
+  "displayName": "Mistral AI"
  },
  {
   "id": "capcut-pro-starter-shared",
@@ -4137,7 +4275,9 @@
    "creators"
   ],
   "icon": "✂️",
-  "official": "CapCut"
+  "official": "CapCut",
+  "officialIcon": "✂️",
+  "displayName": "CapCut Pro — Starter Shared"
  },
  {
   "id": "grammarly-premium-starter-shared",
@@ -4233,7 +4373,9 @@
    "freelancers"
   ],
   "icon": "✍️",
-  "official": "Grammarly"
+  "official": "Grammarly",
+  "officialIcon": "✍️",
+  "displayName": "Grammarly Premium — Starter Shared"
  },
  {
   "id": "grammarly-premium-personal",
@@ -4323,7 +4465,9 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "✍️",
-  "official": "Grammarly"
+  "official": "Grammarly",
+  "officialIcon": "✍️",
+  "displayName": "Grammarly Premium — Personal"
  },
  {
   "id": "quillbot-premium-starter-shared",
@@ -4418,7 +4562,9 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🔧",
-  "official": "QuillBot Premium — Starter Shared"
+  "official": "QuillBot Premium — Starter Shared",
+  "officialIcon": "🖋️",
+  "displayName": "QuillBot Premium — Starter Shared"
  },
  {
   "id": "quillbot-premium-personal",
@@ -4511,7 +4657,9 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🔧",
-  "official": "QuillBot Premium — Personal"
+  "official": "QuillBot Premium — Personal",
+  "officialIcon": "🖋️",
+  "displayName": "QuillBot Premium — Personal"
  },
  {
   "id": "microsoft-copilot-pro-starter-shared",
@@ -4606,7 +4754,8 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🔧",
-  "official": "Microsoft Copilot Pro — Starter Shared"
+  "official": "Microsoft Copilot Pro — Starter Shared",
+  "displayName": "Microsoft Copilot Pro — Starter Shared"
  },
  {
   "id": "microsoft-copilot-pro-personal",
@@ -4699,7 +4848,8 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🔧",
-  "official": "Microsoft Copilot Pro — Personal"
+  "official": "Microsoft Copilot Pro — Personal",
+  "displayName": "Microsoft Copilot Pro — Personal"
  },
  {
   "id": "jasper-ai-starter-shared",
@@ -4794,7 +4944,8 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🔧",
-  "official": "Jasper AI Creator — Starter Shared"
+  "official": "Jasper AI Creator — Starter Shared",
+  "displayName": "Jasper AI Creator — Starter Shared"
  },
  {
   "id": "jasper-ai-personal",
@@ -4887,7 +5038,8 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🔧",
-  "official": "Jasper AI Creator — Personal"
+  "official": "Jasper AI Creator — Personal",
+  "displayName": "Jasper AI Creator — Personal"
  },
  {
   "id": "opus-clip-starter-shared",
@@ -4979,7 +5131,8 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🔧",
-  "official": "Opus Clip — Starter Shared"
+  "official": "Opus Clip — Starter Shared",
+  "displayName": "Opus Clip — Starter Shared"
  },
  {
   "id": "opus-clip-personal",
@@ -5069,7 +5222,8 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🔧",
-  "official": "Opus Clip — Personal"
+  "official": "Opus Clip — Personal",
+  "displayName": "Opus Clip — Personal"
  },
  {
   "id": "descript-pro-starter-shared",
@@ -5164,7 +5318,9 @@
    "creators"
   ],
   "icon": "📝",
-  "official": "Descript"
+  "official": "Descript",
+  "officialIcon": "📹",
+  "displayName": "Descript Pro — Starter Shared"
  },
  {
   "id": "descript-pro-personal",
@@ -5254,7 +5410,9 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "📝",
-  "official": "Descript"
+  "official": "Descript",
+  "officialIcon": "📹",
+  "displayName": "Descript Pro — Personal"
  },
  {
   "id": "freepik-premium-shared",
@@ -5409,7 +5567,9 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🖼️",
-  "official": "Freepik"
+  "official": "Freepik",
+  "officialIcon": "🖼️",
+  "displayName": "Freepik Premium — Shared"
  },
  {
   "id": "kling-ai-starter-shared",
@@ -5561,7 +5721,8 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🔧",
-  "official": "Kling AI — Starter Shared"
+  "official": "Kling AI — Starter Shared",
+  "displayName": "Kling AI — Starter Shared"
  },
  {
   "id": "synthesia-starter-shared",
@@ -5715,7 +5876,8 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🔧",
-  "official": "Synthesia — Starter Shared"
+  "official": "Synthesia — Starter Shared",
+  "displayName": "Synthesia — Starter Shared"
  },
  {
   "id": "windsurf-pro-shared",
@@ -5836,6 +5998,7 @@
   "relatedProducts": [],
   "lastVerifiedDate": "2026-07-09",
   "icon": "🔧",
-  "official": "Windsurf Pro — Shared"
+  "official": "Windsurf Pro — Shared",
+  "displayName": "Windsurf Pro — Shared"
  }
 ]

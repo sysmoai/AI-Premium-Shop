@@ -56,10 +56,10 @@ export function HeroVideo() {
   }
 
   // Determine which video sources to use based on device
-  const desktopWebM = "https://fjpkhgecnothqjfhxrhx.supabase.co/storage/v1/object/public/videos/homepage-hero.webm";
-  const desktopMP4 = "https://fjpkhgecnothqjfhxrhx.supabase.co/storage/v1/object/public/videos/homepage-hero-optimized.mp4";
-  const mobileWebM = "https://fjpkhgecnothqjfhxrhx.supabase.co/storage/v1/object/public/videos/homepage-hero-mobile.webm";
-  const posterImg = "https://fjpkhgecnothqjfhxrhx.supabase.co/storage/v1/object/public/videos/homepage-hero-poster.jpg";
+  const desktopWebM = "https://fjpkhgecnothqjfhxrhx.supabase.co/storage/v1/object/public/generated-content/homepage-hero/homepage-hero.webm";
+  const desktopMP4 = "https://fjpkhgecnothqjfhxrhx.supabase.co/storage/v1/object/public/generated-content/homepage-hero/homepage-hero-optimized.mp4";
+  const mobileWebM = "https://fjpkhgecnothqjfhxrhx.supabase.co/storage/v1/object/public/generated-content/homepage-hero/homepage-hero-mobile.webm";
+  const posterImg = "https://fjpkhgecnothqjfhxrhx.supabase.co/storage/v1/object/public/generated-content/homepage-hero/homepage-hero-poster.jpg";
 
   return (
     <div className="relative w-full h-full overflow-hidden rounded-2xl bg-black">

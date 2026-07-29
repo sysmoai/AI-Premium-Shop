@@ -5,7 +5,7 @@
 - Repo: github.com/sysmoai/AI-Premium-Shop (Replit mirror)
 - Secondary: C:\Users\emonh\aips-website (Next.js rebuild, PROJECT PHOENIX)
 - Stack: React+Vite (pnpm workspace monorepo, artifact: artifacts/aips-landing)
-- Owner: EMON HOSSAIN <emon@emonhossain.pro>
+- Support: support@aipremiumshop.com
 
 ## Truth Rules
 - NEVER claim: "3,000+ customers" → use "a growing community of customers since 2024"

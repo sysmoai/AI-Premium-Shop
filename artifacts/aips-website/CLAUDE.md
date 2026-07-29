@@ -3,7 +3,7 @@
 ## 1. Project
 - Codename: PROJECT PHOENIX
 - Repo: github.com/aipremiumshopbd/aips-website (private, branch main)
-- Owner: EMON HOSSAIN <emon@emonhossain.pro>
+- Support: support@aipremiumshop.com
 - Goal: Production e-commerce site for aipremiumshop.com — parallel rebuild of the Replit live site.
 - Cutover target: May 18 2026.
 - LIVE-SITE COEXISTENCE: The Replit site at aipremiumshop.com is LIVE and serving paying customers. NEVER deploy Phoenix to apex domain until CEO writes "CUTOVER APPROVED — [date] [time] — EMON HOSSAIN" in Phase 0 Tracker.

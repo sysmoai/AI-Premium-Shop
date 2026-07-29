@@ -59,7 +59,7 @@ export default function QuizPage() {
               Find Your Perfect AI Tools
             </h1>
             <p className="mt-4 text-lg leading-7 text-[#8a91a8]">
-              Answer 2 quick questions and we'll recommend the best AI subscriptions for your needs
+              Answer 2 quick questions and we&apos;ll recommend the best AI subscriptions for your needs
             </p>
           </div>
 

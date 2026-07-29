@@ -15,7 +15,9 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "deploy": "bash deploy.sh",
-    "deploy:win": "deploy.bat"
+    "deploy:win": "deploy.bat",
+    "generate:graphics": "ts-node scripts/generate-with-higgsfield.ts",
+    "check-storage": "node scripts/check-storage.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

@@ -1,0 +1,5 @@
+<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="64" cy="64" r="60" fill="#f4b942" opacity="0.1" stroke="#f4b942" stroke-width="2"/>
+  <text x="64" y="75" font-size="52" font-weight="bold" text-anchor="middle" fill="#f4b942" font-family="Arial">🔧</text>
+  <text x="64" y="115" font-size="14" text-anchor="middle" fill="#f4b942" font-family="Arial">118+ AI Tools</text>
+</svg>

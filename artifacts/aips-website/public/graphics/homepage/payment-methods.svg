@@ -1,0 +1,10 @@
+<svg viewBox="0 0 1024 256" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1024" height="256" fill="#0A0E27"/>
+  <text x="512" y="50" font-size="36" font-weight="bold" text-anchor="middle" fill="#f4b942" font-family="Arial">Payment Methods Accepted</text>
+  <text x="102" y="150" font-size="28" text-anchor="middle" fill="#ffffff" font-family="Arial">bKash</text>
+  <text x="204" y="150" font-size="28" text-anchor="middle" fill="#ffffff" font-family="Arial">Nagad</text>
+  <text x="306" y="150" font-size="28" text-anchor="middle" fill="#ffffff" font-family="Arial">Rocket</text>
+  <text x="408" y="150" font-size="28" text-anchor="middle" fill="#ffffff" font-family="Arial">Bank</text>
+  <text x="512" y="150" font-size="28" text-anchor="middle" fill="#ffffff" font-family="Arial">Binance</text>
+  <text x="512" y="220" font-size="20" text-anchor="middle" fill="#f4b942" font-family="Arial">All secure • All verified • Instant processing</text>
+</svg>

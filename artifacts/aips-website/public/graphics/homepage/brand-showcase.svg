@@ -1,0 +1,14 @@
+<svg viewBox="0 0 1024 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f4b942;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#E2136E;stop-opacity:0.2" />
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="512" fill="#0A0E27"/>
+  <rect width="1024" height="512" fill="url(#brandGrad)"/>
+  <text x="512" y="100" font-size="48" font-weight="bold" text-anchor="middle" fill="#f4b942" font-family="Arial">118+ Top AI Brands</text>
+  <text x="512" y="200" font-size="32" text-anchor="middle" fill="#ffffff" font-family="Arial">ChatGPT • Claude • Midjourney • Google • GitHub</text>
+  <text x="512" y="260" font-size="32" text-anchor="middle" fill="#ffffff" font-family="Arial">Runway • ElevenLabs • Suno • Notion • Canva</text>
+  <text x="512" y="380" font-size="28" text-anchor="middle" fill="#f4b942" font-family="Arial">Official Licenses • Instant Activation • 24/7 Support</text>
+</svg>

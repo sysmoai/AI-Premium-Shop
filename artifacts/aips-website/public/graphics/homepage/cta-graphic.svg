@@ -1,0 +1,13 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ctaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f4b942;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E2136E;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="#0A0E27"/>
+  <rect x="50" y="50" width="700" height="300" rx="20" fill="url(#ctaGrad)"/>
+  <text x="400" y="150" font-size="52" font-weight="bold" text-anchor="middle" fill="#0A0E27" font-family="Arial">Join 3000+ Customers</text>
+  <text x="400" y="220" font-size="36" text-anchor="middle" fill="#0A0E27" font-family="Arial">Get Your AI Tools Today</text>
+  <text x="400" y="300" font-size="24" text-anchor="middle" fill="#0A0E27" font-family="Arial">💬 Order via WhatsApp</text>
+</svg>

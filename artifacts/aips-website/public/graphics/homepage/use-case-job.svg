@@ -1,0 +1,18 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ucGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B2F97;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#f4b942;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="#0A0E27"/>
+  <rect width="800" height="600" fill="url(#ucGrad2)"/>
+  <text x="400" y="80" font-size="48" font-weight="bold" text-anchor="middle" fill="#f4b942" font-family="Arial">Job Interview Prep</text>
+  <text x="200" y="200" font-size="36" text-anchor="middle" fill="#ffffff" font-family="Arial">Before</text>
+  <text x="600" y="200" font-size="36" text-anchor="middle" fill="#ffffff" font-family="Arial">After</text>
+  <text x="200" y="300" font-size="48" text-anchor="middle" fill="#8B2F97" font-family="Arial">😰</text>
+  <text x="200" y="380" font-size="24" text-anchor="middle" fill="#ffffff" font-family="Arial">Generic CV</text>
+  <text x="600" y="300" font-size="48" text-anchor="middle" fill="#f4b942" font-family="Arial">🎓</text>
+  <text x="600" y="380" font-size="24" text-anchor="middle" fill="#ffffff" font-family="Arial">Job Offer</text>
+  <text x="400" y="500" font-size="32" text-anchor="middle" fill="#f4b942" font-family="Arial">⏱️ 15 Minutes Total Prep</text>
+</svg>

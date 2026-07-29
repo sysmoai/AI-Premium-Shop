@@ -105,7 +105,7 @@ export async function batchSaveImageMetadata(images: ImageMetadata[]) {
     return {
       success: true,
       count: result.length,
-      ids: result.map((r) => r.id),
+      ids: result.map((r: typeof media.$inferSelect) => r.id),
     };
   } catch (error: any) {
     console.error('Failed to batch save images:', error);

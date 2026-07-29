@@ -6,36 +6,35 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@workspace/aips-landing", "dev"],
       "port": 5173,
-      "autoPort": true,
-      "url": "http://localhost:5173"
+      "autoPort": true
     },
     {
       "name": "aips-website",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@workspace/aips-website", "dev"],
       "port": 3000,
-      "url": "http://localhost:3000"
+      "autoPort": true
     },
     {
       "name": "api-server",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@workspace/api-server", "dev"],
       "port": 3001,
-      "url": "http://localhost:3001"
+      "autoPort": true
     },
     {
       "name": "mockup-sandbox",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@workspace/mockup-sandbox", "dev"],
       "port": 5174,
-      "url": "http://localhost:5174"
+      "autoPort": true
     },
     {
       "name": "figma-make-v2",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@workspace/figma-make-v2", "dev"],
       "port": 5175,
-      "url": "http://localhost:5175"
+      "autoPort": true
     }
   ]
 }

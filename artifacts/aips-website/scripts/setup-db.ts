@@ -16,13 +16,16 @@ if (!supabaseUrl || !supabaseServiceRole) {
   process.exit(1);
 }
 
+const supabaseUrlVerified: string = supabaseUrl;
+const supabaseServiceRoleVerified: string = supabaseServiceRole;
+
 async function setupDatabase() {
   try {
     console.log('🔧 Setting up AI Premium Shop database...\n');
 
     // 1. Test Supabase connection
     console.log('📡 Testing Supabase connection...');
-    const supabase = createClient(supabaseUrl, supabaseServiceRole);
+    const supabase = createClient(supabaseUrlVerified, supabaseServiceRoleVerified);
     const { data, error } = await supabase.auth.admin.listUsers();
 
     if (error) {
@@ -55,8 +58,8 @@ async function setupDatabase() {
     console.log('2. Run: drizzle-kit push:pg');
     console.log('3. Verify tables in Supabase dashboard');
     console.log('\nCredentials verified:');
-    console.log(`- Project URL: ${supabaseUrl}`);
-    console.log(`- Service Role Key: ${supabaseServiceRole.substring(0, 20)}...`);
+    console.log(`- Project URL: ${supabaseUrlVerified}`);
+    console.log(`- Service Role Key: ${supabaseServiceRoleVerified.substring(0, 20)}...`);
     console.log('\n');
 
     process.exit(0);

@@ -168,7 +168,7 @@ PERFECT FOR: Trust section background`,
     const statsIcons = await Promise.all(
       stats.map(stat => generateWebImage({
         prompt: stat.prompt,
-        size: '256x256',
+        size: '512x512',
         quality: 'fast',
       }))
     );
@@ -223,9 +223,9 @@ Visual: Golden seal, checkmark, or crown indicating premium access
 Style: Professional, prestigious, luxury
 Colors: Gold (#f4b942), navy, white
 Small, elegant, overlay-friendly
-Perfect for: 256x256 or smaller
+Perfect for: 512x512 or smaller
 WEBP format, < 40KB`,
-      size: '256x256',
+      size: '512x512',
       quality: 'fast',
     });
 
@@ -291,7 +291,7 @@ PERFECT FOR: Use case card display`,
     const useCaseImages = await Promise.all(
       useCases.map(uc => generateWebImage({
         prompt: uc.prompt,
-        size: '800x600',
+        size: '768x768',
         quality: 'balanced',
       }))
     );

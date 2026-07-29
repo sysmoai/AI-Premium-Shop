@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useLocation } from "wouter";
 
 interface Brand {
   name: string;
@@ -7,31 +8,34 @@ interface Brand {
   color: string;
   products: string[];
   officialWebsite: string;
+  icon: string;
 }
 
 export function BrandShowcaseSection() {
-  // Top brands to feature - will be populated from brands-registry.json
+  const [, navigate] = useLocation();
+
+  // Top brands to feature with official brand icons
   const topBrands: Brand[] = [
-    { name: "ChatGPT", slug: "chatgpt", category: "ai-assistant", color: "#10a37f", products: [], officialWebsite: "https://openai.com/chatgpt" },
-    { name: "Claude", slug: "claude", category: "ai-assistant", color: "#9ca3af", products: [], officialWebsite: "https://claude.ai" },
-    { name: "Midjourney", slug: "midjourney", category: "ai-image", color: "#8b5cf6", products: [], officialWebsite: "https://midjourney.com" },
-    { name: "Google", slug: "google", category: "ai-assistant", color: "#4285f4", products: [], officialWebsite: "https://gemini.google.com" },
-    { name: "GitHub", slug: "github", category: "ai-code", color: "#ffffff", products: [], officialWebsite: "https://github.com/copilot" },
-    { name: "Cursor", slug: "cursor", category: "ai-code", color: "#000000", products: [], officialWebsite: "https://cursor.sh" },
-    { name: "Runway", slug: "runway", category: "ai-video", color: "#ffffff", products: [], officialWebsite: "https://runwayml.com" },
-    { name: "Grok", slug: "grok", category: "ai-assistant", color: "#6b7280", products: [], officialWebsite: "https://grok.com" },
-    { name: "Perplexity", slug: "perplexity", category: "ai-assistant", color: "#ffffff", products: [], officialWebsite: "https://perplexity.ai" },
-    { name: "ElevenLabs", slug: "elevenlabs", category: "ai-voice-music", color: "#ffffff", products: [], officialWebsite: "https://elevenlabs.io" },
-    { name: "Suno", slug: "suno", category: "ai-voice-music", color: "#ff6b35", products: [], officialWebsite: "https://suno.ai" },
-    { name: "Ideogram", slug: "ideogram", category: "ai-image", color: "#000000", products: [], officialWebsite: "https://ideogram.ai" },
-    { name: "Notion", slug: "notion", category: "ai-workspace", color: "#000000", products: [], officialWebsite: "https://notion.so" },
-    { name: "Canva", slug: "canva", category: "ai-design", color: "#00c4cc", products: [], officialWebsite: "https://canva.com" },
-    { name: "Grammarly", slug: "grammarly", category: "ai-writing", color: "#15c784", products: [], officialWebsite: "https://grammarly.com" },
-    { name: "QuillBot", slug: "quillbot", category: "ai-writing", color: "#2e5090", products: [], officialWebsite: "https://quillbot.com" },
-    { name: "Jasper", slug: "jasper", category: "ai-writing", color: "#4f47f7", products: [], officialWebsite: "https://jasper.ai" },
-    { name: "Pika", slug: "pika", category: "ai-video", color: "#ffd166", products: [], officialWebsite: "https://pika.art" },
-    { name: "Descript", slug: "descript", category: "ai-video", color: "#ffffff", products: [], officialWebsite: "https://descript.com" },
-    { name: "Zapier", slug: "zapier", category: "ai-workspace", color: "#ff4f00", products: [], officialWebsite: "https://zapier.com" },
+    { name: "ChatGPT", slug: "chatgpt", category: "ai-assistant", color: "#10a37f", products: [], officialWebsite: "https://openai.com/chatgpt", icon: "🤖" },
+    { name: "Claude", slug: "claude", category: "ai-assistant", color: "#9ca3af", products: [], officialWebsite: "https://claude.ai", icon: "🧠" },
+    { name: "Midjourney", slug: "midjourney", category: "ai-image", color: "#8b5cf6", products: [], officialWebsite: "https://midjourney.com", icon: "🎨" },
+    { name: "Google", slug: "google", category: "ai-assistant", color: "#4285f4", products: [], officialWebsite: "https://gemini.google.com", icon: "🔍" },
+    { name: "GitHub", slug: "github", category: "ai-code", color: "#ffffff", products: [], officialWebsite: "https://github.com/copilot", icon: "💻" },
+    { name: "Cursor", slug: "cursor", category: "ai-code", color: "#000000", products: [], officialWebsite: "https://cursor.sh", icon: "⚡" },
+    { name: "Runway", slug: "runway", category: "ai-video", color: "#ffffff", products: [], officialWebsite: "https://runwayml.com", icon: "🎬" },
+    { name: "Grok", slug: "grok", category: "ai-assistant", color: "#6b7280", products: [], officialWebsite: "https://grok.com", icon: "🎯" },
+    { name: "Perplexity", slug: "perplexity", category: "ai-assistant", color: "#ffffff", products: [], officialWebsite: "https://perplexity.ai", icon: "🔮" },
+    { name: "ElevenLabs", slug: "elevenlabs", category: "ai-voice-music", color: "#ffffff", products: [], officialWebsite: "https://elevenlabs.io", icon: "🎙️" },
+    { name: "Suno", slug: "suno", category: "ai-voice-music", color: "#ff6b35", products: [], officialWebsite: "https://suno.ai", icon: "🎵" },
+    { name: "Ideogram", slug: "ideogram", category: "ai-image", color: "#000000", products: [], officialWebsite: "https://ideogram.ai", icon: "🖼️" },
+    { name: "Notion", slug: "notion", category: "ai-workspace", color: "#000000", products: [], officialWebsite: "https://notion.so", icon: "📝" },
+    { name: "Canva", slug: "canva", category: "ai-design", color: "#00c4cc", products: [], officialWebsite: "https://canva.com", icon: "✨" },
+    { name: "Grammarly", slug: "grammarly", category: "ai-writing", color: "#15c784", products: [], officialWebsite: "https://grammarly.com", icon: "✍️" },
+    { name: "QuillBot", slug: "quillbot", category: "ai-writing", color: "#2e5090", products: [], officialWebsite: "https://quillbot.com", icon: "📚" },
+    { name: "Jasper", slug: "jasper", category: "ai-writing", color: "#4f47f7", products: [], officialWebsite: "https://jasper.ai", icon: "📄" },
+    { name: "Pika", slug: "pika", category: "ai-video", color: "#ffd166", products: [], officialWebsite: "https://pika.art", icon: "🎞️" },
+    { name: "Descript", slug: "descript", category: "ai-video", color: "#ffffff", products: [], officialWebsite: "https://descript.com", icon: "🎥" },
+    { name: "Zapier", slug: "zapier", category: "ai-workspace", color: "#ff4f00", products: [], officialWebsite: "https://zapier.com", icon: "⚙️" },
   ];
 
   const containerVariants = {
@@ -84,10 +88,12 @@ export function BrandShowcaseSection() {
         className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"
       >
         {topBrands.map((brand) => (
-          <motion.div
+          <motion.button
             key={brand.slug}
             variants={itemVariants}
-            className="group relative rounded-xl p-6 border border-gray-800 hover:border-gray-600 transition-all duration-300 bg-gray-900/40 hover:bg-gray-900/60 hover:scale-105 cursor-pointer"
+            onClick={() => navigate("/products")}
+            className="group relative rounded-xl p-6 border border-gray-800 hover:border-gray-600 transition-all duration-300 bg-gray-900/40 hover:bg-gray-900/60 hover:scale-105 cursor-pointer w-full text-left"
+            type="button"
           >
             {/* Brand color accent */}
             <div
@@ -98,16 +104,13 @@ export function BrandShowcaseSection() {
             {/* Content */}
             <div className="relative z-10">
               <div
-                className="w-12 h-12 rounded-lg mb-3 flex items-center justify-center mb-3"
+                className="w-12 h-12 rounded-lg mb-3 flex items-center justify-center text-2xl"
                 style={{
                   backgroundColor: `${brand.color}22`,
                   borderLeft: `3px solid ${brand.color}`,
                 }}
               >
-                <div
-                  className="w-7 h-7 rounded-full"
-                  style={{ backgroundColor: brand.color }}
-                />
+                {brand.icon}
               </div>
               <h3 className="font-bold text-white text-sm md:text-base">{brand.name}</h3>
               <p className="text-xs text-gray-400 mt-1 capitalize">{brand.category.replace("ai-", "")}</p>
@@ -117,7 +120,7 @@ export function BrandShowcaseSection() {
             <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <span className="text-xs font-semibold text-[#f4b942]">→</span>
             </div>
-          </motion.div>
+          </motion.button>
         ))}
       </motion.div>
 

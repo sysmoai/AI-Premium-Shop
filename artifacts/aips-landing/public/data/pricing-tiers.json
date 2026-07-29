@@ -1,0 +1,761 @@
+{
+  "metadata": {
+    "generatedAt": "2026-07-29T11:40:31.443Z",
+    "version": "1.0.0"
+  },
+  "tiers": [
+    {
+      "name": "Budget",
+      "range": "BDT 299-399",
+      "minPrice": 299,
+      "maxPrice": 399,
+      "description": "Great for trying AI tools",
+      "products": [
+        {
+          "id": "capcut-pro-starter-shared",
+          "name": "CapCut Pro — Starter Shared",
+          "brand": "CapCut",
+          "price": 299
+        },
+        {
+          "id": "gamma-plus-shared",
+          "name": "Gamma Plus — Shared",
+          "brand": "Gamma",
+          "price": 399
+        },
+        {
+          "id": "grammarly-premium-starter-shared",
+          "name": "Grammarly Premium — Starter Shared",
+          "brand": "Grammarly",
+          "price": 399
+        },
+        {
+          "id": "quillbot-premium-starter-shared",
+          "name": "QuillBot Premium — Starter Shared",
+          "brand": "QuillBot",
+          "price": 390
+        },
+        {
+          "id": "canva-pro-starter-shared",
+          "name": "Canva Pro — Starter Shared",
+          "brand": "Canva",
+          "price": 399
+        },
+        {
+          "id": "pika-labs-starter-shared",
+          "name": "Pika Labs — Starter Shared",
+          "brand": "Pika",
+          "price": 310
+        },
+        {
+          "id": "buffer-ai-assist-shared",
+          "name": "Buffer (AI Assist) — Shared",
+          "brand": "Buffer",
+          "price": 399
+        },
+        {
+          "id": "removebg-pro-shared",
+          "name": "Remove.bg Pro — Shared",
+          "brand": "Remove.bg Pro",
+          "price": 299
+        },
+        {
+          "id": "scholarcy-premium-shared",
+          "name": "Scholarcy Premium — Shared",
+          "brand": "Scholarcy Premium",
+          "price": 399
+        },
+        {
+          "id": "tidio-ai-chat-shared",
+          "name": "Tidio (AI Chat) — Shared",
+          "brand": "Tidio",
+          "price": 399
+        },
+        {
+          "id": "wordtune-premium-shared",
+          "name": "Wordtune Premium — Shared",
+          "brand": "Wordtune Premium",
+          "price": 399
+        },
+        {
+          "id": "github-copilot-shared",
+          "name": "GitHub Copilot — Shared",
+          "brand": "GitHub",
+          "price": 399
+        }
+      ]
+    },
+    {
+      "name": "Starter",
+      "range": "BDT 400-999",
+      "minPrice": 400,
+      "maxPrice": 999,
+      "description": "Popular subscriptions for daily use",
+      "products": [
+        {
+          "id": "chatgpt-plus-starter-shared",
+          "name": "ChatGPT Plus — Starter Shared",
+          "brand": "ChatGPT",
+          "price": 499
+        },
+        {
+          "id": "chatgpt-plus-premium-shared",
+          "name": "ChatGPT Plus — Premium Shared",
+          "brand": "ChatGPT",
+          "price": 999
+        },
+        {
+          "id": "chatgpt-business-starter-shared",
+          "name": "ChatGPT Business — Starter Shared",
+          "brand": "ChatGPT",
+          "price": 699
+        },
+        {
+          "id": "perplexity-pro-shared",
+          "name": "Perplexity Pro — Shared",
+          "brand": "Perplexity",
+          "price": 599
+        },
+        {
+          "id": "leonardo-ai-shared",
+          "name": "Leonardo AI — Shared",
+          "brand": "Leonardo AI",
+          "price": 499
+        },
+        {
+          "id": "elevenlabs-starter-personal",
+          "name": "ElevenLabs Starter — Personal",
+          "brand": "ElevenLabs",
+          "price": 748
+        },
+        {
+          "id": "udio-pro-shared",
+          "name": "Udio Pro — Shared",
+          "brand": "Udio",
+          "price": 499
+        },
+        {
+          "id": "v0-dev-shared",
+          "name": "v0.dev Pro — Shared",
+          "brand": "v0.dev",
+          "price": 999
+        },
+        {
+          "id": "replit-core-personal",
+          "name": "Replit Core — Personal",
+          "brand": "Replit",
+          "price": 500
+        },
+        {
+          "id": "notion-business-monthly",
+          "name": "Notion Business — Monthly",
+          "brand": "Notion",
+          "price": 800
+        },
+        {
+          "id": "otter-ai-shared",
+          "name": "Otter.ai Pro — Shared",
+          "brand": "Otter.ai",
+          "price": 799
+        },
+        {
+          "id": "writesonic-shared",
+          "name": "Writesonic Individual — Shared",
+          "brand": "Writesonic",
+          "price": 799
+        },
+        {
+          "id": "student-essentials",
+          "name": "Student Essentials Package",
+          "brand": "AIPS",
+          "price": 449
+        },
+        {
+          "id": "university-pro",
+          "name": "University Pro Package",
+          "brand": "AIPS",
+          "price": 899
+        },
+        {
+          "id": "microsoft-copilot-pro-starter-shared",
+          "name": "Microsoft Copilot Pro — Starter Shared",
+          "brand": "Microsoft",
+          "price": 699
+        },
+        {
+          "id": "adobe-firefly-personal",
+          "name": "Adobe Firefly — Personal",
+          "brand": "Adobe",
+          "price": 799
+        },
+        {
+          "id": "opus-clip-starter-shared",
+          "name": "Opus Clip — Starter Shared",
+          "brand": "Opus",
+          "price": 590
+        },
+        {
+          "id": "descript-pro-starter-shared",
+          "name": "Descript Pro — Starter Shared",
+          "brand": "Descript",
+          "price": 470
+        },
+        {
+          "id": "murf-ai-starter-shared",
+          "name": "Murf AI — Starter Shared",
+          "brand": "Murf",
+          "price": 740
+        },
+        {
+          "id": "freepik-premium-shared",
+          "name": "Freepik Premium — Shared",
+          "brand": "Freepik",
+          "price": 499
+        },
+        {
+          "id": "kling-ai-starter-shared",
+          "name": "Kling AI — Starter Shared",
+          "brand": "Kling AI",
+          "price": 799
+        },
+        {
+          "id": "synthesia-starter-shared",
+          "name": "Synthesia — Starter Shared",
+          "brand": "Synthesia",
+          "price": 700
+        },
+        {
+          "id": "windsurf-pro-shared",
+          "name": "Windsurf Pro — Shared",
+          "brand": "Windsurf",
+          "price": 590
+        },
+        {
+          "id": "claude-pro-starter-shared",
+          "name": "Claude Pro — Starter Shared",
+          "brand": "Claude",
+          "price": 599
+        },
+        {
+          "id": "supergrok-shared",
+          "name": "SuperGrok — Shared",
+          "brand": "Grok",
+          "price": 699
+        },
+        {
+          "id": "google-ai-pro-shared",
+          "name": "Google AI Pro (Gemini Advanced) — Shared",
+          "brand": "Google",
+          "price": 599
+        },
+        {
+          "id": "airtable-ai-personal",
+          "name": "Airtable (AI) — Personal",
+          "brand": "Airtable",
+          "price": 999
+        },
+        {
+          "id": "chatbase-ai-chatbot-personal",
+          "name": "Chatbase (AI Chatbot) — Personal",
+          "brand": "Chatbase",
+          "price": 999
+        },
+        {
+          "id": "clickup-ai-personal",
+          "name": "ClickUp (AI) — Personal",
+          "brand": "ClickUp",
+          "price": 899
+        },
+        {
+          "id": "copy-ai-pro-personal",
+          "name": "Copy.ai Pro — Personal",
+          "brand": "Copy.ai Pro",
+          "price": 799
+        },
+        {
+          "id": "dalle-credits-setup-service",
+          "name": "DALL·E Credits (Service Setup) — Setup Service",
+          "brand": "DALL·E Credits",
+          "price": 799
+        },
+        {
+          "id": "deepl-pro-personal",
+          "name": "DeepL Pro — Personal",
+          "brand": "DeepL Pro",
+          "price": 999
+        },
+        {
+          "id": "elicit-pro-personal",
+          "name": "Elicit Pro — Personal",
+          "brand": "Elicit Pro",
+          "price": 799
+        },
+        {
+          "id": "google-ai-studio-pro-setup-service",
+          "name": "Google AI Studio Pro (Service Setup) — Setup Service",
+          "brand": "Google AI Studio Pro",
+          "price": 999
+        },
+        {
+          "id": "mailchimp-ai-copy-personal",
+          "name": "Mailchimp (AI Copy) — Personal",
+          "brand": "Mailchimp",
+          "price": 999
+        },
+        {
+          "id": "make-pro-shared",
+          "name": "Make (Integromat) Pro — Shared",
+          "brand": "Make (Integromat) Pro",
+          "price": 499
+        },
+        {
+          "id": "monday-ai-shared",
+          "name": "Monday.com (AI) — Shared",
+          "brand": "Monday.com",
+          "price": 499
+        },
+        {
+          "id": "n8n-cloud-personal",
+          "name": "n8n Cloud — Personal",
+          "brand": "n8n Cloud",
+          "price": 999
+        },
+        {
+          "id": "notion-ai-service",
+          "name": "Notion AI — Setup Service",
+          "brand": "Notion AI",
+          "price": 799
+        },
+        {
+          "id": "pictory-ai-personal",
+          "name": "Pictory AI — Personal",
+          "brand": "Pictory AI",
+          "price": 999
+        },
+        {
+          "id": "riverside-ai-clips-personal",
+          "name": "Riverside (AI Clips) — Personal",
+          "brand": "Riverside",
+          "price": 999
+        },
+        {
+          "id": "tome-ai-personal",
+          "name": "Tome AI — Personal",
+          "brand": "Tome AI",
+          "price": 899
+        },
+        {
+          "id": "veed-pro-personal",
+          "name": "VEED Pro — Personal",
+          "brand": "VEED Pro",
+          "price": 999
+        },
+        {
+          "id": "zotero-ai-citation-setup-service",
+          "name": "Zotero (AI Citation Setup Service) — Setup Service",
+          "brand": "Zotero",
+          "price": 599
+        },
+        {
+          "id": "cursor-pro-shared",
+          "name": "Cursor Pro — Shared",
+          "brand": "Cursor",
+          "price": 699
+        }
+      ]
+    },
+    {
+      "name": "Professional",
+      "range": "BDT 1000-2999",
+      "minPrice": 1000,
+      "maxPrice": 2999,
+      "description": "For professionals & creators",
+      "products": [
+        {
+          "id": "chatgpt-plus-personal",
+          "name": "ChatGPT Plus — Personal",
+          "brand": "ChatGPT",
+          "price": 2990
+        },
+        {
+          "id": "chatgpt-go-personal",
+          "name": "ChatGPT Go — Personal",
+          "brand": "ChatGPT",
+          "price": 1196
+        },
+        {
+          "id": "chatgpt-business-premium-shared",
+          "name": "ChatGPT Business — Premium Shared",
+          "brand": "ChatGPT",
+          "price": 1299
+        },
+        {
+          "id": "claude-pro-premium-shared",
+          "name": "Claude Pro — Premium Shared",
+          "brand": "Claude",
+          "price": 1590
+        },
+        {
+          "id": "claude-pro-personal",
+          "name": "Claude Pro — Personal",
+          "brand": "Claude",
+          "price": 2990
+        },
+        {
+          "id": "google-ai-pro-personal",
+          "name": "Google AI Pro (Gemini Advanced) — Personal",
+          "brand": "Google",
+          "price": 2990
+        },
+        {
+          "id": "supergrok-lite-personal",
+          "name": "SuperGrok Lite — Personal",
+          "brand": "Grok",
+          "price": 1699
+        },
+        {
+          "id": "perplexity-pro-personal",
+          "name": "Perplexity Pro — Personal",
+          "brand": "Perplexity",
+          "price": 2950
+        },
+        {
+          "id": "midjourney-std-shared",
+          "name": "Midjourney Standard — Shared",
+          "brand": "Midjourney",
+          "price": 1199
+        },
+        {
+          "id": "midjourney-std-premium-shared",
+          "name": "Midjourney Standard — Premium Shared",
+          "brand": "Midjourney",
+          "price": 2399
+        },
+        {
+          "id": "midjourney-std-personal",
+          "name": "Midjourney Standard — Personal",
+          "brand": "Midjourney",
+          "price": 2495
+        },
+        {
+          "id": "ideogram-plus-personal",
+          "name": "Ideogram Plus — Personal",
+          "brand": "Ideogram",
+          "price": 2990
+        },
+        {
+          "id": "runway-std-personal",
+          "name": "Runway Standard — Personal",
+          "brand": "Runway",
+          "price": 1794
+        },
+        {
+          "id": "heygen-creator-shared",
+          "name": "HeyGen Creator — Shared",
+          "brand": "HeyGen",
+          "price": 1499
+        },
+        {
+          "id": "github-copilot-pro-personal",
+          "name": "GitHub Copilot Pro — Personal",
+          "brand": "GitHub",
+          "price": 1495
+        },
+        {
+          "id": "cursor-pro-personal",
+          "name": "Cursor Pro — Personal",
+          "brand": "Cursor",
+          "price": 2990
+        },
+        {
+          "id": "grammarly-premium-personal",
+          "name": "Grammarly Premium — Personal",
+          "brand": "Grammarly",
+          "price": 1799
+        },
+        {
+          "id": "quillbot-premium-personal",
+          "name": "QuillBot Premium — Personal",
+          "brand": "QuillBot",
+          "price": 1490
+        },
+        {
+          "id": "canva-pro-personal",
+          "name": "Canva Pro — Personal",
+          "brand": "Canva",
+          "price": 2299
+        },
+        {
+          "id": "microsoft-copilot-pro-personal",
+          "name": "Microsoft Copilot Pro — Personal",
+          "brand": "Microsoft",
+          "price": 2990
+        },
+        {
+          "id": "jasper-ai-starter-shared",
+          "name": "Jasper AI Creator — Starter Shared",
+          "brand": "Jasper",
+          "price": 1520
+        },
+        {
+          "id": "pika-labs-personal",
+          "name": "Pika Labs — Personal",
+          "brand": "Pika",
+          "price": 1200
+        },
+        {
+          "id": "opus-clip-personal",
+          "name": "Opus Clip — Personal",
+          "brand": "Opus",
+          "price": 2240
+        },
+        {
+          "id": "descript-pro-personal",
+          "name": "Descript Pro — Personal",
+          "brand": "Descript",
+          "price": 1790
+        },
+        {
+          "id": "murf-ai-personal",
+          "name": "Murf AI — Personal",
+          "brand": "Murf",
+          "price": 2840
+        },
+        {
+          "id": "google-workspace-ai-admin-setup-service",
+          "name": "Google Workspace (AI + Admin) Setup Service — Setup Service",
+          "brand": "Google Workspace (AI + Admin) Setup Service",
+          "price": 1999
+        },
+        {
+          "id": "hootsuite-ai-assist-personal",
+          "name": "Hootsuite (AI Assist) — Personal",
+          "brand": "Hootsuite",
+          "price": 1099
+        },
+        {
+          "id": "hubspot-starter-service",
+          "name": "HubSpot (Starter) — Setup Service",
+          "brand": "HubSpot",
+          "price": 1999
+        },
+        {
+          "id": "intercom-ai-fin-setup-service",
+          "name": "Intercom (AI Fin) Setup Service — Setup Service",
+          "brand": "Intercom (AI Fin) Setup Service",
+          "price": 2999
+        },
+        {
+          "id": "looker-studio-dashboard-setup-service",
+          "name": "Google Looker Studio (Dashboard) Setup Service — Setup Service",
+          "brand": "Google Looker Studio (Dashboard) Setup Service",
+          "price": 2499
+        },
+        {
+          "id": "notion-team-workspace-setup-service",
+          "name": "Notion (Team Workspace) Setup Service — Setup Service",
+          "brand": "Notion (Team Workspace) Setup Service",
+          "price": 1999
+        },
+        {
+          "id": "semrush-ai-writing-assist-service",
+          "name": "Semrush (AI Writing Assist) — Setup Service",
+          "brand": "Semrush",
+          "price": 2499
+        },
+        {
+          "id": "surfer-seo-ai-personal",
+          "name": "Surfer SEO (AI) — Personal",
+          "brand": "Surfer SEO",
+          "price": 1299
+        },
+        {
+          "id": "zapier-ai-automation-personal",
+          "name": "Zapier (AI + Automation) — Personal",
+          "brand": "Zapier",
+          "price": 1299
+        },
+        {
+          "id": "suno-pro-shared",
+          "name": "Suno Pro — Shared",
+          "brand": "Suno",
+          "price": 1199
+        }
+      ]
+    },
+    {
+      "name": "Premium",
+      "range": "BDT 3000-9999",
+      "minPrice": 3000,
+      "maxPrice": 9999,
+      "description": "Advanced features & priority support",
+      "products": [
+        {
+          "id": "chatgpt-business-personal",
+          "name": "ChatGPT Business — Personal",
+          "brand": "ChatGPT",
+          "price": 3990
+        },
+        {
+          "id": "chatgpt-pro-premium-shared",
+          "name": "ChatGPT Pro — Premium Shared",
+          "brand": "ChatGPT",
+          "price": 4500
+        },
+        {
+          "id": "claude-team-personal",
+          "name": "Claude Team — Personal Seat",
+          "brand": "Claude",
+          "price": 3990
+        },
+        {
+          "id": "supergrok-personal",
+          "name": "SuperGrok — Personal",
+          "brand": "Grok",
+          "price": 4990
+        },
+        {
+          "id": "midjourney-pro-shared",
+          "name": "Midjourney Pro — Shared",
+          "brand": "Midjourney",
+          "price": 4788
+        },
+        {
+          "id": "midjourney-pro-personal",
+          "name": "Midjourney Pro — Personal",
+          "brand": "Midjourney",
+          "price": 3990
+        },
+        {
+          "id": "ideogram-pro-personal",
+          "name": "Ideogram Pro — Personal",
+          "brand": "Ideogram",
+          "price": 3990
+        },
+        {
+          "id": "elevenlabs-creator-personal",
+          "name": "ElevenLabs Creator — Personal",
+          "brand": "ElevenLabs",
+          "price": 3490
+        },
+        {
+          "id": "suno-pro-personal",
+          "name": "Suno AI Pro — Personal",
+          "brand": "Suno",
+          "price": 4990
+        },
+        {
+          "id": "suno-premier-personal",
+          "name": "Suno AI Premier — Personal",
+          "brand": "Suno",
+          "price": 3990
+        },
+        {
+          "id": "github-copilot-proplus-personal",
+          "name": "GitHub Copilot Pro+ — Personal",
+          "brand": "GitHub",
+          "price": 5831
+        },
+        {
+          "id": "cursor-proplus-personal",
+          "name": "Cursor Pro+ — Personal",
+          "brand": "Cursor",
+          "price": 8970
+        },
+        {
+          "id": "notion-business-6m",
+          "name": "Notion Business — 6 Month Plan",
+          "brand": "Notion",
+          "price": 4800
+        },
+        {
+          "id": "manus-ai-personal",
+          "name": "Manus AI — Personal",
+          "brand": "Manus",
+          "price": 5990
+        },
+        {
+          "id": "freelancer-bundle",
+          "name": "Freelancer Bundle",
+          "brand": "AIPS",
+          "price": 3999
+        },
+        {
+          "id": "jasper-ai-personal",
+          "name": "Jasper AI Creator — Personal",
+          "brand": "Jasper",
+          "price": 5830
+        }
+      ]
+    },
+    {
+      "name": "Enterprise",
+      "range": "BDT 10000+",
+      "minPrice": 10000,
+      "maxPrice": null,
+      "description": "Complete solutions for teams",
+      "products": [
+        {
+          "id": "chatgpt-pro-personal",
+          "name": "ChatGPT Pro — Personal",
+          "brand": "ChatGPT",
+          "price": 29900
+        },
+        {
+          "id": "claude-max-5x",
+          "name": "Claude Max 5x — Personal",
+          "brand": "Claude",
+          "price": 14950
+        },
+        {
+          "id": "claude-max-20x",
+          "name": "Claude Max 20x — Personal",
+          "brand": "Claude",
+          "price": 29900
+        },
+        {
+          "id": "perplexity-max-personal",
+          "name": "Perplexity Max — Personal",
+          "brand": "Perplexity",
+          "price": 10990
+        },
+        {
+          "id": "midjourney-mega-personal",
+          "name": "Midjourney Mega — Personal",
+          "brand": "Midjourney",
+          "price": 17940
+        },
+        {
+          "id": "runway-pro-personal",
+          "name": "Runway Pro — Personal",
+          "brand": "Runway",
+          "price": 11990
+        },
+        {
+          "id": "runway-unlimited-personal",
+          "name": "Runway Unlimited — Personal",
+          "brand": "Runway",
+          "price": 11362
+        },
+        {
+          "id": "elevenlabs-pro-personal",
+          "name": "ElevenLabs Pro — Personal",
+          "brand": "ElevenLabs",
+          "price": 14802
+        },
+        {
+          "id": "business-package",
+          "name": "Business Package",
+          "brand": "AIPS",
+          "price": 15000
+        },
+        {
+          "id": "b2b-implementation",
+          "name": "B2B Implementation Service",
+          "brand": "AIPS",
+          "price": 25000
+        }
+      ]
+    }
+  ]
+}

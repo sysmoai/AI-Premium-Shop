@@ -1,0 +1,758 @@
+{
+  "metadata": {
+    "generatedAt": "2026-07-29T11:40:17.689Z",
+    "totalBrands": 70,
+    "totalProducts": 118,
+    "version": "1.0.0"
+  },
+  "brands": [
+    {
+      "name": "ChatGPT",
+      "slug": "chatgpt",
+      "category": "ai-assistant",
+      "color": "#10a37f",
+      "products": [
+        "chatgpt-plus-starter-shared",
+        "chatgpt-plus-premium-shared",
+        "chatgpt-plus-personal",
+        "chatgpt-go-personal",
+        "chatgpt-business-starter-shared",
+        "chatgpt-business-premium-shared",
+        "chatgpt-business-personal",
+        "chatgpt-pro-premium-shared",
+        "chatgpt-pro-personal"
+      ],
+      "officialWebsite": "https://openai.com/chatgpt"
+    },
+    {
+      "name": "Claude",
+      "slug": "claude",
+      "category": "ai-assistant",
+      "color": "#d97706",
+      "products": [
+        "claude-pro-premium-shared",
+        "claude-pro-personal",
+        "claude-max-5x",
+        "claude-max-20x",
+        "claude-team-personal",
+        "claude-pro-starter-shared"
+      ],
+      "officialWebsite": "https://claude.ai"
+    },
+    {
+      "name": "Midjourney",
+      "slug": "midjourney",
+      "category": "ai-image",
+      "color": "#1a1a2e",
+      "products": [
+        "midjourney-std-shared",
+        "midjourney-std-premium-shared",
+        "midjourney-std-personal",
+        "midjourney-pro-shared",
+        "midjourney-pro-personal",
+        "midjourney-mega-personal"
+      ],
+      "officialWebsite": "https://midjourney.com"
+    },
+    {
+      "name": "AIPS",
+      "slug": "aips",
+      "category": "bundles",
+      "color": "#f4b942",
+      "products": [
+        "student-essentials",
+        "university-pro",
+        "freelancer-bundle",
+        "business-package",
+        "b2b-implementation"
+      ],
+      "officialWebsite": "https://aipremiumshop.com"
+    },
+    {
+      "name": "Grok",
+      "slug": "grok",
+      "category": "ai-assistant",
+      "color": "#000000",
+      "products": [
+        "supergrok-lite-personal",
+        "supergrok-personal",
+        "supergrok-shared"
+      ],
+      "officialWebsite": "https://grok.com"
+    },
+    {
+      "name": "Perplexity",
+      "slug": "perplexity",
+      "category": "ai-assistant",
+      "color": "#20b2aa",
+      "products": [
+        "perplexity-pro-shared",
+        "perplexity-pro-personal",
+        "perplexity-max-personal"
+      ],
+      "officialWebsite": "https://perplexity.ai"
+    },
+    {
+      "name": "Runway",
+      "slug": "runway",
+      "category": "ai-video",
+      "color": "#111827",
+      "products": [
+        "runway-std-personal",
+        "runway-pro-personal",
+        "runway-unlimited-personal"
+      ],
+      "officialWebsite": "https://runwayml.com"
+    },
+    {
+      "name": "ElevenLabs",
+      "slug": "elevenlabs",
+      "category": "ai-voice-music",
+      "color": "#111827",
+      "products": [
+        "elevenlabs-starter-personal",
+        "elevenlabs-creator-personal",
+        "elevenlabs-pro-personal"
+      ],
+      "officialWebsite": "https://elevenlabs.io"
+    },
+    {
+      "name": "Suno",
+      "slug": "suno",
+      "category": "ai-voice-music",
+      "color": "#7c3aed",
+      "products": [
+        "suno-pro-personal",
+        "suno-premier-personal",
+        "suno-pro-shared"
+      ],
+      "officialWebsite": "https://suno.ai"
+    },
+    {
+      "name": "GitHub",
+      "slug": "github",
+      "category": "ai-code",
+      "color": "#6e40c9",
+      "products": [
+        "github-copilot-pro-personal",
+        "github-copilot-proplus-personal",
+        "github-copilot-shared"
+      ],
+      "officialWebsite": "https://github.com/copilot"
+    },
+    {
+      "name": "Cursor",
+      "slug": "cursor",
+      "category": "ai-code",
+      "color": "#111827",
+      "products": [
+        "cursor-pro-personal",
+        "cursor-proplus-personal",
+        "cursor-pro-shared"
+      ],
+      "officialWebsite": "https://cursor.sh"
+    },
+    {
+      "name": "Google",
+      "slug": "google",
+      "category": "ai-assistant",
+      "color": "#4285f4",
+      "products": [
+        "google-ai-pro-personal",
+        "google-ai-pro-shared"
+      ],
+      "officialWebsite": "https://gemini.google.com"
+    },
+    {
+      "name": "Ideogram",
+      "slug": "ideogram",
+      "category": "ai-image",
+      "color": "#6366f1",
+      "products": [
+        "ideogram-plus-personal",
+        "ideogram-pro-personal"
+      ],
+      "officialWebsite": "https://ideogram.ai"
+    },
+    {
+      "name": "Notion",
+      "slug": "notion",
+      "category": "ai-workspace",
+      "color": "#111827",
+      "products": [
+        "notion-business-monthly",
+        "notion-business-6m"
+      ],
+      "officialWebsite": "https://notion.so"
+    },
+    {
+      "name": "Grammarly",
+      "slug": "grammarly",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "grammarly-premium-starter-shared",
+        "grammarly-premium-personal"
+      ],
+      "officialWebsite": "https://grammarly.com"
+    },
+    {
+      "name": "QuillBot",
+      "slug": "quillbot",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "quillbot-premium-starter-shared",
+        "quillbot-premium-personal"
+      ],
+      "officialWebsite": "https://quillbot.com"
+    },
+    {
+      "name": "Canva",
+      "slug": "canva",
+      "category": "ai-design",
+      "color": "#6366f1",
+      "products": [
+        "canva-pro-starter-shared",
+        "canva-pro-personal"
+      ],
+      "officialWebsite": "https://canva.com"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft",
+      "category": "ai-assistant",
+      "color": "#6366f1",
+      "products": [
+        "microsoft-copilot-pro-starter-shared",
+        "microsoft-copilot-pro-personal"
+      ],
+      "officialWebsite": "https://www.microsoft.com/copilot"
+    },
+    {
+      "name": "Jasper",
+      "slug": "jasper",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "jasper-ai-starter-shared",
+        "jasper-ai-personal"
+      ],
+      "officialWebsite": "https://jasper.ai"
+    },
+    {
+      "name": "Pika",
+      "slug": "pika",
+      "category": "ai-video",
+      "color": "#6366f1",
+      "products": [
+        "pika-labs-starter-shared",
+        "pika-labs-personal"
+      ],
+      "officialWebsite": "https://pika.art"
+    },
+    {
+      "name": "Opus",
+      "slug": "opus",
+      "category": "ai-video",
+      "color": "#6366f1",
+      "products": [
+        "opus-clip-starter-shared",
+        "opus-clip-personal"
+      ],
+      "officialWebsite": "https://opusclip.com"
+    },
+    {
+      "name": "Descript",
+      "slug": "descript",
+      "category": "ai-video",
+      "color": "#6366f1",
+      "products": [
+        "descript-pro-starter-shared",
+        "descript-pro-personal"
+      ],
+      "officialWebsite": "https://descript.com"
+    },
+    {
+      "name": "Murf",
+      "slug": "murf",
+      "category": "ai-voice-music",
+      "color": "#6366f1",
+      "products": [
+        "murf-ai-starter-shared",
+        "murf-ai-personal"
+      ],
+      "officialWebsite": "https://murf.ai"
+    },
+    {
+      "name": "Leonardo AI",
+      "slug": "leonardo-ai",
+      "category": "ai-image",
+      "color": "#7c3aed",
+      "products": [
+        "leonardo-ai-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "CapCut",
+      "slug": "capcut",
+      "category": "ai-video",
+      "color": "#161823",
+      "products": [
+        "capcut-pro-starter-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "HeyGen",
+      "slug": "heygen",
+      "category": "ai-video",
+      "color": "#6366f1",
+      "products": [
+        "heygen-creator-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Udio",
+      "slug": "udio",
+      "category": "ai-voice-music",
+      "color": "#ec4899",
+      "products": [
+        "udio-pro-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "v0.dev",
+      "slug": "v0-dev",
+      "category": "ai-code",
+      "color": "#111827",
+      "products": [
+        "v0-dev-shared"
+      ],
+      "officialWebsite": "https://v0.dev"
+    },
+    {
+      "name": "Replit",
+      "slug": "replit",
+      "category": "ai-code",
+      "color": "#f26207",
+      "products": [
+        "replit-core-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Manus",
+      "slug": "manus",
+      "category": "ai-workspace",
+      "color": "#111827",
+      "products": [
+        "manus-ai-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Otter.ai",
+      "slug": "otter-ai",
+      "category": "ai-workspace",
+      "color": "#3b82f6",
+      "products": [
+        "otter-ai-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Gamma",
+      "slug": "gamma",
+      "category": "ai-workspace",
+      "color": "#8b5cf6",
+      "products": [
+        "gamma-plus-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Writesonic",
+      "slug": "writesonic",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "writesonic-shared"
+      ],
+      "officialWebsite": "https://writesonic.com"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe",
+      "category": "ai-image",
+      "color": "#6366f1",
+      "products": [
+        "adobe-firefly-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Freepik",
+      "slug": "freepik",
+      "category": "ai-image",
+      "color": "#1273eb",
+      "products": [
+        "freepik-premium-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Kling AI",
+      "slug": "kling-ai",
+      "category": "ai-video",
+      "color": "#ff6b35",
+      "products": [
+        "kling-ai-starter-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Synthesia",
+      "slug": "synthesia",
+      "category": "ai-video",
+      "color": "#5b5fc7",
+      "products": [
+        "synthesia-starter-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Windsurf",
+      "slug": "windsurf",
+      "category": "ai-code",
+      "color": "#0ea5e9",
+      "products": [
+        "windsurf-pro-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Airtable",
+      "slug": "airtable",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "airtable-ai-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Buffer",
+      "slug": "buffer",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "buffer-ai-assist-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Chatbase",
+      "slug": "chatbase",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "chatbase-ai-chatbot-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "ClickUp",
+      "slug": "clickup",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "clickup-ai-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Copy.ai Pro",
+      "slug": "copy-ai-pro",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "copy-ai-pro-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "DALL·E Credits",
+      "slug": "dall-e-credits",
+      "category": "ai-image",
+      "color": "#6366f1",
+      "products": [
+        "dalle-credits-setup-service"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "DeepL Pro",
+      "slug": "deepl-pro",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "deepl-pro-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Elicit Pro",
+      "slug": "elicit-pro",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "elicit-pro-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Google AI Studio Pro",
+      "slug": "google-ai-studio-pro",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "google-ai-studio-pro-setup-service"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Google Workspace (AI + Admin) Setup Service",
+      "slug": "google-workspace-ai-admin-setup-service",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "google-workspace-ai-admin-setup-service"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Hootsuite",
+      "slug": "hootsuite",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "hootsuite-ai-assist-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "HubSpot",
+      "slug": "hubspot",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "hubspot-starter-service"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Intercom (AI Fin) Setup Service",
+      "slug": "intercom-ai-fin-setup-service",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "intercom-ai-fin-setup-service"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Google Looker Studio (Dashboard) Setup Service",
+      "slug": "google-looker-studio-dashboard-setup-service",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "looker-studio-dashboard-setup-service"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Mailchimp",
+      "slug": "mailchimp",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "mailchimp-ai-copy-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Make (Integromat) Pro",
+      "slug": "make-integromat-pro",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "make-pro-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Monday.com",
+      "slug": "monday-com",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "monday-ai-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "n8n Cloud",
+      "slug": "n8n-cloud",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "n8n-cloud-personal"
+      ],
+      "officialWebsite": "https://n8n.cloud"
+    },
+    {
+      "name": "Notion AI",
+      "slug": "notion-ai",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "notion-ai-service"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Notion (Team Workspace) Setup Service",
+      "slug": "notion-team-workspace-setup-service",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "notion-team-workspace-setup-service"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Pictory AI",
+      "slug": "pictory-ai",
+      "category": "ai-video",
+      "color": "#6366f1",
+      "products": [
+        "pictory-ai-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Remove.bg Pro",
+      "slug": "remove-bg-pro",
+      "category": "ai-image",
+      "color": "#6366f1",
+      "products": [
+        "removebg-pro-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Riverside",
+      "slug": "riverside",
+      "category": "ai-voice-music",
+      "color": "#6366f1",
+      "products": [
+        "riverside-ai-clips-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Scholarcy Premium",
+      "slug": "scholarcy-premium",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "scholarcy-premium-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Semrush",
+      "slug": "semrush",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "semrush-ai-writing-assist-service"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Surfer SEO",
+      "slug": "surfer-seo",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "surfer-seo-ai-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Tidio",
+      "slug": "tidio",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "tidio-ai-chat-shared"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Tome AI",
+      "slug": "tome-ai",
+      "category": "ai-image",
+      "color": "#6366f1",
+      "products": [
+        "tome-ai-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "VEED Pro",
+      "slug": "veed-pro",
+      "category": "ai-video",
+      "color": "#6366f1",
+      "products": [
+        "veed-pro-personal"
+      ],
+      "officialWebsite": ""
+    },
+    {
+      "name": "Wordtune Premium",
+      "slug": "wordtune-premium",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "wordtune-premium-shared"
+      ],
+      "officialWebsite": "https://www.wordtune.com"
+    },
+    {
+      "name": "Zapier",
+      "slug": "zapier",
+      "category": "ai-workspace",
+      "color": "#6366f1",
+      "products": [
+        "zapier-ai-automation-personal"
+      ],
+      "officialWebsite": "https://zapier.com"
+    },
+    {
+      "name": "Zotero",
+      "slug": "zotero",
+      "category": "ai-writing",
+      "color": "#6366f1",
+      "products": [
+        "zotero-ai-citation-setup-service"
+      ],
+      "officialWebsite": "https://www.zotero.org"
+    }
+  ]
+}

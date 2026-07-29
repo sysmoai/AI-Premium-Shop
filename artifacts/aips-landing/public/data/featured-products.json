@@ -1,0 +1,166 @@
+{
+  "metadata": {
+    "generatedAt": "2026-07-29T11:40:24.953Z",
+    "totalFeatured": 8,
+    "version": "1.0.0"
+  },
+  "products": [
+    {
+      "id": "chatgpt-plus-starter-shared",
+      "name": "ChatGPT Plus — Starter Shared",
+      "brand": "ChatGPT",
+      "brandSlug": "chatgpt-plans-bangladesh",
+      "category": "ai-assistant",
+      "price": 499,
+      "officialUSD": 20,
+      "badge": "Best Seller",
+      "description": "Budget-friendly shared ChatGPT Plus. GPT-5 series for text, code, vision, search, DALL-E, AI agents.",
+      "capabilities": [
+        "text",
+        "code",
+        "vision",
+        "search",
+        "image-gen",
+        "agents"
+      ],
+      "featured": true
+    },
+    {
+      "id": "chatgpt-plus-premium-shared",
+      "name": "ChatGPT Plus — Premium Shared",
+      "brand": "ChatGPT",
+      "brandSlug": "chatgpt-plans-bangladesh",
+      "category": "ai-assistant",
+      "price": 999,
+      "officialUSD": 20,
+      "badge": "High Stability",
+      "description": "Premium shared ChatGPT Plus. 2-3 users max, higher stability. Full GPT-5 multimodal.",
+      "capabilities": [
+        "text",
+        "code",
+        "vision",
+        "search",
+        "image-gen",
+        "agents"
+      ],
+      "featured": true
+    },
+    {
+      "id": "claude-pro-premium-shared",
+      "name": "Claude Pro — Premium Shared",
+      "brand": "Claude",
+      "brandSlug": "claude-pro-bangladesh",
+      "category": "ai-assistant",
+      "price": 1590,
+      "officialUSD": 20,
+      "badge": "Top Pick",
+      "description": "Premium shared Claude Pro. Higher reliability, fewer users. Opus 4.6, Claude Code, MCP integrations.",
+      "capabilities": [
+        "text",
+        "code",
+        "vision",
+        "document",
+        "agents"
+      ],
+      "featured": true
+    },
+    {
+      "id": "chatgpt-pro-premium-shared",
+      "name": "ChatGPT Pro — Premium Shared",
+      "brand": "ChatGPT",
+      "brandSlug": "chatgpt-plans-bangladesh",
+      "category": "ai-assistant",
+      "price": 4500,
+      "officialUSD": 200,
+      "badge": "Best Value Pro",
+      "description": "Shared ChatGPT Pro. Unlimited GPT-5.4 Pro mode, Sora video, unlimited deep research, highest performance.",
+      "capabilities": [
+        "text",
+        "code",
+        "vision",
+        "document",
+        "search",
+        "image-gen",
+        "video-gen",
+        "agents"
+      ],
+      "featured": true
+    },
+    {
+      "id": "google-ai-pro-personal",
+      "name": "Google AI Pro (Gemini Advanced) — Personal",
+      "brand": "Google",
+      "brandSlug": "gemini-advanced-bangladesh",
+      "category": "ai-assistant",
+      "price": 2990,
+      "officialUSD": 19.99,
+      "badge": "83% Off",
+      "description": "AIPS SPECIAL — ৳599 only (official ৳2,990). Full Google AI Pro on YOUR Gmail. Gemini 3.1 Pro, Deep Research, image gen, video gen, AI agents, 2TB storage.",
+      "capabilities": [
+        "text",
+        "code",
+        "vision",
+        "document",
+        "search",
+        "image-gen",
+        "video-gen",
+        "agents",
+        "workspace"
+      ],
+      "featured": true
+    },
+    {
+      "id": "supergrok-personal",
+      "name": "SuperGrok — Personal",
+      "brand": "Grok",
+      "brandSlug": "supergrok-bangladesh",
+      "category": "ai-assistant",
+      "price": 4990,
+      "officialUSD": 30,
+      "badge": "Popular",
+      "description": "Full SuperGrok. Grok 4.1 unlimited, DeepSearch, HD images & 30s video, 4x AI agents, real-time X data.",
+      "capabilities": [
+        "text",
+        "code",
+        "vision",
+        "search",
+        "image-gen",
+        "video-gen",
+        "agents"
+      ],
+      "featured": true
+    },
+    {
+      "id": "perplexity-pro-shared",
+      "name": "Perplexity Pro — Shared",
+      "brand": "Perplexity",
+      "brandSlug": "perplexity-pro-bangladesh",
+      "category": "ai-assistant",
+      "price": 599,
+      "officialUSD": 20,
+      "badge": "Popular",
+      "description": "Shared Perplexity Pro. AI-powered deep research with citations. 300+ Pro searches/day.",
+      "capabilities": [
+        "text",
+        "search",
+        "document"
+      ],
+      "featured": true
+    },
+    {
+      "id": "github-copilot-pro-personal",
+      "name": "GitHub Copilot Pro — Personal",
+      "brand": "GitHub",
+      "brandSlug": "github-copilot-bangladesh",
+      "category": "ai-code",
+      "price": 1495,
+      "officialUSD": 10,
+      "badge": "Best Seller",
+      "description": "GitHub Copilot Pro. Unlimited code completions, 300 premium requests/mo, Claude/GPT-5 models.",
+      "capabilities": [
+        "code"
+      ],
+      "featured": true
+    }
+  ]
+}

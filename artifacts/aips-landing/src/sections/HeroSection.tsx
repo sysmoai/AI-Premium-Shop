@@ -7,23 +7,26 @@ import type React from "react";
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
 const ROTATING_LINES = [
-  { problem: "Assignment deadline?", solution: "AI finishes it in 30 minutes" },
-  { problem: "No clients on Upwork?", solution: "AI writes winning proposals in 2 minutes" },
-  { problem: "Content creation burnout?", solution: "AI makes you 10x faster" },
-  { problem: "Running your business alone?", solution: "AI Agents handle it 24/7" },
-  { problem: "Can't land a job?", solution: "AI builds your CV and preps your interview" },
-  { problem: "Coding all night?", solution: "AI Copilot writes 50% of your code" },
+  { problem: "Assignment deadline?", solution: "ChatGPT finishes it in 30 minutes" },
+  { problem: "No clients on Upwork?", solution: "Claude writes winning proposals in 2 minutes" },
+  { problem: "Content creation burnout?", solution: "Midjourney makes you 10x faster" },
+  { problem: "Running your business alone?", solution: "AI Agents automate your workflow 24/7" },
+  { problem: "Can't land a job?", solution: "AI preps your interview & tailors your CV" },
+  { problem: "Coding all night?", solution: "GitHub Copilot writes 50% of your code" },
+  { problem: "Need a branded voice?", solution: "ElevenLabs clones your voice in minutes" },
+  { problem: "Creating video content?", solution: "Runway generates videos from text" },
 ];
 
 const BRAND_NAMES = [
   "ChatGPT", "Claude", "Midjourney", "Gemini", "GitHub Copilot",
   "Runway", "Notion", "ElevenLabs", "Cursor", "Suno", "Perplexity",
-  "Ideogram", "HeyGen", "Udio", "Replit",
+  "Ideogram", "HeyGen", "Udio", "Replit", "Canva", "Grammarly",
+  "Grok", "Jasper", "v0.dev", "Descript", "Murf", "Pika",
 ];
 
 const HERO_CARDS = [
-  { name: "Midjourney", price: "৳1,199", color: "#8b5cf6", rotate: "-5deg", opacity: 0.65, zIndex: 1 },
-  { name: "Google AI Pro", price: "৳599", color: "#4285f4", rotate: "0deg", opacity: 0.82, zIndex: 2 },
+  { name: "Claude Pro", price: "৳1,590", color: "#9ca3af", rotate: "-5deg", opacity: 0.65, zIndex: 1 },
+  { name: "Midjourney", price: "৳1,199", color: "#8b5cf6", rotate: "0deg", opacity: 0.82, zIndex: 2 },
   { name: "ChatGPT Plus", price: "৳499", color: "#10a37f", rotate: "5deg", opacity: 1, zIndex: 3 },
 ];
 
@@ -138,13 +141,24 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-lg md:text-xl text-gray-400 max-w-2xl mb-8 leading-relaxed"
+            className="text-lg md:text-xl text-gray-400 max-w-2xl mb-6 leading-relaxed"
           >
-            80 premium AI tools. Local payment via{" "}
+            <strong className="text-white">118+ Premium AI Tools</strong> from BDT 299 to BDT 29,900. ChatGPT, Claude, Midjourney, Adobe, Notion & 60+ more.
+          </motion.p>
+
+          {/* Payment Methods */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.5 }}
+            className="text-base md:text-lg text-gray-400 max-w-2xl mb-8 leading-relaxed"
+          >
+            5 Payment Methods:{" "}
             <span className="inline-block bg-[#E2136E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">bKash</span>{" "}
-            and{" "}
-            <span className="inline-block bg-[#F6921E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">Nagad</span>.
-            Starting at just <strong className="text-white">BDT 350/month.</strong>
+            <span className="inline-block bg-[#F6921E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">Nagad</span>{" "}
+            <span className="inline-block bg-[#8b2f97] text-white px-2.5 py-1 rounded-full text-xs font-semibold">Rocket</span>{" "}
+            <span className="inline-block bg-[#1a5276] text-white px-2.5 py-1 rounded-full text-xs font-semibold">Bank</span>{" "}
+            <span className="inline-block bg-[#f0b90b] text-white px-2.5 py-1 rounded-full text-xs font-semibold">Binance</span>
           </motion.p>
 
           {/* Animated rotating text */}
@@ -297,13 +311,17 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.55 }}
-        className="relative z-10 mt-16 w-full max-w-3xl mx-auto"
+        className="relative z-10 mt-16 w-full max-w-4xl mx-auto"
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <TrustBadge icon={Users} label="Customers" value="thousands" />
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+          <TrustBadge icon={Users} label="Customers" value="3,000+" />
           <TrustBadge icon={Calendar} label="Established" value="Since 2024" />
           <TrustBadge icon={Shield} label="Warranty" value="30 Days" />
-          <TrustBadge icon={Zap} label="Response" value="5-Min" />
+          <TrustBadge icon={Zap} label="Response" value="<5 Min" />
+          <div className="bg-gray-900/80 backdrop-blur border border-gray-800 hover:border-[#f4b942]/30 rounded-xl p-4 text-center transition-all duration-300">
+            <span className="text-2xl font-bold text-white">118+</span>
+            <div className="text-xs mt-0.5 text-gray-400 uppercase tracking-wider">AI Tools</div>
+          </div>
         </div>
       </motion.div>
     </section>

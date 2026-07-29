@@ -1,0 +1,33 @@
+Product ID,Product Name,Brand,Category,Price (BDT),Missing Fields,Priority
+airtable-ai-personal,Airtable (AI) — Personal,Airtable,ai-workspace,999,descriptionBN|useCases|whyBuyFromAIPS,High
+buffer-ai-assist-shared,Buffer (AI Assist) — Shared,Buffer,ai-writing,399,descriptionBN|useCases|whyBuyFromAIPS,High
+chatbase-ai-chatbot-personal,Chatbase (AI Chatbot) — Personal,Chatbase,ai-workspace,999,descriptionBN|useCases|whyBuyFromAIPS,High
+clickup-ai-personal,ClickUp (AI) — Personal,ClickUp,ai-workspace,899,descriptionBN|useCases|whyBuyFromAIPS,High
+copy-ai-pro-personal,Copy.ai Pro — Personal,Copy.ai Pro,ai-writing,799,descriptionBN|useCases|whyBuyFromAIPS,High
+dalle-credits-setup-service,DALL-E Credits (Service Setup) — Setup Service,DALL-E Credits,ai-image,799,descriptionBN|useCases|whyBuyFromAIPS,Medium
+deepl-pro-personal,DeepL Pro — Personal,DeepL Pro,ai-writing,999,descriptionBN|useCases|whyBuyFromAIPS,High
+elicit-pro-personal,Elicit Pro — Personal,Elicit Pro,ai-writing,799,descriptionBN|useCases|whyBuyFromAIPS,High
+google-ai-studio-pro-setup-service,Google AI Studio Pro (Service Setup) — Setup Service,Google AI Studio Pro,ai-workspace,999,descriptionBN|useCases|whyBuyFromAIPS,Medium
+google-workspace-ai-admin-setup-service,Google Workspace (AI + Admin) Setup Service — Setup Service,Google Workspace (AI + Admin) Setup Service,ai-workspace,1999,descriptionBN|useCases|whyBuyFromAIPS,Medium
+hootsuite-ai-assist-personal,Hootsuite (AI Assist) — Personal,Hootsuite,ai-writing,1099,descriptionBN|useCases|whyBuyFromAIPS,High
+hubspot-starter-service,HubSpot (Starter) — Setup Service,HubSpot,ai-workspace,1999,descriptionBN|useCases|whyBuyFromAIPS,Medium
+intercom-ai-fin-setup-service,Intercom (AI Fin) Setup Service — Setup Service,Intercom (AI Fin) Setup Service,ai-workspace,2999,descriptionBN|useCases|whyBuyFromAIPS,Medium
+looker-studio-dashboard-setup-service,Google Looker Studio (Dashboard) Setup Service — Setup Service,Google Looker Studio (Dashboard) Setup Service,ai-workspace,2499,descriptionBN|useCases|whyBuyFromAIPS,Medium
+mailchimp-ai-copy-personal,Mailchimp (AI Copy) — Personal,Mailchimp,ai-writing,999,descriptionBN|useCases|whyBuyFromAIPS,High
+make-pro-shared,Make (Integromat) Pro — Shared,Make (Integromat) Pro,ai-workspace,499,descriptionBN|useCases|whyBuyFromAIPS,High
+monday-ai-shared,Monday.com (AI) — Shared,Monday.com,ai-workspace,499,descriptionBN|useCases|whyBuyFromAIPS,High
+n8n-cloud-personal,n8n Cloud — Personal,n8n Cloud,ai-workspace,999,descriptionBN|useCases|whyBuyFromAIPS,High
+notion-ai-service,Notion AI — Setup Service,Notion AI,ai-workspace,799,descriptionBN|useCases|whyBuyFromAIPS,High
+notion-team-workspace-setup-service,Notion (Team Workspace) Setup Service — Setup Service,Notion (Team Workspace) Setup Service,ai-workspace,1999,descriptionBN|useCases|whyBuyFromAIPS,Medium
+pictory-ai-personal,Pictory AI — Personal,Pictory AI,ai-video,999,descriptionBN|useCases|whyBuyFromAIPS,High
+removebg-pro-shared,Remove.bg Pro — Shared,Remove.bg Pro,ai-image,299,descriptionBN|useCases|whyBuyFromAIPS,High
+riverside-ai-clips-personal,Riverside (AI Clips) — Personal,Riverside,ai-voice-music,999,descriptionBN|useCases|whyBuyFromAIPS,High
+scholarcy-premium-shared,Scholarcy Premium — Shared,Scholarcy Premium,ai-writing,399,descriptionBN|useCases|whyBuyFromAIPS,High
+semrush-ai-writing-assist-service,Semrush (AI Writing Assist) — Setup Service,Semrush,ai-writing,2499,descriptionBN|useCases|whyBuyFromAIPS,Medium
+surfer-seo-ai-personal,Surfer SEO (AI) — Personal,Surfer SEO,ai-writing,1299,descriptionBN|useCases|whyBuyFromAIPS,High
+tidio-ai-chat-shared,Tidio (AI Chat) — Shared,Tidio,ai-workspace,399,descriptionBN|useCases|whyBuyFromAIPS,High
+tome-ai-personal,Tome AI — Personal,Tome AI,ai-image,899,descriptionBN|useCases|whyBuyFromAIPS,High
+veed-pro-personal,VEED Pro — Personal,VEED Pro,ai-video,999,descriptionBN|useCases|whyBuyFromAIPS,High
+wordtune-premium-shared,Wordtune Premium — Shared,Wordtune Premium,ai-writing,399,descriptionBN|useCases|whyBuyFromAIPS,High
+zapier-ai-automation-personal,Zapier (AI + Automation) — Personal,Zapier,ai-workspace,1299,descriptionBN|useCases|whyBuyFromAIPS,High
+zotero-ai-citation-setup-service,Zotero (AI Citation Setup Service) — Setup Service,Zotero,ai-writing,599,descriptionBN|useCases|whyBuyFromAIPS,Medium

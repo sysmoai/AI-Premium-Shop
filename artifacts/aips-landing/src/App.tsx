@@ -53,7 +53,7 @@ function MobileOrderBar() {
       <div className="flex items-center justify-between px-4 h-14 gap-3">
         <div>
           <div className="text-xs" style={{ color: "#c9ceda" }}>From</div>
-          <div className="text-base font-bold" style={{ color: "#f4b942" }}>BDT 350/mo</div>
+          <div className="text-base font-bold" style={{ color: "#f4b942" }}>BDT 299+</div>
         </div>
         <a
           href={WHATSAPP}

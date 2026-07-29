@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = buildMetadata({
   title: "Page Not Found",
-  description: "The page you are looking for does not exist. Browse our 86+ premium AI subscriptions or contact us on WhatsApp.",
+  description: "The page you are looking for does not exist. Browse our 103 premium AI subscriptions or contact us on WhatsApp.",
   canonical: "https://aipremiumshop.com/404",
   noindex: true,
 });

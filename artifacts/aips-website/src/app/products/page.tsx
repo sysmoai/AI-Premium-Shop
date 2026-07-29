@@ -4,9 +4,9 @@ import { ProductGrid } from "@/components/products/product-grid";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = buildMetadata({
-  title: "All Products — 86+ AI Subscriptions & Premium Tools in Bangladesh",
+  title: "All Products — 103 AI Subscriptions & Premium Tools in Bangladesh",
   description:
-    "Browse 86+ premium AI subscriptions, design tools, streaming services, and productivity software available in Bangladesh. bKash/Nagad payment. 5–15 min delivery.",
+    "Browse 103 premium AI subscriptions, design tools, streaming services, and productivity software available in Bangladesh. bKash/Nagad payment. 5–15 min delivery.",
   canonical: "https://aipremiumshop.com/products",
   ogType: "website",
 });
@@ -28,7 +28,7 @@ export default function ProductsPage() {
               All Products
             </p>
             <h1 className="mt-3 text-4xl sm:text-5xl font-bold tracking-tight">
-              86+ premium subscriptions
+              103 premium subscriptions
             </h1>
             <p className="mt-4 text-[1rem] leading-relaxed text-[#5b6280]">
               AI assistants, design tools, streaming services, and productivity software —

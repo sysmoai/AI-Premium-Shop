@@ -252,7 +252,7 @@ export default function DifferentPage() {
                   "We're local. Founded in Dhaka by Emon Hossain, a Bangladeshi entrepreneur who understands the challenges you face.",
                   "We're transparent. Everything is in Bengali, no hidden fees, pricing confirmed before payment.",
                   "We're accountable. No corporate anonymity—you know who you're buying from and can reach us 24/7.",
-                  "We're growing. Started with ChatGPT Plus, now we offer 86+ products across 8 categories.",
+                  "We're growing. Started with ChatGPT Plus, now we offer 103 products across 8 categories.",
                   "We listen. Customer feedback directly shapes our service improvements and new offerings.",
                   "We invest in compliance. SSL/TLS encryption, PCI-DSS standards, GDPR compliance—enterprise-grade security.",
                   "We offer guarantees. 30-day money-back guarantee shows we stand behind every sale.",

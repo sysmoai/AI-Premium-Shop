@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "AI Premium Shop",
     short_name: "AI Premium Shop",
-    description: "Buy Premium AI Subscriptions in Bangladesh. ChatGPT Plus, Claude Pro, Midjourney, Canva Pro & 86+ more. Pay with bKash or Nagad.",
+    description: "Buy Premium AI Subscriptions in Bangladesh. ChatGPT Plus, Claude Pro, Midjourney, Canva Pro & 103 premium tools. Pay with bKash or Nagad.",
     start_url: "/",
     display: "standalone",
     background_color: "#0a0e27",

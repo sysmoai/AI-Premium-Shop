@@ -24,9 +24,9 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Buy ChatGPT Plus, Claude Pro, Midjourney & 86 Premium AI Subscriptions in Bangladesh",
+  title: "Buy ChatGPT Plus, Claude Pro, Midjourney & 103 Premium AI Subscriptions in Bangladesh",
   description:
-    "Bangladesh's largest AI subscription store. 86 premium AI tools — ChatGPT Plus from ৳499, Claude Pro, Midjourney, Canva Pro, GitHub Copilot & more. bKash/Nagad payment. 5-15 min WhatsApp delivery.",
+    "Bangladesh's largest AI subscription store. 103 premium AI tools — ChatGPT Plus from ৳499, Claude Pro, Midjourney, Canva Pro, GitHub Copilot & more. bKash/Nagad payment. 5-15 min WhatsApp delivery.",
   canonical: "https://aipremiumshop.com",
 });
 
@@ -55,14 +55,14 @@ const stats = [
   { value: "thousands", label: "Orders delivered" },
   { value: "5–15 min", label: "Avg. delivery" },
   { value: "24/7", label: "Support" },
-  { value: "86+", label: "Products" },
+  { value: "103", label: "Products" },
 ];
 
 const steps = [
   {
     icon: Search,
     title: "Choose",
-    desc: "Browse 86+ premium AI subscriptions and pick the plan that fits your needs.",
+    desc: "Browse 103 premium AI subscriptions and pick the plan that fits your needs.",
   },
   {
     icon: MessageCircle,
@@ -167,7 +167,7 @@ export default function Home() {
                 </h1>
 
                 <p className="mt-6 text-[1rem] leading-relaxed text-[#8a91a8] max-w-md">
-                  ChatGPT Plus, Claude Pro, Midjourney, Canva Pro, GitHub Copilot, and 86+ more.
+                  ChatGPT Plus, Claude Pro, Midjourney, Canva Pro, GitHub Copilot, and 98+ more.
                   Pay with bKash or Nagad. Delivered in minutes on WhatsApp.
                 </p>
 

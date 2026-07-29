@@ -7,7 +7,7 @@ import { ChevronRight } from "lucide-react";
 export const metadata: Metadata = buildBlogMetadata({
   title: "How to Pay for AI Tools with bKash in Bangladesh",
   excerpt:
-    "Complete guide to buying ChatGPT, Claude, Midjourney, and 86+ AI subscriptions using bKash, Nagad, and Rocket in Bangladesh. No foreign card needed.",
+    "Complete guide to buying ChatGPT, Claude, Midjourney, and 103 AI subscriptions using bKash, Nagad, and Rocket in Bangladesh. No foreign card needed.",
   slug: "pay-ai-tools-bkash-bangladesh",
   authorName: "EMON HOSSAIN",
   publishedAt: new Date("2026-05-20"),
@@ -17,7 +17,7 @@ const faqItems = [
   {
     question: "Can I pay for ChatGPT Plus with bKash in Bangladesh?",
     answer:
-      "Yes. AI Premium Shop accepts bKash Merchant Pay for ChatGPT Plus, Claude Pro, Midjourney, and all 86+ AI subscriptions. No foreign credit card is required.",
+      "Yes. AI Premium Shop accepts bKash Merchant Pay for ChatGPT Plus, Claude Pro, Midjourney, and all 103 AI subscriptions. No foreign credit card is required.",
   },
   {
     question: "Is it safe to buy AI subscriptions through a reseller?",
@@ -57,7 +57,7 @@ export default function PayAIToolsBkashPage() {
               How to Pay for AI Tools with bKash in Bangladesh
             </h1>
             <p className="mt-4 text-lg leading-7 text-[#8a91a8]">
-              Buy ChatGPT, Claude, Midjourney, and 86+ AI subscriptions without a foreign credit card.
+              Buy ChatGPT, Claude, Midjourney, and 103 AI subscriptions without a foreign credit card.
             </p>
             <p className="mt-2 text-sm text-[#5b6280]">
               Published <time dateTime="2026-05-20">20 May 2026</time>
@@ -126,7 +126,7 @@ export default function PayAIToolsBkashPage() {
 
             <h3>Step 1: Choose Your AI Tool</h3>
             <p>
-              Browse <Link href="/products">all 86+ AI subscriptions</Link> and select the one
+              Browse <Link href="/products">all 103 AI subscriptions</Link> and select the one
               that fits your needs. Popular choices:
             </p>
             <ul>
@@ -186,7 +186,7 @@ export default function PayAIToolsBkashPage() {
 
             <h2>What AI Tools Can You Buy?</h2>
             <p>
-              AI Premium Shop sells 86+ premium subscriptions across 8 categories:
+              AI Premium Shop sells 103 premium subscriptions across 8 categories:
             </p>
             <table className="w-full text-left text-sm mt-4">
               <thead>
@@ -249,7 +249,7 @@ export default function PayAIToolsBkashPage() {
           <div className="mt-12 rounded-lg glass-card p-8 text-center text-white">
             <h2 className="text-2xl font-semibold">Start buying AI tools with bKash today</h2>
             <p className="mt-2 text-white/70">
-              86+ subscriptions available. Delivery in 5–15 minutes.
+              103 subscriptions available. Delivery in 5–15 minutes.
             </p>
             <Link
               href="/products"

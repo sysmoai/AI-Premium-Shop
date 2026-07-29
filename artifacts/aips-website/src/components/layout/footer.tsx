@@ -18,6 +18,8 @@ const footerLinks = {
   ],
   Company: [
     { href: "/about", label: "About" },
+    { href: "/about/why-official", label: "Why Official" },
+    { href: "/about/different", label: "How We're Different" },
     { href: "/blog", label: "Blog" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" },
@@ -31,6 +33,8 @@ const footerLinks = {
   Legal: [
     { href: "/privacy", label: "Privacy" },
     { href: "/terms", label: "Terms" },
+    { href: "/security", label: "Security" },
+    { href: "/guarantee", label: "30-Day Guarantee" },
   ],
 };
 

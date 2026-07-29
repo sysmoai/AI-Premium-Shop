@@ -29,6 +29,11 @@ import SupportPage from "@/pages/SupportPage";
 import HowToOrderPage from "@/pages/HowToOrderPage";
 import BestAISubscriptionPage from "@/pages/BestAISubscriptionPage";
 import ProductPage from "@/pages/ProductPage";
+import StudentsGuide from "@/pages/guides/StudentsGuide";
+import FreelancersGuide from "@/pages/guides/FreelancersGuide";
+import CreatorsGuide from "@/pages/guides/CreatorsGuide";
+import SMBGuide from "@/pages/guides/SMBGuide";
+import EducatorsGuide from "@/pages/guides/EducatorsGuide";
 
 const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20an%20AI%20subscription";
 

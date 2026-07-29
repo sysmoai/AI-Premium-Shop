@@ -69,7 +69,7 @@ const FAQS = [
 
 export default function Home() {
   const [selectedSegment, setSelectedSegment] = useState<Segment>(null);
-  const [showSegmentSelector, setShowSegmentSelector] = useState(true);
+  const [showSegmentSelector, setShowSegmentSelector] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {

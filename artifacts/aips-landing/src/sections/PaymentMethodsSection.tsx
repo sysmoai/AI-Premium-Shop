@@ -1,41 +1,66 @@
 import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
 
 const paymentMethods = [
   {
     name: "bKash",
-    emoji: "💜",
-    description: "Instant payment",
+    logo: (
+      <svg viewBox="0 0 100 100" className="w-12 h-12">
+        <rect fill="#E2136E" width="100" height="100" rx="12" />
+        <text x="50" y="55" fontSize="50" fontWeight="bold" fill="#fff" textAnchor="middle" dy="0.3em">b</text>
+      </svg>
+    ),
+    description: "Mobile money",
     speed: "5-30 min delivery",
-    color: "from-pink-500 to-pink-600",
+    gradient: "from-pink-500 to-pink-600",
   },
   {
     name: "Nagad",
-    emoji: "🟦",
-    description: "Instant payment",
+    logo: (
+      <svg viewBox="0 0 100 100" className="w-12 h-12">
+        <rect fill="#F6921E" width="100" height="100" rx="12" />
+        <text x="50" y="55" fontSize="45" fontWeight="bold" fill="#fff" textAnchor="middle" dy="0.3em">N</text>
+      </svg>
+    ),
+    description: "SMS-based payment",
     speed: "5-30 min delivery",
-    color: "from-blue-500 to-blue-600",
+    gradient: "from-orange-500 to-orange-600",
   },
   {
     name: "Rocket",
-    emoji: "🟢",
-    description: "Instant payment",
+    logo: (
+      <svg viewBox="0 0 100 100" className="w-12 h-12">
+        <rect fill="#8B2F97" width="100" height="100" rx="12" />
+        <text x="50" y="55" fontSize="50" fontWeight="bold" fill="#fff" textAnchor="middle" dy="0.3em">R</text>
+      </svg>
+    ),
+    description: "Digital wallet",
     speed: "5-30 min delivery",
-    color: "from-green-500 to-green-600",
+    gradient: "from-purple-500 to-purple-600",
   },
   {
     name: "Bank Transfer",
-    emoji: "🏦",
-    description: "Safe transfer",
+    logo: (
+      <svg viewBox="0 0 100 100" className="w-12 h-12">
+        <rect fill="#1A5276" width="100" height="100" rx="12" />
+        <path d="M20 35L50 20L80 35L80 75H20V35Z" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        <line x1="50" y1="20" x2="50" y2="75" stroke="#fff" strokeWidth="2" />
+      </svg>
+    ),
+    description: "Direct deposit",
     speed: "Verified within 2 hours",
-    color: "from-amber-500 to-amber-600",
+    gradient: "from-blue-600 to-blue-700",
   },
   {
     name: "Binance",
-    emoji: "₿",
-    description: "For crypto users",
+    logo: (
+      <svg viewBox="0 0 100 100" className="w-12 h-12">
+        <rect fill="#F0B90B" width="100" height="100" rx="12" />
+        <text x="50" y="55" fontSize="48" fontWeight="900" fill="#111" textAnchor="middle" dy="0.3em">₿</text>
+      </svg>
+    ),
+    description: "Cryptocurrency",
     speed: "Instant confirmation",
-    color: "from-yellow-500 to-yellow-600",
+    gradient: "from-yellow-400 to-yellow-500",
   },
 ];
 
@@ -64,20 +89,24 @@ export function PaymentMethodsSection() {
           {paymentMethods.map((method, idx) => (
             <motion.div
               key={method.name}
-              className={`bg-gradient-to-br ${method.color} p-0.5 rounded-lg transition-all`}
+              className={`bg-gradient-to-br ${method.gradient} p-0.5 rounded-xl transition-all`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -4 }}
             >
-              <div className="bg-slate-900 rounded-lg p-6 text-center space-y-3">
-                <div className="text-4xl">{method.emoji}</div>
+              <div className="bg-gradient-to-b from-slate-900 to-slate-950 rounded-[10px] p-6 text-center space-y-3 border border-slate-800">
+                <div className="flex justify-center">
+                  {method.logo}
+                </div>
                 <h3 className="text-white font-bold text-lg">{method.name}</h3>
                 <p className="text-gray-400 text-sm">{method.description}</p>
-                <p className="text-amber-400 text-xs font-semibold">
-                  ⚡ {method.speed}
-                </p>
+                <div className="pt-2 border-t border-slate-700">
+                  <p className="text-amber-400 text-xs font-semibold">
+                    ⚡ {method.speed}
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}

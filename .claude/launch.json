@@ -6,6 +6,7 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@workspace/aips-landing", "dev"],
       "port": 5173,
+      "autoPort": true,
       "url": "http://localhost:5173"
     },
     {

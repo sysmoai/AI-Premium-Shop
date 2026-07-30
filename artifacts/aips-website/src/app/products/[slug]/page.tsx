@@ -1,8 +1,13 @@
-'use client';
-
 import Link from 'next/link';
 import { ChevronRight, Shield, Star, Award } from 'lucide-react';
+import rawProducts from '@/data/products.json';
 
+export function generateStaticParams() {
+  const slugs = Array.from(new Set((rawProducts as { slug: string }[]).map((p) => p.slug)));
+  return slugs.map((slug) => ({ slug }));
+}
+
+// TODO(PHOENIX): placeholder content only, not wired to real product data yet.
 const productDB: Record<string, any> = {
   'chatgpt-plus': {
     id: 'chatgpt-plus',
@@ -39,8 +44,9 @@ const productDB: Record<string, any> = {
   }
 };
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-  const product = productDB[params.slug] || productDB['chatgpt-plus'];
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const product = productDB[slug] || productDB['chatgpt-plus'];
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0A0E27] to-[#1a1f3a]">

@@ -190,15 +190,17 @@ const nextConfig: NextConfig = {
         destination: "/products/canva-pro-bangladesh",
         permanent: true,
       },
+      // netflix / youtube-premium product pages do not exist yet — send these to
+      // the catalog instead of a 404 (verified 404 on 2026-07-30).
       {
         source: "/netflix",
-        destination: "/products/netflix-premium-bangladesh",
-        permanent: true,
+        destination: "/products",
+        permanent: false,
       },
       {
         source: "/youtube-premium",
-        destination: "/products/youtube-premium-bangladesh",
-        permanent: true,
+        destination: "/products",
+        permanent: false,
       },
       {
         source: "/capcut-vs-premiere",

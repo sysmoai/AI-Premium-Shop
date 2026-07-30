@@ -917,3 +917,24 @@ a spot-checked product page. CSP header confirmed correct via `curl -I`.
 
 **Current state: everything Fable 5 + I have shipped today is committed, pushed, built,
 and live-verified.** No known open regressions.
+
+### 2026-07-30 — Fable 5 — Cycle 10: AI CONCIERGE LIVE (NVIDIA-powered) + quota reset + /pricing fix confirmed live (commit `b5b6ca7`)
+
+Deploy quota reset; first deploy shipped the whole queue. Live-verified on the domain:
+/pricing renders 2,697 words (fix confirmed); ignoreCommand working (a docs-only commit
+auto-skipped, 6s "Canceled" = skipped build, not a failure — don't misread it).
+
+**AI Concierge (master prompt §13) is LIVE:** widget on every page →
+POST /api/concierge (Vercel function, maxDuration 30) → NVIDIA NIM
+llama-3.1-8b-instruct (0.9s measured; 70B was >60s, rejected). Grounded in
+api/_catalog.json (84 products; regenerate with scripts/generate-concierge-catalog.mjs
+after catalog edits — REMEMBER THIS on product changes). Guardrails tested live:
+catalog-only answers ✓ (recommended Student Package BDT 449 correctly), request-price →
+WhatsApp ✓, PIN refusal ✓, no orders in chat, WhatsApp handoff everywhere.
+NVIDIA_API_KEY set as encrypted Production env var via CLI — key never in repo/client.
+Widget: Bangla-first, quick prompts, linkified paths, failure → WhatsApp fallback,
+"prices on product pages are final" disclaimer.
+
+**Maintenance rule for all sessions:** if you change data/products.json, run
+`node scripts/generate-concierge-catalog.mjs` and commit api/_catalog.json with it,
+or the chatbot's knowledge goes stale.

@@ -155,3 +155,43 @@ Sources: bigpremiums.com, bdsubscription.com, streamgobd.com, digivateit.com, su
 10. **Notion control pages unreachable** — no MCP/token (Emon, if still wanted).
 
 *Everything else claimed done above was verified live today — 148-URL browser sweep, 2026-07-30.*
+
+---
+
+## §9 DATA ANALYTICS DEEP-DIVE (2026-07-30 — computed from the live catalog, first time ever)
+
+**Method:** 126 records; 118 priced; 80 carry `officialUSD`. Benchmark = "direct-abroad cost" = `officialUSD × 130 × 1.15` (the site's own verified formula). Nothing below changes a price — prices are CEO-owned; this is the analysis layer.
+
+### 9.1 Margin structure — the hidden shape of the business
+- **50 of 80 benchmarkable records are priced BELOW direct-abroad cost** — that's the shared-tier economics engine: the customer's alternative costs 3–6× more, which is the entire value proposition. Deepest examples: ChatGPT Plus Starter Shared ৳499 vs ৳2,990 abroad (−83%), Claude Pro Starter Shared ৳599 vs ৳2,990 (−80%).
+- **14 records priced ABOVE abroad cost** — the visible service margin on personal tiers (legit: payment handling + activation + support), mostly +0–18%.
+
+### 9.2 ⚠ Pricing anomalies found (CEO review queue — likely data errors, both directions hurt)
+| Record | Our price | Abroad benchmark | Delta | Suspicion |
+|---|---|---|---|---|
+| replit-core-personal | ৳500 | ৳2,990 | −83% | Personal below shared economics — price or officialUSD wrong |
+| suno-pro-personal | ৳4,990 | ৳1,495 | +234% | Likely annual-vs-monthly confusion; kills conversion vs abroad |
+| runway-pro-personal | ৳11,990 | ৳4,186 | +186% | Same pattern |
+| notion-business-monthly | ৳800 | ৳2,990 | −73% | officialUSD probably stale ($23 vs actual?) |
+| midjourney-std/pro-personal | ৳2,495/3,990 | ৳4,485/8,970 | −44/−56% | Personal tiers below abroad — verify sourcing model |
+| perplexity-max-personal | ৳10,990 | ৳29,900 | −63% | Verify officialUSD ($200?) and sourcing |
+
+Anything +100%+ over abroad loses every buyer who checks; anything personal at −50%+ under abroad either has wrong data or unsustainable economics. **Emon: these need eyes.**
+
+### 9.3 Price-ladder & funnel analytics
+- **21 sub-৳500 entry doors** (min ৳299) — the mass-market funnel is real and wide. Entry categories: video (CapCut ৳299), image (remove.bg ৳299), writing (QuillBot ৳390).
+- **Ladder integrity by category:** every category has entry <৳500 except ai-voice-music (min ৳499 — fine). Category depth is uneven: **ai-design has only 2 records** (thinnest shelf; Recraft/Photoroom/Krea are the Tier-1 fills), ai-assistant deepest (25).
+- **The upgrade ladder is fully stocked:** shared entry (৳299–699) → personal (৳799–4,990) → Max/Team/Business (৳3,990–29,900). This matches the measured consumer path (§4.4).
+
+### 9.4 Relationship & LTV structure
+- **114 recurring-subscription records vs 12 one-off setups** — 90% of the catalog creates a *monthly relationship*, not a transaction. That is the long-term-profit engine.
+- **LTV model (illustrative, labeled):** median priced record ≈ ৳999/mo. A retained customer at median = ≈৳12K/year; the sub-৳500 entry buyer who upgrades once (shared→personal, the measured behavior path) roughly triples that. Retention beats acquisition on every number.
+- **Retention plays that need zero new tech (WhatsApp-native):** renewal reminders 3 days before expiry (we know activation dates from orders); expiry-day "renew in one message" flow; cross-category attach at renewal ("your ChatGPT renews today — writers like you often add Grammarly ৳399"); win-back ping 7 days post-lapse. **The WhatsApp thread IS the CRM** — the ledger discipline (who bought what, when it renews) is a CEO-side process to formalize.
+- **External confirmation of the stacking thesis:** 2026 industry reporting shows knowledge workers commonly paying for 3–5 AI subscriptions simultaneously ($60–110/mo), OpenAI at ~50M paying subscribers (Apr 2026), Claude paid consumers up ~75% since Jan 2026, AI-video MAUs >124M. Our bundles and cross-attach plays sit exactly on this trend. (Sources: TechCrunch Jun-2026 Claude consumer report; ChatGPT statistics roundups; AI-video statistics reports — directional, not audited.)
+
+### 9.5 What the data says to DO (priority order)
+1. **Fix the 6 pricing anomalies** (CEO decision — likely 30 minutes of checking provider pages).
+2. **Formalize the renewal ledger + WhatsApp reminder cadence** (CEO process; biggest LTV lever, zero code).
+3. **Stock the ai-design shelf** (2 → 6+ records; Tier-1 names identified).
+4. **Ship a "Why 3 tools beat 1" bundle-economics article** — the stacking trend is the bundle sales pitch.
+5. **Track shared→personal upgrade rate** once the ledger exists — it's the single number that predicts LTV.

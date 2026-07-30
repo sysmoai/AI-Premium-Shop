@@ -1,15 +1,13 @@
-import { useState, useMemo, useEffect } from "react";
-import { useLocation, Link } from "wouter";
+import { useState, useEffect } from "react";
+import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MessageCircle, Star, ChevronRight, Check, X, Clock, Shield, Zap,
-  Wallet, Smartphone, CreditCard, Gift, HelpCircle, ArrowRight, Truck,
-  Share2, Heart, ChevronDown, BadgeCheck, Users, Package, RefreshCw,
+  Wallet, ArrowRight, ChevronDown, BadgeCheck, Users,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { PaymentBadges } from "@/components/PaymentBadges";
-import { FAQSection } from "@/components/FAQSection";
 import { formatBDT } from "@/lib/format";
 import { formulaPrice } from "@/lib/pricing";
 import { schemaJson, breadcrumbSchema, faqSchema } from "@/utils/schemas";
@@ -131,8 +129,7 @@ const HOW_IT_WORKS_DEFAULT = [
 ];
 
 export default function ProductPage({ productSlug }: { productSlug: string }) {
-  const [, navigate] = useLocation();
-  const product = getProductBySlug(productSlug);
+    const product = getProductBySlug(productSlug);
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
   const [selectedDuration, setSelectedDuration] = useState(1);
   const [faqOpen, setFaqOpen] = useState<number | null>(null);

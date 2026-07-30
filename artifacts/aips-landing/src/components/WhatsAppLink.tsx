@@ -19,7 +19,7 @@ export function WhatsAppLink({
   style,
   "data-testid": testId,
 }: WhatsAppLinkProps) {
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (_e: MouseEvent<HTMLAnchorElement>) => {
     if (typeof window.gtag === "function") {
       window.gtag("event", "whatsapp_click", {
         product_name: productName ?? "unknown",

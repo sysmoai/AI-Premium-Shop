@@ -5,12 +5,10 @@ import {
   MessageCircle,
   CheckCircle,
   ArrowRight,
-  GraduationCap,
   Book,
   Zap,
   Award,
   Users,
-  TrendingUp,
 } from "lucide-react";
 import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";

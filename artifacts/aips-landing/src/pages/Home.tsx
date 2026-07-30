@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { SEOHead } from "@/components/SEOHead";
-import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema, schemaJson } from "@/utils/schemas";
+import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema } from "@/utils/schemas";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { FAQSection } from "@/components/FAQSection";
 

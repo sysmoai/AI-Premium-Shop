@@ -285,7 +285,7 @@ interface Product {
   whatsappMsg?: string;
 }
 
-function ProductCard({ p, accent }: { p: Product; accent: string }) {
+function ProductCard({ p }: { p: Product; accent: string }) {
   const waLink = `${WHATSAPP}?text=${encodeURIComponent(p.whatsappMsg ?? `Hi, I want to order ${p.name} (BDT ${p.price})`)}`;
   return (
     <motion.div

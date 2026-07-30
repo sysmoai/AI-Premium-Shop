@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, MessageSquare, Mail, Clock, CheckCircle, MapPin } from "lucide-react";
+import { MessageCircle, MessageSquare, Mail, Clock, CheckCircle } from "lucide-react";
 import { CommunitySocialCards } from "@/components/CommunitySocialCards";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";

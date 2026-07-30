@@ -7,7 +7,6 @@ import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { productListSchema, breadcrumbSchema } from "@/utils/schemas";
 import productsData from "../../data/products.json";
-import categoriesData from "../../data/categories.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 const ALL = productsData.products;

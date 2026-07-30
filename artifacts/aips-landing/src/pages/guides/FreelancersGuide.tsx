@@ -5,7 +5,6 @@ import {
   MessageCircle,
   CheckCircle,
   ArrowRight,
-  Briefcase,
   TrendingUp,
   Zap,
   Award,

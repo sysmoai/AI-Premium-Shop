@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronRight, MessageCircle, TrendingUp, Bot, ListChecks, CheckCircle2, Cpu } from "lucide-react";
+import { ChevronRight, MessageCircle, TrendingUp, ListChecks, CheckCircle2, Cpu } from "lucide-react";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 const SETUP_LINK = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20book%20a%201%3A1%20AI%20Setup%20Session";

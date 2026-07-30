@@ -56,10 +56,6 @@ export function SEOHead({
       (el as HTMLMetaElement).setAttribute("content", content);
     };
 
-    const removeMeta = (sel: string) => {
-      const el = document.querySelector(sel);
-      if (el) el.remove();
-    };
 
     const setLink = (rel: string, href: string) => {
       let el = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
@@ -71,10 +67,6 @@ export function SEOHead({
       el.setAttribute("href", href);
     };
 
-    const removeLink = (rel: string) => {
-      const el = document.querySelector(`link[rel="${rel}"]`);
-      if (el) el.remove();
-    };
 
     // Basic meta
     setMeta('meta[name="description"]', description);

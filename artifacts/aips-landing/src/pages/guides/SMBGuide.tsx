@@ -6,7 +6,6 @@ import {
   CheckCircle,
   ArrowRight,
   Building2,
-  TrendingUp,
   Zap,
   Award,
   DollarSign,

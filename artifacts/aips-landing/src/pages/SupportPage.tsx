@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { MessageCircle, Clock, Users, HelpCircle, ChevronRight, Star, GraduationCap, Laptop, Building, Code } from "lucide-react";
-import { CommunitySocialCards } from "@/components/CommunitySocialCards";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 

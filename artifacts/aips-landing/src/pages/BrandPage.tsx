@@ -5,7 +5,7 @@ import {
   FileText, Terminal, Brain, Zap,
   Link2, Layers, Clock,
   Bot, Search, Mail, HardDrive, BarChart2, Layout, Play, ImageIcon,
-  GraduationCap, Laptop, Briefcase, Monitor,
+  GraduationCap, Briefcase, Monitor,
   Camera, Youtube, Palette, Megaphone, BookOpen, Home,
   Video, Scissors, Maximize, ArrowUpCircle, Sparkles, Music,
   Code, ThumbsUp,

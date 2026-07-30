@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Zap } from "lucide-react";
 import { Link } from "wouter";
 
-const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
 const makeOrderLink = (product: string) =>
   `https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20${encodeURIComponent(product)}`;

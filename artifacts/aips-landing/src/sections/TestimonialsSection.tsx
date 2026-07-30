@@ -40,10 +40,6 @@ const TESTIMONIALS = [
   },
 ];
 
-const containerVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 24 },

@@ -9,7 +9,6 @@ import {
   BarChart3,
   Zap,
   Award,
-  Users,
   Brain,
 } from "lucide-react";
 import { Link } from "wouter";

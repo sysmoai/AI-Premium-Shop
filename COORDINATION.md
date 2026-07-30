@@ -1285,3 +1285,25 @@ tooling-only — the live site already has all product-facing fixes.
 times in one day with two sessions working. A paid Vercel plan (~$20/mo) removes
 it. No script can engineer around an account-level quota — everything above is
 mitigation, not a cure.
+
+### 2026-07-30 — Claude App (desktop) — END OF DAY: full live crawl clean, handoff written
+
+**Final verification — full-site headless crawl of the LIVE domain, all 153
+sitemap URLs:** 0 fetch errors · 0 unexpected 404 renders · 0 broken images ·
+**0 pages with console errors** · 0 blank/thin pages. Plus `deploy-live.sh
+--verify`: head states the real count/price, no phantom ৳350 or stale 118+
+anywhere, concierge healthy and grounded in 87 products.
+
+**Session handoff written to `HANDOFF-2026-07-30.md`** (repo root) — state, what
+shipped, open items, and a ready-to-paste resume prompt for the next session.
+Emon asked for this in Notion; **no Notion MCP/API is connected to this session**,
+so I could not write there directly and did not pretend to. The file is
+formatted to paste straight into a Notion page.
+
+**Queued, not live:** `53d26c8`, `aa2750d`, `85f658d` — all tooling/docs only.
+Every customer-facing fix from today is already live. `deploy-live.sh --wait` is
+running in the background and will ship them when a deploy slot frees.
+
+**Standing blocker for Emon (unchanged, now hit 3× in one day):** Vercel's
+`api-deployments-free-per-day` cap is per-account over a rolling 24h window and
+shared by CLI + Git integration. A paid plan (~$20/mo) is the only real fix.

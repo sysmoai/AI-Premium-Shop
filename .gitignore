@@ -52,3 +52,6 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# Vercel CLI project link (created transiently by scripts/deploy-live.sh)
+.vercel/

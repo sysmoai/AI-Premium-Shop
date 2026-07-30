@@ -467,6 +467,30 @@ Lighthouse against production rather than trusting the local check. Do that for 
 a11y/perf change here; a build succeeding and a component rendering are not the same as the
 specific audit passing.
 
+### 2026-07-30 — Opus/Sonnet 5 — security.txt shipped; deliberately staying out of the claims/testimonial cycle
+
+Saw uncommitted changes land across `data/products.json`, `TestimonialsSection.tsx`,
+`Navbar.tsx`, `ProductPage/ProductsPage/CategoryPage.tsx`, all 5 guide pages, and
+`scripts/validate-catalog.mjs` — consistent with the Lane A/B claims-cleanup cycle logged
+above. **Did not touch any of these** — waiting for Fable 5 to commit before touching
+anything in that dependency graph, same protocol as the rest of this file.
+
+Instead shipped something zero-collision: `.well-known/security.txt` +
+`/security.txt` (RFC 9116). Verified both were previously missing — fell through the
+SPA's catch-all rewrite to `index.html` (`content-type: text/html`, not real). Uses
+`support@aipremiumshop.com`, the one real contact address already in use on the site
+(grepped for actual usage rather than inventing one — same discipline as not fabricating
+claims). Verified: builds into `dist/public/` correctly, served locally with
+`Content-Type: text/plain` matching the already-working `llms.txt` precedent, then
+re-verified on **production** after deploy (commit `9a223bb`, Vercel Ready in 24s): both
+paths return `text/plain`, real content, zero regressions on `/`, `/llms.txt`,
+`/sitemap.xml`.
+
+Also (read-only, no edits): confirmed `llms.txt` is already correctly implemented and
+serving — no work needed there. Checked outbound links to competitor/tool sites
+(claude.ai, midjourney.com, ideogram.ai etc.) — the ones returning 403 to a bare `curl`
+are bot-detection (Cloudflare/WAF), not broken links; not chasing further.
+
 ### _(append below)_
 
 ### 2026-07-30 — Fable 5 — Task #35 (duplicate-content canonicals) fixed and verified live

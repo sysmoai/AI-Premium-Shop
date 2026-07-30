@@ -769,3 +769,26 @@ live 2/2 sampled + sitemap serving all 5 new URLs.
 **Master-prompt content cluster status:** 15 mandatory articles → 14 covered by live
 posts/pages (budget items are the /ai-under-* pages). Remaining explicit gap: "How to
 Buy Google AI Pro in Bangladesh" article. Catalog priority list items 1-15: ALL covered.
+
+### 2026-07-30 — Fable 5 — Cycle 6: content cluster COMPLETE 15/15 (commit `8a5e117`)
+
+Shipped "How to Buy Google AI Pro in Bangladesh" + "How to Buy AI Tools Without an
+International Card" (the #1 BD pain point as neutral, genuinely useful analysis: all 5
+real payment routes with honest risks, Bangla safety checklist, catalog-wide internal
+links). Blog 16 posts, sitemap 148 URLs, both live-verified with schema + canonicals.
+
+⚠️ **PRICE DRIFT FOUND — CEO decision needed:** BrandPage BRAND_META copy says Google AI
+Pro "BDT 499/mo 83% Off" but the canonical catalog records say Shared 599 / Personal
+2,990. Articles quote the catalog (599) per the one-source-of-truth rule. Emon: which is
+right? Fix lands in BRAND_META or products.json accordingly. (A future validator pass
+should diff BRAND_META price strings against catalog records — hand-written brand copy
+is the last unvalidated price surface.)
+
+**Master-prompt scoreboard after 6 cycles (all live-verified):**
+- Validation system: LIVE (0 hard failures; claims/governance tracked as warnings)
+- Fabricated content: reviews removed; testimonials labeled; no fabricated schema
+- requestPrice capability: LIVE, powering 8 records
+- Catalog: 118 → 126 records; priority providers 1-15 ALL covered; China coverage open
+  (DeepSeek/Qwen); segmentation verified complete (14 target groups)
+- Content cluster: 15/15 COMPLETE (16 posts live)
+- Sitemap: 129 → 148 URLs, all route-verified

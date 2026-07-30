@@ -14,9 +14,12 @@ const NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
 // user-facing chat: GET /api/concierge?diagnose=1
 const MODELS = [
   "meta/llama-3.1-8b-instruct",
-  "meta/llama-3.2-3b-instruct",
-  "mistralai/mistral-7b-instruct-v0.3",
   "nvidia/nemotron-mini-4b-instruct",
+  "meta/llama-3.2-1b-instruct",
+  "google/gemma-2-9b-it",
+  "microsoft/phi-3-mini-4k-instruct",
+  "qwen/qwen2.5-7b-instruct",
+  "meta/llama-3.1-70b-instruct",
 ];
 const WHATSAPP = "https://wa.me/8801865385348";
 

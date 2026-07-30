@@ -938,3 +938,40 @@ Widget: Bangla-first, quick prompts, linkified paths, failure → WhatsApp fallb
 **Maintenance rule for all sessions:** if you change data/products.json, run
 `node scripts/generate-concierge-catalog.mjs` and commit api/_catalog.json with it,
 or the chatbot's knowledge goes stale.
+
+### 2026-07-30 12:10 UTC — Fable 5/Sonnet 5 — ⛔ VERCEL DAILY QUOTA HIT AGAIN — confirmed via GitHub Deployments API, not a webhook issue
+
+**Root cause, confirmed precisely (not guessed):** `gh api repos/sysmoai/AI-Premium-Shop/commits/<sha>/status`
+shows Vercel's own status check for both queued commits:
+```
+state: failure
+description: "Deployment rate limited — retry in 24 hours."
+target_url: https://vercel.com/sysmoaigits-projects?upgradeToPro=build-rate-limit
+```
+- `1eb8cc7` (concierge fallback chain + health endpoint) rejected at **2026-07-30T10:07:18Z**
+- `4927b2e` (nonce retrigger attempt) rejected at **2026-07-30T10:12:03Z**
+- Earliest retry: **~2026-07-30T10:07–10:12 UTC on 2026-07-31** (~22h from this log entry)
+
+**What IS live right now (verified via curl, safe):** commit `b5b6ca7` — the AI Concierge
+works (POST /api/concierge returns correct grounded replies), /pricing renders 200 with
+full content, the whole 148-page sweep from earlier remains valid. **NOT yet live:**
+`1eb8cc7`'s model-fallback chain, GET health endpoint, and the catalog-sync validator
+rule — these are safely queued on `main`, zero risk, deploy automatically the instant
+quota resets.
+
+**Diagnosis of why the ignoreCommand fix (§1 of the intelligence doc) didn't prevent
+this recurrence:** the rate limit is a hard platform-level gate checked before
+ignoreCommand even runs — ignoreCommand only skips *builds Vercel would otherwise start*;
+it can't affect a request Vercel refuses outright. It still stops docs-only commits from
+wasting *build minutes*, but the **daily deployment COUNT** ceiling (100/day, Hobby tier)
+is separate and unaffected by it. **This confirms Layer 3 (Vercel Pro upgrade,
+~$20/mo) is now the only real fix — not a nice-to-have.** Both sessions burned the
+quota again within ~6 hours of the previous reset.
+
+**RULE FOR BOTH SESSIONS UNTIL RESET (~2026-07-31 10:07 UTC):** do not push ANY commit
+that touches `artifacts/aips-landing/` — it will be rejected identically and just adds
+noise to git history. Docs-only commits (COORDINATION.md, docs/) are still safe to push:
+they don't reach a real build attempt and cost nothing. Verify live state with `curl`
+against `aipremiumshop.com` directly — do not trust `vercel ls` timestamps alone; always
+cross-check the actual deployed commit via `vercel inspect <url> --logs | grep Commit`
+or `gh api repos/.../commits/<sha>/status`, exactly as done here.

@@ -42,7 +42,10 @@ export default function PricingPage() {
   const [sort, setSort] = useState<SortKey>("price-asc");
 
   const products = useMemo(() => {
-    let list = [...((productsData.products as unknown) as Product[])];
+    // This page compares fixed BDT prices, so request-price records (price:
+    // null, quoted on WhatsApp) are excluded — an unguarded null here crashed
+    // the entire page render once already.
+    let list = (((productsData.products as unknown) as Product[])).filter((p) => p.price != null);
     if (catFilter !== "all") list = list.filter((p) => p.category === catFilter);
     if (accessFilter !== "all") list = list.filter((p) => p.accessType === accessFilter);
     if (sort === "price-asc") list.sort((a, b) => a.price - b.price);

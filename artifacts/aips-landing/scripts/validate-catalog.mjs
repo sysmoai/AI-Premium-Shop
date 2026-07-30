@@ -135,19 +135,31 @@ for (const [slug, recs] of bySlug) {
 // ---------- 2b. concierge catalog sync ----------
 // The chatbot answers ONLY from api/_catalog.json. If products.json changed
 // without regenerating it, the concierge gives stale answers — hard failure.
+// Mirrors scripts/generate-concierge-catalog.mjs exactly (all sibling price
+// tiers aggregated per slug, not just the first record) — keep both in sync.
 {
-  const seen = new Set();
-  const expected = [];
+  const bySlug = new Map();
   for (const p of products) {
-    if (seen.has(p.slug)) continue;
-    seen.add(p.slug);
+    if (!bySlug.has(p.slug)) bySlug.set(p.slug, []);
+    bySlug.get(p.slug).push(p);
+  }
+  const expected = [];
+  for (const [slug, recs] of bySlug) {
+    const first = recs[0];
+    const tiers = recs
+      .map((p) => ({
+        tier: p.tier,
+        priceBDT: p.requestPrice ? null : p.price,
+        accessType: p.accessType,
+        deliverySLA: p.deliverySLA ?? null,
+        badge: p.badge ?? null,
+      }))
+      .sort((a, b) => (a.priceBDT ?? Infinity) - (b.priceBDT ?? Infinity));
     expected.push({
-      name: p.name,
-      path: brandSlugs.has(p.slug) ? `/${p.slug}` : `/product/${p.slug}`,
-      priceBDT: p.requestPrice ? null : p.price,
-      requestPrice: !!p.requestPrice,
-      category: p.category,
-      accessType: p.accessType,
+      name: first.name.split(" — ")[0],
+      path: brandSlugs.has(slug) ? `/${slug}` : `/product/${slug}`,
+      category: first.category,
+      tiers,
     });
   }
   let actual;

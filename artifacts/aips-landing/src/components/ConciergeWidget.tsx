@@ -30,12 +30,34 @@ export function ConciergeWidget() {
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
-  const [failed, setFailed] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [lastFailedText, setLastFailedText] = useState<string | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
+  const launcherRef = useRef<HTMLButtonElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const hasOpenedRef = useRef(false);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [msgs, busy]);
+
+  // Skip on mount — only move focus on an actual open/close transition, never
+  // steal focus from the page on first render (open starts false).
+  useEffect(() => {
+    if (open) {
+      hasOpenedRef.current = true;
+      inputRef.current?.focus();
+    } else if (hasOpenedRef.current) {
+      launcherRef.current?.focus();
+    }
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   async function send(text: string) {
     const content = text.trim();
@@ -44,7 +66,8 @@ export function ConciergeWidget() {
     setMsgs(next);
     setInput("");
     setBusy(true);
-    setFailed(false);
+    setErrorMsg(null);
+    setLastFailedText(null);
     try {
       const r = await fetch("/api/concierge", {
         method: "POST",
@@ -54,21 +77,33 @@ export function ConciergeWidget() {
       const data = await r.json();
       if (!r.ok || !data.reply) throw new Error(data.error || "no reply");
       setMsgs([...next, { role: "assistant", content: data.reply }]);
-    } catch {
-      setFailed(true);
+    } catch (e) {
+      setErrorMsg(describeError(e));
+      setLastFailedText(content);
     } finally {
       setBusy(false);
     }
+  }
+
+  function describeError(e: unknown) {
+    const msg = e instanceof Error ? e.message : "";
+    return msg === "Too many messages — please continue on WhatsApp"
+      ? "একটু বেশি প্রশ্ন হয়ে গেছে — সরাসরি WhatsApp-এ চালিয়ে যান।"
+      : "এই মুহূর্তে উত্তর দিতে পারছি না";
   }
 
   return (
     <>
       {/* Launcher — stacked directly above the FloatingWhatsApp bubble (same right-edge
           alignment, fixed gap) so the two never overlap at any viewport width. Also
-          clears the mobile order bar (StickyMobileBar), which sits lower still. */}
+          clears the fixed mobile order bar in App.tsx (MobileOrderBar, h-14), which
+          sits lower still. */}
       <button
+        ref={launcherRef}
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close AI assistant" : "Open AI assistant"}
+        aria-expanded={open}
+        aria-controls="concierge-panel"
         className="fixed z-50 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
         style={{ backgroundColor: "#f4b942", width: 52, height: 52, right: 24, bottom: 152 }}
       >
@@ -77,6 +112,10 @@ export function ConciergeWidget() {
 
       {open && (
         <div
+          id="concierge-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="AIPS AI Assistant chat"
           className="fixed z-50 w-[calc(100vw-2rem)] max-w-sm rounded-2xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
           style={{ backgroundColor: "#0f1430", height: "min(560px, 70vh)", right: 24, bottom: 216 }}
         >
@@ -88,7 +127,7 @@ export function ConciergeWidget() {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-3 py-3 space-y-3">
+          <div className="flex-1 overflow-y-auto px-3 py-3 space-y-3" aria-live="polite" aria-atomic="false">
             {msgs.length === 0 && (
               <div className="space-y-2">
                 <div className="text-sm rounded-xl px-3 py-2 max-w-[85%]" style={{ backgroundColor: "#151b3d", color: "#c9ceda" }}>
@@ -118,13 +157,21 @@ export function ConciergeWidget() {
                 লিখছি…
               </div>
             )}
-            {failed && (
+            {errorMsg && (
               <div className="text-sm rounded-xl px-3 py-2" style={{ backgroundColor: "rgba(239,68,68,0.12)", color: "#fca5a5" }}>
-                এই মুহূর্তে উত্তর দিতে পারছি না —{" "}
+                {errorMsg} —{" "}
                 <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="underline font-semibold" style={{ color: "#25d366" }}>
                   WhatsApp-এ মেসেজ করুন
                 </a>
                 , সাথে সাথে রিপ্লাই পাবেন।
+                {lastFailedText && (
+                  <>
+                    {" "}
+                    <button onClick={() => send(lastFailedText)} className="underline font-semibold" style={{ color: "#f4b942" }}>
+                      আবার চেষ্টা করুন
+                    </button>
+                  </>
+                )}
               </div>
             )}
             <div ref={endRef} />
@@ -133,6 +180,7 @@ export function ConciergeWidget() {
           <div className="p-3 border-t border-white/10">
             <div className="flex gap-2">
               <input
+                ref={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && send(input)}

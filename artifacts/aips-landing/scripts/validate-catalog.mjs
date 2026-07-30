@@ -111,6 +111,35 @@ for (const slug of brandSlugs) {
   if (!smPaths.has(slug)) failures.push(`brand page /${slug} missing from sitemap`);
 }
 
+// ---------- 2b. concierge catalog sync ----------
+// The chatbot answers ONLY from api/_catalog.json. If products.json changed
+// without regenerating it, the concierge gives stale answers — hard failure.
+{
+  const seen = new Set();
+  const expected = [];
+  for (const p of products) {
+    if (seen.has(p.slug)) continue;
+    seen.add(p.slug);
+    expected.push({
+      name: p.name,
+      path: brandSlugs.has(p.slug) ? `/${p.slug}` : `/product/${p.slug}`,
+      priceBDT: p.requestPrice ? null : p.price,
+      requestPrice: !!p.requestPrice,
+      category: p.category,
+      accessType: p.accessType,
+    });
+  }
+  let actual;
+  try {
+    actual = JSON.parse(read("api/_catalog.json"));
+  } catch {
+    actual = null;
+  }
+  if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+    failures.push("api/_catalog.json is out of sync with data/products.json — run: node scripts/generate-concierge-catalog.mjs");
+  }
+}
+
 // ---------- 3. secret scan ----------
 const SECRET_PATTERNS = [
   [/sk-[A-Za-z0-9_-]{20,}/, "OpenAI-style key"],

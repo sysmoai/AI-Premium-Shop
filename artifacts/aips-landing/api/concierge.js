@@ -6,9 +6,10 @@ import { fileURLToPath } from "node:url";
 const catalog = JSON.parse(readFileSync(fileURLToPath(new URL("./_catalog.json", import.meta.url)), "utf8"));
 
 const NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
-// 8B: measured 0.9s with the full catalog prompt; the 70B took >60s on the
-// free NIM tier — unusable for chat and beyond the function window.
-const MODEL = "meta/llama-3.1-8b-instruct";
+// 8B primary: measured 0.9s with the full catalog prompt (70B took >60s on
+// the free NIM tier — unusable). Fallbacks keep the concierge alive if the
+// primary model is down, deprecated, or rate-limited upstream.
+const MODELS = ["meta/llama-3.1-8b-instruct", "meta/llama-3.2-3b-instruct", "mistralai/mistral-7b-instruct-v0.3"];
 const WHATSAPP = "https://wa.me/8801865385348";
 
 // Best-effort per-instance throttle (serverless instances are ephemeral;
@@ -42,6 +43,10 @@ CATALOG (name | price | access | category | page):
 ${catalogLines}`;
 
 export default async function handler(req, res) {
+  // GET = health check (no upstream call — cheap enough for uptime monitors).
+  if (req.method === "GET") {
+    return res.status(200).json({ ok: true, products: catalog.length, keyConfigured: !!process.env.NVIDIA_API_KEY });
+  }
   if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
   const ip = (req.headers["x-forwarded-for"] || "?").split(",")[0].trim();
   if (throttled(ip)) return res.status(429).json({ error: "Too many messages — please continue on WhatsApp", whatsapp: WHATSAPP });
@@ -56,27 +61,30 @@ export default async function handler(req, res) {
     .map((m) => ({ role: m.role, content: m.content.slice(0, 1500) }));
   if (!messages.length) return res.status(400).json({ error: "empty" });
 
-  try {
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 25_000);
-    const r = await fetch(NVIDIA_URL, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: MODEL,
-        messages: [{ role: "system", content: SYSTEM }, ...messages],
-        max_tokens: 400,
-        temperature: 0.3,
-      }),
-      signal: ctrl.signal,
-    });
-    clearTimeout(timer);
-    if (!r.ok) throw new Error(`upstream ${r.status}`);
-    const data = await r.json();
-    const reply = data.choices?.[0]?.message?.content?.trim();
-    if (!reply) throw new Error("empty reply");
-    return res.status(200).json({ reply });
-  } catch {
-    return res.status(502).json({ error: "Concierge is busy — message us on WhatsApp for instant help", whatsapp: WHATSAPP });
+  for (const model of MODELS) {
+    try {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 12_000);
+      const r = await fetch(NVIDIA_URL, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model,
+          messages: [{ role: "system", content: SYSTEM }, ...messages],
+          max_tokens: 400,
+          temperature: 0.3,
+        }),
+        signal: ctrl.signal,
+      });
+      clearTimeout(timer);
+      if (!r.ok) throw new Error(`upstream ${r.status}`);
+      const data = await r.json();
+      const reply = data.choices?.[0]?.message?.content?.trim();
+      if (!reply) throw new Error("empty reply");
+      return res.status(200).json({ reply });
+    } catch {
+      // try the next model in the chain
+    }
   }
+  return res.status(502).json({ error: "Concierge is busy — message us on WhatsApp for instant help", whatsapp: WHATSAPP });
 }

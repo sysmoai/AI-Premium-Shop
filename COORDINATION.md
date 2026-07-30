@@ -1233,3 +1233,55 @@ WhatsApp messages.**
 the site's own stated 5–30 min / 2–4 hr SLAs, so I changed it to name the real
 payment methods instead. Product/price/warranty wording was otherwise left
 exactly as the CEO decision requires; only provably false numbers were changed.
+
+### 2026-07-30 — Claude App (desktop) — Deploy reliability: what works, and a correction (commits `53d26c8`, `aa2750d`)
+
+Emon asked for another way to guarantee work gets deployed and live with quality.
+
+**⚠️ CORRECTION — read this before planning around it.** I briefly claimed the
+Vercel CLI bypasses the Git-integration deploy cap. **That is wrong.** Sequence
+actually measured today: push rejected 16:58 UTC → `vercel --prod` CLI deploy
+succeeded ~17:03 → further CLI deploy rejected minutes later with the same
+error. The cap (`api-deployments-free-per-day`, >100) is **per-account over a
+rolling 24h window and shared by the CLI and the Git integration**. The CLI run
+did not beat the limit; it claimed a slot that had just aged out. I over-
+generalised from one success — don't repeat that.
+
+**The good news: the CLI deploy that did land shipped the entire catalog-number
+fix.** Verified live right now on aipremiumshop.com: title reads "87 Premium AI
+Tools … From BDT 299", no phantom ৳350 or stale 118+ anywhere in the served
+HTML, concierge healthy and grounded in 87 products, key routes reachable.
+
+**What actually helps (shipped as `scripts/deploy-live.sh`):**
+- `--dry-run` / default: **quality gates before spending a scarce deploy slot** —
+  catalog validator → tsc → full production build. Broken work can't consume a
+  slot or reach production. Both gate paths were regression-tested by
+  deliberately introducing a TypeScript error and a phantom "350", confirming
+  each aborts the run, then reverting.
+- `--wait`: **parks and retries every 10 min (up to 6h)**. Because slots age out
+  continuously rather than all at once, this ships work at the earliest possible
+  moment with nobody babysitting. Aborts immediately on any non-cap failure so a
+  genuine break is never retried in a loop.
+- `--verify`: **live verification that doesn't trust HTTP 200.** Expected numbers
+  are read from products.json at check time, so assertions can't drift: served
+  `<head>` must state the real product count + entry price, must NOT contain the
+  phantom ৳350 or stale 118+, `/api/concierge` must be healthy AND grounded in
+  the same product count (catches a stale `_catalog.json`), key routes reachable.
+  It explicitly prints that 200 proves little on this SPA and points at the
+  headless crawl for real render checks.
+
+Also fixed a real bug the failure exposed: the script grepped for "rate limit",
+but Vercel says *"Resource is limited - try again in 24 hours …
+api-deployments-free-per-day"* — so the cap was being misreported as a generic
+"deploy failed", hiding the true cause. Now matched correctly and surfaced as a
+distinct exit code. `.vercel/` is gitignored; the script creates the root link
+transiently and removes it (a committed root link confuses the Git integration).
+
+**Currently running:** `deploy-live.sh --wait` in the background to ship the two
+script commits (`53d26c8`, `aa2750d`) the moment a slot frees. Those are
+tooling-only — the live site already has all product-facing fixes.
+
+**🔴 THE PERMANENT FIX IS EMON'S CALL:** the cap has now blocked deploys three
+times in one day with two sessions working. A paid Vercel plan (~$20/mo) removes
+it. No script can engineer around an account-level quota — everything above is
+mitigation, not a cure.

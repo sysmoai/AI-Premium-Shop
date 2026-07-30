@@ -1166,3 +1166,70 @@ Verified throughout: `node --check` on all 3 touched JS files, `tsc` clean, full
 `validate-catalog.mjs` (0 hard failures), full production build, local dev-server pass
 (dialog semantics, focus management, Escape, retry flow), and live production tests
 (health check, diagnose endpoint, 4 real chat queries, zero console errors).
+
+### 2026-07-30 — Claude App (desktop) — Catalog numbers: 30+ false counts/prices fixed sitewide (commit `10a9865`) — ⛔ queued, deploy quota
+
+Emon asked to improve the homepage/hero and "fix all the mistakes of tools
+calculations of all full website". Audited every product count and price claim
+against data/products.json. Ground truth: **87 distinct products, 129 plan tiers,
+৳299–29,900** — not the "118+" / "80 tools" / "from ৳350" the site was showing.
+
+**Worst findings (all were live):**
+1. **"BDT 350" is a phantom price — no product has ever cost it.** It was the
+   advertised entry price on the homepage title, hero CTA, pain-point cards,
+   mobile bar, guides, blog posts and the how-to-order FAQ. Real floor: ৳299.
+2. **Four categories advertised a "from" price below anything purchasable** —
+   ai-assistant ৳350 (real ৳499), ai-image ৳190 (৳299), ai-video ৳270 (৳299),
+   ai-design ৳190 (৳399). This is the most damaging class: a shopper cannot buy
+   at the advertised price.
+3. **Display price contradicted the prefilled WhatsApp order message** — Best
+   Sellers showed Perplexity at ৳350 while its own order message said ৳599;
+   Google AI Pro ৳500 vs ৳599; Claude ৳1,495 vs ৳1,590; BudgetPage's button said
+   "Order ৳350/mo" while its message said ৳499. Customers tapped one price and
+   got another in WhatsApp.
+4. 8 of 9 category counts wrong (ai-workspace showed 5 for 22 real).
+5. Budget bands: "Premium 30+" held 3 products, "Enterprise 16+" held 2.
+6. Nav brand prices stale: Claude ৳1,590 (real ৳599), Copilot ৳1,495 (৳399),
+   Cursor ৳2,990 (৳699).
+7. False discount: Google AI Pro "83% Off" — real is 80% at ৳599 vs ৳2,990.
+8. Two blog posts contradicted themselves (ChatGPT Plus post: prose said ৳499,
+   its own table/ROI math said ৳350).
+
+**Fix:** new `src/lib/catalogStats.ts` is now the single source of truth for
+every catalog number (totals, per-category counts + true floors, per-brand
+rollups for nav links whose hub pages own no records, exact (slug,tier)
+lookups, and budget-band counts measured by each product's *cheapest* tier so
+one product can't inflate several bands). All ~28 files now import from it.
+Stale `count`/`from` fields deleted from data/categories.json so a second
+source of truth can't creep back.
+
+**Guardrails added to validate-catalog.mjs (hard failures):** rejects any .tsx
+hard-coding the phantom "350" or a stale 118+/80-tools total, and asserts
+index.html's `<title>`/`<meta description>` against the live catalog (it's
+static so it can't import the module). Both were regression-tested by
+reintroducing each fault and confirming the build fails, then reverting.
+
+**Hero improved:** subheadline now leads with real counts plus the true
+differentiator ("no international card needed"); the three showcase cards all
+show their real cheapest tier (Claude's card previously hard-coded its mid
+৳1,590 tier while the other two showed entry prices, so they weren't
+comparable).
+
+Verified: tsc clean · validator 0 hard failures · production build clean ·
+fresh dev server shows 0 stale claims in rendered text, every category
+count/price matching the catalog, Best Sellers display == order message, 0
+console errors.
+
+⛔ **Deploy queued — Vercel daily quota hit again** (`10a9865`, same Hobby-tier
+cap as earlier today; it recovered in ~2h43m last time, not the 24h Vercel's
+message states). Nothing is broken: the commit is on main and deploys
+automatically on reset. **Next session: after reset, verify on the live domain
+that the homepage title reads "87 Premium AI Tools … From BDT 299", the
+category cards show the derived counts, and Best Sellers prices equal their
+WhatsApp messages.**
+
+⚠️ **One judgment call for Emon to confirm/revert:** the footer previously read
+"80 tools. Local payment. Instant delivery." — "Instant delivery" contradicts
+the site's own stated 5–30 min / 2–4 hr SLAs, so I changed it to name the real
+payment methods instead. Product/price/warranty wording was otherwise left
+exactly as the CEO decision requires; only provably false numbers were changed.

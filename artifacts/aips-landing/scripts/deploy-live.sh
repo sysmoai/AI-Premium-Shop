@@ -3,22 +3,31 @@
 #
 # WHY THIS EXISTS
 # ---------------
-# Pushing to main triggers Vercel's Git integration, which on this account's
-# plan is capped at a daily deployment count. Once that cap is hit, every push
-# is rejected with "Deployment rate limited — retry in 24 hours" and work sits
-# queued for hours. Measured 2026-07-30: the Git integration was hard-blocked
-# while a direct `vercel --prod` CLI deploy from the repo root succeeded
-# immediately and aliased to aipremiumshop.com. The CLI path is therefore the
-# reliable way to get work live when the Git integration is throttled.
+# This account's plan caps DEPLOYMENTS PER ACCOUNT PER ROLLING 24h
+# (`api-deployments-free-per-day`, >100). The cap is shared by the Git
+# integration and the CLI — the CLI is NOT a bypass.
 #
-# It also refuses to deploy anything that fails the quality gates, and — the
-# part that matters most on this SPA — it verifies the LIVE site afterwards
-# instead of trusting a 200. Every unmatched path on this app returns HTTP 200
-# and renders client-side, so "curl said 200" has repeatedly hidden real
-# breakage (a fully blank /pricing shipped that way).
+# Measured 2026-07-30, and worth recording because it is easy to misread: a
+# push was rejected at 16:58 UTC, a `vercel --prod` CLI deploy succeeded at
+# ~17:03, and a second CLI deploy was rejected minutes later. The CLI run did
+# not beat the limit — it happened to claim a slot that had just aged out of
+# the rolling window. Do not treat the CLI as a way around the cap.
+#
+# What this script actually buys you:
+#   * it refuses to spend a scarce deploy slot on work that fails the gates;
+#   * --wait parks and retries, so the moment a slot frees the work ships
+#     without anyone babysitting it;
+#   * it verifies the LIVE site afterwards instead of trusting a 200. Every
+#     unmatched path on this SPA returns 200 and renders client-side, so
+#     "curl said 200" has repeatedly hidden real breakage (a fully blank
+#     /pricing shipped that way).
+#
+# The only permanent fix for the cap is a paid Vercel plan — that is a business
+# decision for the owner, not something this script can engineer around.
 #
 # USAGE
 #   bash scripts/deploy-live.sh            # gates -> deploy -> verify
+#   bash scripts/deploy-live.sh --wait     # same, but retry until a slot frees
 #   bash scripts/deploy-live.sh --verify   # verify the live site only
 #   bash scripts/deploy-live.sh --dry-run  # gates only, no deploy
 set -uo pipefail
@@ -53,8 +62,9 @@ gates() {
 }
 
 # --------------------------------------------------------------------- deploy
+# Returns 0 on success, 2 specifically when blocked by the deploy cap, 1 otherwise.
 deploy() {
-  step "Deploy (Vercel CLI, bypasses the Git-integration daily cap)"
+  step "Deploy (Vercel CLI)"
   # The project's Root Directory is artifacts/aips-landing, so the CLI must run
   # from the repo root or it doubles the path. The link lives in the app dir;
   # copy it to the root only for the duration of the deploy so nothing stray is
@@ -74,10 +84,40 @@ deploy() {
 
   echo "$out" | tail -5
   if [ $rc -ne 0 ]; then
-    echo "$out" | grep -qi "rate limit" && fail "CLI deploy ALSO rate-limited — wait for reset, then re-run"
-    fail "deploy failed (exit $rc)"
+    # Match Vercel's actual wording. It says "Resource is limited - try again in
+    # 24 hours ... api-deployments-free-per-day", NOT "rate limited" — an
+    # earlier version of this check grepped for "rate limit" and silently
+    # misreported the cap as a generic failure.
+    if echo "$out" | grep -qiE 'api-deployments-free-per-day|resource is limited|rate limit'; then
+      ylw "deploy cap reached (shared by CLI and Git integration)"
+      return 2
+    fi
+    red "deploy failed (exit $rc)"
+    return 1
   fi
   grn "deploy finished"
+  return 0
+}
+
+# Park until a deploy slot frees. The cap is a rolling 24h window, so slots age
+# out continuously rather than all at once — polling gets the work live at the
+# earliest possible moment instead of waiting out a full day.
+deploy_waiting() {
+  local attempt=1 max_hours=6 interval=600
+  local max_attempts=$(( max_hours * 3600 / interval ))
+  while :; do
+    deploy
+    case $? in
+      0) return 0 ;;
+      1) fail "deploy failed for a reason other than the cap — see output above" ;;
+    esac
+    if [ "$attempt" -ge "$max_attempts" ]; then
+      fail "still capped after ${max_hours}h. Work is committed and safe; re-run later or upgrade the Vercel plan."
+    fi
+    ylw "attempt $attempt/$max_attempts capped — retrying in $((interval/60)) min ($(date '+%H:%M'))"
+    attempt=$((attempt+1))
+    sleep "$interval"
+  done
 }
 
 # --------------------------------------------------------- live verification
@@ -139,5 +179,14 @@ verify() {
 case "$MODE" in
   --verify)  verify ;;
   --dry-run) gates; ylw "dry run — not deploying" ;;
-  *)         gates; deploy; sleep 5; verify ;;
+  --wait)    gates; deploy_waiting; sleep 5; verify ;;
+  *)
+    gates
+    deploy
+    case $? in
+      0) sleep 5; verify ;;
+      2) fail "deploy cap reached. Work is committed and safe — re-run with --wait to ship automatically when a slot frees." ;;
+      *) fail "deploy failed" ;;
+    esac
+    ;;
 esac

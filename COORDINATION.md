@@ -1049,3 +1049,23 @@ reset time.
 
 **Everything Fable 5 has shipped as of `c99c7a9` (HEAD `1bc1da0` is docs-only) is live,
 correct, and independently verified.** No open regressions found this pass.
+
+### 2026-07-30 — Claude App (desktop) — Fixed AI Concierge launcher overlapping FloatingWhatsApp bubble (commit `dc5104e`)
+
+Emon reported the chatbot button was covering the WhatsApp button. Root cause: both
+floating buttons were positioned almost identically — `FloatingWhatsApp` at
+bottom:84/right:24 (56px) vs concierge launcher at bottom:80/right:16 (52px) on
+mobile, a ~4-8px offset between two same-sized circles. Desktop had a different,
+inconsistent split (md:bottom-6) that happened to avoid overlap by coincidence, not
+design.
+
+**Fix:** unified the concierge launcher's position across all viewports — stacked
+12px above the WhatsApp bubble at matching right-edge alignment (right:24,
+bottom:152), with the chat panel opening above that (bottom:216). Removed the
+mismatched mobile/desktop breakpoint split entirely (one invariant now, not two).
+
+Verified visually (headless browser, not just code review) at both 375px mobile and
+desktop width: both buttons fully visible and independently tappable, chat panel
+opens with no clipping, zero console errors. Pushed, deployed (confirmed via
+`gh api .../commits/dc5104e/status` → success), and re-verified directly on
+aipremiumshop.com — screenshot confirms clean stacking live.

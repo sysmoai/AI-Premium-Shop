@@ -747,3 +747,25 @@ Google AI Ultra ✓, Microsoft 365 Copilot ✓, GitHub Copilot ✓ (existed).
 
 **Next:** DeepSeek + Qwen API-setup records (China coverage, service/request-price
 models), Manus "price in Bangladesh" article, then ChatGPT/Claude buying-guide refresh.
+
+### 2026-07-30 — Fable 5 — Cycle 5: zero-gap sweep + China/dev coverage + 2 cluster articles (commit `9ee129c`)
+
+Ran a measured gap audit against the master prompt's mandatory coverage before adding
+anything (duplicate intent is forbidden): of the 18 priority providers checked, only
+DeepSeek, Qwen and Luma were missing; segmentation was ALREADY complete (9
+best-ai-for-* pages + 5 deep guides = 14 BD target groups — verified, not assumed, so
+nothing duplicated).
+
+Shipped: DeepSeek API Setup + Qwen/Model Studio API Setup (service records — the real
+pain: BD developers can't fund provider APIs without an intl card; usage explicitly
+billed at official provider rates), Luma Dream Machine (request-price). Blog: "Manus AI
+Price in Bangladesh" and "How to Buy Claude Pro in Bangladesh" (uses the existing
+CEO-owned BDT 1,495 price, links the comparison post). Catalog 126 records, blog 14
+posts, sitemap 146 URLs.
+
+Verified: validator 0 hard failures → tsc → build → 6/6 local browser checks → push →
+live 2/2 sampled + sitemap serving all 5 new URLs.
+
+**Master-prompt content cluster status:** 15 mandatory articles → 14 covered by live
+posts/pages (budget items are the /ai-under-* pages). Remaining explicit gap: "How to
+Buy Google AI Pro in Bangladesh" article. Catalog priority list items 1-15: ALL covered.

@@ -15,6 +15,7 @@ import { Link } from "wouter";
 import { productPath } from "@/lib/productRoutes";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { breadcrumbSchema } from "@/utils/schemas";
 
 const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20an%20AI%20subscription";
 
@@ -187,6 +188,7 @@ export default function EducatorsGuide() {
         description="Best AI tools for educators in Bangladesh 2026. Lesson planning, assessment, grading. Increase student engagement 40%. From BDT 399/month."
         canonical="https://aipremiumshop.com/guides/educators"
         ogImage="https://aipremiumshop.com/og-educators.jpg"
+        jsonLd={[breadcrumbSchema([{ name: "Home", href: "/" }, { name: "Educators Guide" }])]}
       />
 
       <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white">

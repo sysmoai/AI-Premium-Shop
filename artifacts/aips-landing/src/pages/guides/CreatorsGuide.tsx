@@ -15,6 +15,7 @@ import { Link } from "wouter";
 import { productPath } from "@/lib/productRoutes";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { breadcrumbSchema } from "@/utils/schemas";
 
 const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20an%20AI%20subscription";
 
@@ -187,6 +188,7 @@ export default function CreatorsGuide() {
         description="Best AI tools for content creators in Bangladesh 2026. Scripts, thumbnails, voiceovers, music. Grow faster on YouTube, TikTok, Instagram. From BDT 999."
         canonical="https://aipremiumshop.com/guides/creators"
         ogImage="https://aipremiumshop.com/og-creators.jpg"
+        jsonLd={[breadcrumbSchema([{ name: "Home", href: "/" }, { name: "Creators Guide" }])]}
       />
 
       <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">

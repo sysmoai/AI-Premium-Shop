@@ -4,7 +4,7 @@ import { ChevronDown, MessageCircle } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { faqSchema, breadcrumbSchema } from "@/utils/schemas";
+import { faqSchema } from "@/utils/schemas";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 
@@ -206,10 +206,9 @@ export default function FAQPage() {
         title="FAQ — AI Subscription Bangladesh | bKash/Nagad Payment | AI Premium Shop"
         description="80+ AI subscriptions in Bangladesh. ChatGPT Plus BDT 499, Claude Pro, Midjourney. bKash/Nagad payment, 30-day warranty, WhatsApp support. All questions answered."
         canonical="https://aipremiumshop.com/faq"
-        jsonLd={[
-          faqSchema(FAQS),
-          breadcrumbSchema([{ name: "Home", href: "/" }, { name: "FAQ" }]),
-        ]}
+        // No breadcrumbSchema here: <Breadcrumb> below already injects its own
+        // BreadcrumbList JSON-LD from these same items.
+        jsonLd={[faqSchema(FAQS)]}
         hreflang={{
           en: "/faq",
           bn: "/faq",

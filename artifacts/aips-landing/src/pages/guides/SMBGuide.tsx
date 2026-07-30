@@ -15,6 +15,7 @@ import { Link } from "wouter";
 import { productPath } from "@/lib/productRoutes";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { breadcrumbSchema } from "@/utils/schemas";
 
 const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20an%20AI%20subscription";
 
@@ -187,6 +188,7 @@ export default function SMBGuide() {
         description="Best AI tools for SMB owners in Bangladesh 2026. Automate operations, save ৳50K/month, scale faster. Google AI, ChatGPT Team, Notion. From BDT 499."
         canonical="https://aipremiumshop.com/guides/smallbusiness"
         ogImage="https://aipremiumshop.com/og-smallbusiness.jpg"
+        jsonLd={[breadcrumbSchema([{ name: "Home", href: "/" }, { name: "Small Business Guide" }])]}
       />
 
       <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white">

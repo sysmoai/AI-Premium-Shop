@@ -4,7 +4,6 @@ import { MessageCircle, ArrowUpDown, Filter } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { breadcrumbSchema } from "@/utils/schemas";
 import productsData from "../../data/products.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -58,9 +57,8 @@ export default function PricingPage() {
         title="AI Tool Pricing Bangladesh 2026 — All 80 Plans | AI Premium Shop"
         description="Compare all AI subscription prices in Bangladesh. 80 tools from BDT 350. bKash/Nagad payment. AI Premium Shop 2026."
         canonical="https://aipremiumshop.com/pricing"
-        jsonLd={[
-          breadcrumbSchema([{ name: "Home", href: "/" }, { name: "Pricing" }]),
-        ]}
+        // No jsonLd/breadcrumbSchema here: <Breadcrumb> below already injects
+        // its own BreadcrumbList JSON-LD from these same items.
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Pricing" }]} />
 

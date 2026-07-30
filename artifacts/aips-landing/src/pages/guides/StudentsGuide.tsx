@@ -14,6 +14,7 @@ import { Link } from "wouter";
 import { productPath } from "@/lib/productRoutes";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { breadcrumbSchema } from "@/utils/schemas";
 
 const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20an%20AI%20subscription";
 
@@ -186,6 +187,7 @@ export default function StudentsGuide() {
         description="Best AI tools for students in Bangladesh 2026. ChatGPT, Claude, Copilot for assignments, research, exams. From BDT 499. No credit card needed—pay with bKash."
         canonical="https://aipremiumshop.com/guides/students"
         ogImage="https://aipremiumshop.com/og-students.jpg"
+        jsonLd={[breadcrumbSchema([{ name: "Home", href: "/" }, { name: "Students Guide" }])]}
       />
 
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">

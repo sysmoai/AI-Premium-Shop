@@ -6,7 +6,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { BrandIcon } from "@/components/BrandIcon";
-import { faqSchema, breadcrumbSchema } from "@/utils/schemas";
+import { faqSchema } from "@/utils/schemas";
 import productsData from "../../data/products.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -372,10 +372,9 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
         title={config.seoTitle}
         description={config.metaDescription}
         canonical={`https://aipremiumshop.com/${categoryId}`}
-        jsonLd={[
-          faqSchema(config.faqs),
-          breadcrumbSchema([{ name: "Home", href: "/" }, { name: config.displayName }]),
-        ]}
+        // No breadcrumbSchema here: <Breadcrumb> below already injects its own
+        // BreadcrumbList JSON-LD from these same items.
+        jsonLd={[faqSchema(config.faqs)]}
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: config.displayName }]} />
 

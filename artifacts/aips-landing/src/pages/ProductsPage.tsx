@@ -5,7 +5,7 @@ import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { productListSchema, breadcrumbSchema } from "@/utils/schemas";
+import { productListSchema } from "@/utils/schemas";
 import productsData from "../../data/products.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -150,10 +150,10 @@ export default function ProductsPage() {
         title="All 118+ AI Tools — Prices in BDT | AI Premium Shop Bangladesh"
         description="Browse 118+ AI subscriptions. ChatGPT, Claude, Midjourney & more. Prices in BDT. Local payment. Fast delivery. AI Premium Shop."
         canonical="https://aipremiumshop.com/products"
-        jsonLd={[
-          productListSchema(ALL),
-          breadcrumbSchema([{ name: "Home", href: "/" }, { name: "All Products" }]),
-        ]}
+        // No breadcrumbSchema here: <Breadcrumb> below already injects its own
+        // BreadcrumbList JSON-LD from these same items — adding it here too
+        // duplicated the block (2x BreadcrumbList in the rendered page).
+        jsonLd={[productListSchema(ALL)]}
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "All Products" }]} />
 

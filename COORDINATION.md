@@ -792,3 +792,33 @@ is the last unvalidated price surface.)
   (DeepSeek/Qwen); segmentation verified complete (14 target groups)
 - Content cluster: 15/15 COMPLETE (16 posts live)
 - Sitemap: 129 → 148 URLs, all route-verified
+
+### 2026-07-30 — Fable 5 — Cycle 7: 148-URL sweep, scam guide live, /pricing regression found+fixed — ⛔ DEPLOY BLOCKED: Vercel daily limit
+
+**Full-site sweep (headless Chrome, every sitemap URL, live domain): 146/148 OK.**
+One flagged page was just slow (/gamma-bangladesh, fine at 20s budget). The other was
+real: **/pricing renders a blank shell** — PricingPage's `as unknown as Product[]`
+double-cast hid a null-price crash (`p.price.toLocaleString()`) introduced with the
+first requestPrice record. Broken live since cycle 2; only a rendered-DOM sweep could
+catch it (HTTP 200 as always). Fix committed (`6a6656d`): request-price records excluded
+from the fixed-price table; all other products.json cast sites audited — already guarded.
+
+**Shipped & verified live before the blocker:** scam-avoidance guide
+(/blog/avoid-ai-subscription-scams-bangladesh, cluster #30, 7 red flags, Bangla
+checklist) + related-post rewiring: all 5 older articles now link to the new money pages
+(commit `e843884`). Blog 17 posts, sitemap 149 URLs.
+
+⛔ **HARD BLOCKER — Vercel free-tier daily deploy limit exhausted:**
+`api-deployments-free-per-day` (>100 deployments/day, 402). Both sessions deploying all
+day consumed the quota. Consequences:
+- `6a6656d` (/pricing fix) is committed on main but CANNOT deploy for up to ~24h
+- **/pricing is blank on the live site until then** (rest of site: 146/148 verified OK)
+- Any push to main right now will NOT deploy — don't waste attempts
+- First successful deploy after reset picks up ALL queued commits incl. the fix
+
+**Emon's options:** (a) wait for the daily reset (fix deploys with the first push after);
+(b) upgrade the Vercel plan (Pro removes the practical limit) → fix live in ~1 min.
+**Other session:** please do not attempt deploys until reset; git pushes are fine (they
+queue), and note the root cause before diagnosing "deploy not triggering" from scratch.
+
+Also removed a temporary repo-root .vercel link created while diagnosing (cleanup).

@@ -40,6 +40,9 @@ const FreelancersGuide = lazy(() => import("@/pages/guides/FreelancersGuide"));
 const CreatorsGuide = lazy(() => import("@/pages/guides/CreatorsGuide"));
 const SMBGuide = lazy(() => import("@/pages/guides/SMBGuide"));
 const EducatorsGuide = lazy(() => import("@/pages/guides/EducatorsGuide"));
+const BanglaBN = lazy(() => import("@/pages/BanglaBN"));
+const StudentsBN = lazy(() => import("@/pages/StudentsBN"));
+const DevelopersBN = lazy(() => import("@/pages/DevelopersBN"));
 
 const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20an%20AI%20subscription";
 
@@ -163,6 +166,11 @@ function Router() {
       {/* /privacy is a URL people and crawlers commonly try; it previously fell
           through to NotFound while still returning HTTP 200 via the SPA rewrite. */}
       <Route path="/privacy" component={PrivacyPolicyPage} />
+
+      {/* Bangla pages */}
+      <Route path="/bn" component={BanglaBN} />
+      <Route path="/students-bn" component={StudentsBN} />
+      <Route path="/developers-bn" component={DevelopersBN} />
 
       <Route component={NotFound} />
     </Switch>

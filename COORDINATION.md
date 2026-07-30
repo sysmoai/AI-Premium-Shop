@@ -832,3 +832,16 @@ universe (measured), world demand tiers, 14-segment map, consumer behavior, comp
 landscape (7 named, live-searched, sources listed), 50K roadmap model, 10-item gap
 register. Deploys still blocked by daily quota — commits queue; /pricing fix remains
 first in line.
+
+### 2026-07-30 — Fable 5 — Cycle 9: first-ever catalog data analytics (doc §9, commit `15f2dbb`)
+
+Computed from all 126 records vs the site's own abroad-cost formula: 50/80 benchmarkable
+records priced below direct-abroad cost (the shared-economics engine, −80% typical);
+**6 pricing anomalies flagged for CEO** (replit-core-personal −83%, suno-pro-personal
++234%, runway-pro-personal +186%, notion-business −73%, midjourney personals −44/−56%,
+perplexity-max −63% — likely stale officialUSD or typos, both directions damage);
+21 sub-৳500 entry doors; ai-design shelf thinnest (2 records); 114 recurring vs 12
+one-off records (LTV engine). WhatsApp-native retention cadence designed (renewal
+reminders, cross-attach, win-back — CEO process, zero code). External grounding:
+consumers now stack 3-5 AI subs; Claude paid +75% since Jan; video AI mainstream.
+All in docs/AIPS-MARKET-INTELLIGENCE-2026.md §9. Deploys still queued behind quota.

@@ -822,3 +822,13 @@ day consumed the quota. Consequences:
 queue), and note the root cause before diagnosing "deploy not triggering" from scratch.
 
 Also removed a temporary repo-root .vercel link created while diagnosing (cleanup).
+
+### 2026-07-30 — Fable 5 — Cycle 8: deploy-quota mitigation shipped + Market Intelligence doc
+
+`ignoreCommand` added to aips-landing/vercel.json (skips builds on app-unchanged
+commits — docs checkpoints stop burning quota; effective from first deploy after
+reset). Full strategy document at docs/AIPS-MARKET-INTELLIGENCE-2026.md: product
+universe (measured), world demand tiers, 14-segment map, consumer behavior, competitor
+landscape (7 named, live-searched, sources listed), 50K roadmap model, 10-item gap
+register. Deploys still blocked by daily quota — commits queue; /pricing fix remains
+first in line.

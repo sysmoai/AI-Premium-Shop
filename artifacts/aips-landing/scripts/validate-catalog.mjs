@@ -12,6 +12,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { readdirSync, statSync } from "node:fs";
+import { buildCatalog } from "./generate-concierge-catalog.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const strict = process.argv.includes("--strict");
@@ -135,33 +136,11 @@ for (const [slug, recs] of bySlug) {
 // ---------- 2b. concierge catalog sync ----------
 // The chatbot answers ONLY from api/_catalog.json. If products.json changed
 // without regenerating it, the concierge gives stale answers — hard failure.
-// Mirrors scripts/generate-concierge-catalog.mjs exactly (all sibling price
-// tiers aggregated per slug, not just the first record) — keep both in sync.
+// The expected shape comes from the generator itself; this check previously
+// kept a hand-copied duplicate of that logic and failed the moment the
+// generator grew a field the copy didn't know about.
 {
-  const bySlug = new Map();
-  for (const p of products) {
-    if (!bySlug.has(p.slug)) bySlug.set(p.slug, []);
-    bySlug.get(p.slug).push(p);
-  }
-  const expected = [];
-  for (const [slug, recs] of bySlug) {
-    const first = recs[0];
-    const tiers = recs
-      .map((p) => ({
-        tier: p.tier,
-        priceBDT: p.requestPrice ? null : p.price,
-        accessType: p.accessType,
-        deliverySLA: p.deliverySLA ?? null,
-        badge: p.badge ?? null,
-      }))
-      .sort((a, b) => (a.priceBDT ?? Infinity) - (b.priceBDT ?? Infinity));
-    expected.push({
-      name: first.name.split(" — ")[0],
-      path: brandSlugs.has(slug) ? `/${slug}` : `/product/${slug}`,
-      category: first.category,
-      tiers,
-    });
-  }
+  const expected = buildCatalog(products, brandSlugs);
   let actual;
   try {
     actual = JSON.parse(read("api/_catalog.json"));
@@ -172,6 +151,7 @@ for (const [slug, recs] of bySlug) {
     failures.push("api/_catalog.json is out of sync with data/products.json — run: node scripts/generate-concierge-catalog.mjs");
   }
 }
+
 
 // ---------- 2c. no hand-written catalog numbers in the UI ----------
 // Every product count and entry price must come from src/lib/catalogStats.ts.

@@ -894,4 +894,28 @@
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
+  <url>
+    <loc>https://aipremiumshop.com/product/recraft-bangladesh</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aipremiumshop.com/product/photoroom-pro-bangladesh</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aipremiumshop.com/product/krea-ai-bangladesh</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aipremiumshop.com/blog/why-3-ai-tools-beat-1-bangladesh</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
 </urlset>

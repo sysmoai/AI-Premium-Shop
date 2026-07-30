@@ -8244,6 +8244,108 @@
       "status": "Active",
       "sourceUrl": "https://lumalabs.ai/dream-machine",
       "lastVerifiedDate": "2026-07-30"
+    },
+    {
+      "id": "recraft-pro-request",
+      "name": "Recraft",
+      "slug": "recraft-bangladesh",
+      "brand": "Recraft",
+      "brandSlug": "recraft-bangladesh",
+      "provider": "Recraft",
+      "brandColor": "#8b5cf6",
+      "category": "ai-design",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Recraft — AI image and vector generation with a distinct design-tool edge: clean vector output, brand style presets, mockups and icon sets that most image generators can't produce. Credit-based monthly plans on your own account. Provider pricing updates periodically — current price on WhatsApp.",
+      "descriptionBN": "Recraft — ভেক্টর ও ব্র্যান্ড-স্টাইল ইমেজ তৈরির AI ডিজাইন টুল। বর্তমান মূল্য জানতে WhatsApp করুন।",
+      "capabilities": [
+        "AI vector image generation",
+        "Brand style presets",
+        "Icon sets & mockups",
+        "Credit-based monthly plans",
+        "Your own account"
+      ],
+      "useCases": [
+        "Logo and icon concepts for freelance designers",
+        "Social media brand kits for agencies",
+        "Mockups for e-commerce sellers"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Recraft from AI Premium Shop. Please share the current price and plans.",
+      "status": "Active",
+      "sourceUrl": "https://www.recraft.ai/pricing",
+      "lastVerifiedDate": "2026-07-30"
+    },
+    {
+      "id": "photoroom-pro-request",
+      "name": "Photoroom Pro",
+      "slug": "photoroom-pro-bangladesh",
+      "brand": "Photoroom",
+      "brandSlug": "photoroom-pro-bangladesh",
+      "provider": "Photoroom",
+      "brandColor": "#0ea5e9",
+      "category": "ai-design",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Photoroom Pro — the fastest way to turn a phone photo into a clean product shot: one-tap background removal, watermark-free exports, batch editing and 1,000+ templates. Built for people who sell things, not people who design things. Provider pricing tiers change periodically — current price on WhatsApp.",
+      "descriptionBN": "Photoroom Pro — প্রোডাক্ট ফটো থেকে এক ক্লিকে ব্যাকগ্রাউন্ড রিমুভ ও প্রফেশনাল প্রোডাক্ট শট। বর্তমান মূল্য জানতে WhatsApp করুন।",
+      "capabilities": [
+        "One-tap background removal",
+        "Watermark-free high-res exports",
+        "Batch editing (up to hundreds of images)",
+        "1,000+ product templates",
+        "Your own account"
+      ],
+      "useCases": [
+        "Daraz/Facebook shop product photos",
+        "Batch-editing an entire inventory in one sitting",
+        "Quick catalog photos with no studio"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Photoroom Pro from AI Premium Shop. Please share the current price and plans.",
+      "status": "Active",
+      "sourceUrl": "https://www.photoroom.com/pricing",
+      "lastVerifiedDate": "2026-07-30"
+    },
+    {
+      "id": "krea-pro-request",
+      "name": "Krea AI",
+      "slug": "krea-ai-bangladesh",
+      "brand": "Krea",
+      "brandSlug": "krea-ai-bangladesh",
+      "provider": "Krea",
+      "brandColor": "#f43f5e",
+      "category": "ai-design",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Krea AI — a real-time AI image and video canvas covering 60+ underlying models (image, video, upscaling, 3D) in one subscription, so you're not paying for five separate tools. Credit-based monthly plans on your own account. Provider pricing updates periodically — current price on WhatsApp.",
+      "descriptionBN": "Krea AI — একই সাবস্ক্রিপশনে ৬০+ AI মডেল (ইমেজ, ভিডিও, আপস্কেল, 3D)। বর্তমান মূল্য জানতে WhatsApp করুন।",
+      "capabilities": [
+        "Real-time AI image generation canvas",
+        "60+ underlying models in one plan",
+        "Video generation & upscaling",
+        "Commercial license on paid plans",
+        "Your own account"
+      ],
+      "useCases": [
+        "Designers who want one tool instead of five",
+        "Concept art and mood boards for clients",
+        "Upscaling AI-generated assets for print/ads"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Krea AI from AI Premium Shop. Please share the current price and plans.",
+      "status": "Active",
+      "sourceUrl": "https://www.krea.ai/pricing",
+      "lastVerifiedDate": "2026-07-30"
     }
   ]
 }

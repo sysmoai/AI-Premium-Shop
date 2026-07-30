@@ -49,7 +49,7 @@ const SOCIAL_CARDS = [
     badgeClass: "bg-[#1877F2]/20 text-[#1877F2]",
     cta: "Follow on Facebook →",
     ctaColor: "text-[#1877F2]",
-    href: "https://www.facebook.com/aipremiumshopbd",
+    href: "https://www.facebook.com/aipremiumshopfb",
     bg: "bg-[#1877F2]/10 border border-[#1877F2]/30 hover:border-[#1877F2]/60",
     iconColor: "text-[#1877F2]",
   },

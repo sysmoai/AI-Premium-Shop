@@ -15,7 +15,7 @@ export const ORG_SCHEMA = {
     availableLanguage: ["English", "Bengali"],
   },
   sameAs: [
-    "https://www.facebook.com/aipremiumshopbd",
+    "https://www.facebook.com/aipremiumshopfb",
     "https://www.instagram.com/aipremiumshop/",
     "https://www.linkedin.com/showcase/aipremiumshop/",
   ],

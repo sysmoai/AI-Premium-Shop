@@ -112,7 +112,7 @@ export function FinalCTASection() {
                 Premium AI subscriptions in Bangladesh. Fast delivery. Local payment. Real support.
               </p>
               <div className="flex items-center gap-3 mt-5">
-                <a href="https://www.facebook.com/aipremiumshopbd" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.facebook.com/aipremiumshopfb" target="_blank" rel="noopener noreferrer"
                   className="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/30 transition-colors"
                   aria-label="Facebook">
                   <Facebook className="w-4 h-4" style={{ color: "#c9ceda" }} />

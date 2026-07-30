@@ -92,7 +92,7 @@ export default function ContactPage() {
         </div>
 
         <a
-          href="https://m.me/aipremiumshopbd"
+          href="https://m.me/aipremiumshopfb"
           target="_blank"
           rel="noopener noreferrer"
           className="group flex items-start gap-4 p-5 rounded-xl border border-[#0084FF]/30 bg-[#0084FF]/10 hover:border-[#0084FF]/60 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg mb-12 cursor-pointer"

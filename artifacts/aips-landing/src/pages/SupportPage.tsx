@@ -275,7 +275,7 @@ export default function SupportPage() {
               Follow Updates
             </a>
             <a
-              href="https://www.facebook.com/aipremiumshopbd"
+              href="https://www.facebook.com/aipremiumshopfb"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#1877F2] text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-[#1565D8] transition-colors"

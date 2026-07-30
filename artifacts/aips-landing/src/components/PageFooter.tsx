@@ -77,7 +77,7 @@ export function PageFooter() {
               Premium AI subscriptions in Bangladesh. 80 tools. Local payment. Instant delivery.
             </p>
             <div className="flex items-center gap-3 mt-4">
-              <a href="https://www.facebook.com/aipremiumshopbd" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.facebook.com/aipremiumshopfb" target="_blank" rel="noopener noreferrer"
                 className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors" aria-label="Facebook">
                 <Facebook className="w-4 h-4" />
               </a>

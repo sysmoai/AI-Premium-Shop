@@ -975,3 +975,36 @@ they don't reach a real build attempt and cost nothing. Verify live state with `
 against `aipremiumshop.com` directly — do not trust `vercel ls` timestamps alone; always
 cross-check the actual deployed commit via `vercel inspect <url> --logs | grep Commit`
 or `gh api repos/.../commits/<sha>/status`, exactly as done here.
+
+### 2026-07-30 — Fable 5 — Cycle 12 (waiting on quota reset): ai-design catalog fill, bundle article, sibling-plans bug fixed (commits `7d20369`, `c99c7a9`)
+
+Continued shipping while Vercel deploys are blocked (~2026-07-31 10:07 UTC reset).
+Everything below is committed + locally verified, queued for auto-deploy on reset.
+
+**Catalog:** filled the thinnest category (ai-design, was 1 product) with Recraft,
+Photoroom Pro, Krea AI — all request-price, official sourceUrls verified via live search
+today. Catalog 129 records, sitemap 153 URLs, concierge catalog 87 products.
+
+**Content:** "Why 3 AI Tools Beat 1" — the bundle-economics article flagged by the §9.4
+data analysis (industry multi-subscription-stacking trend + BDT entry-price math + 3
+ready combos by use case).
+
+**Real bug fixed — the sibling-plans-array warning from cycle 1, finally root-caused:**
+Two distinct defects across 11 slugs:
+1. 9 slugs (grammarly/quillbot/canva/microsoft-copilot/jasper/pika-labs/opus-clip/
+   descript-pro/murf-ai): each sibling record's plans array held only its OWN tier's
+   rich content — ProductPage rendered only 1 of 2 real tiers, silently hiding e.g.
+   Grammarly's own-account Personal option. Fixed by merging sibling plans arrays
+   (no content invented — all fields were already hand-written on the hidden sibling).
+2. 2 slugs (chatgpt-plus, claude-pro): rendered plan prices had drifted from the
+   CEO-owned top-level price (ChatGPT Premium Shared showed ৳950 vs real ৳999; Claude's
+   cheapest ৳599 tier was entirely missing, replaced by a stale ৳1590 duplicate labeled
+   with the "Shared" shorthand for "Starter Shared" — confirmed via the sibling's own
+   self-consistent array, not assumed).
+
+Validator permanently hardened with a tier-alias-aware rendered-plans price check —
+this class of bug now hard-fails future builds instead of sitting as a warning.
+
+Verified: validator 0 hard failures (down from 11 warnings) → tsc clean → build clean →
+headless-Chrome before/after diffs confirming the fix on 4 sampled pages. No top-level
+prices changed — internal plan-selector data reconciled to match them.

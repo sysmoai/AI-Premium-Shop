@@ -581,3 +581,61 @@ five `/guides/*` paths (first fetch after deploy returned a stale 129 from edge 
 remembering that the sitemap is edge-cached for a short window after deploys).
 
 Pipeline is confirmed working end-to-end from this session, twice today.
+
+### 2026-07-30 — Fable 5 — Commerce Engine cycle 1: startup audit, validator foundation, first claim removal (commits `b7ee860`, `3a6df48`, merge `42b3781`)
+
+Operating under the AIPS Strict Autonomous Commerce Engine prompt from Emon. Model
+confirmed: claude-fable-5, no fallback. Notion pages UNREACHABLE from this session (no
+Notion MCP connected; the `.env.local` NOTION_API_KEY was already verified dead) — this
+file + repo state used as ground truth per source-of-truth order A3.
+
+#### Measured delta (full audit of data/products.json + all page components)
+- 118 records / 76 distinct slugs; 25 slugs have sibling records; **11 slugs' siblings
+  carry DIVERGING plans arrays** — ProductPage merge takes first record, rest is dead data
+- **All 20 governance fields absent from all records** (commercialStatus, verificationDate,
+  evidence, CEO approval source, access-model classification, etc.)
+- **44 records accessType "shared"**, 42 "Shared"-named plans → Lane B classification queue
+- Unverified claim terms measured across data+pages: warranty ×127, unlimited ×118,
+  "5-30 min" ×83, "instant delivery" ×34, "5-15 min" ×31, "% off" ×14, "trusted by" ×12,
+  best-seller ×13; 55 named-person testimonials in 5 guides + Home testimonial section
+- **Fabricated review data found rendering on every /product/ page**: hardcoded
+  "4.9 (1,200 reviews)" star block (TRUST_DEFAULT), plus reviewCount: 3421 in 9 data
+  records (dead data). NOT in JSON-LD (visual only).
+- First-batch coverage gaps: Higgsfield **0 records**; Manus 1 slug/0 plans; Claude 1 slug
+  (no Max/Team/Enterprise records); Gemini 2 slugs/0 plans; Copilot 2 slugs/2 plans
+
+#### Shipped this cycle (Lane A, verified live)
+1. `scripts/validate-catalog.mjs` + `pnpm validate` / `validate:strict` (`b7ee860`):
+   hard-fails on missing required fields, dup ids, intra-record dup planNames,
+   whatsappMsg-vs-price drift, sitemap/route/canonical breaks, secret patterns.
+   Warns (tracked backlog) on claim terms, diverging siblings, governance gaps,
+   shared SKUs, fabricated review fields. Current: **0 hard failures, 26 warnings.**
+2. Removed the fabricated "4.9 (1,200 reviews)" block from ProductPage (`3a6df48`).
+
+Verification: validator 0 hard failures → tsc clean → build clean → headless-Chrome
+render of built bundle (no review text, title/canonical intact) → merge `42b3781` pushed
+→ Vercel Ready (~20s) → **live check initially FALSE-ALARMED** because I compared the live
+bundle hash against my local hash as baseline before the new deploy landed; re-checked
+after Vercel showed the new deployment Ready: live serves `index-CfxUldsT.js` (exact match
+with local build), fabricated review text gone from
+https://aipremiumshop.com/product/adobe-firefly-bangladesh, product renders, canonical
+correct. Lesson: baseline the CURRENT live hash before pushing, then wait for it to change.
+
+#### CEO decisions required (Lane B queue — nothing deployed from these)
+1. 44 shared-accessType records: classify each (customer-owned / named seat / voucher /
+   request_price_only / do_not_sell). Biggest revenue+risk item.
+2. Warranty/refund/delivery wording sitewide ("30-day warranty", "5-15 min delivery",
+   24h refund): approve official terms or approve removal.
+3. "% off" compare-at pricing and best-seller badges: evidence or removal.
+4. 55 named testimonials in guides + Home: no verification records exist → recommend
+   removal (fabricated success stories are forbidden), needs sign-off since it changes
+   page content substantially.
+5. Notion access: reconnect Notion MCP or provide a live API key if the 6 control pages
+   should actually drive sessions.
+
+#### Next batch (in priority order)
+1. Claims cleanup Lane A portion (testimonial/best-seller/"trusted by" removal pending
+   decision 4; unlimited-wording tightening per official plan facts)
+2. Sibling plans-array reconciliation (11 slugs, mechanical, Lane A)
+3. Manus + Higgsfield catalog expansion as request_price_only records with official
+   source URLs (needs live web verification of provider pages first)

@@ -727,3 +727,23 @@ live: 3/3 sampled pages PASS, sitemap serves all 4 new URLs.
 Next: first blog cluster article ("How to Buy Higgsfield AI in Bangladesh" transactional
 guide linking the new product pages), then remaining catalog batches (DeepSeek, Qwen,
 Kling, ElevenLabs expansion per master prompt Workstream 2).
+
+### 2026-07-30 — Fable 5 — Cycle 4: first content-cluster article live (commit `5f1f639`)
+
+"How to Buy Higgsfield AI in Bangladesh — Plans, Credits & bKash Payment (2026)" at
+/blog/buy-higgsfield-ai-bangladesh. Transactional intent, Bangla+English, no fixed
+prices (article explains WHY — provider pricing updates periodically — and routes to
+WhatsApp), own-account activation explained, explicit no-PIN/OTP security note, internal
+links to /product/higgsfield-ai-bangladesh + ElevenLabs + Midjourney. Featured post on
+/blog. BlogPosting schema, canonical, sitemap 141 URLs.
+
+Verified: tsc clean → build clean → local browser checks (8/8: content, schema,
+canonical, featured listing) → push → live: title/canonical/schema/Bangla content all
+confirmed on the domain, sitemap serving the entry.
+
+**First-batch catalog expansion (master prompt Workstream 2, items 1-6) now COMPLETE:**
+Higgsfield ✓ (record + article), Manus Pro/Team ✓, Claude ✓ (Max/Team plans existed),
+Google AI Ultra ✓, Microsoft 365 Copilot ✓, GitHub Copilot ✓ (existed).
+
+**Next:** DeepSeek + Qwen API-setup records (China coverage, service/request-price
+models), Manus "price in Bangladesh" article, then ChatGPT/Claude buying-guide refresh.

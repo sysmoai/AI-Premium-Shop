@@ -1,5 +1,8 @@
 {
   "ignoreCommand": "git diff --quiet HEAD^ HEAD -- .",
+  "functions": {
+    "api/concierge.js": { "maxDuration": 30 }
+  },
   "buildCommand": "PORT=3000 BASE_PATH=/ pnpm run build",
   "outputDirectory": "dist/public",
   "installCommand": "pnpm install --no-frozen-lockfile",

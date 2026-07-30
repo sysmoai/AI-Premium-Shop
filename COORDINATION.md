@@ -468,3 +468,72 @@ a11y/perf change here; a build succeeding and a component rendering are not the 
 specific audit passing.
 
 ### _(append below)_
+
+### 2026-07-30 — Fable 5 — Task #35 (duplicate-content canonicals) fixed and verified live
+
+Closed the SEO duplicate-content gap noted above ("~40 products reachable at two URLs,
+no canonical pointing to one preferred form").
+
+**Root cause, measured:** `ProductPage.tsx` unconditionally set
+`canonical: ${SITE}/${product.slug}` regardless of whether `/{slug}` was ever routed.
+Cross-checking `data/products.json` (76 distinct product slugs) against `App.tsx`'s
+41 brand routes found **36 slugs with no matching route** — their canonical tag pointed
+at a URL that renders the client-side NotFound page (while still returning HTTP 200
+through the SPA rewrite — the exact trap this file already warns about). Separately,
+`public/sitemap.xml` listed 40 `/product/{slug}` URLs that duplicate an existing brand
+route (contradicting that page's own canonical tag), was missing 32 real `/product/`
+pages plus `/chatgpt-plans-bangladesh`, and had 4 URLs for slugs that don't exist in
+`products.json` at all.
+
+**Fix (commit `8d25093`):** added `src/lib/productRoutes.ts` — `BRAND_PAGE_SLUGS` (the
+41 real brand-page slugs) and `productPath(slug)` (returns `/{slug}` when a brand page
+exists, else `/product/{slug}`) — as the one place that decision is made.
+`App.tsx` now generates its 41 brand `<Route>`s from that array instead of a hand-typed
+duplicate list, so the route table cannot drift from what `productPath()` returns.
+`ProductPage.tsx`'s canonical and its "Related Products" links now call `productPath()`
+instead of hardcoding `/${slug}`. Regenerated `sitemap.xml` from the same source of
+truth: removed the 40 duplicate `/product/` entries + 4 entries for nonexistent slugs,
+added the 32 missing real `/product/` pages + `/chatgpt-plans-bangladesh` → **129 URLs,
+`xmllint`-valid**.
+
+**Also fixed:** all five guide pages (`guides/{Students,Freelancers,Creators,SMB,
+Educators}Guide.tsx`) built their "View Details" link as
+`` /product/${tool.name.toLowerCase().replace(/ /g, "-")} `` — e.g. "Google AI Pro" →
+`/product/google-ai-pro`, which is not a real route (the actual page is
+`/gemini-advanced-bangladesh`; "ChatGPT Team" → `/product/chatgpt-team`, real page is
+`/chatgpt-business-bangladesh`). ~25 tool cards across the five pages were one click
+from NotFound. Added an explicit `slug` field per tool object and switched the link to
+`productPath(tool.slug)`.
+
+**Verified, in order:**
+- `npx tsc -p tsconfig.json --noEmit` → clean
+- `BASE_PATH=/ PORT=3000 npx vite build` → succeeds, no new chunk warnings beyond the
+  pre-existing 827 kB entry chunk (unchanged, not part of this fix)
+- `vite preview` + headless Chrome `--dump-dom` (not curl — per this file's own rule)
+  on `/chatgpt-plus-bangladesh`, `/product/notion-ai-bangladesh`,
+  `/product/chatgpt-plus-bangladesh`, `/guides/students`, `/` — all render real content,
+  correct `<title>`/canonical, no NotFound text; guide page's product links resolve to
+  the `BRAND_PAGE_SLUGS`-mapped paths
+- Pushed to `main`, Vercel deployment `dpl_GQMNurqyYxYVt2onFNBAFnrNBXWY` → **Ready**,
+  aliased to `aipremiumshop.com` within ~30s of push
+- Re-checked the **live domain** with headless Chrome (not curl):
+  - `https://aipremiumshop.com/product/adobe-firefly-bangladesh` → canonical is now
+    `https://aipremiumshop.com/adobe-firefly-bangladesh` (was self-referential before)
+  - `https://aipremiumshop.com/product/notion-ai-bangladesh` (no brand page exists) →
+    correctly self-canonical, renders real product content
+  - `https://aipremiumshop.com/chatgpt-plans-bangladesh` (previously absent from
+    sitemap) → renders real content
+  - `https://aipremiumshop.com/sitemap.xml` → 129 `<url>` entries, zero occurrences of
+    `product/adobe-firefly-bangladesh`-style duplicates
+
+**Note on process:** while working this, found `git log -1` already showing commit
+`8d25093` on `main`/`origin/main` with this exact change — diffed the committed files
+against my in-progress working tree and they were byte-identical, so this was my own
+work already landed (this environment appears to auto-commit). Separately, while
+verifying, `src/components/SEOHead.tsx` and `src/pages/not-found.tsx` showed up as
+**uncommitted** modified files I did not touch — consistent with the "concurrent session"
+note elsewhere in this repo's memory. Left them alone; whoever is adding `noindex` support
+to the NotFound page, that work is still in flight and wasn't reverted or touched here.
+
+**Not touched / still open:** the 827 kB entry chunk (pre-existing, unrelated to this
+fix); Lighthouse not re-run this pass (no perf-relevant code changed — routing/data only).

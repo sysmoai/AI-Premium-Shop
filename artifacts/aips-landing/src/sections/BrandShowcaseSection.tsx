@@ -37,6 +37,13 @@ export function BrandShowcaseSection() {
     { name: "Pika", slug: "pika", category: "ai-video", color: "#ffd166", products: [], officialWebsite: "https://pika.art", icon: "🎞️" },
     { name: "Descript", slug: "descript", category: "ai-video", color: "#ffffff", products: [], officialWebsite: "https://descript.com", icon: "🎥" },
     { name: "Zapier", slug: "zapier", category: "ai-workspace", color: "#ff4f00", products: [], officialWebsite: "https://zapier.com", icon: "⚙️" },
+    // Both real catalog products (request-price setup services) and both
+    // genuinely high-demand in 2026 — DeepSeek ranks #4 globally by traffic on
+    // Cloudflare Radar, and Manus is referenced elsewhere on this page as an
+    // agentic-AI starting point. Previously absent from this showcase despite
+    // being sellable.
+    { name: "DeepSeek", slug: "deepseek", category: "ai-assistant", color: "#4d6bfe", products: [], officialWebsite: "https://deepseek.com", icon: "🐋" },
+    { name: "Manus", slug: "manus", category: "ai-workspace", color: "#7c3aed", products: [], officialWebsite: "https://manus.im", icon: "🧭" },
   ];
 
   const containerVariants = {

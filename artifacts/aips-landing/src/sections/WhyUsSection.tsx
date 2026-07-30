@@ -1,11 +1,24 @@
 import { motion, type Variants } from "framer-motion";
 import { Zap, CreditCard, Shield, Headphones } from "lucide-react";
+import { tierPrice, taka } from "@/lib/catalogStats";
 
+// Direct/official prices are editorial (what the provider itself charges);
+// the AIPS price and the % saved are both derived from the same catalog
+// record, so they can't drift the way this table did before — it showed
+// Google AI Pro at ৳499/83% off when the real Shared tier is ৳599 (80% off).
 const COMPARISON = [
-  { tool: "ChatGPT Plus", direct: "BDT 2,990/mo", aips: "BDT 499/mo", save: "83%" },
-  { tool: "Google AI Pro", direct: "BDT 2,990/mo", aips: "BDT 499/mo", save: "83%" },
-  { tool: "Notion Business", direct: "BDT 2,990/mo", aips: "BDT 800/mo", save: "73%" },
-];
+  { tool: "ChatGPT Plus", slug: "chatgpt-plus-bangladesh", tier: "Starter Shared", official: 2990 },
+  { tool: "Google AI Pro", slug: "gemini-advanced-bangladesh", tier: "Shared", official: 2990 },
+  { tool: "Notion Business", slug: "notion-business-bangladesh", tier: "Monthly", official: 2990 },
+].map((row) => {
+  const price = tierPrice(row.slug, row.tier);
+  return {
+    tool: row.tool,
+    direct: `BDT ${row.official.toLocaleString("en-US")}/mo`,
+    aips: price != null ? `${taka(price)}/mo` : "price on WhatsApp",
+    save: price != null ? `${Math.round((1 - price / row.official) * 100)}%` : "—",
+  };
+});
 
 const PILLARS = [
   {

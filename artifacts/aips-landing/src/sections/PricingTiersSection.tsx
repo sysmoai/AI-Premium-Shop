@@ -35,7 +35,7 @@ export function PricingTiersSection() {
       description: "Popular subscriptions for daily use",
       color: "#3b82f6",
       icon: "🚀",
-      examples: ["Claude Pro", "Midjourney", "Notion Pro"],
+      examples: ["Claude Pro", "Midjourney", "Notion AI"],
     },
     {
       name: "Professional",

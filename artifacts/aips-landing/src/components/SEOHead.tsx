@@ -33,7 +33,7 @@ interface SEOHeadProps {
 
 const SITE_NAME = "AI Premium Shop";
 const DEFAULT_DESC =
-  "Bangladesh's most trusted AI subscription shop. ChatGPT Plus from BDT 499, Google AI Pro BDT 499. Pay with bKash or Nagad. Delivered in minutes. thousands happy customers.";
+  "Bangladesh's AI subscription shop. ChatGPT Plus from BDT 499, Google AI Pro from BDT 599. Pay with bKash or Nagad. Delivered in minutes.";
 
 export function SEOHead({
   title,

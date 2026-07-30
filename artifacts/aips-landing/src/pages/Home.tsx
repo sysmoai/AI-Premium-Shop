@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MIN_PRICE, TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { Navbar } from "@/components/Navbar";
 import { SEOHead } from "@/components/SEOHead";
-import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema } from "@/utils/schemas";
+import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema, productListSchema } from "@/utils/schemas";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { FAQSection } from "@/components/FAQSection";
 
@@ -11,7 +11,7 @@ import { SegmentSelector } from "@/sections/SegmentSelector";
 import { SegmentHeroContent } from "@/sections/SegmentHeroContent";
 import { BrandShowcaseSection } from "@/sections/BrandShowcaseSection";
 import { PricingTiersSection } from "@/sections/PricingTiersSection";
-import { FeaturedProductsSection } from "@/sections/FeaturedProductsSection";
+import { FeaturedProductsSection, FEATURED_PRODUCTS } from "@/sections/FeaturedProductsSection";
 import { PaymentMethodsSection } from "@/sections/PaymentMethodsSection";
 import { PainPointSection } from "@/sections/PainPointSection";
 import { AIAgentsSection } from "@/sections/AIAgentsSection";
@@ -93,12 +93,23 @@ export default function Home() {
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
         title={`AI Premium Shop — ${TOTAL_PRODUCTS} Premium AI Tools Bangladesh | From BDT ${MIN_PRICE}`}
-        description="Buy ChatGPT, Claude, Google AI Pro, Midjourney, Copilot, and more in Bangladesh. Local payment via bKash/Nagad. Fast WhatsApp delivery. From BDT 499/month."
+        description={`Buy ChatGPT, Claude, Midjourney, Copilot, DeepSeek and more AI tools in Bangladesh. bKash/Nagad payment, WhatsApp delivery. From BDT ${MIN_PRICE}/month.`}
         canonical="https://aipremiumshop.com/"
         jsonLd={[
           ORG_SCHEMA,
           WEBSITE_SCHEMA,
           breadcrumbSchema([{ name: "Home" }]),
+          // Built from the exact array FeaturedProductsSection renders, so
+          // this can never describe products different from what's on screen.
+          productListSchema(
+            FEATURED_PRODUCTS.map((p) => ({
+              id: p.id,
+              name: p.name,
+              description: `${p.name} — ${p.capabilities.join(", ")}.`,
+              brand: p.brand,
+              price: p.price,
+            }))
+          ),
         ]}
       />
 

@@ -40,21 +40,33 @@ const CATEGORIES = [
 // up by brand rather than by slug. Hard-coded values here were badly stale —
 // Claude showed "from ৳1,590" against a real ৳599 entry tier, GitHub Copilot
 // "৳1,495" against ৳399, Cursor "৳2,990" against ৳699.
+//
+// The "X% OFF" badges below were ALSO stale in a subtler way: `officialPrice`
+// looks like it drives a computed discount, but a literal `badge` string
+// always wins over `b.badge || computed`, so "83% OFF" and "73% OFF" were
+// dead literals that could never update even though the code looked dynamic.
+// Google AI Pro showed 83% against a real ৳599 entry (true discount: 80%).
+// Both badges below are now genuinely computed — no `badge` field is set on
+// the source rows, so there's nothing for a stale literal to hide behind.
 const POPULAR_BRANDS = [
-  { name: "ChatGPT",         brand: "ChatGPT",    showPlans: true,  badge: "",        badgeGreen: false, href: "/chatgpt-plans-bangladesh" },
-  { name: "Claude",          brand: "Claude",     showPlans: true,  badge: "",        badgeGreen: false, href: "/claude-pro-bangladesh" },
-  { name: "Midjourney",      brand: "Midjourney", showPlans: true,  badge: "",        badgeGreen: false, href: "/midjourney-bangladesh" },
-  { name: "Google AI Pro",   brand: "Google",     showPlans: false, badge: "83% OFF", badgeGreen: true,  href: "/gemini-advanced-bangladesh" },
-  { name: "GitHub Copilot",  brand: "GitHub",     showPlans: false, badge: "",        badgeGreen: false, href: "/github-copilot-bangladesh" },
-  { name: "Cursor",          brand: "Cursor",     showPlans: false, badge: "",        badgeGreen: false, href: "/cursor-bangladesh" },
-  { name: "Notion Business", brand: "Notion",     showPlans: false, badge: "73% OFF", badgeGreen: true,  href: "/notion-business-bangladesh" },
-  { name: "Perplexity",      brand: "Perplexity", showPlans: false, badge: "",        badgeGreen: false, href: "/perplexity-pro-bangladesh" },
+  { name: "ChatGPT",         brand: "ChatGPT",    showPlans: true,  href: "/chatgpt-plans-bangladesh" },
+  { name: "Claude",          brand: "Claude",     showPlans: true,  href: "/claude-pro-bangladesh" },
+  { name: "Midjourney",      brand: "Midjourney", showPlans: true,  href: "/midjourney-bangladesh" },
+  { name: "Google AI Pro",   brand: "Google",     showPlans: false, officialPrice: 2990, href: "/gemini-advanced-bangladesh" },
+  { name: "GitHub Copilot",  brand: "GitHub",     showPlans: false, href: "/github-copilot-bangladesh" },
+  { name: "Cursor",          brand: "Cursor",     showPlans: false, href: "/cursor-bangladesh" },
+  { name: "Notion Business", brand: "Notion",     showPlans: false, officialPrice: 2990, href: "/notion-business-bangladesh" },
+  { name: "Perplexity",      brand: "Perplexity", showPlans: false, href: "/perplexity-pro-bangladesh" },
 ].map((b) => {
   const s = brandStats(b.brand);
+  const off = "officialPrice" in b && b.officialPrice && s.fromPrice != null
+    ? `${Math.round((1 - s.fromPrice / (b.officialPrice as number)) * 100)}% OFF`
+    : "";
   return {
     ...b,
     price: s.fromPrice != null ? `from ${taka(s.fromPrice)}` : "price on WhatsApp",
-    badge: b.badge || (b.showPlans && s.plans > 1 ? `${s.plans} plans` : ""),
+    badge: off || (b.showPlans && s.plans > 1 ? `${s.plans} plans` : ""),
+    badgeGreen: !!off,
   };
 });
 

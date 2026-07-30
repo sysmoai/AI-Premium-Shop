@@ -381,6 +381,8 @@ export default function StudentsGuide() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Success Stories from Bangladesh Students</h2>
 
+            <p className="text-sm text-gray-500 text-center -mt-8 mb-10">Illustrative examples of how customers in Bangladesh typically use these tools — representative scenarios, not verified individual reviews.</p>
+
             <div className="grid md:grid-cols-2 gap-8">
               {testimonials.map((testimonial, idx) => (
                 <motion.div

@@ -563,3 +563,21 @@ render, not a cached/stale response.
 
 **Not touched / still open:** the 827 kB entry chunk (pre-existing, unrelated to this
 fix); Lighthouse not re-run this pass (no perf-relevant code changed — routing/data only).
+
+### 2026-07-30 — Fable 5 — pipeline re-proof + 5 guide pages added to sitemap (commit `0e2bbd7`)
+
+Emon asked for a fresh proof that this session can edit → push → deploy → verify live
+before starting a larger work cycle. Used a real gap found by reverse audit (all routed
+paths vs sitemap): `/guides/{students,freelancers,creators,smallbusiness,educators}`
+were routed and rendering real content but **absent from sitemap.xml**. Added them
+(priority 0.7/monthly, same as the best-ai-for-* pages) and bumped `lastmod` to
+2026-07-30 on the 4 pre-existing /product/ bundle entries whose canonicals changed in
+`8d25093`.
+
+Measured: xmllint valid → build clean → push → deploy READY → live
+`https://aipremiumshop.com/sitemap.xml` returns **134 `<url>` entries** including all
+five `/guides/*` paths (first fetch after deploy returned a stale 129 from edge cache,
+`x-vercel-cache: HIT` — cache-busted fetch and a follow-up both return 134; worth
+remembering that the sitemap is edge-cached for a short window after deploys).
+
+Pipeline is confirmed working end-to-end from this session, twice today.

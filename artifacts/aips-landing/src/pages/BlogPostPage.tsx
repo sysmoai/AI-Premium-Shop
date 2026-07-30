@@ -146,6 +146,18 @@ function IncomeCalculator({
 }
 
 const ALL_POSTS_META: Record<string, { title: string; excerpt: string; category: string; gradient: string }> = {
+  "manus-ai-price-bangladesh": {
+    title: "Manus AI Price in Bangladesh — Plans, Credits & WebDev Costs (2026)",
+    excerpt: "Free vs Pro credit tiers vs Team seats — what Manus credits actually buy and how to pay from Bangladesh.",
+    category: "🤖 AI Agent",
+    gradient: "bg-gradient-to-br from-slate-700 to-zinc-900",
+  },
+  "buy-claude-pro-bangladesh": {
+    title: "How to Buy Claude Pro in Bangladesh with bKash, Nagad or Rocket (2026)",
+    excerpt: "What Claude Pro includes vs Free and Max, pricing from BDT 1,495, and the 3-step WhatsApp order flow.",
+    category: "🧠 AI Assistant",
+    gradient: "bg-gradient-to-br from-amber-600 to-orange-900",
+  },
   "buy-higgsfield-ai-bangladesh": {
     title: "How to Buy Higgsfield AI in Bangladesh — Plans, Credits & bKash Payment (2026)",
     excerpt: "Get Higgsfield AI video tools in Bangladesh without an international card. Plans, credits, bKash/Nagad payment, own-account activation.",
@@ -1231,6 +1243,118 @@ const POSTS: Record<
       </div>
     ),
   },
+  "manus-ai-price-bangladesh": {
+    title: "Manus AI Price in Bangladesh — Plans, Credits & WebDev Costs (2026)",
+    description: "Manus AI plans and credits explained for Bangladesh. Free vs Pro credit tiers vs Team seats, what credits actually buy, and how to pay with bKash/Nagad.",
+    canonical: "https://aipremiumshop.com/blog/manus-ai-price-bangladesh",
+    date: "July 30, 2026",
+    readTime: "6 min read",
+    accentColor: "#f4b942",
+    heroGradient: "bg-gradient-to-br from-slate-700 to-zinc-900",
+    categoryLabel: "🤖 AI Agent",
+    heroIcon: <Rocket className="w-16 h-16 text-white opacity-20" />,
+    content: (
+      <div className="blog-body space-y-4">
+        <p className="text-gray-300 leading-relaxed">
+          Manus is not a chatbot — it's an autonomous AI agent. You give it a goal ("research these 20 competitors and build me a comparison site") and it plans, browses, writes and builds until the job is done. That power comes with a pricing model that confuses many buyers in Bangladesh: credits. This guide explains what each Manus plan actually gives you, what credits buy, and how to get Manus from Bangladesh paying in BDT.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">Manus-এর প্ল্যান কাঠামো (জুলাই ২০২৬)</h2>
+        <p className="text-gray-300 leading-relaxed">
+          As of July 2026 Manus offers a <strong>Free</strong> tier (daily-refreshing starter credits and the lighter agent model — enough to feel what an agent does, not enough for real work), <strong>Pro</strong> tiers that ladder up by monthly credit pool (the bigger the pool, the heavier the tasks and the more powerful the model access, up to a top production tier), and <strong>Team</strong> with per-seat pricing, SSO, analytics and shared workspaces. Manus renamed its older tiers in early 2026 and adjusts pricing and credit pools periodically — so treat any fixed number you read in an old blog post as stale, including ours if you're reading this much later. The current BDT price for each tier is one WhatsApp message away.
+        </p>
+
+        <CalloutBox>
+          <strong>ক্রেডিট মানে কী?</strong> Manus-এ প্রতিটি টাস্ক (রিসার্চ, স্লাইড, ওয়েবসাইট বিল্ড) ক্রেডিট খরচ করে — জটিল টাস্কে বেশি, সহজ টাস্কে কম। মাসের ক্রেডিট মাস শেষে জমা থাকে না। তাই "কত ক্রেডিটের প্ল্যান নেব" ঠিক করার আগে ভাবুন: সপ্তাহে কয়টা বড় কাজ Manus-কে দেবেন?
+        </CalloutBox>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">WebDev, Slides & the Hidden Costs People Miss</h2>
+        <p className="text-gray-300 leading-relaxed">
+          Manus can build and deploy real websites (WebDev), generate slide decks, images and even music, run scheduled tasks, and browse the live web. Two cost realities to know before buying: heavy WebDev builds and Wide Research runs consume credits much faster than simple chats, and hosting/runtime for what Manus deploys may have its own allowance depending on your tier. If your main goal is building sites for clients, budget for a mid or top Pro tier rather than the entry one — running out of credits mid-project is the most common complaint from new users.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">কোন প্ল্যান কার জন্য?</h2>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>ছাত্র/এক্সপেরিমেন্ট:</strong> Free দিয়ে শুরু করুন, আটকে গেলে এন্ট্রি Pro। <strong>ফ্রিল্যান্সার:</strong> নিয়মিত ক্লায়েন্ট ডেলিভারেবল (রিসার্চ রিপোর্ট, ডেক, সাইট) বানালে মিড Pro টিয়ার। <strong>এজেন্সি/টিম:</strong> একাধিক সদস্য ব্যবহার করলে Team — প্রতি সিটে আলাদা অ্যাক্সেস, SSO ও অ্যানালিটিক্স। আপনার কাজের বর্ণনা WhatsApp-এ পাঠালে আমরা টিয়ার মিলিয়ে বর্তমান দাম জানিয়ে দেব।
+        </p>
+
+        <ProductBox
+          products={[
+            { name: "Manus Pro — Credit Tiers", price: "মূল্য: WhatsApp-এ", slug: "/product/manus-pro-bangladesh" },
+            { name: "Manus Team — Per Seat", price: "মূল্য: WhatsApp-এ", slug: "/product/manus-team-bangladesh" },
+            { name: "Manus AI — Overview", price: "See page", slug: "/manus-ai-bangladesh" },
+          ]}
+        />
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">How to Order from Bangladesh</h2>
+        <StepIndicators
+          steps={[
+            { title: "WhatsApp us your use case", desc: "One line is enough — 'client research reports, ~3/week'. We reply with the tier that fits and its current BDT price." },
+            { title: "Pay in BDT", desc: "bKash, Nagad, Rocket or bank transfer. Send only the transaction reference — never a PIN or OTP." },
+            { title: "Own-account activation", desc: "Activated on your own Manus account. Your projects, credits and history stay yours." },
+          ]}
+        />
+
+        <WhatsAppCTA />
+      </div>
+    ),
+  },
+  "buy-claude-pro-bangladesh": {
+    title: "How to Buy Claude Pro in Bangladesh with bKash, Nagad or Rocket (2026)",
+    description: "Get Claude Pro in Bangladesh without an international card. What Pro includes vs Free and Max, current AIPS pricing from BDT 1,495, and the WhatsApp order flow.",
+    canonical: "https://aipremiumshop.com/blog/buy-claude-pro-bangladesh",
+    date: "July 30, 2026",
+    readTime: "5 min read",
+    accentColor: "#d97706",
+    heroGradient: "bg-gradient-to-br from-amber-600 to-orange-900",
+    categoryLabel: "🧠 AI Assistant",
+    heroIcon: <Lightbulb className="w-16 h-16 text-white opacity-20" />,
+    content: (
+      <div className="blog-body space-y-4">
+        <p className="text-gray-300 leading-relaxed">
+          Claude — Anthropic's AI assistant — has become the tool serious writers, analysts and developers in Bangladesh reach for when ChatGPT's answers feel shallow. The catch is the same as every premium AI tool: Anthropic bills in USD and wants an international card. Here's exactly what Claude Pro gives you, when Max or Team makes more sense, and how to pay for any of them with bKash, Nagad, Rocket or bank transfer.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">Claude Free vs Pro vs Max — সত্যিকারের পার্থক্য</h2>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>Free</strong> gives you limited daily messages on the standard model — fine for tasting, frustrating for work. <strong>Pro</strong> unlocks much higher usage, priority access at busy times, access to Anthropic's stronger models, Projects for organizing work, and Claude's standout skill: long documents. Feed it a 100-page thesis or a full contract and it actually reads it. <strong>Max</strong> tiers (5x and 20x Pro usage) exist for people who hit Pro's ceiling — daily heavy coding with Claude Code, or agencies running Claude all day. <strong>Team</strong> adds named seats and admin controls for companies.
+        </p>
+
+        <CalloutBox>
+          <strong>কার জন্য Claude Pro?</strong> থিসিস/রিসার্চ পেপার নিয়ে কাজ করা ছাত্র, লম্বা ইংরেজি কনটেন্ট লেখা ফ্রিল্যান্সার, আর যে ডেভেলপাররা Claude Code ব্যবহার করতে চান — এই তিন দলের জন্য Pro-ই সেরা ভ্যালু। হালকা ব্যবহারে Free-ই থাকুন।
+        </CalloutBox>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">বাংলাদেশে দাম কত?</h2>
+        <p className="text-gray-300 leading-relaxed">
+          AI Premium Shop-এ Claude Pro শুরু হয় <strong>BDT 1,495/মাস</strong> থেকে — bKash, Nagad, Rocket বা ব্যাংক ট্রান্সফারে, কোনো আন্তর্জাতিক কার্ড ছাড়াই। Max ও Team টিয়ারের বর্তমান দাম এবং শেয়ার্ড অপশনগুলোর বিস্তারিত <a href="/claude-pro-bangladesh" className="underline" style={{ color: "#d97706" }}>Claude Pro Bangladesh পেজে</a> পাবেন। সব প্ল্যানের প্রাইস পেজে আপডেট রাখা হয় — পুরনো ব্লগের দাম নয়, পেজের দামই চূড়ান্ত।
+        </p>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">Ordering Takes Three Steps</h2>
+        <StepIndicators
+          steps={[
+            { title: "Choose your plan", desc: "Pro for most people; Max if you'll use Claude Code heavily; Team for companies. Unsure? Describe your work on WhatsApp and we'll recommend one honestly." },
+            { title: "Pay in BDT", desc: "bKash, Nagad, Rocket or bank transfer. Send the transaction reference only — we never ask for PINs or OTPs." },
+            { title: "Activation on your account", desc: "Your own email, your own login, your own chat history. You verify everything works before the order closes." },
+          ]}
+        />
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">Claude নাকি ChatGPT — কোনটা নেব?</h2>
+        <p className="text-gray-300 leading-relaxed">
+          Short answer: for long-document analysis, careful writing and coding assistance, Claude; for image generation, voice mode and the broadest plugin ecosystem, ChatGPT. Many professionals in Bangladesh run both — a shared ChatGPT plan for the extras plus Claude Pro for the real work. We wrote a full comparison: <a href="/blog/chatgpt-vs-claude-bangladesh" className="underline" style={{ color: "#d97706" }}>ChatGPT vs Claude for Bangladesh</a>.
+        </p>
+
+        <ProductBox
+          products={[
+            { name: "Claude Pro", price: "From BDT 1,495/mo", slug: "/claude-pro-bangladesh" },
+            { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plans-bangladesh" },
+            { name: "Perplexity Pro", price: "BDT 350/mo", slug: "/perplexity-pro-bangladesh" },
+          ]}
+        />
+
+        <WhatsAppCTA />
+      </div>
+    ),
+  },
 };
 
 const POST_SCHEMA_DATES: Record<string, string> = {
@@ -1246,6 +1370,8 @@ const POST_SCHEMA_DATES: Record<string, string> = {
   "midjourney-bangladesh-guide": "2026-02-01",
   "openai-codex-vs-claude-code-bangladesh-2026": "2026-04-17",
   "buy-higgsfield-ai-bangladesh": "2026-07-30",
+  "manus-ai-price-bangladesh": "2026-07-30",
+  "buy-claude-pro-bangladesh": "2026-07-30",
 };
 
 function ShareRow({ slug, title }: { slug: string; title: string }) {

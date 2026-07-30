@@ -8142,6 +8142,108 @@
       "status": "Active",
       "sourceUrl": "https://www.microsoft.com/en-us/microsoft-365/copilot",
       "lastVerifiedDate": "2026-07-30"
+    },
+    {
+      "id": "deepseek-api-setup-request",
+      "name": "DeepSeek API Setup",
+      "slug": "deepseek-api-setup-bangladesh",
+      "brand": "DeepSeek",
+      "brandSlug": "deepseek-bangladesh",
+      "provider": "DeepSeek",
+      "brandColor": "#4d6bfe",
+      "category": "ai-code",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "service",
+      "description": "DeepSeek API setup service — we set up DeepSeek's developer API (chat and reasoning models, among the lowest per-token prices of any frontier lab) on your own DeepSeek platform account, help you fund credits from Bangladesh, and hand over working keys with a starter integration guide. Usage is billed by DeepSeek at official rates; our one-time setup/service fee is quoted on WhatsApp.",
+      "descriptionBN": "DeepSeek API সেটআপ সার্ভিস — আপনার নিজের অ্যাকাউন্টে API চালু, বাংলাদেশ থেকে ক্রেডিট ফান্ডিং ও স্টার্টার গাইড। সার্ভিস ফি জানতে WhatsApp করুন।",
+      "capabilities": [
+        "DeepSeek chat + reasoning model API access",
+        "Your own platform account and API keys",
+        "Credit funding from Bangladesh (no intl card)",
+        "Starter integration guide (Python/Node)",
+        "Usage billed at DeepSeek's official per-token rates"
+      ],
+      "useCases": [
+        "Developers adding AI to apps at the lowest token cost",
+        "Startups prototyping chatbots and agents",
+        "Students building final-year AI projects",
+        "Agencies running high-volume content pipelines"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want DeepSeek API setup from AI Premium Shop. Please share the current service fee and process.",
+      "status": "Active",
+      "sourceUrl": "https://api-docs.deepseek.com/quick_start/pricing",
+      "lastVerifiedDate": "2026-07-30"
+    },
+    {
+      "id": "qwen-api-setup-request",
+      "name": "Qwen / Alibaba Model Studio API Setup",
+      "slug": "qwen-api-setup-bangladesh",
+      "brand": "Qwen",
+      "brandSlug": "qwen-bangladesh",
+      "provider": "Alibaba Cloud",
+      "brandColor": "#615ced",
+      "category": "ai-code",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "service",
+      "description": "Qwen API setup service — Alibaba Cloud Model Studio access to the Qwen model family (text, coder, vision) on your own Alibaba Cloud account, funded from Bangladesh. New accounts typically include free trial quota; ongoing usage is billed by Alibaba Cloud at official rates. Our one-time setup/service fee is quoted on WhatsApp.",
+      "descriptionBN": "Qwen API সেটআপ সার্ভিস — আপনার নিজের Alibaba Cloud অ্যাকাউন্টে Qwen মডেল ফ্যামিলির API। সার্ভিস ফি জানতে WhatsApp করুন।",
+      "capabilities": [
+        "Qwen text, coder and vision model APIs",
+        "Your own Alibaba Cloud / Model Studio account",
+        "Funding from Bangladesh (no intl card)",
+        "Free trial quota on new accounts (per Alibaba's current offer)",
+        "Usage billed at official Alibaba Cloud rates"
+      ],
+      "useCases": [
+        "Developers who need a strong open-family model API",
+        "Multilingual apps (Qwen's strong non-English coverage)",
+        "Coding assistants built on Qwen-Coder"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Qwen / Model Studio API setup from AI Premium Shop. Please share the current service fee and process.",
+      "status": "Active",
+      "sourceUrl": "https://www.alibabacloud.com/en/product/modelstudio",
+      "lastVerifiedDate": "2026-07-30"
+    },
+    {
+      "id": "luma-dream-machine-request",
+      "name": "Luma Dream Machine",
+      "slug": "luma-dream-machine-bangladesh",
+      "brand": "Luma",
+      "brandSlug": "luma-bangladesh",
+      "provider": "Luma AI",
+      "brandColor": "#0ea5e9",
+      "category": "ai-video",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Luma Dream Machine — AI video generation (text-to-video and image-to-video) on your own Luma account. Subscription tiers with monthly generation allowances; provider pricing updates periodically, so the current price is quoted on WhatsApp.",
+      "descriptionBN": "Luma Dream Machine — টেক্সট ও ইমেজ থেকে AI ভিডিও, আপনার নিজের অ্যাকাউন্টে। বর্তমান মূল্য জানতে WhatsApp করুন।",
+      "capabilities": [
+        "Text-to-video and image-to-video generation",
+        "Cinematic camera motion",
+        "Your own Luma account",
+        "Monthly generation allowances by tier"
+      ],
+      "useCases": [
+        "Short-form video for Reels/TikTok",
+        "Product motion shots for ads",
+        "Freelance AI video services"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Luma Dream Machine from AI Premium Shop. Please share the current price and plans.",
+      "status": "Active",
+      "sourceUrl": "https://lumalabs.ai/dream-machine",
+      "lastVerifiedDate": "2026-07-30"
     }
   ]
 }

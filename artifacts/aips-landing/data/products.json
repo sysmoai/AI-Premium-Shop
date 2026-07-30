@@ -74,7 +74,7 @@
         {
           "planName": "Premium Shared",
           "tierLevel": 2,
-          "priceBDT": 950,
+          "priceBDT": 999,
           "officialUSD": 20,
           "billingCycle": "monthly",
           "deliveryType": "shared",
@@ -1122,7 +1122,7 @@
         {
           "planName": "Shared",
           "tierLevel": 1,
-          "priceBDT": 1590,
+          "priceBDT": 599,
           "officialUSD": 20,
           "billingCycle": "monthly",
           "deliveryType": "shared",
@@ -1152,7 +1152,7 @@
         {
           "planName": "Premium Shared",
           "tierLevel": 2,
-          "priceBDT": 1495,
+          "priceBDT": 1590,
           "officialUSD": 20,
           "billingCycle": "monthly",
           "deliveryType": "shared",
@@ -4493,6 +4493,35 @@
           "seats": 4,
           "badge": "New",
           "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 1799,
+          "officialUSD": 12,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Grammar Check on your own account",
+            "Spell Check on your own account",
+            "Tone Detection on your own account",
+            "Plagiarism Check on your own account",
+            "Clarity Improvements on your own account"
+          ],
+          "features": [
+            "grammar-check",
+            "spell-check",
+            "tone-detection",
+            "plagiarism-check",
+            "clarity-improvements"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Students, writers, professionals who write in English",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
         }
       ],
       "faq": [
@@ -4673,6 +4702,37 @@
           "bestFor": "Students",
           "seats": 4,
           "badge": "New",
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 1490,
+          "officialUSD": 9.95,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Paraphrase on your own account",
+            "Summarizer on your own account",
+            "Grammar Check on your own account",
+            "Plagiarism Check on your own account",
+            "Citation Generator on your own account",
+            "Translator on your own account"
+          ],
+          "features": [
+            "paraphrase",
+            "summarizer",
+            "grammar-check",
+            "plagiarism-check",
+            "citation-generator",
+            "translator"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Students, researchers, content writers needing paraphrasing",
+          "seats": 1,
+          "badge": "Own Account",
           "inStock": true
         }
       ],
@@ -4858,6 +4918,37 @@
           "seats": 4,
           "badge": "New",
           "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 2299,
+          "officialUSD": 12.99,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Ai Design on your own account",
+            "Magic Studio on your own account",
+            "Background Remover on your own account",
+            "Brand Kit on your own account",
+            "Stock Assets on your own account",
+            "Social Media Templates on your own account"
+          ],
+          "features": [
+            "ai-design",
+            "magic-studio",
+            "background-remover",
+            "brand-kit",
+            "stock-assets",
+            "social-media-templates"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Social media managers, marketers, small business owners, students",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
         }
       ],
       "faq": [
@@ -5042,6 +5133,37 @@
           "seats": 4,
           "badge": "New",
           "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 2990,
+          "officialUSD": 20,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Word Ai on your own account",
+            "Excel Ai on your own account",
+            "Powerpoint Ai on your own account",
+            "Outlook Ai on your own account",
+            "Teams Ai on your own account",
+            "Gpt4 on your own account"
+          ],
+          "features": [
+            "word-ai",
+            "excel-ai",
+            "powerpoint-ai",
+            "outlook-ai",
+            "teams-ai",
+            "gpt4"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Office workers, students, professionals using Microsoft 365",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
         }
       ],
       "faq": [
@@ -5225,6 +5347,37 @@
           "bestFor": "Marketing agencies",
           "seats": 4,
           "badge": "New",
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 5830,
+          "officialUSD": 39,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Blog Writing on your own account",
+            "Ad Copy on your own account",
+            "Email Writing on your own account",
+            "Social Media on your own account",
+            "Seo Content on your own account",
+            "Brand Voice on your own account"
+          ],
+          "features": [
+            "blog-writing",
+            "ad-copy",
+            "email-writing",
+            "social-media",
+            "seo-content",
+            "brand-voice"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Marketing agencies, content teams, ecommerce sellers",
+          "seats": 1,
+          "badge": "Own Account",
           "inStock": true
         }
       ],
@@ -5494,6 +5647,33 @@
           "seats": 4,
           "badge": "New",
           "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 1200,
+          "officialUSD": 8,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Text To Video on your own account",
+            "Image To Video on your own account",
+            "Video Editing on your own account",
+            "Ai Effects on your own account"
+          ],
+          "features": [
+            "text-to-video",
+            "image-to-video",
+            "video-editing",
+            "ai-effects"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Content creators, TikTokers, video editors making short-form content",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
         }
       ],
       "faq": [
@@ -5668,6 +5848,35 @@
           "bestFor": "YouTubers",
           "seats": 4,
           "badge": "New",
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 2240,
+          "officialUSD": 15,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Video Repurpose on your own account",
+            "Auto Captions on your own account",
+            "Viral Hooks on your own account",
+            "Shorts Maker on your own account",
+            "Reels Maker on your own account"
+          ],
+          "features": [
+            "video-repurpose",
+            "auto-captions",
+            "viral-hooks",
+            "shorts-maker",
+            "reels-maker"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "YouTubers, podcasters, coaches repurposing long content",
+          "seats": 1,
+          "badge": "Own Account",
           "inStock": true
         }
       ],
@@ -5847,6 +6056,35 @@
           "seats": 4,
           "badge": "New",
           "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 1790,
+          "officialUSD": 12,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Text Based Editing on your own account",
+            "Auto Transcription on your own account",
+            "Overdub on your own account",
+            "Screen Recording on your own account",
+            "Podcast Editing on your own account"
+          ],
+          "features": [
+            "text-based-editing",
+            "auto-transcription",
+            "overdub",
+            "screen-recording",
+            "podcast-editing"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Podcasters, YouTubers, educators creating video content",
+          "seats": 1,
+          "badge": "Own Account",
+          "inStock": true
         }
       ],
       "faq": [
@@ -6024,6 +6262,35 @@
           "bestFor": "Video creators",
           "seats": 4,
           "badge": "New",
+          "inStock": true
+        },
+        {
+          "planName": "Personal",
+          "tierLevel": 2,
+          "priceBDT": 2840,
+          "officialUSD": 19,
+          "billingCycle": "monthly",
+          "deliveryType": "personal",
+          "whatsIncluded": [
+            "Text To Speech on your own account",
+            "Voice Cloning on your own account",
+            "120 Voices on your own account",
+            "20 Languages on your own account",
+            "Studio Quality on your own account"
+          ],
+          "features": [
+            "text-to-speech",
+            "voice-cloning",
+            "120-voices",
+            "20-languages",
+            "studio-quality"
+          ],
+          "limitations": [
+            "Single user only"
+          ],
+          "bestFor": "Video creators, educators, marketers needing voiceovers",
+          "seats": 1,
+          "badge": "Own Account",
           "inStock": true
         }
       ],

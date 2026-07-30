@@ -111,6 +111,27 @@ for (const slug of brandSlugs) {
   if (!smPaths.has(slug)) failures.push(`brand page /${slug} missing from sitemap`);
 }
 
+// ---------- 2a. rendered-plans price consistency ----------
+// ProductPage renders only the FIRST record's `plans` array per slug.
+// Each entry's priceBDT must match its own sibling record's top-level
+// (CEO-owned) price for that tier — otherwise the plan selector on
+// /product/{slug} silently quotes a stale number.
+// Some catalogs use a shorthand plan label ("Shared") for a tier whose
+// canonical top-level name is longer ("Starter Shared") — real data, not a
+// bug, but it means naive exact-name matching misses real price drift.
+const TIER_ALIASES = { Shared: "Starter Shared" };
+for (const [slug, recs] of bySlug) {
+  if (recs.length < 2) continue;
+  const truth = new Map(recs.map((r) => [r.tier, r.price]));
+  const first = recs[0];
+  for (const pl of first.plans ?? []) {
+    const canonical = TIER_ALIASES[pl.planName] ?? pl.planName;
+    if (truth.has(canonical) && pl.priceBDT !== truth.get(canonical)) {
+      failures.push(`slug "${slug}": rendered plans array says ${pl.planName}=${pl.priceBDT} but sibling record price is ${truth.get(canonical)}`);
+    }
+  }
+}
+
 // ---------- 2b. concierge catalog sync ----------
 // The chatbot answers ONLY from api/_catalog.json. If products.json changed
 // without regenerating it, the concierge gives stale answers — hard failure.

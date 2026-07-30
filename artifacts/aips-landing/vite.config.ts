@@ -4,26 +4,21 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
-const rawPort = process.env.PORT;
-
-if (!rawPort) {
-  throw new Error(
-    "PORT environment variable is required but was not provided.",
-  );
-}
-
+// PORT only affects the dev server, and BASE_PATH is "/" for every deploy target we
+// use. Hard-failing the config when they are absent broke `vite build` in any context
+// that did not pre-set them (CI, a plain `pnpm build`, Vercel without the inline env).
+// Default them instead, and keep validating values that ARE supplied.
+const rawPort = process.env.PORT ?? "3000";
 const port = Number(rawPort);
 
 if (Number.isNaN(port) || port <= 0) {
   throw new Error(`Invalid PORT value: "${rawPort}"`);
 }
 
-const basePath = process.env.BASE_PATH;
+const basePath = process.env.BASE_PATH ?? "/";
 
-if (!basePath) {
-  throw new Error(
-    "BASE_PATH environment variable is required but was not provided.",
-  );
+if (!basePath.startsWith("/")) {
+  throw new Error(`Invalid BASE_PATH value: "${basePath}" (must start with "/")`);
 }
 
 export default defineConfig({

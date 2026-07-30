@@ -31,6 +31,17 @@ const POSTS = [
     accentColor: "#a855f7",
   },
   {
+    slug: "avoid-ai-subscription-scams-bangladesh",
+    title: "How to Avoid AI Subscription Scams in Bangladesh — 7 Red Flags (2026)",
+    excerpt: "Lifetime offers, impossible prices, PIN requests — the exact scam patterns in BD Facebook groups and the 3 questions that expose any seller (including us).",
+    category: "🛡 Safety",
+    readTime: "6 min read",
+    date: "Jul 30, 2026",
+    gradient: "bg-gradient-to-br from-red-600 to-rose-900",
+    icon: Scale,
+    accentColor: "#ef4444",
+  },
+  {
     slug: "buy-ai-tools-without-international-card-bangladesh",
     title: "How to Buy AI Tools in Bangladesh Without an International Card (2026 Guide)",
     excerpt: "Every real payment route honestly compared — endorsed cards, virtual cards, relatives abroad, local services — with the risks nobody mentions.",

@@ -146,6 +146,12 @@ function IncomeCalculator({
 }
 
 const ALL_POSTS_META: Record<string, { title: string; excerpt: string; category: string; gradient: string }> = {
+  "avoid-ai-subscription-scams-bangladesh": {
+    title: "How to Avoid AI Subscription Scams in Bangladesh — 7 Red Flags (2026)",
+    excerpt: "The exact scam patterns in BD Facebook groups — lifetime offers, impossible prices, PIN requests — and the checklist that exposes them.",
+    category: "🛡 Safety",
+    gradient: "bg-gradient-to-br from-red-600 to-rose-900",
+  },
   "buy-google-ai-pro-bangladesh": {
     title: "How to Buy Google AI Pro in Bangladesh — Gemini, Veo & NotebookLM (2026)",
     excerpt: "What Google AI Pro includes vs Free and Ultra, from BDT 599, and how to pay with bKash/Nagad.",
@@ -467,8 +473,8 @@ const POSTS: Record<
         <RelatedPosts
           slugs={[
             "ai-freelancing-guide-bangladesh",
-            "ai-tools-university-students-bangladesh",
-            "chatgpt-plus-vs-free-bangladesh",
+            "manus-ai-price-bangladesh",
+            "buy-ai-tools-without-international-card-bangladesh",
           ]}
         />
       </div>
@@ -593,8 +599,8 @@ const POSTS: Record<
         <RelatedPosts
           slugs={[
             "earn-money-with-ai-bangladesh",
-            "chatgpt-plus-vs-free-bangladesh",
-            "pay-ai-tools-bkash-bangladesh",
+            "buy-google-ai-pro-bangladesh",
+            "avoid-ai-subscription-scams-bangladesh",
           ]}
         />
       </div>
@@ -689,8 +695,8 @@ const POSTS: Record<
         <RelatedPosts
           slugs={[
             "chatgpt-plus-vs-free-bangladesh",
-            "earn-money-with-ai-bangladesh",
-            "how-to-get-chatgpt-plus-bangladesh",
+            "buy-ai-tools-without-international-card-bangladesh",
+            "avoid-ai-subscription-scams-bangladesh",
           ]}
         />
       </div>
@@ -782,8 +788,8 @@ const POSTS: Record<
         <RelatedPosts
           slugs={[
             "chatgpt-vs-claude-bangladesh",
-            "earn-money-with-ai-bangladesh",
-            "pay-ai-tools-bkash-bangladesh",
+            "buy-claude-pro-bangladesh",
+            "avoid-ai-subscription-scams-bangladesh",
           ]}
         />
       </div>
@@ -906,8 +912,8 @@ const POSTS: Record<
         <RelatedPosts
           slugs={[
             "earn-money-with-ai-bangladesh",
-            "ai-tools-for-freelancers-bangladesh",
-            "chatgpt-plus-vs-free-bangladesh",
+            "buy-higgsfield-ai-bangladesh",
+            "manus-ai-price-bangladesh",
           ]}
         />
       </div>
@@ -1490,6 +1496,71 @@ const POSTS: Record<
       </div>
     ),
   },
+  "avoid-ai-subscription-scams-bangladesh": {
+    title: "How to Avoid AI Subscription Scams in Bangladesh — 7 Red Flags (2026)",
+    description: "The exact scam patterns used to sell fake ChatGPT, Netflix-style 'lifetime' AI deals and hacked accounts in Bangladesh — and the 7 red flags that expose them.",
+    canonical: "https://aipremiumshop.com/blog/avoid-ai-subscription-scams-bangladesh",
+    date: "July 30, 2026",
+    readTime: "6 min read",
+    accentColor: "#ef4444",
+    heroGradient: "bg-gradient-to-br from-red-600 to-rose-900",
+    categoryLabel: "🛡 Safety",
+    heroIcon: <Scale className="w-16 h-16 text-white opacity-20" />,
+    content: (
+      <div className="blog-body space-y-4">
+        <p className="text-gray-300 leading-relaxed">
+          The AI subscription market in Bangladesh has a real scam problem. Facebook groups are full of "ChatGPT Plus lifetime ৳300" offers, and every week people lose money — or worse, hand over accounts and personal data. We sell AI subscriptions ourselves, so read this with that in mind; but every red flag below applies to us too, and we'd rather you check us against this list than buy blind from anyone. This is the checklist we wish every buyer used.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">The 7 Red Flags — যেগুলো দেখলেই সরে যান</h2>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>১. "Lifetime" অফার।</strong> ChatGPT, Claude, Midjourney — কারোরই lifetime প্ল্যান নেই। যেটার অস্তিত্ব নেই সেটা কেউ বিক্রি করতে পারে না। Lifetime মানেই হয় হ্যাকড অ্যাকাউন্ট, নয় ভুয়া।
+        </p>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>২. অসম্ভব কম দাম।</strong> প্রোভাইডারের USD দামের নিচে কেউ বৈধভাবে বেচতে পারে না — মার্জিন যোগ হয়, বাদ যায় না। অফিশিয়াল দামের অর্ধেকের কম মানে টাকাটা অন্য কোথাও থেকে আসছে: চুরি করা কার্ড, হ্যাকড অ্যাকাউন্ট, বা আপনার পকেট।
+        </p>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>৩. PIN বা OTP চাওয়া।</strong> বৈধ কোনো বিক্রেতার আপনার bKash/Nagad PIN বা OTP লাগে না — কখনোই না। চাওয়া মাত্রই ব্লক করুন। পেমেন্টের পর শুধু Transaction ID-ই যথেষ্ট।
+        </p>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>৪. অন্যের ইমেইলে "আপনার" অ্যাকাউন্ট।</strong> সাবস্ক্রিপশন যদি বিক্রেতার ইমেইলে থাকে, সেটা আপনার না — যেকোনো দিন পাসওয়ার্ড বদলে দিলে আপনি বাইরে। নিজের ইমেইলে অ্যাক্টিভেশন দাবি করুন, নাহলে শেয়ার্ড প্ল্যান হিসেবেই দাম দিন।
+        </p>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>৫. আগে পুরো টাকা, প্রসেস পরে।</strong> ডেলিভারি কীভাবে হবে, কতক্ষণে হবে, কাজ না করলে কী হবে — লিখিত উত্তর ছাড়া পেমেন্ট নয়। যে সেলার প্রসেস ব্যাখ্যা করতে চায় না, তার প্রসেস নেই।
+        </p>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>৬. নতুন পেজ, রিভিউ নেই, ঠিকানা নেই।</strong> গত মাসে খোলা পেজ, প্রোফাইলে কিছু নেই, ওয়েবসাইট নেই — ঝুঁকি সর্বোচ্চ। ওয়েবসাইট আর পুরনো উপস্থিতি জালিয়াতির গ্যারান্টি দেয় না, কিন্তু না থাকাটা বড় সংকেত।
+        </p>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>৭. চাপ দেওয়া।</strong> "আজকেই শেষ", "আর ২টা বাকি", "এখনই না নিলে দাম বাড়বে" — সাবস্ক্রিপশন কোনো সীমিত জিনিস না। কৃত্রিম তাড়াহুড়ো মানেই আপনাকে ভাবার সময় দিতে চায় না।
+        </p>
+
+        <CalloutBox>
+          <strong>কেনার আগে ৩টা প্রশ্ন করুন:</strong> ১) অ্যাক্টিভেশন কি আমার নিজের ইমেইলে হবে? ২) পেমেন্টের পর ঠিক কী প্রসেসে ডেলিভারি হবে? ৩) কাজ না করলে কী হবে? — তিনটার পরিষ্কার উত্তর না পেলে টাকা পাঠাবেন না। এই প্রশ্নগুলো আমাদেরও করুন।
+        </CalloutBox>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">If You've Already Been Scammed</h2>
+        <p className="text-gray-300 leading-relaxed">
+          Report the transaction to bKash/Nagad support with the Transaction ID immediately (reversal is rare but reporting builds the fraud case), report the page to Facebook, and if the amount is significant, file a GD — online fraud complaints are increasingly taken seriously. Then change any password you shared or reused, everywhere. Most importantly: a scam on a hacked shared account sometimes "works" for days before dying — if your cheap subscription suddenly logged out, that's what happened.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">What Safe Buying Looks Like</h2>
+        <p className="text-gray-300 leading-relaxed">
+          Whoever you buy from: your own email, a written process, transaction-reference-only payment, a real catalog with consistent prices, and no pressure. That's the standard. Compare any seller — including us — against it. Full payment-route analysis: <a href="/blog/buy-ai-tools-without-international-card-bangladesh" className="underline" style={{ color: "#ef4444" }}>How to Buy AI Tools Without an International Card</a>. Our own process, in writing: <a href="/how-to-order" className="underline" style={{ color: "#ef4444" }}>How to Order</a>.
+        </p>
+
+        <ProductBox
+          products={[
+            { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plans-bangladesh" },
+            { name: "Claude Pro", price: "From BDT 1,495/mo", slug: "/claude-pro-bangladesh" },
+            { name: "Google AI Pro", price: "From BDT 599/mo", slug: "/gemini-advanced-bangladesh" },
+          ]}
+        />
+
+        <WhatsAppCTA />
+      </div>
+    ),
+  },
 };
 
 const POST_SCHEMA_DATES: Record<string, string> = {
@@ -1509,6 +1580,7 @@ const POST_SCHEMA_DATES: Record<string, string> = {
   "buy-claude-pro-bangladesh": "2026-07-30",
   "buy-google-ai-pro-bangladesh": "2026-07-30",
   "buy-ai-tools-without-international-card-bangladesh": "2026-07-30",
+  "avoid-ai-subscription-scams-bangladesh": "2026-07-30",
 };
 
 function ShareRow({ slug, title }: { slug: string; title: string }) {

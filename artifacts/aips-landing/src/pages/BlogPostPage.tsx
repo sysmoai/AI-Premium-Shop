@@ -146,6 +146,18 @@ function IncomeCalculator({
 }
 
 const ALL_POSTS_META: Record<string, { title: string; excerpt: string; category: string; gradient: string }> = {
+  "buy-google-ai-pro-bangladesh": {
+    title: "How to Buy Google AI Pro in Bangladesh — Gemini, Veo & NotebookLM (2026)",
+    excerpt: "What Google AI Pro includes vs Free and Ultra, from BDT 599, and how to pay with bKash/Nagad.",
+    category: "🧠 AI Assistant",
+    gradient: "bg-gradient-to-br from-blue-600 to-cyan-900",
+  },
+  "buy-ai-tools-without-international-card-bangladesh": {
+    title: "How to Buy AI Tools in Bangladesh Without an International Card (2026 Guide)",
+    excerpt: "Every real payment route honestly compared — endorsed cards, virtual cards, relatives abroad, local services — risks included.",
+    category: "💳 Payments",
+    gradient: "bg-gradient-to-br from-emerald-600 to-teal-900",
+  },
   "manus-ai-price-bangladesh": {
     title: "Manus AI Price in Bangladesh — Plans, Credits & WebDev Costs (2026)",
     excerpt: "Free vs Pro credit tiers vs Team seats — what Manus credits actually buy and how to pay from Bangladesh.",
@@ -1355,6 +1367,129 @@ const POSTS: Record<
       </div>
     ),
   },
+  "buy-google-ai-pro-bangladesh": {
+    title: "How to Buy Google AI Pro in Bangladesh — Gemini, Veo & NotebookLM (2026)",
+    description: "Get Google AI Pro in Bangladesh with bKash/Nagad — no international card. What Pro includes vs Free and Ultra, from BDT 599, own-account activation.",
+    canonical: "https://aipremiumshop.com/blog/buy-google-ai-pro-bangladesh",
+    date: "July 30, 2026",
+    readTime: "5 min read",
+    accentColor: "#4285f4",
+    heroGradient: "bg-gradient-to-br from-blue-600 to-cyan-900",
+    categoryLabel: "🧠 AI Assistant",
+    heroIcon: <Lightbulb className="w-16 h-16 text-white opacity-20" />,
+    content: (
+      <div className="blog-body space-y-4">
+        <p className="text-gray-300 leading-relaxed">
+          Google AI Pro is the quiet workhorse of AI subscriptions in Bangladesh: one plan that upgrades Gemini to Google's stronger models, adds AI video generation, boosts NotebookLM's limits, bundles 2TB of storage, and puts AI inside the Gmail and Docs you already use every day. For students and office workers who live in Google's ecosystem, it's often better value than any other single AI subscription. Here's what it actually includes, what it costs in Bangladesh, and how to get it without an international card.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">Google AI Free vs Pro vs Ultra — কোনটা দরকার?</h2>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>Free</strong> Gemini answers everyday questions but caps you on the advanced models and generation features quickly. <strong>Pro</strong> unlocks the stronger Gemini models with far higher limits, video generation access, higher NotebookLM limits (upload your textbooks and lecture notes, get an AI that answers from them — the single best study feature for university students), 2TB of Google One storage, and Gemini inside Gmail, Docs and Sheets. <strong>Ultra</strong> is the heavy tier for filmmakers and power users who need the top video model access and maximum limits — most people don't need it, and its regional pricing varies, which is why we quote it live: <a href="/product/google-ai-ultra-bangladesh" className="underline" style={{ color: "#4285f4" }}>Google AI Ultra page</a>.
+        </p>
+
+        <CalloutBox>
+          <strong>ছাত্রদের জন্য সবচেয়ে কাজের ফিচার:</strong> NotebookLM-এ নিজের বই, স্লাইড আর নোট আপলোড করুন — পরীক্ষার আগে সেগুলো থেকেই প্রশ্নোত্তর, সামারি ও কুইজ বানিয়ে দেয়। ২TB স্টোরেজ মানে পুরো ভার্সিটি লাইফের ফাইল এক জায়গায়।
+        </CalloutBox>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">বাংলাদেশে দাম কত?</h2>
+        <p className="text-gray-300 leading-relaxed">
+          AI Premium Shop-এ Google AI Pro শুরু হয় <strong>BDT 599/মাস</strong> থেকে (শেয়ার্ড অপশন); সম্পূর্ণ ব্যক্তিগত অ্যাকাউন্টে অ্যাক্টিভেশনও আছে। সব অপশনের বর্তমান দাম <a href="/gemini-advanced-bangladesh" className="underline" style={{ color: "#4285f4" }}>Google AI Pro Bangladesh পেজে</a> — পেজের দামই সবসময় চূড়ান্ত। পেমেন্ট bKash, Nagad, Rocket বা ব্যাংক ট্রান্সফারে।
+        </p>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">Ordering in Three Steps</h2>
+        <StepIndicators
+          steps={[
+            { title: "Pick Shared or Personal", desc: "Shared is the budget path; Personal activates on your own Google account — your Gmail, your Drive, your history. Tell us on WhatsApp which fits." },
+            { title: "Pay in BDT", desc: "bKash, Nagad, Rocket or bank transfer. Send only the transaction reference — never any PIN or OTP." },
+            { title: "Activate and verify", desc: "You confirm Gemini Pro features, NotebookLM limits and storage are live before the order closes." },
+          ]}
+        />
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">Google AI Pro নাকি ChatGPT Plus?</h2>
+        <p className="text-gray-300 leading-relaxed">
+          If your life runs on Gmail, Docs and Drive — or you're a student who'd use NotebookLM — Google AI Pro usually wins on bundled value. If you want the largest plugin ecosystem and image generation variety, ChatGPT Plus. Budget-conscious users in Bangladesh often start with whichever is cheaper this month and switch later; both activate fast and neither locks you in. Compare: <a href="/chatgpt-plans-bangladesh" className="underline" style={{ color: "#4285f4" }}>ChatGPT plans</a>.
+        </p>
+
+        <ProductBox
+          products={[
+            { name: "Google AI Pro", price: "From BDT 599/mo", slug: "/gemini-advanced-bangladesh" },
+            { name: "Google AI Ultra", price: "মূল্য: WhatsApp-এ", slug: "/product/google-ai-ultra-bangladesh" },
+            { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plans-bangladesh" },
+          ]}
+        />
+
+        <WhatsAppCTA />
+      </div>
+    ),
+  },
+  "buy-ai-tools-without-international-card-bangladesh": {
+    title: "How to Buy AI Tools in Bangladesh Without an International Card (2026 Guide)",
+    description: "Every real option Bangladeshis use to pay for ChatGPT, Claude, Midjourney and other AI tools without an international card — honestly compared, risks included.",
+    canonical: "https://aipremiumshop.com/blog/buy-ai-tools-without-international-card-bangladesh",
+    date: "July 30, 2026",
+    readTime: "7 min read",
+    accentColor: "#10b981",
+    heroGradient: "bg-gradient-to-br from-emerald-600 to-teal-900",
+    categoryLabel: "💳 Payments",
+    heroIcon: <CreditCard className="w-16 h-16 text-white opacity-20" />,
+    content: (
+      <div className="blog-body space-y-4">
+        <p className="text-gray-300 leading-relaxed">
+          Every premium AI tool — ChatGPT, Claude, Midjourney, Higgsfield, ElevenLabs — checks out in USD and expects an international credit card. That single screen stops more Bangladeshis from using AI than any other barrier. This guide honestly walks through every route people in Bangladesh actually try, what goes wrong with each, and the checklist that keeps you safe whichever path you choose.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">কেন আপনার কার্ড কাজ করে না?</h2>
+        <p className="text-gray-300 leading-relaxed">
+          Three reasons, usually stacked: most local cards aren't enabled for international online transactions unless you complete your bank's dollar endorsement process against your passport; even endorsed cards have modest USD limits shared across all your foreign spending; and some AI merchants' payment processors decline Bangladeshi BINs outright. So "my card was declined" is rarely your fault — it's the plumbing.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">The Routes People Actually Try — Honest Pros and Cons</h2>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>1. Dollar-endorsed dual-currency card.</strong> The official route. Works for many, but requires a passport, a bank visit, patience, and enough limit — and still fails on some merchants. If you have it working, use it.
+        </p>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>2. Virtual card services.</strong> Popular, but quality varies wildly: cards can die mid-subscription, top-up fees stack, and if the issuer blocks the merchant you lose the subscription AND the balance. Read recent user reviews for the specific service before trusting one.
+        </p>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>3. A relative abroad pays.</strong> Reliable if you have the relative — but renewals depend on their availability, and account regions can mismatch (a US-billed account with BD usage occasionally triggers verification).
+        </p>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>4. Random Facebook sellers.</strong> The cheapest offers and the highest scam rate. Classic failure modes: you pay, they vanish; the "subscription" is a hacked account that dies in a week; or a shared login with strangers who can read your chats. If a price looks impossibly low, it is.
+        </p>
+        <p className="text-gray-300 leading-relaxed">
+          <strong>5. A local service like AI Premium Shop.</strong> You pay in BDT (bKash/Nagad/Rocket/bank), the subscription activates on <strong>your own account</strong>, and you verify it works before the order closes. You pay a service margin over the raw USD price — that margin is what buys you the payment handling, activation and support. We are one option here, and this article stays useful whichever route you pick.
+        </p>
+
+        <CalloutBox>
+          <strong>নিরাপত্তার চেকলিস্ট (যে রুটই নিন):</strong> ১) PIN বা OTP কাউকে দেবেন না — বৈধ কোনো সেলারের এটা লাগে না। ২) নিজের ইমেইলে অ্যাক্টিভেশন চান — অন্যের ইমেইলে "আপনার" সাবস্ক্রিপশন মানে অ্যাকাউন্টটা আপনার না। ৩) পেমেন্টের আগে ডেলিভারি প্রসেস লিখিতভাবে জেনে নিন। ৪) Transaction ID সংরক্ষণ করুন। ৫) অস্বাভাবিক কম দাম = অস্বাভাবিক ঝুঁকি।
+        </CalloutBox>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">Which Tools Can You Get This Way?</h2>
+        <p className="text-gray-300 leading-relaxed">
+          Effectively all of them. Assistants (<a href="/chatgpt-plans-bangladesh" className="underline" style={{ color: "#10b981" }}>ChatGPT</a>, <a href="/claude-pro-bangladesh" className="underline" style={{ color: "#10b981" }}>Claude</a>, <a href="/gemini-advanced-bangladesh" className="underline" style={{ color: "#10b981" }}>Google AI Pro</a>), image tools (<a href="/midjourney-bangladesh" className="underline" style={{ color: "#10b981" }}>Midjourney</a>, Canva Pro), video platforms (<a href="/product/higgsfield-ai-bangladesh" className="underline" style={{ color: "#10b981" }}>Higgsfield</a>, Runway, Kling), voice (<a href="/elevenlabs-bangladesh" className="underline" style={{ color: "#10b981" }}>ElevenLabs</a>), coding (<a href="/github-copilot-bangladesh" className="underline" style={{ color: "#10b981" }}>GitHub Copilot</a>, Cursor) and even developer APIs like <a href="/product/deepseek-api-setup-bangladesh" className="underline" style={{ color: "#10b981" }}>DeepSeek</a> — the full catalog is on the <a href="/products" className="underline" style={{ color: "#10b981" }}>products page</a> with BDT prices where fixed, and WhatsApp quotes where provider pricing changes frequently.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">FAQ</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold text-white">bKash দিয়ে কি সরাসরি ChatGPT কেনা যায়?</h3>
+            <p className="text-gray-300 leading-relaxed">না — OpenAI সরাসরি bKash নেয় না। bKash-এ পেমেন্ট নিয়ে অ্যাক্টিভেশন করে দেওয়াটাই লোকাল সার্ভিসের কাজ। বিস্তারিত: <a href="/blog/pay-ai-tools-bkash-bangladesh" className="underline" style={{ color: "#10b981" }}>bKash দিয়ে AI টুল কেনার গাইড</a>।</p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-white">শেয়ার্ড আর পার্সোনাল অ্যাকাউন্টের পার্থক্য কী?</h3>
+            <p className="text-gray-300 leading-relaxed">শেয়ার্ডে খরচ কম কিন্তু অ্যাক্সেস ভাগাভাগি; পার্সোনালে দাম বেশি কিন্তু অ্যাকাউন্ট, হিস্টরি ও প্রাইভেসি সম্পূর্ণ আপনার। সংবেদনশীল বা ক্লায়েন্টের কাজ করলে পার্সোনাল নিন।</p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-white">দাম কি প্রতি মাসে একই থাকে?</h3>
+            <p className="text-gray-300 leading-relaxed">প্রোভাইডাররা মাঝে মাঝে দাম ও লিমিট বদলায়। ফিক্সড-প্রাইস প্রোডাক্টের দাম আমাদের পেজে আপডেট রাখা হয়; যেসব টুলের দাম ঘন ঘন বদলায় সেগুলোতে "বর্তমান মূল্য জানতে WhatsApp করুন" দেখবেন — সেটাই সৎ উত্তর।</p>
+          </div>
+        </div>
+
+        <WhatsAppCTA />
+      </div>
+    ),
+  },
 };
 
 const POST_SCHEMA_DATES: Record<string, string> = {
@@ -1372,6 +1507,8 @@ const POST_SCHEMA_DATES: Record<string, string> = {
   "buy-higgsfield-ai-bangladesh": "2026-07-30",
   "manus-ai-price-bangladesh": "2026-07-30",
   "buy-claude-pro-bangladesh": "2026-07-30",
+  "buy-google-ai-pro-bangladesh": "2026-07-30",
+  "buy-ai-tools-without-international-card-bangladesh": "2026-07-30",
 };
 
 function ShareRow({ slug, title }: { slug: string; title: string }) {

@@ -36,6 +36,26 @@
       "source": "/youtube-premium",
       "destination": "/products",
       "permanent": false
+    },
+    {
+      "source": "/b2b-implementation-bangladesh",
+      "destination": "/product/b2b-implementation-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/business-package-bangladesh",
+      "destination": "/product/business-package-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/freelancer-bundle-bangladesh",
+      "destination": "/product/freelancer-bundle-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/student-package-bangladesh",
+      "destination": "/product/student-package-bangladesh",
+      "permanent": true
     }
   ],
   "rewrites": [

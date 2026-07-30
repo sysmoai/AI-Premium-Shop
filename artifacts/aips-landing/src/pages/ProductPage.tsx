@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  MessageCircle, Star, ChevronRight, Check, X, Clock, Shield, Zap,
+  MessageCircle, ChevronRight, Check, X, Clock, Shield, Zap,
   Wallet, ArrowRight, ChevronDown, BadgeCheck, Users,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
@@ -55,7 +55,7 @@ interface ProductDetail {
   faq?: { q: string; a: string; qBN?: string; aBN?: string }[];
   activationType?: string;
   estimatedDeliveryTime?: string;
-  trust?: { warrantyDays: number; refundPolicy: string; reviewCount: number; rating: number };
+  trust?: { warrantyDays: number; refundPolicy: string };
   relatedProducts?: { slug: string; name: string; priceBDT: number; category: string }[];
   bundleSuggestions?: { slug: string; name: string; savingBDT: number }[];
   seo?: { title: string; metaDescription: string; canonical: string; ogImage: string; keywords: string[] };
@@ -107,11 +107,12 @@ function getDirectAbroadPrice(officialUSD: number | null): number | null {
   return formulaPrice(officialUSD);
 }
 
+// No fabricated social proof: review counts/ratings were removed because no
+// verified review data exists yet. Warranty/refund wording stays pending a
+// CEO-approved terms record (see COORDINATION.md claims audit).
 const TRUST_DEFAULT = {
   warrantyDays: 30,
   refundPolicy: "Full refund within 24h if not delivered; replacement within 30 days for account issues.",
-  reviewCount: 1200,
-  rating: 4.9,
 };
 
 const USP_DEFAULT = [
@@ -217,12 +218,6 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
               </div>
             </div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="flex items-center gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4" fill={i < Math.floor(trust.rating) ? "#f4b942" : "none"} stroke="#f4b942" />
-                ))}
-              </div>
-              <span className="text-sm" style={{ color: "#c9ceda" }}>{trust.rating.toFixed(1)} ({trust.reviewCount.toLocaleString()} reviews)</span>
               {product.badges?.map((b) => (
                 <span key={b} className="px-2 py-0.5 rounded-full text-xs font-semibold capitalize" style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942", border: "1px solid rgba(244,185,66,0.25)" }}>{b}</span>
               ))}

@@ -8006,6 +8006,142 @@
       "status": "Active",
       "sourceUrl": "https://higgsfield.ai/pricing",
       "lastVerifiedDate": "2026-07-30"
+    },
+    {
+      "id": "manus-pro-request",
+      "name": "Manus Pro",
+      "slug": "manus-pro-bangladesh",
+      "brand": "Manus",
+      "brandSlug": "manus-ai-bangladesh",
+      "provider": "Manus",
+      "brandColor": "#1a1a2e",
+      "category": "ai-workspace",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Manus Pro — the paid tier of the Manus autonomous AI agent, on your own account. Credit-based monthly tiers (larger credit pools at higher tiers) with Agent Mode, Wide Research, AI Slides, image generation, Website Builder/WebDev and scheduled tasks. Provider pricing and credit tiers update periodically — current price on WhatsApp.",
+      "descriptionBN": "Manus Pro — আপনার নিজের অ্যাকাউন্টে Manus AI এজেন্টের পেইড প্ল্যান। ক্রেডিট-ভিত্তিক মাসিক টিয়ার। বর্তমান মূল্য জানতে WhatsApp করুন।",
+      "capabilities": [
+        "Autonomous Agent Mode for multi-step tasks",
+        "Monthly credit tiers (higher tiers = larger pools)",
+        "Wide Research, AI Slides, AI Image",
+        "Website Builder & WebDev",
+        "Scheduled and concurrent tasks"
+      ],
+      "useCases": [
+        "Automated research reports for clients",
+        "Building and deploying simple websites",
+        "Slide decks and design assets on autopilot",
+        "Freelance automation services from Bangladesh"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Manus Pro from AI Premium Shop. Please share the current price, credit tiers and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://manus.im/pricing",
+      "lastVerifiedDate": "2026-07-30"
+    },
+    {
+      "id": "manus-team-request",
+      "name": "Manus Team",
+      "slug": "manus-team-bangladesh",
+      "brand": "Manus",
+      "brandSlug": "manus-ai-bangladesh",
+      "provider": "Manus",
+      "brandColor": "#1a1a2e",
+      "category": "ai-workspace",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Manus Team — named per-seat plan for teams and agencies: shared workspace, SSO, analytics and access controls on top of the Manus agent. Billed per seat by the provider; current per-seat price on WhatsApp.",
+      "descriptionBN": "Manus Team — টিম ও এজেন্সির জন্য নামভিত্তিক সিট প্ল্যান (SSO, অ্যানালিটিক্স, অ্যাক্সেস কন্ট্রোল)। বর্তমান মূল্য জানতে WhatsApp করুন।",
+      "capabilities": [
+        "Named seats for each team member",
+        "SSO and access controls",
+        "Team analytics",
+        "Shared templates and workspace",
+        "Credit pools per seat"
+      ],
+      "useCases": [
+        "Agencies running client automation",
+        "Startup teams sharing one AI agent workflow",
+        "SME back-office automation"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Manus Team (per-seat) from AI Premium Shop. Please share the current per-seat price and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://manus.im/pricing",
+      "lastVerifiedDate": "2026-07-30"
+    },
+    {
+      "id": "google-ai-ultra-request",
+      "name": "Google AI Ultra",
+      "slug": "google-ai-ultra-bangladesh",
+      "brand": "Google",
+      "brandSlug": "gemini-advanced-bangladesh",
+      "provider": "Google",
+      "brandColor": "#4285f4",
+      "category": "ai-assistant",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Google AI Ultra — Google's highest consumer AI plan on your own Google account: top Gemini model limits, advanced video generation access (Veo/Flow), higher NotebookLM limits and a large cloud-storage allowance. Regional pricing varies — current price on WhatsApp.",
+      "descriptionBN": "Google AI Ultra — আপনার নিজের Google অ্যাকাউন্টে Google-এর সর্বোচ্চ AI প্ল্যান। বর্তমান মূল্য জানতে WhatsApp করুন।",
+      "capabilities": [
+        "Highest Gemini model limits",
+        "Advanced video generation access (Veo / Flow)",
+        "Higher NotebookLM limits",
+        "Large cloud storage allowance",
+        "Runs on your own Google account"
+      ],
+      "useCases": [
+        "Filmmakers and creators needing top-tier AI video",
+        "Power users hitting Google AI Pro limits",
+        "Researchers using NotebookLM heavily"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Google AI Ultra from AI Premium Shop. Please share the current price and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://one.google.com/about/google-ai-plans/",
+      "lastVerifiedDate": "2026-07-30"
+    },
+    {
+      "id": "m365-copilot-request",
+      "name": "Microsoft 365 Copilot",
+      "slug": "microsoft-365-copilot-bangladesh",
+      "brand": "Microsoft",
+      "brandSlug": "microsoft-copilot-pro-bangladesh",
+      "provider": "Microsoft",
+      "brandColor": "#0078d4",
+      "category": "ai-workspace",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Microsoft 365 Copilot — the business tier of Copilot inside Word, Excel, PowerPoint, Outlook and Teams, grounded in your organization's data, on named business seats under your own Microsoft 365 tenant. Per-seat pricing via Microsoft — current price on WhatsApp.",
+      "descriptionBN": "Microsoft 365 Copilot — Word, Excel, PowerPoint, Outlook ও Teams-এ বিজনেস Copilot, আপনার নিজস্ব Microsoft 365 টেন্যান্টে নামভিত্তিক সিটে। বর্তমান মূল্য জানতে WhatsApp করুন।",
+      "capabilities": [
+        "Copilot in Word, Excel, PowerPoint, Outlook, Teams",
+        "Grounded in your organization's data (Microsoft Graph)",
+        "Named business seats on your own tenant",
+        "Admin and security controls"
+      ],
+      "useCases": [
+        "SMEs automating documents and email",
+        "Agencies producing client decks faster",
+        "Teams summarizing meetings in Teams"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Microsoft 365 Copilot (business seats) from AI Premium Shop. Please share the current per-seat price and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.microsoft.com/en-us/microsoft-365/copilot",
+      "lastVerifiedDate": "2026-07-30"
     }
   ]
 }

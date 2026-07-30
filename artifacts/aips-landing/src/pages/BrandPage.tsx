@@ -121,7 +121,8 @@ interface Product {
   brandSlug: string;
   brandColor: string;
   category: string;
-  price: number;
+  price: number | null;
+  requestPrice?: boolean;
   officialUSD: number | null;
   tier: string;
   accessType: string;
@@ -833,7 +834,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
     const filtered = meta?.filterBySlug
       ? all.filter((p) => p.slug === brandSlug)
       : all.filter((p) => p.brandSlug === brandSlug);
-    return filtered.sort((a, b) => a.price - b.price);
+    return filtered.sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity));
   }, [brandSlug, meta?.filterBySlug]);
 
   if (!meta) {
@@ -852,7 +853,9 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
     "name": meta.displayName,
     "description": meta.description,
     "brand": { "@type": "Brand", "name": meta.displayName },
-    "offers": products.map((p) => ({
+    // Request-price records are excluded: an Offer without a real price
+    // would be fabricated structured data.
+    "offers": products.filter((p) => p.price != null).map((p) => ({
       "@type": "Offer",
       "name": p.name,
       "price": p.price,
@@ -1150,7 +1153,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {products.map((p, i) => {
-                const waLink = `${WHATSAPP}?text=${encodeURIComponent(p.whatsappMsg ?? `Hi, I want to order ${p.name} (BDT ${p.price})`)}`;
+                const waLink = `${WHATSAPP}?text=${encodeURIComponent(p.whatsappMsg ?? (p.requestPrice ? `Hi, I want ${p.name}. Please share the current price.` : `Hi, I want to order ${p.name} (BDT ${p.price})`))}`;
                 return (
                   <motion.div
                     key={p.id}
@@ -1194,7 +1197,9 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
 
                       <div className="flex items-center justify-between mt-1">
                         <div>
-                          <div className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT {p.price.toLocaleString()}</div>
+                          {p.requestPrice
+                            ? <div className="text-sm font-bold leading-snug" style={{ color: "#f4b942" }}>বর্তমান মূল্য জানতে<br />WhatsApp করুন</div>
+                            : <div className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT {(p.price ?? 0).toLocaleString()}</div>}
                           {p.officialUSD != null && (
                             <div className="text-xs" style={{ color: "#c9ceda" }}>${p.officialUSD}/mo official</div>
                           )}
@@ -2224,7 +2229,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
           const qa = [
             {
               q: `How much does ${meta.displayName} cost in Bangladesh?`,
-              a: `${meta.displayName} in Bangladesh costs from BDT ${products[0]?.price.toLocaleString() ?? "—"}/month through AI Premium Shop. Plans range from BDT ${products[0]?.price.toLocaleString()} to BDT ${products[products.length - 1]?.price.toLocaleString()}. Pay with bKash, Nagad, or Rocket — no international card required.`,
+              a: `${meta.displayName} in Bangladesh costs from BDT ${products[0]?.price?.toLocaleString() ?? "—"}/month through AI Premium Shop. Plans range from BDT ${products[0]?.price?.toLocaleString() ?? "—"} to BDT ${[...products].reverse().find((p) => p.price != null)?.price?.toLocaleString() ?? "—"}. Pay with bKash, Nagad, or Rocket — no international card required.`,
             },
             {
               q: `Is ${meta.displayName} available in Bangladesh?`,
@@ -2292,7 +2297,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                         <div className="text-xs mt-0.5" style={{ color: "#c9ceda" }}>{seg.plan?.name ?? "—"} · {seg.why}</div>
                       </div>
                       <div className="text-sm font-bold pr-6" style={{ color: "#f4b942" }}>
-                        {seg.plan ? `BDT ${seg.plan.price.toLocaleString()}` : "—"}
+                        {seg.plan && seg.plan.price != null ? `BDT ${seg.plan.price.toLocaleString()}` : "—"}
                       </div>
                       <a href={waUrl} target="_blank" rel="noopener noreferrer"
                         className="flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity"
@@ -2327,7 +2332,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   </div>
                 </div>
                 {[
-                  { label: "Price (AIPS)", a: cheapest ? `from BDT ${cheapest.price.toLocaleString()}` : "—", b: comp.price1, c: comp.price2 },
+                  { label: "Price (AIPS)", a: cheapest && cheapest.price != null ? `from BDT ${cheapest.price.toLocaleString()}` : "—", b: comp.price1, c: comp.price2 },
                   { label: "Best for", a: BEST_FOR_LABELS[brandSlug] ?? meta.tagline, b: comp.strength1, c: comp.strength2 },
                   { label: "Delivery", a: cheapest?.deliverySLA ?? "5–30 min", b: "5–30 min", c: "5–30 min" },
                 ].map((row, ri) => (

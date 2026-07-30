@@ -1,0 +1,12 @@
+# security.txt (RFC 9116) — AI Premium Shop
+# https://aipremiumshop.com
+#
+# This site processes real customer payments (bKash/Nagad/Rocket order
+# confirmations via WhatsApp). If you find a security vulnerability,
+# please report it responsibly using the contact below rather than
+# disclosing it publicly.
+
+Contact: mailto:support@aipremiumshop.com
+Expires: 2027-07-30T00:00:00.000Z
+Preferred-Languages: en, bn
+Canonical: https://aipremiumshop.com/.well-known/security.txt

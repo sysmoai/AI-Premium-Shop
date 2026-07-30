@@ -1069,3 +1069,30 @@ desktop width: both buttons fully visible and independently tappable, chat panel
 opens with no clipping, zero console errors. Pushed, deployed (confirmed via
 `gh api .../commits/dc5104e/status` → success), and re-verified directly on
 aipremiumshop.com — screenshot confirms clean stacking live.
+
+### 2026-07-30 — Claude App (desktop) — Facebook page link updated sitewide (commit `ad9cb6d`)
+
+Emon changed the official Facebook page handle: `aipremiumshopbd` → `aipremiumshopfb`
+(verified the new page is real and correct — matches business address/phone/website).
+
+Found and fixed all 8 hardcoded references in `aips-landing` (no shared source-of-truth
+was actually wired up — each file had its own copy, same duplication pattern as past
+bugs this session): footer, FinalCTASection, SupportPage, CommunitySocialCards,
+Organization JSON-LD `sameAs`, and `data/brand.json` (6× facebook.com link), plus 2×
+`m.me/aipremiumshopbd` Messenger short-links (PageFooter... actually ContactPage +
+brand.json) — Messenger short-links mirror the page username 1:1 under Meta's platform
+convention, so these were also stale and are now `m.me/aipremiumshopfb`.
+
+Deliberately left untouched: `BlogPostPage.tsx`'s `facebook.com/sharer/sharer.php` (a
+generic share-intent URL, not the page link) and every `aipremiumshopbd` match that's
+actually an unrelated old GitHub repo/org reference in docs. Also found the identical
+stale URL inside `artifacts/legacy/aipremiumshop-frontend/` and
+`artifacts/aips-website/data/imported/aips-landing/brand.json` — confirmed both are
+genuinely dead (no Vercel link at all for the legacy copy; the imported brand.json in
+aips-website is never imported/rendered by any component) — correctly out of scope,
+not fixed.
+
+Verified: typecheck clean, tested locally (dev server, footer links + JSON-LD sameAs +
+/contact Messenger link all correct, zero console errors), pushed, deployed (confirmed
+success via `gh api .../commits/ad9cb6d/status`), and re-verified directly on
+aipremiumshop.com (homepage + /support) — all Facebook/Messenger links live-correct.

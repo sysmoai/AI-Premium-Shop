@@ -35,6 +35,7 @@ const SupportPage = lazy(() => import("@/pages/SupportPage"));
 const HowToOrderPage = lazy(() => import("@/pages/HowToOrderPage"));
 const BestAISubscriptionPage = lazy(() => import("@/pages/BestAISubscriptionPage"));
 const ProductPage = lazy(() => import("@/pages/ProductPage"));
+const GuidesIndexPage = lazy(() => import("@/pages/GuidesIndexPage"));
 const StudentsGuide = lazy(() => import("@/pages/guides/StudentsGuide"));
 const FreelancersGuide = lazy(() => import("@/pages/guides/FreelancersGuide"));
 const CreatorsGuide = lazy(() => import("@/pages/guides/CreatorsGuide"));
@@ -45,6 +46,8 @@ const StudentsBN = lazy(() => import("@/pages/StudentsBN"));
 const DevelopersBN = lazy(() => import("@/pages/DevelopersBN"));
 const FreelancersBN = lazy(() => import("@/pages/FreelancersBN"));
 const CreatorsBN = lazy(() => import("@/pages/CreatorsBN"));
+const SMBBangla = lazy(() => import("@/pages/SMBBangla"));
+const EducatorsBangla = lazy(() => import("@/pages/EducatorsBangla"));
 
 const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20an%20AI%20subscription";
 
@@ -130,6 +133,9 @@ function Router() {
       <Route path="/best-ai-for-ecommerce">{() => <GuidePage guideKey="ecommerce" />}</Route>
       <Route path="/best-ai-subscription-2026" component={BestAISubscriptionPage} />
 
+      {/* Guides Index */}
+      <Route path="/guides" component={GuidesIndexPage} />
+
       {/* New Segment Guide Pages */}
       <Route path="/guides/students" component={StudentsGuide} />
       <Route path="/guides/freelancers" component={FreelancersGuide} />
@@ -175,6 +181,8 @@ function Router() {
       <Route path="/developers-bn" component={DevelopersBN} />
       <Route path="/freelancers-bn" component={FreelancersBN} />
       <Route path="/creators-bn" component={CreatorsBN} />
+      <Route path="/smb-bn" component={SMBBangla} />
+      <Route path="/educators-bn" component={EducatorsBangla} />
 
       <Route component={NotFound} />
     </Switch>

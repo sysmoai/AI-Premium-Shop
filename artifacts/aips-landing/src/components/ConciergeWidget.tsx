@@ -63,20 +63,22 @@ export function ConciergeWidget() {
 
   return (
     <>
-      {/* Launcher — sits above the mobile order bar */}
+      {/* Launcher — stacked directly above the FloatingWhatsApp bubble (same right-edge
+          alignment, fixed gap) so the two never overlap at any viewport width. Also
+          clears the mobile order bar (StickyMobileBar), which sits lower still. */}
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close AI assistant" : "Open AI assistant"}
-        className="fixed z-50 right-4 bottom-20 md:bottom-6 w-13 h-13 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
-        style={{ backgroundColor: "#f4b942", width: 52, height: 52 }}
+        className="fixed z-50 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+        style={{ backgroundColor: "#f4b942", width: 52, height: 52, right: 24, bottom: 152 }}
       >
         {open ? <X className="w-6 h-6" style={{ color: "#0a0e27" }} /> : <Bot className="w-6 h-6" style={{ color: "#0a0e27" }} />}
       </button>
 
       {open && (
         <div
-          className="fixed z-50 right-4 bottom-36 md:bottom-24 w-[calc(100vw-2rem)] max-w-sm rounded-2xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
-          style={{ backgroundColor: "#0f1430", height: "min(560px, 70vh)" }}
+          className="fixed z-50 w-[calc(100vw-2rem)] max-w-sm rounded-2xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
+          style={{ backgroundColor: "#0f1430", height: "min(560px, 70vh)", right: 24, bottom: 216 }}
         >
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-2" style={{ backgroundColor: "#151b3d" }}>
             <Bot className="w-5 h-5" style={{ color: "#f4b942" }} />

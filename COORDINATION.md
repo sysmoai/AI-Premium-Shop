@@ -704,3 +704,26 @@ branch second, and expect local main to move underneath you between tool calls.
 Claude/Gemini/Copilot missing-plan records via the same request-price pattern; then the
 first blog cluster articles (Higgsfield/Manus price-in-Bangladesh guides are now
 linkable landing targets).
+
+### 2026-07-30 — Fable 5 — Cycle 3: catalog +4 via request-price (commit `dab4784`)
+
+Added Manus Pro, Manus Team, Google AI Ultra, Microsoft 365 Copilot as request-price
+records (123 records, sitemap 140 URLs) — customer-owned / named-seat access models,
+official sourceUrls (manus.im/pricing, one.google.com AI plans, microsoft.com M365
+Copilot), verified 2026-07-30, zero invented prices. Manus plan naming re-verified
+current via web (Free / Pro credit tiers / Team per-seat; provider renamed old tiers
+early 2026).
+
+BrandPage made null-price safe (sort, cards, WhatsApp fallback, FAQ price-range, segment
++ comparison tables) and its JSON-LD now excludes request-price records from Offer
+arrays. tsc caught 5 null-price sites beyond the obvious ones — the `price: number|null`
+type change is doing exactly what it was designed to do: every new consumer of price
+must handle request-price records or fail the build.
+
+Verification: validator 0 hard failures → tsc clean → build clean → 7/7 local headless-
+Chrome checks (4 product pages + 3 brand hubs, no ৳0/NaN/null anywhere) → push →
+live: 3/3 sampled pages PASS, sitemap serves all 4 new URLs.
+
+Next: first blog cluster article ("How to Buy Higgsfield AI in Bangladesh" transactional
+guide linking the new product pages), then remaining catalog batches (DeepSeek, Qwen,
+Kling, ElevenLabs expansion per master prompt Workstream 2).

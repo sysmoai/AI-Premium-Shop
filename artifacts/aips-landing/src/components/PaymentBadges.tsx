@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+// text picked per-bg so it clears WCAG AA (4.5:1) — white fails on #f6921e
+// (2.32:1) and #f0b90b (1.80:1); #1a1a1a passes both at 7.50:1 / 9.65:1.
 const paymentMethods = [
   { name: "bKash", bg: "#e2136e", text: "#fff" },
-  { name: "Nagad", bg: "#f6921e", text: "#fff" },
+  { name: "Nagad", bg: "#f6921e", text: "#1a1a1a" },
   { name: "Rocket", bg: "#8b2f97", text: "#fff" },
   { name: "Bank Transfer", bg: "#1a5276", text: "#fff" },
   { name: "Binance", bg: "#f0b90b", text: "#1a1a1a" },

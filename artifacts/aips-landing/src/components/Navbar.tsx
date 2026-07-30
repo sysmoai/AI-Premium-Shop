@@ -263,7 +263,10 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
         {/* ── Main bar ── */}
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between gap-6">
           <a href="/" onClick={(e) => { e.preventDefault(); go("/"); }} aria-label="AI Premium Shop" className="flex-shrink-0">
-            <PrimaryBrandLogo size="medium" layout="horizontal" />
+            {/* decorative: the link above already provides the accessible name;
+                without this the img alt + three text spans inside are compared
+                against it and don't match (axe: label-content-name-mismatch) */}
+            <PrimaryBrandLogo size="medium" layout="horizontal" decorative />
           </a>
 
           {/* Desktop nav */}

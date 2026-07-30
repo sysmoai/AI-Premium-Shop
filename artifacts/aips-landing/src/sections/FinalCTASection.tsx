@@ -89,7 +89,8 @@ export function FinalCTASection() {
             <div className="flex flex-wrap items-center justify-center gap-2 mt-5">
               <span className="text-sm text-gray-500">Pay with</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#E2136E] text-white">bKash</span>
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#F6921E] text-white">Nagad</span>
+              {/* white text on #F6921E fails WCAG AA (2.32:1, need 4.5:1); dark passes at 7.50:1 */}
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#F6921E] text-[#1a1a1a]">Nagad</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#6e40c9] text-white">Rocket</span>
             </div>
           </motion.div>

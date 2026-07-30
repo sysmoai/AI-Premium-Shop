@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle, ChevronRight, Package, CreditCard, Smartphone, Zap } from "lucide-react";
+import { MessageCircle, ChevronRight, Package, CreditCard, Zap } from "lucide-react";
 import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
@@ -115,7 +115,8 @@ export default function HowToOrderPage() {
             Order any AI subscription in Bangladesh. Pay with{" "}
             <span className="inline-block bg-[#E2136E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">bKash</span>{" "}
             or{" "}
-            <span className="inline-block bg-[#F6921E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">Nagad</span>.
+            {/* white text on #F6921E fails WCAG AA (2.32:1, need 4.5:1); dark passes at 7.50:1 */}
+            <span className="inline-block bg-[#F6921E] text-[#1a1a1a] px-2.5 py-1 rounded-full text-xs font-semibold">Nagad</span>.
             Most accounts delivered in under 30 minutes.
           </p>
         </motion.div>
@@ -154,11 +155,14 @@ export default function HowToOrderPage() {
                     {step.paymentMethods && (
                       <div className="flex flex-wrap gap-2 mb-4">
                         {step.paymentMethods.map((m) => {
+                          // text picked per-bg for WCAG AA (4.5:1): white fails on Nagad
+                          // (2.32:1) and Bank Transfer's #3b82f6 (3.68:1); dark passes
+                          // both (7.50:1, 4.73:1).
                           const PM: Record<string, { bg: string; text: string }> = {
                             bKash: { bg: "#E2136E", text: "#fff" },
-                            Nagad: { bg: "#F6921E", text: "#fff" },
+                            Nagad: { bg: "#F6921E", text: "#1a1a1a" },
                             Rocket: { bg: "#8B2F8B", text: "#fff" },
-                            "Bank Transfer": { bg: "#3b82f6", text: "#fff" },
+                            "Bank Transfer": { bg: "#3b82f6", text: "#1a1a1a" },
                             Binance: { bg: "#F0B90B", text: "#111" },
                           };
                           const c = PM[m] ?? { bg: "#f4b942", text: "#0a0e27" };

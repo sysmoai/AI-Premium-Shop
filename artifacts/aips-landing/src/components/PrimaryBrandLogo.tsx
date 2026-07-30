@@ -9,6 +9,16 @@ interface PrimaryBrandLogoProps {
   layout?: LogoLayout;
   iconOnly?: boolean;
   className?: string;
+  /**
+   * Set when this logo is nested inside an element that already provides its
+   * own accessible name (e.g. a link with aria-label="AI Premium Shop").
+   * Hides the img's alt text and the "AI"/"PREMIUM"/"SHOP" spans from the
+   * accessibility tree so they aren't compared against — and found to
+   * mismatch — the ancestor's aria-label (axe: label-content-name-mismatch).
+   * Leave false for standalone usage (e.g. the footer) where this logo IS
+   * the accessible content.
+   */
+  decorative?: boolean;
 }
 
 const GOLD_500 = "#f4b942";
@@ -46,6 +56,7 @@ export function PrimaryBrandLogo({
   layout = "horizontal",
   iconOnly = false,
   className = "",
+  decorative = false,
 }: PrimaryBrandLogoProps) {
   const config = layout === "horizontal" ? horizontalConfig[size] : verticalConfig[size];
 
@@ -60,20 +71,20 @@ export function PrimaryBrandLogo({
   const logoImg = (
     <img
       src={logoImage}
-      alt="AI Premium Shop"
+      alt={decorative ? "" : "AI Premium Shop"}
       style={{ width: config.icon, height: config.icon }}
       className="object-contain flex-shrink-0"
     />
   );
 
   const textNode = variant === "full-color" ? (
-    <div style={{ ...baseTextStyle, display: "flex", gap: config.wordGap, alignItems: "center" }}>
+    <div aria-hidden={decorative || undefined} style={{ ...baseTextStyle, display: "flex", gap: config.wordGap, alignItems: "center" }}>
       <span style={{ color: GOLD_500, ...glassStyle }}>AI</span>
       <span style={{ color: WHITE_100, ...glassStyle }}>PREMIUM</span>
       <span style={{ color: GOLD_500, ...glassStyle }}>SHOP</span>
     </div>
   ) : (
-    <div style={{
+    <div aria-hidden={decorative || undefined} style={{
       ...baseTextStyle,
       color: variant === "white" ? WHITE_100 : BLACK,
       whiteSpace: "nowrap",
@@ -86,7 +97,7 @@ export function PrimaryBrandLogo({
     return (
       <img
         src={logoImage}
-        alt="AI Premium Shop"
+        alt={decorative ? "" : "AI Premium Shop"}
         style={{ width: config.icon, height: config.icon }}
         className={`object-contain ${className}`}
       />

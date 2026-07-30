@@ -52,6 +52,18 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    // Split long-lived dependencies out of the app chunk so a content change does
+    // not invalidate the whole download, and so the entry chunk stays small.
+    // Route-level splitting is handled by React.lazy in src/App.tsx.
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom", "wouter"],
+          query: ["@tanstack/react-query"],
+          icons: ["lucide-react"],
+        },
+      },
+    },
   },
   server: {
     port,

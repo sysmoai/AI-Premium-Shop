@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MessageCircle } from "lucide-react";
@@ -8,32 +8,36 @@ import { CookieBanner } from "@/components/CookieBanner";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { FacebookPixel } from "@/components/FacebookPixel";
+// Home and NotFound stay eagerly imported: Home is the landing route for most
+// visitors, so code-splitting it would only delay first paint. Every other page
+// is lazy-loaded so the initial bundle no longer ships all 26 pages at once.
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
-import ProductsPage from "@/pages/ProductsPage";
-import CategoryPage from "@/pages/CategoryPage";
-import AboutPage from "@/pages/AboutPage";
-import ContactPage from "@/pages/ContactPage";
-import FAQPage from "@/pages/FAQPage";
-import PricingPage from "@/pages/PricingPage";
-import RefundPolicyPage from "@/pages/RefundPolicyPage";
-import TermsPage from "@/pages/TermsPage";
-import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
-import GuidePage from "@/pages/GuidePage";
-import ComparisonPage from "@/pages/ComparisonPage";
-import BudgetPage from "@/pages/BudgetPage";
-import BlogPage from "@/pages/BlogPage";
-import BlogPostPage from "@/pages/BlogPostPage";
-import BrandPage from "@/pages/BrandPage";
-import SupportPage from "@/pages/SupportPage";
-import HowToOrderPage from "@/pages/HowToOrderPage";
-import BestAISubscriptionPage from "@/pages/BestAISubscriptionPage";
-import ProductPage from "@/pages/ProductPage";
-import StudentsGuide from "@/pages/guides/StudentsGuide";
-import FreelancersGuide from "@/pages/guides/FreelancersGuide";
-import CreatorsGuide from "@/pages/guides/CreatorsGuide";
-import SMBGuide from "@/pages/guides/SMBGuide";
-import EducatorsGuide from "@/pages/guides/EducatorsGuide";
+
+const ProductsPage = lazy(() => import("@/pages/ProductsPage"));
+const CategoryPage = lazy(() => import("@/pages/CategoryPage"));
+const AboutPage = lazy(() => import("@/pages/AboutPage"));
+const ContactPage = lazy(() => import("@/pages/ContactPage"));
+const FAQPage = lazy(() => import("@/pages/FAQPage"));
+const PricingPage = lazy(() => import("@/pages/PricingPage"));
+const RefundPolicyPage = lazy(() => import("@/pages/RefundPolicyPage"));
+const TermsPage = lazy(() => import("@/pages/TermsPage"));
+const PrivacyPolicyPage = lazy(() => import("@/pages/PrivacyPolicyPage"));
+const GuidePage = lazy(() => import("@/pages/GuidePage"));
+const ComparisonPage = lazy(() => import("@/pages/ComparisonPage"));
+const BudgetPage = lazy(() => import("@/pages/BudgetPage"));
+const BlogPage = lazy(() => import("@/pages/BlogPage"));
+const BlogPostPage = lazy(() => import("@/pages/BlogPostPage"));
+const BrandPage = lazy(() => import("@/pages/BrandPage"));
+const SupportPage = lazy(() => import("@/pages/SupportPage"));
+const HowToOrderPage = lazy(() => import("@/pages/HowToOrderPage"));
+const BestAISubscriptionPage = lazy(() => import("@/pages/BestAISubscriptionPage"));
+const ProductPage = lazy(() => import("@/pages/ProductPage"));
+const StudentsGuide = lazy(() => import("@/pages/guides/StudentsGuide"));
+const FreelancersGuide = lazy(() => import("@/pages/guides/FreelancersGuide"));
+const CreatorsGuide = lazy(() => import("@/pages/guides/CreatorsGuide"));
+const SMBGuide = lazy(() => import("@/pages/guides/SMBGuide"));
+const EducatorsGuide = lazy(() => import("@/pages/guides/EducatorsGuide"));
 
 const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20an%20AI%20subscription";
 
@@ -206,6 +210,9 @@ function Router() {
       <Route path="/refund-policy" component={RefundPolicyPage} />
       <Route path="/terms" component={TermsPage} />
       <Route path="/privacy-policy" component={PrivacyPolicyPage} />
+      {/* /privacy is a URL people and crawlers commonly try; it previously fell
+          through to NotFound while still returning HTTP 200 via the SPA rewrite. */}
+      <Route path="/privacy" component={PrivacyPolicyPage} />
 
       <Route component={NotFound} />
     </Switch>
@@ -220,7 +227,13 @@ function App() {
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <ScrollToTop />
-          <Router />
+          {/* Lazy routes need a Suspense boundary. The fallback is deliberately a
+              plain sized spacer, not a spinner or "Loading…" text — a visible
+              placeholder on every navigation reads as slower than it is, and an
+              unsized one would cause layout shift (current CLS is 0). */}
+          <Suspense fallback={<div style={{ minHeight: "60vh" }} aria-busy="true" />}>
+            <Router />
+          </Suspense>
           <MobileOrderBar />
           <CookieBanner onConsent={() => setCookieConsent(true)} />
         </WouterRouter>

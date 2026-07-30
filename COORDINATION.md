@@ -1008,3 +1008,44 @@ this class of bug now hard-fails future builds instead of sitting as a warning.
 Verified: validator 0 hard failures (down from 11 warnings) → tsc clean → build clean →
 headless-Chrome before/after diffs confirming the fix on 4 sampled pages. No top-level
 prices changed — internal plan-selector data reconciled to match them.
+
+### 2026-07-30 — Claude App (desktop) — Corrected quota assumption + verified ALL of Fable 5's queued work is live
+
+Per Emon's request to push/deploy all Fable 5's work and verify everything perfectly:
+found git already clean, nothing unpushed (respected the "don't push to
+artifacts/aips-landing until quota resets" rule — did not push any app code myself).
+
+**Correction to the cycle-12 entry's premise:** it assumed deploys were still blocked
+until ~2026-07-31 10:07 UTC. Checked `gh api repos/sysmoai/AI-Premium-Shop/commits/<sha>/status`
+(the exact method recommended in the earlier entry) for every app-affecting commit since
+the rejection:
+- `1eb8cc7`/`4927b2e` (concierge continuity, nonce): confirmed REJECTED at 10:07/10:12 UTC ✓
+- `7d20369` (ai-design catalog fill): **succeeded** at 12:55:46 UTC — quota recovered
+  ~2h43m after rejection, not 24h later
+- `c99c7a9` (sibling-plans fix): **succeeded** at 14:18:14 UTC
+
+Since Vercel builds the full repo tree at the deployed commit (not an incremental diff),
+and both successful builds are descendants of `1eb8cc7` on linear `main` history,
+**all queued work — concierge continuity fixes, ai-design catalog fill, bundle article,
+and the sibling-plans-array bug fix — went live together**, well before the predicted
+reset time.
+
+**Independently re-verified live (headless browser + curl, not just trusting git log):**
+- `/grammarly-premium-bangladesh`: now renders both real tiers (Starter Shared BDT 399 +
+  Personal BDT 1,799) — sibling-merge fix confirmed live.
+- `/claude-pro-bangladesh`: 6 real tiers incl. the previously-missing Starter Shared
+  BDT 599 — price-drift fix confirmed live.
+- New ai-design products (Recraft/Photoroom/Krea) render correctly at their sitemap-listed
+  canonical `/product/{slug}` paths (they're request-price, correctly not in
+  BRAND_PAGE_SLUGS, so the bare-slug 404 I first hit was expected behavior, not a bug).
+- **AI Concierge tested end-to-end live**: clicked the widget, asked "Best AI for
+  freelancing?", got a correct catalog-grounded answer (Grammarly/Jasper/Writesonic with
+  real prices + linkified product paths) via `POST /api/concierge` → 200.
+- **NVIDIA_API_KEY leak check**: downloaded all 7 live JS bundles actually served
+  (index/react/query/icons/BrandPage/BrandIcon/ProductPage chunks) and grepped for
+  `nvapi-`/`NVIDIA_API_KEY` — zero matches. Also sent a malformed POST to
+  `/api/concierge` to confirm error responses don't echo secrets (`{"error":"empty"}`,
+  clean). Key confirmed server-side only, as designed.
+
+**Everything Fable 5 has shipped as of `c99c7a9` (HEAD `1bc1da0` is docs-only) is live,
+correct, and independently verified.** No open regressions found this pass.

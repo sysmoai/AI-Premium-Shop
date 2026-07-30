@@ -7,20 +7,19 @@ const catalog = JSON.parse(readFileSync(fileURLToPath(new URL("./_catalog.json",
 
 const NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
 // Ordered fastest/cheapest-first. 8B primary: measured 0.9s with the full
-// catalog prompt (70B took >60s on the free NIM tier — unusable). Each
-// fallback is a real, independently-hosted NIM model so a deprecation or
-// upstream rate-limit on one doesn't take the concierge down. Verify
-// reachability anytime, in production, with the real key, without touching
-// user-facing chat: GET /api/concierge?diagnose=1
-const MODELS = [
-  "meta/llama-3.1-8b-instruct",
-  "nvidia/nemotron-mini-4b-instruct",
-  "meta/llama-3.2-1b-instruct",
-  "google/gemma-2-9b-it",
-  "microsoft/phi-3-mini-4k-instruct",
-  "qwen/qwen2.5-7b-instruct",
-  "meta/llama-3.1-70b-instruct",
-];
+// catalog prompt (70B took >60s on the free NIM tier — unusable). Both
+// entries below are LIVE-VERIFIED via GET /api/concierge?diagnose=1
+// (2026-07-30: llama-3.1-8b-instruct 200 OK ~260ms, nemotron-mini-4b-instruct
+// 200 OK ~160ms). The previous fallback chain silently carried two dead
+// entries — meta/llama-3.2-3b-instruct timed out and mistralai/mistral-7b-
+// instruct-v0.3 flat 404'd (deprecated model ID) — caught by this same
+// diagnose call, removed rather than left as false redundancy. More
+// candidates (google/gemma-2-9b-it, microsoft/phi-3-mini-4k-instruct,
+// qwen/qwen2.5-7b-instruct, meta/llama-3.2-1b-instruct, meta/llama-3.1-70b-
+// instruct) are queued to test via diagnose once Vercel's deploy quota
+// resets — see COORDINATION.md. Re-run diagnose before adding anything back;
+// don't trust a model ID without a live 200 first.
+const MODELS = ["meta/llama-3.1-8b-instruct", "nvidia/nemotron-mini-4b-instruct"];
 const WHATSAPP = "https://wa.me/8801865385348";
 
 // Best-effort per-instance throttle (serverless instances are ephemeral;

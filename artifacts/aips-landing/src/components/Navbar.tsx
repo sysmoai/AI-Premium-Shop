@@ -10,32 +10,53 @@ import {
 } from "lucide-react";
 import { useLocation } from "wouter";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
+import { TOTAL_PRODUCTS, categoryStats, brandStats, taka } from "@/lib/catalogStats";
 import productsData from "../../data/products.json";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
+// Tool counts and "from" prices are derived from the catalog, never written by
+// hand — every one of these used to be stale, and four of them advertised a
+// price BELOW anything actually purchasable (AI Chat said "from ৳350" when the
+// cheapest assistant is ৳499). See src/lib/catalogStats.ts.
 const CATEGORIES = [
-  { icon: MessageSquare, label: "AI Chat & Assistant", meta: "22 tools · from ৳350",  href: "/products" },
-  { icon: Image,         label: "AI Image & Design",   meta: "11 tools · from ৳190",   href: "/midjourney-bangladesh" },
-  { icon: Video,         label: "AI Video",             meta: "13 tools · from ৳270", href: "/runway-bangladesh" },
-  { icon: Music,         label: "AI Voice & Music",     meta: "8 tools · from ৳499",   href: "/elevenlabs-bangladesh" },
-  { icon: Code2,         label: "AI Code & Dev",        meta: "7 tools · from ৳500",   href: "/github-copilot-bangladesh" },
-  { icon: Layout,        label: "AI Workspace",         meta: "5 tools · from ৳399",   href: "/notion-business-bangladesh" },
-  { icon: Pen,           label: "AI Writing",           meta: "7 tools · ৳799",         href: "/writesonic-bangladesh" },
-  { icon: Palette,       label: "AI Design",            meta: "2 tools · from ৳190",  href: "/canva-pro-bangladesh" },
-  { icon: Package,       label: "Bundle Packs",         meta: "5 packs · from ৳449",   href: "/bundles" },
-];
+  { icon: MessageSquare, label: "AI Chat & Assistant", catId: "ai-assistant",   noun: "tool", href: "/products" },
+  { icon: Image,         label: "AI Image & Design",   catId: "ai-image",       noun: "tool", href: "/midjourney-bangladesh" },
+  { icon: Video,         label: "AI Video",            catId: "ai-video",       noun: "tool", href: "/runway-bangladesh" },
+  { icon: Music,         label: "AI Voice & Music",    catId: "ai-voice-music", noun: "tool", href: "/elevenlabs-bangladesh" },
+  { icon: Code2,         label: "AI Code & Dev",       catId: "ai-code",        noun: "tool", href: "/github-copilot-bangladesh" },
+  { icon: Layout,        label: "AI Workspace",        catId: "ai-workspace",   noun: "tool", href: "/notion-business-bangladesh" },
+  { icon: Pen,           label: "AI Writing",          catId: "ai-writing",     noun: "tool", href: "/writesonic-bangladesh" },
+  { icon: Palette,       label: "AI Design",           catId: "ai-design",      noun: "tool", href: "/canva-pro-bangladesh" },
+  { icon: Package,       label: "Bundle Packs",        catId: "bundles",        noun: "pack", href: "/bundles" },
+].map((c) => {
+  const s = categoryStats(c.catId);
+  const price = s.fromPrice != null ? ` · from ${taka(s.fromPrice)}` : "";
+  return { ...c, meta: `${s.productCount} ${c.noun}${s.productCount === 1 ? "" : "s"}${price}` };
+});
 
+// `brand` is the catalog's brand field; several of these nav links point at a
+// brand hub page that owns no records itself, so prices/plan counts must roll
+// up by brand rather than by slug. Hard-coded values here were badly stale —
+// Claude showed "from ৳1,590" against a real ৳599 entry tier, GitHub Copilot
+// "৳1,495" against ৳399, Cursor "৳2,990" against ৳699.
 const POPULAR_BRANDS = [
-  { name: "ChatGPT",         price: "from ৳499",   badge: "9 plans",    badgeGreen: false, href: "/chatgpt-plans-bangladesh" },
-  { name: "Claude",          price: "from ৳1,590", badge: "5 plans",    badgeGreen: false, href: "/claude-pro-bangladesh" },
-  { name: "Midjourney",      price: "from ৳1,199", badge: "6 plans",    badgeGreen: false, href: "/midjourney-bangladesh" },
-  { name: "Google AI Pro",   price: "from ৳599",   badge: "83% OFF",    badgeGreen: true,  href: "/gemini-advanced-bangladesh" },
-  { name: "GitHub Copilot",  price: "from ৳1,495", badge: "",           badgeGreen: false, href: "/github-copilot-bangladesh" },
-  { name: "Cursor",          price: "from ৳2,990", badge: "",           badgeGreen: false, href: "/cursor-bangladesh" },
-  { name: "Notion Business", price: "from ৳800",   badge: "73% OFF",    badgeGreen: true,  href: "/notion-business-bangladesh" },
-  { name: "Perplexity",      price: "from ৳599",   badge: "",           badgeGreen: false, href: "/perplexity-pro-bangladesh" },
-];
+  { name: "ChatGPT",         brand: "ChatGPT",    showPlans: true,  badge: "",        badgeGreen: false, href: "/chatgpt-plans-bangladesh" },
+  { name: "Claude",          brand: "Claude",     showPlans: true,  badge: "",        badgeGreen: false, href: "/claude-pro-bangladesh" },
+  { name: "Midjourney",      brand: "Midjourney", showPlans: true,  badge: "",        badgeGreen: false, href: "/midjourney-bangladesh" },
+  { name: "Google AI Pro",   brand: "Google",     showPlans: false, badge: "83% OFF", badgeGreen: true,  href: "/gemini-advanced-bangladesh" },
+  { name: "GitHub Copilot",  brand: "GitHub",     showPlans: false, badge: "",        badgeGreen: false, href: "/github-copilot-bangladesh" },
+  { name: "Cursor",          brand: "Cursor",     showPlans: false, badge: "",        badgeGreen: false, href: "/cursor-bangladesh" },
+  { name: "Notion Business", brand: "Notion",     showPlans: false, badge: "73% OFF", badgeGreen: true,  href: "/notion-business-bangladesh" },
+  { name: "Perplexity",      brand: "Perplexity", showPlans: false, badge: "",        badgeGreen: false, href: "/perplexity-pro-bangladesh" },
+].map((b) => {
+  const s = brandStats(b.brand);
+  return {
+    ...b,
+    price: s.fromPrice != null ? `from ${taka(s.fromPrice)}` : "price on WhatsApp",
+    badge: b.badge || (b.showPlans && s.plans > 1 ? `${s.plans} plans` : ""),
+  };
+});
 
 const SOLUTIONS = [
   { icon: GraduationCap, label: "Students",    href: "/best-ai-for-students" },
@@ -163,7 +184,7 @@ function SearchOverlay({ onClose }: { onClose: () => void }) {
 
         {query.trim().length <= 1 && (
           <div className="text-center py-6 text-sm" style={{ color: "#c9ceda" }}>
-            Type to search 80 premium AI tools
+            Type to search {TOTAL_PRODUCTS} premium AI tools
           </div>
         )}
       </motion.div>
@@ -381,7 +402,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
 
                 <div className="flex justify-between items-center border-t border-gray-800 pt-4 mt-4"
                   style={{ background: "linear-gradient(to right, rgba(244,185,66,0.06), transparent)" }}>
-                  <span className="text-gray-400 text-sm">80 Premium AI Tools · bKash/Nagad · 5-30 min delivery</span>
+                  <span className="text-gray-400 text-sm">{TOTAL_PRODUCTS} Premium AI Tools · bKash/Nagad · 5-30 min delivery</span>
                   <a href="/pricing" onClick={(e) => { e.preventDefault(); go("/pricing"); }}
                     className="text-sm font-medium hover:underline flex items-center gap-1"
                     style={{ color: "#f4b942" }}>

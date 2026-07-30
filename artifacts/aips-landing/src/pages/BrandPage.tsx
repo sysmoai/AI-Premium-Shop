@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { motion } from "framer-motion";
 import {
   MessageCircle, ChevronRight,
@@ -279,8 +280,8 @@ const BRAND_META: Record<string, {
   "perplexity-pro-bangladesh": {
     displayName: "Perplexity Pro",
     tagline: "Perplexity Pro Bangladesh — from ৳599/month",
-    seoTitle: "Perplexity Pro Bangladesh — From BDT 350/mo | AI Premium Shop",
-    seoDescription: "Perplexity Pro Bangladesh from BDT 350/mo. AI research with citations, deep research mode. bKash/Nagad. 5-15 min delivery. AI Premium Shop.",
+    seoTitle: "Perplexity Pro Bangladesh — From BDT 599/mo | AI Premium Shop",
+    seoDescription: "Perplexity Pro Bangladesh from BDT 599/mo. AI research with citations, deep research mode. bKash/Nagad. 5-15 min delivery. AI Premium Shop.",
     description: "Perplexity Pro is the AI research tool that gives you answers with citations — like a search engine powered by GPT-5, Claude, and Gemini. Every answer links to sources. Deep Research mode synthesizes dozens of sources into a comprehensive report. Available from Shared (৳599) to Personal (৳2,950) to Max (৳10,990).",
     accentColor: "#20b2aa",
     faqs: [
@@ -1251,7 +1252,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
               </div>
             </div>
             <div className="rounded-2xl p-5 border text-center" style={{ backgroundColor: "#10a37f12", borderColor: "#10a37f35" }}>
-              <p className="text-sm font-semibold mb-4 text-white">Start for just <span style={{ color: "#f4b942" }}>৳350/mo</span> — the price of 2 cups of tea.</p>
+              <p className="text-sm font-semibold mb-4 text-white">Start for just <span style={{ color: "#f4b942" }}>৳599/mo</span>.</p>
               <a
                 href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want to order ChatGPT Plus Starter Shared (৳499/mo)")}`}
                 target="_blank"
@@ -1543,9 +1544,9 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 </thead>
                 <tbody>
                   {[
-                    { seg: "🎓 Students", use: "Thesis citations, paper research with sources", price: "৳350", link: "/best-ai-for-students" },
-                    { seg: "💻 Freelancers", use: "Client industry research before writing proposals", price: "৳350", link: "/best-ai-for-freelancers" },
-                    { seg: "📢 Marketers", use: "Competitor analysis, trend reports, content ideas", price: "৳350", link: "/best-ai-for-business" },
+                    { seg: "🎓 Students", use: "Thesis citations, paper research with sources", price: "৳599", link: "/best-ai-for-students" },
+                    { seg: "💻 Freelancers", use: "Client industry research before writing proposals", price: "৳599", link: "/best-ai-for-freelancers" },
+                    { seg: "📢 Marketers", use: "Competitor analysis, trend reports, content ideas", price: "৳599", link: "/best-ai-for-business" },
                     { seg: "🔬 Researchers", use: "Academic paper discovery, data synthesis", price: "৳2,990", link: "/" },
                     { seg: "🏢 Business", use: "Market research, investment analysis, due diligence", price: "৳29,900", link: "/best-ai-for-business" },
                   ].map((row, i) => (
@@ -2367,7 +2368,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
               { label: "AI Image & Design", href: "/ai-image" },
               { label: "AI Code & Dev Tools", href: "/ai-code" },
               { label: "AI Voice & Music", href: "/ai-voice-music" },
-              { label: "All 80 Products", href: "/products" },
+              { label: `All ${TOTAL_PRODUCTS} Products`, href: "/products" },
             ].map((link) => (
               <a key={link.href} href={link.href}
                 onClick={(e) => { e.preventDefault(); navigate(link.href); }}

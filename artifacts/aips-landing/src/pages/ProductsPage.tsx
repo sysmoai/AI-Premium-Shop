@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { motion } from "framer-motion";
 import { MessageCircle, Filter, ArrowUpDown, ChevronRight } from "lucide-react";
 import { Link, useLocation } from "wouter";
@@ -150,8 +151,8 @@ export default function ProductsPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="All 118+ AI Tools — Prices in BDT | AI Premium Shop Bangladesh"
-        description="Browse 118+ AI subscriptions. ChatGPT, Claude, Midjourney & more. Prices in BDT. Local payment. Fast delivery. AI Premium Shop."
+        title={`All ${TOTAL_PRODUCTS} AI Tools — Prices in BDT | AI Premium Shop Bangladesh`}
+        description={`Browse ${TOTAL_PRODUCTS} AI subscriptions. ChatGPT, Claude, Midjourney & more. Prices in BDT. Local payment. Fast delivery. AI Premium Shop.`}
         canonical="https://aipremiumshop.com/products"
         // No breadcrumbSchema here: <Breadcrumb> below already injects its own
         // BreadcrumbList JSON-LD from these same items — adding it here too
@@ -162,7 +163,7 @@ export default function ProductsPage() {
 
       <section className="max-w-7xl mx-auto px-4 md:px-8 py-14">
         <div className="mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">All 118+ AI Tools</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">All {TOTAL_PRODUCTS} AI Tools</h1>
           <p style={{ color: "#c9ceda" }}>{ALL.length} premium subscriptions. Local payment. Fast delivery.</p>
         </div>
 

@@ -1,4 +1,5 @@
 import { motion, type Variants } from "framer-motion";
+import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { ShoppingCart, CreditCard, Package, MessageCircle } from "lucide-react";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
@@ -8,7 +9,7 @@ const STEPS = [
     number: "01",
     Icon: ShoppingCart,
     title: "Choose Your AI Tool",
-    description: "Browse our catalog of 80 premium AI tools and pick the one that fits your work and budget.",
+    description: `Browse our catalog of ${TOTAL_PRODUCTS} premium AI tools and pick the one that fits your work and budget.`,
     color: "#f4b942",
     gradientTo: "#f97316",
   },

@@ -69,7 +69,7 @@ const FAQS = [
   },
   {
     q: "Can I pay in installments?",
-    a: "We don't currently offer installment payment for standard subscriptions. However, our shared plans start from just BDT 350/month — the lowest cost point for any premium AI subscription in Bangladesh.",
+    a: "We don't currently offer installment payment for standard subscriptions. However, our shared plans start from just BDT 299/month.",
   },
   {
     q: "What happens after payment?",

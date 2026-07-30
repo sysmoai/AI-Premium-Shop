@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { TOTAL_PRODUCTS, MIN_PRICE } from "@/lib/catalogStats";
 import { MessageCircle, Users, Package, Layers, Calendar, Clock } from "lucide-react";
 import { CommunitySocialCards } from "@/components/CommunitySocialCards";
 import { PageLayout } from "@/components/PageLayout";
@@ -10,7 +11,7 @@ const WHATSAPP = "https://wa.me/8801865385348";
 
 const STATS = [
   { icon: Users, value: "thousands", label: "Happy customers" },
-  { icon: Package, value: "118+", label: "AI tools available" },
+  { icon: Package, value: String(TOTAL_PRODUCTS), label: "AI tools available" },
   { icon: Layers, value: "19", label: "Leading brands" },
   { icon: Calendar, value: "2024", label: "Founded" },
   { icon: Clock, value: "<5 min", label: "WhatsApp response" },
@@ -21,7 +22,7 @@ export default function AboutPage() {
     <PageLayout>
       <SEOHead
         title="About AI Premium Shop — a growing community of customers since 2024 | Bangladesh"
-        description="AI Premium Shop — Bangladesh's WhatsApp-first AI subscription store. a growing community of customers since 2024. 80 tools including ChatGPT, Claude, Midjourney. Pay with bKash/Nagad. Real human support, 10 AM–Midnight BST."
+        description={`AI Premium Shop — Bangladesh's WhatsApp-first AI subscription store. a growing community of customers since 2024. ${TOTAL_PRODUCTS} tools including ChatGPT, Claude, Midjourney. Pay with bKash/Nagad. Real human support, 10 AM–Midnight BST.`}
         canonical="https://aipremiumshop.com/about"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "About" }]} />
@@ -69,7 +70,7 @@ export default function AboutPage() {
           >
             <h2 className="text-xl font-bold text-white mb-4">What We Offer</h2>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>
-              80 premium AI tools from 20 leading brands including ChatGPT, Claude, Midjourney, GitHub Copilot, Runway, ElevenLabs, and more. Shared and personal accounts available. Prices start at just BDT 499 per month.
+              {TOTAL_PRODUCTS} premium AI tools from 20 leading brands including ChatGPT, Claude, Midjourney, GitHub Copilot, Runway, ElevenLabs, and more. Shared and personal accounts available. Prices start at just BDT {MIN_PRICE} per month.
             </p>
             <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
               All plans come with 30-day replacement warranty, under-5-minute WhatsApp response, and local payment via bKash, Nagad, Rocket, or bank transfer.

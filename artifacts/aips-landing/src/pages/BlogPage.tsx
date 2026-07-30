@@ -99,7 +99,7 @@ const POSTS = [
   {
     slug: "earn-money-with-ai-bangladesh",
     title: "How to Earn Money with AI in Bangladesh — 5 Proven Methods (2026)",
-    excerpt: "5 proven ways to earn BDT 20,000-100,000/month with AI tools. Freelancing, content, tutoring, automation. Start from BDT 350.",
+    excerpt: "5 proven ways to earn BDT 20,000-100,000/month with AI tools. Freelancing, content, tutoring, automation. Start from BDT 299.",
     category: "💰 Income",
     readTime: "5 min read",
     date: "Apr 12, 2026",
@@ -110,7 +110,7 @@ const POSTS = [
   {
     slug: "ai-tools-university-students-bangladesh",
     title: "Best AI Tools for University Students Bangladesh 2026",
-    excerpt: "Top AI tools for BD university students. Research, assignments, thesis, exam prep. From BDT 350/mo.",
+    excerpt: "Top AI tools for BD university students. Research, assignments, thesis, exam prep. From BDT 299/mo.",
     category: "🎓 Students",
     readTime: "5 min read",
     date: "Apr 12, 2026",

@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { motion, type Variants } from "framer-motion";
 import { MessageCircle, ArrowRight, Zap, Shield } from "lucide-react";
 import { Link } from "wouter";
@@ -230,7 +231,7 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
                   style={{ backgroundColor: "#25d366", color: "#fff" }}
                 >
                   <MessageCircle className="w-4 h-4" />
-                  Order ৳350/mo
+                  Order ৳499/mo
                 </a>
                 <Link href="/chatgpt-plans-bangladesh"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold border border-white/20 text-white hover:bg-white/5 transition-colors text-sm">
@@ -307,7 +308,7 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
             </a>
             <Link href="/products"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold border border-white/20 text-white hover:bg-white/5 transition-colors">
-              Browse All 80 Tools
+              Browse All {TOTAL_PRODUCTS} Tools
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

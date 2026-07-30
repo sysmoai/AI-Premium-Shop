@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { tierPrice, taka } from "@/lib/catalogStats";
 import { ArrowRight, Zap } from "lucide-react";
 import { Link } from "wouter";
 
@@ -6,11 +7,13 @@ import { Link } from "wouter";
 const makeOrderLink = (product: string) =>
   `https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20${encodeURIComponent(product)}`;
 
-const SPECIAL_OFFERS = [
+// price is derived below from the catalog; officialPrice/pctOff stay editorial.
+const SPECIAL_OFFERS = ([
   {
     id: "google-ai-pro",
     name: "Google AI Pro",
-    price: 500,
+    slug: "gemini-advanced-bangladesh",
+    tier: "Shared",
     officialPrice: 2990,
     pctOff: 83,
     description:
@@ -23,7 +26,8 @@ const SPECIAL_OFFERS = [
   {
     id: "notion-business",
     name: "Notion Business",
-    price: 800,
+    slug: "notion-business-bangladesh",
+    tier: "Monthly",
     officialPrice: 2990,
     pctOff: 73,
     description:
@@ -33,16 +37,41 @@ const SPECIAL_OFFERS = [
     accentBorder: "rgba(229,231,235,0.15)",
     glowColor: "rgba(229,231,235,0.2)",
   },
-];
+]).map((o) => {
+  // Displayed price and the advertised % off both come from the catalog record,
+  // so a stale literal can't claim a discount the real price doesn't support.
+  const price = tierPrice(o.slug, o.tier);
+  return { ...o, price, pctOff: price != null ? Math.round((1 - price / o.officialPrice) * 100) : o.pctOff };
+});
 
+// Price and the pre-filled WhatsApp message are BOTH derived from the catalog
+// record named by (slug, tier). Previously each row hard-coded a display price
+// AND a separate message string, and three of them disagreed with each other:
+// Perplexity showed ৳350 while its own order message said ৳599 (real ৳599),
+// Google AI Pro showed ৳500 vs ৳599, Claude showed ৳1,495 vs ৳1,590. A shopper
+// tapped a price and got a different one in WhatsApp. One source now, so the
+// card and the message can never disagree again.
 const BEST_SELLERS = [
-  { id: "chatgpt-plus-starter", name: "ChatGPT Plus Starter Shared", price: 499, badge: "Best Seller", color: "#10a37f", msg: "Hi, I want ChatGPT Plus Starter Shared (৳499/mo)" },
-  { id: "perplexity-pro-shared", name: "Perplexity Pro Shared", price: 350, badge: null, color: "#20b2aa", msg: "Hi, I want Perplexity Pro Shared (৳599/mo)" },
-  { id: "google-ai-pro-bs", name: "Google AI Pro", price: 500, badge: "83% Off", color: "#4285f4", msg: "Hi, I want Google AI Pro (৳599/mo)" },
-  { id: "chatgpt-business", name: "ChatGPT Business Starter Shared", price: 699, badge: null, color: "#10a37f", msg: "Hi, I want ChatGPT Business Starter Shared (৳699/mo)" },
-  { id: "midjourney", name: "Midjourney Standard Shared", price: 1199, badge: "Popular", color: "#8b5cf6", msg: "Hi, I want Midjourney Standard Shared (৳1,199/mo)" },
-  { id: "claude-premium", name: "Claude Pro Premium Shared", price: 1495, badge: null, color: "#d97706", msg: "Hi, I want Claude Pro Premium Shared (৳1,590/mo)" },
-];
+  { id: "chatgpt-plus-starter", slug: "chatgpt-plus-bangladesh", tier: "Starter Shared", name: "ChatGPT Plus Starter Shared", badge: "Best Seller", color: "#10a37f" },
+  { id: "perplexity-pro-shared", slug: "perplexity-pro-bangladesh", tier: "Shared", name: "Perplexity Pro Shared", badge: null, color: "#20b2aa" },
+  { id: "google-ai-pro-bs", slug: "gemini-advanced-bangladesh", tier: "Shared", name: "Google AI Pro", badge: null, officialPrice: 2990, color: "#4285f4" },
+  { id: "chatgpt-business", slug: "chatgpt-business-bangladesh", tier: "Starter Shared", name: "ChatGPT Business Starter Shared", badge: null, color: "#10a37f" },
+  { id: "midjourney", slug: "midjourney-bangladesh", tier: "Shared", name: "Midjourney Standard Shared", badge: "Popular", color: "#8b5cf6" },
+  { id: "claude-premium", slug: "claude-pro-bangladesh", tier: "Premium Shared", name: "Claude Pro Premium Shared", badge: null, color: "#d97706" },
+].map((b) => {
+  const price = tierPrice(b.slug, b.tier);
+  // A "% Off" badge is computed from the real price vs the official price —
+  // the hard-coded "83% Off" here was stale against the true ৳599 (= 80%).
+  const off = "officialPrice" in b && b.officialPrice && price != null
+    ? `${Math.round((1 - price / (b.officialPrice as number)) * 100)}% Off`
+    : null;
+  return {
+    ...b,
+    price,
+    badge: b.badge ?? off,
+    msg: `Hi, I want ${b.name} (${price != null ? taka(price) + "/mo" : "current price please"})`,
+  };
+});
 
 export function OffersSection() {
   return (

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
+import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 
 interface Brand {
   name: string;
@@ -67,7 +68,7 @@ export function BrandShowcaseSection() {
           transition={{ duration: 0.5 }}
           className="text-3xl md:text-4xl font-bold text-white mb-4"
         >
-          118+ Tools from Top AI Brands
+          {TOTAL_PRODUCTS} Tools from Top AI Brands
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}

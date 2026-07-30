@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { MessageCircle, ChevronRight, ArrowRight, Star } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
@@ -44,7 +45,7 @@ const TOP_TOOLS = [
     bestFor: ["Designers", "Content creators", "Marketers"],
   },
   {
-    rank: 6, name: "Perplexity Pro", price: "from BDT 350/mo", badge: "Best for Research",
+    rank: 6, name: "Perplexity Pro", price: "from BDT 599/mo", badge: "Best for Research",
     badgeColor: "#20b2aa", slug: "/perplexity-pro-bangladesh",
     why: "AI-powered search with citations and source links. Answers any research question with references you can verify. Best research tool at the lowest price.",
     bestFor: ["Researchers", "Students", "Journalists"],
@@ -114,7 +115,7 @@ export default function BestAISubscriptionPage() {
             Best AI Subscription Bangladesh 2026 — Complete Guide
           </h1>
           <p className="text-lg mb-4" style={{ color: "#c9ceda" }}>
-            80 premium AI tools ranked by value, use case, and price. All available in Bangladesh via bKash — no international card needed.
+            {TOTAL_PRODUCTS} premium AI tools ranked by value, use case, and price. All available in Bangladesh via bKash — no international card needed.
           </p>
         </motion.div>
 
@@ -281,7 +282,7 @@ export default function BestAISubscriptionPage() {
             </a>
             <Link href="/products"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold border border-white/15 text-white hover:bg-white/5 transition-colors">
-              Browse All 80 Tools
+              Browse All {TOTAL_PRODUCTS} Tools
             </Link>
           </div>
         </motion.div>

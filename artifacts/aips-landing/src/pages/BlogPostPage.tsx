@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { Link } from "wouter";
 import {
   ChevronLeft,
@@ -190,13 +191,13 @@ const ALL_POSTS_META: Record<string, { title: string; excerpt: string; category:
   },
   "earn-money-with-ai-bangladesh": {
     title: "How to Earn Money with AI in Bangladesh — 5 Proven Methods (2026)",
-    excerpt: "5 proven ways to earn BDT 20,000-100,000/month. Freelancing, content, tutoring, automation. Start from BDT 350.",
+    excerpt: "5 proven ways to earn BDT 20,000-100,000/month. Freelancing, content, tutoring, automation. Start from BDT 299.",
     category: "💰 Income",
     gradient: "bg-gradient-to-br from-green-600 to-emerald-900",
   },
   "ai-tools-university-students-bangladesh": {
     title: "Best AI Tools for University Students Bangladesh 2026",
-    excerpt: "Top AI tools for BD university students. Research, assignments, thesis, exam prep. From BDT 350/mo.",
+    excerpt: "Top AI tools for BD university students. Research, assignments, thesis, exam prep. From BDT 299/mo.",
     category: "🎓 Students",
     gradient: "bg-gradient-to-br from-blue-600 to-indigo-900",
   },
@@ -338,7 +339,7 @@ const POSTS: Record<
 > = {
   "earn-money-with-ai-bangladesh": {
     title: "How to Earn Money with AI in Bangladesh — 5 Proven Methods (2026)",
-    description: "5 proven ways to earn BDT 20,000-100,000/mo with AI tools in Bangladesh. Freelancing, content, tutoring, automation. Start from BDT 350.",
+    description: "5 proven ways to earn BDT 20,000-100,000/mo with AI tools in Bangladesh. Freelancing, content, tutoring, automation. Start from BDT 299.",
     canonical: "https://aipremiumshop.com/blog/earn-money-with-ai-bangladesh",
     date: "April 12, 2026",
     readTime: "5 min read",
@@ -349,14 +350,14 @@ const POSTS: Record<
     content: (
       <div className="blog-body space-y-4">
         <p className="text-gray-300 leading-relaxed">
-          AI is not just a tool — it's an income source. In Bangladesh, thousands are earning BDT 20,000–100,000+ per month with AI. Whether you're a student, freelancer, or business owner, this guide shows exactly how to do it — starting from BDT 350.
+          AI is not just a tool — it's an income source. In Bangladesh, thousands are earning BDT 20,000–100,000+ per month with AI. Whether you're a student, freelancer, or business owner, this guide shows exactly how to do it — starting from BDT 299.
         </p>
 
         <StatCards
           items={[
             { value: "BDT 20K-100K", label: "Potential/month" },
             { value: "44%", label: "More earnings (Upwork)" },
-            { value: "BDT 350", label: "To start" },
+            { value: "BDT 499", label: "To start" },
             { value: "650K+", label: "BD freelancers" },
           ]}
         />
@@ -378,7 +379,7 @@ const POSTS: Record<
 
         <IncomeCalculator
           inputLabel="Tool Investment"
-          inputValue="BDT 350/mo"
+          inputValue="BDT 499/mo"
           outputLabel="Extra Projects/mo"
           outputValue="10 projects"
           roiLabel="Potential Income"
@@ -489,7 +490,7 @@ const POSTS: Record<
 
   "ai-tools-university-students-bangladesh": {
     title: "Best AI Tools for University Students Bangladesh 2026",
-    description: "Top AI tools for BD university students. Research, assignments, thesis, exam prep. From BDT 350/mo.",
+    description: "Top AI tools for BD university students. Research, assignments, thesis, exam prep. From BDT 299/mo.",
     canonical: "https://aipremiumshop.com/blog/ai-tools-university-students-bangladesh",
     date: "April 12, 2026",
     readTime: "5 min read",
@@ -500,13 +501,13 @@ const POSTS: Record<
     content: (
       <div className="blog-body space-y-4">
         <p className="text-gray-300 leading-relaxed">
-          Bangladesh has over 4.5 million university students. Those using AI tools are completing assignments in 30 minutes instead of 3 hours, writing better theses, and getting higher GPAs — all starting from BDT 350 per month. Here's the complete guide.
+          Bangladesh has over 4.5 million university students. Those using AI tools are completing assignments in 30 minutes instead of 3 hours, writing better theses, and getting higher GPAs — all starting from BDT 299 per month. Here's the complete guide.
         </p>
 
         <StatCards
           items={[
             { value: "4.5M", label: "BD university students" },
-            { value: "BDT 350", label: "Starting cost" },
+            { value: "BDT 299", label: "Starting cost" },
             { value: "CGPA 3.5+", label: "Target" },
             { value: "30 min", label: "Assignment time" },
           ]}
@@ -547,7 +548,7 @@ const POSTS: Record<
           Get it at <Link href="/claude-pro-bangladesh" className="text-[#f4b942] hover:underline">Claude Pro Bangladesh</Link>.
         </p>
 
-        <h2 className="text-xl font-bold text-white mt-8 mb-4">3. Perplexity Pro (BDT 350) — Cited Research</h2>
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">3. Perplexity Pro (BDT 599) — Cited Research</h2>
         <p className="text-gray-300 leading-relaxed">
           Perplexity Pro is the best AI research tool for students. Unlike ChatGPT, every answer comes with citations from real sources — academic papers, news, and websites. Perfect for literature reviews, fact-checking, and finding sources quickly. At BDT 499, it's one of the best value tools available.
         </p>
@@ -585,7 +586,7 @@ const POSTS: Record<
           headers={["Tool", "Price/mo", "Best For"]}
           rows={[
             ["ChatGPT Plus Starter", "BDT 499", "Writing, coding, general AI"],
-            ["Perplexity Pro", "BDT 350", "Research with citations"],
+            ["Perplexity Pro", "BDT 599", "Research with citations"],
             ["Claude Pro", "BDT 1,495", "Thesis, long documents"],
             ["Student Bundle", "BDT 449", "Best value combo"],
           ]}
@@ -595,7 +596,7 @@ const POSTS: Record<
         <ProductBox
           products={[
             { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plus-bangladesh" },
-            { name: "Perplexity Pro", price: "BDT 350/mo", slug: "/perplexity-pro-bangladesh" },
+            { name: "Perplexity Pro", price: "BDT 599/mo", slug: "/perplexity-pro-bangladesh" },
             { name: "Student Bundle", price: "BDT 449/mo", slug: "/bundles" },
           ]}
         />
@@ -727,7 +728,7 @@ const POSTS: Record<
 
         <h2 className="text-xl font-bold text-white mt-8 mb-4">The Full Comparison</h2>
         <ComparisonTable
-          headers={["Feature", "Free", "Plus (BDT 350)"]}
+          headers={["Feature", "Free", "Plus (BDT 499)"]}
           rows={[
             ["Model", "GPT-4o mini", <span className="text-green-400 font-semibold">GPT-5 series</span>],
             ["Image generation", <span className="text-red-400">❌ None</span>, <span className="text-green-400">✅ DALL-E included</span>],
@@ -760,7 +761,7 @@ const POSTS: Record<
 
         <h2 className="text-xl font-bold text-white mt-8 mb-4">The Math</h2>
         <p className="text-gray-300 leading-relaxed">
-          BDT 350 per month is BDT 12 per day — less than a cup of coffee. If Plus saves you 10 hours per month (very conservative estimate), that's BDT 35/hour in value at minimum wage. But for freelancers earning BDT 5,000 per extra project, the ROI is dramatic.
+          BDT 499 per month is about BDT 17 per day — less than a cup of coffee. If Plus saves you 10 hours per month (very conservative estimate), that's about BDT 50/hour in value. But for freelancers earning BDT 5,000 per extra project, the ROI is dramatic.
         </p>
 
         <IncomeCalculator
@@ -894,7 +895,7 @@ const POSTS: Record<
 
         <IncomeCalculator
           inputLabel="Tool Investment"
-          inputValue="BDT 350-4,000"
+          inputValue="BDT 299-4,000"
           outputLabel="Monthly Income"
           outputValue="$500-3,000"
           roiLabel="ROI"
@@ -948,7 +949,7 @@ const POSTS: Record<
         <h3>5. GitHub Copilot Pro — ৳1,495/month</h3>
         <p>For developers, Copilot Pro is the most practical AI investment. Unlimited code completions inside VS Code, JetBrains, and Neovim. Access to 300 premium requests with Claude and GPT-5 models.</p>
         <h2>How to Get Started</h2>
-        <p>All 80 AI tools are available through AI Premium Shop. Order on WhatsApp: share which tool you want, confirm payment via bKash/Nagad/Rocket, and receive your account within minutes.</p>
+        <p>All {TOTAL_PRODUCTS} AI tools are available through AI Premium Shop. Order on WhatsApp: share which tool you want, confirm payment via bKash/Nagad/Rocket, and receive your account within minutes.</p>
       </div>
     ),
   },
@@ -1371,7 +1372,7 @@ const POSTS: Record<
           products={[
             { name: "Claude Pro", price: "From BDT 1,495/mo", slug: "/claude-pro-bangladesh" },
             { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plans-bangladesh" },
-            { name: "Perplexity Pro", price: "BDT 350/mo", slug: "/perplexity-pro-bangladesh" },
+            { name: "Perplexity Pro", price: "BDT 599/mo", slug: "/perplexity-pro-bangladesh" },
           ]}
         />
 

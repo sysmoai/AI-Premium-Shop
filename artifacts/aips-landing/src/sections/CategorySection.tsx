@@ -2,6 +2,7 @@ import { motion, type Variants } from "framer-motion";
 import { ChevronRight, MessageSquare, Image, Video, Music, Code2, Layout, Package, PenTool } from "lucide-react";
 import { useLocation } from "wouter";
 import categories from "../../data/categories.json";
+import { categoryStats, taka, TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import type { LucideIcon } from "lucide-react";
 
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -45,7 +46,7 @@ export function CategorySection() {
             className="text-sm font-semibold uppercase tracking-widest mb-3"
             style={{ color: "#f4b942" }}
           >
-            80 Tools
+            {TOTAL_PRODUCTS} Tools
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -67,6 +68,9 @@ export function CategorySection() {
           {categories.map((cat, i) => {
             const Icon = ICON_MAP[cat.icon] ?? Package;
             const color = COLORS[i % COLORS.length];
+            // Counts and "from" price come from the catalog itself, never from
+            // hand-written fields — see src/lib/catalogStats.ts.
+            const stats = categoryStats(cat.id);
             return (
               <motion.a
                 key={cat.id}
@@ -95,9 +99,11 @@ export function CategorySection() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-sm font-bold text-amber-400">from ৳{cat.from}</span>
+                    {stats.fromPrice != null && (
+                      <span className="text-sm font-bold text-amber-400">from {taka(stats.fromPrice)}</span>
+                    )}
                     <span className="text-xs ml-1.5 px-1.5 py-0.5 rounded" style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#c9ceda" }}>
-                      {cat.count} {cat.count === 1 ? "tool" : "tools"}
+                      {stats.productCount} {stats.productCount === 1 ? "tool" : "tools"}
                     </span>
                   </div>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" style={{ color }} />

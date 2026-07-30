@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MIN_PRICE, taka } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
@@ -41,7 +42,7 @@ export function StickyMobileBar({ heroRef }: StickyMobileBarProps) {
           <div className="flex items-center justify-between px-4 py-3 gap-4">
             <div>
               <div className="text-xs" style={{ color: "#c9ceda" }}>AI tools starting from</div>
-              <div className="text-lg font-semibold text-white">৳350/month</div>
+              <div className="text-lg font-semibold text-white">{taka(MIN_PRICE)}/month</div>
             </div>
             <a
               href={WHATSAPP_LINK}

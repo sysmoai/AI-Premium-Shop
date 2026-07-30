@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MIN_PRICE, TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { Navbar } from "@/components/Navbar";
 import { SEOHead } from "@/components/SEOHead";
 import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema } from "@/utils/schemas";
@@ -91,7 +92,7 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
-        title="AI Premium Shop — Premium AI Tools Bangladesh | From BDT 350"
+        title={`AI Premium Shop — ${TOTAL_PRODUCTS} Premium AI Tools Bangladesh | From BDT ${MIN_PRICE}`}
         description="Buy ChatGPT, Claude, Google AI Pro, Midjourney, Copilot, and more in Bangladesh. Local payment via bKash/Nagad. Fast WhatsApp delivery. From BDT 499/month."
         canonical="https://aipremiumshop.com/"
         jsonLd={[

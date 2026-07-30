@@ -173,6 +173,59 @@ for (const [slug, recs] of bySlug) {
   }
 }
 
+// ---------- 2c. no hand-written catalog numbers in the UI ----------
+// Every product count and entry price must come from src/lib/catalogStats.ts.
+// Hard-coded ones drifted badly and shipped false claims: 8 of 9 category
+// counts were wrong, four categories advertised a "from" price below anything
+// purchasable, and "BDT 350" was displayed sitewide as the entry price when NO
+// product has ever cost 350. This rule fails the build if such a literal
+// reappears in a component.
+{
+  const uiFiles = [];
+  (function walk(dir) {
+    for (const entry of readdirSync(join(ROOT, dir))) {
+      const rel = `${dir}/${entry}`;
+      if (statSync(join(ROOT, rel)).isDirectory()) walk(rel);
+      else if (/\.tsx$/.test(entry)) uiFiles.push(rel);
+    }
+  })("src");
+
+  // Phantom price: never appeared in products.json, yet was the advertised floor.
+  const PHANTOM = /(?:৳|BDT\s*)350\b/;
+  // Stale catalog totals that predate the current 87-product / 129-plan catalog.
+  const STALE_TOTAL = /\b118\+|\b(?:All|Browse All)\s+80\b|\b80\s+(?:premium\s+)?(?:AI\s+)?[Tt]ools\b/;
+
+  for (const f of uiFiles) {
+    const src = read(f);
+    // strip comments so explanatory notes about the old values don't self-trip
+    const code = src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
+    if (PHANTOM.test(code)) {
+      failures.push(`${f}: hard-codes the phantom entry price "350" — no product costs that. Use MIN_PRICE from src/lib/catalogStats.ts.`);
+    }
+    if (STALE_TOTAL.test(code)) {
+      failures.push(`${f}: hard-codes a stale catalog total (118+/80 tools). Use TOTAL_PRODUCTS/TOTAL_PLANS from src/lib/catalogStats.ts.`);
+    }
+  }
+
+  // index.html is static — it can't import catalogStats, so assert its numbers
+  // directly against the catalog instead of leaving them unchecked.
+  const distinctProducts = new Set(products.map((p) => p.slug)).size;
+  const listed = products.filter((p) => !p.requestPrice && p.price != null).map((p) => p.price);
+  const floor = Math.min(...listed);
+  const html = read("index.html");
+  const headBlock = (html.match(/<title>[\s\S]*?<\/title>/) ?? [""])[0] +
+    (html.match(/<meta name="description"[^>]*>/) ?? [""])[0];
+  if (!headBlock.includes(String(distinctProducts))) {
+    failures.push(`index.html: <title>/<meta description> must state the real product count (${distinctProducts}).`);
+  }
+  if (!headBlock.includes(String(floor))) {
+    failures.push(`index.html: <title>/<meta description> must state the real entry price (BDT ${floor}).`);
+  }
+  if (STALE_TOTAL.test(headBlock) || PHANTOM.test(headBlock)) {
+    failures.push(`index.html: <title>/<meta description> still contains a stale total or the phantom "350" price.`);
+  }
+}
+
 // ---------- 3. secret scan ----------
 const SECRET_PATTERNS = [
   [/sk-[A-Za-z0-9_-]{20,}/, "OpenAI-style key"],

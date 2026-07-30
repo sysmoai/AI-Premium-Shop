@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import { productsInPriceRange, MIN_PRICE, MAX_PRICE, taka } from "@/lib/catalogStats";
 
 interface PricingTier {
   name: string;
@@ -7,21 +8,21 @@ interface PricingTier {
   minPrice: number;
   maxPrice: number;
   description: string;
-  productCount: number;
   color: string;
   icon: string;
   examples: string[];
 }
 
 export function PricingTiersSection() {
-  const tiers: PricingTier[] = [
+  // Not annotated as PricingTier[] — the .map below adds a derived
+  // productCount, and an explicit annotation would erase it from the type.
+  const tiers = ([
     {
       name: "Budget",
       range: "BDT 299-399",
       minPrice: 299,
       maxPrice: 399,
       description: "Perfect for trying AI tools",
-      productCount: 12,
       color: "#f4b942",
       icon: "💰",
       examples: ["CapCut Pro", "ChatGPT Starter", "Perplexity Pro"],
@@ -32,7 +33,6 @@ export function PricingTiersSection() {
       minPrice: 400,
       maxPrice: 999,
       description: "Popular subscriptions for daily use",
-      productCount: 25,
       color: "#3b82f6",
       icon: "🚀",
       examples: ["Claude Pro", "Midjourney", "Notion Pro"],
@@ -43,7 +43,6 @@ export function PricingTiersSection() {
       minPrice: 1000,
       maxPrice: 2999,
       description: "For professionals & creators",
-      productCount: 35,
       color: "#8b5cf6",
       icon: "⭐",
       examples: ["ChatGPT Pro", "Runway Standard", "GitHub Copilot"],
@@ -54,7 +53,6 @@ export function PricingTiersSection() {
       minPrice: 3000,
       maxPrice: 9999,
       description: "Advanced features & priority support",
-      productCount: 30,
       color: "#ec4899",
       icon: "👑",
       examples: ["ChatGPT Enterprise", "Adobe Creative Cloud", "Suno Pro"],
@@ -65,12 +63,17 @@ export function PricingTiersSection() {
       minPrice: 10000,
       maxPrice: Infinity,
       description: "Complete solutions for teams",
-      productCount: 16,
       color: "#22c55e",
       icon: "🏢",
       examples: ["Premium Bundles", "Team Plans", "Custom Packages"],
     },
-  ];
+  ] as PricingTier[]).map((t) => ({
+    // Counted by each product's CHEAPEST tier, so a single product can't
+    // inflate several bands at once. These were hand-written and badly wrong:
+    // "Premium 30+" covered 3 products, "Enterprise 16+" covered 2.
+    ...t,
+    productCount: productsInPriceRange(t.minPrice, t.maxPrice),
+  }));
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -110,7 +113,7 @@ export function PricingTiersSection() {
           transition={{ delay: 0.1, duration: 0.5 }}
           className="text-gray-400 text-lg max-w-2xl mx-auto"
         >
-          From BDT 299 to BDT 29,900. Find the perfect AI tools for your budget and needs.
+          From {taka(MIN_PRICE)} to {taka(MAX_PRICE)}. Find the right AI tools for your budget.
         </motion.p>
       </div>
 
@@ -153,8 +156,8 @@ export function PricingTiersSection() {
 
               {/* Product count */}
               <div className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-800">
-                <span className="text-2xl font-bold text-white">{tier.productCount}+</span>
-                <span className="text-xs text-gray-400">Products</span>
+                <span className="text-2xl font-bold text-white">{tier.productCount}</span>
+                <span className="text-xs text-gray-400">{tier.productCount === 1 ? "Product" : "Products"}</span>
               </div>
 
               {/* Examples */}

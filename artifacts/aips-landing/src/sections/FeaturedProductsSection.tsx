@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { MessageCircle, Star } from "lucide-react";
 
 interface FeaturedProduct {
@@ -270,7 +271,7 @@ export function FeaturedProductsSection() {
             color: "#f4b942",
           }}
         >
-          View All 118+ Tools
+          View All {TOTAL_PRODUCTS} Tools
           <span>→</span>
         </a>
       </motion.div>

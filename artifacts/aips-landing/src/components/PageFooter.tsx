@@ -1,4 +1,5 @@
 import { useLocation } from "wouter";
+import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 // text picked per-bg so it clears WCAG AA (4.5:1). White fails on Nagad
@@ -74,7 +75,7 @@ export function PageFooter() {
               <span className="text-lg font-bold text-white">AI PREMIUM SHOP</span>
             </a>
             <p className="text-sm text-gray-400 mt-2 max-w-xs leading-relaxed">
-              Premium AI subscriptions in Bangladesh. 80 tools. Local payment. Instant delivery.
+              Premium AI subscriptions in Bangladesh. {TOTAL_PRODUCTS} tools. Local payment via bKash, Nagad and Rocket.
             </p>
             <div className="flex items-center gap-3 mt-4">
               <a href="https://www.facebook.com/aipremiumshopfb" target="_blank" rel="noopener noreferrer"

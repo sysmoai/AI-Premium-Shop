@@ -2,6 +2,7 @@ import { useEffect, useState, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, ChevronRight, Star, Users, Calendar, Shield, Zap } from "lucide-react";
 import { PaymentBadges } from "@/components/PaymentBadges";
+import { TOTAL_PRODUCTS, TOTAL_PLANS, MIN_PRICE, MAX_PRICE, taka, cheapestPriceFor } from "@/lib/catalogStats";
 import type React from "react";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
@@ -24,11 +25,15 @@ const BRAND_NAMES = [
   "Grok", "Jasper", "v0.dev", "Descript", "Murf", "Pika",
 ];
 
+// Prices are the real cheapest tier of each product, read from the catalog —
+// previously Claude Pro was hard-coded to ৳1,590 (its mid Premium Shared tier)
+// while the other two cards showed entry prices, so the three weren't
+// comparable and the Claude figure drifted from its true ৳599 entry point.
 const HERO_CARDS = [
-  { name: "Claude Pro", price: "৳1,590", color: "#9ca3af", rotate: "-5deg", opacity: 0.65, zIndex: 1 },
-  { name: "Midjourney", price: "৳1,199", color: "#8b5cf6", rotate: "0deg", opacity: 0.82, zIndex: 2 },
-  { name: "ChatGPT Plus", price: "৳499", color: "#10a37f", rotate: "5deg", opacity: 1, zIndex: 3 },
-];
+  { name: "Claude Pro", slug: "claude-pro-bangladesh", color: "#9ca3af", rotate: "-5deg", opacity: 0.65, zIndex: 1 },
+  { name: "Midjourney", slug: "midjourney-bangladesh", color: "#8b5cf6", rotate: "0deg", opacity: 0.82, zIndex: 2 },
+  { name: "ChatGPT Plus", slug: "chatgpt-plus-bangladesh", color: "#10a37f", rotate: "5deg", opacity: 1, zIndex: 3 },
+].map((c) => ({ ...c, price: taka(cheapestPriceFor(c.slug) ?? MIN_PRICE) }));
 
 function TrustBadge({
   icon: Icon,
@@ -143,7 +148,12 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-lg md:text-xl text-gray-400 max-w-2xl mb-6 leading-relaxed"
           >
-            <strong className="text-white">118+ Premium AI Tools</strong> from BDT 299 to BDT 29,900. ChatGPT, Claude, Midjourney, Adobe, Notion & 60+ more.
+            {/* Counts and prices are derived from the catalog (see
+                src/lib/catalogStats.ts) — never hard-coded, so the headline
+                can't drift from what's actually for sale. */}
+            <strong className="text-white">{TOTAL_PRODUCTS} premium AI tools</strong>, {TOTAL_PLANS} plans
+            from {taka(MIN_PRICE)} to {taka(MAX_PRICE)}. ChatGPT, Claude, Midjourney, Notion &amp; more —
+            <strong className="text-white"> no international card needed</strong>.
           </motion.p>
 
           {/* Payment Methods */}
@@ -304,7 +314,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             ))}
           </div>
           <div className="mt-4 text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>
-            80 tools · Local payment
+            {TOTAL_PRODUCTS} tools · Local payment
           </div>
         </motion.div>
       </div>
@@ -322,7 +332,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
           <TrustBadge icon={Shield} label="Warranty" value="30 Days" />
           <TrustBadge icon={Zap} label="Response" value="<5 Min" />
           <div className="bg-gray-900/80 backdrop-blur border border-gray-800 hover:border-[#f4b942]/30 rounded-xl p-4 text-center transition-all duration-300">
-            <span className="text-2xl font-bold text-white">118+</span>
+            <span className="text-2xl font-bold text-white">{TOTAL_PRODUCTS}</span>
             <div className="text-xs mt-0.5 text-gray-400 uppercase tracking-wider">AI Tools</div>
           </div>
         </div>

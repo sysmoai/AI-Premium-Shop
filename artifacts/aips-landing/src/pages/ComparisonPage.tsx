@@ -1,4 +1,5 @@
 import { motion, type Variants } from "framer-motion";
+import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { MessageCircle, ArrowRight, Check, X } from "lucide-react";
 import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
@@ -423,7 +424,7 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
             <Link href="/products"
               className="inline-flex items-center gap-1 text-sm hover:opacity-80 transition-opacity"
               style={{ color: "#c9ceda" }}>
-              Browse all 80 AI tools
+              Browse all {TOTAL_PRODUCTS} AI tools
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

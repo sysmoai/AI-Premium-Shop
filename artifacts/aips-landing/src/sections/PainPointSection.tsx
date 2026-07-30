@@ -1,4 +1,5 @@
 import { motion, type Variants } from "framer-motion";
+import { MIN_PRICE } from "@/lib/catalogStats";
 import {
   GraduationCap,
   Laptop,
@@ -34,7 +35,7 @@ const CARDS = [
     ],
     solution:
       "AI handles study notes, assignments, and research — in 30 minutes flat.",
-    price: "From BDT 350/mo",
+    price: `From BDT ${MIN_PRICE}/mo`,
     cta: "See Student Solutions",
     href: "/best-ai-for-students",
   },
@@ -53,7 +54,7 @@ const CARDS = [
     ],
     solution:
       "AI writes proposals in 2 minutes. Delivers 50% faster. Pay with bKash.",
-    price: "From BDT 350/mo",
+    price: `From BDT ${MIN_PRICE}/mo`,
     cta: "See Freelancer Solutions",
     href: "/best-ai-for-freelancers",
   },
@@ -72,7 +73,7 @@ const CARDS = [
     ],
     solution:
       "AI script in 2 min. AI thumbnail in 1 min. AI music — zero copyright issues.",
-    price: "From BDT 350/mo",
+    price: `From BDT ${MIN_PRICE}/mo`,
     cta: "See Creator Solutions",
     href: "/best-ai-for-creators",
   },
@@ -110,7 +111,7 @@ const CARDS = [
     ],
     solution:
       "AI builds a professional CV in 5 minutes. Mock interviews. Skill roadmap.",
-    price: "From BDT 350/mo",
+    price: `From BDT ${MIN_PRICE}/mo`,
     cta: "See Job Seeker Solutions",
     href: "/best-ai-for-job-seekers",
   },

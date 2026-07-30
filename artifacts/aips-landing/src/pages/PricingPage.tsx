@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { TOTAL_PRODUCTS, TOTAL_PLANS, MIN_PRICE } from "@/lib/catalogStats";
 import { motion } from "framer-motion";
 import { MessageCircle, ArrowUpDown, Filter } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
@@ -57,8 +58,8 @@ export default function PricingPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="AI Tool Pricing Bangladesh 2026 — All 80 Plans | AI Premium Shop"
-        description="Compare all AI subscription prices in Bangladesh. 80 tools from BDT 350. bKash/Nagad payment. AI Premium Shop 2026."
+        title={`AI Tool Pricing Bangladesh 2026 — All ${TOTAL_PLANS} Plans | AI Premium Shop`}
+        description={`Compare all AI subscription prices in Bangladesh. ${TOTAL_PRODUCTS} tools from BDT ${MIN_PRICE}. bKash/Nagad payment. AI Premium Shop 2026.`}
         canonical="https://aipremiumshop.com/pricing"
         // No jsonLd/breadcrumbSchema here: <Breadcrumb> below already injects
         // its own BreadcrumbList JSON-LD from these same items.

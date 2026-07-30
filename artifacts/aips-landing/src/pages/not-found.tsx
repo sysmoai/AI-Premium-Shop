@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 
@@ -27,7 +28,7 @@ export default function NotFound() {
               href="/"
               className="bg-[#f4b942] text-[#0a0e27] font-bold py-3 px-6 rounded-lg hover:bg-amber-400 transition-colors"
             >
-              Browse All 80 AI Tools
+              Browse All {TOTAL_PRODUCTS} AI Tools
             </Link>
             <a
               href={WHATSAPP}

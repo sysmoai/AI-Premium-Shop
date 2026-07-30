@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { MIN_PRICE } from "@/lib/catalogStats";
 import { MessageCircle, Facebook, Instagram, Linkedin } from "lucide-react";
 import { useLocation } from "wouter";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
@@ -70,7 +71,7 @@ export function FinalCTASection() {
             }}
           >
             <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4">
-              Start Today — From Just BDT 350
+              Start Today — From Just BDT {MIN_PRICE}
             </h2>
             <p className="text-base mb-8 max-w-md mx-auto text-center text-gray-400">
               Join a growing community of customers who trust AI Premium Shop.

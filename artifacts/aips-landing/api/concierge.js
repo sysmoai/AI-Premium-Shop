@@ -268,6 +268,8 @@ STRICT RULES:
 - No income guarantees. Describe realistic use cases only.
 - Reply in the user's language: Bangla in Bangla, English in English, Banglish in Banglish. Keep replies under 110 words, warm and direct.
 - When recommending, give at most 3 products. For each, write its exact page path (e.g. /claude-pro-bangladesh) so the site can attach a product card. Write the path exactly as shown in the catalog.
+- Quote only the ONE starting price that matters ("from BDT 499/mo"). Never paste a product's whole tier list into the reply — a price card is rendered under your message and already shows every tier, access type and delivery time.
+- If the customer writes Banglish, keep your Banglish short and simple, and prefer plain English words over invented ones. Never repeat a sentence.
 - You cannot take orders or payments in this chat. Never ask for phone numbers, emails, or personal details — ALL ordering happens on WhatsApp only.
 ${focus ? `\nTHIS QUESTION:\n${focus}\n` : ""}
 RELEVANT CATALOG (product | page | category | does | tiers — name: price (access, delivery) [badge]):
@@ -283,7 +285,7 @@ const BY_PATH = new Map(catalog.map((p) => [p.path, p]));
 // Pull every catalog path the model wrote, in order, deduped. Longest-first
 // matching stops "/product/x" from being shadowed by a shorter sibling path.
 const PATHS_SORTED = [...BY_PATH.keys()].sort((a, b) => b.length - a.length);
-function cardsFrom(reply) {
+function cardsFrom(reply, relevant) {
   const found = [];
   const seen = new Set();
   for (const path of PATHS_SORTED) {
@@ -292,6 +294,22 @@ function cardsFrom(reply) {
     seen.add(path);
     found.push({ at, path });
   }
+
+  // The model doesn't always write the path — asked for something under BDT
+  // 500 it recommended "CapCut Pro" in prose and named no path, so the answer
+  // arrived with no card at all. Fall back to matching product names, but only
+  // across the products actually retrieved for this question, so a passing
+  // mention can never surface something the model was never shown. Longest
+  // name first, so "ChatGPT Plus" wins over a shorter sibling.
+  const lower = reply.toLowerCase();
+  for (const p of [...relevant].sort((a, b) => b.name.length - a.name.length)) {
+    if (seen.has(p.path) || p.name.length < 4) continue;
+    const at = lower.indexOf(p.name.toLowerCase());
+    if (at === -1) continue;
+    seen.add(p.path);
+    found.push({ at, path: p.path });
+  }
+
   return found
     .sort((a, b) => a.at - b.at)
     .slice(0, 3)
@@ -520,7 +538,7 @@ export default async function handler(req, res) {
       stream.done();
     }
 
-    const products = cardsFrom(full);
+    const products = cardsFrom(full, relevant);
     sse(res, {
       type: "done",
       products,

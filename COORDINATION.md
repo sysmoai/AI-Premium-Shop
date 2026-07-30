@@ -663,3 +663,44 @@ correct. Lesson: baseline the CURRENT live hash before pushing, then wait for it
 2. Sibling plans-array reconciliation (11 slugs, mechanical, Lane A)
 3. Manus + Higgsfield catalog expansion as request_price_only records with official
    source URLs (needs live web verification of provider pages first)
+
+### 2026-07-30 — Fable 5 — Cycle 2: CEO decisions recorded, request-price capability live, Higgsfield listed, testimonial transparency (commits `584a2da`, `b8b8f09`)
+
+**CEO decisions from Emon (supersede the cycle-1 queue, source-of-truth A0):**
+- Keep ALL existing content, products, SKUs, prices, warranty/delivery wording — delete
+  nothing. Existing prices and terms are his standing commercial offer.
+- Direction: add more products, improve quality and trust, grow customers.
+- Resolution applied for testimonials: KEEP content, ADD transparency labels
+  ("illustrative representative scenarios, not verified individual reviews") on the 5
+  guide pages + Home. Shipped in `b8b8f09`.
+
+**Shipped and live-verified:**
+1. `requestPrice` capability (`584a2da`): records with `price: null` render
+   "বর্তমান মূল্য জানতে WhatsApp করুন" across ProductPage (buy box, mobile bar, AIO
+   answer, SEO template), catalog cards (Products/Category), Navbar search; WhatsApp CTA
+   asks for current price; **JSON-LD emits no Offer block for them** (no fabricated
+   structured data); budget pages exclude them; sorts treat them as unpriced; validator
+   enforces the invariants both ways.
+2. First Higgsfield record (`higgsfield-ai-bangladesh`, ai-video, customer-owned,
+   sourceUrl higgsfield.ai/pricing, verified 2026-07-30). Higgsfield's own geo page
+   states prices update periodically → textbook request-price case. Catalog 118→119,
+   sitemap 135 URLs.
+3. Testimonial transparency labels, content untouched.
+
+**Verification:** validator 0 hard failures → tsc clean (caught 3 downstream price
+consumers incl. JSON-LD schema — all fixed) → build clean → 13/13 headless-Chrome checks
+on built bundle (product page, /products card, /ai-video card, guide + home labels, no
+৳0 anywhere) → push → live domain re-verified: request-price text renders, canonical
+correct, 0 Offer blocks on the Higgsfield page, home label present, sitemap serves 1
+higgsfield entry.
+
+**Process note:** my feature-branch dance failed mid-sequence because this session and
+the desktop session commit to local main in the SAME working directory (their
+`9a223bb` security.txt landed between my calls). My two commits landed directly on main
+with exactly the verified content — outcome correct, but future sessions: commit first,
+branch second, and expect local main to move underneath you between tool calls.
+
+**Next batch:** Manus plan expansion (existing record + verified plan facts), then
+Claude/Gemini/Copilot missing-plan records via the same request-price pattern; then the
+first blog cluster articles (Higgsfield/Manus price-in-Bangladesh guides are now
+linkable landing targets).

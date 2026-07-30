@@ -262,10 +262,15 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
       >
         {/* ── Main bar ── */}
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between gap-6">
-          <a href="/" onClick={(e) => { e.preventDefault(); go("/"); }} aria-label="AI Premium Shop" className="flex-shrink-0">
-            {/* decorative: the link above already provides the accessible name;
-                without this the img alt + three text spans inside are compared
-                against it and don't match (axe: label-content-name-mismatch) */}
+          {/* No aria-label here: the visible "AI PREMIUM SHOP" wordmark inside
+              (decorative=true hides only the redundant icon image) is left as
+              the link's one accessible-name source, so visible text and
+              accessible name can't disagree. An aria-label here previously
+              conflicted with that same visible text (axe:
+              label-content-name-mismatch) even with aria-hidden on the text,
+              since aria-hidden removes it from the a11y tree but not from
+              the rendered page that axe compares the label against. */}
+          <a href="/" onClick={(e) => { e.preventDefault(); go("/"); }} className="flex-shrink-0">
             <PrimaryBrandLogo size="medium" layout="horizontal" decorative />
           </a>
 

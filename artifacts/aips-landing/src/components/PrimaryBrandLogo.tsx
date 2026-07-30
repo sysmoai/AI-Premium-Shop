@@ -10,13 +10,17 @@ interface PrimaryBrandLogoProps {
   iconOnly?: boolean;
   className?: string;
   /**
-   * Set when this logo is nested inside an element that already provides its
-   * own accessible name (e.g. a link with aria-label="AI Premium Shop").
-   * Hides the img's alt text and the "AI"/"PREMIUM"/"SHOP" spans from the
-   * accessibility tree so they aren't compared against — and found to
-   * mismatch — the ancestor's aria-label (axe: label-content-name-mismatch).
-   * Leave false for standalone usage (e.g. the footer) where this logo IS
-   * the accessible content.
+   * True when the icon image is purely decorative because the visible
+   * "AI"/"PREMIUM"/"SHOP" wordmark next to it already conveys the same
+   * name. Sets the img's alt to "" and leaves the wordmark as normal,
+   * non-hidden content, so it becomes the link's one accessible-name
+   * source: visible text and accessible name are then the same DOM nodes
+   * and can't disagree with each other. Do NOT pair this with a wrapping
+   * aria-label — that reintroduces exactly the mismatch this avoids,
+   * because aria-hidden hides text from the accessibility tree but not
+   * from the page, so axe still compares it against the label and fails
+   * (axe: label-content-name-mismatch) even though nothing is announced
+   * twice.
    */
   decorative?: boolean;
 }
@@ -78,13 +82,13 @@ export function PrimaryBrandLogo({
   );
 
   const textNode = variant === "full-color" ? (
-    <div aria-hidden={decorative || undefined} style={{ ...baseTextStyle, display: "flex", gap: config.wordGap, alignItems: "center" }}>
+    <div style={{ ...baseTextStyle, display: "flex", gap: config.wordGap, alignItems: "center" }}>
       <span style={{ color: GOLD_500, ...glassStyle }}>AI</span>
       <span style={{ color: WHITE_100, ...glassStyle }}>PREMIUM</span>
       <span style={{ color: GOLD_500, ...glassStyle }}>SHOP</span>
     </div>
   ) : (
-    <div aria-hidden={decorative || undefined} style={{
+    <div style={{
       ...baseTextStyle,
       color: variant === "white" ? WHITE_100 : BLACK,
       whiteSpace: "nowrap",

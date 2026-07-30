@@ -12,6 +12,7 @@ import {
   Brain,
 } from "lucide-react";
 import { Link } from "wouter";
+import { productPath } from "@/lib/productRoutes";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 
@@ -24,6 +25,7 @@ export default function EducatorsGuide() {
     {
       rank: 1,
       name: "ChatGPT Plus",
+      slug: "chatgpt-plus-bangladesh",
       price: "BDT 999/month",
       description:
         "Your lesson planning assistant. Generate lesson plans, create quiz questions, explain concepts in student-friendly ways, draft grading feedback, and prepare assessment materials. Works for all subjects and grades.",
@@ -34,6 +36,7 @@ export default function EducatorsGuide() {
     {
       rank: 2,
       name: "Claude Pro",
+      slug: "claude-pro-bangladesh",
       price: "BDT 1,495/month",
       description:
         "Best for deep concept explanation. Claude excels at breaking down complex topics for different learning levels. Perfect for creating supplementary materials, writing detailed feedback, and explaining difficult subjects.",
@@ -44,6 +47,7 @@ export default function EducatorsGuide() {
     {
       rank: 3,
       name: "Midjourney",
+      slug: "midjourney-bangladesh",
       price: "BDT 1,199/month",
       description:
         "Create educational visuals for lessons. Generate illustrations, diagrams, concept maps, and infographics to make lessons more engaging. Students learn better with visuals.",
@@ -54,6 +58,7 @@ export default function EducatorsGuide() {
     {
       rank: 4,
       name: "Notion AI",
+      slug: "notion-ai-bangladesh",
       price: "BDT 550/month",
       description:
         "Build your lesson management system. Create syllabi, track student progress, organize assignments, and build a resource library. AI helps organize and structure everything.",
@@ -64,6 +69,7 @@ export default function EducatorsGuide() {
     {
       rank: 5,
       name: "Canva Pro",
+      slug: "canva-pro-bangladesh",
       price: "BDT 399/month",
       description:
         "Design professional presentations, handouts, and course materials. Thousands of education templates. Create engaging slide decks and printable materials without design skills.",
@@ -359,7 +365,7 @@ export default function EducatorsGuide() {
                   </div>
                 </div>
 
-                <Link href={`/product/${tool.name.toLowerCase().replace(/ /g, "-")}`}>
+                <Link href={productPath(tool.slug)}>
                   <a className="inline-flex items-center gap-2 text-violet-600 font-semibold hover:text-violet-700">
                     Learn More <ArrowRight className="w-4 h-4" />
                   </a>

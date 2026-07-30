@@ -5,6 +5,7 @@ import { MessageCircle } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CookieBanner } from "@/components/CookieBanner";
+import { BRAND_PAGE_SLUGS } from "@/lib/productRoutes";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { FacebookPixel } from "@/components/FacebookPixel";
@@ -100,64 +101,12 @@ function Router() {
       <Route path="/ai-design">{() => <CategoryPage categoryId="ai-design" />}</Route>
       <Route path="/bundles">{() => <CategoryPage categoryId="bundles" />}</Route>
 
-      {/* Brand pages — Batch 1 Additions */}
-      <Route path="/grammarly-premium-bangladesh">{() => <BrandPage brandSlug="grammarly-premium-bangladesh" />}</Route>
-      <Route path="/quillbot-premium-bangladesh">{() => <BrandPage brandSlug="quillbot-premium-bangladesh" />}</Route>
-      <Route path="/canva-pro-bangladesh">{() => <BrandPage brandSlug="canva-pro-bangladesh" />}</Route>
-      <Route path="/microsoft-copilot-pro-bangladesh">{() => <BrandPage brandSlug="microsoft-copilot-pro-bangladesh" />}</Route>
-      <Route path="/jasper-ai-bangladesh">{() => <BrandPage brandSlug="jasper-ai-bangladesh" />}</Route>
-      <Route path="/adobe-firefly-bangladesh">{() => <BrandPage brandSlug="adobe-firefly-bangladesh" />}</Route>
-      <Route path="/pika-labs-bangladesh">{() => <BrandPage brandSlug="pika-labs-bangladesh" />}</Route>
-      <Route path="/opus-clip-bangladesh">{() => <BrandPage brandSlug="opus-clip-bangladesh" />}</Route>
-      <Route path="/descript-pro-bangladesh">{() => <BrandPage brandSlug="descript-pro-bangladesh" />}</Route>
-      <Route path="/murf-ai-bangladesh">{() => <BrandPage brandSlug="murf-ai-bangladesh" />}</Route>
-
-      {/* Brand pages — AI Video Editing */}
-      <Route path="/freepik-premium-bangladesh">{() => <BrandPage brandSlug="freepik-premium-bangladesh" />}</Route>
-      <Route path="/kling-ai-bangladesh">{() => <BrandPage brandSlug="kling-ai-bangladesh" />}</Route>
-      <Route path="/synthesia-bangladesh">{() => <BrandPage brandSlug="synthesia-bangladesh" />}</Route>
-      <Route path="/windsurf-bangladesh">{() => <BrandPage brandSlug="windsurf-bangladesh" />}</Route>
-      <Route path="/capcut-pro-bangladesh">{() => <BrandPage brandSlug="capcut-pro-bangladesh" />}</Route>
-
-      {/* Brand pages — ChatGPT */}
-      <Route path="/chatgpt-plans-bangladesh">{() => <BrandPage brandSlug="chatgpt-plans-bangladesh" />}</Route>
-      <Route path="/chatgpt-plus-bangladesh">{() => <BrandPage brandSlug="chatgpt-plus-bangladesh" />}</Route>
-      <Route path="/chatgpt-business-bangladesh">{() => <BrandPage brandSlug="chatgpt-business-bangladesh" />}</Route>
-      <Route path="/chatgpt-pro-bangladesh">{() => <BrandPage brandSlug="chatgpt-pro-bangladesh" />}</Route>
-      <Route path="/chatgpt-go-bangladesh">{() => <BrandPage brandSlug="chatgpt-go-bangladesh" />}</Route>
-
-      {/* Brand pages — AI Assistants */}
-      <Route path="/claude-pro-bangladesh">{() => <BrandPage brandSlug="claude-pro-bangladesh" />}</Route>
-      <Route path="/gemini-advanced-bangladesh">{() => <BrandPage brandSlug="gemini-advanced-bangladesh" />}</Route>
-      <Route path="/supergrok-bangladesh">{() => <BrandPage brandSlug="supergrok-bangladesh" />}</Route>
-      <Route path="/perplexity-pro-bangladesh">{() => <BrandPage brandSlug="perplexity-pro-bangladesh" />}</Route>
-
-      {/* Brand pages — AI Image & Video */}
-      <Route path="/midjourney-bangladesh">{() => <BrandPage brandSlug="midjourney-bangladesh" />}</Route>
-      <Route path="/ideogram-bangladesh">{() => <BrandPage brandSlug="ideogram-bangladesh" />}</Route>
-      <Route path="/runway-bangladesh">{() => <BrandPage brandSlug="runway-bangladesh" />}</Route>
-      <Route path="/leonardo-ai-bangladesh">{() => <BrandPage brandSlug="leonardo-ai-bangladesh" />}</Route>
-      <Route path="/heygen-bangladesh">{() => <BrandPage brandSlug="heygen-bangladesh" />}</Route>
-
-      {/* Brand pages — AI Voice & Music */}
-      <Route path="/elevenlabs-bangladesh">{() => <BrandPage brandSlug="elevenlabs-bangladesh" />}</Route>
-      <Route path="/suno-ai-bangladesh">{() => <BrandPage brandSlug="suno-ai-bangladesh" />}</Route>
-      <Route path="/udio-bangladesh">{() => <BrandPage brandSlug="udio-bangladesh" />}</Route>
-
-      {/* Brand pages — AI Code & Dev */}
-      <Route path="/github-copilot-bangladesh">{() => <BrandPage brandSlug="github-copilot-bangladesh" />}</Route>
-      <Route path="/cursor-bangladesh">{() => <BrandPage brandSlug="cursor-bangladesh" />}</Route>
-      <Route path="/v0-dev-bangladesh">{() => <BrandPage brandSlug="v0-dev-bangladesh" />}</Route>
-      <Route path="/replit-bangladesh">{() => <BrandPage brandSlug="replit-bangladesh" />}</Route>
-
-      {/* Brand pages — AI Workspace */}
-      <Route path="/notion-business-bangladesh">{() => <BrandPage brandSlug="notion-business-bangladesh" />}</Route>
-      <Route path="/manus-ai-bangladesh">{() => <BrandPage brandSlug="manus-ai-bangladesh" />}</Route>
-      <Route path="/otter-ai-bangladesh">{() => <BrandPage brandSlug="otter-ai-bangladesh" />}</Route>
-      <Route path="/gamma-bangladesh">{() => <BrandPage brandSlug="gamma-bangladesh" />}</Route>
-
-      {/* Brand pages — AI Writing */}
-      <Route path="/writesonic-bangladesh">{() => <BrandPage brandSlug="writesonic-bangladesh" />}</Route>
+      {/* Brand pages — one route per slug in BRAND_PAGE_SLUGS, which is also
+          what productPath() uses for product links and canonical URLs, so the
+          route table and canonicals stay in sync by construction. */}
+      {BRAND_PAGE_SLUGS.map((slug) => (
+        <Route key={slug} path={`/${slug}`}>{() => <BrandPage brandSlug={slug} />}</Route>
+      ))}
 
       {/* Blog */}
       <Route path="/blog" component={BlogPage} />

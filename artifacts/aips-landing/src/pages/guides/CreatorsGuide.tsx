@@ -12,6 +12,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Link } from "wouter";
+import { productPath } from "@/lib/productRoutes";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 
@@ -24,6 +25,7 @@ export default function CreatorsGuide() {
     {
       rank: 1,
       name: "ChatGPT Plus",
+      slug: "chatgpt-plus-bangladesh",
       price: "BDT 999/month",
       description:
         "Your scriptwriter and content strategist. Generate video scripts, YouTube titles, TikTok hooks, Instagram captions, and content ideas. GPT-5.4 understands what makes content viral.",
@@ -34,6 +36,7 @@ export default function CreatorsGuide() {
     {
       rank: 2,
       name: "Midjourney",
+      slug: "midjourney-bangladesh",
       price: "BDT 1,199/month",
       description:
         "Create stunning thumbnails and graphics without a designer. Generate unique visuals for every video, unlimited image variations. CTR improves dramatically with AI-designed thumbnails.",
@@ -44,6 +47,7 @@ export default function CreatorsGuide() {
     {
       rank: 3,
       name: "ElevenLabs",
+      slug: "elevenlabs-bangladesh",
       price: "BDT 748/month",
       description:
         "AI voiceovers in 29 languages. Clone your own voice for auto-generated videos. Never re-record voiceovers again. Supports multiple voices for engaging narrative.",
@@ -54,6 +58,7 @@ export default function CreatorsGuide() {
     {
       rank: 4,
       name: "Suno AI",
+      slug: "suno-ai-bangladesh",
       price: "BDT 1,495/month",
       description:
         "Generate copyright-free music and jingles for your videos. Full commercial use rights. No copyright strikes. Background music, intros, and outros in seconds.",
@@ -64,6 +69,7 @@ export default function CreatorsGuide() {
     {
       rank: 5,
       name: "Runway",
+      slug: "runway-bangladesh",
       price: "BDT 1,794/month",
       description:
         "AI video generation from text prompts. Create B-roll, transitions, effects, and entire video sequences. Great for shorts and social media video content.",
@@ -359,7 +365,7 @@ export default function CreatorsGuide() {
                   </div>
                 </div>
 
-                <Link href={`/product/${tool.name.toLowerCase().replace(/ /g, "-")}`}>
+                <Link href={productPath(tool.slug)}>
                   <a className="inline-flex items-center gap-2 text-pink-600 font-semibold hover:text-pink-700">
                     Learn More <ArrowRight className="w-4 h-4" />
                   </a>

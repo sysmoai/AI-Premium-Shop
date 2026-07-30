@@ -11,6 +11,7 @@ import {
   Users,
 } from "lucide-react";
 import { Link } from "wouter";
+import { productPath } from "@/lib/productRoutes";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 
@@ -23,6 +24,7 @@ export default function StudentsGuide() {
     {
       rank: 1,
       name: "ChatGPT Plus",
+      slug: "chatgpt-plus-bangladesh",
       price: "BDT 499/month",
       description:
         "Your AI study buddy available 24/7. Explain concepts, solve math problems, check assignments, debug code, and ace practice exams. GPT-5.4 understands context and provides explanations that help you learn, not just answer.",
@@ -33,6 +35,7 @@ export default function StudentsGuide() {
     {
       rank: 2,
       name: "Claude Pro",
+      slug: "claude-pro-bangladesh",
       price: "BDT 1,495/month",
       description:
         "Best AI for understanding complex topics. Claude excels at explaining difficult concepts, analyzing lengthy academic papers, and breaking down multi-step problems. Exceptional for literature, physics, and chemistry studies.",
@@ -43,6 +46,7 @@ export default function StudentsGuide() {
     {
       rank: 3,
       name: "GitHub Copilot",
+      slug: "github-copilot-bangladesh",
       price: "BDT 1,495/month",
       description:
         "For coding assignments. Autocomplete for programming languages, real-time code suggestions, and debugging help inside VS Code or your favorite IDE. Reduces coding time by 50-60%.",
@@ -53,6 +57,7 @@ export default function StudentsGuide() {
     {
       rank: 4,
       name: "Google AI Pro",
+      slug: "gemini-advanced-bangladesh",
       price: "BDT 499/month",
       description:
         "Integrated AI in Google Docs and Gmail. Write essays directly in Docs with AI assist, get research help in Gmail, organize notes in Sheets. 2TB storage for all your study materials.",
@@ -63,6 +68,7 @@ export default function StudentsGuide() {
     {
       rank: 5,
       name: "Grammarly Premium",
+      slug: "grammarly-premium-bangladesh",
       price: "BDT 399/month",
       description:
         "Perfect spelling, punctuation, and tone-checking for every assignment. Real-time corrections as you write. Improves your writing skills over time with personalized feedback.",
@@ -358,7 +364,7 @@ export default function StudentsGuide() {
                   </div>
                 </div>
 
-                <Link href={`/product/${tool.name.toLowerCase().replace(/ /g, "-")}`}>
+                <Link href={productPath(tool.slug)}>
                   <a className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700">
                     View Details <ArrowRight className="w-4 h-4" />
                   </a>

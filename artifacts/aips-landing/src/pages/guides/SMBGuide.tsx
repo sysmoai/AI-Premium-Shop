@@ -12,6 +12,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { Link } from "wouter";
+import { productPath } from "@/lib/productRoutes";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 
@@ -24,6 +25,7 @@ export default function SMBGuide() {
     {
       rank: 1,
       name: "Google AI Pro",
+      slug: "gemini-advanced-bangladesh",
       price: "BDT 499/month",
       description:
         "AI built into Gmail, Docs, and Sheets—tools your team already uses daily. Draft customer emails, create professional proposals, analyze sales data. 2TB storage for all business files.",
@@ -34,6 +36,7 @@ export default function SMBGuide() {
     {
       rank: 2,
       name: "ChatGPT Team",
+      slug: "chatgpt-business-bangladesh",
       price: "BDT 1,200/month",
       description:
         "Team AI assistant with admin controls. Unlimited GPT-5.4 access for the whole team. Perfect for marketing, sales, operations, and customer support. No individual account limits.",
@@ -44,6 +47,7 @@ export default function SMBGuide() {
     {
       rank: 3,
       name: "Notion AI",
+      slug: "notion-ai-bangladesh",
       price: "BDT 550/month",
       description:
         "AI-powered workspace for docs, projects, SOPs, and team collaboration. Create internal knowledge base, project management, and team dashboards. Replaces multiple software tools.",
@@ -54,6 +58,7 @@ export default function SMBGuide() {
     {
       rank: 4,
       name: "Claude Pro",
+      slug: "claude-pro-bangladesh",
       price: "BDT 1,495/month",
       description:
         "Best AI for complex business documents—contracts, reports, business proposals. Superior writing quality and reasoning for strategic decisions. 200K token context for large documents.",
@@ -64,6 +69,7 @@ export default function SMBGuide() {
     {
       rank: 5,
       name: "Zapier",
+      slug: "zapier-ai-automation-bangladesh",
       price: "BDT 799/month",
       description:
         "Automate workflows between apps. Connect ChatGPT, Notion, Gmail, and other tools. Eliminate manual data entry. Turn complex processes into one-click automation.",
@@ -363,7 +369,7 @@ export default function SMBGuide() {
                   </div>
                 </div>
 
-                <Link href={`/product/${tool.name.toLowerCase().replace(/ /g, "-")}`}>
+                <Link href={productPath(tool.slug)}>
                   <a className="inline-flex items-center gap-2 text-amber-600 font-semibold hover:text-amber-700">
                     Learn More <ArrowRight className="w-4 h-4" />
                   </a>

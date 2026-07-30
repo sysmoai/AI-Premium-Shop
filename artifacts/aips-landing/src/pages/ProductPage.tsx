@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { productPath } from "@/lib/productRoutes";
 import { PaymentBadges } from "@/components/PaymentBadges";
 import { formatBDT } from "@/lib/format";
 import { formulaPrice } from "@/lib/pricing";
@@ -173,7 +174,10 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
   const seo = product.seo ?? {
     title: `${product.name} price in Bangladesh — ${formatBDT(fromPrice)}/mo | AI Premium Shop`,
     metaDescription: `${product.name} price in Bangladesh is ${formatBDT(fromPrice)}/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by a growing community of customers since 2024.`,
-    canonical: `${SITE}/${product.slug}`,
+    // Products with a dedicated brand page canonicalize there; the rest are
+    // self-canonical — pointing at /{slug} for an unrouted slug would declare
+    // a NotFound-rendering URL as the canonical version.
+    canonical: `${SITE}${productPath(product.slug)}`,
     ogImage: product.logo ?? "https://aipremiumshop.com/images/og/default-og.png",
     keywords: [product.name, `${product.name} price in Bangladesh`, `${product.name} bKash`, `${product.name} koto taka`, "AI Premium Shop", "Bangladesh AI subscription"],
   };
@@ -552,7 +556,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
                 const price = rp.priceBDT ?? rpProduct?.plans?.[0]?.priceBDT ?? 0;
                 const cat = rp.category ?? rpProduct?.category ?? "";
                 return (
-                  <Link key={rp.slug} href={`/${rp.slug}`} className="rounded-xl border border-white/10 p-4 block hover:border-white/20 transition-colors" style={{ backgroundColor: "#151b3d" }}>
+                  <Link key={rp.slug} href={productPath(rp.slug)} className="rounded-xl border border-white/10 p-4 block hover:border-white/20 transition-colors" style={{ backgroundColor: "#151b3d" }}>
                     <div className="text-sm font-semibold text-white mb-1">{rp.name}</div>
                     {price > 0 && <div className="text-sm font-bold" style={{ color: "#f4b942" }}>{formatBDT(price)}</div>}
                     {cat && <div className="text-xs mt-1 capitalize" style={{ color: "#c9ceda" }}>{cat}</div>}

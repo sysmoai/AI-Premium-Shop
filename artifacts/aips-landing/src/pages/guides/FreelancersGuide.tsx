@@ -12,6 +12,7 @@ import {
   DollarSign,
 } from "lucide-react";
 import { Link } from "wouter";
+import { productPath } from "@/lib/productRoutes";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 
@@ -24,6 +25,7 @@ export default function FreelancersGuide() {
     {
       rank: 1,
       name: "ChatGPT Plus",
+      slug: "chatgpt-plus-bangladesh",
       price: "BDT 499/month",
       description:
         "Your proposal-writing machine. Write Upwork proposals 5x faster, craft personalized cover letters, manage client emails, and deliver content on tight deadlines. GPT-5.4 understands clients' needs and helps you stand out.",
@@ -34,6 +36,7 @@ export default function FreelancersGuide() {
     {
       rank: 2,
       name: "Claude Pro",
+      slug: "claude-pro-bangladesh",
       price: "BDT 1,495/month",
       description:
         "Best for writing quality. Claude produces higher-quality writing than ChatGPT—perfect for clients who demand excellent prose. 200K token context means longer documents without token limits.",
@@ -44,6 +47,7 @@ export default function FreelancersGuide() {
     {
       rank: 3,
       name: "Midjourney",
+      slug: "midjourney-bangladesh",
       price: "BDT 1,199/month",
       description:
         "Generate unlimited graphics, thumbnails, mockups, and client visuals. Unlimited relaxed generation mode means you can create as many variations as needed for client approvals.",
@@ -54,6 +58,7 @@ export default function FreelancersGuide() {
     {
       rank: 4,
       name: "GitHub Copilot",
+      slug: "github-copilot-bangladesh",
       price: "BDT 1,495/month",
       description:
         "For developer freelancers. Code 50% faster inside VS Code or JetBrains. Handle more projects simultaneously and charge premium rates for faster delivery.",
@@ -64,6 +69,7 @@ export default function FreelancersGuide() {
     {
       rank: 5,
       name: "Canva Pro",
+      slug: "canva-pro-bangladesh",
       price: "BDT 399/month",
       description:
         "Template-based design for non-designers. Create Instagram posts, LinkedIn graphics, YouTube thumbnails, and social media content in minutes. Millions of templates and stock images.",
@@ -359,7 +365,7 @@ export default function FreelancersGuide() {
                   </div>
                 </div>
 
-                <Link href={`/product/${tool.name.toLowerCase().replace(/ /g, "-")}`}>
+                <Link href={productPath(tool.slug)}>
                   <a className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700">
                     Learn More <ArrowRight className="w-4 h-4" />
                   </a>

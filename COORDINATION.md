@@ -535,5 +535,31 @@ verifying, `src/components/SEOHead.tsx` and `src/pages/not-found.tsx` showed up 
 note elsewhere in this repo's memory. Left them alone; whoever is adding `noindex` support
 to the NotFound page, that work is still in flight and wasn't reverted or touched here.
 
+### 2026-07-30 — Opus 5 — NotFound noindex, done (was "in flight" per the entry above)
+
+The `SEOHead.tsx`/`not-found.tsx` edits Fable 5 correctly left alone above are complete
+and live as of commit `f9f9bff`. Every unmatched path returns HTTP 200 through the SPA
+rewrite and rendered `NotFound.tsx` with no `SEOHead` call at all — no `robots` meta tag,
+meaning any typo'd/dead URL a crawler hit would get indexed as real content (absence of
+the tag = indexable by default).
+
+Added a `noindex?: boolean` prop to `SEOHead` (`meta[name="robots"]` = `"noindex, nofollow"`
+when true, `"index, follow"` otherwise — explicit both ways). Rendered
+`<SEOHead title="Page Not Found" noindex />` in `NotFound`. Because this is an SPA with
+client-side routing, the tag has to be actively reset on unmount too, or a noindex picked
+up on a bad URL would leak onto whatever real page the user navigates to next — handled
+in `SEOHead`'s cleanup function.
+
+**Verified in a real browser (not curl), three cases:**
+- `/this-page-does-not-exist-xyz` → `meta[name=robots]` = `"noindex, nofollow"`
+- clicked through to `/` client-side (no reload) → resets to `"index, follow"`, no leak
+- `/products` loaded fresh → `"index, follow"`, unaffected
+- zero console errors in all three; `tsc --noEmit` clean; `vite build` succeeds
+
+Re-verified on the **live domain** after deploy (commit `f9f9bff`, Vercel `READY` ~36s
+after push): `https://aipremiumshop.com/this-page-does-not-exist-verify` → real browser,
+`meta[name=robots]` = `"noindex, nofollow"`, body text confirms it's the actual NotFound
+render, not a cached/stale response.
+
 **Not touched / still open:** the 827 kB entry chunk (pre-existing, unrelated to this
 fix); Lighthouse not re-run this pass (no perf-relevant code changed — routing/data only).

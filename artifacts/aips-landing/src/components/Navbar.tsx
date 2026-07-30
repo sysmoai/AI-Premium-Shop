@@ -142,7 +142,7 @@ function SearchOverlay({ onClose }: { onClose: () => void }) {
                     <div className="font-semibold text-white text-sm truncate">{p.name}</div>
                     <div className="text-xs" style={{ color: "#c9ceda" }}>{p.brand}</div>
                   </div>
-                  <div className="text-sm font-bold flex-shrink-0" style={{ color: "#f4b942" }}>BDT {p.price.toLocaleString()}</div>
+                  <div className="text-sm font-bold flex-shrink-0" style={{ color: "#f4b942" }}>{p.price != null ? `BDT ${p.price.toLocaleString()}` : "Price on WhatsApp"}</div>
                   <a href={waUrl} target="_blank" rel="noopener noreferrer" onClick={onClose}
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity flex-shrink-0"
                     style={{ backgroundColor: "#25d366", color: "#fff" }}>

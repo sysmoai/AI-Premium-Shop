@@ -38,7 +38,9 @@ export interface ProductForSchema {
   name: string;
   description: string;
   brand: string;
-  price: number;
+  // null = request-price product: no Offer is emitted (an Offer without a
+  // real price would be fabricated structured data).
+  price: number | null;
 }
 
 export function productSchema(product: ProductForSchema) {
@@ -48,14 +50,16 @@ export function productSchema(product: ProductForSchema) {
     name: product.name,
     description: product.description,
     brand: { "@type": "Brand", name: product.brand },
-    offers: {
-      "@type": "Offer",
-      price: product.price,
-      priceCurrency: "BDT",
-      availability: "https://schema.org/InStock",
-      seller: { "@type": "Organization", name: "AI Premium Shop" },
-      url: "https://aipremiumshop.com/products",
-    },
+    ...(product.price != null && {
+      offers: {
+        "@type": "Offer",
+        price: product.price,
+        priceCurrency: "BDT",
+        availability: "https://schema.org/InStock",
+        seller: { "@type": "Organization", name: "AI Premium Shop" },
+        url: "https://aipremiumshop.com/products",
+      },
+    }),
   };
 }
 
@@ -73,14 +77,16 @@ export function productListSchema(products: ProductForSchema[]) {
         name: p.name,
         description: p.description,
         brand: { "@type": "Brand", name: p.brand },
-        offers: {
-          "@type": "Offer",
-          price: p.price,
-          priceCurrency: "BDT",
-          availability: "https://schema.org/InStock",
-          seller: { "@type": "Organization", name: "AI Premium Shop" },
-          url: "https://aipremiumshop.com/products",
-        },
+        ...(p.price != null && {
+          offers: {
+            "@type": "Offer",
+            price: p.price,
+            priceCurrency: "BDT",
+            availability: "https://schema.org/InStock",
+            seller: { "@type": "Organization", name: "AI Premium Shop" },
+            url: "https://aipremiumshop.com/products",
+          },
+        }),
       },
     })),
   };

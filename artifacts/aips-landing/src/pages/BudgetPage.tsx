@@ -111,7 +111,7 @@ function ProductCard({ product, index }: ProductCardProps) {
       </div>
       <div className="flex items-center justify-between">
         <div>
-          <div className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT {product.price.toLocaleString()}</div>
+          <div className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT {(product.price ?? 0).toLocaleString()}</div>
           {savings !== null && savings > 0 && (
             <div className="text-xs" style={{ color: "#c9ceda" }}>
               ${product.officialUSD}/mo officially · {savings}% off
@@ -142,7 +142,7 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
   if (!config) return null;
 
   const products = useMemo(
-    () => productsData.products.filter((p) => p.price <= config.maxPrice).sort((a, b) => a.price - b.price),
+    () => productsData.products.filter((p) => p.price != null && p.price <= config.maxPrice).sort((a, b) => (a.price ?? 0) - (b.price ?? 0)),
     [config.maxPrice]
   );
 

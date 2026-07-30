@@ -33,7 +33,8 @@ interface Product {
   brand: string;
   brandColor: string;
   category: string;
-  price: number;
+  price: number | null;
+  requestPrice?: boolean;
   officialUSD: number | null;
   tier: string;
   accessType: string;
@@ -46,7 +47,7 @@ interface Product {
 
 function ProductCard({ p }: { p: Product }) {
   const [, navigate] = useLocation();
-  const waLink = `${WHATSAPP}?text=${encodeURIComponent(p.whatsappMsg ?? `Hi, I want to order ${p.name} (BDT ${p.price})`)}`;
+  const waLink = `${WHATSAPP}?text=${encodeURIComponent(p.whatsappMsg ?? (p.requestPrice ? `Hi, I want ${p.name}. Please share the current price.` : `Hi, I want to order ${p.name} (BDT ${p.price})`))}`;
   return (
     <motion.div
       initial={{ opacity: 0, y: 14 }}
@@ -92,7 +93,9 @@ function ProductCard({ p }: { p: Product }) {
 
         <div className="flex items-center justify-between mt-1">
           <div>
-            <div className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT {p.price.toLocaleString()}</div>
+            {p.requestPrice
+              ? <div className="text-sm font-bold leading-snug" style={{ color: "#f4b942" }}>বর্তমান মূল্য জানতে<br />WhatsApp করুন</div>
+              : <div className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT {(p.price ?? 0).toLocaleString()}</div>}
             {p.officialUSD != null && <div className="text-xs" style={{ color: "#c9ceda" }}>${p.officialUSD}/mo officially</div>}
           </div>
           <a
@@ -128,8 +131,8 @@ export default function ProductsPage() {
     let list = [...ALL] as Product[];
     if (categoryFilter !== "all") list = list.filter((p) => p.category === categoryFilter);
     if (accessFilter !== "all") list = list.filter((p) => p.accessType === accessFilter);
-    if (sort === "price-asc") list.sort((a, b) => a.price - b.price);
-    else if (sort === "price-desc") list.sort((a, b) => b.price - a.price);
+    if (sort === "price-asc") list.sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity));
+    else if (sort === "price-desc") list.sort((a, b) => (b.price ?? -Infinity) - (a.price ?? -Infinity));
     else list.sort((a, b) => a.name.localeCompare(b.name));
     return list;
   }, [categoryFilter, accessFilter, sort]);

@@ -7971,6 +7971,41 @@
       ],
       "whyBuyFromAIPS": "International card ছাড়াই bKash/Nagad দিয়ে পে করুন। তাত্ক্ষণিক সময়ে ডেলিভারি এবং সাপোর্ট।",
       "sourceUrl": "https://suno.com/"
+    },
+    {
+      "id": "higgsfield-ai-request",
+      "name": "Higgsfield AI",
+      "slug": "higgsfield-ai-bangladesh",
+      "brand": "Higgsfield",
+      "brandSlug": "higgsfield-bangladesh",
+      "provider": "Higgsfield",
+      "brandColor": "#7c3aed",
+      "category": "ai-video",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI video and image creation platform — cinematic video generation, talking avatars and lipsync, and UGC-style ad videos on a credits-based subscription. Plans cover individuals, teams and enterprise; provider pricing updates periodically, so AIPS quotes the current price on WhatsApp.",
+      "descriptionBN": "Higgsfield AI — সিনেমাটিক ভিডিও, টকিং অ্যাভাটার ও UGC অ্যাড ভিডিও তৈরির AI প্ল্যাটফর্ম। প্রোভাইডারের মূল্য নিয়মিত পরিবর্তন হয়, তাই বর্তমান মূল্য জানতে WhatsApp করুন।",
+      "capabilities": [
+        "AI video generation with cinematic camera controls",
+        "AI image generation",
+        "Talking avatar & lipsync videos",
+        "UGC-style ad video creation",
+        "Credits-based monthly plans (individual, team, enterprise)"
+      ],
+      "useCases": [
+        "Facebook/TikTok video ads for Bangladeshi businesses",
+        "Product UGC videos for e-commerce sellers",
+        "Talking-avatar explainers in Bangla or English",
+        "Freelance AI video services for foreign clients"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Higgsfield AI from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://higgsfield.ai/pricing",
+      "lastVerifiedDate": "2026-07-30"
     }
   ]
 }

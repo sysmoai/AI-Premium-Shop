@@ -275,7 +275,8 @@ interface Product {
   brand: string;
   brandColor: string;
   category: string;
-  price: number;
+  price: number | null;
+  requestPrice?: boolean;
   officialUSD: number | null;
   tier: string;
   accessType: string;
@@ -286,7 +287,7 @@ interface Product {
 }
 
 function ProductCard({ p }: { p: Product; accent: string }) {
-  const waLink = `${WHATSAPP}?text=${encodeURIComponent(p.whatsappMsg ?? `Hi, I want to order ${p.name} (BDT ${p.price})`)}`;
+  const waLink = `${WHATSAPP}?text=${encodeURIComponent(p.whatsappMsg ?? (p.requestPrice ? `Hi, I want ${p.name}. Please share the current price.` : `Hi, I want to order ${p.name} (BDT ${p.price})`))}`;
   return (
     <motion.div
       initial={{ opacity: 0, y: 14 }}
@@ -328,7 +329,9 @@ function ProductCard({ p }: { p: Product; accent: string }) {
 
         <div className="flex items-center justify-between mt-1">
           <div>
-            <div className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT {p.price.toLocaleString()}</div>
+            {p.requestPrice
+              ? <div className="text-sm font-bold leading-snug" style={{ color: "#f4b942" }}>বর্তমান মূল্য জানতে<br />WhatsApp করুন</div>
+              : <div className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT {(p.price ?? 0).toLocaleString()}</div>}
             {p.officialUSD != null && <div className="text-xs" style={{ color: "#c9ceda" }}>${p.officialUSD}/mo official</div>}
           </div>
           <a href={waLink} target="_blank" rel="noopener noreferrer"
@@ -354,7 +357,7 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
   const products = useMemo(
     () => (productsData.products as Product[])
       .filter((p) => p.category === categoryId)
-      .sort((a, b) => a.price - b.price),
+      .sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity)),
     [categoryId]
   );
 

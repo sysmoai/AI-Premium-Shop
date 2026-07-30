@@ -38,6 +38,7 @@ interface ProductDetail {
   id: string;
   name: string;
   slug: string;
+  requestPrice?: boolean;
   brand: string;
   brandSlug: string;
   brandColor: string;
@@ -77,7 +78,8 @@ function getProductBySlug(slug: string): ProductDetail | undefined {
   const main = all[0];
   // Merge plans from all variants into the main entry
   const merged: ProductDetail = { ...main };
-  if (!merged.plans || merged.plans.length === 0) {
+  // requestPrice records publish no numbers, so no plan rows are synthesized.
+  if (!merged.requestPrice && (!merged.plans || merged.plans.length === 0)) {
     merged.plans = all.map((p) => {
       const raw = p as any;
       return {
@@ -163,7 +165,9 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
   }
 
   const selectedPrice = selectedPlan?.durationOptions?.find((d) => d.months === selectedDuration)?.priceBDT ?? selectedPlan?.priceBDT ?? fromPrice;
-  const whatsappText = `Hi, I want to order ${product.name} (${selectedPlan?.planName ?? product.name}) from AI Premium Shop. Price: ${formatBDT(selectedPrice)}. Please help me with the next step.`;
+  const whatsappText = product.requestPrice
+    ? `Hi, I want ${product.name} from AI Premium Shop. Please share the current price, plans and next steps.`
+    : `Hi, I want to order ${product.name} (${selectedPlan?.planName ?? product.name}) from AI Premium Shop. Price: ${formatBDT(selectedPrice)}. Please help me with the next step.`;
   const whatsappLink = `${WHATSAPP}?text=${encodeURIComponent(whatsappText)}`;
 
   const breadcrumbs = [
@@ -172,7 +176,13 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
     { name: product.name },
   ];
 
-  const seo = product.seo ?? {
+  const seo = product.seo ?? (product.requestPrice ? {
+    title: `${product.name} price in Bangladesh — Buy with bKash/Nagad | AI Premium Shop`,
+    metaDescription: `Get ${product.name} in Bangladesh through AI Premium Shop. Provider pricing updates periodically, so we quote the current price on WhatsApp. Pay with bKash, Nagad or bank transfer — no international card needed.`,
+    canonical: `${SITE}${productPath(product.slug)}`,
+    ogImage: product.logo ?? "https://aipremiumshop.com/images/og/default-og.png",
+    keywords: [product.name, `${product.name} price in Bangladesh`, `${product.name} bKash`, "AI Premium Shop", "Bangladesh AI subscription"],
+  } : {
     title: `${product.name} price in Bangladesh — ${formatBDT(fromPrice)}/mo | AI Premium Shop`,
     metaDescription: `${product.name} price in Bangladesh is ${formatBDT(fromPrice)}/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by a growing community of customers since 2024.`,
     // Products with a dedicated brand page canonicalize there; the rest are
@@ -181,7 +191,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
     canonical: `${SITE}${productPath(product.slug)}`,
     ogImage: product.logo ?? "https://aipremiumshop.com/images/og/default-og.png",
     keywords: [product.name, `${product.name} price in Bangladesh`, `${product.name} bKash`, `${product.name} koto taka`, "AI Premium Shop", "Bangladesh AI subscription"],
-  };
+  });
 
   const trust = product.trust ?? TRUST_DEFAULT;
   const usps = product.uniqueSellingPoints ?? USP_DEFAULT;
@@ -238,8 +248,18 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
           <div className="hidden lg:block">
             <div className="sticky top-24 rounded-2xl border border-white/10 p-6" style={{ backgroundColor: "#151b3d" }}>
               <div className="mb-4">
-                <div className="text-sm mb-1" style={{ color: "#c9ceda" }}>Starting from</div>
-                <div className="text-3xl font-bold text-white">{formatBDT(fromPrice)}<span className="text-sm font-normal ml-1" style={{ color: "#c9ceda" }}>/mo</span></div>
+                {product.requestPrice ? (
+                  <>
+                    <div className="text-sm mb-1" style={{ color: "#c9ceda" }}>Current price</div>
+                    <div className="text-xl font-bold text-white leading-snug">বর্তমান মূল্য জানতে WhatsApp করুন</div>
+                    <div className="text-xs mt-1" style={{ color: "#c9ceda" }}>Provider pricing updates periodically — we quote the live price.</div>
+                  </>
+                ) : (
+                  <>
+                    <div className="text-sm mb-1" style={{ color: "#c9ceda" }}>Starting from</div>
+                    <div className="text-3xl font-bold text-white">{formatBDT(fromPrice)}<span className="text-sm font-normal ml-1" style={{ color: "#c9ceda" }}>/mo</span></div>
+                  </>
+                )}
                 {selectedPlan?.officialUSD != null && (
                   <div className="text-xs mt-1" style={{ color: "#c9ceda" }}>
                     Direct abroad: <span className="line-through">{formatBDT(formulaPrice(selectedPlan.officialUSD))}</span> + intl card needed
@@ -261,7 +281,9 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
         {/* AIO Quick Answer */}
         <div className="rounded-2xl border border-white/10 p-6 mb-14" style={{ backgroundColor: "#151b3d" }}>
           <h2 className="text-lg font-bold text-white mb-2">
-            {product.name} price in Bangladesh is {formatBDT(fromPrice)}/month at AI Premium Shop (aipremiumshop.com)
+            {product.requestPrice
+              ? `${product.name} is available in Bangladesh through AI Premium Shop (aipremiumshop.com) — current price on WhatsApp`
+              : `${product.name} price in Bangladesh is ${formatBDT(fromPrice)}/month at AI Premium Shop (aipremiumshop.com)`}
           </h2>
           <p className="leading-relaxed" style={{ color: "#c9ceda" }}>
             Pay with bKash or Nagad — no international card needed. Instant delivery in {product.estimatedDeliveryTime ?? "5–15 minutes"}. 30-day warranty on every order. Trusted by a growing community of customers since 2024. AIPS provides access to authentic {product.brand} subscriptions; all product names and logos are trademarks of their respective owners.
@@ -574,7 +596,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
         <div className="flex items-center justify-between px-4 h-16 gap-3">
           <div>
             <div className="text-xs" style={{ color: "#c9ceda" }}>{selectedPlan?.planName ?? product.name}</div>
-            <div className="text-base font-bold" style={{ color: "#f4b942" }}>{formatBDT(selectedPrice)}</div>
+            <div className="text-base font-bold" style={{ color: "#f4b942" }}>{product.requestPrice ? "মূল্য: WhatsApp-এ" : formatBDT(selectedPrice)}</div>
           </div>
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity flex-shrink-0"

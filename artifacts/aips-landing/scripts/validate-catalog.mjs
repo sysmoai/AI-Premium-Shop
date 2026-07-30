@@ -33,9 +33,15 @@ const ids = new Map();
 const bySlug = new Map();
 for (const p of products) {
   for (const f of REQUIRED_FIELDS) {
+    // requestPrice records legitimately have price: null — the current price
+    // is quoted on WhatsApp instead of published (dynamic provider pricing).
+    if (f === "price" && p.requestPrice === true) continue;
     if (p[f] === undefined || p[f] === null || p[f] === "") {
       failures.push(`record ${p.id ?? p.slug ?? "?"}: missing required field "${f}"`);
     }
+  }
+  if (p.requestPrice === true && typeof p.price === "number") {
+    failures.push(`record ${p.id}: requestPrice record must not carry a fixed price (${p.price})`);
   }
   if (ids.has(p.id)) failures.push(`duplicate id "${p.id}" (also ${ids.get(p.id)})`);
   ids.set(p.id, p.slug);

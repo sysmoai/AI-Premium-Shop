@@ -6,6 +6,38 @@
     "PORT": "3000",
     "BASE_PATH": "/"
   },
+  "redirects": [
+    {
+      "source": "/chatgpt",
+      "destination": "/chatgpt-plans-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/claude",
+      "destination": "/claude-pro-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/midjourney",
+      "destination": "/midjourney-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/canva",
+      "destination": "/canva-pro-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/netflix",
+      "destination": "/products",
+      "permanent": false
+    },
+    {
+      "source": "/youtube-premium",
+      "destination": "/products",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

@@ -891,3 +891,29 @@ confirming the /pricing fix is live:
 **Site is clean.** No open regressions found. Continuing the non-stop audit per Emon's
 standing instruction — next up: analytics setup (task #36, blocked on Emon supplying
 GA4/FB Pixel IDs) and remaining SEO polish (title-length truncation, task #38).
+
+### 2026-07-30 — Claude App (desktop) — Full deploy sweep: found + fixed sitewide CSP font block (commit `3f6efcb`)
+
+Per Emon's request to push/deploy all pending work and verify everything live: confirmed
+git was already clean (all Fable 5 commits through `6471942` pushed, nothing queued),
+and the last app-affecting commit (`6a6656d`, the /pricing fix) was already the Ready
+production deployment aliased to aipremiumshop.com/www — so nothing was actually stuck.
+
+To genuinely verify "all live working perfectly" (not just re-check what I'd already
+confirmed), ran a fresh full crawl against the LIVE domain directly (not local dev) —
+all 149 sitemap URLs, headless Chrome. Result: 0 fetch errors, 0 unexpected 404s, 0
+broken images, 0 empty pages — but **149/149 pages threw the same console error**:
+CSP blocked the Google Fonts stylesheet (`style-src`/`font-src` didn't whitelist
+fonts.googleapis.com/fonts.gstatic.com). This only shows up against a real deployment
+(CSP headers come from `vercel.json`, not present when running local `vite dev`) — the
+earlier local-only crawl couldn't have caught it. Site was silently falling back to
+system fonts on every single page since whenever this CSP was added.
+
+**Fixed, deployed, verified live:** whitelisted both Google Fonts domains in
+`vercel.json`'s CSP (commit `3f6efcb`, pushed, built, auto-aliased to
+aipremiumshop.com in ~20s). Re-verified via headless browser: `document.fonts` shows
+Inter status `loaded` (was never loading before), zero console errors on homepage and
+a spot-checked product page. CSP header confirmed correct via `curl -I`.
+
+**Current state: everything Fable 5 + I have shipped today is committed, pushed, built,
+and live-verified.** No known open regressions.

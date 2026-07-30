@@ -20,6 +20,17 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 
 const POSTS = [
   {
+    slug: "buy-higgsfield-ai-bangladesh",
+    title: "How to Buy Higgsfield AI in Bangladesh — Plans, Credits & bKash Payment (2026)",
+    excerpt: "Get Higgsfield's AI video tools in Bangladesh without an international card. Plans and credits explained, bKash/Nagad payment, activation on your own account.",
+    category: "🎬 AI Video",
+    readTime: "6 min read",
+    date: "Jul 30, 2026",
+    gradient: "bg-gradient-to-br from-purple-600 to-fuchsia-900",
+    icon: Rocket,
+    accentColor: "#a855f7",
+  },
+  {
     slug: "earn-money-with-ai-bangladesh",
     title: "How to Earn Money with AI in Bangladesh — 5 Proven Methods (2026)",
     excerpt: "5 proven ways to earn BDT 20,000-100,000/month with AI tools. Freelancing, content, tutoring, automation. Start from BDT 350.",

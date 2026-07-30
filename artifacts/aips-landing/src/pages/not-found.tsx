@@ -1,11 +1,13 @@
 import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
+import { SEOHead } from "@/components/SEOHead";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 
 export default function NotFound() {
   return (
     <PageLayout>
+      <SEOHead title="Page Not Found" noindex />
       <section className="min-h-[70vh] flex items-center justify-center px-4 py-20">
         <div className="text-center max-w-lg mx-auto">
           <div className="text-6xl md:text-8xl font-bold" style={{ color: "#f4b942" }}>

@@ -21,6 +21,14 @@ interface SEOHeadProps {
   jsonLd?: JsonLdEntry[];
   /** Hreflang tags: e.g. { en: "/", bn: "/faq" } */
   hreflang?: Record<string, string>;
+  /**
+   * Set true on pages that should never be indexed (currently: NotFound).
+   * Every unmatched path returns HTTP 200 through the SPA's catch-all
+   * rewrite, so without an explicit noindex a crawler has no signal that
+   * this isn't real content — it would happily index the 404 page under
+   * every mistyped/removed URL it finds.
+   */
+  noindex?: boolean;
 }
 
 const SITE_NAME = "AI Premium Shop";
@@ -36,6 +44,7 @@ export function SEOHead({
   ogImages,
   jsonLd,
   hreflang,
+  noindex = false,
 }: SEOHeadProps) {
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
   const canonicalUrl = canonical ?? (ogUrl ?? SITE_URL);
@@ -70,6 +79,10 @@ export function SEOHead({
 
     // Basic meta
     setMeta('meta[name="description"]', description);
+    // Explicit either way, not just "absent = indexable": a page that WAS
+    // noindexed (e.g. user hits a bad URL) then navigates client-side to a
+    // real page must not leave the noindex tag behind on the new page.
+    setMeta('meta[name="robots"]', noindex ? "noindex, nofollow" : "index, follow");
 
     // OG tags
     setMeta('meta[property="og:title"]', fullTitle);
@@ -134,8 +147,11 @@ export function SEOHead({
 
     return () => {
       document.title = SITE_NAME;
+      // Reset robots to indexable on unmount so a noindex page (NotFound)
+      // never leaves the tag behind for whatever page mounts next.
+      setMeta('meta[name="robots"]', "index, follow");
     };
-  }, [fullTitle, description, canonicalUrl, ogImage, ogImages, jsonLd, hreflang]);
+  }, [fullTitle, description, canonicalUrl, ogImage, ogImages, jsonLd, hreflang, noindex]);
 
   return null;
 }

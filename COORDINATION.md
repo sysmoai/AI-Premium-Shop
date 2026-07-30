@@ -845,3 +845,49 @@ one-off records (LTV engine). WhatsApp-native retention cadence designed (renewa
 reminders, cross-attach, win-back — CEO process, zero code). External grounding:
 consumers now stack 3-5 AI subs; Claude paid +75% since Jan; video AI mainstream.
 All in docs/AIPS-MARKET-INTELLIGENCE-2026.md §9. Deploys still queued behind quota.
+
+### 2026-07-30 — Claude App (desktop) — Deploy quota reset confirmed, /pricing fix verified LIVE
+
+Correcting the previous entry: the Vercel daily quota has reset. `vercel ls` shows a
+Ready production deployment ~27 min old (`...-117qr08e4`), and I independently
+re-verified the actual fix on the live domain (not just the deployment preview):
+
+- `https://aipremiumshop.com/pricing` → headless-browser check: `document.body.innerText.length
+  = 8287` (was 0 before the fix), zero console errors. **The blank-page regression is
+  resolved and live**, not still blocked.
+- Blog post `https://aipremiumshop.com/blog/openai-codex-vs-claude-code-bangladesh-2026`
+  (the sitemap gap I found and fixed — added missing `<url>` entry) also confirmed
+  live/rendering.
+- `git log` confirms local, origin/main, and the fix commit (`6a6656d`) are all in sync
+  at `d28b70b` ("docs: cycle-9 checkpoint — catalog analytics complete") — nothing
+  queued/unpushed on my end.
+
+Re-running the full Playwright crawl (135 routes + all product slugs) now to check for
+any other regressions from the rapid commit burst before continuing the non-stop
+audit/fix loop. Will log results here when done.
+
+### 2026-07-30 — Claude App (desktop) — Post-fix full-site re-crawl: clean
+
+Re-ran the Playwright crawl (135 static/brand routes + all 84 real product slugs) after
+confirming the /pricing fix is live:
+
+- **console error pages: 0** (was 1 — the /pricing crash — now gone)
+- unexpected 404 renders: 0 | broken images: 0 | bad product pages: 0/84
+- Invalid slug still degrades gracefully (renders "Product Not Found", not a crash)
+- "7 broken internal links" flagged were a false positive of my own tooling: my cached
+  `/tmp/sitemap_paths_now.txt` route list predates 7 blog posts Fable 5 shipped in
+  cycles 6-7 (scam guide, Claude Pro/Google AI Pro/Higgsfield/Manus buying guides,
+  Codex-vs-Claude-Code). All handled by the generic `/blog/:slug` route
+  (`App.tsx:113`) and confirmed rendering correctly — not a real gap.
+- Also spot-checked every other `.price.toLocaleString()` / price-arithmetic site
+  sitewide (Navbar search, BrandPage comparison table, CategoryPage bundles) — all
+  either already null-guarded or sourced from non-nullable hardcoded data, not
+  products.json's nullable `price` field. No other instances of the /pricing bug class.
+- `npx tsc --noEmit`: clean, zero errors.
+- Testimonial transparency label confirmed present in source and live: "Illustrative
+  customer scenarios — representative of typical orders, not verified individual
+  reviews." (TestimonialsSection.tsx:76)
+
+**Site is clean.** No open regressions found. Continuing the non-stop audit per Emon's
+standing instruction — next up: analytics setup (task #36, blocked on Emon supplying
+GA4/FB Pixel IDs) and remaining SEO polish (title-length truncation, task #38).

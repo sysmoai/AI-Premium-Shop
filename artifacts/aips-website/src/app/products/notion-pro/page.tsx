@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ChevronRight, Shield, Star, Award } from 'lucide-react';
+import { ChevronRight, Shield, Star } from 'lucide-react';
 
 export default function ProductPage() {
   const product = {
@@ -58,7 +58,7 @@ export default function ProductPage() {
             {[{ name: 'Ahmed K.', role: 'Freelancer', text: 'Game changer!' }, { name: 'Sarah M.', role: 'Creator', text: 'Best investment!' }].map((t, i) => (
               <div key={i} className="bg-white/5 border border-white/10 rounded-lg p-6">
                 <div className="flex gap-1 mb-4">{[...Array(5)].map((_, j) => <Star key={j} className="w-4 h-4 fill-[#f4b942]" />)}</div>
-                <p className="text-gray-300 mb-4">"{t.text}"</p>
+                <p className="text-gray-300 mb-4">&ldquo;{t.text}&rdquo;</p>
                 <p className="text-white font-semibold">{t.name}</p>
                 <p className="text-gray-400 text-sm">{t.role}</p>
               </div>

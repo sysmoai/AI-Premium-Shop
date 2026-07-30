@@ -1,3 +1,4 @@
+import Link from "next/link";
 export const metadata = { title: "30-Day Guarantee | AI Premium Shop" };
 
 export default function Page() {
@@ -8,9 +9,9 @@ export default function Page() {
         <div className="space-y-6 text-gray-300">
           <p>Complete information about our guarantee</p>
         </div>
-        <a href="/products" className="inline-block mt-8 px-6 py-3 bg-[#f4b942] text-black font-bold rounded-lg hover:shadow-lg transition">
+        <Link href="/products" className="inline-block mt-8 px-6 py-3 bg-[#f4b942] text-black font-bold rounded-lg hover:shadow-lg transition">
           Start Ordering →
-        </a>
+        </Link>
       </div>
     </main>
   );

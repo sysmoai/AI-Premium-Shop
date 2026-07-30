@@ -29,7 +29,7 @@ export const IMAGE_SIZES = {
 export async function uploadImage(
   file: File,
   path: string,
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
 ) {
   try {
     const timestamp = Date.now();
@@ -135,7 +135,7 @@ export async function listImages(folderPath: string) {
 export async function batchUploadImages(
   files: File[],
   basePath: string,
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
 ) {
   const results = await Promise.allSettled(
     files.map((file) => uploadImage(file, basePath, metadata))
@@ -144,7 +144,7 @@ export async function batchUploadImages(
   return {
     successful: results
       .filter((r) => r.status === 'fulfilled')
-      .map((r) => (r as PromiseFulfilledResult<any>).value),
+      .map((r) => (r as PromiseFulfilledResult<unknown>).value),
     failed: results
       .filter((r) => r.status === 'rejected')
       .map((r) => (r as PromiseRejectedResult).reason),

@@ -3,6 +3,7 @@
 import { db } from '@/db';
 import { media } from '@/db/schema';
 import { eq } from 'drizzle-orm';
+import { errorMessage } from '@/lib/utils';
 
 interface ImageMetadata {
   url: string;
@@ -30,9 +31,9 @@ export async function saveImageMetadata(data: ImageMetadata) {
       success: true,
       id: result[0]?.id,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Failed to save image metadata:', error);
-    throw new Error(error.message);
+    throw new Error(errorMessage(error));
   }
 }
 
@@ -48,9 +49,9 @@ export async function getImageById(id: string) {
       .limit(1);
 
     return result[0] || null;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Failed to get image:', error);
-    throw new Error(error.message);
+    throw new Error(errorMessage(error));
   }
 }
 
@@ -65,9 +66,9 @@ export async function getImagesByBucket(bucket: string) {
       .where(eq(media.bucket, bucket));
 
     return result;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Failed to get images:', error);
-    throw new Error(error.message);
+    throw new Error(errorMessage(error));
   }
 }
 
@@ -81,9 +82,9 @@ export async function deleteImageMetadata(id: string) {
     return {
       success: true,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Failed to delete image:', error);
-    throw new Error(error.message);
+    throw new Error(errorMessage(error));
   }
 }
 
@@ -107,8 +108,8 @@ export async function batchSaveImageMetadata(images: ImageMetadata[]) {
       count: result.length,
       ids: result.map((r: typeof media.$inferSelect) => r.id),
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Failed to batch save images:', error);
-    throw new Error(error.message);
+    throw new Error(errorMessage(error));
   }
 }

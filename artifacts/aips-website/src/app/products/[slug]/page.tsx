@@ -7,8 +7,21 @@ export function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
+interface PlaceholderProduct {
+  id: string;
+  name: string;
+  brand: string;
+  price: number;
+  period: string;
+  description: string;
+  features: string[];
+  benefits: string[];
+  testimonials: { name: string; role: string; text: string }[];
+  faq: { q: string; a: string }[];
+}
+
 // TODO(PHOENIX): placeholder content only, not wired to real product data yet.
-const productDB: Record<string, any> = {
+const productDB: Record<string, PlaceholderProduct> = {
   'chatgpt-plus': {
     id: 'chatgpt-plus',
     name: 'ChatGPT Plus Starter',
@@ -91,7 +104,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
         {/* Features */}
         <section>
-          <h2 className="text-3xl font-bold text-white mb-8">What's Included</h2>
+          <h2 className="text-3xl font-bold text-white mb-8">What&apos;s Included</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {product.features.map((f: string, i: number) => (
               <div key={i} className="flex gap-3 bg-white/5 border border-white/10 rounded-lg p-4">
@@ -119,14 +132,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <section>
           <h2 className="text-3xl font-bold text-white mb-8">Customer Reviews</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {product.testimonials.map((t: any, i: number) => (
+            {product.testimonials.map((t, i) => (
               <div key={i} className="bg-white/5 border border-white/10 rounded-lg p-6">
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: 5 }).map((_, j) => (
                     <Star key={j} className="w-4 h-4 fill-[#f4b942] text-[#f4b942]" />
                   ))}
                 </div>
-                <p className="text-gray-300 mb-4">"{t.text}"</p>
+                <p className="text-gray-300 mb-4">&ldquo;{t.text}&rdquo;</p>
                 <p className="text-white font-semibold">{t.name}</p>
                 <p className="text-gray-400 text-sm">{t.role}</p>
               </div>
@@ -138,7 +151,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <section>
           <h2 className="text-3xl font-bold text-white mb-8">FAQs</h2>
           <div className="space-y-3">
-            {product.faq.map((item: any, i: number) => (
+            {product.faq.map((item, i) => (
               <details key={i} className="group bg-white/5 border border-white/10 rounded-lg p-6">
                 <summary className="flex justify-between items-center font-semibold text-white cursor-pointer">
                   {item.q}

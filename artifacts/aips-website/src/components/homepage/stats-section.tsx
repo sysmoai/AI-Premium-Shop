@@ -63,7 +63,7 @@ export function StatsSection() {
             Trusted by thousands, built for results
           </h2>
           <p className="text-gray-400 text-xl mt-4 max-w-2xl mx-auto">
-            We're more than just a service. We're your partner in AI success.
+            We&apos;re more than just a service. We&apos;re your partner in AI success.
           </p>
         </div>
 

@@ -42,7 +42,7 @@ export function BrandsShowcase() {
             118+ AI Tools from Top Brands
           </h2>
           <p className="text-gray-400 text-xl max-w-3xl mx-auto">
-            Access to world's leading AI platforms. All features, all working.
+            Access to world&apos;s leading AI platforms. All features, all working.
             Official licenses, verified access, premium support included.
           </p>
         </div>

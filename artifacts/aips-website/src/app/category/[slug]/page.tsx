@@ -1,11 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import {
-  getProductGroups,
-  getCategoryLabel,
-  getCategories,
-  getWhatsappUrl,
-} from "@/lib/data/products";
+import { getProductGroups, getCategoryLabel, getCategories } from "@/lib/data/products";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import type { Metadata } from "next";

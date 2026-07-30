@@ -304,4 +304,5 @@ export const higgsieldBestPractices = {
   ],
 };
 
-export default { generateWebImage, higgsieldBestPractices };
+const higgsfieldService = { generateWebImage, higgsieldBestPractices };
+export default higgsfieldService;

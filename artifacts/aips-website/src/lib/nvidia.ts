@@ -16,7 +16,7 @@ interface NvidiaRequestOptions {
 
 async function callNvidiaAPI(
   endpoint: string,
-  payload: Record<string, any>,
+  payload: Record<string, unknown>,
   model: string = 'meta/llama-3.1-70b-instruct'
 ) {
   if (!NVIDIA_API_KEY) {

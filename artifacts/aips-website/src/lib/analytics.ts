@@ -12,7 +12,7 @@ if (typeof window !== 'undefined' && MIXPANEL_TOKEN) {
 
 export const analytics = {
   // Page events
-  pageViewed: (pageName: string, properties?: Record<string, any>) => {
+  pageViewed: (pageName: string, properties?: Record<string, unknown>) => {
     if (MIXPANEL_TOKEN) {
       mixpanel.track('Page Viewed', {
         page: pageName,
@@ -117,7 +117,7 @@ export const analytics = {
   },
 
   // Set user properties
-  setUserProperties: (userId: string, properties: Record<string, any>) => {
+  setUserProperties: (userId: string, properties: Record<string, unknown>) => {
     if (MIXPANEL_TOKEN) {
       mixpanel.identify(userId);
       mixpanel.people.set(properties);
@@ -125,7 +125,7 @@ export const analytics = {
   },
 
   // Track custom event
-  trackEvent: (eventName: string, properties?: Record<string, any>) => {
+  trackEvent: (eventName: string, properties?: Record<string, unknown>) => {
     if (MIXPANEL_TOKEN) {
       mixpanel.track(eventName, {
         timestamp: new Date().toISOString(),

@@ -1,15 +1,4 @@
-﻿import {
-  ChevronRight,
-  MessageCircle,
-  Search,
-  ShieldCheck,
-  Clock,
-  Users,
-  CreditCard,
-  Star,
-  Zap,
-  ArrowRight,
-} from "lucide-react";
+﻿import { ChevronRight, MessageCircle, Search, ShieldCheck, CreditCard, Star, Zap, ArrowRight } from "lucide-react";
 import {
   FAQPageJsonLd,
   HowToJsonLd,

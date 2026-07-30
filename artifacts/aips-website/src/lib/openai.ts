@@ -158,4 +158,5 @@ export async function generateProductRecommendation(
   }
 }
 
-export default { generateChatbotResponse, classifyCustomerQuery, generateProductRecommendation };
+const openaiService = { generateChatbotResponse, classifyCustomerQuery, generateProductRecommendation };
+export default openaiService;

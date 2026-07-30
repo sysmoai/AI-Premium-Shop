@@ -2,6 +2,7 @@
 
 import { uploadImage, batchUploadImages } from '@/lib/storage/supabase-storage';
 import { NextRequest, NextResponse } from 'next/server';
+import { errorMessage } from '@/lib/utils';
 
 /**
  * POST /api/upload
@@ -28,10 +29,10 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(result);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Upload error:', error);
     return NextResponse.json(
-      { error: error.message || 'Upload failed' },
+      { error: errorMessage(error) || 'Upload failed' },
       { status: 500 }
     );
   }
@@ -61,10 +62,10 @@ export async function PUT(request: NextRequest) {
     });
 
     return NextResponse.json(results);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Batch upload error:', error);
     return NextResponse.json(
-      { error: error.message || 'Batch upload failed' },
+      { error: errorMessage(error) || 'Batch upload failed' },
       { status: 500 }
     );
   }

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { generateWebImage } from '@/lib/higgsfield';
 
 /**
@@ -218,7 +217,7 @@ PERFECT FOR: Hero section trust element`,
                 <span className="text-white font-semibold">Claude writes winning proposals in 2 minutes</span>
               </div>
               <div className="flex items-center justify-center gap-4">
-                <span className="text-gray-400">Can't land a job?</span>
+                <span className="text-gray-400">Can&apos;t land a job?</span>
                 <span className="text-[#f4b942]">→</span>
                 <span className="text-white font-semibold">AI preps your interview & tailors your CV</span>
               </div>

@@ -160,4 +160,5 @@ async function sendEmail({ to, subject, html, text }: EmailParams) {
   }
 }
 
-export default { sendOrderConfirmationEmail, sendDeliveryNotificationEmail, sendSupportReplyEmail };
+const emailService = { sendOrderConfirmationEmail, sendDeliveryNotificationEmail, sendSupportReplyEmail };
+export default emailService;

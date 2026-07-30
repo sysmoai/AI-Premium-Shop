@@ -2,7 +2,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { BreadcrumbJsonLd, FAQPageJsonLd } from "@/components/seo/json-ld";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, MessageCircle, Video } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 
 export const metadatanswer: Metadata = buildMetadata({
   title: "Best AI Tools for Content Creators in Bangladesh 2026",

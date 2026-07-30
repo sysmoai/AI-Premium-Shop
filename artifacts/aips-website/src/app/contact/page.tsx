@@ -1,7 +1,7 @@
 import { buildMetadata } from "@/lib/seo/metadata";
 import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import type { Metadata } from "next";
-import { MessageCircle, Mail, Phone, MapPin, Clock, ChevronRight } from "lucide-react";
+import { MessageCircle, Mail, Phone, Clock, ChevronRight } from "lucide-react";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact — AI Premium Shop Bangladesh",

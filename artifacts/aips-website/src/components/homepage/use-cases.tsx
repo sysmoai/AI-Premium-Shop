@@ -133,7 +133,7 @@ export function UseCasesSection() {
         <div className="mt-20 bg-gradient-to-r from-[#1a1f3a] to-[#0A0E27] border border-[#f4b942]/20 rounded-2xl p-12">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-white mb-2">
-              5 Payment Methods - Choose What's Best for You
+              5 Payment Methods - Choose What&apos;s Best for You
             </h3>
             <p className="text-gray-400">
               All payment methods available instantly. No restrictions. Fast processing.

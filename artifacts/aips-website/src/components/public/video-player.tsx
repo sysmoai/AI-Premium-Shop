@@ -76,6 +76,7 @@ export function VideoPlayer({
         className="w-full h-auto block"
         poster={posterSrc}
         playsInline
+        autoPlay={autoPlay}
         muted={isMuted}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}

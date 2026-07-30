@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Search, X, ChevronRight, ShieldCheck, TrendingDown, Users, Lock, Star } from "lucide-react";
+import { Search, X, ChevronRight, TrendingDown, Users, Lock, Star } from "lucide-react";
 import {
   getProductGroups,
   getCategoryLabel,

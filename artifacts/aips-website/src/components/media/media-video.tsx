@@ -63,7 +63,7 @@ export function MediaVideo({
   }, [reducedMotion]);
 
   if (reducedMotion) {
-    // eslint-disable-next-line @next/next/no-img-element
+     
     return (
       <img
         src={poster}

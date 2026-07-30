@@ -1096,3 +1096,73 @@ Verified: typecheck clean, tested locally (dev server, footer links + JSON-LD sa
 /contact Messenger link all correct, zero console errors), pushed, deployed (confirmed
 success via `gh api .../commits/ad9cb6d/status`), and re-verified directly on
 aipremiumshop.com (homepage + /support) — all Facebook/Messenger links live-correct.
+
+### 2026-07-30 — Claude App (desktop) — Comprehensive AI Concierge upgrade (commits `5e314c0`, `a483cee`, `bbc740f`)
+
+Per Emon's request to make "all possible improvements" to the NVIDIA-powered chatbot.
+Full details in the commit messages; summary + what's actually live right now:
+
+**Critical data-correctness fix (LIVE, verified):** the catalog generator kept only the
+FIRST sibling record per slug, so 11 multi-tier products (Claude Pro, ChatGPT Plus,
+Grammarly, etc.) only exposed ONE price tier to the bot. Confirmed live via direct API
+test: asking "cheapest Claude Pro plan?" now correctly returns all 6 real tiers
+(Starter Shared ৳599 → Max 20x ৳29,900) instead of the wrong single ৳1,590 answer it
+would have given before. Rewrote `generate-concierge-catalog.mjs` to aggregate every
+sibling tier per slug; `validate-catalog.mjs`'s sync check rewritten in lockstep so it
+still hard-fails on drift.
+
+**System prompt enrichment (LIVE, verified):** added the site's own already-approved
+FAQ policy language (shared-vs-personal, 30-day warranty, 15-min refund window, 4-step
+ordering flow, standard beginner recommendation, segment guide links) — grounded in
+Home.tsx's real copy, nothing invented. Added an explicit ban on unverifiable marketing
+superlatives ("best", "instant", "trusted by thousands") in the bot's own replies.
+Live-tested: refund/warranty question returned correct facts; a request-price product
+(Recraft) correctly said "not sure, check WhatsApp" instead of inventing a number; a
+PIN-sharing attempt was correctly refused and redirected to WhatsApp without ever using
+the PIN.
+
+**Reliability — a real bug found AND a real gap found via the new tooling:**
+- Fixed a timeout-budget bug: 3 fallback models × 12s timeout could sum to 36s against
+  the function's old 30s maxDuration, risking a hard Vercel kill mid-fallback instead
+  of a clean error. Now tracks elapsed time and stops trying new models with <3s
+  budget left; maxDuration raised to 45s.
+- **Added `GET /api/concierge?diagnose=1`** — a live, real-key, per-model reachability
+  probe (latency + status), so model health is measured, not guessed from logs. First
+  real use of it immediately paid off: **it found 2 of the original 3 fallback models
+  were already silently dead in production** — `meta/llama-3.2-3b-instruct` timed out
+  (8s abort) and `mistralai/mistral-7b-instruct-v0.3` flat 404'd (deprecated model ID).
+  Neither would have ever actually caught a primary-model failure. Trimmed `MODELS` to
+  just the 2 diagnose-confirmed-live entries (`llama-3.1-8b-instruct` primary ~260ms,
+  `nvidia/nemotron-mini-4b-instruct` fallback ~160ms, even faster than primary).
+- Added structured console logging (question text only, no PII collected by this chat
+  anyway) on both success and failure — the honest, concrete mechanism for the bot to
+  keep improving: real user questions become reviewable in Vercel logs to spot
+  knowledge gaps, instead of an unfounded "self-learning" claim.
+
+⛔ **Deploy quota hit again mid-work** (same daily Vercel Hobby-tier limit as earlier
+today — recovered in ~2h43m last time, not literally 24h per Vercel's own message).
+`5e314c0` (the main upgrade — catalog fix, prompt, a11y, diagnose endpoint) deployed
+successfully and IS live — verified directly above. `a483cee` (testing 5 more model
+candidates: gemma-2-9b-it, phi-3-mini-4k-instruct, qwen2.5-7b-instruct, llama-3.2-1b-
+instruct, llama-3.1-70b-instruct) got rejected before those could be diagnose-tested.
+Rather than leave unverified model IDs queued, immediately followed up with `bbc740f`
+trimming MODELS back to only the 2 confirmed-live entries — queued safely, will
+deploy automatically on reset, strictly safer than what was live before today
+regardless of when it lands. **Next session: once quota resets, run
+`curl "https://aipremiumshop.com/api/concierge?diagnose=1"` first, then reintroduce
+verified candidates from the list above (each needs its own live 200 before trusting
+it) to widen the fallback chain beyond 2 models.**
+
+**Widget accessibility (LIVE, verified):** `role="dialog"`/`aria-modal`/`aria-label` on
+the panel, `aria-expanded`/`aria-controls` on the launcher, `aria-live="polite"` on the
+message list, Escape closes the panel, focus moves to the input on open and back to
+the launcher on close (correctly skips the initial page-load mount — verified this
+doesn't steal focus on first render). Failed sends now show the real reason
+(rate-limited vs. generic) with a working "try again" action that resends without
+retyping — tested locally end-to-end (simulated failure, confirmed retry re-sent the
+exact same message).
+
+Verified throughout: `node --check` on all 3 touched JS files, `tsc` clean, full
+`validate-catalog.mjs` (0 hard failures), full production build, local dev-server pass
+(dialog semantics, focus management, Escape, retry flow), and live production tests
+(health check, diagnose endpoint, 4 real chat queries, zero console errors).

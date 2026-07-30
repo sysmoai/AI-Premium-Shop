@@ -23,21 +23,47 @@ export interface LiveProduct {
   featured: boolean;
   whatsappMsg: string;
   status: string;
+  icon?: string;
+  officialIcon?: string;
+  official?: string;
+  displayName?: string;
   // Enriched fields from Replit catalog
   descriptionBN?: string;
   useCases?: string[];
   whyBuyFromAIPS?: string;
-  faq?: { q: string; a: string }[];
-  competitorCompare?: { name: string; price: string; advantage: string }[];
+  faq?: { q: string; a: string; qBN?: string; aBN?: string }[];
+  competitorCompare?: { seller: string; price: string; risk: string }[];
   relatedProducts?: string[];
   uniqueSellingPoints?: string[];
-  howItWorksSteps?: { step: number; title: string; description: string }[];
+  howItWorksSteps?: { title: string; desc: string }[];
+  plans?: {
+    planName: string;
+    tierLevel: number;
+    priceBDT: number;
+    officialUSD?: number;
+    billingCycle?: string;
+    deliveryType?: string;
+    whatsIncluded?: string[];
+  }[];
+  segments?: string[];
+  sourceUrl?: string;
   estimatedDeliveryTime?: string;
   deliveryMethod?: string;
   lastVerifiedDate?: string;
-  seo?: { title: string; description: string };
+  seo?: {
+    title: string;
+    metaDescription: string;
+    canonical?: string;
+    keywords?: string[];
+    ogImage?: string;
+  };
   badges?: string[];
-  trust?: { warrantyDays: number; replacementGuarantee: boolean };
+  trust?: {
+    warrantyDays: number;
+    refundPolicy?: string;
+    reviewCount?: number;
+    rating?: number;
+  };
 }
 
 export interface ProductGroup {

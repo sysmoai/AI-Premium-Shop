@@ -1,0 +1,27 @@
+# Without this file the CLI uploads the whole 2.7 GB monorepo (1.7 GB of it
+# node_modules) and the deploy dies with "Upload aborted" before it ever
+# reaches the build step. Vercel installs dependencies itself, so nothing
+# below needs to travel with the source.
+node_modules
+**/node_modules
+
+# Build output — Vercel runs the build on its side.
+dist
+**/dist
+.next
+**/.next
+.turbo
+**/.turbo
+.vite-cache
+**/.vite-cache
+
+# Local-only
+.git
+.env*.local
+*.log
+.DS_Store
+
+# Docs and reports: large, never served, and irrelevant to the build.
+docs
+*.md
+!README.md

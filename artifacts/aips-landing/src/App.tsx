@@ -43,6 +43,8 @@ const EducatorsGuide = lazy(() => import("@/pages/guides/EducatorsGuide"));
 const BanglaBN = lazy(() => import("@/pages/BanglaBN"));
 const StudentsBN = lazy(() => import("@/pages/StudentsBN"));
 const DevelopersBN = lazy(() => import("@/pages/DevelopersBN"));
+const FreelancersBN = lazy(() => import("@/pages/FreelancersBN"));
+const CreatorsBN = lazy(() => import("@/pages/CreatorsBN"));
 
 const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20an%20AI%20subscription";
 
@@ -171,6 +173,8 @@ function Router() {
       <Route path="/bn" component={BanglaBN} />
       <Route path="/students-bn" component={StudentsBN} />
       <Route path="/developers-bn" component={DevelopersBN} />
+      <Route path="/freelancers-bn" component={FreelancersBN} />
+      <Route path="/creators-bn" component={CreatorsBN} />
 
       <Route component={NotFound} />
     </Switch>

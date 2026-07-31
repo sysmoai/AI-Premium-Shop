@@ -495,7 +495,14 @@ export default function StudentsGuide() {
                 1
               </div>
               <h3 className="font-bold text-gray-900 mb-2">Choose Your Plan</h3>
-              <p className="text-gray-600">Pick from Starter (BDT 499), Growth (BDT 1,498), or Pro (BDT 2,293)</p>
+              {/* Second copy of the same three prices, typed separately from the
+                  cards above — so the page listed Growth at 1,498 in one place
+                  and 1,497 in the other. Derived from the same source now. */}
+              <p className="text-gray-600">
+                Pick from Starter ({taka(stackTotal(["ChatGPT Plus"]) ?? 0)}), Growth (
+                {taka(stackTotal(["ChatGPT Plus", "Claude Pro", "Grammarly Premium"]) ?? 0)}), or Pro (
+                {taka(stackTotal(["ChatGPT Plus", "Claude Pro", "GitHub Copilot Pro", "Grammarly Premium"]) ?? 0)})
+              </p>
             </div>
 
             <div className="text-center">

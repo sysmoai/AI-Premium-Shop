@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { stackTotal, taka } from "@/lib/catalogStats";
+import { stackTotal, taka, cheapestByName } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -119,7 +119,7 @@ export default function CreatorsGuide() {
   const faqs = [
     {
       q: "Which AI tool should content creators start with?",
-      a: "Start with ChatGPT Plus (BDT 999) for scripting and content planning. Then add Midjourney (BDT 1,199) for thumbnails once you see CTR improvements. Together they cost BDT 2,198/month but can 2x your output.",
+      a: `Start with ChatGPT Plus (from ${taka(cheapestByName("ChatGPT Plus") ?? 0)}) for scripting and content planning. Then add Midjourney (from ${taka(cheapestByName("Midjourney") ?? 0)}) for thumbnails once you see CTR improvements. Together they start at ${taka(stackTotal(["ChatGPT Plus", "Midjourney"]) ?? 0)}/month.`,
     },
     {
       q: "Is AI-generated content allowed on YouTube, TikTok, and Instagram?",
@@ -145,7 +145,7 @@ export default function CreatorsGuide() {
 
   const budgetPlans = [
     {
-      name: "Starter (BDT 2,198/month)",
+      name: `Starter (${taka(stackTotal(["ChatGPT Plus", "Midjourney"]) ?? 0)}/month)`,
       tools: ["ChatGPT Plus", "Midjourney"],
       features: [
         "Unlimited video scripts",
@@ -157,7 +157,7 @@ export default function CreatorsGuide() {
       best: "For new creators",
     },
     {
-      name: "Growth (BDT 2,946/month)",
+      name: `Growth (${taka(stackTotal(["ChatGPT Plus", "Midjourney", "ElevenLabs"]) ?? 0)}/month)`,
       tools: ["ChatGPT Plus", "Midjourney", "ElevenLabs"],
       features: [
         "All Starter features",
@@ -169,7 +169,7 @@ export default function CreatorsGuide() {
       best: "For growing channels",
     },
     {
-      name: `Pro (${taka(stackTotal(["ChatGPT Plus", "Midjourney Standard", "Canva Pro", "Runway Standard", "ElevenLabs Starter"]) ?? 0)}/month)`,
+      name: `Pro (${taka(stackTotal(["ChatGPT Plus", "Midjourney", "ElevenLabs", "Suno AI", "Runway"]) ?? 0)}/month)`,
       tools: ["ChatGPT Plus", "Midjourney", "ElevenLabs", "Suno AI", "Runway"],
       features: [
         "All Growth features",

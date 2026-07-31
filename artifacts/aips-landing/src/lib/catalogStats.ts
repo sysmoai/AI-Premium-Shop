@@ -150,7 +150,17 @@ export function cheapestByName(name: string): number | null {
   // Copilot Pro — Personal" (BDT 1,495) are the same slug and the same product
   // page, so a name-only lookup for "GitHub Copilot Pro" saw only the
   // expensive tier and priced a student stack at BDT 2,992 instead of 1,896.
-  const slug = products.find((p) => p.name.split(" — ")[0] === name)?.slug;
+  // Guide pages label tools the way a reader says them ("Midjourney",
+  // "ElevenLabs", "Runway") while the catalog carries the tier-qualified name
+  // ("Midjourney Standard", "ElevenLabs Starter", "Runway Standard"). Exact
+  // match first, then longest-prefix, so a display name still resolves rather
+  // than silently returning null and rendering a ৳0 total.
+  const base = (p: RawProduct) => p.name.split(" — ")[0];
+  const slug =
+    products.find((p) => base(p) === name)?.slug ??
+    products
+      .filter((p) => base(p).startsWith(`${name} `))
+      .sort((a, b) => base(a).length - base(b).length)[0]?.slug;
   if (!slug) return null;
   let best: number | null = null;
   for (const p of products) {

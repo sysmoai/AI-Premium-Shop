@@ -19,6 +19,7 @@ import productsData from "../../data/products.json";
 
 interface RawProduct {
   slug: string;
+  name: string;
   category: string;
   brand?: string;
   tier?: string;
@@ -132,4 +133,42 @@ export function brandStats(brand: string): { plans: number; fromPrice: number | 
 /** "৳299" — formatted with the local currency symbol. */
 export function taka(n: number): string {
   return `৳${n.toLocaleString("en-US")}`;
+}
+
+/**
+ * Cheapest listed price for a product looked up by display name.
+ *
+ * Guide pages describe stacks by name ("ChatGPT Plus", "Grammarly Premium")
+ * rather than slug, so this is the lookup they need. Names are matched against
+ * the base product name with any " — Tier" suffix stripped, the same way
+ * api/_catalog.json is built.
+ */
+export function cheapestByName(name: string): number | null {
+  let best: number | null = null;
+  for (const p of products) {
+    if (p.name.split(" — ")[0] !== name) continue;
+    if (p.requestPrice) continue;
+    const price = p.price;
+    if (typeof price === "number" && (best == null || price < best)) best = price;
+  }
+  return best;
+}
+
+/**
+ * Total of the cheapest tier of each named product.
+ *
+ * Stack totals on the guide pages were typed by hand and every one of them had
+ * drifted from the products it claimed to add up — the Freelancers stack
+ * advertised BDT 1,998 for BDT 1,497 of tools, the Students Pro stack BDT
+ * 2,293 for BDT 1,896. Returns null if any component is unknown or
+ * request-price, because a total containing an unknown is not a total.
+ */
+export function stackTotal(names: string[]): number | null {
+  let sum = 0;
+  for (const n of names) {
+    const p = cheapestByName(n);
+    if (p == null) return null;
+    sum += p;
+  }
+  return sum;
 }

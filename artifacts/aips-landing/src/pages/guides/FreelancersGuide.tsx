@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { stackTotal, taka } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -156,7 +157,7 @@ export default function FreelancersGuide() {
       best: "Perfect for writers & consultants",
     },
     {
-      name: "Growth (BDT 1,998/month)",
+      name: `Growth (${taka(stackTotal(["ChatGPT Plus", "Claude Pro", "Canva Pro"]) ?? 0)}/month)`,
       tools: ["ChatGPT Plus", "Midjourney", "Canva Pro"],
       features: [
         "All Starter features",
@@ -168,7 +169,7 @@ export default function FreelancersGuide() {
       best: "For designers & creators",
     },
     {
-      name: "Pro (BDT 3,493/month)",
+      name: `Pro (${taka(stackTotal(["ChatGPT Plus", "Claude Pro", "Canva Pro", "Midjourney Standard"]) ?? 0)}/month)`,
       tools: ["ChatGPT Plus", "Claude Pro", "Midjourney", "GitHub Copilot"],
       features: [
         "All Growth features",

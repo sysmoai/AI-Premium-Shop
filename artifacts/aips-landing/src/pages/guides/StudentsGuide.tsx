@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { stackTotal, taka } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -143,7 +144,7 @@ export default function StudentsGuide() {
 
   const budgetPlans = [
     {
-      name: "Starter (BDT 499/month)",
+      name: `Starter (${taka(stackTotal(["ChatGPT Plus"]) ?? 0)}/month)`,
       tools: ["ChatGPT Plus", "Grammarly Premium"],
       features: [
         "GPT-5.4 access",
@@ -155,7 +156,7 @@ export default function StudentsGuide() {
       best: "Perfect for most students",
     },
     {
-      name: "Growth (BDT 1,498/month)",
+      name: `Growth (${taka(stackTotal(["ChatGPT Plus", "Claude Pro", "Grammarly Premium"]) ?? 0)}/month)`,
       tools: ["ChatGPT Plus", "Claude Pro", "Grammarly Premium"],
       features: [
         "All Starter features",
@@ -167,7 +168,7 @@ export default function StudentsGuide() {
       best: "For engineering & science students",
     },
     {
-      name: "Pro (BDT 2,293/month)",
+      name: `Pro (${taka(stackTotal(["ChatGPT Plus", "Claude Pro", "GitHub Copilot Pro", "Grammarly Premium"]) ?? 0)}/month)`,
       tools: ["ChatGPT Plus", "Claude Pro", "GitHub Copilot", "Grammarly Premium"],
       features: [
         "All Growth features",

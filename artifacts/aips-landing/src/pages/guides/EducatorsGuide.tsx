@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { stackTotal, taka } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -144,7 +145,7 @@ export default function EducatorsGuide() {
 
   const budgetPlans = [
     {
-      name: "Starter (BDT 1,398/month)",
+      name: `Starter (${taka(stackTotal(["ChatGPT Plus", "Canva Pro"]) ?? 0)}/month)`,
       tools: ["ChatGPT Plus", "Canva Pro"],
       features: [
         "Lesson planning",
@@ -156,7 +157,7 @@ export default function EducatorsGuide() {
       best: "Perfect for most teachers",
     },
     {
-      name: "Growth (BDT 3,544/month)",
+      name: `Growth (${taka(stackTotal(["ChatGPT Plus", "Claude Pro", "Midjourney Standard", "Canva Pro"]) ?? 0)}/month)`,
       tools: ["ChatGPT Plus", "Claude Pro", "Midjourney", "Canva Pro"],
       features: [
         "All Starter features",
@@ -168,7 +169,7 @@ export default function EducatorsGuide() {
       best: "For multiple subjects",
     },
     {
-      name: "Pro (BDT 4,093/month)",
+      name: `Pro (${taka(stackTotal(["ChatGPT Plus", "Claude Pro", "Midjourney Standard", "Notion AI", "Canva Pro"]) ?? 0)}/month)`,
       tools: ["ChatGPT Plus", "Claude Pro", "Midjourney", "Notion AI", "Canva Pro"],
       features: [
         "All Growth features",

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { stackTotal, taka } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -168,7 +169,7 @@ export default function CreatorsGuide() {
       best: "For growing channels",
     },
     {
-      name: "Pro (BDT 5,441/month)",
+      name: `Pro (${taka(stackTotal(["ChatGPT Plus", "Midjourney Standard", "Canva Pro", "Runway Standard", "ElevenLabs Starter"]) ?? 0)}/month)`,
       tools: ["ChatGPT Plus", "Midjourney", "ElevenLabs", "Suno AI", "Runway"],
       features: [
         "All Growth features",

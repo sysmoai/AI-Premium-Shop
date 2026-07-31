@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { stackTotal, taka } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -156,7 +157,7 @@ export default function SMBGuide() {
       best: "Perfect for solo founders",
     },
     {
-      name: "Growth (BDT 2,249/month)",
+      name: `Growth (${taka(stackTotal(["ChatGPT Plus", "Claude Pro", "Canva Pro"]) ?? 0)}/month)`,
       tools: ["Google AI Pro", "ChatGPT Team", "Notion AI"],
       features: [
         "All Starter features",
@@ -168,7 +169,7 @@ export default function SMBGuide() {
       best: "For small teams (5-10 people)",
     },
     {
-      name: "Pro (BDT 4,044/month)",
+      name: `Pro (${taka(stackTotal(["ChatGPT Plus", "Claude Pro", "Canva Pro", "Notion Business"]) ?? 0)}/month)`,
       tools: ["Google AI Pro", "ChatGPT Team", "Notion AI", "Claude Pro", "Zapier"],
       features: [
         "All Growth features",

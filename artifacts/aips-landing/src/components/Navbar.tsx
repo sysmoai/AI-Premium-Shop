@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { useLocation } from "wouter";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
-import { TOTAL_PRODUCTS, categoryStats, brandStats, taka } from "@/lib/catalogStats";
+import { TOTAL_PRODUCTS, categoryStats, brandStats, taka, cheapestPriceFor, tierPrice } from "@/lib/catalogStats";
 import productsData from "../../data/products.json";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
@@ -79,14 +79,28 @@ const SOLUTIONS = [
   { icon: Briefcase,     label: "Job Seekers", href: "/best-ai-for-job-seekers" },
 ];
 
+// Bundle prices come from the catalog; only the copy is written here.
+//
+// The Freelancer badge read "Save ৳540" while the product's own description
+// said ৳789. Computed from the tiers it actually contains — ChatGPT Personal
+// ৳2,990 + Midjourney ৳1,199 + Perplexity ৳599 = ৳4,788 against a ৳3,999
+// bundle — the saving is ৳789, so the navbar was understating it by ৳249 and
+// disagreeing with the product page.
+//
+// The Business Package badge previously read "Save ৳3,570". That figure could
+// not be reconciled with anything: the five tools it names come to ৳3,896 at
+// their cheapest tiers, so a ৳3,570 saving would imply ৳18,570 of contents
+// against a ৳15,000 price. It is removed rather than replaced with a guess —
+// this catalog already carries 127 unverified-claim flags and an unsourced
+// savings number is exactly that. Restore it with a computed basis.
 const BUNDLES_LEFT = [
   { icon: GraduationCap, iconCls: "text-blue-400",   name: "Student Essentials", price: "৳449",    sub: "ChatGPT + Study Guide",                  badge: "" },
   { icon: GraduationCap, iconCls: "text-purple-400", name: "University Pro",     price: "৳899",    sub: "ChatGPT + Perplexity + Coaching",         badge: "" },
-  { icon: Laptop,        iconCls: "text-green-400",  name: "Freelancer",         price: "৳3,999",  sub: "ChatGPT + Midjourney + Perplexity",       badge: "Save ৳540" },
+  { icon: Laptop,        iconCls: "text-green-400",  name: "Freelancer",         price: "৳3,999",  sub: "ChatGPT + Midjourney + Perplexity",       badge: `Save ${taka((tierPrice("chatgpt-plus-bangladesh", "Personal") ?? 0) + (cheapestPriceFor("midjourney-bangladesh") ?? 0) + (cheapestPriceFor("perplexity-pro-bangladesh") ?? 0) - 3999)}` },
 ];
 
 const BUNDLES_RIGHT = [
-  { icon: Building,  iconCls: "text-amber-400", name: "Business Package",   price: "৳15,000", sub: "6 AI tools + 2hr Expert Setup",              badge: "Save ৳3,570" },
+  { icon: Building,  iconCls: "text-amber-400", name: "Business Package",   price: "৳15,000", sub: "6 AI tools + 2hr Expert Setup",              badge: "" },
   { icon: Building2, iconCls: "text-red-400",   name: "B2B Implementation", price: "৳25,000", sub: "Full stack + 5hr Training + 30-day Support", badge: "" },
 ];
 

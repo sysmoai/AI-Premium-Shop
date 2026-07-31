@@ -716,7 +716,14 @@ export default async function handler(req, res) {
     // means before writeHead(), not after.
     let full = stream.first;
     try {
-      while (full.length < 220) {
+      // 120, not 220. The screen only needs enough text to catch a prompt
+      // reproduction, which always begins at the very start ("Sure, here it
+      // is: You are the AI Concierge…" is comfortably inside 120). At 220 the
+      // buffer swallowed most of a typical reply — capped at ~110 words — so
+      // the answer landed in one jump and the streaming UX was gone. Measured
+      // in a browser: the panel text went straight from empty to final with no
+      // intermediate growth.
+      while (full.length < 120) {
         const more = await stream.next();
         if (more == null) break;
         full += more;
@@ -759,6 +766,10 @@ export default async function handler(req, res) {
         // to the full token budget with the customer watching.
         if (degenerate(full.slice(-400))) {
           console.error(JSON.stringify({ event: "concierge_degenerate_midstream", model }));
+          break;
+        }
+        if (leaks(full)) {
+          console.error(JSON.stringify({ event: "concierge_prompt_leak_midstream", model }));
           break;
         }
         sse(res, { type: "delta", v: chunk });

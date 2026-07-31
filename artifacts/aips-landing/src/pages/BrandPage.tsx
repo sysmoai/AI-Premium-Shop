@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { cheapestPriceFor } from "@/lib/catalogStats";
 import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { motion } from "framer-motion";
 import {
@@ -824,6 +825,13 @@ const BRAND_META: Record<string, {
 
 interface BrandPageProps {
   brandSlug: string;
+}
+
+
+/** Cheapest live price for a linked alternative, formatted like the table. */
+function altPrice(slug: string): string | null {
+  const p = cheapestPriceFor(slug.replace(/^\//, ""));
+  return p == null ? null : `from BDT ${p.toLocaleString()}`;
 }
 
 export default function BrandPage({ brandSlug }: BrandPageProps) {
@@ -2333,7 +2341,18 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   </div>
                 </div>
                 {[
-                  { label: "Price (AIPS)", a: cheapest && cheapest.price != null ? `from BDT ${cheapest.price.toLocaleString()}` : "—", b: comp.price1, c: comp.price2 },
+                  {
+                    label: "Price (AIPS)",
+                    a: cheapest && cheapest.price != null ? `from BDT ${cheapest.price.toLocaleString()}` : "—",
+                    // Derived, not read from the map: 35 of the 70 price
+                    // literals in ALTERNATIVES were wrong — Claude Pro listed
+                    // at BDT 1,495 against a real 599, Cursor at 2,990 against
+                    // 699, and Adobe Firefly at 190 against 799, which
+                    // undercharges. The slug is trustworthy; the typed price
+                    // was not.
+                    b: altPrice(comp.slug1) ?? comp.price1,
+                    c: altPrice(comp.slug2) ?? comp.price2,
+                  },
                   { label: "Best for", a: BEST_FOR_LABELS[brandSlug] ?? meta.tagline, b: comp.strength1, c: comp.strength2 },
                   { label: "Delivery", a: cheapest?.deliverySLA ?? "5–30 min", b: "5–30 min", c: "5–30 min" },
                 ].map((row, ri) => (

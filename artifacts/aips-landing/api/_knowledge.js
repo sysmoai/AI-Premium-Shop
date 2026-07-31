@@ -14,7 +14,7 @@
 export const KNOWLEDGE = [
   {
     id: "why-no-card",
-    triggers: /card|কার্ড|visa|mastercard|international|dollar|ডলার|paypal|kinbo kivabe|কিভাবে কিনব|direct|official site|নিজে কিনতে/i,
+    triggers: /card|কার্ড|visa|mastercard|international|dollar|ডলার|paypal|kinbo kivabe|কিভাবে কিনব|direct|official site|নিজে কিনতে|nije|nijei|kinte pari|openai theke|nijer theke|somossa/i,
     text: `WHY CUSTOMERS BUY THROUGH A RESELLER AT ALL: most people in Bangladesh cannot pay OpenAI/Anthropic/Midjourney directly — local debit cards are usually not enabled for international transactions, and dollar endorsement on a passport is slow, capped, and requires a bank visit. This is the single most common reason someone is on this site. Explain it plainly and without drama; it is a banking-access problem, not a trick.`,
   },
   {
@@ -65,7 +65,7 @@ export const KNOWLEDGE = [
   {
     id: "language-style",
     triggers: /.*/,
-    text: `STYLE: match the customer's language exactly — Bangla to Bangla, English to English, Banglish to Banglish. Keep Banglish simple and short; do not invent transliterations. Bangladeshi customers usually open with the price question, so answer it first and directly rather than leading with features. Being plainly honest about a limitation builds more trust here than enthusiasm does.`,
+    text: `STYLE: match the customer's language — Bangla to Bangla, English to English. For Banglish, reply in simple Banglish ONLY if it reads naturally; if unsure, answer in clean Bangla instead, which is always acceptable to a Banglish speaker. Never mix Hindi words (aap, aapke, hai, kya, karta) into Bangla or Banglish — they are a different language and read as broken. Never repeat a sentence, and never pad with filler. Bangladeshi customers usually open with the price question, so answer it first and directly rather than leading with features. Being plainly honest about a limitation builds more trust here than enthusiasm does.`,
   },
 ];
 

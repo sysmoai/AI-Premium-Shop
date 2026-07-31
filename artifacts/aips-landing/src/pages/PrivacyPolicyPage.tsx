@@ -17,9 +17,38 @@ export default function PrivacyPolicyPage() {
 
       <section className="max-w-3xl mx-auto px-4 md:px-8 py-14">
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">Privacy Policy</h1>
-        <p className="text-sm mb-10" style={{ color: "#c9ceda" }}>Last updated: April 2026</p>
+        <p className="text-sm mb-10" style={{ color: "#c9ceda" }}>Last updated: July 2026</p>
 
         <div className="space-y-10 text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
+
+          <div>
+            <h2 className="text-lg font-semibold text-white mb-3">0. AI Assistant Conversations</h2>
+            <p className="mb-2">
+              The AI assistant on this site records the questions you ask it and the answers it gives, so we can see
+              where it fails people and fix it. This is separate from ordering — the assistant cannot take an order or
+              a payment.
+            </p>
+            <ul className="list-disc list-inside space-y-1 ml-2">
+              <li>We store the text of the conversation, which tools were suggested, and how long the reply took.</li>
+              <li>
+                Before anything is saved, we automatically remove phone numbers, email addresses, card numbers, and
+                anything that looks like a PIN, OTP or password. Never send us those — no one at AI Premium Shop will
+                ever ask for them.
+              </li>
+              <li>
+                A random ID identifies your browser tab so a multi-message conversation stays together. It is not
+                linked to your name, number, or any order, and it is discarded when you close the tab.
+              </li>
+              <li>We do not use these conversations for advertising and we do not sell them.</li>
+            </ul>
+            <p className="mt-2">
+              If you would rather not have a conversation recorded, order directly on{" "}
+              <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "#25d366" }}>
+                WhatsApp
+              </a>{" "}
+              instead of using the assistant.
+            </p>
+          </div>
 
           <div>
             <h2 className="text-lg font-semibold text-white mb-3">1. What We Collect</h2>

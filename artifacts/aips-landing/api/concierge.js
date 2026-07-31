@@ -23,6 +23,9 @@
 //    arrives with context instead of retyping it.
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { randomUUID } from "node:crypto";
+import { redact } from "./_redact.js";
+import { logTurn } from "./_store.js";
 
 const catalog = JSON.parse(readFileSync(fileURLToPath(new URL("./_catalog.json", import.meta.url)), "utf8"));
 
@@ -193,7 +196,16 @@ function retrieve(question, intent, limit = 14) {
       if (!seen.has(d.p.path) && (intent.maxPrice == null || d.cheapest <= intent.maxPrice)) picked.push(d);
     }
   }
-  return picked.map((d) => d.p);
+  // Words the customer typed that match nothing anywhere in the catalog and
+  // that TERMS doesn't already translate. Every one of these is either a
+  // product we don't stock or a synonym the retriever should learn — which is
+  // precisely the tuning list the insights endpoint reports on.
+  const termKeys = Object.keys(TERMS);
+  const unmatched = typed.filter(
+    (t) => !termKeys.some((k) => k.includes(t) || t.includes(k)) && !DOCS.some((d) => d.hay.includes(t) || d.catHay.includes(t)),
+  );
+
+  return { products: picked.map((d) => d.p), unmatched };
 }
 
 /* ------------------------------------------------------------------ *
@@ -473,7 +485,8 @@ export default async function handler(req, res) {
     if (typeof req.query?.retrieve === "string") {
       const q = req.query.retrieve.slice(0, 300);
       const intent = intentOf(q);
-      return res.status(200).json({ ok: true, intent, products: retrieve(q, intent).map((p) => p.name) });
+      const r = retrieve(q, intent);
+      return res.status(200).json({ ok: true, intent, products: r.products.map((p) => p.name), unmatched: r.unmatched });
     }
     return res.status(200).json({ ok: true, products: catalog.length, keyConfigured: !!key });
   }
@@ -492,9 +505,16 @@ export default async function handler(req, res) {
     .map((m) => ({ role: m.role, content: m.content.slice(0, 1500) }));
   if (!messages.length) return res.status(400).json({ error: "empty" });
 
+  // Client-supplied so a multi-turn conversation stays stitched together;
+  // it identifies a browser tab, never a person. Coerced and length-capped
+  // because it arrives from the network and lands in a database column.
+  const sessionId = (typeof req.body?.sessionId === "string" ? req.body.sessionId : "").slice(0, 64) || randomUUID();
+  const turnId = randomUUID();
+  const turnNo = messages.filter((m) => m.role === "user").length;
+
   const question = messages[messages.length - 1]?.content ?? "";
   const intent = intentOf(question);
-  const relevant = retrieve(question, intent);
+  const { products: relevant, unmatched } = retrieve(question, intent);
   const system = buildSystem(relevant, intent);
 
   // Logged for gap analysis only — the question text, not identity. This
@@ -544,11 +564,37 @@ export default async function handler(req, res) {
       products,
       suggestions: suggestionsFor(products, intent),
       whatsapp: handoff(products),
+      turnId,
+      sessionId,
     });
     res.end();
-    console.log(
-      JSON.stringify({ event: "concierge_reply", model, ms: Date.now() - overallStart, cards: products.length, q: lastQuestion }),
-    );
+
+    const latencyMs = Date.now() - overallStart;
+    console.log(JSON.stringify({ event: "concierge_reply", model, ms: latencyMs, cards: products.length, q: lastQuestion }));
+
+    // Persist AFTER the customer already has their answer, and only ever in
+    // redacted form. Deliberately not awaited into the response path; if the
+    // store is unprovisioned or down this resolves to a no-op.
+    const q = redact(question);
+    const a = redact(full);
+    await logTurn({
+      id: turnId,
+      sessionId,
+      turn: turnNo,
+      question: q.text.slice(0, 2000),
+      reply: a.text.slice(0, 4000),
+      intent,
+      retrieved: relevant.map((p) => p.name),
+      cards: products.map((p) => p.path),
+      unmatched,
+      model,
+      latencyMs,
+      // "I could not answer this" — no product surfaced and the reply falls
+      // back on sending them to a human. These are the conversations worth
+      // reading first.
+      punted: products.length === 0 && /wa\.me|whatsapp|না জানি|not sure|নিশ্চিত ন/i.test(full),
+      redactions: q.hits.length + a.hits.length,
+    });
     return;
   }
 

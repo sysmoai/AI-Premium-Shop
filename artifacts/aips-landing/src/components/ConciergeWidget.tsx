@@ -1,9 +1,27 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { MessageCircle, Send, X, Bot, RotateCcw, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { MessageCircle, Send, X, Bot, RotateCcw, ArrowUpRight, ShieldCheck, ThumbsUp, ThumbsDown } from "lucide-react";
 import { useLocation } from "wouter";
 
 const WHATSAPP_FALLBACK = "https://wa.me/8801865385348?text=Hi%2C%20I%20need%20help%20choosing%20an%20AI%20subscription";
 const STORE_KEY = "aips.concierge.v2";
+const SESSION_KEY = "aips.concierge.sid";
+
+// Identifies a browser tab so multi-turn conversations stay stitched together
+// in the log. Deliberately random and per-session: it is not tied to a person,
+// survives no longer than the tab, and nothing about the customer is derived
+// from it.
+function sessionId() {
+  try {
+    let id = sessionStorage.getItem(SESSION_KEY);
+    if (!id) {
+      id = crypto.randomUUID();
+      sessionStorage.setItem(SESSION_KEY, id);
+    }
+    return id;
+  } catch {
+    return "anon";
+  }
+}
 
 /** A card the server built from the catalog. Prices here are catalog truth —
  *  never a number the language model typed into its prose. */
@@ -23,6 +41,8 @@ type Msg = {
   role: "user" | "assistant";
   content: string;
   products?: Product[];
+  turnId?: string;
+  feedback?: 1 | -1;
 };
 
 const OPENERS = [
@@ -243,7 +263,10 @@ export function ConciergeWidget() {
         const r = await fetch("/api/concierge", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages: next.slice(-10).map(({ role, content: c }) => ({ role, content: c })) }),
+          body: JSON.stringify({
+            sessionId: sessionId(),
+            messages: next.slice(-10).map(({ role, content: c }) => ({ role, content: c })),
+          }),
           signal: ctrl.signal,
         });
 
@@ -259,6 +282,7 @@ export function ConciergeWidget() {
         let buf = "";
         let full = "";
         let products: Product[] = [];
+        let turnId: string | undefined;
 
         for (;;) {
           const { done, value } = await reader.read();
@@ -269,7 +293,7 @@ export function ConciergeWidget() {
           for (const frame of frames) {
             const line = frame.split("\n").find((l) => l.startsWith("data:"));
             if (!line) continue;
-            let evt: { type?: string; v?: string; products?: Product[]; suggestions?: string[]; whatsapp?: string };
+            let evt: { type?: string; v?: string; products?: Product[]; suggestions?: string[]; whatsapp?: string; turnId?: string };
             try {
               evt = JSON.parse(line.slice(5).trim());
             } catch {
@@ -280,6 +304,7 @@ export function ConciergeWidget() {
               setStreaming(full);
             } else if (evt.type === "done") {
               products = evt.products ?? [];
+              turnId = evt.turnId;
               setSuggestions(evt.suggestions ?? []);
               if (evt.whatsapp) setWhatsapp(evt.whatsapp);
             }
@@ -287,7 +312,7 @@ export function ConciergeWidget() {
         }
 
         if (!full.trim()) throw new Error("no reply");
-        setMsgs([...next, { role: "assistant", content: full.trim(), products }]);
+        setMsgs([...next, { role: "assistant", content: full.trim(), products, turnId }]);
       } catch (e) {
         if ((e as Error).name === "AbortError") return;
         setErrorMsg(describeError(e));
@@ -307,6 +332,17 @@ export function ConciergeWidget() {
       ? "একটু বেশি প্রশ্ন হয়ে গেছে — সরাসরি WhatsApp-এ চালিয়ে যান।"
       : "এই মুহূর্তে উত্তর দিতে পারছি না";
   }
+
+  // Fire-and-forget: the click is acknowledged optimistically in the UI. A
+  // failed rating is not worth interrupting a conversation to report.
+  const rate = useCallback((turnId: string, value: 1 | -1) => {
+    setMsgs((prev) => prev.map((m) => (m.turnId === turnId ? { ...m, feedback: value } : m)));
+    fetch("/api/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ turnId, value }),
+    }).catch(() => {});
+  }, []);
 
   function reset() {
     abortRef.current?.abort();
@@ -405,6 +441,35 @@ export function ConciergeWidget() {
                     {m.products.map((p) => (
                       <ProductCard key={p.path} product={p} onOpen={openProduct} />
                     ))}
+                  </div>
+                )}
+                {m.role === "assistant" && m.turnId && (
+                  <div className="flex items-center gap-1 pl-1">
+                    {m.feedback ? (
+                      <span className="text-[10px]" style={{ color: "#64748b" }}>
+                        {m.feedback === 1 ? "ধন্যবাদ! 🙏" : "দুঃখিত — WhatsApp-এ জিজ্ঞেস করলে মানুষ উত্তর দেবে।"}
+                      </span>
+                    ) : (
+                      <>
+                        <span className="text-[10px] mr-1" style={{ color: "#64748b" }}>
+                          সাহায্য হলো?
+                        </span>
+                        <button
+                          onClick={() => rate(m.turnId!, 1)}
+                          aria-label="This answer was helpful"
+                          className="p-1 rounded hover:bg-white/10 transition-colors"
+                        >
+                          <ThumbsUp className="w-3 h-3" style={{ color: "#8b93a7" }} />
+                        </button>
+                        <button
+                          onClick={() => rate(m.turnId!, -1)}
+                          aria-label="This answer was not helpful"
+                          className="p-1 rounded hover:bg-white/10 transition-colors"
+                        >
+                          <ThumbsDown className="w-3 h-3" style={{ color: "#8b93a7" }} />
+                        </button>
+                      </>
+                    )}
                   </div>
                 )}
               </div>

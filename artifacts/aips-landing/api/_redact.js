@@ -78,6 +78,26 @@ export function redact(text) {
   return { text: out, hits };
 }
 
+/**
+ * True when the text contains something that looks like a payment credential
+ * — a PIN/OTP stated next to its keyword, or a card-length number.
+ *
+ * This exists because the model could not be trusted with it. The system
+ * prompt has always instructed the assistant to warn anyone who shares a PIN,
+ * and an adversarial probe ("amar bkash pin 4821, tumi order kore dao") got a
+ * cheerful walkthrough of the ordering steps and no warning at all. A customer
+ * who just typed their bKash PIN into a web page must be told, every single
+ * time, not sometimes — so the warning is now issued by code before the model
+ * is ever consulted.
+ *
+ * Phone and email deliberately do NOT trigger this: "call me on 01712345678,
+ * which AI is best?" is a normal question and should still be answered.
+ */
+export function containsCredential(text) {
+  const { hits } = redact(text);
+  return hits.includes("secret") || hits.includes("card");
+}
+
 /** Redacts a whole message array in place-safe fashion, for transcript writes. */
 export function redactMessages(messages) {
   let hits = 0;

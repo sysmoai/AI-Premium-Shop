@@ -216,8 +216,17 @@ export default function ProductsPage() {
 
       <section className="max-w-7xl mx-auto px-4 md:px-8 py-14">
         <div className="mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">All {TOTAL_PRODUCTS} AI Tools</h1>
-          <p style={{ color: "#c9ceda" }}>{ALL.length} premium subscriptions. Local payment. Fast delivery.</p>
+          {/* The heading has to agree with the filter. A filtered view still
+              reading "All 87 AI Tools" above four results contradicts itself,
+              and a shared link lands on a page that misstates what it shows. */}
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
+            {filterLabel ? `${filtered.length} ${filterLabel}` : `All ${TOTAL_PRODUCTS} AI Tools`}
+          </h1>
+          <p style={{ color: "#c9ceda" }}>
+            {filterLabel
+              ? `Filtered from ${ALL.length} subscriptions. Local payment. Fast delivery.`
+              : `${ALL.length} premium subscriptions. Local payment. Fast delivery.`}
+          </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-3 mb-8 p-4 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>

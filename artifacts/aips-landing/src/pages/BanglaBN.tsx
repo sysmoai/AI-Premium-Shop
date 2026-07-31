@@ -7,6 +7,13 @@ import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { FAQSection } from "@/components/FAQSection";
 import { motion } from "framer-motion";
 
+const BN = "০১২৩৪৫৬৭৮৯";
+/** Renders a number in Bengali digits, so catalog-derived figures match the
+ *  hand-written Bengali numerals already used throughout this page. */
+function bnNum(n: number | string) {
+  return String(n).replace(/[0-9]/g, (d) => BN[Number(d)]);
+}
+
 export default function BanglaBN() {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -75,7 +82,7 @@ export default function BanglaBN() {
                 AI টুলস বাংলাদেশে সবচেয়ে সাশ্রয়ী দামে
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                {TOTAL_PRODUCTS}টি প্রিমিয়াম AI সেবা — ChatGPT, Claude, Midjourney, Copilot এবং আরও অনেক কিছু।<br />
+                {bnNum(TOTAL_PRODUCTS)}টি প্রিমিয়াম AI সেবা — ChatGPT, Claude, Midjourney, Copilot এবং আরও অনেক কিছু।<br />
                 bKash/Nagad পেমেন্ট। ৫–৩০ মিনিটে ডেলিভারি।
               </p>
               <p className="text-lg text-gray-400 mb-8">
@@ -106,7 +113,7 @@ export default function BanglaBN() {
               className="mt-16 grid grid-cols-3 gap-4 max-w-2xl mx-auto"
             >
               <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-800">
-                <div className="text-2xl font-bold text-white">{TOTAL_PRODUCTS}</div>
+                <div className="text-2xl font-bold text-white">{bnNum(TOTAL_PRODUCTS)}</div>
                 <div className="text-sm text-gray-400">প্রিমিয়াম টুলস</div>
               </div>
               <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-800">
@@ -126,10 +133,15 @@ export default function BanglaBN() {
           <h2 className="text-3xl font-bold text-white mb-12 text-center">কীভাবে কাজ করে?</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { num: "১", title: "টুল খুঁজুন", desc: "আমাদের {TOTAL_PRODUCTS}টি AI টুল থেকে আপনার পছন্দের টুল বেছে নিন।" },
+              // Steps 3 and 4 previously used ३ and ४ — Devanagari, not Bengali.
+              // Next to ১ and ২ that reads as a different alphabet mid-list.
+              // The first description was a plain string containing the text
+              // "{TOTAL_PRODUCTS}", so the Bangla homepage rendered a literal
+              // template placeholder to every visitor.
+              { num: "১", title: "টুল খুঁজুন", desc: `আমাদের ${bnNum(TOTAL_PRODUCTS)}টি AI টুল থেকে আপনার পছন্দের টুল বেছে নিন।` },
               { num: "২", title: "WhatsApp করুন", desc: "আমাদের WhatsApp নম্বরে মেসেজ করুন আপনার পছন্দের টুল নিয়ে।" },
-              { num: "३", title: "পেমেন্ট করুন", desc: "bKash, Nagad বা ব্যাংক ট্রান্সফারে পেমেন্ট করুন (কার্ডের দরকার নেই)।" },
-              { num: "४", title: "পাবেন আইডি", desc: "৫–৩০ মিনিটের মধ্যে আপনার লগইন আইডি পাবেন। সাথে ৩০ দিনের ওয়ারেন্টি।" },
+              { num: "৩", title: "পেমেন্ট করুন", desc: "bKash, Nagad বা ব্যাংক ট্রান্সফারে পেমেন্ট করুন (কার্ডের দরকার নেই)।" },
+              { num: "৪", title: "পাবেন আইডি", desc: "৫–৩০ মিনিটের মধ্যে আপনার লগইন আইডি পাবেন। সাথে ৩০ দিনের ওয়ারেন্টি।" },
             ].map((step, i) => (
               <motion.div
                 key={i}

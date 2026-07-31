@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import { Navbar } from "@/components/Navbar";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { bnFrom, bnTaka, priceOf } from "@/lib/banglaPricing";
+import { tierPrice } from "@/lib/catalogStats";
 import { CheckCircle } from "lucide-react";
 
 export default function SMBBangla() {
@@ -98,21 +100,21 @@ export default function SMBBangla() {
             {[
               {
                 name: "স্টার্টআপ",
-                price: "৳1,590",
+                price: bnFrom("chatgpt-plus-bangladesh"),
                 desc: "ChatGPT Plus",
                 features: ["গ্রাহক সেবা চ্যাট", "বিক্রয় ইমেইল", "কন্টেন্ট লেখা", "মৌলিক অটোমেশন"],
               },
               {
                 name: "ব্যবসা বৃদ্ধি",
-                price: "৳3,990",
+                price: bnTaka((tierPrice("claude-pro-bangladesh", "Premium Shared") ?? 0) + (priceOf("chatgpt-plus-bangladesh") ?? 0)),
                 desc: "Claude Pro + ChatGPT Plus",
                 features: ["উন্নত চ্যাটবট", "ডেটা বিশ্লেষণ", "মার্কেটিং অটোমেশন", "দলের জন্য বিশ্লেষণ"],
                 recommended: true,
               },
               {
                 name: "এন্টারপ্রাইজ",
-                price: "৳6,990",
-                desc: "Claude Pro + ChatGPT + Zapier",
+                price: bnTaka((tierPrice("claude-pro-bangladesh", "Premium Shared") ?? 0) + (priceOf("chatgpt-plus-bangladesh") ?? 0) + (priceOf("notion-business-bangladesh") ?? 0)),
+                desc: "Claude Pro + ChatGPT + Notion Business",
                 features: ["সম্পূর্ণ অটোমেশন", "কাস্টম ওয়ার্কফ্লো", "উন্নত বিশ্লেষণ", "২৪/৭ সহায়তা"],
               },
             ].map((pkg, i) => (

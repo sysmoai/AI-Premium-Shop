@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import { Navbar } from "@/components/Navbar";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { bnFrom, bnTaka, priceOf } from "@/lib/banglaPricing";
+import { tierPrice } from "@/lib/catalogStats";
 import { CheckCircle } from "lucide-react";
 
 export default function CreatorsBN() {
@@ -98,20 +100,20 @@ export default function CreatorsBN() {
             {[
               {
                 name: "স্টার্টার ক্রিয়েটর",
-                price: "৳599",
+                price: bnFrom("chatgpt-plus-bangladesh"),
                 desc: "ChatGPT Plus",
                 features: ["স্ক্রিপ্ট লেখা", "আইডিয়া জেনারেশন", "ক্যাপশন লেখা", "বেসিক ভিডিও টিপস"],
               },
               {
                 name: "প্রো ক্রিয়েটর",
-                price: "৳2,088",
+                price: bnTaka((tierPrice("claude-pro-bangladesh", "Premium Shared") ?? 0) + (priceOf("midjourney-bangladesh") ?? 0)),
                 desc: "Claude Pro + Midjourney",
                 features: ["এডভান্সড স্ক্রিপ্ট", "AI-ডিজাইন", "স্টাইল কনসেপ্ট", "৩০ দিনের সাপোর্ট"],
                 recommended: true,
               },
               {
                 name: "মাল্টি-ফরম্যাট ক্রিয়েটর",
-                price: "৳4,980",
+                price: bnTaka((tierPrice("claude-pro-bangladesh", "Premium Shared") ?? 0) + (priceOf("midjourney-bangladesh") ?? 0) + (priceOf("runway-bangladesh") ?? 0)),
                 desc: "Claude + Midjourney + Runway",
                 features: ["সব ফরম্যাট কন্টেন্ট", "ভিডিও জেনারেশন", "ভয়েসওভার", "প্রিমিয়াম সাপোর্ট"],
               },

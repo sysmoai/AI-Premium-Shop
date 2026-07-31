@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import { Navbar } from "@/components/Navbar";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { bnFrom, bnTaka, priceOf } from "@/lib/banglaPricing";
+import { tierPrice } from "@/lib/catalogStats";
 import { CheckCircle } from "lucide-react";
 
 export default function EducatorsBangla() {
@@ -98,21 +100,21 @@ export default function EducatorsBangla() {
             {[
               {
                 name: "নতুন শিক্ষক",
-                price: "৳599",
+                price: bnFrom("chatgpt-plus-bangladesh"),
                 desc: "ChatGPT Plus",
                 features: ["পাঠ পরিকল্পনা", "প্রশ্ন তৈরি", "কন্টেন্ট ধারণা", "মৌলিক সহায়তা"],
               },
               {
                 name: "অভিজ্ঞ শিক্ষক",
-                price: "৳1,590",
+                price: bnTaka(tierPrice("claude-pro-bangladesh", "Premium Shared") ?? 0),
                 desc: "Claude Pro Premium",
                 features: ["উন্নত পাঠ ডিজাইন", "ব্যক্তিগত প্রতিক্রিয়া", "মূল্যায়ন সরঞ্জাম", "পরীক্ষা ডিজাইন"],
                 recommended: true,
               },
               {
                 name: "প্রতিষ্ঠান / বিভাগ",
-                price: "৳4,490",
-                desc: "Claude Pro + ChatGPT + সহযোগিতা",
+                price: bnTaka((tierPrice("claude-pro-bangladesh", "Premium Shared") ?? 0) + (priceOf("chatgpt-plus-bangladesh") ?? 0) + (priceOf("grammarly-premium-bangladesh") ?? 0)),
+                desc: "Claude Pro + ChatGPT + Grammarly",
                 features: ["দলের জন্য অ্যাক্সেস", "পাঠ্যক্রম পরিকল্পনা", "মান নিয়ন্ত্রণ", "সম্পূর্ণ সহায়তা"],
               },
             ].map((pkg, i) => (

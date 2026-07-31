@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import { Navbar } from "@/components/Navbar";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { bnFrom, bnTaka, priceOf } from "@/lib/banglaPricing";
+import { tierPrice } from "@/lib/catalogStats";
 import { CheckCircle } from "lucide-react";
 
 export default function FreelancersBN() {
@@ -98,21 +100,21 @@ export default function FreelancersBN() {
             {[
               {
                 name: "স্টার্টার",
-                price: "৳499",
+                price: bnFrom("chatgpt-plus-bangladesh"),
                 desc: "ChatGPT Plus",
                 features: ["টেক্সট ও কন্টেন্ট", "প্রস্তাব লেখা", "বেসিক কোডিং", "বিগিনার-ফ্রেন্ডলি"],
               },
               {
                 name: "প্রফেশনাল",
-                price: "৳1,590",
+                price: bnTaka(tierPrice("claude-pro-bangladesh", "Premium Shared") ?? 0),
                 desc: "Claude Pro Premium",
                 features: ["দীর্ঘ রিসার্চ পেপার", "জটিল কোডিং ট্যাস্ক", "ডকুমেন্টেশন জেনারেশন", "৩০ দিনের ওয়ারেন্টি"],
                 recommended: true,
               },
               {
                 name: "পাওয়ার ইউজার",
-                price: "৳2,988",
-                desc: "Claude + Midjourney",
+                price: bnTaka((tierPrice("claude-pro-bangladesh", "Premium Shared") ?? 0) + (priceOf("midjourney-bangladesh") ?? 0)),
+                desc: "Claude Pro + Midjourney",
                 features: ["টেক্সট + ভিজ্যুয়াল", "উন্নত ডিজাইন", "মাল্টি-ফরম্যাট কন্টেন্ট", "৩ মাস সাপোর্ট"],
               },
             ].map((pkg, i) => (

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import { Navbar } from "@/components/Navbar";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { bnFrom } from "@/lib/banglaPricing";
 
 export default function DevelopersBN() {
   return (
@@ -85,25 +86,28 @@ export default function DevelopersBN() {
           <h2 className="text-3xl font-bold text-center mb-12">ডেভেলপারদের জন্য সেরা টুলস</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
+              // Prices come from the catalog. Typed by hand these read ৳1,495,
+              // ৳1,590 and ৳2,088 against real entry tiers of ৳399, ৳599 and
+              // ৳699 — every one of them wrong, and each with an order button.
               {
                 name: "GitHub Copilot Pro",
-                price: "৳1,495",
+                slug: "github-copilot-bangladesh",
                 desc: "VSCode, GitHub এ কোড অটোকমপ্লিশন",
                 best: "সবার জন্য",
               },
               {
                 name: "Claude Pro",
-                price: "৳1,590",
+                slug: "claude-pro-bangladesh",
                 desc: "দীর্ঘ কোড ব্লক, জটিল রিফ্যাক্টিং",
                 best: "যারা ডিপ রিফ্যাক্টিং করেন",
               },
               {
-                name: "Cursor + Claude",
-                price: "৳2,088",
+                name: "Cursor Pro",
+                slug: "cursor-bangladesh",
                 desc: "AI-প্রথম কোড এডিটর",
                 best: "প্রফেশনাল ডেভেলপার",
               },
-            ].map((tool, i) => (
+            ].map((t) => ({ ...t, price: bnFrom(t.slug) })).map((tool, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -112,11 +116,13 @@ export default function DevelopersBN() {
                 className="bg-gray-900/50 rounded-xl p-6 border border-gray-800"
               >
                 <h3 className="text-lg font-bold text-white mb-2">{tool.name}</h3>
-                <div className="text-2xl font-bold text-yellow-400 mb-2">{tool.price}</div>
+                <div className="text-2xl font-bold text-yellow-400 mb-2">
+                  {tool.price ? `${tool.price} থেকে` : "WhatsApp-এ দাম জানুন"}
+                </div>
                 <p className="text-gray-300 mb-4">{tool.desc}</p>
                 <div className="text-sm text-gray-400 mb-4">সেরা: {tool.best}</div>
                 <a
-                  href={`https://wa.me/8801865385348?text=আমি ডেভেলপার। ${tool.name} (${tool.price}) চাই।`}
+                  href={`https://wa.me/8801865385348?text=${encodeURIComponent(`আমি ডেভেলপার। ${tool.name} চাই${tool.price ? ` (${tool.price} থেকে)` : ""}।`)}`}
                   className="w-full py-2 rounded-lg font-bold text-center text-black transition-all hover:scale-105"
                   style={{ backgroundColor: "#f4b942" }}
                 >

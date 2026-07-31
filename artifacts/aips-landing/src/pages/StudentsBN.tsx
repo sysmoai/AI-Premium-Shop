@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import { Navbar } from "@/components/Navbar";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { bnFrom, bnTaka, priceOf } from "@/lib/banglaPricing";
+import { tierPrice } from "@/lib/catalogStats";
 import { CheckCircle } from "lucide-react";
 
 export default function StudentsBN() {
@@ -98,20 +100,20 @@ export default function StudentsBN() {
             {[
               {
                 name: "বাজেট প্যাকেজ",
-                price: "৳499",
+                price: bnFrom("chatgpt-plus-bangladesh"),
                 desc: "ChatGPT Plus Starter",
                 features: ["অ্যাসাইনমেন্ট লেখা", "গবেষণা সহায়তা", "কোড ডিবাগিং", "৫-৩০ মিনিট ডেলিভারি"],
               },
               {
                 name: "স্টুডেন্ট বেস্ট",
-                price: "৳1,590",
+                price: bnTaka(tierPrice("claude-pro-bangladesh", "Premium Shared") ?? 0),
                 desc: "Claude Pro Premium",
                 features: ["দীর্ঘ রিসার্চ পেপার", "জটিল সমস্যা সমাধান", "থিসিস গাইডেন্স", "30 দিনের ওয়ারেন্টি"],
                 recommended: true,
               },
               {
                 name: "অল-ইন-ওয়ান",
-                price: "৳2,988",
+                price: bnTaka((tierPrice("claude-pro-bangladesh", "Premium Shared") ?? 0) + (priceOf("perplexity-pro-bangladesh") ?? 0)),
                 desc: "Claude Pro + Perplexity",
                 features: ["সব সাবজেক্ট কভার", "সোর্স ভেরিফিকেশন", "দ্রুত রিসার্চ", "৩টি মাস ওয়ারেন্টি"],
               },

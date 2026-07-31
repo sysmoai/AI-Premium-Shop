@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import { Navbar } from "@/components/Navbar";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema } from "@/utils/schemas";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { bnFrom, bnTaka, priceOf } from "@/lib/banglaPricing";
 import { tierPrice } from "@/lib/catalogStats";
@@ -13,10 +15,12 @@ export default function CreatorsBN() {
         title="কন্টেন্ট ক্রিয়েটরদের জন্য সেরা AI টুলস — ভিডিও, লেখা, ডিজাইন"
         description="YouTube, TikTok, Instagram ক্রিয়েটরদের জন্য ChatGPT, Midjourney, Runway, ElevenLabs। আরও দ্রুত, আরও ভাল কন্টেন্ট তৈরি করুন। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/creators-bn"
+        jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema([{ name: "হোম", href: "/bn" }, { name: "ক্রিয়েটরদের জন্য AI" }])]}
         hreflang={{ bn: "/creators-bn", en: "/best-ai-for-creators" }}
       />
 
       <Navbar />
+      <Breadcrumb items={[{ name: "হোম", href: "/bn" }, { name: "ক্রিয়েটরদের জন্য AI" }]} />
 
       <main>
         {/* HERO */}

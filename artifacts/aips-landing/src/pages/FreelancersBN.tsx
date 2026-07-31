@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import { Navbar } from "@/components/Navbar";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema } from "@/utils/schemas";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { bnFrom, bnTaka, priceOf } from "@/lib/banglaPricing";
 import { tierPrice } from "@/lib/catalogStats";
@@ -13,10 +15,12 @@ export default function FreelancersBN() {
         title="ফ্রিল্যান্সারদের জন্য সেরা AI টুলস — Upwork, Fiverr, দক্ষতা বৃদ্ধি"
         description="Upwork ও Fiverr-এর কাজের জন্য AI। ChatGPT, Claude, Midjourney দিয়ে প্রস্তাব লেখা, কন্টেন্ট তৈরি, কোড ডেলিভারি। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/freelancers-bn"
+        jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema([{ name: "হোম", href: "/bn" }, { name: "ফ্রিল্যান্সারদের জন্য AI" }])]}
         hreflang={{ bn: "/freelancers-bn", en: "/best-ai-for-freelancers" }}
       />
 
       <Navbar />
+      <Breadcrumb items={[{ name: "হোম", href: "/bn" }, { name: "ফ্রিল্যান্সারদের জন্য AI" }]} />
 
       <main>
         {/* HERO */}

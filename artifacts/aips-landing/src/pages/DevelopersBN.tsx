@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import { Navbar } from "@/components/Navbar";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema } from "@/utils/schemas";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { bnFrom } from "@/lib/banglaPricing";
 
@@ -11,10 +13,12 @@ export default function DevelopersBN() {
         title="ডেভেলপারদের জন্য AI — কোড জেনারেশন, ডিবাগিং, ডকুমেন্টেশন"
         description="GitHub Copilot, Claude Pro, Cursor দিয়ে কোডিং দ্রুত করুন। বাংলাদেশে সাশ্রয়ী দামে। ৳399 থেকে শুরু।"
         canonical="https://aipremiumshop.com/developers-bn"
+        jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema([{ name: "হোম", href: "/bn" }, { name: "ডেভেলপারদের জন্য AI" }])]}
         hreflang={{ bn: "/developers-bn", en: "/best-ai-for-developers" }}
       />
 
       <Navbar />
+      <Breadcrumb items={[{ name: "হোম", href: "/bn" }, { name: "ডেভেলপারদের জন্য AI" }]} />
 
       <main>
         <section className="py-20 px-4 text-center">

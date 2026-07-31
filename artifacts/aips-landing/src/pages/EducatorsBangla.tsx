@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import { Navbar } from "@/components/Navbar";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema } from "@/utils/schemas";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { bnFrom, bnTaka, priceOf } from "@/lib/banglaPricing";
 import { tierPrice } from "@/lib/catalogStats";
@@ -13,10 +15,12 @@ export default function EducatorsBangla() {
         title="শিক্ষক এবং শিক্ষা প্রতিষ্ঠানের জন্য AI সমাধান — পাঠ পরিকল্পনা, মূল্যায়ন, শিক্ষার্থী সহায়তা"
         description="শিক্ষাকে AI দিয়ে সহজ করুন। পাঠ পরিকল্পনা, প্রশ্ন তৈরি, শিক্ষার্থী প্রতিক্রিয়া স্বয়ংক্রিয়। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/educators-bn"
+        jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema([{ name: "হোম", href: "/bn" }, { name: "শিক্ষকদের জন্য AI" }])]}
         hreflang={{ bn: "/educators-bn", en: "/guides/educators" }}
       />
 
       <Navbar />
+      <Breadcrumb items={[{ name: "হোম", href: "/bn" }, { name: "শিক্ষকদের জন্য AI" }]} />
 
       <main>
         {/* HERO */}

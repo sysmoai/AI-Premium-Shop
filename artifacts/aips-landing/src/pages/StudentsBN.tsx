@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import { Navbar } from "@/components/Navbar";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema } from "@/utils/schemas";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { bnFrom, bnTaka, priceOf } from "@/lib/banglaPricing";
 import { tierPrice } from "@/lib/catalogStats";
@@ -13,10 +15,12 @@ export default function StudentsBN() {
         title="ছাত্রছাত্রীদের জন্য সেরা AI টুলস — অ্যাসাইনমেন্ট, রিসার্চ, প্রজেক্ট"
         description="ঢাবি, বুয়েট ছাত্রছাত্রীদের জন্য ChatGPT Plus, Claude Pro, Perplexity সাবস্ক্রিপশন। বাংলাদেশে সবচেয়ে সাশ্রয়ী দামে। ৳499 থেকে শুরু।"
         canonical="https://aipremiumshop.com/students-bn"
+        jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema([{ name: "হোম", href: "/bn" }, { name: "ছাত্রছাত্রীদের জন্য AI" }])]}
         hreflang={{ bn: "/students-bn", en: "/best-ai-for-students" }}
       />
 
       <Navbar />
+      <Breadcrumb items={[{ name: "হোম", href: "/bn" }, { name: "ছাত্রছাত্রীদের জন্য AI" }]} />
 
       <main>
         {/* HERO */}

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import { Navbar } from "@/components/Navbar";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema } from "@/utils/schemas";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { bnFrom, bnTaka, priceOf } from "@/lib/banglaPricing";
 import { tierPrice } from "@/lib/catalogStats";
@@ -13,10 +15,12 @@ export default function SMBBangla() {
         title="ছোট ব্যবসার জন্য সেরা AI সমাধান — অটোমেশন, স্কেলিং, কাস্টমার সার্ভিস"
         description="আপনার ছোট ব্যবসা স্বয়ংক্রিয় করুন AI দিয়ে। গ্রাহক সেবা, মার্কেটিং, বিক্রয় অটোমেশন। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/smb-bn"
+        jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema([{ name: "হোম", href: "/bn" }, { name: "ছোট ব্যবসার জন্য AI" }])]}
         hreflang={{ bn: "/smb-bn", en: "/best-ai-for-business" }}
       />
 
       <Navbar />
+      <Breadcrumb items={[{ name: "হোম", href: "/bn" }, { name: "ছোট ব্যবসার জন্য AI" }]} />
 
       <main>
         {/* HERO */}

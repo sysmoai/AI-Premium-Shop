@@ -13,6 +13,7 @@ export default function EducatorsBangla() {
         title="শিক্ষক এবং শিক্ষা প্রতিষ্ঠানের জন্য AI সমাধান — পাঠ পরিকল্পনা, মূল্যায়ন, শিক্ষার্থী সহায়তা"
         description="শিক্ষাকে AI দিয়ে সহজ করুন। পাঠ পরিকল্পনা, প্রশ্ন তৈরি, শিক্ষার্থী প্রতিক্রিয়া স্বয়ংক্রিয়। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/educators-bn"
+        hreflang={{ bn: "/educators-bn", en: "/guides/educators" }}
       />
 
       <Navbar />
@@ -27,7 +28,7 @@ export default function EducatorsBangla() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              শিক্ষকদের জন্য AI — পাঠ প্রস্তুতি ৮০% দ্রুততর করুন
+              শিক্ষকদের জন্য AI — পাঠ পরিকল্পনা, প্রশ্ন ও প্রতিক্রিয়া
             </h1>
             <p className="text-xl text-gray-300 mb-8">
               ChatGPT, Claude দিয়ে পাঠ পরিকল্পনা, মূল্যায়ন উপকরণ, শিক্ষার্থী প্রতিক্রিয়া তৈরি করুন। প্রতিটি ছাত্রকে ব্যক্তিগত মনোযোগ দিতে পারবেন।
@@ -193,7 +194,7 @@ export default function EducatorsBangla() {
           >
             <h2 className="text-3xl font-bold text-white mb-4">{`আজই শুরু করুন — ${bnFrom("chatgpt-plus-bangladesh")} থেকে`}</h2>
             <p className="text-gray-300 mb-8">
-              এই সেমিস্টারে পাঠ প্রস্তুতি সময় অর্ধেক করুন। শিক্ষার্থীদের সাথে আরও সময় ব্যয় করুন।
+              পাঠ প্রস্তুতির পুনরাবৃত্তিমূলক কাজ AI-কে দিন, শিক্ষার্থীদের জন্য সময় রাখুন।
             </p>
             <a
               href="https://wa.me/8801865385348?text=আমি শিক্ষক। পাঠ প্রস্তুতি এবং মূল্যায়নে AI চাই। সাহায্য করুন।"

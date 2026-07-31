@@ -470,6 +470,17 @@ interface GuidePageProps {
   guideKey: string;
 }
 
+// hreflang only takes effect when both sides declare each other, so the
+// English guides point back at the Bangla pages that name them. Keys absent
+// here simply have no Bangla equivalent yet.
+const BANGLA_ALTERNATE: Record<string, string> = {
+  students: "/students-bn",
+  developers: "/developers-bn",
+  freelancers: "/freelancers-bn",
+  creators: "/creators-bn",
+  business: "/smb-bn",
+};
+
 export default function GuidePage({ guideKey }: GuidePageProps) {
   const guide = GUIDES[guideKey];
   if (!guide) return null;
@@ -478,7 +489,16 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
 
   return (
     <PageLayout>
-      <SEOHead title={guide.title} description={guide.metaDescription} canonical={guide.canonical} />
+      <SEOHead
+        title={guide.title}
+        description={guide.metaDescription}
+        canonical={guide.canonical}
+        hreflang={
+          BANGLA_ALTERNATE[guideKey]
+            ? { en: new URL(guide.canonical).pathname, bn: BANGLA_ALTERNATE[guideKey] }
+            : undefined
+        }
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(faqSchema(guide.faqs)) }} />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Guides", href: "/blog" }, { name: guide.h1 }]} />
 

@@ -11,8 +11,9 @@ export default function FreelancersBN() {
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
         title="ফ্রিল্যান্সারদের জন্য সেরা AI টুলস — Upwork, Fiverr, দক্ষতা বৃদ্ধি"
-        description="Upwork এবং Fiverr-এ আয় বাড়ান। ChatGPT, Claude, Midjourney দিয়ে প্রস্তাব লেখা, কন্টেন্ট তৈরি, কোড ডেলিভারি। বাংলাদেশে ৳499 থেকে।"
+        description="Upwork ও Fiverr-এর কাজের জন্য AI। ChatGPT, Claude, Midjourney দিয়ে প্রস্তাব লেখা, কন্টেন্ট তৈরি, কোড ডেলিভারি। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/freelancers-bn"
+        hreflang={{ bn: "/freelancers-bn", en: "/best-ai-for-freelancers" }}
       />
 
       <Navbar />
@@ -27,7 +28,7 @@ export default function FreelancersBN() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              ফ্রিল্যান্সারদের জন্য AI — ৪০% বেশি আয় করুন
+              ফ্রিল্যান্সারদের জন্য AI — প্রস্তাব থেকে ডেলিভারি পর্যন্ত
             </h1>
             <p className="text-xl text-gray-300 mb-8">
               ChatGPT, Claude, Midjourney দিয়ে Upwork ও Fiverr-এ প্রতিযোগীদের থেকে এগিয়ে থাকুন। প্রস্তাব দ্রুত লিখুন, কোয়ালিটি বাড়ান, আরও ক্লায়েন্ট পান।
@@ -65,7 +66,7 @@ export default function FreelancersBN() {
               {
                 task: "কোডিং প্রজেক্ট সম্পন্ন করুন",
                 tools: "GitHub Copilot, Claude Pro",
-                help: "WordPress থিম কাস্টমাইজ, PHP ফিক্স, JavaScript ফিচার যোগ করুন। ৫০% কোড AI লিখে দেবে। আপনি রিভিউ ও ডিপ্লয় করুন।",
+                help: "WordPress থিম কাস্টমাইজ, PHP ফিক্স, JavaScript ফিচার যোগ করুন। বয়লারপ্লেট ও রিপিটেটিভ কোড AI লিখে দেয়। আপনি রিভিউ ও ডিপ্লয় করুন।",
               },
               {
                 task: "ভিডিও কন্টেন্ট তৈরি",
@@ -193,7 +194,7 @@ export default function FreelancersBN() {
           >
             <h2 className="text-3xl font-bold text-white mb-4">আজই শুরু করুন — ৳499 থেকে</h2>
             <p className="text-gray-300 mb-8">
-              প্রথম মাসই ৳৫০০+ বেশি আয় করুন AI-তে সময় বাঁচিয়ে।
+              একটি প্রজেক্টেই খরচ উঠে আসতে পারে — বাকিটা আপনার সময় বাঁচায়।
             </p>
             <a
               href="https://wa.me/8801865385348?text=আমি Upwork ফ্রিল্যান্সার। AI টুল চাই। কোনটা দিয়ে শুরু করব?"

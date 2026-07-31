@@ -11,6 +11,7 @@ export default function DevelopersBN() {
         title="ডেভেলপারদের জন্য AI — কোড জেনারেশন, ডিবাগিং, ডকুমেন্টেশন"
         description="GitHub Copilot, Claude Pro, Cursor দিয়ে কোডিং দ্রুত করুন। বাংলাদেশে সাশ্রয়ী দামে। ৳399 থেকে শুরু।"
         canonical="https://aipremiumshop.com/developers-bn"
+        hreflang={{ bn: "/developers-bn", en: "/best-ai-for-developers" }}
       />
 
       <Navbar />
@@ -141,7 +142,7 @@ export default function DevelopersBN() {
               borderColor: "rgba(244, 185, 66, 0.2)",
             }}
           >
-            <h2 className="text-3xl font-bold text-white mb-4">আপনার ডেভেলপমেন্ট স্পীড ৫০% বাড়ান</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">বয়লারপ্লেট, ডিবাগিং ও ডকুমেন্টেশন AI-কে দিন</h2>
             <a
               href="https://wa.me/8801865385348?text=আমি ডেভেলপার। AI টুল নিতে চাই। কোনটা পাওয়া যায়?"
               className="inline-flex items-center justify-center px-10 py-4 rounded-xl font-bold text-black text-lg transition-all duration-200 hover:scale-105"

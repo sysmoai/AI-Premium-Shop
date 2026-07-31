@@ -13,6 +13,7 @@ export default function CreatorsBN() {
         title="কন্টেন্ট ক্রিয়েটরদের জন্য সেরা AI টুলস — ভিডিও, লেখা, ডিজাইন"
         description="YouTube, TikTok, Instagram ক্রিয়েটরদের জন্য ChatGPT, Midjourney, Runway, ElevenLabs। আরও দ্রুত, আরও ভাল কন্টেন্ট তৈরি করুন। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/creators-bn"
+        hreflang={{ bn: "/creators-bn", en: "/best-ai-for-creators" }}
       />
 
       <Navbar />
@@ -27,7 +28,7 @@ export default function CreatorsBN() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              ক্রিয়েটরদের জন্য AI — সপ্তাহে ১০ ঘন্টা বাঁচান
+              ক্রিয়েটরদের জন্য AI — স্ক্রিপ্ট থেকে থাম্বনেইল, এক জায়গায়
             </h1>
             <p className="text-xl text-gray-300 mb-8">
               ChatGPT, Midjourney, Runway, ElevenLabs দিয়ে YouTube, TikTok, Instagram-এর জন্য কন্টেন্ট তৈরি করুন। আইডিয়া থেকে পাবলিশ করা পর্যন্ত দ্রুত।
@@ -193,7 +194,7 @@ export default function CreatorsBN() {
           >
             <h2 className="text-3xl font-bold text-white mb-4">{`আজই শুরু করুন — ${bnFrom("chatgpt-plus-bangladesh")} থেকে`}</h2>
             <p className="text-gray-300 mb-8">
-              এই মাসে আরও ১০টি ভিডিও পাবলিশ করুন AI-তে সময় বাঁচিয়ে।
+              স্ক্রিপ্ট, থাম্বনেইল, ভয়েসওভার — একই জায়গা থেকে তৈরি করুন।
             </p>
             <a
               href="https://wa.me/8801865385348?text=আমি ইউটিউব/টিকটক ক্রিয়েটর। কন্টেন্ট তৈরিতে AI চাই। কোনটা দিয়ে শুরু করব?"

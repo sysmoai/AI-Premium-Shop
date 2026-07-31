@@ -13,6 +13,7 @@ export default function SMBBangla() {
         title="ছোট ব্যবসার জন্য সেরা AI সমাধান — অটোমেশন, স্কেলিং, কাস্টমার সার্ভিস"
         description="আপনার ছোট ব্যবসা স্বয়ংক্রিয় করুন AI দিয়ে। গ্রাহক সেবা, মার্কেটিং, বিক্রয় অটোমেশন। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/smb-bn"
+        hreflang={{ bn: "/smb-bn", en: "/best-ai-for-business" }}
       />
 
       <Navbar />
@@ -27,7 +28,7 @@ export default function SMBBangla() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              ছোট ব্যবসার জন্য AI — কর্মচারী ছাড়াই দ্বিগুণ উৎপাদনশীলতা
+              ছোট ব্যবসার জন্য AI — গ্রাহক সেবা, মার্কেটিং ও বিক্রয়
             </h1>
             <p className="text-xl text-gray-300 mb-8">
               ChatGPT, Claude, Zapier দিয়ে গ্রাহক সেবা, বিক্রয়, মার্কেটিং স্বয়ংক্রিয় করুন। আপনার ছোট দল বড় কোম্পানির মতো কাজ করতে পারবে।
@@ -50,7 +51,7 @@ export default function SMBBangla() {
               {
                 task: "গ্রাহক সেবা স্বয়ংক্রিয় করুন",
                 tools: "ChatGPT, Claude, Zapier",
-                help: "২৪/৭ চ্যাটবট দিয়ে গ্রাহক প্রশ্নের উত্তর দিন। সহজ প্রশ্ন আইআই সামলায়, কঠিন প্রশ্ন দলে যায়। সেবার খরচ ৭০% কমুন।",
+                help: "২৪/৭ চ্যাটবট দিয়ে গ্রাহক প্রশ্নের উত্তর দিন। সহজ প্রশ্ন আইআই সামলায়, কঠিন প্রশ্ন দলে যায়। পুনরাবৃত্ত প্রশ্নগুলো AI সামলায়, দল জটিল কেসে মন দেয়।",
               },
               {
                 task: "বিক্রয় ফানেল অপটিমাইজ করুন",
@@ -193,7 +194,7 @@ export default function SMBBangla() {
           >
             <h2 className="text-3xl font-bold text-white mb-4">{`আজই শুরু করুন — ${bnFrom("chatgpt-plus-bangladesh")} থেকে`}</h2>
             <p className="text-gray-300 mb-8">
-              এই মাসে আপনার দলের কাজের চাপ ৫০% কমান AI-তে।
+              পুনরাবৃত্তিমূলক কাজ AI-কে দিন, দলকে গ্রাহকের জন্য রাখুন।
             </p>
             <a
               href="https://wa.me/8801865385348?text=আমার ছোট ব্যবসা আছে। গ্রাহক সেবা এবং অটোমেশনে AI চাই। সাহায্য করুন।"

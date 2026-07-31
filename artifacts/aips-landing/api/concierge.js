@@ -31,17 +31,29 @@ import { knowledgeFor } from "./_knowledge.js";
 const catalog = JSON.parse(readFileSync(fileURLToPath(new URL("./_catalog.json", import.meta.url)), "utf8"));
 
 const NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
-// Ordered fastest/cheapest-first. 8B primary: measured 0.9s with the full
-// catalog prompt (70B took >60s on the free NIM tier — unusable). Both
-// entries below are LIVE-VERIFIED via GET /api/concierge?diagnose=1
-// (2026-07-30: llama-3.1-8b-instruct 200 OK ~260ms, nemotron-mini-4b-instruct
-// 200 OK ~160ms). The previous fallback chain silently carried two dead
-// entries — meta/llama-3.2-3b-instruct timed out and mistralai/mistral-7b-
-// instruct-v0.3 flat 404'd (deprecated model ID) — caught by this same
-// diagnose call, removed rather than left as false redundancy. Re-run
-// diagnose before adding anything back; don't trust a model ID without a
-// live 200 first.
-const MODELS = ["meta/llama-3.1-8b-instruct", "nvidia/nemotron-mini-4b-instruct"];
+// Ordered fastest-first, and both re-benchmarked 2026-07-31 against real
+// Bangla/Banglish/English questions rather than a liveness ping.
+//
+// PRIMARY meta/llama-3.1-8b-instruct — 3.3s average, and with the repetition
+// penalties below it no longer loops or bleeds Hindi into Banglish.
+//
+// FALLBACK was nvidia/nemotron-mini-4b-instruct, chosen because it answered a
+// liveness probe in ~160ms. Asked a real customer question it replies "Sorry.
+// I cannot find the answer based on the context." — fast and useless. A
+// liveness check proves a model responds, not that it answers; the fallback
+// was fake redundancy. Replaced with the 70B, whose latency is variable
+// (4s-30s) but which does actually answer. A slow real answer beats an
+// instant non-answer in a path that only runs when the primary has failed.
+//
+// The 70B was NOT promoted to primary despite being more fluent: asked
+// whether an account could be banned it answered "Ban hober kono chance nai"
+// (no chance of a ban), and described the refund policy as "if you're not
+// satisfied" when it is 15 minutes and only for a genuine service mismatch.
+// More fluency without more faithfulness is a liability for this catalog.
+//
+// Re-check with GET /api/concierge?diagnose=1, but judge candidates on
+// answers, not on 200s.
+const MODELS = ["meta/llama-3.1-8b-instruct", "meta/llama-3.1-70b-instruct"];
 const WHATSAPP_BASE = "https://wa.me/8801865385348";
 const WHATSAPP = `${WHATSAPP_BASE}?text=${encodeURIComponent("Hi, I need help choosing an AI subscription")}`;
 
@@ -279,6 +291,9 @@ STRICT RULES:
 - NEVER use marketing superlatives you can't verify from this prompt — no "best", "guaranteed", "instant", "trusted by thousands", "unlimited". Describe plainly instead.
 - NEVER ask for or accept bKash/Nagad/Rocket PINs, OTPs, passwords, or card numbers. If a user offers one, tell them never to share it with anyone, including AI Premium Shop staff.
 - No income guarantees. Describe realistic use cases only.
+- NEVER state or imply that an account cannot be suspended, that nothing can go wrong, or that any outcome is certain. The honest answer is the 30-day replacement warranty, not a promise. Phrases like "no chance of a ban" are false.
+- The refund rule is exactly: within 15 minutes of delivery AND only when the service does not match what was ordered. Never describe it as a satisfaction guarantee, never drop the 15-minute window, and never drop the mismatch condition.
+- Answer in the SAME language the customer wrote in. An English question gets an English answer, even though most questions here arrive in Bangla.
 - Reply in the user's language: Bangla in Bangla, English in English, Banglish in Banglish. Keep replies under 110 words, warm and direct.
 - When recommending, give at most 3 products. For each, write its exact page path (e.g. /claude-pro-bangladesh) so the site can attach a product card. Write the path exactly as shown in the catalog.
 - Quote only the ONE starting price that matters ("from BDT 499/mo"). Never paste a product's whole tier list into the reply — a price card is rendered under your message and already shows every tier, access type and delivery time.

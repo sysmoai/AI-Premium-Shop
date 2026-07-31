@@ -162,7 +162,7 @@ function ProductCard({ product, onOpen }: { product: Product; onOpen: (path: str
 }
 
 export function ConciergeWidget() {
-  const [, navigate] = useLocation();
+  const [location, navigate] = useLocation();
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [streaming, setStreaming] = useState("");
@@ -265,6 +265,9 @@ export function ConciergeWidget() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             sessionId: sessionId(),
+            // What they're reading is the strongest intent signal available;
+            // without it a "koto taka?" on a product page got a generic answer.
+            page: location,
             messages: next.slice(-10).map(({ role, content: c }) => ({ role, content: c })),
           }),
           signal: ctrl.signal,
@@ -323,7 +326,7 @@ export function ConciergeWidget() {
         abortRef.current = null;
       }
     },
-    [busy, msgs],
+    [busy, msgs, location],
   );
 
   function describeError(e: unknown) {

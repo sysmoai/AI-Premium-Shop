@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { motion } from "framer-motion";
 import { MessageCircle, Filter, ArrowUpDown, ChevronRight } from "lucide-react";
@@ -123,10 +123,51 @@ function ProductCard({ p }: { p: Product }) {
   );
 }
 
+// Filter state lives in the URL so a filtered view is a real, shareable
+// place. Before this, choosing "shared" and "AI Assistant" produced a view
+// that could not be linked, bookmarked, or sent to a customer on WhatsApp —
+// and that the AI assistant had no way to point anyone at.
+const VALID_ACCESS = new Set(["all", "shared", "personal"]);
+const VALID_SORT = new Set(["price-asc", "price-desc", "name"]);
+
+function readParams() {
+  if (typeof window === "undefined") return { category: "all", access: "all", sort: "price-asc" as SortKey };
+  const q = new URLSearchParams(window.location.search);
+  const category = q.get("category") ?? "all";
+  const access = q.get("access") ?? "all";
+  const sort = q.get("sort") ?? "price-asc";
+  return {
+    // Validated rather than trusted — these come from a URL anyone can edit,
+    // and an unknown value would silently render an empty catalogue.
+    category: category === "all" || CATEGORY_ORDER.includes(category) ? category : "all",
+    access: VALID_ACCESS.has(access) ? access : "all",
+    sort: (VALID_SORT.has(sort) ? sort : "price-asc") as SortKey,
+  };
+}
+
 export default function ProductsPage() {
-  const [categoryFilter, setCategoryFilter] = useState<string>("all");
-  const [accessFilter, setAccessFilter] = useState<string>("all");
-  const [sort, setSort] = useState<SortKey>("price-asc");
+  const initial = readParams();
+  const [categoryFilter, setCategoryFilter] = useState<string>(initial.category);
+  const [accessFilter, setAccessFilter] = useState<string>(initial.access);
+  const [sort, setSort] = useState<SortKey>(initial.sort);
+
+  // replaceState rather than push: changing a dropdown should not stack up
+  // history entries the back button has to walk through.
+  useEffect(() => {
+    const q = new URLSearchParams();
+    if (categoryFilter !== "all") q.set("category", categoryFilter);
+    if (accessFilter !== "all") q.set("access", accessFilter);
+    if (sort !== "price-asc") q.set("sort", sort);
+    const qs = q.toString();
+    window.history.replaceState(null, "", qs ? `/products?${qs}` : "/products");
+  }, [categoryFilter, accessFilter, sort]);
+
+  const filterLabel = useMemo(() => {
+    if (categoryFilter === "all" && accessFilter === "all") return null;
+    const cat = categoryFilter === "all" ? "AI tools" : CATEGORY_LABELS[categoryFilter] ?? "AI tools";
+    const access = accessFilter === "all" ? "" : accessFilter === "shared" ? "shared " : "personal ";
+    return `${access}${cat}`.trim();
+  }, [categoryFilter, accessFilter]);
 
   const filtered = useMemo(() => {
     let list = [...ALL] as Product[];
@@ -151,8 +192,20 @@ export default function ProductsPage() {
   return (
     <PageLayout>
       <SEOHead
-        title={`All ${TOTAL_PRODUCTS} AI Tools — Prices in BDT | AI Premium Shop Bangladesh`}
-        description={`Browse ${TOTAL_PRODUCTS} AI subscriptions. ChatGPT, Claude, Midjourney & more. Prices in BDT. Local payment. Fast delivery. AI Premium Shop.`}
+        title={
+          filterLabel
+            ? `${filtered.length} ${filterLabel} — Prices in BDT | AI Premium Shop Bangladesh`
+            : `All ${TOTAL_PRODUCTS} AI Tools — Prices in BDT | AI Premium Shop Bangladesh`
+        }
+        description={
+          filterLabel
+            ? `${filtered.length} ${filterLabel} with prices in BDT. Pay with bKash, Nagad or Rocket. AI Premium Shop Bangladesh.`
+            : `Browse ${TOTAL_PRODUCTS} AI subscriptions. ChatGPT, Claude, Midjourney & more. Prices in BDT. Local payment. Fast delivery. AI Premium Shop.`
+        }
+        /* A filtered view is a subset of this same page, so it points its
+           canonical back at the unfiltered URL rather than asking to be
+           indexed as separate thin pages. The filters exist to be shared and
+           linked, not to spawn 24 near-duplicate documents. */
         canonical="https://aipremiumshop.com/products"
         // No breadcrumbSchema here: <Breadcrumb> below already injects its own
         // BreadcrumbList JSON-LD from these same items — adding it here too

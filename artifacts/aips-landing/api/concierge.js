@@ -438,6 +438,11 @@ async function openStream(key, model, system, messages, budgetMs) {
       messages: [{ role: "system", content: system }, ...messages],
       max_tokens: 400,
       temperature: 0.3,
+      // An 8B model asked for Banglish will loop ("kintu kintu kintu…") until
+      // it burns the whole token budget. Penalising repeats is the fix;
+      // degenerate() below is the safety net for when it still happens.
+      frequency_penalty: 0.6,
+      presence_penalty: 0.3,
       stream: true,
     }),
     signal: ctrl.signal,
@@ -513,6 +518,24 @@ const LEAK_MARKERS = [
   "THIS QUESTION:",
 ];
 const leaks = (text) => LEAK_MARKERS.some((m) => text.includes(m));
+
+// True when a reply has collapsed into repetition. Measured rather than
+// pattern-matched, because the loop can latch onto any word: a real answer
+// keeps introducing new words, a degenerate one stops.
+function degenerate(text) {
+  const words = text.trim().split(/\s+/);
+  if (words.length < 12) return false;
+  const unique = new Set(words).size;
+  if (unique / words.length < 0.25) return true;
+  // Also catch a single token repeating back-to-back, which trips before the
+  // ratio does on a long reply that only degenerates at the end.
+  let run = 1;
+  for (let i = 1; i < words.length; i++) {
+    run = words[i] === words[i - 1] ? run + 1 : 1;
+    if (run >= 6) return true;
+  }
+  return false;
+}
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
@@ -616,6 +639,12 @@ export default async function handler(req, res) {
       /* whatever arrived is enough to screen */
     }
 
+    if (degenerate(full)) {
+      console.error(JSON.stringify({ event: "concierge_degenerate", model, q: lastQuestion }));
+      stream.done();
+      continue; // try the next model rather than stream a loop at the customer
+    }
+
     if (leaks(full)) {
       console.error(JSON.stringify({ event: "concierge_prompt_leak_blocked", model, q: lastQuestion }));
       stream.done();
@@ -640,6 +669,12 @@ export default async function handler(req, res) {
         const chunk = await stream.next();
         if (chunk == null) break;
         full += chunk;
+        // Cheap tail check — a loop that starts mid-reply would otherwise run
+        // to the full token budget with the customer watching.
+        if (degenerate(full.slice(-400))) {
+          console.error(JSON.stringify({ event: "concierge_degenerate_midstream", model }));
+          break;
+        }
         sse(res, { type: "delta", v: chunk });
       }
     } catch (e) {

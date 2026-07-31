@@ -144,12 +144,18 @@ export function taka(n: number): string {
  * api/_catalog.json is built.
  */
 export function cheapestByName(name: string): number | null {
+  // Resolve the name to a SLUG first, then price across every record on that
+  // slug. Matching on name alone is wrong: sibling tiers of one product do not
+  // all share a base name. "GitHub Copilot — Shared" (BDT 399) and "GitHub
+  // Copilot Pro — Personal" (BDT 1,495) are the same slug and the same product
+  // page, so a name-only lookup for "GitHub Copilot Pro" saw only the
+  // expensive tier and priced a student stack at BDT 2,992 instead of 1,896.
+  const slug = products.find((p) => p.name.split(" — ")[0] === name)?.slug;
+  if (!slug) return null;
   let best: number | null = null;
   for (const p of products) {
-    if (p.name.split(" — ")[0] !== name) continue;
-    if (p.requestPrice) continue;
-    const price = p.price;
-    if (typeof price === "number" && (best == null || price < best)) best = price;
+    if (p.slug !== slug || p.requestPrice) continue;
+    if (typeof p.price === "number" && (best == null || p.price < best)) best = p.price;
   }
   return best;
 }

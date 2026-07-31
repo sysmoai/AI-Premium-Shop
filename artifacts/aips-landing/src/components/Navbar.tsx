@@ -93,6 +93,7 @@ const BUNDLES_RIGHT = [
 function useActiveLink(location: string) {
   if (location === "/bundles") return "bundles";
   if (location === "/pricing") return "pricing";
+  if (location === "/guides" || location.endsWith("-bn") || location === "/bn") return "guides";
   if (location === "/support") return "support";
   if (location === "/blog" || location.startsWith("/blog/")) return "blog";
   if (
@@ -312,6 +313,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
             {navBtn("products", "Products")}
             {navBtn("bundles", "Bundles")}
             {navLink("/pricing", "Pricing", "pricing")}
+            {navLink("/guides", "Guides", "guides")}
             {navLink("/support", "Support", "support")}
             {navLink("/blog", "Blog", "blog")}
           </nav>
@@ -569,6 +571,8 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
 
                 {[
                   { label: "Pricing",       href: "/pricing" },
+                  { label: "Guides",        href: "/guides" },
+                  { label: "বাংলা",          href: "/bn" },
                   { label: "Support",       href: "/support" },
                   { label: "Blog",          href: "/blog" },
                   { label: "How to Order",  href: "/how-to-order" },

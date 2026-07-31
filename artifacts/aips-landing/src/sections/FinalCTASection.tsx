@@ -22,16 +22,35 @@ const FOOTER_COLS = [
     ],
   },
   {
+    // These eight all pointed at /#pain-points — one homepage anchor — while
+    // the real guide pages sat unlinked. Eight links to the same anchor is
+    // eight wasted internal links and eight pages search engines never reach.
     title: "Best AI For",
     links: [
-      { label: "Students", href: "/#pain-points" },
-      { label: "Freelancers", href: "/#pain-points" },
-      { label: "Content Creators", href: "/#pain-points" },
-      { label: "Business Owners", href: "/#pain-points" },
-      { label: "Job Seekers", href: "/#pain-points" },
-      { label: "Developers", href: "/#pain-points" },
-      { label: "Designers", href: "/#pain-points" },
-      { label: "Marketers", href: "/#pain-points" },
+      { label: "Students", href: "/best-ai-for-students" },
+      { label: "Freelancers", href: "/best-ai-for-freelancers" },
+      { label: "Content Creators", href: "/best-ai-for-creators" },
+      { label: "Business Owners", href: "/best-ai-for-business" },
+      { label: "Job Seekers", href: "/best-ai-for-job-seekers" },
+      { label: "Developers", href: "/best-ai-for-developers" },
+      { label: "Designers", href: "/best-ai-for-designers" },
+      { label: "Marketers", href: "/best-ai-for-marketers" },
+    ],
+  },
+  {
+    // The Bangla pages were reachable only by typing the URL: nothing on the
+    // site linked to them and they were absent from the sitemap, so the whole
+    // Bangla-first content effort was invisible to both visitors and crawlers.
+    title: "বাংলায় দেখুন",
+    links: [
+      { label: "বাংলা হোম", href: "/bn" },
+      { label: "ছাত্রছাত্রীদের জন্য", href: "/students-bn" },
+      { label: "ফ্রিল্যান্সারদের জন্য", href: "/freelancers-bn" },
+      { label: "কন্টেন্ট ক্রিয়েটরদের জন্য", href: "/creators-bn" },
+      { label: "ডেভেলপারদের জন্য", href: "/developers-bn" },
+      { label: "ছোট ব্যবসার জন্য", href: "/smb-bn" },
+      { label: "শিক্ষকদের জন্য", href: "/educators-bn" },
+      { label: "সব গাইড", href: "/guides" },
     ],
   },
   {
@@ -45,6 +64,7 @@ const FOOTER_COLS = [
   {
     title: "Support",
     links: [
+      { label: "All Guides", href: "/guides" },
       { label: "FAQ", href: "/faq" },
       { label: "How to Order", href: "/#how-it-works" },
       { label: "Refund Policy", href: "/refund-policy" },
@@ -104,7 +124,7 @@ export function FinalCTASection() {
         data-testid="footer"
       >
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
             <div className="col-span-2 md:col-span-1">
               <div className="mb-3">
                 <PrimaryBrandLogo size="small" layout="horizontal" />

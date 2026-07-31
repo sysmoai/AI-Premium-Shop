@@ -11,7 +11,7 @@ export default function SMBBangla() {
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
         title="ছোট ব্যবসার জন্য সেরা AI সমাধান — অটোমেশন, স্কেলিং, কাস্টমার সার্ভিস"
-        description="আপনার ছোট ব্যবসা স্বয়ংক্রিয় করুন AI দিয়ে। গ্রাহক সেবা, মার্কেটিং, বিক্রয় অটোমেশন। বাংলাদেশে ৳599 থেকে।"
+        description="আপনার ছোট ব্যবসা স্বয়ংক্রিয় করুন AI দিয়ে। গ্রাহক সেবা, মার্কেটিং, বিক্রয় অটোমেশন। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/smb-bn"
       />
 
@@ -191,7 +191,7 @@ export default function SMBBangla() {
               borderColor: "rgba(244, 185, 66, 0.2)",
             }}
           >
-            <h2 className="text-3xl font-bold text-white mb-4">আজই শুরু করুন — ৳1,590 থেকে</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">{`আজই শুরু করুন — ${bnFrom("chatgpt-plus-bangladesh")} থেকে`}</h2>
             <p className="text-gray-300 mb-8">
               এই মাসে আপনার দলের কাজের চাপ ৫০% কমান AI-তে।
             </p>

@@ -11,7 +11,7 @@ export default function EducatorsBangla() {
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
         title="শিক্ষক এবং শিক্ষা প্রতিষ্ঠানের জন্য AI সমাধান — পাঠ পরিকল্পনা, মূল্যায়ন, শিক্ষার্থী সহায়তা"
-        description="শিক্ষাকে AI দিয়ে সহজ করুন। পাঠ পরিকল্পনা, প্রশ্ন তৈরি, শিক্ষার্থী প্রতিক্রিয়া স্বয়ংক্রিয়। বাংলাদেশে ৳599 থেকে।"
+        description="শিক্ষাকে AI দিয়ে সহজ করুন। পাঠ পরিকল্পনা, প্রশ্ন তৈরি, শিক্ষার্থী প্রতিক্রিয়া স্বয়ংক্রিয়। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/educators-bn"
       />
 
@@ -191,7 +191,7 @@ export default function EducatorsBangla() {
               borderColor: "rgba(244, 185, 66, 0.2)",
             }}
           >
-            <h2 className="text-3xl font-bold text-white mb-4">আজই শুরু করুন — ৳599 থেকে</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">{`আজই শুরু করুন — ${bnFrom("chatgpt-plus-bangladesh")} থেকে`}</h2>
             <p className="text-gray-300 mb-8">
               এই সেমিস্টারে পাঠ প্রস্তুতি সময় অর্ধেক করুন। শিক্ষার্থীদের সাথে আরও সময় ব্যয় করুন।
             </p>

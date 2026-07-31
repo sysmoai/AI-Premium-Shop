@@ -11,7 +11,7 @@ export default function CreatorsBN() {
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
         title="কন্টেন্ট ক্রিয়েটরদের জন্য সেরা AI টুলস — ভিডিও, লেখা, ডিজাইন"
-        description="YouTube, TikTok, Instagram ক্রিয়েটরদের জন্য ChatGPT, Midjourney, Runway, ElevenLabs। আরও দ্রুত, আরও ভাল কন্টেন্ট তৈরি করুন। বাংলাদেশে ৳599 থেকে।"
+        description="YouTube, TikTok, Instagram ক্রিয়েটরদের জন্য ChatGPT, Midjourney, Runway, ElevenLabs। আরও দ্রুত, আরও ভাল কন্টেন্ট তৈরি করুন। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/creators-bn"
       />
 
@@ -191,7 +191,7 @@ export default function CreatorsBN() {
               borderColor: "rgba(244, 185, 66, 0.2)",
             }}
           >
-            <h2 className="text-3xl font-bold text-white mb-4">আজই শুরু করুন — ৳599 থেকে</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">{`আজই শুরু করুন — ${bnFrom("chatgpt-plus-bangladesh")} থেকে`}</h2>
             <p className="text-gray-300 mb-8">
               এই মাসে আরও ১০টি ভিডিও পাবলিশ করুন AI-তে সময় বাঁচিয়ে।
             </p>

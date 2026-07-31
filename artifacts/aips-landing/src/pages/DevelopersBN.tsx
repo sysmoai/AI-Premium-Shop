@@ -9,7 +9,7 @@ export default function DevelopersBN() {
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
         title="ডেভেলপারদের জন্য AI — কোড জেনারেশন, ডিবাগিং, ডকুমেন্টেশন"
-        description="GitHub Copilot, Claude Pro, Cursor দিয়ে কোডিং দ্রুত করুন। বাংলাদেশে সাশ্রয়ী দামে। ৳499 থেকে শুরু।"
+        description="GitHub Copilot, Claude Pro, Cursor দিয়ে কোডিং দ্রুত করুন। বাংলাদেশে সাশ্রয়ী দামে। ৳399 থেকে শুরু।"
         canonical="https://aipremiumshop.com/developers-bn"
       />
 

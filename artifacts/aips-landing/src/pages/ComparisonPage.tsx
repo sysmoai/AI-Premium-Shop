@@ -46,7 +46,7 @@ const COMPARISONS: Record<string, CompConfig> = {
   "chatgpt-vs-claude": {
     title: "ChatGPT vs Claude Bangladesh 2026 — Which is Better?",
     h1: "ChatGPT vs Claude — Which One Is Right for You?",
-    aioSnippet: "ChatGPT vs Claude in Bangladesh 2026: ChatGPT Plus Shared starts at BDT 499/mo and excels as an all-rounder (images, web search, code, agents). Claude Pro starts at BDT 1,495/mo and is ranked #1 for writing quality and long-document reasoning (1M token context). Both available via bKash or Nagad — delivery in 5–30 minutes via WhatsApp.",
+    aioSnippet: "ChatGPT vs Claude in Bangladesh 2026: ChatGPT Plus Shared starts at BDT 499/mo and excels as an all-rounder (images, web search, code, agents). Claude Pro starts at BDT 599/mo and is ranked #1 for writing quality and long-document reasoning (1M token context). Both available via bKash or Nagad — delivery in 5–30 minutes via WhatsApp.",
     metaDescription: "ChatGPT vs Claude in Bangladesh 2026. Features, prices, which is better. AI Premium Shop.",
     canonical: "https://aipremiumshop.com/chatgpt-vs-claude",
     productA: { name: "ChatGPT (OpenAI)", color: "#10a37f", orderText: "Order ChatGPT" },
@@ -58,7 +58,7 @@ const COMPARISONS: Record<string, CompConfig> = {
       { feature: "Video generation", a: "Yes (Sora — Pro only)", b: false },
       { feature: "Code assistant", a: "Codex agent in ChatGPT", b: "Claude Code terminal" },
       { feature: "Context window", a: "128K tokens", b: "200K–1M tokens" },
-      { feature: "Shared price (AIPS)", a: "From BDT 499/mo", b: "From BDT 1,495/mo" },
+      { feature: "Shared price (AIPS)", a: "From BDT 499/mo", b: "From BDT 599/mo" },
       { feature: "Personal price (AIPS)", a: "BDT 2,990/mo", b: "BDT 2,990/mo" },
       { feature: "Web search", a: true, b: false },
       { feature: "Savings vs official", a: "~88%", b: "~80%" },
@@ -66,10 +66,10 @@ const COMPARISONS: Record<string, CompConfig> = {
     verdict: "Both are world-class AI tools available at Bangladesh prices. Your choice depends on your primary use case.",
     verdictA: "Choose ChatGPT if you want an all-in-one tool that does everything — text, images, web search, code, and agents. It's also the cheapest option at BDT 499.",
     verdictB: "Choose Claude if you need the best writing quality, the longest document analysis (1M token context), or the most advanced reasoning. Claude is ranked #1 on the independent Chatbot Arena benchmark.",
-    buyBothText: "ChatGPT Plus Shared (BDT 499) + Claude Pro Premium Shared (BDT 1,495) = BDT 1,845/mo total — get the best of both worlds for writing and everything else.",
+    buyBothText: "ChatGPT Plus Shared (BDT 499) + Claude Pro Premium Shared (BDT 1,590) = BDT 2,089/mo total — get the best of both worlds for writing and everything else.",
     whoTable: [
       { persona: "Students on a tight budget", pick: "ChatGPT Plus Shared — BDT 499", reason: "Cheapest AI in our catalog. Covers writing, coding, and research." },
-      { persona: "Copywriters & content writers", pick: "Claude Pro — BDT 1,495", reason: "Ranked #1 for writing quality on independent benchmarks." },
+      { persona: "Copywriters & content writers", pick: "Claude Pro — from BDT 599", reason: "Ranked #1 for writing quality on independent benchmarks." },
       { persona: "Developers & researchers", pick: "ChatGPT Plus", reason: "Image gen, agents, web search, and code — one comprehensive tool." },
     ],
     relatedGuides: [
@@ -81,7 +81,7 @@ const COMPARISONS: Record<string, CompConfig> = {
   "chatgpt-vs-gemini": {
     title: "ChatGPT vs Gemini Bangladesh 2026 — Full Comparison",
     h1: "ChatGPT vs Google AI Pro — Which Should You Choose?",
-    aioSnippet: "ChatGPT vs Google AI Pro in Bangladesh 2026: ChatGPT Plus Shared is BDT 499/mo (shared account, cheapest AI tool available). Google AI Pro is BDT 499/mo and includes your own Gmail account, 2TB Google Drive storage, and AI built into Docs, Sheets, and Slides. Google AI Pro is the better value for anyone using Google Workspace daily. Both available via bKash — no international card needed.",
+    aioSnippet: "ChatGPT vs Google AI Pro in Bangladesh 2026: ChatGPT Plus Shared is BDT 499/mo (shared account, cheapest AI tool available). Google AI Pro starts at BDT 599/mo shared, or BDT 2,990/mo for a personal account with your own Gmail, 2TB Google Drive storage, and AI built into Docs, Sheets, and Slides. Both available via bKash — no international card needed.",
     metaDescription: "ChatGPT vs Gemini in Bangladesh 2026. Full comparison with BD prices. AI Premium Shop.",
     canonical: "https://aipremiumshop.com/chatgpt-vs-gemini",
     productA: { name: "ChatGPT Plus", color: "#10a37f", orderText: "Order ChatGPT" },
@@ -100,11 +100,11 @@ const COMPARISONS: Record<string, CompConfig> = {
     ],
     verdict: "Both are excellent — the right choice depends on your existing tools and workflow.",
     verdictA: "Choose ChatGPT if you want the cheapest AI option (BDT 499) and primarily need AI for writing, coding, and chatting. Best for students on a tight budget.",
-    verdictB: "Google AI Pro at BDT 499 is the best-value tool in our catalog. You get a personal account (not shared), 2TB storage, and AI built into Gmail, Docs, Sheets, and Slides. For anyone who uses Google Workspace daily, this is the clear winner.",
-    buyBothText: "ChatGPT Plus Shared (BDT 499) + Google AI Pro (BDT 499) = BDT 850/mo — one for AI chat, one for your Google Workspace.",
+    verdictB: "Google AI Pro starts at BDT 599/mo shared. For a personal account (not shared) with 2TB storage and AI built into Gmail, Docs, Sheets, and Slides, the Personal tier is BDT 2,990/mo. For anyone who uses Google Workspace daily, this is a strong value.",
+    buyBothText: "ChatGPT Plus Shared (BDT 499) + Google AI Pro Shared (BDT 599) = BDT 1,098/mo — one for AI chat, one for your Google Workspace.",
     whoTable: [
       { persona: "Students on a tight budget", pick: "ChatGPT Plus Shared — BDT 499", reason: "Cheapest AI tool in our catalog." },
-      { persona: "Google Workspace users", pick: "Google AI Pro — BDT 499", reason: "AI in Gmail, Docs, Sheets + 2TB storage + personal account." },
+      { persona: "Google Workspace users", pick: "Google AI Pro Personal — BDT 2,990", reason: "AI in Gmail, Docs, Sheets + 2TB storage + personal account." },
       { persona: "Job seekers & writers", pick: "Google AI Pro", reason: "Personal Gmail account is more professional for job applications." },
     ],
     relatedGuides: [
@@ -151,13 +151,13 @@ const COMPARISONS: Record<string, CompConfig> = {
   "copilot-vs-cursor": {
     title: "GitHub Copilot vs Cursor 2026 — Best AI Code Tool",
     h1: "GitHub Copilot vs Cursor — Which AI Code Tool Should You Use?",
-    aioSnippet: "GitHub Copilot vs Cursor in Bangladesh 2026: Copilot Pro (BDT 1,495/mo) plugs into your existing VS Code or JetBrains with zero workflow change. Cursor Pro (BDT 2,990/mo) offers a full AI-native coding environment with autonomous agent mode that can write entire features from a single prompt. Both available via bKash — order on WhatsApp and receive access in under 2 hours.",
+    aioSnippet: "GitHub Copilot vs Cursor in Bangladesh 2026: Copilot Pro (from BDT 399/mo) plugs into your existing VS Code or JetBrains with zero workflow change. Cursor Pro (from BDT 699/mo) offers a full AI-native coding environment with autonomous agent mode that can write entire features from a single prompt. Both available via bKash — order on WhatsApp and receive access in under 2 hours.",
     metaDescription: "GitHub Copilot vs Cursor 2026. Best AI code editor compared. Prices in BDT.",
     canonical: "https://aipremiumshop.com/copilot-vs-cursor",
     productA: { name: "GitHub Copilot Pro", color: "#6e40c9", orderText: "Order Copilot" },
     productB: { name: "Cursor Pro", color: "#3b82f6", orderText: "Order Cursor" },
     rows: [
-      { feature: "AIPS price", a: "BDT 1,495/mo", b: "BDT 2,990/mo" },
+      { feature: "AIPS price", a: "From BDT 399/mo", b: "From BDT 699/mo" },
       { feature: "Works in", a: "VS Code, JetBrains, Neovim, Visual Studio", b: "Cursor editor (VS Code fork)" },
       { feature: "Agent mode", a: "Cloud agents (limited)", b: "Full autonomous agent mode" },
       { feature: "AI models", a: "GPT-5.4, Claude Opus 4.6, Gemini", b: "All frontier models" },
@@ -171,9 +171,9 @@ const COMPARISONS: Record<string, CompConfig> = {
     verdict: "Both tools make you a faster developer. The right choice depends on how much you want to change your workflow.",
     verdictA: "Choose GitHub Copilot if you want AI assistance inside your existing editor without changing anything. It plugs into VS Code or JetBrains and starts helping immediately. Best starting point for most developers.",
     verdictB: "Choose Cursor if you want the most powerful AI coding experience available. Its agent mode can write entire features autonomously. Many professional developers at top tech companies have switched to Cursor as their primary editor.",
-    buyBothText: "GitHub Copilot Pro (BDT 1,495) + Cursor Pro (BDT 2,990) = BDT 4,485/mo — use Copilot in your main IDE and Cursor for complex agent tasks.",
+    buyBothText: "GitHub Copilot Pro (from BDT 399) + Cursor Pro (from BDT 699) = from BDT 1,098/mo — use Copilot in your main IDE and Cursor for complex agent tasks.",
     whoTable: [
-      { persona: "Developers new to AI tools", pick: "GitHub Copilot Pro — BDT 1,495", reason: "No IDE change required — start getting completions in VS Code today." },
+      { persona: "Developers new to AI tools", pick: "GitHub Copilot Pro — from BDT 399", reason: "No IDE change required — start getting completions in VS Code today." },
       { persona: "Full-stack / startup developers", pick: "Cursor Pro — BDT 2,990", reason: "Agent mode builds entire features from a single prompt." },
       { persona: "Budget-conscious developers", pick: "GitHub Copilot Pro", reason: "Half the price of Cursor with proven productivity gains." },
     ],

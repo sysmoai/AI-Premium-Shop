@@ -118,8 +118,12 @@ export function PaymentMethodsSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
+          {/* "100% Safe" and "Money-Back Guarantee" both overstate the actual
+              policy — 15 min refund window + 30-day replacement warranty, not
+              a guarantee. The concierge is explicitly forbidden from making
+              this claim; the site was contradicting its own assistant. */}
           <h3 className="text-xl font-bold text-white mb-6 text-center">
-            100% Safe & Secure
+            Safe &amp; Secure Payment
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -127,7 +131,7 @@ export function PaymentMethodsSection() {
               { icon: "🔒", text: "SSL Encrypted" },
               { icon: "✅", text: "Official Subscriptions" },
               { icon: "💳", text: "Secure Payment" },
-              { icon: "🛡️", text: "Money-Back Guarantee" },
+              { icon: "🛡️", text: "30-Day Replacement Warranty" },
             ].map((item, idx) => (
               <motion.div
                 key={item.text}

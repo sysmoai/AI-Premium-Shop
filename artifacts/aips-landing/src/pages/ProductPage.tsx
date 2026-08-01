@@ -32,6 +32,7 @@ interface Plan {
   durationOptions?: { months: number; priceBDT: number; label: string }[];
   badge?: string;
   inStock: boolean;
+  deliverySLA?: string;
 }
 
 interface ProductDetail {
@@ -96,6 +97,7 @@ function getProductBySlug(slug: string): ProductDetail | undefined {
         seats: raw.accessType === "shared" ? 8 : 1,
         badge: raw.badge ?? undefined,
         inStock: true,
+        deliverySLA: raw.deliverySLA ?? undefined,
       };
     });
   }
@@ -118,12 +120,12 @@ const TRUST_DEFAULT = {
 };
 
 const USP_DEFAULT = [
-  "Instant delivery (5-15 min for most products)",
+  "Fast delivery — shared plans in minutes, personal accounts same day",
   "30-day warranty & replacement guarantee",
   "Your own account (not shared) on Personal plans",
   "Pay with bKash / Nagad / Rocket / Bank — no international card needed",
   "Bangla human support via WhatsApp",
-  "thousands trusted customers since 2024",
+  "A growing community of customers since 2024",
 ];
 
 const HOW_IT_WORKS_DEFAULT = [
@@ -191,7 +193,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
     keywords: [product.name, `${product.name} price in Bangladesh`, `${product.name} bKash`, "AI Premium Shop", "Bangladesh AI subscription"],
   } : {
     title: `${product.name} price in Bangladesh — ${formatBDT(fromPrice)}/mo | AI Premium Shop`,
-    metaDescription: `${product.name} price in Bangladesh is ${formatBDT(fromPrice)}/month at AI Premium Shop. Pay with bKash or Nagad. Instant delivery 5-15 min. 30-day warranty. Trusted by a growing community of customers since 2024.`,
+    metaDescription: `${product.name} price in Bangladesh is ${formatBDT(fromPrice)}/month at AI Premium Shop. Pay with bKash or Nagad. Delivery ${cheapestPlan?.deliverySLA ?? "as scheduled"}. 30-day warranty. Trusted by a growing community of customers since 2024.`,
     // Products with a dedicated brand page canonicalize there; the rest are
     // self-canonical — pointing at /{slug} for an unrouted slug would declare
     // a NotFound-rendering URL as the canonical version.

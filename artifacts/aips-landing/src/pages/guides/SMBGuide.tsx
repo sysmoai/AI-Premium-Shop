@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { stackTotal, taka } from "@/lib/catalogStats";
+import { stackTotal, taka, cheapestPriceFor } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -28,7 +28,7 @@ export default function SMBGuide() {
       rank: 1,
       name: "Google AI Pro",
       slug: "gemini-advanced-bangladesh",
-      price: "BDT 499/month",
+      price: `from ${taka(cheapestPriceFor("gemini-advanced-bangladesh") ?? 0)}/month`,
       description:
         "AI built into Gmail, Docs, and Sheets—tools your team already uses daily. Draft customer emails, create professional proposals, analyze sales data. 2TB storage for all business files.",
       useCases: ["Email automation", "Document creation", "Data analysis", "Team collaboration", "File storage"],
@@ -39,7 +39,7 @@ export default function SMBGuide() {
       rank: 2,
       name: "ChatGPT Team",
       slug: "chatgpt-business-bangladesh",
-      price: "BDT 1,200/month",
+      price: `from ${taka(cheapestPriceFor("chatgpt-business-bangladesh") ?? 0)}/month`,
       description:
         "Team AI assistant with admin controls. Unlimited GPT-5.4 access for the whole team. Perfect for marketing, sales, operations, and customer support. No individual account limits.",
       useCases: ["Team collaboration", "Sales scripts", "Customer support", "Content marketing", "Operations"],
@@ -50,7 +50,7 @@ export default function SMBGuide() {
       rank: 3,
       name: "Notion AI",
       slug: "notion-ai-bangladesh",
-      price: "BDT 550/month",
+      price: `from ${taka(cheapestPriceFor("notion-ai-bangladesh") ?? 0)}/month`,
       description:
         "AI-powered workspace for docs, projects, SOPs, and team collaboration. Create internal knowledge base, project management, and team dashboards. Replaces multiple software tools.",
       useCases: ["Knowledge base", "Project management", "SOPs", "Team documentation", "Dashboards"],
@@ -61,7 +61,7 @@ export default function SMBGuide() {
       rank: 4,
       name: "Claude Pro",
       slug: "claude-pro-bangladesh",
-      price: "BDT 1,495/month",
+      price: `from ${taka(cheapestPriceFor("claude-pro-bangladesh") ?? 0)}/month`,
       description:
         "Best AI for complex business documents—contracts, reports, business proposals. Superior writing quality and reasoning for strategic decisions. 200K token context for large documents.",
       useCases: ["Contract drafting", "Business reports", "Proposals", "Strategic writing", "Document analysis"],
@@ -72,7 +72,7 @@ export default function SMBGuide() {
       rank: 5,
       name: "Zapier",
       slug: "zapier-ai-automation-bangladesh",
-      price: "BDT 799/month",
+      price: `from ${taka(cheapestPriceFor("zapier-ai-automation-bangladesh") ?? 0)}/month`,
       description:
         "Automate workflows between apps. Connect ChatGPT, Notion, Gmail, and other tools. Eliminate manual data entry. Turn complex processes into one-click automation.",
       useCases: ["Workflow automation", "Lead management", "Data sync", "Email automation", "Process optimization"],
@@ -127,7 +127,7 @@ export default function SMBGuide() {
     },
     {
       q: "Which tools should a small business start with?",
-      a: "Start with Google AI Pro (BDT 499). It integrates into Gmail, Docs, and Sheets—every business uses these. Once you see value, add ChatGPT Team (BDT 1,200) to automate sales and marketing. Then add Notion (BDT 550) to replace multiple tools.",
+      a: `Start with Google AI Pro (from ${taka(cheapestPriceFor("gemini-advanced-bangladesh") ?? 0)}). It integrates into Gmail, Docs, and Sheets—every business uses these. Once you see value, add ChatGPT Business (from ${taka(cheapestPriceFor("chatgpt-business-bangladesh") ?? 0)}) to automate sales and marketing. Then add Notion AI (from ${taka(cheapestPriceFor("notion-ai-bangladesh") ?? 0)}) to replace multiple tools.`,
     },
     {
       q: "Can I use these for customer support automation?",
@@ -145,7 +145,7 @@ export default function SMBGuide() {
 
   const budgetPlans = [
     {
-      name: "Starter (BDT 499/month)",
+      name: `Starter (from ${taka(cheapestPriceFor("gemini-advanced-bangladesh") ?? 0)}/month)`,
       tools: ["Google AI Pro"],
       features: [
         "Gmail AI for emails",
@@ -186,7 +186,7 @@ export default function SMBGuide() {
     <PageLayout>
       <SEOHead
         title="How Small Business Owners Run 24/7 with AI | Bangladesh"
-        description="Best AI tools for SMB owners in Bangladesh 2026. Automate operations, save ৳50K/month, scale faster. Google AI, ChatGPT Team, Notion. From BDT 499."
+        description="Best AI tools for SMB owners in Bangladesh 2026. Automate operations, scale faster. Google AI, ChatGPT Business, Notion. From BDT 499."
         canonical="https://aipremiumshop.com/guides/smallbusiness"
         ogImage="https://aipremiumshop.com/og-smallbusiness.jpg"
         jsonLd={[breadcrumbSchema([{ name: "Home", href: "/" }, { name: "Small Business Guide" }])]}
@@ -313,7 +313,7 @@ export default function SMBGuide() {
             >
               <Award className="w-12 h-12 mb-4" />
               <h3 className="text-xl font-bold mb-3">Scale Without Hiring</h3>
-              <p>Double your output without doubling your team. AI multiplies your team's capacity. It's like hiring 5 people for BDT 4,000/month.</p>
+              <p>Get more done without growing headcount — AI can absorb repetitive work so your existing team spends more time on what actually needs a person.</p>
             </motion.div>
 
             <motion.div

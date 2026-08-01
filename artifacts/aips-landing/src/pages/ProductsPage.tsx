@@ -14,6 +14,12 @@ import productsData from "../../data/catalog-pages.json";
 const WHATSAPP = "https://wa.me/8801865385348";
 const ALL = productsData.products;
 
+// This list previously omitted "ai-design" — a real category with 4 products,
+// its own live route (/ai-design), and its own Navbar entry — so it had a
+// dedicated landing page but was invisible in the /products filter dropdown.
+// Same disease as the other hardcoded copies found today: this map isn't
+// derived from anywhere, it's retyped, and it silently drifted out of sync
+// with CategoryPage.tsx and Navbar.tsx, which both already knew about it.
 const CATEGORY_LABELS: Record<string, string> = {
   "ai-assistant": "AI Assistant & Chat",
   "ai-image": "AI Image & Design",
@@ -22,10 +28,11 @@ const CATEGORY_LABELS: Record<string, string> = {
   "ai-code": "AI Code & Dev Tools",
   "ai-workspace": "AI Workspace",
   "ai-writing": "AI Writing & SEO",
+  "ai-design": "AI Design & Creative",
   "bundles": "Bundles & Packages",
 };
 
-const CATEGORY_ORDER = ["ai-assistant", "ai-image", "ai-code", "ai-voice-music", "ai-video", "ai-workspace", "ai-writing", "bundles"];
+const CATEGORY_ORDER = ["ai-assistant", "ai-image", "ai-code", "ai-voice-music", "ai-video", "ai-workspace", "ai-writing", "ai-design", "bundles"];
 
 type SortKey = "price-asc" | "price-desc" | "name";
 

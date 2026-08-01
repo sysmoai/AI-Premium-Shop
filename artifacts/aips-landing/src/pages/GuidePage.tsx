@@ -6,6 +6,7 @@ import {
   Palette, TrendingUp, ShoppingBag, type LucideIcon,
 } from "lucide-react";
 import { Link } from "wouter";
+import { cheapestPriceFor } from "@/lib/catalogStats";
 
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
@@ -110,7 +111,7 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI Tools for Students Bangladesh 2026 — From BDT 299",
     h1: "Best AI Tools for Students in Bangladesh 2026",
     subtitle: "Write better papers. Study smarter. Ace your exams.",
-    aioSnippet: "The best AI tools for students in Bangladesh in 2026 are Google AI Pro (BDT 499/mo) for Gmail and Docs integration, ChatGPT Plus Shared (BDT 499/mo) for writing and coding assignments, and Perplexity Pro Shared (BDT 499/mo) for research with cited sources. No international credit card needed — pay with bKash or Nagad and receive access in 5–30 minutes via WhatsApp.",
+    aioSnippet: `The best AI tools for students in Bangladesh in 2026 are Google AI Pro (from BDT ${cheapestPriceFor("gemini-advanced-bangladesh")}/mo) for Gmail and Docs integration, ChatGPT Plus Shared (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/mo) for writing and coding assignments, and Perplexity Pro Shared (from BDT ${cheapestPriceFor("perplexity-pro-bangladesh")}/mo) for research with cited sources. No international credit card needed — pay with bKash or Nagad and receive access in 5–30 minutes via WhatsApp.`,
     metaDescription: "Best AI tools for students in Bangladesh 2026. Google AI BDT 499. ChatGPT BDT 499. Study smarter.",
     canonical: "https://aipremiumshop.com/best-ai-for-students",
     whyHeading: "Why AI Matters for Students",
@@ -144,12 +145,12 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for Freelancers Bangladesh 2026",
     h1: "Best AI Tools for Freelancers in Bangladesh 2026",
     subtitle: "Win more clients. Deliver faster. Earn more.",
-    aioSnippet: "The top AI tools for freelancers in Bangladesh 2026 are ChatGPT Plus Premium Shared (BDT 999/mo) for proposals and content delivery, Claude Pro Premium Shared (BDT 1,495/mo) for writing quality, and Midjourney Standard Shared (BDT 1,199/mo) for client graphics. Freelancers using AI earn 44% more on average (Upwork 2025). Order any tool via WhatsApp and pay with bKash or Nagad.",
-    metaDescription: "Best AI tools for freelancers Bangladesh 2026. Earn 44% more with AI. From BDT 299. Upwork & Fiverr.",
+    aioSnippet: `The top AI tools for freelancers in Bangladesh 2026 are ChatGPT Plus (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/mo) for proposals and content delivery, Claude Pro (from BDT ${cheapestPriceFor("claude-pro-bangladesh")}/mo) for writing quality, and Midjourney Standard (from BDT ${cheapestPriceFor("midjourney-bangladesh")}/mo) for client graphics. Order any tool via WhatsApp and pay with bKash or Nagad.`,
+    metaDescription: "Best AI tools for freelancers Bangladesh 2026. Write proposals faster, deliver more work. From BDT 299. Upwork & Fiverr.",
     canonical: "https://aipremiumshop.com/best-ai-for-freelancers",
     whyHeading: "Why AI is a Freelancer's Competitive Advantage",
-    whyText: "Freelancers who use AI tools earn 44% more on average (Upwork 2025 Report). AI tools let you write proposals faster, deliver projects on tighter deadlines, and take on more clients simultaneously. Whether you're a writer, designer, developer, or marketer, AI multiplies your output without multiplying your hours. These tools pay for themselves with your first client win.",
-    statLine: "Freelancers who use AI earn 44% more on average — Upwork 2025 Report",
+    whyText: "AI tools let you write proposals faster, deliver projects on tighter deadlines, and take on more clients simultaneously. Whether you're a writer, designer, developer, or marketer, AI can multiply your output without multiplying your hours.",
+    statLine: "Freelancers doing AI-related work earn 44% more per hour than those who don't — Upwork Research Institute 2025",
     tools: [
       { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 999/mo", reason: "Write proposals, emails, and content 10x faster. Higher stability than starter plan.", badge: "Top Pick", color: "#10a37f" },
       { rank: 2, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "#1 ranked AI for writing quality. Extended thinking for complex client projects.", badge: "Best Writing", color: "#d97706" },
@@ -180,7 +181,7 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for Content Creators Bangladesh 2026",
     h1: "Best AI Tools for Content Creators in Bangladesh 2026",
     subtitle: "Create faster. Edit smarter. Grow your audience.",
-    aioSnippet: "The best AI tools for content creators in Bangladesh 2026 are ChatGPT Plus (BDT 999/mo) for scripting, Midjourney Standard Shared (BDT 1,199/mo) for thumbnails, ElevenLabs (BDT 748/mo) for voiceovers, and Suno AI Pro (BDT 1,495/mo) for copyright-free music. All accessible via bKash or Nagad payment through WhatsApp — no international card required.",
+    aioSnippet: `The best AI tools for content creators in Bangladesh 2026 are ChatGPT Plus (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/mo) for scripting, Midjourney Standard (from BDT ${cheapestPriceFor("midjourney-bangladesh")}/mo) for thumbnails, ElevenLabs (from BDT ${cheapestPriceFor("elevenlabs-bangladesh")}/mo) for voiceovers, and Suno AI (from BDT ${cheapestPriceFor("suno-ai-bangladesh")}/mo) for copyright-free music. All accessible via bKash or Nagad payment through WhatsApp — no international card required.`,
     metaDescription: "Best AI for content creators Bangladesh 2026. Script, thumbnail, music — all AI. From BDT 299.",
     canonical: "https://aipremiumshop.com/best-ai-for-creators",
     whyHeading: "Why AI is a Creator's Superpower",
@@ -216,7 +217,7 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for Business Bangladesh 2026",
     h1: "Best AI Tools for Business Owners in Bangladesh 2026",
     subtitle: "Automate operations. Cut costs. Scale faster.",
-    aioSnippet: "The top AI tools for business owners in Bangladesh 2026 are Google AI Pro (BDT 499/mo) for Gmail and Google Workspace AI, ChatGPT Team (BDT 1,200/mo) for team operations with admin controls, and Claude Pro (BDT 1,495/mo) for contracts and business documents. AI reduces operational costs by 30–40%. Pay with bKash or Nagad — no international card required.",
+    aioSnippet: `The top AI tools for business owners in Bangladesh 2026 are Google AI Pro (from BDT ${cheapestPriceFor("gemini-advanced-bangladesh")}/mo) for Gmail and Google Workspace AI, ChatGPT Business (from BDT ${cheapestPriceFor("chatgpt-business-bangladesh")}/mo) for team operations with admin controls, and Claude Pro (from BDT ${cheapestPriceFor("claude-pro-bangladesh")}/mo) for contracts and business documents. Pay with bKash or Nagad — no international card required.`,
     metaDescription: "Best AI for business owners Bangladesh 2026. Automate sales, support, content. From BDT 500.",
     canonical: "https://aipremiumshop.com/best-ai-for-business",
     whyHeading: "Why Businesses in Bangladesh Are Adopting AI Now",
@@ -251,7 +252,7 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI Coding Tools Bangladesh 2026",
     h1: "Best AI Coding Tools for Developers in Bangladesh 2026",
     subtitle: "Code faster. Debug instantly. Ship on time.",
-    aioSnippet: "The best AI coding tools for developers in Bangladesh 2026 are GitHub Copilot Pro (BDT 1,495/mo) for IDE integration with zero workflow changes, Cursor Pro (BDT 2,990/mo) for full AI-native agent-mode coding, and Claude Pro Personal (BDT 2,990/mo) for complex reasoning and debugging. GitHub Copilot reduces coding time by 55%. Order via WhatsApp — pay with bKash.",
+    aioSnippet: `The best AI coding tools for developers in Bangladesh 2026 are GitHub Copilot Pro (from BDT ${cheapestPriceFor("github-copilot-bangladesh")}/mo) for IDE integration with zero workflow changes, Cursor Pro (from BDT ${cheapestPriceFor("cursor-bangladesh")}/mo) for full AI-native agent-mode coding, and Claude Pro (from BDT ${cheapestPriceFor("claude-pro-bangladesh")}/mo) for complex reasoning and debugging. GitHub Copilot reduces coding time by 55% (GitHub Developer Productivity Report). Order via WhatsApp — pay with bKash.`,
     metaDescription: "Best AI coding tools Bangladesh 2026. Copilot, Cursor, Replit. Code 50% faster. From BDT 500.",
     canonical: "https://aipremiumshop.com/best-ai-for-developers",
     whyHeading: "Why Developers Need AI Coding Tools in 2026",
@@ -287,7 +288,7 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for Job Seekers Bangladesh 2026",
     h1: "Best AI Tools for Job Seekers in Bangladesh 2026",
     subtitle: "Build a winning CV. Ace interviews. Land the job.",
-    aioSnippet: "The best AI tools for job seekers in Bangladesh 2026 are ChatGPT Plus Starter Shared (BDT 499/mo) for CVs and cover letters, Google AI Pro (BDT 499/mo) for Gmail-integrated job applications, and Perplexity Pro (BDT 499/mo) for researching companies before interviews. Starting at just BDT 499/mo — one job offer pays back months of subscription. Pay with bKash via WhatsApp.",
+    aioSnippet: `The best AI tools for job seekers in Bangladesh 2026 are ChatGPT Plus Starter Shared (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/mo) for CVs and cover letters, Google AI Pro (from BDT ${cheapestPriceFor("gemini-advanced-bangladesh")}/mo) for Gmail-integrated job applications, and Perplexity Pro (from BDT ${cheapestPriceFor("perplexity-pro-bangladesh")}/mo) for researching companies before interviews. Pay with bKash via WhatsApp.`,
     metaDescription: "Best AI for job seekers Bangladesh 2026. CV builder, interview prep, skill roadmap. From BDT 299.",
     canonical: "https://aipremiumshop.com/best-ai-for-job-seekers",
     whyHeading: "Why AI Gives Job Seekers an Edge",
@@ -321,7 +322,7 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for Designers Bangladesh 2026",
     h1: "Best AI Tools for Designers in Bangladesh 2026",
     subtitle: "Generate stunning visuals. Cut design time in half. Win more clients.",
-    aioSnippet: "The best AI design tools for designers in Bangladesh in 2026 are Midjourney Standard Shared (BDT 1,199/mo) for photorealistic and artistic image generation, Ideogram (from BDT 2,990/mo) for typography and text-in-image design, and Leonardo AI (from BDT 599/mo) for 3D textures and character design. All available via bKash — no international card needed.",
+    aioSnippet: `The best AI design tools for designers in Bangladesh in 2026 are Midjourney Standard (from BDT ${cheapestPriceFor("midjourney-bangladesh")}/mo) for photorealistic and artistic image generation, Ideogram (from BDT 2,990/mo) for typography and text-in-image design, and Leonardo AI (from BDT ${cheapestPriceFor("leonardo-ai-bangladesh")}/mo) for 3D textures and character design. All available via bKash — no international card needed.`,
     metaDescription: "Best AI design tools for designers in Bangladesh 2026. Midjourney, Ideogram, Leonardo AI. BDT prices.",
     canonical: "https://aipremiumshop.com/best-ai-for-designers",
     whyHeading: "Why Every Designer Needs AI in 2026",
@@ -358,7 +359,7 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for Digital Marketers Bangladesh 2026",
     h1: "Best AI Tools for Digital Marketers in Bangladesh 2026",
     subtitle: "Write better copy. Create stunning visuals. Research faster.",
-    aioSnippet: "The best AI tools for digital marketers in Bangladesh in 2026 are ChatGPT Plus Shared (BDT 499/mo) for ad copy and social captions, Midjourney Standard Shared (BDT 1,199/mo) for visual content creation, and Perplexity Pro Shared (BDT 499/mo) for competitor research with real citations. Total: BDT 1,899/mo for a complete marketing AI stack — pay with bKash or Nagad, no international card required.",
+    aioSnippet: `The best AI tools for digital marketers in Bangladesh in 2026 are ChatGPT Plus Shared (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/mo) for ad copy and social captions, Midjourney Standard (from BDT ${cheapestPriceFor("midjourney-bangladesh")}/mo) for visual content creation, and Perplexity Pro Shared (from BDT ${cheapestPriceFor("perplexity-pro-bangladesh")}/mo) for competitor research with real citations. Total: from BDT ${(cheapestPriceFor("chatgpt-plus-bangladesh") ?? 0) + (cheapestPriceFor("midjourney-bangladesh") ?? 0) + (cheapestPriceFor("perplexity-pro-bangladesh") ?? 0)}/mo for a complete marketing AI stack — pay with bKash or Nagad, no international card required.`,
     metaDescription: "Best AI tools for digital marketers in Bangladesh 2026. ChatGPT, Midjourney, Perplexity. BDT prices.",
     canonical: "https://aipremiumshop.com/best-ai-for-marketers",
     whyHeading: "Why AI is Non-Negotiable for Marketers in 2026",
@@ -395,7 +396,7 @@ const GUIDES: Record<string, GuideConfig> = {
     title: "Best AI for E-commerce Bangladesh 2026",
     h1: "Best AI Tools for E-commerce Sellers in Bangladesh 2026",
     subtitle: "Better product photos. Faster listings. More sales.",
-    aioSnippet: "The best AI tools for e-commerce sellers in Bangladesh in 2026 are ChatGPT Plus Shared (BDT 499/mo) for product descriptions and customer support copy, Midjourney Standard Shared (BDT 1,199/mo) for professional product photography and lifestyle images, and Perplexity Pro (BDT 499/mo) for competitor and market research. Available via bKash — no international card needed.",
+    aioSnippet: `The best AI tools for e-commerce sellers in Bangladesh in 2026 are ChatGPT Plus Shared (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/mo) for product descriptions and customer support copy, Midjourney Standard (from BDT ${cheapestPriceFor("midjourney-bangladesh")}/mo) for professional product photography and lifestyle images, and Perplexity Pro (from BDT ${cheapestPriceFor("perplexity-pro-bangladesh")}/mo) for competitor and market research. Available via bKash — no international card needed.`,
     metaDescription: "Best AI tools for e-commerce sellers in Bangladesh 2026. Product photos, descriptions, customer support AI.",
     canonical: "https://aipremiumshop.com/best-ai-for-ecommerce",
     whyHeading: "Why E-commerce Sellers Need AI in 2026",
@@ -832,10 +833,17 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
           <div className="bg-[#151b3d] border border-red-500/20 rounded-xl p-6 my-12">
             <h3 className="text-white font-bold text-lg mb-3">⚠️ The Cost of Waiting</h3>
             <ul className="text-gray-400 text-sm space-y-2">
-              <li>• Students using AI outperform non-AI students in every metric</li>
-              <li>• Freelancers with AI earn 44% more — Upwork Research 2025</li>
-              <li>• Businesses using AI save 60-80% on operations — McKinsey</li>
-              <li>• 92% of developers now use AI coding tools — GitHub Survey</li>
+              {/* Fixed after checking each citation live: "Freelancers with AI
+                  earn 44% more" misapplied an Upwork finding about freelancers
+                  who DO AI-related work vs. unrelated work, as if any freelancer
+                  using an AI tool earns 44% more — the source does not say
+                  that. "Businesses save 60-80% (McKinsey)" had no primary
+                  McKinsey source behind it; only third-party marketing blogs
+                  used that framing. "Students outperform in every metric" was
+                  an unsourced absolute claim. Kept only what a source check
+                  actually confirmed, worded to match what the source says. */}
+              <li>• Freelancers doing AI-related work earn 44% more per hour than those who don't — Upwork Research Institute 2025</li>
+              <li>• 92% of developers use AI coding tools — GitHub Developer Survey 2023</li>
             </ul>
             <p className="text-white font-semibold mt-4">The question is not "should I use AI?" — it's "how long can I afford not to?"</p>
           </div>
@@ -950,10 +958,8 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
           <div className="rounded-xl p-6" style={{ backgroundColor: "#151b3d", border: "1px solid rgba(239,68,68,0.1)" }}>
             <h3 className="text-lg font-bold text-white mb-3">AI Is No Longer Optional</h3>
             <div className="text-sm leading-relaxed space-y-1 mb-4" style={{ color: "#d1d5db" }}>
-              <p>• Students using AI outperform peers in every metric</p>
-              <p>• Freelancers with AI earn 44% more (Upwork Research)</p>
-              <p>• Businesses save 60-80% on operations (McKinsey)</p>
-              <p>• 92% of developers use AI coding tools (GitHub)</p>
+              <p>• Freelancers doing AI-related work earn 44% more per hour than those who don't (Upwork Research Institute 2025)</p>
+              <p>• 92% of developers use AI coding tools (GitHub Developer Survey 2023)</p>
             </div>
             <p className="text-white font-bold mb-4">The question is not "should I use AI?" — it's "how long can I afford not to?"</p>
             <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want to start with AI tools")}`}

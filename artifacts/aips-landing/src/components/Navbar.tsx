@@ -12,6 +12,7 @@ import { useLocation } from "wouter";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
 import { TOTAL_PRODUCTS, categoryStats, brandStats, taka, cheapestPriceFor, tierPrice } from "@/lib/catalogStats";
 import productsData from "../../data/products.json";
+import { formulaPrice } from "@/lib/pricing";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
@@ -93,6 +94,35 @@ const SOLUTIONS = [
 // against a ৳15,000 price. It is removed rather than replaced with a guess —
 // this catalog already carries 127 unverified-claim flags and an unsourced
 // savings number is exactly that. Restore it with a computed basis.
+// Savings claims are computed against the project's own approved formula
+// (src/lib/pricing.ts: usd * 130 * 1.15, "cost of buying direct from abroad"),
+// so the figure has a stated basis rather than being typed in.
+//
+// The five tools this package names cost ৳17,192 bought direct — ChatGPT
+// Business ৳3,738 + Google AI Pro ৳2,989 + Notion Business ৳2,990 + Midjourney
+// ৳4,485 + Claude Pro ৳2,990 — against a ৳15,000 package price. The included
+// 2hr setup is additional and deliberately not counted, so the number stated
+// is the floor, not the ceiling.
+//
+// The earlier "Save ৳3,570" had no derivable basis and was removed; this
+// replaces it with one that recomputes if any component price moves.
+const BUSINESS_PACKAGE_COMPONENTS = [
+  "chatgpt-business-bangladesh",
+  "gemini-advanced-bangladesh",
+  "notion-business-bangladesh",
+  "midjourney-bangladesh",
+  "claude-pro-bangladesh",
+];
+const BUSINESS_PACKAGE_SAVING = (() => {
+  const direct = BUSINESS_PACKAGE_COMPONENTS.reduce((sum, slug) => {
+    const rec = productsData.products
+      .filter((p) => p.slug === slug && !p.requestPrice && typeof p.price === "number" && p.officialUSD)
+      .sort((a, b) => (a.price ?? 0) - (b.price ?? 0))[0];
+    return sum + (rec?.officialUSD ? formulaPrice(rec.officialUSD) : 0);
+  }, 0);
+  return Math.max(0, direct - 15000);
+})();
+
 const BUNDLES_LEFT = [
   { icon: GraduationCap, iconCls: "text-blue-400",   name: "Student Essentials", price: "৳449",    sub: "ChatGPT + Study Guide",                  badge: "" },
   { icon: GraduationCap, iconCls: "text-purple-400", name: "University Pro",     price: "৳899",    sub: "ChatGPT + Perplexity + Coaching",         badge: "" },
@@ -100,7 +130,7 @@ const BUNDLES_LEFT = [
 ];
 
 const BUNDLES_RIGHT = [
-  { icon: Building,  iconCls: "text-amber-400", name: "Business Package",   price: "৳15,000", sub: "6 AI tools + 2hr Expert Setup",              badge: "" },
+  { icon: Building,  iconCls: "text-amber-400", name: "Business Package",   price: "৳15,000", sub: "6 AI tools + 2hr Expert Setup",              badge: `Save ${taka(BUSINESS_PACKAGE_SAVING)} vs abroad` },
   { icon: Building2, iconCls: "text-red-400",   name: "B2B Implementation", price: "৳25,000", sub: "Full stack + 5hr Training + 30-day Support", badge: "" },
 ];
 

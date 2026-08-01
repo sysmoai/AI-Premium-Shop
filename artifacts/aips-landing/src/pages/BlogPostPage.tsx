@@ -1682,6 +1682,11 @@ export default function BlogPostPage({ postSlug }: BlogPostPageProps) {
   if (!post) {
     return (
       <PageLayout>
+        {/* This branch previously rendered no SEOHead at all, so an unknown
+            /blog/:slug kept whatever meta tags the last page left behind (on
+            client-side nav) or the raw index.html defaults (on a direct hit)
+            — indexable, wrong title, no noindex. Same fix as ProductPage. */}
+        <SEOHead title="Post Not Found | AI Premium Shop" description="This blog post is not available. Browse our full blog." noindex />
         <div className="text-center py-40 text-white">Post not found.</div>
       </PageLayout>
     );

@@ -218,11 +218,11 @@ export default function FAQPage() {
         // No breadcrumbSchema here: <Breadcrumb> below already injects its own
         // BreadcrumbList JSON-LD from these same items.
         jsonLd={[faqSchema(FAQS)]}
-        hreflang={{
-          en: "/faq",
-          bn: "/faq",
-          "x-default": "/faq",
-        }}
+        // No Bangla FAQ page exists, so no bn pair is declared — this used to
+        // claim bn: "/faq" too, i.e. English and Bangla are the same document,
+        // the same lie the sitewide index.html default told about every page.
+        // Only state a hreflang pair when a real alternate exists.
+        hreflang={{ en: "/faq" }}
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "FAQ" }]} />
 

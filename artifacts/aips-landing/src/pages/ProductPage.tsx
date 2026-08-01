@@ -149,7 +149,14 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
   if (!product) {
     return (
       <PageLayout>
-        <SEOHead title="Product Not Found | AI Premium Shop" description="This product page is not available. Browse our full catalog of AI subscriptions." />
+        {/* An unknown slug here rendered with no noindex and no canonical —
+            indexable, thin, soft-404 content, same class of bug not-found.tsx
+            already solves with the noindex prop. Applied here too. */}
+        <SEOHead
+          title="Product Not Found | AI Premium Shop"
+          description="This product page is not available. Browse our full catalog of AI subscriptions."
+          noindex
+        />
         <div className="max-w-5xl mx-auto px-4 pt-10 pb-20 text-center">
           <h1 className="text-3xl font-bold text-white mb-4">Product Not Found</h1>
           <p className="mb-8" style={{ color: "#c9ceda" }}>

@@ -188,6 +188,7 @@ export default function EducatorsGuide() {
         title="AI Teaching Toolkit: Create Better Lessons, Grade Faster | Bangladesh"
         description="Best AI tools for educators in Bangladesh 2026. Lesson planning, assessment, grading. Increase student engagement 40%. From BDT 399/month."
         canonical="https://aipremiumshop.com/guides/educators"
+        hreflang={{ en: "/guides/educators", bn: "/educators-bn" }}
         ogImage="https://aipremiumshop.com/og-educators.jpg"
         jsonLd={[breadcrumbSchema([{ name: "Home", href: "/" }, { name: "Educators Guide" }])]}
       />

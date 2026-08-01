@@ -133,6 +133,33 @@ for (const [slug, recs] of bySlug) {
   }
 }
 
+// ---------- 2a. lite catalog sync ----------
+// data/catalog-lite.json is what the main bundle reads. If products.json moves
+// without regenerating it, every price in the navbar and every figure derived
+// from catalogStats goes stale site-wide — the same failure mode the concierge
+// catalog check below exists for, with a wider blast radius.
+{
+  const expected = products.map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    brand: p.brand ?? null,
+    category: p.category,
+    tier: p.tier ?? null,
+    price: p.price ?? null,
+    requestPrice: p.requestPrice ?? false,
+    officialUSD: p.officialUSD ?? null,
+  }));
+  let actual;
+  try {
+    actual = JSON.parse(read("data/catalog-lite.json")).products;
+  } catch {
+    actual = null;
+  }
+  if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+    failures.push("data/catalog-lite.json is out of sync with data/products.json — run: node scripts/generate-catalog-lite.mjs");
+  }
+}
+
 // ---------- 2b. concierge catalog sync ----------
 // The chatbot answers ONLY from api/_catalog.json. If products.json changed
 // without regenerating it, the concierge gives stale answers — hard failure.

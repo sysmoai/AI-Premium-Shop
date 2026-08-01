@@ -11,7 +11,10 @@ import {
 import { useLocation } from "wouter";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
 import { TOTAL_PRODUCTS, categoryStats, brandStats, taka, cheapestPriceFor, tierPrice } from "@/lib/catalogStats";
-import productsData from "../../data/products.json";
+// catalog-lite carries only the fields this module reads. Importing the full
+// products.json here put 227 KB of plans/faq/useCases into the main bundle for
+// every visitor — see scripts/generate-catalog-lite.mjs.
+import productsData from "../../data/catalog-lite.json";
 import { formulaPrice } from "@/lib/pricing";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";

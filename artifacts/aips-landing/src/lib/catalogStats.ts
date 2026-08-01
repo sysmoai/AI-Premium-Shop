@@ -15,7 +15,10 @@
 //   PRODUCT / "tool" = one distinct slug, e.g. "claude-pro-bangladesh".
 //   PLAN / SKU       = one record in products.json, i.e. a single price tier
 //                      of a product ("Claude Pro — Starter Shared").
-import productsData from "../../data/products.json";
+// catalog-lite carries only the fields this module reads. Importing the full
+// products.json here put 227 KB of plans/faq/useCases into the main bundle for
+// every visitor — see scripts/generate-catalog-lite.mjs.
+import productsData from "../../data/catalog-lite.json";
 
 interface RawProduct {
   slug: string;

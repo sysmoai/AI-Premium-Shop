@@ -218,7 +218,15 @@ export default function BestAISubscriptionPage() {
                     {row.best}
                   </a>
                 </div>
-                <div className="text-sm" style={{ color: "#c9ceda" }}>{row.price}</div>
+                {/* CATEGORY_TABLE carries its own typed prices, so the page showed
+                    Claude Pro at 599 in the cards above and 1,495 in this table —
+                    the same page disagreeing with itself. Derived from row.slug. */}
+                <div className="text-sm" style={{ color: "#c9ceda" }}>
+                  {(() => {
+                    const p = cheapestPriceFor(row.slug.replace(/^\//, ""));
+                    return p == null ? row.price : `from BDT ${p.toLocaleString()}`;
+                  })()}
+                </div>
                 <div className="text-sm" style={{ color: "#c9ceda" }}>{row.runner}</div>
               </div>
             ))}

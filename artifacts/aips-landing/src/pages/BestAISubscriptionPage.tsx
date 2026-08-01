@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
+import { TOTAL_PRODUCTS, cheapestPriceFor } from "@/lib/catalogStats";
 import { MessageCircle, ChevronRight, ArrowRight, Star } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
@@ -156,7 +156,16 @@ export default function BestAISubscriptionPage() {
                           {tool.badge}
                         </span>
                       </div>
-                      <div className="text-sm font-semibold mb-2" style={{ color: "#f4b942" }}>{tool.price}</div>
+                      {/* Derived from the slug this card already links to. Four of the eight
+                          typed prices here disagreed with the product they sat beside —
+                          Claude Pro at BDT 1,495 (that is Copilot's price) against a real
+                          599, Perplexity at 499 against 599. */}
+                      <div className="text-sm font-semibold mb-2" style={{ color: "#f4b942" }}>
+                        {(() => {
+                          const p = cheapestPriceFor(tool.slug.replace(/^\//, ""));
+                          return p == null ? tool.price : `from BDT ${p.toLocaleString()}/mo`;
+                        })()}
+                      </div>
                       <p className="text-sm mb-3" style={{ color: "#c9ceda" }}>{tool.why}</p>
                       <div className="flex items-center flex-wrap gap-2">
                         <span className="text-xs" style={{ color: "#c9ceda" }}>Best for:</span>

@@ -20,7 +20,9 @@ import { Link, useLocation } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { BrandIcon } from "@/components/BrandIcon";
-import productsData from "../../data/products.json";
+// catalog-pages carries the 17 fields the page chunks render — not plans/faq/
+// useCases/descriptionBN, which are 100+ KB this page never reads.
+import productsData from "../../data/catalog-pages.json";
 import {
   StudentStorySVG,
   FreelancerStorySVG,

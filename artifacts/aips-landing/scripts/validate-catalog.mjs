@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { readdirSync, statSync } from "node:fs";
 import { buildCatalog } from "./generate-concierge-catalog.mjs";
+import { buildPages } from "./generate-catalog-lite.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const strict = process.argv.includes("--strict");
@@ -157,6 +158,24 @@ for (const [slug, recs] of bySlug) {
   }
   if (JSON.stringify(actual) !== JSON.stringify(expected)) {
     failures.push("data/catalog-lite.json is out of sync with data/products.json — run: node scripts/generate-catalog-lite.mjs");
+  }
+}
+
+// ---------- 2a-ii. pages catalog sync ----------
+// Compared against the generator's own builder, imported rather than shelled
+// out to: a first attempt ran the generator and then compared, which rewrote
+// the file before checking it and could never fail. Verified by corrupting the
+// file and confirming this reports it.
+{
+  const expected = buildPages(products);
+  let actual;
+  try {
+    actual = JSON.parse(read("data/catalog-pages.json")).products;
+  } catch {
+    actual = null;
+  }
+  if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+    failures.push("data/catalog-pages.json is out of sync — run: node scripts/generate-catalog-lite.mjs");
   }
 }
 

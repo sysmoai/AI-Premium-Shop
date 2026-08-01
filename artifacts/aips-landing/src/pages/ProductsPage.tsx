@@ -7,7 +7,9 @@ import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { productListSchema } from "@/utils/schemas";
-import productsData from "../../data/products.json";
+// catalog-pages carries the 17 fields the page chunks render — not plans/faq/
+// useCases/descriptionBN, which are 100+ KB this page never reads.
+import productsData from "../../data/catalog-pages.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
 const ALL = productsData.products;

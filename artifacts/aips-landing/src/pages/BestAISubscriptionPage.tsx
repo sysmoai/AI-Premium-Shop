@@ -90,7 +90,7 @@ const CATEGORY_TABLE = [
 const BUDGET_RECS = [
   { budget: "Under BDT 500", title: "Best starter combo", tools: "ChatGPT Plus (BDT 499) + Perplexity Pro (BDT 499)", href: "/ai-under-500" },
   { budget: "BDT 500–1,000", title: "Best solo tool", tools: "Google AI Pro (BDT 499) — personal account, 2TB Drive, AI in all Google apps", href: "/ai-under-1000" },
-  { budget: "BDT 1,000–2,000", title: "Writer's stack", tools: "Claude Pro (BDT 1,495) — the best writing quality, 1M context", href: "/ai-under-3000" },
+  { budget: "BDT 1,000–2,000", title: "Writer's stack", tools: `Claude Pro (from BDT ${(cheapestPriceFor("claude-pro-bangladesh") ?? 0).toLocaleString()}) — the best writing quality, 1M context`, href: "/ai-under-3000" },
   { budget: "BDT 2,000+", title: "Developer stack", tools: "Cursor Pro (BDT 2,990) — full AI-native coding environment with agent mode", href: "/ai-under-3000" },
 ];
 
@@ -124,7 +124,7 @@ export default function BestAISubscriptionPage() {
           className="p-5 rounded-2xl border mb-10"
           style={{ backgroundColor: "rgba(244,185,66,0.06)", borderColor: "rgba(244,185,66,0.25)" }}>
           <p className="text-sm leading-relaxed" style={{ color: "#e8d5a3" }}>
-            The best AI subscription in Bangladesh in 2026 depends on your use case: for the best all-round value, ChatGPT Plus Shared starts at BDT 499/month. For the best writing quality, Claude Pro starts at BDT 1,495/month. For the best value overall, Google AI Pro at BDT 499/month includes a personal Gmail account and 2TB storage. For developers, GitHub Copilot Pro (BDT 1,495/month) offers the highest return on investment. All available via bKash or Nagad — delivery in 5–30 minutes on WhatsApp.
+            {`The best AI subscription in Bangladesh in 2026 depends on your use case: for the best all-round value, ChatGPT Plus Shared starts at BDT ${(cheapestPriceFor("chatgpt-plus-bangladesh") ?? 0).toLocaleString()}/month. For the best writing quality, Claude Pro starts at BDT ${(cheapestPriceFor("claude-pro-bangladesh") ?? 0).toLocaleString()}/month. For the best value overall, Google AI Pro at BDT ${(cheapestPriceFor("gemini-advanced-bangladesh") ?? 0).toLocaleString()}/month includes a personal Gmail account and 2TB storage. For developers, GitHub Copilot Pro (from BDT ${(cheapestPriceFor("github-copilot-bangladesh") ?? 0).toLocaleString()}/month) offers the highest return on investment. All available via bKash or Nagad — delivery in 5–30 minutes on WhatsApp.`}
           </p>
         </motion.div>
 

@@ -625,9 +625,17 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
               <div className="space-y-2 text-sm mb-5" style={{ color: "#c9ceda" }}>
                 <div className="flex justify-between"><span>Without AI: 5 projects × $50</span><span className="font-semibold" style={{ color: "#ef4444" }}>$250/month</span></div>
                 <div className="flex justify-between"><span>With ChatGPT + Midjourney: 12 projects × $80</span><span className="font-semibold" style={{ color: "#10a37f" }}>$960/month</span></div>
-                <div className="border-t border-white/10 pt-2 flex justify-between font-semibold"><span>Extra income/month</span><span style={{ color: "#f4b942" }}>$710 = ৳92,300 BDT</span></div>
+                <div className="border-t border-white/10 pt-2 flex justify-between font-semibold"><span>Potential extra income/month</span><span style={{ color: "#f4b942" }}>up to $710 (~৳92,300)</span></div>
                 <div className="flex justify-between text-xs"><span>AI subscription cost</span><span>৳299–1,199/month</span></div>
                 <div className="flex justify-between text-xs font-bold"><span>ROI</span><span style={{ color: "#10a37f" }}>77x–264x return</span></div>
+                {/* The table models an achievable outcome, not an average one.
+                    Saying so once, next to the figures, is what makes the
+                    figures usable — and it matches the concierge, which
+                    refuses to promise income at all. */}
+                <p className="text-[11px] pt-2 leading-relaxed" style={{ color: "#8b93a7" }}>
+                  Illustrative scenario based on typical freelance rates. Actual earnings depend on your skill,
+                  niche and client demand — AI tools change how fast you can deliver, not whether clients hire you.
+                </p>
               </div>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 {[
@@ -694,7 +702,7 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
               </div>
               <div className="space-y-2 text-sm mb-4" style={{ color: "#c9ceda" }}>
                 <div className="flex justify-between"><span>Every month without a job</span><span className="font-semibold" style={{ color: "#ef4444" }}>৳15,000–30,000 lost</span></div>
-                <div className="flex justify-between"><span>3 months faster = extra earnings</span><span className="font-semibold" style={{ color: "#10a37f" }}>৳45,000–90,000</span></div>
+                <div className="flex justify-between"><span>3 months faster — potential extra earnings</span><span className="font-semibold" style={{ color: "#10a37f" }}>৳45,000–90,000</span></div>
                 <div className="flex justify-between"><span>ChatGPT subscription cost</span><span>৳499/mo</span></div>
                 <div className="border-t border-white/10 pt-2 flex justify-between font-bold"><span>ROI</span><span style={{ color: "#f4b942" }}>128x–257x return</span></div>
               </div>

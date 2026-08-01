@@ -512,9 +512,17 @@ async function pingModel(key, model, timeoutMs) {
 // Opens a streaming completion and returns once the FIRST content token
 // arrives, so a dead model can still be swapped out before the customer has
 // seen anything. After that the caller owns the iterator and we're committed.
-async function openStream(key, model, system, messages, budgetMs) {
+async function openStream(key, model, system, messages, budgetMs, totalMs) {
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), budgetMs);
+  // Two separate deadlines. The first-token budget is short so a dead model can
+  // be swapped out quickly; the whole-stream deadline is much longer because a
+  // long answer legitimately takes time to generate.
+  //
+  // These used to be ONE timer: the 9s first-token timer was only cleared by
+  // stream.done() in the caller's finally block, i.e. after the stream had
+  // already finished. So the abort fired mid-reply and truncated every answer
+  // that took more than nine seconds to produce.
+  let timer = setTimeout(() => ctrl.abort(), budgetMs);
   const r = await fetch(NVIDIA_URL, {
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
@@ -571,6 +579,10 @@ async function openStream(key, model, system, messages, budgetMs) {
     clearTimeout(timer);
     throw new Error("empty stream");
   }
+  // First token arrived — the model is alive. Swap the short probe deadline for
+  // the generous whole-stream one.
+  clearTimeout(timer);
+  timer = setTimeout(() => ctrl.abort(), totalMs);
   return { first, next, done: () => clearTimeout(timer) };
 }
 
@@ -703,7 +715,7 @@ export default async function handler(req, res) {
     if (remaining < 3_000) break;
     let stream;
     try {
-      stream = await openStream(key, model, system, messages, Math.min(FIRST_TOKEN_MS, remaining));
+      stream = await openStream(key, model, system, messages, Math.min(FIRST_TOKEN_MS, remaining), remaining);
     } catch (e) {
       console.error(JSON.stringify({ event: "concierge_model_fail", model, error: String(e.message || e).slice(0, 150) }));
       continue;

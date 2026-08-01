@@ -1,77 +1,152 @@
 # AI Premium Shop — llms.txt
+# Machine-generated from data/products.json — do not hand-edit.
+# Regenerate with: node scripts/generate-llms-txt.mjs
 # Helps LLMs and AI crawlers understand this site for discovery and citation.
 # Format: llms.txt standard (https://llmstxt.org)
+# Generated: 2026-08-01
 
 ## Site Info
 name: AI Premium Shop (AIPS)
 domain: aipremiumshop.com
-description: Bangladesh's #1 AI subscription marketplace. 80 premium AI tools — ChatGPT, Claude, Midjourney, Gemini, Freepik, Kling AI, Windsurf — from BDT 270/mo via bKash/Nagad.
-tagline: Premium AI Tools in Bangladesh — From BDT 270/month
+description: Bangladesh's AI subscription marketplace. 87 premium AI tools — ChatGPT, Claude, Midjourney, Gemini, GitHub Copilot, Runway — from BDT 299/mo via bKash/Nagad/Rocket.
+tagline: Premium AI Tools in Bangladesh — From BDT 299/month
 founded: 2024
-customers: 3,000+
-products: 80
+products: 87
 categories: 9
-payments: bKash, Nagad, Rocket, Bank Transfer
-contact: +8801865385348
+request-price products (contact for current price): 11
+payments: bKash, Nagad, Rocket, Bank Transfer, Binance
+delivery: 5-30 minutes (shared plans), 2-4 hours (personal accounts)
+contact: +8801865385348 (WhatsApp)
+
+## Policy Facts (state these plainly if asked — do not embellish)
+- Shared plans: 2-7 customers share one legitimate subscription. Lower price, full features, less privacy.
+- Personal plans: a dedicated account for one customer. Full privacy, higher price.
+- Every order includes a 30-day replacement warranty.
+- Refunds: within 15 minutes of delivery, only for a genuine service mismatch. Not a general money-back guarantee.
+- These are real subscriptions resold at Bangladesh-accessible prices, not hacked or cracked accounts.
 
 ## Key Pages
 - Home: https://aipremiumshop.com/
 - All Products: https://aipremiumshop.com/products
 - Pricing: https://aipremiumshop.com/pricing
-- ChatGPT Plans: https://aipremiumshop.com/chatgpt-plans-bangladesh
-- Claude Plans: https://aipremiumshop.com/claude-pro-bangladesh
-- Gemini: https://aipremiumshop.com/gemini-advanced-bangladesh
-- Midjourney: https://aipremiumshop.com/midjourney-bangladesh
-- About: https://aipremiumshop.com/about
+- Bangla Homepage: https://aipremiumshop.com/bn
+- Guides Index: https://aipremiumshop.com/guides
 - FAQ: https://aipremiumshop.com/faq
+- About: https://aipremiumshop.com/about
 - Contact: https://aipremiumshop.com/contact
 - How to Order: https://aipremiumshop.com/how-to-order
+- Refund Policy: https://aipremiumshop.com/refund-policy
 - Blog: https://aipremiumshop.com/blog
 - Sitemap: https://aipremiumshop.com/sitemap.xml
-- Robots: https://aipremiumshop.com/robots.txt
 
 ## Categories
-- AI Assistant & Chat (22 products): https://aipremiumshop.com/ai-assistant — ChatGPT, Claude, Gemini, Grok, Perplexity
-- AI Image & Design (11): https://aipremiumshop.com/ai-image — Midjourney, Ideogram, Leonardo AI, Freepik
-- AI Video (13): https://aipremiumshop.com/ai-video — Runway, HeyGen, Kling AI, Synthesia, CapCut Pro
-- AI Voice & Music (8): https://aipremiumshop.com/ai-voice-music — ElevenLabs, Suno, Udio, Murf
-- AI Code & Dev (7): https://aipremiumshop.com/ai-code — GitHub Copilot, Cursor, v0.dev, Windsurf, Replit
-- AI Workspace (5): https://aipremiumshop.com/ai-workspace — Notion, Manus, Otter.ai, Gamma
-- AI Writing & SEO (7): https://aipremiumshop.com/ai-writing — Writesonic, Grammarly, QuillBot, Jasper
-- AI Design & Creative (2): https://aipremiumshop.com/ai-design — Canva Pro
-- Bundles (5): https://aipremiumshop.com/bundles — Student, Freelancer, Business stacks
+- AI Assistant & Chat (10): https://aipremiumshop.com/ai-assistant — ChatGPT Plus, ChatGPT Go, ChatGPT Business, ChatGPT Pro
+- AI Image & Design (8): https://aipremiumshop.com/ai-image — Midjourney Standard, Ideogram Plus, Leonardo AI, Adobe Firefly
+- AI Video (12): https://aipremiumshop.com/ai-video — CapCut Pro, Runway Standard, HeyGen Creator, Pika Labs
+- AI Voice & Music (5): https://aipremiumshop.com/ai-voice-music — ElevenLabs Starter, Suno AI Pro, Udio Pro, Murf AI
+- AI Code & Dev Tools (7): https://aipremiumshop.com/ai-code — GitHub Copilot Pro, Cursor Pro, v0.dev Pro, Replit Core
+- AI Workspace (22): https://aipremiumshop.com/ai-workspace — Notion Business, Manus AI, Otter.ai Pro, Gamma Plus
+- AI Writing & SEO (15): https://aipremiumshop.com/ai-writing — Writesonic Individual, Grammarly Premium, QuillBot Premium, Jasper AI Creator
+- AI Design & Creative (4): https://aipremiumshop.com/ai-design — Canva Pro, Recraft, Photoroom Pro, Krea AI
+- Bundles & Packages (4): https://aipremiumshop.com/bundles — Student Essentials Package, Freelancer Bundle, Business Package, B2B Implementation Service
 
-## Product Pages
-- ChatGPT Plus Shared (৳350): https://aipremiumshop.com/product/chatgpt-plus-bangladesh
-- ChatGPT Plus Premium Shared (৳950): https://aipremiumshop.com/product/chatgpt-plus-bangladesh
-- Claude Pro Shared (৳1,495): https://aipremiumshop.com/product/claude-pro-bangladesh
-- Gemini Advanced Shared (৳500): https://aipremiumshop.com/product/gemini-advanced-bangladesh
-- Midjourney Shared (৳1,199): https://aipremiumshop.com/product/midjourney-bangladesh
-- GitHub Copilot Shared (৳1,495): https://aipremiumshop.com/product/github-copilot-bangladesh
-- SuperGrok Shared (৳350): https://aipremiumshop.com/product/supergrok-bangladesh
-- Perplexity Pro Shared (৳350): https://aipremiumshop.com/product/perplexity-pro-bangladesh
-- ElevenLabs Shared (৳499): https://aipremiumshop.com/product/elevenlabs-bangladesh
-- Runway Shared (৳599): https://aipremiumshop.com/product/runway-bangladesh
-- Cursor Shared (৳600): https://aipremiumshop.com/product/cursor-bangladesh
-- Freepik Premium Shared (৳450): https://aipremiumshop.com/product/freepik-premium-bangladesh
-- Kling AI Shared (৳270): https://aipremiumshop.com/product/kling-ai-bangladesh
-- Synthesia Shared (৳700): https://aipremiumshop.com/product/synthesia-bangladesh
-- Windsurf Pro Shared (৳590): https://aipremiumshop.com/product/windsurf-bangladesh
-- CapCut Pro Shared (৳299): https://aipremiumshop.com/product/capcut-pro-bangladesh
-- Grammarly Premium Shared (৳470): https://aipremiumshop.com/product/grammarly-premium-bangladesh
-- QuillBot Premium Shared (৳390): https://aipremiumshop.com/product/quillbot-premium-bangladesh
-- Canva Pro Shared (৳510): https://aipremiumshop.com/product/canva-pro-bangladesh
-- Microsoft Copilot Pro Shared (৳780): https://aipremiumshop.com/product/microsoft-copilot-pro-bangladesh
+## All Products (cheapest tier, lowest price first)
+- CapCut Pro (from BDT 299/mo): https://aipremiumshop.com/capcut-pro-bangladesh
+- Remove.bg Pro (from BDT 299/mo): https://aipremiumshop.com/removebg-pro-bangladesh
+- Pika Labs (from BDT 310/mo): https://aipremiumshop.com/pika-labs-bangladesh
+- QuillBot Premium (from BDT 390/mo): https://aipremiumshop.com/quillbot-premium-bangladesh
+- GitHub Copilot Pro (from BDT 399/mo): https://aipremiumshop.com/github-copilot-bangladesh
+- Gamma Plus (from BDT 399/mo): https://aipremiumshop.com/gamma-bangladesh
+- Grammarly Premium (from BDT 399/mo): https://aipremiumshop.com/grammarly-premium-bangladesh
+- Canva Pro (from BDT 399/mo): https://aipremiumshop.com/canva-pro-bangladesh
+- Buffer (AI Assist) (from BDT 399/mo): https://aipremiumshop.com/buffer-ai-assist-bangladesh
+- Scholarcy Premium (from BDT 399/mo): https://aipremiumshop.com/scholarcy-premium-bangladesh
+- Tidio (AI Chat) (from BDT 399/mo): https://aipremiumshop.com/tidio-ai-chat-bangladesh
+- Wordtune Premium (from BDT 399/mo): https://aipremiumshop.com/wordtune-premium-bangladesh
+- Student Essentials Package (from BDT 449/mo): https://aipremiumshop.com/student-package-bangladesh
+- Descript Pro (from BDT 470/mo): https://aipremiumshop.com/descript-pro-bangladesh
+- ChatGPT Plus (from BDT 499/mo): https://aipremiumshop.com/chatgpt-plus-bangladesh
+- Leonardo AI (from BDT 499/mo): https://aipremiumshop.com/leonardo-ai-bangladesh
+- Udio Pro (from BDT 499/mo): https://aipremiumshop.com/udio-bangladesh
+- Freepik Premium (from BDT 499/mo): https://aipremiumshop.com/freepik-premium-bangladesh
+- Make (Integromat) Pro (from BDT 499/mo): https://aipremiumshop.com/make-pro-bangladesh
+- Monday.com (AI) (from BDT 499/mo): https://aipremiumshop.com/monday-ai-bangladesh
+- Replit Core (from BDT 500/mo): https://aipremiumshop.com/replit-bangladesh
+- Opus Clip (from BDT 590/mo): https://aipremiumshop.com/opus-clip-bangladesh
+- Windsurf Pro (from BDT 590/mo): https://aipremiumshop.com/windsurf-bangladesh
+- Claude Pro (from BDT 599/mo): https://aipremiumshop.com/claude-pro-bangladesh
+- Google AI Pro (Gemini Advanced) (from BDT 599/mo): https://aipremiumshop.com/gemini-advanced-bangladesh
+- Perplexity Pro (from BDT 599/mo): https://aipremiumshop.com/perplexity-pro-bangladesh
+- Zotero (AI Citation Setup Service) (from BDT 599/mo): https://aipremiumshop.com/zotero-ai-citation-setup-bangladesh
+- ChatGPT Business (from BDT 699/mo): https://aipremiumshop.com/chatgpt-business-bangladesh
+- SuperGrok Lite (from BDT 699/mo): https://aipremiumshop.com/supergrok-bangladesh
+- Cursor Pro (from BDT 699/mo): https://aipremiumshop.com/cursor-bangladesh
+- Microsoft Copilot Pro (from BDT 699/mo): https://aipremiumshop.com/microsoft-copilot-pro-bangladesh
+- Synthesia (from BDT 700/mo): https://aipremiumshop.com/synthesia-bangladesh
+- Murf AI (from BDT 740/mo): https://aipremiumshop.com/murf-ai-bangladesh
+- ElevenLabs Starter (from BDT 748/mo): https://aipremiumshop.com/elevenlabs-bangladesh
+- Otter.ai Pro (from BDT 799/mo): https://aipremiumshop.com/otter-ai-bangladesh
+- Writesonic Individual (from BDT 799/mo): https://aipremiumshop.com/writesonic-bangladesh
+- Adobe Firefly (from BDT 799/mo): https://aipremiumshop.com/adobe-firefly-bangladesh
+- Kling AI (from BDT 799/mo): https://aipremiumshop.com/kling-ai-bangladesh
+- Copy.ai Pro (from BDT 799/mo): https://aipremiumshop.com/copy-ai-pro-bangladesh
+- DALL·E Credits (Service Setup) (from BDT 799/mo): https://aipremiumshop.com/dalle-credits-setup-bangladesh
+- Elicit Pro (from BDT 799/mo): https://aipremiumshop.com/elicit-pro-bangladesh
+- Notion AI (from BDT 799/mo): https://aipremiumshop.com/notion-ai-bangladesh
+- Notion Business (from BDT 800/mo): https://aipremiumshop.com/notion-business-bangladesh
+- ClickUp (AI) (from BDT 899/mo): https://aipremiumshop.com/clickup-ai-bangladesh
+- Tome AI (from BDT 899/mo): https://aipremiumshop.com/tome-ai-bangladesh
+- v0.dev Pro (from BDT 999/mo): https://aipremiumshop.com/v0-dev-bangladesh
+- Airtable (AI) (from BDT 999/mo): https://aipremiumshop.com/airtable-ai-bangladesh
+- Chatbase (AI Chatbot) (from BDT 999/mo): https://aipremiumshop.com/chatbase-ai-chatbot-bangladesh
+- DeepL Pro (from BDT 999/mo): https://aipremiumshop.com/deepl-pro-bangladesh
+- Google AI Studio Pro (Service Setup) (from BDT 999/mo): https://aipremiumshop.com/google-ai-studio-pro-setup-bangladesh
+- Mailchimp (AI Copy) (from BDT 999/mo): https://aipremiumshop.com/mailchimp-ai-copy-bangladesh
+- n8n Cloud (from BDT 999/mo): https://aipremiumshop.com/n8n-cloud-bangladesh
+- Pictory AI (from BDT 999/mo): https://aipremiumshop.com/pictory-ai-bangladesh
+- Riverside (AI Clips) (from BDT 999/mo): https://aipremiumshop.com/riverside-ai-clips-bangladesh
+- VEED Pro (from BDT 999/mo): https://aipremiumshop.com/veed-pro-bangladesh
+- Hootsuite (AI Assist) (from BDT 1,099/mo): https://aipremiumshop.com/hootsuite-ai-assist-bangladesh
+- ChatGPT Go (from BDT 1,196/mo): https://aipremiumshop.com/chatgpt-go-bangladesh
+- Midjourney Standard (from BDT 1,199/mo): https://aipremiumshop.com/midjourney-bangladesh
+- Suno AI Pro (from BDT 1,199/mo): https://aipremiumshop.com/suno-ai-bangladesh
+- Surfer SEO (AI) (from BDT 1,299/mo): https://aipremiumshop.com/surfer-seo-ai-bangladesh
+- Zapier (AI + Automation) (from BDT 1,299/mo): https://aipremiumshop.com/zapier-ai-automation-bangladesh
+- HeyGen Creator (from BDT 1,499/mo): https://aipremiumshop.com/heygen-bangladesh
+- Jasper AI Creator (from BDT 1,520/mo): https://aipremiumshop.com/jasper-ai-bangladesh
+- Runway Standard (from BDT 1,794/mo): https://aipremiumshop.com/runway-bangladesh
+- Google Workspace (AI + Admin) Setup Service (from BDT 1,999/mo): https://aipremiumshop.com/google-workspace-ai-admin-setup-bangladesh
+- HubSpot (Starter) (from BDT 1,999/mo): https://aipremiumshop.com/hubspot-starter-bangladesh
+- Notion (Team Workspace) Setup Service (from BDT 1,999/mo): https://aipremiumshop.com/notion-team-workspace-setup-bangladesh
+- Google Looker Studio (Dashboard) Setup Service (from BDT 2,499/mo): https://aipremiumshop.com/looker-studio-dashboard-setup-bangladesh
+- Semrush (AI Writing Assist) (from BDT 2,499/mo): https://aipremiumshop.com/semrush-ai-writing-assist-bangladesh
+- Ideogram Plus (from BDT 2,990/mo): https://aipremiumshop.com/ideogram-bangladesh
+- Intercom (AI Fin) Setup Service (from BDT 2,999/mo): https://aipremiumshop.com/intercom-ai-fin-setup-bangladesh
+- Freelancer Bundle (from BDT 3,999/mo): https://aipremiumshop.com/freelancer-bundle-bangladesh
+- ChatGPT Pro (from BDT 4,500/mo): https://aipremiumshop.com/chatgpt-pro-bangladesh
+- Manus AI (from BDT 5,990/mo): https://aipremiumshop.com/manus-ai-bangladesh
+- Business Package (from BDT 15,000/mo): https://aipremiumshop.com/business-package-bangladesh
+- B2B Implementation Service (from BDT 25,000/mo): https://aipremiumshop.com/b2b-implementation-bangladesh
 
-## SEO Guides (for humans + crawlers)
-- Best AI Subscription 2026: https://aipremiumshop.com/best-ai-subscription-2026
-- Best AI for Students: https://aipremiumshop.com/best-ai-for-students
-- Best AI for Freelancers: https://aipremiumshop.com/best-ai-for-freelancers
-- Best AI for Business: https://aipremiumshop.com/best-ai-for-business
-- Best AI for Developers: https://aipremiumshop.com/best-ai-for-developers
-- Best AI for Designers: https://aipremiumshop.com/best-ai-for-designers
-- Best AI for Marketers: https://aipremiumshop.com/best-ai-for-marketers
-- Best AI for Creators: https://aipremiumshop.com/best-ai-for-creators
-- AI Under 500 BDT: https://aipremiumshop.com/ai-under-500
-- AI Under 1000 BDT: https://aipremiumshop.com/ai-under-1000
-- Best AI Budget Bangladesh: https://aipremiumshop.com/best-ai-budget-bangladesh
+## Guides (by audience, English)
+- Students: https://aipremiumshop.com/best-ai-for-students
+- Freelancers: https://aipremiumshop.com/best-ai-for-freelancers
+- Business: https://aipremiumshop.com/best-ai-for-business
+- Developers: https://aipremiumshop.com/best-ai-for-developers
+- Creators: https://aipremiumshop.com/best-ai-for-creators
+- Designers: https://aipremiumshop.com/best-ai-for-designers
+- Marketers: https://aipremiumshop.com/best-ai-for-marketers
+- Job Seekers: https://aipremiumshop.com/best-ai-for-job-seekers
+
+## Guides (by audience, Bangla — বাংলা)
+- Students: https://aipremiumshop.com/students-bn
+- Developers: https://aipremiumshop.com/developers-bn
+- Freelancers: https://aipremiumshop.com/freelancers-bn
+- Creators: https://aipremiumshop.com/creators-bn
+- Small Business: https://aipremiumshop.com/smb-bn
+- Educators: https://aipremiumshop.com/educators-bn
+
+## Budget Guides
+- Under BDT 500: https://aipremiumshop.com/ai-under-500
+- Under BDT 1,000: https://aipremiumshop.com/ai-under-1000
+- Under BDT 3,000: https://aipremiumshop.com/ai-under-3000

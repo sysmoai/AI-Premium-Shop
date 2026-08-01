@@ -6,7 +6,10 @@ export const ORG_SCHEMA = {
   url: "https://aipremiumshop.com",
   logo: "https://aipremiumshop.com/images/brand/aips-logo.png",
   description: "Bangladesh's trusted source for premium AI tool subscriptions.",
-  foundingDate: "2026",
+  // Every other claim on the site (AboutPage, TrustBadges, llms.txt) says
+  // 2024, and that is correct — this was the one place still saying 2026,
+  // which is a live Organization-schema fact Google reads directly.
+  foundingDate: "2024",
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+8801865385348",

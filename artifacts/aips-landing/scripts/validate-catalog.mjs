@@ -14,6 +14,7 @@ import { dirname, join } from "node:path";
 import { readdirSync, statSync } from "node:fs";
 import { buildCatalog } from "./generate-concierge-catalog.mjs";
 import { buildPages } from "./generate-catalog-lite.mjs";
+import { buildLlmsTxt } from "./generate-llms-txt.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const strict = process.argv.includes("--strict");
@@ -176,6 +177,26 @@ for (const [slug, recs] of bySlug) {
   }
   if (JSON.stringify(actual) !== JSON.stringify(expected)) {
     failures.push("data/catalog-pages.json is out of sync — run: node scripts/generate-catalog-lite.mjs");
+  }
+}
+
+// ---------- 2a-iii. llms.txt sync ----------
+// This is the file most directly at risk of an LLM citing a wrong price
+// verbatim to a user — it was found hand-typed and 10-for-10 wrong on
+// spot-check (ChatGPT ৳350 vs real ৳499, product count 80 vs real 87). The
+// "Generated: <date>" line is excluded from comparison since it legitimately
+// changes every run; everything else must match the generator exactly.
+{
+  const strip = (t) => t.replace(/^# Generated: .*$/m, "");
+  const expected = strip(buildLlmsTxt(products));
+  let actual;
+  try {
+    actual = strip(read("public/llms.txt"));
+  } catch {
+    actual = null;
+  }
+  if (actual !== expected) {
+    failures.push("public/llms.txt is out of sync with data/products.json — run: node scripts/generate-llms-txt.mjs");
   }
 }
 

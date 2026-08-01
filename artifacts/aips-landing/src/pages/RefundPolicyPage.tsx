@@ -107,7 +107,7 @@ export default function RefundPolicyPage() {
           </p>
           <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#25d366", color: "#fff" }}>
+            style={{ backgroundColor: "#008236", color: "#fff" }}>
             <MessageCircle className="w-5 h-5" />
             Contact Support on WhatsApp
           </a>

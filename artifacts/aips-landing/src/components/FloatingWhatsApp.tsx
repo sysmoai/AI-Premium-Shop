@@ -27,7 +27,7 @@ export function FloatingWhatsApp() {
             exit={{ opacity: 0, x: 10, scale: 0.9 }}
             transition={{ duration: 0.18 }}
             className="px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap shadow-lg"
-            style={{ backgroundColor: "#25d366", color: "#fff" }}
+            style={{ backgroundColor: "#008236", color: "#fff" }}
           >
             Chat with us
           </motion.div>

@@ -10,7 +10,7 @@ const SOCIAL_CARDS = [
     label: "WhatsApp",
     desc: "Order in 2 minutes. Get support in under 5 min. The fastest way to buy AI tools.",
     badge: "PRIMARY",
-    badgeClass: "bg-[#25D366] text-white",
+    badgeClass: "bg-[#008236] text-white",
     cta: "Message Us →",
     ctaColor: "text-[#25D366]",
     href: "https://wa.me/8801865385348",

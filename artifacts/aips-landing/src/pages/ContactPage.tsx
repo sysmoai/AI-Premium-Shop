@@ -80,7 +80,7 @@ export default function ContactPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl text-lg font-bold hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#25d366", color: "#fff" }}
+            style={{ backgroundColor: "#008236", color: "#fff" }}
           >
             <MessageCircle className="w-6 h-6" />
             Message us on WhatsApp — +880 1865-385348
@@ -142,10 +142,11 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-white mb-1.5">
+                  <label htmlFor="contact-name" className="block text-sm font-medium text-white mb-1.5">
                     Your Name <span style={{ color: "#f4b942" }}>*</span>
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
                     name="name"
                     required
@@ -157,10 +158,11 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-white mb-1.5">
+                  <label htmlFor="contact-phone" className="block text-sm font-medium text-white mb-1.5">
                     Phone / WhatsApp <span style={{ color: "#f4b942" }}>*</span>
                   </label>
                   <input
+                    id="contact-phone"
                     type="tel"
                     name="phone"
                     required
@@ -175,8 +177,9 @@ export default function ContactPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-white mb-1.5">AI Tool Interested In</label>
+                  <label htmlFor="contact-tool" className="block text-sm font-medium text-white mb-1.5">AI Tool Interested In</label>
                   <select
+                    id="contact-tool"
                     name="tool"
                     value={form.tool}
                     onChange={handleChange}
@@ -190,10 +193,11 @@ export default function ContactPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-white mb-1.5">
+                  <label htmlFor="contact-inquiry" className="block text-sm font-medium text-white mb-1.5">
                     Inquiry Type <span style={{ color: "#f4b942" }}>*</span>
                   </label>
                   <select
+                    id="contact-inquiry"
                     name="inquiry"
                     required
                     value={form.inquiry}
@@ -210,10 +214,11 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-white mb-1.5">
+                <label htmlFor="contact-message" className="block text-sm font-medium text-white mb-1.5">
                   Message <span style={{ color: "#f4b942" }}>*</span>
                 </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   required
                   rows={4}
@@ -228,7 +233,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-base hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: "#25d366", color: "#fff", minHeight: "52px" }}
+                style={{ backgroundColor: "#008236", color: "#fff", minHeight: "52px" }}
               >
                 <MessageCircle className="w-5 h-5" />
                 Send via WhatsApp

@@ -353,7 +353,7 @@ export default function BlogPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#25d366", color: "#fff" }}
+            style={{ backgroundColor: "#008236", color: "#fff" }}
           >
             Ask on WhatsApp
           </a>

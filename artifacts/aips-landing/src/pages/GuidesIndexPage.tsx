@@ -209,7 +209,7 @@ export default function GuidesIndexPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105"
-              style={{ backgroundColor: "#25d366", color: "#fff" }}
+              style={{ backgroundColor: "#008236", color: "#fff" }}
             >
               Message on WhatsApp →
             </a>

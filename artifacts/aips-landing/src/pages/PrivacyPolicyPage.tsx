@@ -153,7 +153,7 @@ export default function PrivacyPolicyPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold"
-                style={{ backgroundColor: "#25d366", color: "#fff" }}
+                style={{ backgroundColor: "#008236", color: "#fff" }}
               >
                 WhatsApp: +880 1865-385348
               </a>

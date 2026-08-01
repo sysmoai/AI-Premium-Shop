@@ -124,7 +124,7 @@ function ProductCard({ product, index }: ProductCardProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
-          style={{ backgroundColor: "#25d366", color: "#fff" }}
+          style={{ backgroundColor: "#008236", color: "#fff" }}
         >
           <MessageCircle className="w-4 h-4" />
           Order
@@ -228,7 +228,7 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-                  style={{ backgroundColor: "#25d366", color: "#fff" }}
+                  style={{ backgroundColor: "#008236", color: "#fff" }}
                 >
                   <MessageCircle className="w-4 h-4" />
                   Order ৳499/mo
@@ -302,7 +302,7 @@ export default function BudgetPage({ budgetKey }: BudgetPageProps) {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: "#25d366", color: "#fff" }}>
+              style={{ backgroundColor: "#008236", color: "#fff" }}>
               <MessageCircle className="w-5 h-5" />
               Ask on WhatsApp
             </a>

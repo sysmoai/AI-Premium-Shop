@@ -180,7 +180,7 @@ export default function BestAISubscriptionPage() {
                     <div className="flex flex-col gap-2 flex-shrink-0">
                       <a href={waUrl} target="_blank" rel="noopener noreferrer"
                         className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold hover:opacity-90 transition-opacity"
-                        style={{ backgroundColor: "#25d366", color: "#fff" }}>
+                        style={{ backgroundColor: "#008236", color: "#fff" }}>
                         <MessageCircle className="w-3.5 h-3.5" />
                         Order
                       </a>
@@ -293,7 +293,7 @@ export default function BestAISubscriptionPage() {
             <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I need help choosing the best AI tool for my needs")}`}
               target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: "#25d366", color: "#fff" }}>
+              style={{ backgroundColor: "#008236", color: "#fff" }}>
               <MessageCircle className="w-5 h-5" />
               Ask us on WhatsApp
             </a>

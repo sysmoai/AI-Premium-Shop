@@ -226,7 +226,7 @@ function SearchOverlay({ onClose }: { onClose: () => void }) {
                   <div className="text-sm font-bold flex-shrink-0" style={{ color: "#f4b942" }}>{p.price != null ? `BDT ${p.price.toLocaleString()}` : "Price on WhatsApp"}</div>
                   <a href={waUrl} target="_blank" rel="noopener noreferrer" onClick={onClose}
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity flex-shrink-0"
-                    style={{ backgroundColor: "#25d366", color: "#fff" }}>
+                    style={{ backgroundColor: "#008236", color: "#fff" }}>
                     <MessageCircle className="w-3.5 h-3.5" />
                     Order
                   </a>
@@ -305,6 +305,13 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
           active ? "text-[#f4b942] border-b-2 border-[#f4b942]" : isOpen ? "text-[#f4b942]" : "text-[#c9ceda] hover:text-[#f4b942]"
         }`}
         onMouseEnter={() => openDropdown(key)}
+        // Mouse users got the menu via hover; keyboard users got nothing —
+        // aria-expanded/aria-haspopup claimed this was interactive with
+        // nothing behind them. onFocus mirrors the hover-open, onClick makes
+        // Enter/Space toggle it (the mega-menu itself already closes on
+        // Escape, wired above).
+        onFocus={() => openDropdown(key)}
+        onClick={() => (isOpen ? setOpenMenu(null) : openDropdown(key))}
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
@@ -560,7 +567,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
               <div className="px-4 py-4 flex flex-col gap-1">
                 <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold mb-2 hover:opacity-90 transition-opacity"
-                  style={{ backgroundColor: "#25d366", color: "#fff", minHeight: "44px" }}
+                  style={{ backgroundColor: "#008236", color: "#fff", minHeight: "44px" }}
                   onClick={() => setMenuOpen(false)}>
                   <MessageCircle className="w-4 h-4" />
                   Order on WhatsApp

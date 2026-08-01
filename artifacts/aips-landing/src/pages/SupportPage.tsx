@@ -66,7 +66,7 @@ export default function SupportPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl text-lg font-bold hover:opacity-90 transition-opacity mb-8"
-          style={{ backgroundColor: "#25d366", color: "#fff" }}
+          style={{ backgroundColor: "#008236", color: "#fff" }}
         >
           <MessageCircle className="w-6 h-6" />
           Message Support on WhatsApp — +880 1865-385348
@@ -262,7 +262,13 @@ export default function SupportPage() {
               href="https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#25D366] text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-[#20BD5A] transition-colors"
+              // #25D366 (the brand green) against white text measures 1.98:1
+              // — badly fails WCAG AA's 4.5:1 for normal text, and the old
+              // hover color was 2.47:1, i.e. still failing. #008236 clears AA
+              // at 4.95:1; the hover state darkens further rather than
+              // lightening toward the brand color, so it can't regress below
+              // the resting state the way the old pair did.
+              className="bg-[#008236] text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-[#016630] transition-colors"
             >
               Join Community
             </a>

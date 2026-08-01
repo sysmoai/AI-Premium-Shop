@@ -79,7 +79,7 @@ function MobileOrderBar() {
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity flex-shrink-0"
-          style={{ backgroundColor: "#25d366", color: "#fff", minHeight: "44px" }}
+          style={{ backgroundColor: "#008236", color: "#fff", minHeight: "44px" }}
         >
           <MessageCircle className="w-4 h-4" />
           Order Now

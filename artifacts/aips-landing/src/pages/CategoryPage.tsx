@@ -336,7 +336,7 @@ function ProductCard({ p }: { p: Product; accent: string }) {
           </div>
           <a href={waLink} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#25d366", color: "#fff" }}>
+            style={{ backgroundColor: "#008236", color: "#fff" }}>
             <MessageCircle className="w-4 h-4" />
             Order
           </a>
@@ -479,7 +479,7 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
                       </div>
                       <a href={waLink} target="_blank" rel="noopener noreferrer"
                         className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
-                        style={{ backgroundColor: "#25d366", color: "#fff" }}>
+                        style={{ backgroundColor: "#008236", color: "#fff" }}>
                         <MessageCircle className="w-4 h-4" />
                         Order Bundle
                       </a>
@@ -528,7 +528,7 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
             <p className="mb-6" style={{ color: "#c9ceda" }}>Message us on WhatsApp and we&apos;ll build the perfect package for you.</p>
             <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: "#25d366", color: "#fff" }}>
+              style={{ backgroundColor: "#008236", color: "#fff" }}>
               <MessageCircle className="w-5 h-5" />
               Get a Custom Bundle Quote
             </a>
@@ -568,7 +568,7 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
             <a href={`${WHATSAPP}?text=${encodeURIComponent(`Hi, I need help choosing a ${config.displayName} plan`)}`}
               target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity w-full justify-center"
-              style={{ backgroundColor: "#25d366", color: "#fff" }}>
+              style={{ backgroundColor: "#008236", color: "#fff" }}>
               <MessageCircle className="w-5 h-5" />
               Ask us on WhatsApp
             </a>
@@ -628,7 +628,7 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
           <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>Order on WhatsApp in under 2 minutes. Delivered fast. 30-day warranty.</p>
           <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#25d366", color: "#fff" }}>
+            style={{ backgroundColor: "#008236", color: "#fff" }}>
             <MessageCircle className="w-5 h-5" />
             Order on WhatsApp
           </a>

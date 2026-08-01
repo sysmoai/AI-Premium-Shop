@@ -306,7 +306,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
                 <div className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>/month</div>
                 <div
                   className="mt-3 text-xs text-center py-1.5 rounded-lg font-semibold"
-                  style={{ backgroundColor: "#25d366", color: "#fff", fontSize: 11 }}
+                  style={{ backgroundColor: "#008236", color: "#fff", fontSize: 11 }}
                 >
                   Order via WhatsApp
                 </div>

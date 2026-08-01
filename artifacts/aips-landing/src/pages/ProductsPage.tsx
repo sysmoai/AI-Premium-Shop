@@ -113,7 +113,7 @@ function ProductCard({ p }: { p: Product }) {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity flex-shrink-0"
-            style={{ backgroundColor: "#25d366", color: "#fff" }}
+            style={{ backgroundColor: "#008236", color: "#fff" }}
           >
             <MessageCircle className="w-4 h-4" />
             Order
@@ -239,9 +239,10 @@ export default function ProductsPage() {
         </div>
 
         <div className="flex flex-wrap items-center gap-3 mb-8 p-4 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
-          <Filter className="w-4 h-4 flex-shrink-0" style={{ color: "#f4b942" }} />
+          <Filter aria-hidden="true" className="w-4 h-4 flex-shrink-0" style={{ color: "#f4b942" }} />
 
           <select
+            aria-label="Filter by category"
             className="rounded-lg px-3 py-2 text-sm border border-white/10 focus:outline-none focus:border-yellow-400"
             style={{ backgroundColor: "#0a0e27", color: "#fff" }}
             value={categoryFilter}
@@ -254,6 +255,7 @@ export default function ProductsPage() {
           </select>
 
           <select
+            aria-label="Filter by access type"
             className="rounded-lg px-3 py-2 text-sm border border-white/10 focus:outline-none focus:border-yellow-400"
             style={{ backgroundColor: "#0a0e27", color: "#fff" }}
             value={accessFilter}
@@ -265,8 +267,9 @@ export default function ProductsPage() {
           </select>
 
           <div className="flex items-center gap-2 ml-auto">
-            <ArrowUpDown className="w-4 h-4" style={{ color: "#c9ceda" }} />
+            <ArrowUpDown aria-hidden="true" className="w-4 h-4" style={{ color: "#c9ceda" }} />
             <select
+              aria-label="Sort products"
               className="rounded-lg px-3 py-2 text-sm border border-white/10 focus:outline-none focus:border-yellow-400"
               style={{ backgroundColor: "#0a0e27", color: "#fff" }}
               value={sort}
@@ -349,7 +352,7 @@ export default function ProductsPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#25d366", color: "#fff" }}
+            style={{ backgroundColor: "#008236", color: "#fff" }}
           >
             <MessageCircle className="w-5 h-5" />
             Chat with us on WhatsApp

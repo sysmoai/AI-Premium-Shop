@@ -23,14 +23,7 @@
 // Redacted ones — see api/_redact.js — but still their words.
 import { buildInsights, storeEnabled } from "./_store.js";
 
-// Timing-safe-ish comparison. Not a hardened secret store, but enough that a
-// wrong token can't be discovered by measuring how fast it's rejected.
-function tokenMatches(given, expected) {
-  if (typeof given !== "string" || given.length !== expected.length) return false;
-  let diff = 0;
-  for (let i = 0; i < expected.length; i++) diff |= given.charCodeAt(i) ^ expected.charCodeAt(i);
-  return diff === 0;
-}
+import { tokenMatches } from "./_auth.js";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") return res.status(405).json({ error: "GET only" });

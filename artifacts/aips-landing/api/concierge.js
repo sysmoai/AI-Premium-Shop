@@ -27,6 +27,7 @@ import { randomUUID } from "node:crypto";
 import { redact, containsCredential } from "./_redact.js";
 import { logTurn } from "./_store.js";
 import { knowledgeFor } from "./_knowledge.js";
+import { tokenMatches } from "./_auth.js";
 
 const catalog = JSON.parse(readFileSync(fileURLToPath(new URL("./_catalog.json", import.meta.url)), "utf8"));
 
@@ -638,9 +639,18 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const key = process.env.NVIDIA_API_KEY;
     // ?diagnose=1 — live per-model reachability probe using the real
-    // production key. Safe to call anytime: no user-facing chat state is
-    // touched, each probe is a 5-token throwaway prompt.
+    // production key and spending a real (if tiny) completion per model.
+    // This was reachable by anyone, unauthenticated and unthrottled — a loop
+    // of plain GET requests could burn through NVIDIA quota indefinitely with
+    // no rate limit catching it, because throttled() was only ever called
+    // from the POST branch below. Gated behind the same INSIGHTS_TOKEN used
+    // for api/insights.js: this is an operator diagnostic, not a customer
+    // feature, so the bar is "the person running this site can prove it,"
+    // not "safe for the public internet to hammer."
     if (req.query?.diagnose === "1") {
+      const token = process.env.INSIGHTS_TOKEN;
+      if (!token) return res.status(503).json({ ok: false, error: "INSIGHTS_TOKEN not configured" });
+      if (!tokenMatches(req.query?.token, token)) return res.status(404).end();
       if (!key) return res.status(503).json({ ok: false, error: "NVIDIA_API_KEY not configured" });
       const results = [];
       for (const model of MODELS) results.push(await pingModel(key, model, 8_000));

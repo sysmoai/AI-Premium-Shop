@@ -125,7 +125,7 @@ export default function TermsPage() {
           <div className="flex flex-wrap gap-3">
             <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: "#25d366", color: "#fff" }}>
+              style={{ backgroundColor: "#008236", color: "#fff" }}>
               <MessageCircle className="w-4 h-4" />
               WhatsApp
             </a>

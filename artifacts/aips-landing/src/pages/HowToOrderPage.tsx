@@ -244,7 +244,7 @@ export default function HowToOrderPage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: "#25d366", color: "#fff" }}>
+              style={{ backgroundColor: "#008236", color: "#fff" }}>
               <MessageCircle className="w-5 h-5" />
               Order on WhatsApp
             </a>

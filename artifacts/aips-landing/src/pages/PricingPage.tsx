@@ -104,8 +104,9 @@ export default function PricingPage() {
         </motion.div>
 
         <div className="flex flex-wrap items-center gap-3 mb-6 p-4 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
-          <Filter className="w-4 h-4" style={{ color: "#f4b942" }} />
+          <Filter aria-hidden="true" className="w-4 h-4" style={{ color: "#f4b942" }} />
           <select
+            aria-label="Filter by category"
             className="rounded-lg px-3 py-2 text-sm border border-white/10"
             style={{ backgroundColor: "#0a0e27", color: "#fff" }}
             value={catFilter}
@@ -117,6 +118,7 @@ export default function PricingPage() {
             ))}
           </select>
           <select
+            aria-label="Filter by access type"
             className="rounded-lg px-3 py-2 text-sm border border-white/10"
             style={{ backgroundColor: "#0a0e27", color: "#fff" }}
             value={accessFilter}
@@ -127,8 +129,9 @@ export default function PricingPage() {
             <option value="private">Personal / Private</option>
           </select>
           <div className="flex items-center gap-2 ml-auto">
-            <ArrowUpDown className="w-4 h-4" style={{ color: "#c9ceda" }} />
+            <ArrowUpDown aria-hidden="true" className="w-4 h-4" style={{ color: "#c9ceda" }} />
             <select
+              aria-label="Sort products"
               className="rounded-lg px-3 py-2 text-sm border border-white/10"
               style={{ backgroundColor: "#0a0e27", color: "#fff" }}
               value={sort}
@@ -210,7 +213,7 @@ export default function PricingPage() {
                       <td className="px-4 py-4">
                         <a href={waLink} target="_blank" rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity whitespace-nowrap"
-                          style={{ backgroundColor: "#25d366", color: "#fff" }}>
+                          style={{ backgroundColor: "#008236", color: "#fff" }}>
                           <MessageCircle className="w-3 h-3" />
                           Order
                         </a>
@@ -233,7 +236,7 @@ export default function PricingPage() {
           </p>
           <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#25d366", color: "#fff" }}>
+            style={{ backgroundColor: "#008236", color: "#fff" }}>
             <MessageCircle className="w-5 h-5" />
             Order on WhatsApp
           </a>

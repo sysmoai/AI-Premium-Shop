@@ -69,13 +69,33 @@ for (const p of products) {
 
 // ProductPage's getProductBySlug takes the FIRST record for a slug and, when
 // that record carries a plans array, ignores every sibling's plans entirely.
-// Diverging sibling plans arrays therefore mean dead data that silently goes
-// stale — warn so it gets reconciled, but it doesn't ship a broken page.
+// The intended shape is therefore: at most ONE record per slug carries a
+// plans array (the first) — every other sibling omits the field and lets
+// ProductPage synthesize its own from raw tier/price fields on demand.
+//
+// This used to compare `r.plans ?? null` across ALL siblings, which meant
+// "record has no plans field" (the now-correct state for siblings 2+) read
+// as a shape diverging from "record has a real plans array" (record 1) —
+// a false positive on exactly the data shape this check exists to enforce.
+// Only records that carry a non-empty plans array are compared against each
+// other now; a sibling with none is not a violation, it's the fix.
 for (const [slug, recs] of bySlug) {
   if (recs.length < 2) continue;
-  const shapes = new Set(recs.map((r) => JSON.stringify(r.plans ?? null)));
+  const withPlans = recs.filter((r) => Array.isArray(r.plans) && r.plans.length > 0);
+  // Dead data: something other than the first record is the one carrying a
+  // plans array (whether or not any other sibling also has one). This check
+  // must run independently of the "2+ diverging" check below — the very
+  // first version of it lived inside the same `withPlans.length < 2` guard
+  // and therefore never fired for the single-record case, verified by
+  // deliberately constructing that exact case and watching this check stay
+  // silent before being moved out here.
+  if (withPlans.length > 0 && withPlans[0] !== recs[0]) {
+    failures.push(`slug "${slug}": a non-first record carries the only/first plans array — ProductPage reads the FIRST record's plans, so this data is dead. Move it to the first record.`);
+  }
+  if (withPlans.length < 2) continue;
+  const shapes = new Set(withPlans.map((r) => JSON.stringify(r.plans)));
   if (shapes.size > 1) {
-    warnings.push(`slug "${slug}": ${recs.length} sibling records with ${shapes.size} diverging plans arrays — only the first record's plans render`);
+    warnings.push(`slug "${slug}": ${withPlans.length} sibling records each carry their own plans array and ${shapes.size} disagree — only the first record's plans render, delete plans from the rest`);
   }
 }
 

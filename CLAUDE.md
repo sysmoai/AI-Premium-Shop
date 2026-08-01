@@ -119,3 +119,50 @@ This file preserves context for future Claude Code sessions so work can continue
 6. Check `docs/context/NEXT_ACTIONS.md` for what's unblocked
 
 **Never assume memory is correct. Always verify facts with `git log`, `curl`, and actual file reads.**
+
+
+---
+
+## Session 3 (2026-07-31/08-01) — what changed and what to know
+
+**The deploy pipeline was broken and silently so.** `.vercel/project.json`
+pointed at a decoy project named `aips-landing` whose production URL is `--`.
+An entire session of "successful" deploys reached nothing. Correct project is
+`ai-premium-shopai-premium-shop-aipai-premium-shops-landing`
+(`prj_aP4bi30UW8mcHgBvU7E72yyFOPQd`). Deploy from the REPO ROOT with
+`bash artifacts/aips-landing/scripts/deploy-live.sh --wait`. A `.vercelignore`
+is required or the CLI uploads 2.7 GB and dies with "Upload aborted".
+
+**HTTP 200 proves nothing here.** Every route returns the same 2,452-byte shell.
+Verify by reading the rendered DOM in a browser, not by status code and not by
+grepping source — a static SEO grep produced five findings, all false positives.
+
+**Never type a price.** Seven separate places had drifted. Use
+`cheapestPriceFor`/`tierPrice`/`stackTotal` (catalogStats), `bnTaka`/`bnFrom`
+(banglaPricing), `formulaPrice`/`savingsVsDirect` (pricing). ৳1,495 is
+`formulaPrice(10)` — the buy-abroad cost, repeatedly pasted as an AIPS price.
+After fixing one, RE-READ THE PAGE: the same number is usually typed 2-4 times.
+
+**Claims policy now consistent site-wide.** Savings are computed from
+`officialUSD` and stated as fact. Income figures are stated as achievable, not
+typical ("potential", "up to", with a variance note) — because the concierge is
+forbidden from promising income and was contradicting the pages it linked to.
+
+**Concierge guards are deterministic on purpose.** The prompt-leak screen and
+the PIN/OTP warning run in code, not as prompt rules, because the 8B model
+failed both when only instructed. Do not "simplify" them.
+
+**Main bundle is 592 KB (was 852 KB).** `catalogStats` and `Navbar` now import
+`data/catalog-lite.json` (23 KB) instead of the full 227 KB `products.json`.
+Regenerate with `node scripts/generate-catalog-lite.mjs`; the validator fails
+if it drifts.
+
+### Highest-value open items
+1. **No SSR** — content invisible without JS. Largest remaining architectural call.
+2. **`artifacts/aips-website`** — parallel unused Next.js app with a diverging
+   catalog. Archive or delete; it is a trap.
+3. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same inline-content fix
+   as catalog-lite.
+4. **Conversation store inert** — needs `POSTGRES_URL` + `INSIGHTS_TOKEN`.
+5. **Deploy cap** (100/24h, free plan) is now the binding constraint on iteration.
+6. **Bangla prose** needs a native-speaker read; defects a machine can find are fixed.

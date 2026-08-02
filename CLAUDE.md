@@ -261,6 +261,46 @@ Bash tool** (connection refused on the same port the Browser pane reported
 started) — verification was done against the live deploy instead, as in
 every other cycle this session.
 
+## Session 8 (2026-08-02, Fable 5) — homepage prerender, canonical fix, audit gate
+
+Three defects found by reading the *built HTML* — none were type, catalog or
+build errors, so every existing gate passed them:
+
+1. **The homepage was the only route still serving an empty `<div id="root">`.**
+   The fallback sweep skips `/` by design and no section covered it, so the
+   single most important URL was invisible without JS while 271 others had
+   content. Now prerenders 4.3 KB: hero headline, catalog-derived counts and
+   entry prices, real category list with live counts, six persona guides, and
+   the 8 FAQs parsed out of Home.tsx, plus FAQPage JSON-LD.
+2. **Alias routes self-canonicalised.** `/chatgpt-vs-claude-bangladesh` and
+   `/best-ai-budget-bangladesh` render the same component+key as their
+   primary route and the components declare one shared canonical; the
+   prerenderer ignored that, creating competing self-canonical pages with
+   identical titles. Canonicals are now parsed from ComparisonPage/BudgetPage
+   and matched to routes parsed from App.tsx.
+3. **framer-motion was inlined into every route chunk** that used it. Hoisted
+   to a `motion` manualChunk: entry chunk 176 KB → 137 KB gzipped, and ~39 KB
+   no longer re-downloads on each navigation.
+
+**`scripts/audit-prerender.mjs` now gates `pnpm run build`** (so it gates
+production deploys). It reads built HTML and hard-fails on missing static
+files, empty root divs, missing title/canonical/description, conflicting
+canonicals, and duplicate titles with competing canonicals. All three bugs
+above were this shape. 271/271 pass.
+
+**NOTE for the next session:** the prerender script's homepage block
+overwrites `dist/public/index.html`, which is also the template it reads at
+the top. Running `node scripts/prerender-products.mjs` standalone twice bails
+with a clear message — always use `pnpm run build`.
+
+**Assessed and deliberately NOT done:** splitting `BRAND_META` (171 KB of
+source in BrandPage.tsx, 41 brands × ~4 KB) into per-brand dynamic imports.
+It has a single consumption point so the refactor is easy, but it trades one
+38 KB chunk for a smaller chunk *plus a serial round trip* — likely net-worse
+on the high-latency mobile connections this audience uses, and it adds a
+loading flash to the 40 highest-converting pages. Revisit only with real
+field data (needs GA4, which the CEO has deferred).
+
 ### Priority open items (post-session)
 1. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
    would shrink these substantially.

@@ -1,0 +1,28 @@
+{
+  "project": "AI Premium Shop",
+  "branch": "feat/aips-ssot-claim-price-guards",
+  "headSha": "PENDING_COMMIT",
+  "productionSha": "82e5c4bb6d8a442d47421b1c6455e475169f7fc6",
+  "activeStage": "Phase 0/1 — access verification and catalog truth reconciliation (coordinator's Step 2)",
+  "completedBatch": "Session 4: capability report, AIPS_CURRENT_TRUTH.md, conflict ledger, context-file updates, llms.txt resync, .gitignore secret-exclusion fix, dangerous local commit neutralized",
+  "nextAction": "Reconcile the 41-brand-route vs 77-brand/87-slug gap in src/App.tsx and src/lib/productRoutes.ts; find the source of the live '3,000+ customers' claim and fix it at the source",
+  "nextCommand": "cd /c/Users/emonh/SYSmoAI-Stack/apps/AI-Premium-Shop && git fetch origin --quiet && git status && cd artifacts/aips-landing && node scripts/validate-catalog.mjs --strict",
+  "nextFiles": [
+    "artifacts/aips-landing/src/App.tsx",
+    "artifacts/aips-landing/src/lib/productRoutes.ts",
+    "artifacts/aips-landing/index.html"
+  ],
+  "blockers": [
+    "CEO decision: aips-website promotion vs aips-landing optimization vs parallel",
+    "CEO decision: shared-access authorization for 44 products",
+    "CEO/admin: rotate NEXTAUTH_SECRET + Supabase anon key exposed in git history at c8ae002",
+    "CEO/admin: resolve GitHub Actions billing lock on sysmoai account"
+  ],
+  "testsPassing": [
+    "node scripts/validate-catalog.mjs --strict: 0 hard failures (was 1 — llms.txt sync — fixed this session)"
+  ],
+  "testsFailing": [],
+  "notionLastSyncedAt": "2026-08-02 (read-only fetch of coordinator page + checkpoint via subagent)",
+  "catalogSnapshotHash": "129 records / 77 providers / 87 slugs / 41 validator brand-routes (unreconciled) / 9 categories, computed from artifacts/aips-landing/data/products.json at commit 82e5c4b",
+  "resumeToken": "AIPS-AUTONOMOUS-CATALOG-SEO-V2-20260802-feat-aips-ssot-claim-price-guards-82e5c4b"
+}

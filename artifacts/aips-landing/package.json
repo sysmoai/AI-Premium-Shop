@@ -9,7 +9,9 @@
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "validate": "node scripts/validate-catalog.mjs",
-    "validate:strict": "node scripts/validate-catalog.mjs --strict"
+    "validate:strict": "node scripts/validate-catalog.mjs --strict",
+    "validate:truth": "node scripts/validate-truth.mjs",
+    "validate:all": "node scripts/validate-catalog.mjs && node scripts/validate-truth.mjs"
   },
   "devDependencies": {
     "@hookform/resolvers": "^3.10.0",

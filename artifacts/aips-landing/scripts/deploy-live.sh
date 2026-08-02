@@ -51,6 +51,7 @@ gates() {
 
   echo "- catalog validator (counts, prices, concierge sync, claim scan)"
   node scripts/validate-catalog.mjs || fail "validator reported hard failures — fix before deploying"
+  node scripts/validate-truth.mjs || fail "truth validator: canonical facts have drifted — fix before deploying"
 
   echo "- typecheck"
   npx tsc --noEmit || fail "TypeScript errors"

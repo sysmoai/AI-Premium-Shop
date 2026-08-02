@@ -2252,7 +2252,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             },
             {
               q: `Is it safe to buy ${meta.displayName} through AI Premium Shop?`,
-              a: `Yes. AIPS provides working paid ${meta.displayName} subscriptions — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. Over 3,000 customers served since 2022.`,
+              a: `Yes. AIPS provides working paid ${meta.displayName} subscriptions — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. We have served 10,000+ customers since 2022.`,
             },
           ];
           return (

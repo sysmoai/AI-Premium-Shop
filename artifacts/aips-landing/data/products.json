@@ -9544,6 +9544,753 @@
         }
       ],
       "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "poe-request",
+      "name": "Poe",
+      "slug": "poe-bangladesh",
+      "brand": "Poe",
+      "brandSlug": "poe-bangladesh",
+      "provider": "Quora",
+      "brandColor": "#5d3fd3",
+      "category": "ai-assistant",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Quora's multi-model AI app — reach many leading chat and image models through one paid subscription instead of subscribing to each provider separately. Useful when you want to compare model outputs side by side.",
+      "descriptionBN": "Quora-এর মাল্টি-মডেল AI অ্যাপ — একটি সাবস্ক্রিপশনেই একাধিক শীর্ষ চ্যাট ও ইমেজ মডেল ব্যবহার করা যায়, আলাদা আলাদা সাবস্ক্রিপশন লাগে না।",
+      "capabilities": [
+        "text",
+        "image-gen",
+        "multi-model"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Poe from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://poe.com",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Poe cost in Bangladesh?",
+          "a": "Plan pricing for Poe is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Poe?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Poe delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "genspark-request",
+      "name": "Genspark",
+      "slug": "genspark-bangladesh",
+      "brand": "Genspark",
+      "brandSlug": "genspark-bangladesh",
+      "provider": "Genspark",
+      "brandColor": "#0d9488",
+      "category": "ai-assistant",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI agent and search assistant that runs multi-step research tasks and compiles the results into structured pages rather than returning a list of links.",
+      "descriptionBN": "AI এজেন্ট ও সার্চ অ্যাসিস্ট্যান্ট — মাল্টি-স্টেপ রিসার্চ চালিয়ে ফলাফল গুছিয়ে উপস্থাপন করে, শুধু লিংকের তালিকা নয়।",
+      "capabilities": [
+        "search",
+        "agents",
+        "research"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Genspark from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.genspark.ai",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Genspark cost in Bangladesh?",
+          "a": "Plan pricing for Genspark is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Genspark?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Genspark delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "consensus-request",
+      "name": "Consensus",
+      "slug": "consensus-bangladesh",
+      "brand": "Consensus",
+      "brandSlug": "consensus-bangladesh",
+      "provider": "Consensus",
+      "brandColor": "#1d4ed8",
+      "category": "ai-workspace",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI search engine over peer-reviewed research papers — ask a question and get findings drawn from published studies with citations. Built for literature review and evidence-checking rather than general web search.",
+      "descriptionBN": "পিয়ার-রিভিউড গবেষণাপত্রের উপর AI সার্চ ইঞ্জিন — প্রশ্ন করলে প্রকাশিত গবেষণা থেকে সাইটেশনসহ উত্তর দেয়। থিসিস ও লিটারেচার রিভিউর জন্য উপযোগী।",
+      "capabilities": [
+        "research",
+        "search",
+        "citations"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Consensus from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://consensus.app",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Consensus cost in Bangladesh?",
+          "a": "Plan pricing for Consensus is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Consensus?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Consensus delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "hailuo-ai-minimax-request",
+      "name": "Hailuo AI (MiniMax)",
+      "slug": "hailuo-ai-minimax-bangladesh",
+      "brand": "Hailuo",
+      "brandSlug": "hailuo-ai-minimax-bangladesh",
+      "provider": "MiniMax",
+      "brandColor": "#e11d48",
+      "category": "ai-video",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "MiniMax's video generation model — create short video clips from text prompts or a starting image. Sold on credit-based plans, with output quality that has made it popular for social and ad content.",
+      "descriptionBN": "MiniMax-এর ভিডিও জেনারেশন মডেল — টেক্সট বা ছবি থেকে ছোট ভিডিও ক্লিপ তৈরি করে। ক্রেডিট-ভিত্তিক প্ল্যান, সোশ্যাল ও অ্যাড কনটেন্টে জনপ্রিয়।",
+      "capabilities": [
+        "video-gen",
+        "image-to-video"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Hailuo AI (MiniMax) from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://hailuoai.video",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Hailuo AI (MiniMax) cost in Bangladesh?",
+          "a": "Plan pricing for Hailuo AI (MiniMax) is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Hailuo AI (MiniMax)?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Hailuo AI (MiniMax) delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "pixverse-request",
+      "name": "PixVerse",
+      "slug": "pixverse-bangladesh",
+      "brand": "PixVerse",
+      "brandSlug": "pixverse-bangladesh",
+      "provider": "AIsphere",
+      "brandColor": "#7c3aed",
+      "category": "ai-video",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI video generator for short-form content — text-to-video and image-to-video with motion and style controls, commonly used for social clips and effects-driven videos.",
+      "descriptionBN": "শর্ট-ফর্ম কনটেন্টের জন্য AI ভিডিও জেনারেটর — টেক্সট ও ছবি থেকে ভিডিও, মোশন ও স্টাইল কন্ট্রোলসহ।",
+      "capabilities": [
+        "video-gen",
+        "image-to-video"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want PixVerse from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://pixverse.ai",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does PixVerse cost in Bangladesh?",
+          "a": "Plan pricing for PixVerse is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for PixVerse?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is PixVerse delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "vidu-request",
+      "name": "Vidu",
+      "slug": "vidu-bangladesh",
+      "brand": "Vidu",
+      "brandSlug": "vidu-bangladesh",
+      "provider": "ShengShu Technology",
+      "brandColor": "#0891b2",
+      "category": "ai-video",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Video generation model from ShengShu — text-to-video and reference-based generation with character consistency features aimed at short narrative and promotional clips.",
+      "descriptionBN": "ShengShu-এর ভিডিও জেনারেশন মডেল — টেক্সট থেকে ভিডিও ও রেফারেন্স-ভিত্তিক জেনারেশন, ক্যারেক্টার কনসিসটেন্সি ফিচারসহ।",
+      "capabilities": [
+        "video-gen",
+        "character-consistency"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Vidu from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.vidu.com",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Vidu cost in Bangladesh?",
+          "a": "Plan pricing for Vidu is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Vidu?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Vidu delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "d-id-request",
+      "name": "D-ID",
+      "slug": "d-id-bangladesh",
+      "brand": "D-ID",
+      "brandSlug": "d-id-bangladesh",
+      "provider": "D-ID",
+      "brandColor": "#ec4899",
+      "category": "ai-video",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Talking-avatar platform that animates a photo or digital human to speak your script, with support for multiple languages. Used for presenter-style videos without filming.",
+      "descriptionBN": "টকিং-অ্যাভাটার প্ল্যাটফর্ম — ছবি বা ডিজিটাল হিউম্যানকে আপনার স্ক্রিপ্ট বলাতে পারে, একাধিক ভাষায়। ক্যামেরা ছাড়াই প্রেজেন্টার ভিডিও।",
+      "capabilities": [
+        "avatar",
+        "video-gen",
+        "tts"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want D-ID from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.d-id.com/pricing",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does D-ID cost in Bangladesh?",
+          "a": "Plan pricing for D-ID is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for D-ID?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is D-ID delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "captions-request",
+      "name": "Captions",
+      "slug": "captions-bangladesh",
+      "brand": "Captions",
+      "brandSlug": "captions-bangladesh",
+      "provider": "Captions",
+      "brandColor": "#111827",
+      "category": "ai-video",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI video editing app built for talking-head content — automatic subtitles, eye-contact correction, dubbing and editing aimed at creators producing short-form social video.",
+      "descriptionBN": "টকিং-হেড কনটেন্টের জন্য AI ভিডিও এডিটিং অ্যাপ — অটোমেটিক সাবটাইটেল, আই-কন্টাক্ট কারেকশন, ডাবিং ও এডিটিং।",
+      "capabilities": [
+        "video-edit",
+        "subtitles",
+        "dubbing"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Captions from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.captions.ai",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Captions cost in Bangladesh?",
+          "a": "Plan pricing for Captions is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Captions?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Captions delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "tavus-request",
+      "name": "Tavus",
+      "slug": "tavus-bangladesh",
+      "brand": "Tavus",
+      "brandSlug": "tavus-bangladesh",
+      "provider": "Tavus",
+      "brandColor": "#2563eb",
+      "category": "ai-video",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI video platform for personalized and conversational video — generate a digital replica that can address individual recipients or hold real-time video conversations. Primarily an API/business product.",
+      "descriptionBN": "পার্সোনালাইজড ও কথোপকথনমূলক ভিডিওর জন্য AI প্ল্যাটফর্ম — ডিজিটাল রেপ্লিকা তৈরি করে ব্যক্তিভিত্তিক ভিডিও বা রিয়েল-টাইম কথোপকথন চালাতে পারে।",
+      "capabilities": [
+        "avatar",
+        "video-gen",
+        "api"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Tavus from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.tavus.io",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Tavus cost in Bangladesh?",
+          "a": "Plan pricing for Tavus is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Tavus?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Tavus delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "soundraw-request",
+      "name": "Soundraw",
+      "slug": "soundraw-bangladesh",
+      "brand": "Soundraw",
+      "brandSlug": "soundraw-bangladesh",
+      "provider": "Soundraw",
+      "brandColor": "#f59e0b",
+      "category": "ai-voice-music",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI music generator for creators — produce royalty-free background tracks by choosing mood, genre and length, then customise the arrangement. Aimed at video and social content soundtracks.",
+      "descriptionBN": "ক্রিয়েটরদের জন্য AI মিউজিক জেনারেটর — মুড, জঁর ও দৈর্ঘ্য বেছে রয়্যালটি-ফ্রি ব্যাকগ্রাউন্ড ট্র্যাক তৈরি ও কাস্টমাইজ করা যায়।",
+      "capabilities": [
+        "music-gen",
+        "royalty-free"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Soundraw from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://soundraw.io",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Soundraw cost in Bangladesh?",
+          "a": "Plan pricing for Soundraw is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Soundraw?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Soundraw delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "aiva-request",
+      "name": "AIVA",
+      "slug": "aiva-bangladesh",
+      "brand": "AIVA",
+      "brandSlug": "aiva-bangladesh",
+      "provider": "AIVA Technologies",
+      "brandColor": "#6366f1",
+      "category": "ai-voice-music",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI music composition tool focused on soundtrack and score generation — create original instrumental pieces in a chosen style and edit the composition, with licensing tiers for commercial use.",
+      "descriptionBN": "সাউন্ডট্র্যাক ও স্কোর তৈরির জন্য AI মিউজিক কম্পোজিশন টুল — নির্দিষ্ট স্টাইলে অরিজিনাল ইনস্ট্রুমেন্টাল তৈরি ও এডিট করা যায়।",
+      "capabilities": [
+        "music-gen",
+        "composition"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want AIVA from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.aiva.ai",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does AIVA cost in Bangladesh?",
+          "a": "Plan pricing for AIVA is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for AIVA?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is AIVA delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "tabnine-request",
+      "name": "Tabnine",
+      "slug": "tabnine-bangladesh",
+      "brand": "Tabnine",
+      "brandSlug": "tabnine-bangladesh",
+      "provider": "Tabnine",
+      "brandColor": "#0f172a",
+      "category": "ai-code",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI code completion assistant that works across major IDEs, with an emphasis on privacy and the option to run models without sending code to shared services.",
+      "descriptionBN": "প্রধান IDE-গুলোতে কাজ করা AI কোড কমপ্লিশন অ্যাসিস্ট্যান্ট — প্রাইভেসির উপর জোর, কোড শেয়ার না করেও ব্যবহারের অপশন আছে।",
+      "capabilities": [
+        "code",
+        "autocomplete",
+        "privacy"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Tabnine from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.tabnine.com/pricing",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Tabnine cost in Bangladesh?",
+          "a": "Plan pricing for Tabnine is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Tabnine?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Tabnine delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "jetbrains-ai-assistant-request",
+      "name": "JetBrains AI Assistant",
+      "slug": "jetbrains-ai-assistant-bangladesh",
+      "brand": "JetBrains AI",
+      "brandSlug": "jetbrains-ai-assistant-bangladesh",
+      "provider": "JetBrains",
+      "brandColor": "#000000",
+      "category": "ai-code",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI assistant built into JetBrains IDEs (IntelliJ, PyCharm, WebStorm and others) — code completion, explanation, refactoring and commit-message generation inside the editor you already use.",
+      "descriptionBN": "JetBrains IDE-তে (IntelliJ, PyCharm, WebStorm) বিল্ট-ইন AI অ্যাসিস্ট্যান্ট — কোড কমপ্লিশন, ব্যাখ্যা, রিফ্যাক্টরিং ও কমিট মেসেজ তৈরি।",
+      "capabilities": [
+        "code",
+        "refactor",
+        "ide"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want JetBrains AI Assistant from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.jetbrains.com/ai/",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does JetBrains AI Assistant cost in Bangladesh?",
+          "a": "Plan pricing for JetBrains AI Assistant is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for JetBrains AI Assistant?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is JetBrains AI Assistant delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "sourcegraph-cody-request",
+      "name": "Sourcegraph Cody",
+      "slug": "sourcegraph-cody-bangladesh",
+      "brand": "Cody",
+      "brandSlug": "sourcegraph-cody-bangladesh",
+      "provider": "Sourcegraph",
+      "brandColor": "#a855f7",
+      "category": "ai-code",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI coding assistant with codebase-wide context from Sourcegraph's code search — answers questions and writes code informed by your whole repository rather than the open file alone.",
+      "descriptionBN": "কোডবেস-ব্যাপী কনটেক্সটসহ AI কোডিং অ্যাসিস্ট্যান্ট — শুধু খোলা ফাইল নয়, পুরো রিপোজিটরির ভিত্তিতে প্রশ্নের উত্তর ও কোড লেখে।",
+      "capabilities": [
+        "code",
+        "codebase-context",
+        "search"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Sourcegraph Cody from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://sourcegraph.com/cody",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Sourcegraph Cody cost in Bangladesh?",
+          "a": "Plan pricing for Sourcegraph Cody is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Sourcegraph Cody?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Sourcegraph Cody delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "devin-cognition-request",
+      "name": "Devin (Cognition)",
+      "slug": "devin-cognition-bangladesh",
+      "brand": "Devin",
+      "brandSlug": "devin-cognition-bangladesh",
+      "provider": "Cognition",
+      "brandColor": "#1e293b",
+      "category": "ai-code",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Autonomous AI software engineer from Cognition — takes a task, plans it, writes and tests code, and iterates in its own environment. Positioned at the high end of the market with pricing to match.",
+      "descriptionBN": "Cognition-এর অটোনমাস AI সফটওয়্যার ইঞ্জিনিয়ার — কাজ নিয়ে পরিকল্পনা করে, কোড লেখে ও টেস্ট করে, নিজের এনভায়রনমেন্টে কাজ করে। উচ্চমূল্যের প্রোডাক্ট।",
+      "capabilities": [
+        "code",
+        "agents",
+        "autonomous"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Devin (Cognition) from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://devin.ai",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Devin (Cognition) cost in Bangladesh?",
+          "a": "Plan pricing for Devin (Cognition) is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Devin (Cognition)?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Devin (Cognition) delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "beautiful-request",
+      "name": "Beautiful.ai",
+      "slug": "beautiful-bangladesh",
+      "brand": "Beautiful.ai",
+      "brandSlug": "beautiful-bangladesh",
+      "provider": "Beautiful.ai",
+      "brandColor": "#0ea5e9",
+      "category": "ai-design",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI presentation builder that applies design rules automatically as you add content, so slides stay visually consistent without manual layout work. Aimed at business decks and pitches.",
+      "descriptionBN": "AI প্রেজেন্টেশন বিল্ডার — কনটেন্ট যোগ করার সাথে সাথে ডিজাইন রুল প্রয়োগ করে, ম্যানুয়াল লেআউট ছাড়াই স্লাইড সুসংগত থাকে।",
+      "capabilities": [
+        "presentations",
+        "design",
+        "templates"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Beautiful.ai from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.beautiful.ai/pricing",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Beautiful.ai cost in Bangladesh?",
+          "a": "Plan pricing for Beautiful.ai is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Beautiful.ai?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Beautiful.ai delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
     }
   ]
 }

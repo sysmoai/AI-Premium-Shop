@@ -170,8 +170,27 @@ licensing call. v0.dev Pro was a coverage-matcher miss (already sold at ৳999);
 the add-script's duplicate guard caught it. Adobe Creative Cloud / Express are
 admitted via a narrow exact-name allowlist over the brand-prefix guard.
 
+## Session 4b (2026-08-02) — bundles live, /product routes prerendered
+
+CEO directives executed: 12 ATLAS entries added (9 AIPS bundles with their
+compositions + BuddyPro/ChatAid/HelloFrank), all request-price since every
+ATLAS price observation is UNVERIFIED — confirming a price later is a
+one-field change. **Turnitin permanently declined by CEO — do not re-propose.**
+Catalog: **197 products / 239 records**, sitemap 271 URLs. Fixed two hard
+validator failures that piped exit codes had masked: stale index.html head
+(117→197 tools, 3,000+→10,000+ customers) and out-of-sync llms.txt.
+
+**SEO: the "no SSR" blocker is now half-solved.** `pnpm run build` runs
+`scripts/prerender-products.mjs`, which writes real static HTML (title, meta,
+canonical, BreadcrumbList/FAQPage JSON-LD, readable body) for all 157
+`/product/<slug>` routes into dist; Vercel serves files before the SPA
+rewrite, createRoot hydration replaces them for users. Verified live:
+raw HTML contains content, hydration clean, no console errors. Head format
+mirrors ProductPage.tsx's seo block — keep them in sync. Brand/category/guide
+routes are still empty shells — extending prerender to them is the next lever.
+
 ### Highest-value open items
-1. **No SSR** — content invisible without JS. Largest remaining architectural call.
+1. **Prerender remaining routes** (brand pages, categories, guides, Bangla pages) — /product/* done, ~114 URLs still blank without JS.
 2. **`artifacts/aips-website`** — parallel unused Next.js app with a diverging
    catalog. Archive or delete; it is a trap.
 3. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same inline-content fix

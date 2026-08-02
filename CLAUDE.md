@@ -166,3 +166,51 @@ if it drifts.
 4. **Conversation store inert** — needs `POSTGRES_URL` + `INSIGHTS_TOKEN`.
 5. **Deploy cap** (100/24h, free plan) is now the binding constraint on iteration.
 6. **Bangla prose** needs a native-speaker read; defects a machine can find are fixed.
+
+---
+
+## Session 4 (2026-08-02, Claude Sonnet 5) — Notion reconciliation, secret discovery, near-miss contained
+
+**Notion is reachable now.** Connected via MCP this session and read the AIPS
+Master Coordinator page (2026-07-30) and the Audit Checkpoint in full. The
+coordinator page independently confirms this file's own numbers (129 plans /
+87 slugs / 77 providers) and names a multi-chat model (Chat A=coordinator,
+Chat B=repo/QA — this session acted as Chat B) with a next branch
+`feat/aips-ssot-claim-price-guards`, which now exists and holds this session's
+work. Full detail in `docs/AIPS_CURRENT_TRUTH.md` and
+`docs/context/CONFLICT_LEDGER.md` (both new this session).
+
+**A real secret is loose in Git history, not just theoretically.** `.env.local`
+was committed at `c8ae002` (2026-07-26) carrying a real `NEXTAUTH_SECRET` and a
+Supabase anon key. Gone from the current tree, permanently retrievable from
+history. Values were never printed anywhere, including here. `.gitignore` did
+not exclude `.env*` at all — fixed this session. Rotation is Emon/admin-only.
+
+**A local commit almost deleted the whole app.** `ba7cb8f` on local `main`
+(never pushed) wholesale-deleted the entire tree — looks like a "prepare
+gh-pages content" operation that landed on the wrong branch. Caught before any
+merge; tagged `preserved/local-main-ba7cb8f-pre-reset`, local `main` reset to
+verified `origin/main`. No repo or production impact occurred.
+
+**This session made its own stale-cache mistake and caught it.** An early
+`git show origin/main:...` predating a `git fetch` reported the catalog at 80
+records and `aips-website` as missing entirely. Both were wrong the moment the
+fetch ran — true current numbers are 129 records / `aips-website` present with
+6 `artifacts/` subdirectories total. Recorded plainly rather than silently
+corrected, because it's the exact failure mode this whole reconciliation
+effort exists to catch.
+
+**GitHub Actions is billing-locked account-wide on `sysmoai`** — every
+workflow (CI, both deploy workflows) fails in seconds regardless of code
+correctness. Vercel's Git integration deploys independently and is unaffected.
+Not something this session can fix.
+
+**Concrete, safe fixes applied and committed to the feature branch (not
+merged to `main`):** regenerated `public/llms.txt` from `products.json`
+(cleared the validator's one hard failure), added `.env*` exclusion to
+`.gitignore`. Nothing commercial, priced, or claim-related was changed.
+
+### Next session should start with
+1. `docs/context/resume.json` for the structured handoff.
+2. Reconcile 41 validator brand-routes vs. 77 brands / 87 slugs (`src/App.tsx`, `src/lib/productRoutes.ts`).
+3. Find what generates the live "3,000+ customers" / "87 Premium AI Tools" homepage copy and fix the unsupported customer-count claim at its source.

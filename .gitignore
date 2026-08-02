@@ -55,3 +55,11 @@ Thumbs.db
 
 # Vercel CLI project link (created transiently by scripts/deploy-live.sh)
 .vercel/
+
+# Secrets (Session 4, 2026-08-02) — this exact pattern (.env.local) was
+# committed once at c8ae002 (2026-07-26), leaking a real NEXTAUTH_SECRET and
+# a Supabase anon key into Git history permanently. The repo-root .env* rule
+# above should already cover this, but it was evidently missing or bypassed
+# when that commit landed — this explicit rule exists so it cannot recur.
+.env.local
+artifacts/*/.env.local

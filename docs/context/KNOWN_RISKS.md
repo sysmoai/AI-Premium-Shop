@@ -325,3 +325,22 @@ ChatGPT Plus description (current):
 Emon must provide decisions for R0.1, R0.3, R0.4.
 
 Created: 2026-07-31 21:30 UTC
+
+---
+
+## SESSION 4 ADDITIONS (2026-08-02) — new risks found, existing ones unchanged unless noted
+
+### R0.4 update: Notion is no longer inaccessible
+This session connected to Notion via MCP and read the coordinator + checkpoint pages in full. R0.4 as originally written ("Claude cannot access URLs") is stale — reclassify as "Notion accessible, canonical-source decision still pending" rather than a hard access blocker.
+
+### R0.5 (NEW): Exposed secret in Git history
+`NEXTAUTH_SECRET` and a Supabase anon key were committed in `.env.local` at commit `c8ae002` (2026-07-26). Removed from the current tree but permanently retrievable from history by anyone who clones the repo. **Owner:** Emon/admin (rotate at Supabase + NextAuth config; decide separately on history rewriting). `.gitignore` was missing `.env*` entirely — fixed this session to prevent recurrence, but the existing exposure itself is unresolved.
+
+### R0.6 (NEW): Live unsupported "3,000+ customers" claim
+The production homepage meta description currently states "3,000+ customers" — an exact repeat of a claim category already corrected once (commit `d9e46cd`). Needs its actual source (static file vs. build-time generation) identified before it can be fixed durably rather than patched once and left to regress again.
+
+### R0.7 (NEW): GitHub Actions billing lock (account-wide)
+Every workflow on `sysmoai/AI-Premium-Shop` fails immediately ("account is locked due to a billing issue"). This blocks all CI-based validation (lint/typecheck/test/secret-scan gating) described as required tooling — currently the only gate is whatever is run manually, since Vercel's deploy doesn't depend on Actions passing. **Owner:** Emon (GitHub billing, account-wide — affects other `sysmoai` repos too).
+
+### R0.8 (NEW, near-miss, already contained): dangerous local-only commit
+A local `main` commit (`ba7cb8f`) that deleted the entire application tree was found never-pushed and neutralized this session (tagged, then local `main` reset to origin). No repo or production impact occurred. Recorded so no future session re-creates or cherry-picks from it by SHA without knowing what it is.

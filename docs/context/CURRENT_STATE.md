@@ -314,6 +314,23 @@ Goal: Ingest latest LMArena leaderboard configuration, models, scores, and histo
 
 ---
 
+---
+
+## SESSION 4 UPDATE (2026-08-02, Claude Sonnet 5) — additive, does not replace the above
+
+**Notion access is no longer blocked.** This session connected to Notion via MCP (`notion-search`/`notion-fetch`) and read the AIPS Master Coordinator page in full plus the Audit Checkpoint (176K chars, read via a subagent). Decision 5 above ("Notion inaccessible") should be treated as resolved-access, decision-still-pending.
+
+**Notion already has its own current-state page**, independently converging on the same numbers as this file: 129 plan records, 87 slugs, 77 providers — matches this document exactly. Notion also names a multi-chat model (Chat A=coordinator, Chat B=repo/QA, Chat C=catalog/pricing) with a next branch `feat/aips-ssot-claim-price-guards`, which this session created and is working on.
+
+**New/updated facts this session found, not in this file's original scope:**
+- Live homepage currently reads "87 Premium AI Tools... 3,000+ customers" in its meta description. The "3,000+ customers" is an unsupported claim of the exact type already corrected once before (commit `d9e46cd`) — it has regressed or never reached this static file. Not yet fixed (needs source-of-truth investigation: is this string hand-written or generated?).
+- A real secret (`NEXTAUTH_SECRET` + Supabase anon key) is committed in Git history at `c8ae0025d0cc9e648ecabfe85459c5625cfa42d1` (`.env.local`, 2026-07-26). File is gone from the current tree but permanently recoverable from history. Rotation is CEO/admin-only; this session added `.env*` to `.gitignore` to stop recurrence.
+- GitHub Actions is billing-locked account-wide on `sysmoai` — every workflow (CI, both deploy workflows) fails in seconds. Vercel's own Git integration deploys `main` independently and is unaffected.
+- A dangerous, never-pushed local commit (`ba7cb8f`, "Deploy: AI-Premium-Shop - Production") that deleted the entire app tree was found on local `main` and neutralized (tagged `preserved/local-main-ba7cb8f-pre-reset`, then local `main` reset to verified `origin/main`). It was never on origin and never at risk of being deployed, but would have destroyed the repo if merged.
+- One concrete validator gap remains open: the validator reports 41 "brand routes" vs. 77 unique brands / 87 unique slugs in the data — source of that gap not yet found (likely a routing/grouping layer collapsing multiple slugs per route).
+
+Full detail: `docs/AIPS_CURRENT_TRUTH.md`, `docs/context/CONFLICT_LEDGER.md`, `docs/audit/AIPS_ACCESS_AND_CAPABILITY_REPORT.md` (all new this session, on branch `feat/aips-ssot-claim-price-guards`).
+
 **End of CURRENT_STATE.md**  
 Generated: 2026-07-31 21:15 UTC  
 Confidence: HIGH (all facts verified via code + curl + filesystem, except Notion content)

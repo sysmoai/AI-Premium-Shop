@@ -128,7 +128,7 @@ export default function PricingPage() {
             <option value="shared">Shared</option>
             <option value="private">Personal / Private</option>
           </select>
-          <div className="flex items-center gap-2 ml-auto">
+          <div className="flex items-center gap-2 sm:ml-auto">
             <ArrowUpDown aria-hidden="true" className="w-4 h-4" style={{ color: "#c9ceda" }} />
             <select
               aria-label="Sort products"

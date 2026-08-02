@@ -334,6 +334,43 @@ Also fixed this session:
   (regression-tested by breaking one deliberately).
 - **First Voice & Music post written**, filling the last empty category.
 
+## Session 10 (2026-08-02, Fable 5) — real device bugs, found by measuring
+
+Every one of these was invisible in the source and only showed up by
+measuring rendered geometry at real viewport widths. **Read the class list and
+you would call all three correct.**
+
+1. **The mobile menu button was clipped off-screen at 375px.** The header row
+   needed 406px of a 375px screen: px-4 + a `flex-shrink-0` 234px wordmark +
+   gap-6 + the 116px button group + px-4. The group ran x=274→390, so the
+   hamburger — the only route into navigation on mobile — was partly
+   unreachable. Fixed: small wordmark below `lg`, `gap-2 lg:gap-6`.
+   Now ends at x=359.
+2. **Tablet pushed the document 32px wider than the viewport.** At 768px the
+   testimonial carousel becomes `md:grid md:grid-cols-3` (232px tracks) but
+   every card had `style={{ minWidth: 280 }}` — an **inline style, which no
+   `md:` class can override**. Now `min-w-[280px] md:min-w-0`.
+3. **The new NeuralDivider cropped every node out of frame.** A square
+   `0 0 100 100` viewBox with `slice` in a 1440×72 band scales 14.4× and shows
+   a ~5%-tall sliver — only stray lines, no nodes. viewBox is now `0 0 200 10`
+   to match the band's own ~20:1 ratio.
+
+**Tap targets:** the three mobile header controls were 36×36 (below every
+guideline, and below the 44px this codebase already commits to elsewhere) —
+now 44×44. Same for "Browse This Tier" (×5), Offers "Order" (×6), ProductBox
+"Order" (16px tall) and breadcrumbs (20px), all now 44px on mobile.
+
+**Verified after deploy at 375 / 768 / 1440:** 0px overflow on all three, on
+`/` and `/products`. Remaining sub-40px elements are the decorative
+`aria-hidden` ticker chips and card-title links inside fully clickable cards —
+not real targets.
+
+**`NeuralDivider`** is the site's AI motif in one reusable component: inline
+SVG (no request, crisp at any DPI, inherits brand colours), percentage
+geometry so it needs no breakpoints, opacity-only animation, fully disabled
+under `prefers-reduced-motion`. Placed at two homepage seams only — a repeated
+ornament stops reading as an accent.
+
 ### Priority open items (post-session)
 1. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
    would shrink these substantially.

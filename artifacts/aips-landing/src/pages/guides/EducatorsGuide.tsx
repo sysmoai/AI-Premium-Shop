@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { stackTotal, taka } from "@/lib/catalogStats";
+import { stackTotal, taka, cheapestPriceFor } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -39,7 +39,7 @@ export default function EducatorsGuide() {
       rank: 2,
       name: "Claude Pro",
       slug: "claude-pro-bangladesh",
-      price: "BDT 1,495/month",
+      price: `from ${taka(cheapestPriceFor("claude-pro-bangladesh") ?? 0)}/month`,
       description:
         "Best for deep concept explanation. Claude excels at breaking down complex topics for different learning levels. Perfect for creating supplementary materials, writing detailed feedback, and explaining difficult subjects.",
       useCases: ["Concept breakdown", "Detailed feedback", "Study guides", "Complex subjects", "Enrichment materials"],
@@ -61,7 +61,7 @@ export default function EducatorsGuide() {
       rank: 4,
       name: "Notion AI",
       slug: "notion-ai-bangladesh",
-      price: "BDT 550/month",
+      price: `from ${taka(cheapestPriceFor("notion-ai-bangladesh") ?? 0)}/month`,
       description:
         "Build your lesson management system. Create syllabi, track student progress, organize assignments, and build a resource library. AI helps organize and structure everything.",
       useCases: ["Syllabus creation", "Progress tracking", "Assignment management", "Resource library", "Class organization"],

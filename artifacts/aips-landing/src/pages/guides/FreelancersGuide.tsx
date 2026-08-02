@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { stackTotal, taka } from "@/lib/catalogStats";
+import { stackTotal, taka, cheapestPriceFor } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -39,7 +39,7 @@ export default function FreelancersGuide() {
       rank: 2,
       name: "Claude Pro",
       slug: "claude-pro-bangladesh",
-      price: "BDT 1,495/month",
+      price: `from ${taka(cheapestPriceFor("claude-pro-bangladesh") ?? 0)}/month`,
       description:
         "Best for writing quality. Claude produces higher-quality writing than ChatGPT—perfect for clients who demand excellent prose. 200K token context means longer documents without token limits.",
       useCases: ["Long-form writing", "Blog posts", "Whitepapers", "Technical writing", "Copy optimization"],

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { stackTotal, taka, cheapestByName } from "@/lib/catalogStats";
+import { stackTotal, taka, cheapestByName, cheapestPriceFor } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -61,7 +61,7 @@ export default function CreatorsGuide() {
       rank: 4,
       name: "Suno AI",
       slug: "suno-ai-bangladesh",
-      price: "BDT 1,495/month",
+      price: `from ${taka(cheapestPriceFor("suno-ai-bangladesh") ?? 0)}/month`,
       description:
         "Generate copyright-free music and jingles for your videos. Full commercial use rights. No copyright strikes. Background music, intros, and outros in seconds.",
       useCases: ["Background music", "Jingles", "Intros/outros", "Royalty-free tracks", "Music production"],

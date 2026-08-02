@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { stackTotal, taka } from "@/lib/catalogStats";
+import { stackTotal, taka, cheapestPriceFor } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -38,7 +38,7 @@ export default function StudentsGuide() {
       rank: 2,
       name: "Claude Pro",
       slug: "claude-pro-bangladesh",
-      price: "BDT 1,495/month",
+      price: `from ${taka(cheapestPriceFor("claude-pro-bangladesh") ?? 0)}/month`,
       description:
         "Best AI for understanding complex topics. Claude excels at explaining difficult concepts, analyzing lengthy academic papers, and breaking down multi-step problems. Exceptional for literature, physics, and chemistry studies.",
       useCases: ["Complex explanations", "Paper analysis", "Physics & chemistry", "Critical thinking", "Research synthesis"],
@@ -60,7 +60,7 @@ export default function StudentsGuide() {
       rank: 4,
       name: "Google AI Pro",
       slug: "gemini-advanced-bangladesh",
-      price: "BDT 499/month",
+      price: `from ${taka(cheapestPriceFor("gemini-advanced-bangladesh") ?? 0)}/month`,
       description:
         "Integrated AI in Google Docs and Gmail. Write essays directly in Docs with AI assist, get research help in Gmail, organize notes in Sheets. 2TB storage for all your study materials.",
       useCases: ["Essay writing", "Research organization", "Gmail collaboration", "File storage", "Google Workspace"],

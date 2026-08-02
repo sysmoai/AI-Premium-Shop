@@ -147,8 +147,33 @@ console.log(`prerender: wrote ${written} static product pages (${bySlug.size} sl
 // Titles/descriptions mirror each page component's own SEOHead values —
 // category titles are parsed out of CategoryPage.tsx so they cannot drift.
 
+// Alias routes -> the canonical URL their page component actually declares.
+// App.tsx maps several paths onto the same component+key (e.g.
+// /chatgpt-vs-claude-bangladesh renders ComparisonPage compKey="chatgpt-vs-
+// claude"), and those components set one shared canonical. Prerendering
+// self-canonicalised every path instead, which handed crawlers two
+// self-canonical pages with identical titles — a duplicate-content signal the
+// React app never had. Parsed from the components so it cannot drift.
+const ALIAS_CANONICAL = (() => {
+  const map = new Map();
+  const appSrc = fs.readFileSync(path.join(APP, "src/App.tsx"), "utf8");
+  const declared = new Map(); // configKey -> canonical URL
+  for (const file of ["src/pages/ComparisonPage.tsx", "src/pages/BudgetPage.tsx"]) {
+    const src = fs.readFileSync(path.join(APP, file), "utf8");
+    for (const m of src.matchAll(/["']([a-z0-9-]+)["']:\s*\{[\s\S]{0,2000}?canonical:\s*"([^"]+)"/g)) {
+      if (!declared.has(m[1])) declared.set(m[1], m[2]);
+    }
+  }
+  // <Route path="/x">{() => <ComparisonPage compKey="y" />}</Route>
+  for (const m of appSrc.matchAll(/<Route path="(\/[^"]*)">\s*\{\(\)\s*=>\s*<(?:ComparisonPage|BudgetPage)\s+\w+="([a-z0-9-]+)"/g)) {
+    const target = declared.get(m[2]);
+    if (target && target !== `${SITE}${m[1]}`) map.set(m[1], target);
+  }
+  return map;
+})();
+
 const writeRoute = (route, title, desc, body, extraLd = []) => {
-  const canonical = `${SITE}${route === "/products" ? "/products" : route}`;
+  const canonical = ALIAS_CANONICAL.get(route) ?? `${SITE}${route === "/products" ? "/products" : route}`;
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(desc)}$2`)

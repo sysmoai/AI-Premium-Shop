@@ -327,7 +327,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
         className="relative z-10 mt-16 w-full max-w-4xl mx-auto"
       >
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-          <TrustBadge icon={Users} label="Customers" value="3,000+" />
+          <TrustBadge icon={Users} label="Customers" value="Growing" />
           <TrustBadge icon={Calendar} label="Established" value="Since 2024" />
           <TrustBadge icon={Shield} label="Warranty" value="30 Days" />
           <TrustBadge icon={Zap} label="Response" value="<5 Min" />

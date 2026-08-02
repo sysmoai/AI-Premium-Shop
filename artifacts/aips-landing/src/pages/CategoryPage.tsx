@@ -221,7 +221,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     description:
       "Create professional designs with AI. Canva Pro's Magic Studio generates images, edits photos, writes copy, and animates designs. Adobe Firefly produces commercially safe AI images inside Photoshop and Express. Perfect for Bangladeshi social media managers, marketers, and small businesses.",
     metaDescription:
-      "Canva Pro, Adobe Firefly in Bangladesh. From BDT 190. AI design tools. bKash/Nagad. Instant delivery.",
+      "Canva Pro, Adobe Firefly in Bangladesh. From BDT 190. AI design tools. bKash/Nagad. Fast delivery.",
     accent: "#7c3aed",
     faqs: [
       { q: "What's the difference between Canva Pro and Adobe Firefly?", a: "Canva Pro is an all-in-one design platform with AI tools, 100M+ stock assets, and templates for non-designers. Adobe Firefly is AI image generation built into Adobe Creative Cloud — best for designers already using Photoshop and Illustrator." },

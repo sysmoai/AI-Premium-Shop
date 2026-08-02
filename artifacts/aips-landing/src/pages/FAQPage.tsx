@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, MessageCircle } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
-import { cheapestPriceFor, tierPrice } from "@/lib/catalogStats";
+import { cheapestPriceFor, tierPrice, TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { faqSchema } from "@/utils/schemas";
@@ -13,11 +13,11 @@ const FAQS = [
   // === General Questions (from Notion SEO FAQ + existing) ===
   {
     q: "What is AI Premium Shop?",
-    a: "AI Premium Shop (AIPS) is Bangladesh's #1 AI subscription provider operating since 2024. We provide official access to 80+ AI tools including ChatGPT Plus, Claude Pro, Midjourney, GitHub Copilot, Gemini Advanced, and more. Pay with bKash, Nagad, or Rocket. Instant delivery. a growing community of customers served.",
+    a: `AI Premium Shop (AIPS) is a Bangladesh-based AI subscription provider operating since 2024. We provide access to ${TOTAL_PRODUCTS}+ AI tools including ChatGPT Plus, Claude Pro, Midjourney, GitHub Copilot, Gemini Advanced, and more. Pay with bKash, Nagad, or Rocket. Fast delivery, a growing community of customers served.`,
   },
   {
     q: "Is AI Premium Shop legit and trustworthy?",
-    a: "Yes. AIPS has operated since 2024 with thousands verified customers. We offer 30-day warranty on all subscriptions, WhatsApp support with 5-minute response time, and operate transparently with published refund and privacy policies.",
+    a: "Yes. AIPS has operated since 2024 and serves a growing community of customers. We offer a 30-day replacement guarantee on all subscriptions, WhatsApp support with a fast response time, and operate transparently with published refund and privacy policies.",
   },
   {
     q: "Which AI tools are available at AI Premium Shop?",

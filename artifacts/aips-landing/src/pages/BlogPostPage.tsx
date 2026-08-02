@@ -678,11 +678,11 @@ const POSTS: Record<
 
         <h2 className="text-xl font-bold text-white mt-8 mb-4">Is It Safe?</h2>
         <p className="text-gray-300 leading-relaxed">
-          AI Premium Shop has served over 3,000 customers since launch with zero disputes. Every order includes a 30-day warranty — if your account stops working, we replace it for free. Our WhatsApp number is publicly listed and we operate with full transparency.
+          AI Premium Shop serves a growing community of customers across Bangladesh. Every order includes a 30-day replacement guarantee — if your account stops working, we replace it for free. Our WhatsApp number is publicly listed and we operate with full transparency.
         </p>
 
         <CalloutBox>
-          <strong className="text-white">a growing community of customers. 30-day warranty on all accounts. Zero disputes.</strong> Message us on WhatsApp anytime for support — we respond within minutes during business hours.
+          <strong className="text-white">A growing community of customers. 30-day replacement guarantee on all accounts.</strong> Message us on WhatsApp anytime for support — we respond within minutes during business hours.
         </CalloutBox>
 
         <p className="text-gray-300 leading-relaxed">

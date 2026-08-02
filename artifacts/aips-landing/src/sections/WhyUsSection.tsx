@@ -23,7 +23,7 @@ const COMPARISON = [
 const PILLARS = [
   {
     Icon: Zap,
-    title: "Instant Delivery",
+    title: "Fast Delivery",
     description: "Shared: 5–30 min. Personal: 2–4 hours.",
     color: "#f4b942",
   },
@@ -35,8 +35,8 @@ const PILLARS = [
   },
   {
     Icon: Shield,
-    title: "30-Day Warranty",
-    description: "Any issue? We replace it. No questions asked.",
+    title: "30-Day Replacement Guarantee",
+    description: "Account stops working within 30 days? We replace it free.",
     color: "#3b82f6",
   },
   {

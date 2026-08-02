@@ -371,6 +371,23 @@ geometry so it needs no breakpoints, opacity-only animation, fully disabled
 under `prefers-reduced-motion`. Placed at two homepage seams only — a repeated
 ornament stops reading as an accent.
 
+## Session 11 (2026-08-02, Fable 5) — thin-page sweep: 102 → 51
+
+The audit's "short static content" list was dominated by the highest-value
+URLs. Fixed by deriving bodies from data that already exists:
+- **40 brand pages**: BN description, tier prices, USPs, use cases, merged
+  deduped FAQs + FAQPage JSON-LD, all from products.json (~2 sentences → ~2 KB).
+- **4 budget pages**: now list every product whose cheapest tier is under the
+  threshold parsed from their own slug (21 under ৳500) — regenerates each build.
+- **9 best-ai-for-\* pages**: real h1, "why" prose, ranked picks with reasons,
+  FAQs + JSON-LD, parsed from GuidePage.tsx's GUIDES config. NOTE: three keys
+  there are quoted ("designers") and six are bare (students) — parse both.
+
+Remaining 51 short pages are older blog posts/info pages with hand-written JSX
+bodies a regex cannot safely lift — heads/excerpts correct, hydration carries
+full text. Verified live: all three classes serve rich static HTML, hydration
+clean (1 h1, no leftover), 0px overflow, no console errors.
+
 ### Priority open items (post-session)
 1. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
    would shrink these substantially.

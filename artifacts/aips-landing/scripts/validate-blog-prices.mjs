@@ -37,9 +37,12 @@ const WATCHED = ["claude", "chatgpt", "midjourney", "perplexity", "elevenlabs",
   "suno", "cursor", "copilot", "canva", "grammarly", "runway", "heygen"];
 
 // Contexts where a number legitimately is not this brand's AIPS tier price.
-const EXEMPT = /officially|official|abroad|exchange|saving|save[ds]?\b|total|combined|bundle|package|scam|fake|lifetime|earn|income|revenue|per project|per hour|\/hour|up to|budget|under |\$|month total|stack/i;
+// A literal "+" in the window ("ChatGPT + Notion ৳1,150", "+ Claude Pro BDT
+// 7,475") marks an additive combo/stack total, not a single product's price
+// — those can't be checked against one brand's tier list at all.
+const EXEMPT = /officially|official|abroad|exchange|saving|save[ds]?\b|total|combined|bundle|package|scam|fake|lifetime|earn|income|revenue|per project|per hour|\/hour|up to|budget|under |\$|month total|stack|\+/i;
 
-const FILES = ["src/pages/BlogPostPage.tsx", "src/pages/BlogPage.tsx"];
+const FILES = ["src/pages/BlogPostPage.tsx", "src/pages/BlogPage.tsx", "src/pages/GuidePage.tsx"];
 const problems = [];
 
 for (const rel of FILES) {

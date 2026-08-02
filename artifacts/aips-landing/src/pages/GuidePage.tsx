@@ -6,7 +6,7 @@ import {
   Palette, TrendingUp, ShoppingBag, type LucideIcon,
 } from "lucide-react";
 import { Link } from "wouter";
-import { cheapestPriceFor } from "@/lib/catalogStats";
+import { cheapestPriceFor, tierPrice } from "@/lib/catalogStats";
 
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
@@ -117,7 +117,7 @@ const GUIDES: Record<string, GuideConfig> = {
     whyHeading: "Why AI Matters for Students",
     whyText: "AI tools have become essential study companions — like having a tutor available at 2 AM. Whether you're writing research papers, solving math problems, debugging code assignments, or preparing for exams, AI accelerates learning significantly. Students who use AI tools consistently report submitting higher-quality work in less time. The best part: you can access the same tools used by university students in the US and UK — at Bangladesh prices.",
     tools: [
-      { rank: 1, name: "Google AI Pro", price: "BDT 499/mo", reason: "Best value. Deep Research for papers, 2TB storage, works with Gmail and Google Docs. 83% off official price.", badge: "Best Value", color: "#4285f4" },
+      { rank: 1, name: "Google AI Pro", price: `BDT ${tierPrice("gemini-advanced-bangladesh", "Shared")}/mo`, reason: "Best value. Deep Research for papers, 2TB storage, works with Gmail and Google Docs. 83% off official price.", badge: "Best Value", color: "#4285f4" },
       { rank: 2, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Cheapest way to access GPT-5.4. Great for assignments, essays, coding, and exam prep.", badge: "Cheapest", color: "#10a37f" },
       { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 599/mo", reason: "AI research engine with real citations and source links. Perfect for thesis and academic papers.", badge: "For Research", color: "#20b2aa" },
     ],
@@ -153,7 +153,7 @@ const GUIDES: Record<string, GuideConfig> = {
     statLine: "Freelancers doing AI-related work earn 44% more per hour than those who don't — Upwork Research Institute 2025",
     tools: [
       { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 999/mo", reason: "Write proposals, emails, and content 10x faster. Higher stability than starter plan.", badge: "Top Pick", color: "#10a37f" },
-      { rank: 2, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "#1 ranked AI for writing quality. Extended thinking for complex client projects.", badge: "Best Writing", color: "#d97706" },
+      { rank: 2, name: "Claude Pro — Premium Shared", price: `BDT ${tierPrice("claude-pro-bangladesh", "Premium Shared")}/mo`, reason: "#1 ranked AI for writing quality. Extended thinking for complex client projects.", badge: "Best Writing", color: "#d97706" },
       { rank: 3, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Create client graphics, thumbnails, and mockups. Unlimited image generation.", badge: "For Design", color: "#8b5cf6" },
       { rank: 4, name: "GitHub Copilot Pro — Individual", price: "BDT 1,495/mo", reason: "For developer freelancers. Code 50% faster. Works in VS Code and JetBrains.", badge: "For Devs", color: "#6e40c9" },
     ],
@@ -190,7 +190,7 @@ const GUIDES: Record<string, GuideConfig> = {
       { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 999/mo", reason: "Scripts, captions, content calendars, viral hooks — all in minutes.", badge: "For Scripts", color: "#10a37f" },
       { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "AI thumbnails and graphics without hiring a designer. Unlimited generations.", badge: "For Thumbnails", color: "#8b5cf6" },
       { rank: 3, name: "ElevenLabs — Starter Plan", price: "BDT 748/mo", reason: "Ultra-realistic AI voiceovers. Clone your own voice. Supports 29 languages.", badge: "For Voiceovers", color: "#f97316" },
-      { rank: 4, name: "Suno AI — Pro Plan", price: "BDT 1,495/mo", reason: "Create background music and jingles with no copyright issues. Commercial use included.", badge: "For Music", color: "#f59e0b" },
+      { rank: 4, name: "Suno AI — Shared", price: `from BDT ${cheapestPriceFor("suno-ai-bangladesh")}/mo`, reason: "Create background music and jingles with no copyright issues. Commercial use included.", badge: "For Music", color: "#f59e0b" },
       { rank: 5, name: "Runway — Standard Plan", price: "BDT 1,794/mo", reason: "AI video generation. B-roll, transitions, cinematic effects from text prompts.", badge: "For Video", color: "#ec4899" },
     ],
     startHere: {
@@ -223,10 +223,10 @@ const GUIDES: Record<string, GuideConfig> = {
     whyHeading: "Why Businesses in Bangladesh Are Adopting AI Now",
     whyText: "AI is no longer a luxury for large corporations. Small and medium businesses in Bangladesh are using AI to draft contracts, analyze sales data, manage customer communications, and run marketing campaigns — all at a fraction of the cost of hiring specialists. Businesses that adopt AI tools reduce operational costs by 30–40% while increasing output quality. The window to get ahead of competitors who haven't adopted AI yet is closing fast.",
     tools: [
-      { rank: 1, name: "Google AI Pro", price: "BDT 499/mo", reason: "Gmail AI, Google Docs AI, Sheets AI — AI built into tools your team already uses daily.", badge: "Best for Teams", color: "#4285f4" },
-      { rank: 2, name: "ChatGPT Team", price: "BDT 1,200/mo", reason: "Team AI assistant with admin controls and privacy. Unlimited GPT-5.4 for the whole team.", badge: "For Operations", color: "#10a37f" },
-      { rank: 3, name: "Notion AI — Plus Plan", price: "BDT 550/mo", reason: "AI workspace for docs, projects, SOPs, and team collaboration. Replaces multiple tools.", badge: "For Docs", color: "#000000" },
-      { rank: 4, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "Best AI for drafting contracts, reports, and long-form business documents.", badge: "For Writing", color: "#d97706" },
+      { rank: 1, name: "Google AI Pro", price: `BDT ${tierPrice("gemini-advanced-bangladesh", "Shared")}/mo`, reason: "Gmail AI, Google Docs AI, Sheets AI — AI built into tools your team already uses daily.", badge: "Best for Teams", color: "#4285f4" },
+      { rank: 2, name: "ChatGPT Business — Starter Shared", price: `from BDT ${cheapestPriceFor("chatgpt-business-bangladesh")}/mo`, reason: "Team AI assistant with admin controls and privacy. Unlimited GPT-5.4 for the whole team.", badge: "For Operations", color: "#10a37f" },
+      { rank: 3, name: "Notion Business — Monthly", price: `from BDT ${cheapestPriceFor("notion-business-bangladesh")}/mo`, reason: "AI workspace for docs, projects, SOPs, and team collaboration. Replaces multiple tools.", badge: "For Docs", color: "#000000" },
+      { rank: 4, name: "Claude Pro — Premium Shared", price: `BDT ${tierPrice("claude-pro-bangladesh", "Premium Shared")}/mo`, reason: "Best AI for drafting contracts, reports, and long-form business documents.", badge: "For Writing", color: "#d97706" },
     ],
     startHere: {
       name: "Google AI Pro",
@@ -295,7 +295,7 @@ const GUIDES: Record<string, GuideConfig> = {
     whyText: "Job hunting in Bangladesh has never been more competitive. AI tools help you write stronger CVs, craft personalized cover letters, research companies before interviews, and practice answering difficult questions. Candidates who use AI to prepare their applications consistently report more callbacks and better interview performance. The best part: you can tailor your application to each job in minutes instead of hours.",
     tools: [
       { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Write professional CVs, cover letters, and LinkedIn summaries in minutes. Most affordable option.", badge: "Start Here", color: "#10a37f" },
-      { rank: 2, name: "Google AI Pro", price: "BDT 499/mo", reason: "Gmail AI for job applications. Google Docs AI for CV formatting. 2TB storage included.", badge: "Best Value", color: "#4285f4" },
+      { rank: 2, name: "Google AI Pro", price: `BDT ${tierPrice("gemini-advanced-bangladesh", "Shared")}/mo`, reason: "Gmail AI for job applications. Google Docs AI for CV formatting. 2TB storage included.", badge: "Best Value", color: "#4285f4" },
       { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 599/mo", reason: "Research companies before interviews. Get industry insights with citations and sources.", badge: "For Research", color: "#20b2aa" },
     ],
     startHere: {
@@ -369,7 +369,7 @@ const GUIDES: Record<string, GuideConfig> = {
       { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "The essential marketing copywriter. Write ad copy, email campaigns, social media captions, blog posts, and product descriptions. Fastest and cheapest AI tool available.", badge: "Essential", color: "#10a37f" },
       { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Generate professional marketing visuals — social media graphics, product mockups, campaign imagery — without a photographer or designer. 15hr fast GPU monthly.", badge: "For Visuals", color: "#8b5cf6" },
       { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 599/mo", reason: "AI-powered market research with real-time citations. Research competitor strategies, industry trends, and consumer behavior in minutes — with source links you can verify.", badge: "For Research", color: "#20b2aa" },
-      { rank: 4, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "Best AI for long-form marketing content. Blog posts, whitepapers, case studies, and email sequences with higher writing quality than ChatGPT.", badge: "For Long-form", color: "#d97706" },
+      { rank: 4, name: "Claude Pro — Premium Shared", price: `BDT ${tierPrice("claude-pro-bangladesh", "Premium Shared")}/mo`, reason: "Best AI for long-form marketing content. Blog posts, whitepapers, case studies, and email sequences with higher writing quality than ChatGPT.", badge: "For Long-form", color: "#d97706" },
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
@@ -406,7 +406,7 @@ const GUIDES: Record<string, GuideConfig> = {
       { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Write compelling product titles and descriptions optimized for search. Draft FAQ responses, customer service templates, and promotional copy. Essential for any e-commerce operation.", badge: "Essential", color: "#10a37f" },
       { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Generate professional product photography and lifestyle images without a studio. Create background-removed product shots, styled scenes, and banner graphics for social media.", badge: "For Visuals", color: "#8b5cf6" },
       { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 599/mo", reason: "Research trending products, analyze competitor pricing, and identify market gaps. Get real-time data on what's selling and why — with citations you can verify.", badge: "For Research", color: "#20b2aa" },
-      { rank: 4, name: "Claude Pro — Premium Shared", price: "BDT 1,495/mo", reason: "Write longer-form content like seller profiles, brand stories, and email marketing sequences with higher quality than ChatGPT.", badge: "For Brand Content", color: "#d97706" },
+      { rank: 4, name: "Claude Pro — Premium Shared", price: `BDT ${tierPrice("claude-pro-bangladesh", "Premium Shared")}/mo`, reason: "Write longer-form content like seller profiles, brand stories, and email marketing sequences with higher quality than ChatGPT.", badge: "For Brand Content", color: "#d97706" },
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
@@ -889,7 +889,7 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
                   { label: "ChatGPT", note: "scripts", price: "BDT 499" },
                   { label: "Midjourney", note: "visuals", price: "BDT 1,199" },
                   { label: "ElevenLabs", note: "voiceover", price: "BDT 748" },
-                  { label: "Suno AI", note: "music", price: "BDT 1,495" },
+                  { label: "Suno AI", note: "music", price: `BDT ${cheapestPriceFor("suno-ai-bangladesh")}` },
                   { label: "Runway", note: "video", price: "BDT 1,794" },
                 ].map((item) => (
                   <div key={item.label} className="flex justify-between items-center py-1 border-b border-white/5">

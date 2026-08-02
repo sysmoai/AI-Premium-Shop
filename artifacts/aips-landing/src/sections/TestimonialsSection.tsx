@@ -88,10 +88,14 @@ export function TestimonialsSection() {
               viewport={{ once: true }}
               whileHover={{ y: -4, boxShadow: `0 12px 32px rgba(244,185,66,0.12)` }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="relative bg-gray-900 rounded-xl p-6 border border-gray-800 hover:border-[#f4b942]/20 flex flex-col flex-shrink-0 snap-center md:flex-shrink transition-all duration-300"
+              /* minWidth was an inline style, so `md:` classes could not
+                 override it: at md+ the container becomes a 3-col grid with
+                 232px tracks while every card still demanded 280px, pushing
+                 the document to 800px wide inside a 768px viewport. As a
+                 class it resets correctly once the grid takes over. */
+              className="relative bg-gray-900 rounded-xl p-6 border border-gray-800 hover:border-[#f4b942]/20 flex flex-col flex-shrink-0 snap-center md:flex-shrink min-w-[280px] md:min-w-0 transition-all duration-300"
               style={{
                 borderLeft: `3px solid ${t.borderColor}`,
-                minWidth: 280,
               }}
               data-testid={`testimonial-${t.id}`}
             >

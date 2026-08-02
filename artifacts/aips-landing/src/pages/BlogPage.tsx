@@ -15,12 +15,25 @@ import {
   Briefcase,
   Image,
   Code2,
+  Mic,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
 
 const POSTS = [
+  {
+    slug: "ai-voice-music-tools-bangladesh",
+    title: "AI Voice & Music Tools in Bangladesh — ElevenLabs, Suno, Murf & Udio Compared (2026)",
+    excerpt: "Which AI voice or music tool actually fits your work — voiceover, dubbing, YouTube background tracks or client audio — with BDT prices and the Bangla-language reality nobody mentions.",
+    category: "🎵 Voice & Music",
+    categoryKey: "voice-music",
+    readTime: "7 min read",
+    date: "Aug 2, 2026",
+    gradient: "bg-gradient-to-br from-pink-600 to-purple-900",
+    icon: Mic,
+    accentColor: "#ec4899",
+  },
   {
     slug: "buy-higgsfield-ai-bangladesh",
     title: "How to Buy Higgsfield AI in Bangladesh — Plans, Credits & bKash Payment (2026)",

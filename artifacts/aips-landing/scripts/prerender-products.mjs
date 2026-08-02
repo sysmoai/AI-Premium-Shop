@@ -206,3 +206,193 @@ for (const slug of brandSlugs) {
 }
 
 console.log(`prerender: wrote ${hubs} hub pages (products + categories) and ${brands} brand pages; category meta parsed for ${Object.keys(catMeta).length}/9`);
+
+// ---- Remaining routes: guides, best-ai-for, comparisons, budget, Bangla, info pages.
+// Titles/descriptions parsed from source components to keep them in sync with live code.
+
+// --- Best-ai-for guide pages: titles/descriptions sourced from GuidePage.tsx's GUIDE_PAGES
+const GUIDE_META = {
+  students: { title: "Best AI Tools for Students Bangladesh 2026 — From BDT 299", desc: "Best AI tools for students in Bangladesh 2026. Google AI BDT 499. ChatGPT BDT 499. Study smarter." },
+  freelancers: { title: "Best AI for Freelancers Bangladesh 2026", desc: "Best AI tools for freelancers Bangladesh 2026. Write proposals faster, deliver more work. From BDT 299. Upwork & Fiverr." },
+  creators: { title: "Best AI for Content Creators Bangladesh 2026", desc: "Best AI for content creators Bangladesh 2026. Script, thumbnail, music — all AI. From BDT 299." },
+  business: { title: "Best AI for Business Owners Bangladesh 2026", desc: "Best AI for business owners Bangladesh 2026. Automate sales, support, content. From BDT 500." },
+  developers: { title: "Best AI for Developers Bangladesh 2026", desc: "Best AI coding tools Bangladesh 2026. Copilot, Cursor, Replit. Code 50% faster. From BDT 500." },
+  "job-seekers": { title: "Best AI for Job Seekers Bangladesh 2026", desc: "Best AI for job seekers Bangladesh 2026. CV builder, interview prep, skill roadmap. From BDT 299." },
+  designers: { title: "Best AI for Designers Bangladesh 2026", desc: "Best AI design tools for designers in Bangladesh 2026. Midjourney, Ideogram, Leonardo AI. BDT prices." },
+  marketers: { title: "Best AI for Digital Marketers Bangladesh 2026", desc: "Best AI tools for digital marketers in Bangladesh 2026. ChatGPT, Midjourney, Perplexity. BDT prices." },
+  ecommerce: { title: "Best AI for E-commerce Bangladesh 2026", desc: "Best AI tools for e-commerce sellers in Bangladesh 2026. Product photos, descriptions, customer support AI." },
+};
+for (const [key, meta] of Object.entries(GUIDE_META)) {
+  writeRoute(`/best-ai-for-${key}`, meta.title, meta.desc,
+    `<main><h1>${esc(meta.title)}</h1><p>${esc(meta.desc)}</p>
+<p><a href="/products">All AI tools</a> · <a href="/guides">All guides</a> · <a href="/pricing">Pricing</a></p></main>`);
+}
+
+// --- /best-ai-subscription-2026 (from BestAISubscriptionPage.tsx)
+const bestSrc = fs.readFileSync(path.join(APP, "src/pages/BestAISubscriptionPage.tsx"), "utf8");
+const bestMatch = bestSrc.match(/title="([^"]+)".*?description="([^"]+)"/s);
+writeRoute("/best-ai-subscription-2026",
+  bestMatch?.[1] ?? "Best AI Subscription 2026 Bangladesh | AI Premium Shop",
+  bestMatch?.[2] ?? "Best AI subscription services in Bangladesh 2026. Compare ChatGPT, Claude, Perplexity with BDT prices.",
+  `<main><h1>Best AI Subscription 2026</h1><p>Compare the top AI subscriptions available in Bangladesh. All with BDT pricing and local payment.</p>
+<p><a href="/products">All AI tools</a> · <a href="/best-ai-for-students">For students</a> · <a href="/pricing">Pricing</a></p></main>`);
+
+// --- Budget pages: titles/descriptions sourced from BudgetPage.tsx
+const BUDGET_META = {
+  "ai-under-500": { title: "AI Tools Under ৳500 Bangladesh 2026 — From BDT 299/mo", desc: "AI tools under BDT 500 in Bangladesh. ChatGPT Plus BDT 499, Gamma BDT 399. Cheapest premium AI." },
+  "ai-under-1000": { title: "AI Tools Under ৳1,000 Bangladesh 2026 — From BDT 500/mo", desc: "AI tools under BDT 1000 in Bangladesh. Claude, Notion, Perplexity & more. Budget AI tools." },
+  "ai-under-3000": { title: "AI Tools Under ৳3,000 Bangladesh 2026 — From BDT 700/mo", desc: "AI tools under BDT 3000 in Bangladesh. Personal accounts for pros. Mid-range AI subscriptions." },
+};
+for (const [key, meta] of Object.entries(BUDGET_META)) {
+  writeRoute(`/${key}`, meta.title, meta.desc,
+    `<main><h1>${esc(meta.title)}</h1><p>${esc(meta.desc)}</p>
+<p><a href="/products">All AI tools</a> · <a href="/pricing">Pricing</a></p></main>`);
+}
+writeRoute("/best-ai-budget-bangladesh", BUDGET_META["ai-under-500"].title, BUDGET_META["ai-under-500"].desc,
+  `<main><h1>Best AI Budget Bangladesh</h1><p>Affordable premium AI tools under BDT 500. Pay with bKash or Nagad.</p>
+<p><a href="/ai-under-500">AI Under 500</a> · <a href="/ai-under-1000">AI Under 1000</a> · <a href="/products">All tools</a></p></main>`);
+
+// --- Comparison pages: titles/descriptions sourced from ComparisonPage.tsx
+const COMPARISON_META = {
+  "chatgpt-vs-claude": { title: "ChatGPT vs Claude Bangladesh 2026 — Which is Better?", desc: "ChatGPT vs Claude in Bangladesh 2026. Features, prices, which is better. AI Premium Shop." },
+  "chatgpt-vs-gemini": { title: "ChatGPT vs Gemini Bangladesh 2026 — Full Comparison", desc: "ChatGPT vs Gemini in Bangladesh 2026. Full comparison with BD prices. AI Premium Shop." },
+  "midjourney-vs-ideogram": { title: "Midjourney vs Ideogram 2026 — Best AI Image Tool", desc: "Midjourney vs Ideogram 2026 Bangladesh. Best AI image generator comparison with BDT prices. AI Premium Shop." },
+  "copilot-vs-cursor": { title: "GitHub Copilot vs Cursor 2026 — Best AI Code Tool", desc: "GitHub Copilot vs Cursor 2026. Best AI code editor compared. Prices in BDT." },
+};
+const COMP_ROUTES = [
+  { route: "/chatgpt-vs-claude", key: "chatgpt-vs-claude" },
+  { route: "/chatgpt-vs-claude-bangladesh", key: "chatgpt-vs-claude" },
+  { route: "/chatgpt-vs-gemini", key: "chatgpt-vs-gemini" },
+  { route: "/copilot-vs-cursor", key: "copilot-vs-cursor" },
+  { route: "/midjourney-vs-ideogram", key: "midjourney-vs-ideogram" },
+];
+for (const { route, key } of COMP_ROUTES) {
+  const meta = COMPARISON_META[key];
+  writeRoute(route, meta.title, meta.desc,
+    `<main><h1>${esc(meta.title)}</h1><p>${esc(meta.desc)}</p>
+<p><a href="/products">All AI tools</a> · <a href="/pricing">Pricing</a></p></main>`);
+}
+
+// --- Guides index + 5 deep guide pages
+const guidesIdxSrc = fs.readFileSync(path.join(APP, "src/pages/GuidesIndexPage.tsx"), "utf8");
+const gidxMatch = guidesIdxSrc.match(/title="([^"]+)"[\s\S]{0,200}?description="([^"]+)"/);
+writeRoute("/guides",
+  gidxMatch?.[1] ?? "AI Guides for Bangladesh — Students, Freelancers, Creators | AI Premium Shop",
+  gidxMatch?.[2] ?? "Free AI guides for students, freelancers, creators, business owners, and educators in Bangladesh. Learn which AI tools to use.",
+  `<main><h1>AI Guides for Bangladesh</h1>
+<p>Free guides to help you pick the right AI tools. Written for Bangladesh users — BDT pricing, local payment methods.</p>
+<ul>
+<li><a href="/guides/students">Guide for Students</a> — Study smarter with AI</li>
+<li><a href="/guides/freelancers">Guide for Freelancers</a> — Win more work</li>
+<li><a href="/guides/creators">Guide for Creators</a> — Content that performs</li>
+<li><a href="/guides/smallbusiness">Guide for Small Business</a> — Automate and grow</li>
+<li><a href="/guides/educators">Guide for Educators</a> — Teach with AI</li>
+</ul>
+<p><a href="/products">All AI tools</a> · <a href="/best-ai-for-students">Best for students</a></p></main>`);
+
+// Parse guide page SEO from component sources
+const GUIDE_PAGES = {
+  students: { file: "guides/StudentsGuide.tsx", label: "Students Guide" },
+  freelancers: { file: "guides/FreelancersGuide.tsx", label: "Freelancers Guide" },
+  creators: { file: "guides/CreatorsGuide.tsx", label: "Creators Guide" },
+  smallbusiness: { file: "guides/SMBGuide.tsx", label: "Small Business Guide" },
+  educators: { file: "guides/EducatorsGuide.tsx", label: "Educators Guide" },
+};
+for (const [key, { file, label }] of Object.entries(GUIDE_PAGES)) {
+  const src = fs.readFileSync(path.join(APP, "src/pages", file), "utf8");
+  const gm = src.match(/title="([^"]+)"[\s\S]{0,200}?description="([^"]+)"/);
+  const title = gm?.[1] ?? `AI Guide for ${label} Bangladesh | AI Premium Shop`;
+  const desc = gm?.[2] ?? `Complete AI guide for ${label.toLowerCase()} in Bangladesh. Pick the right AI tools with BDT prices.`;
+  writeRoute(`/guides/${key}`, title, desc,
+    `<main><h1>${esc(title)}</h1><p>${esc(desc)}</p>
+<p><a href="/guides">All guides</a> · <a href="/products">All AI tools</a> · <a href="/best-ai-for-${key === "smallbusiness" ? "business" : key}">Best AI picks</a></p></main>`);
+}
+
+// --- Info pages: parse titles/descriptions from components
+// Parse SEOHead title/description: handles "string", 'string', and backtick templates.
+const parseSeoHead = (src) => {
+  let title = null, desc = null;
+  // Try double-quoted, single-quoted, and template-literal title
+  let m = src.match(/title=\{"([^"]*)"\}/) || src.match(/title=\{(["'`])([^"'`]+?)\1\}/s) || src.match(/title="([^"]+)"/);
+  if (m) title = (m[2] ?? m[1]).replace(/\$\{[^}]+\}/g, "").replace(/\s+/g, " ").trim();
+  // Try double-quoted, single-quoted, and template-literal description
+  m = src.match(/description=\{"([^"]*)"\}/) || src.match(/description=\{(["'`])([^"'`]+?)\1\}/s) || src.match(/description="([^"]+)"/);
+  if (m) desc = (m[2] ?? m[1]).replace(/\$\{[^}]+\}/g, "").replace(/\s+/g, " ").trim();
+  return { title, desc };
+};
+
+const INFO_PAGES = {
+  "/about": { file: "AboutPage.tsx" },
+  "/contact": { file: "ContactPage.tsx" },
+  "/faq": { file: "FAQPage.tsx" },
+  "/support": { file: "SupportPage.tsx" },
+  "/how-to-order": { file: "HowToOrderPage.tsx" },
+  "/refund-policy": { file: "RefundPolicyPage.tsx" },
+  "/terms": { file: "TermsPage.tsx" },
+  "/privacy-policy": { file: "PrivacyPolicyPage.tsx" },
+  "/privacy": { file: "PrivacyPolicyPage.tsx" },
+  "/pricing": { file: "PricingPage.tsx" },
+  "/blog": { file: "BlogPage.tsx" },
+};
+for (const [route, { file }] of Object.entries(INFO_PAGES)) {
+  const src = fs.readFileSync(path.join(APP, "src/pages", file), "utf8");
+  const { title: t, desc: d } = parseSeoHead(src);
+  const title = t || "AI Premium Shop Bangladesh";
+  const desc = d || "Premium AI tools in Bangladesh with BDT prices. Pay with bKash or Nagad.";
+  writeRoute(route, title, desc,
+    `<main><h1>${esc(title)}</h1><p>${esc(desc)}</p>
+<p><a href="/">Home</a> · <a href="/products">All AI tools</a></p></main>`);
+}
+
+// --- Blog posts: static slugs and titles from BlogPage.tsx's hardcoded posts array
+const BLOG_POSTS = [
+  { slug: "best-ai-tools-university-students-bangladesh-2026", title: "Best AI Tools for University Students Bangladesh 2026" },
+  { slug: "chatgpt-mastery-bangladesh-2026", title: "ChatGPT Mastery Guide Bangladesh 2026" },
+  { slug: "claude-power-user-bangladesh-2026", title: "Claude Pro Power User Guide 2026" },
+  { slug: "notion-for-bangladesh-freelancers-2026", title: "Notion for Bangladesh Freelancers 2026" },
+  { slug: "midjourney-complete-bangladesh-2026", title: "Midjourney Complete Guide for Bangladesh 2026" },
+  { slug: "buy-higgsfield-ai-bangladesh", title: "How to Buy Higgsfield AI in Bangladesh — Plans, Credits & bKash Payment (2026)" },
+  { slug: "manus-ai-price-bangladesh", title: "Manus AI Price in Bangladesh 2026 — Plans & Payment Guide" },
+  { slug: "how-to-buy-claude-pro-bangladesh", title: "How to Buy Claude Pro in Bangladesh — Plans, Price & bKash Payment Guide (2026)" },
+  { slug: "how-to-buy-google-ai-pro-bangladesh", title: "How to Buy Google AI Pro in Bangladesh — Plans & Payment Guide (2026)" },
+  { slug: "buy-ai-without-international-card-bangladesh", title: "How to Buy AI Tools Without an International Card in Bangladesh" },
+  { slug: "why-3-ai-tools-better-than-1", title: "Why 3 AI Tools Beat 1 — The Stack Strategy (2026)" },
+  { slug: "openai-codex-vs-claude-code-bangladesh-2026", title: "OpenAI Codex vs Claude Code — Which is Better for Bangladesh 2026" },
+  { slug: "top-10-ai-tools-bangladesh-2026", title: "Top 10 AI Tools Bangladesh 2026 — Ranked by Real Users" },
+  { slug: "best-ai-for-upwork-freelancers-bangladesh", title: "Best AI Tools for Upwork Freelancers Bangladesh 2026" },
+  { slug: "ai-tools-for-remote-jobs-bangladesh-2026", title: "AI Tools for Remote Jobs Bangladesh 2026" },
+  { slug: "how-to-save-money-ai-subscriptions-bangladesh-2026", title: "How to Save Money on AI Subscriptions Bangladesh 2026" },
+  { slug: "chatgpt-vs-claude-vs-gemini-bangladesh-2026", title: "ChatGPT vs Claude vs Gemini — Ultimate Bangladesh Guide 2026" },
+  { slug: "avoid-ai-subscription-scams-bangladesh", title: "How to Avoid AI Subscription Scams Bangladesh — 7 Red Flags to Check" },
+];
+let blogCount = 0;
+for (const { slug, title } of BLOG_POSTS) {
+  writeRoute(`/blog/${slug}`, title,
+    `Read: ${title}. AI tools in Bangladesh with BDT prices. AI Premium Shop.`,
+    `<main><h1>${esc(title)}</h1><p>AI tools and guides for Bangladesh users. Pay with bKash or Nagad.</p>
+<p><a href="/blog">All blog posts</a> · <a href="/products">All AI tools</a> · <a href="/guides">AI Guides</a></p></main>`);
+  blogCount++;
+}
+console.log(`prerender: blog — wrote ${blogCount} static post pages`);
+
+// --- Bangla pages (from BanglaBN.tsx, StudentsBN.tsx, etc.)
+const BANGLA_PAGES = {
+  "/bn": { file: "BanglaBN.tsx", label: "হোম" },
+  "/students-bn": { file: "StudentsBN.tsx", label: "শিক্ষার্থীদের জন্য" },
+  "/developers-bn": { file: "DevelopersBN.tsx", label: "ডেভেলপারদের জন্য" },
+  "/freelancers-bn": { file: "FreelancersBN.tsx", label: "ফ্রিল্যান্সারদের জন্য" },
+  "/creators-bn": { file: "CreatorsBN.tsx", label: "কন্টেন্ট ক্রিয়েটরদের জন্য" },
+  "/smb-bn": { file: "SMBBangla.tsx", label: "ব্যবসায়ীদের জন্য" },
+  "/educators-bn": { file: "EducatorsBangla.tsx", label: "শিক্ষকদের জন্য" },
+};
+for (const [route, { file, label }] of Object.entries(BANGLA_PAGES)) {
+  const src = fs.readFileSync(path.join(APP, "src/pages", file), "utf8");
+  const m = src.match(/title="([^"]+)"[\s\S]{0,300}?description="([^"]+)"/);
+  const title = m?.[1] ?? `AI Premium Shop বাংলাদেশ — ${label}`;
+  const desc = m?.[2] ?? "প্রিমিয়াম AI টুলস বাংলাদেশে BDT মূল্যে। bKash বা Nagad-এ পেমেন্ট করুন।";
+  writeRoute(route, title, desc,
+    `<main><h1>${esc(title)}</h1><p lang="bn">${esc(desc)}</p>
+<p lang="bn"><a href="/bn">হোম</a> · <a href="/products">সব AI টুল</a> · <a href="/guides">গাইড</a></p></main>`);
+}
+
+console.log(`prerender: wrote remaining routes (guides, best-ai-for, comparisons, budget, Bangla, info, blog posts)`);

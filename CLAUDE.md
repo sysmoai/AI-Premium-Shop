@@ -202,12 +202,26 @@ from ~5 to 799 product anchors. catalog-pages.json now carries capabilities.
 KNOWN NIT: the h1 doesn't yet reflect persona/search filters (only
 category/access) — fix with the next deploy, don't spend a slot on it alone.
 
-### Highest-value open items
-1. **Prerender remaining routes** (brand pages, categories, guides, Bangla pages) — /product/* done, ~114 URLs still blank without JS.
-2. **`artifacts/aips-website`** — parallel unused Next.js app with a diverging
-   catalog. Archive or delete; it is a trap.
-3. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same inline-content fix
-   as catalog-lite.
-4. **Conversation store inert** — needs `POSTGRES_URL` + `INSIGHTS_TOKEN`.
-5. **Deploy cap** (100/24h, free plan) is now the binding constraint on iteration.
-6. **Bangla prose** needs a native-speaker read; defects a machine can find are fixed.
+## Session 5 (2026-08-02, Claude Code) — Full prerender complete + aips-website deprecated
+
+**Prerender extended to ALL routes — 269 static HTML pages.** Previously only
+/product/*, brand pages, and categories had prerendered content. Now covers:
+best-ai-for-* (9), guides/* (6), comparisons (5), budget (4), Bangla (7),
+info pages (12), and blog posts (18). All ~43 previously-blank routes now serve
+real static titles, meta descriptions, canonical links, and readable body
+content BEFORE hydration. The `writeRoute()` helper was reused consistently.
+
+**`artifacts/aips-website` flagged as DEPRECATED** with a marker file. Its Git
+link was already removed 2026-07-30; the marker just prevents future sessions
+from trying to deploy it. The canonical app is `artifacts/aips-landing`.
+
+**Blog posts hardcoded** in the prerender script (18 posts matched to
+BlogPage.tsx). If new posts are added to BlogPage.tsx, add their slug/title to
+the BLOG_POSTS array in `scripts/prerender-products.mjs`.
+
+### Priority open items (post-session)
+1. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
+   would shrink these substantially.
+2. **Conversation store inert** — needs `POSTGRES_URL` + `INSIGHTS_TOKEN`.
+3. **Deploy cap** (100/24h, free plan) remains the binding constraint on iteration.
+4. **Bangla prose** — native-speaker read still needed for quality.

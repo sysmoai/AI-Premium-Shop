@@ -13,15 +13,15 @@ const FAQS = [
   // === General Questions (from Notion SEO FAQ + existing) ===
   {
     q: "What is AI Premium Shop?",
-    a: `AI Premium Shop (AIPS) is a Bangladesh-based AI subscription provider operating since 2024. We provide access to ${TOTAL_PRODUCTS}+ AI tools including ChatGPT Plus, Claude Pro, Midjourney, GitHub Copilot, Gemini Advanced, and more. Pay with bKash, Nagad, or Rocket. Fast delivery, a growing community of customers served.`,
+    a: `AI Premium Shop (AIPS) is a Bangladesh-based AI subscription provider operating since 2022. We provide access to ${TOTAL_PRODUCTS}+ AI tools including ChatGPT Plus, Claude Pro, Midjourney, GitHub Copilot, Gemini Advanced, and more. Pay with bKash, Nagad, or Rocket. Fast delivery, 10,000+ customers served.`,
   },
   {
     q: "Is AI Premium Shop legit and trustworthy?",
-    a: "Yes. AIPS has operated since 2024 and serves a growing community of customers. We offer a 30-day replacement guarantee on all subscriptions, WhatsApp support with a fast response time, and operate transparently with published refund and privacy policies.",
+    a: "Yes. AIPS has operated since 2022 and serves 10,000+ customers. We offer a 30-day replacement guarantee on all subscriptions, WhatsApp support with a fast response time, and operate transparently with published refund and privacy policies.",
   },
   {
     q: "Which AI tools are available at AI Premium Shop?",
-    a: "ChatGPT Plus, Claude Pro, Midjourney, Gemini Advanced, Perplexity Pro, GitHub Copilot Pro, Cursor Pro, ElevenLabs, Grammarly Premium, Canva Pro, Notion Business, ChatGPT Business, ChatGPT Pro, CapCut Pro, Freepik, Kling AI, Synthesia, Windsurf, and 60+ more. Total 80+ AI subscriptions across 9 categories.",
+    a: `ChatGPT Plus, Claude Pro, Midjourney, Gemini Advanced, Perplexity Pro, GitHub Copilot Pro, Cursor Pro, ElevenLabs, Grammarly Premium, Canva Pro, Notion Business, ChatGPT Business, ChatGPT Pro, CapCut Pro, Freepik, Kling AI, Synthesia, Windsurf, and more. Total ${TOTAL_PRODUCTS}+ AI subscriptions across 9 categories.`,
   },
   // === Pricing and Payment (from Notion SEO FAQ) ===
   {
@@ -213,7 +213,7 @@ export default function FAQPage() {
     <PageLayout>
       <SEOHead
         title="FAQ — AI Subscription Bangladesh | bKash/Nagad Payment | AI Premium Shop"
-        description="80+ AI subscriptions in Bangladesh. ChatGPT Plus BDT 499, Claude Pro, Midjourney. bKash/Nagad payment, 30-day warranty, WhatsApp support. All questions answered."
+        description={`${TOTAL_PRODUCTS}+ AI subscriptions in Bangladesh. ChatGPT Plus BDT 499, Claude Pro, Midjourney. bKash/Nagad payment, 30-day replacement guarantee, WhatsApp support. All questions answered.`}
         canonical="https://aipremiumshop.com/faq"
         // No breadcrumbSchema here: <Breadcrumb> below already injects its own
         // BreadcrumbList JSON-LD from these same items.

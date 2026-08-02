@@ -94,7 +94,7 @@ export function FinalCTASection() {
               Start Today — From Just BDT {MIN_PRICE}
             </h2>
             <p className="text-base mb-8 max-w-md mx-auto text-center text-gray-400">
-              Join a growing community of customers who trust AI Premium Shop.
+              Join 10,000+ customers who trust AI Premium Shop.
             </p>
             <a
               href={WHATSAPP_LINK}

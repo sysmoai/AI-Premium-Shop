@@ -10,10 +10,10 @@ import { PaymentBadges } from "@/components/PaymentBadges";
 const WHATSAPP = "https://wa.me/8801865385348";
 
 const STATS = [
-  { icon: Users, value: "thousands", label: "Happy customers" },
+  { icon: Users, value: "10,000+", label: "Customers served" },
   { icon: Package, value: String(TOTAL_PRODUCTS), label: "AI tools available" },
   { icon: Layers, value: "19", label: "Leading brands" },
-  { icon: Calendar, value: "2024", label: "Founded" },
+  { icon: Calendar, value: "2022", label: "Founded" },
   { icon: Clock, value: "<5 min", label: "WhatsApp response" },
 ];
 
@@ -21,8 +21,8 @@ export default function AboutPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="About AI Premium Shop — a growing community of customers since 2024 | Bangladesh"
-        description={`AI Premium Shop — Bangladesh's WhatsApp-first AI subscription store. a growing community of customers since 2024. ${TOTAL_PRODUCTS} tools including ChatGPT, Claude, Midjourney. Pay with bKash/Nagad. Real human support, 10 AM–Midnight BST.`}
+        title="About AI Premium Shop — Trusted by 10,000+ customers since 2022 | Bangladesh"
+        description={`AI Premium Shop — Bangladesh's WhatsApp-first AI subscription store. Trusted by 10,000+ customers since 2022. ${TOTAL_PRODUCTS} tools including ChatGPT, Claude, Midjourney. Pay with bKash/Nagad. Real human support, 10 AM–Midnight BST.`}
         canonical="https://aipremiumshop.com/about"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "About" }]} />
@@ -36,7 +36,7 @@ export default function AboutPage() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 text-xs font-medium"
             style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}>
-            🇧🇩 Since 2024
+            🇧🇩 Since 2022
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">About AI Premium Shop</h1>
           <p className="text-lg max-w-2xl" style={{ color: "#c9ceda" }}>
@@ -54,7 +54,7 @@ export default function AboutPage() {
           >
             <h2 className="text-xl font-bold text-white mb-4">Our Story</h2>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>
-              AI Premium Shop (AIPS) has served thousands Bangladeshi customers since 2024 with premium AI subscriptions. Founded by Emon Hossain, AIPS delivers ChatGPT, Claude, Midjourney, and more via WhatsApp-first sales with bKash/Nagad payments.
+              AI Premium Shop (AIPS) has served 10,000+ customers across Bangladesh since 2022 with premium AI subscriptions. Founded by Emon Hossain, AIPS delivers ChatGPT, Claude, Midjourney, and more via WhatsApp-first sales with bKash/Nagad payments.
             </p>
             <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
               We started with a simple idea: make the world&apos;s best AI tools accessible to everyone in Bangladesh — without needing an international credit card. Today, students, freelancers, content creators, developers, and business owners trust us to deliver authentic AI subscriptions quickly, affordably, and with real human support.

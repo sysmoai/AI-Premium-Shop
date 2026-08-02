@@ -70,7 +70,7 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-semibold text-white"
           >
-            Trusted by a growing community of customers Across Bangladesh
+            Trusted by 10,000+ customers Across Bangladesh
           </motion.h2>
           <p className="text-sm mt-3" style={{ color: "#8b93a7" }}>
             Illustrative customer scenarios — representative of typical orders, not verified individual reviews.

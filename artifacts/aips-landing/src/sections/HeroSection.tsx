@@ -123,7 +123,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             style={{ borderColor: "rgba(244,185,66,0.4)", color: "#f4b942", backgroundColor: "rgba(244,185,66,0.08)" }}
           >
             <Star className="w-3.5 h-3.5 fill-current" />
-            Trusted by a growing community of customers since 2024
+            Trusted by 10,000+ customers across Bangladesh since 2022
           </motion.div>
 
           {/* SEO H1 — visually small, semantically authoritative */}
@@ -327,8 +327,8 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
         className="relative z-10 mt-16 w-full max-w-4xl mx-auto"
       >
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-          <TrustBadge icon={Users} label="Customers" value="Growing" />
-          <TrustBadge icon={Calendar} label="Established" value="Since 2024" />
+          <TrustBadge icon={Users} label="Customers" value="10,000+" />
+          <TrustBadge icon={Calendar} label="Established" value="Since 2022" />
           <TrustBadge icon={Shield} label="Warranty" value="30 Days" />
           <TrustBadge icon={Zap} label="Response" value="<5 Min" />
           <div className="bg-gray-900/80 backdrop-blur border border-gray-800 hover:border-[#f4b942]/30 rounded-xl p-4 text-center transition-all duration-300">

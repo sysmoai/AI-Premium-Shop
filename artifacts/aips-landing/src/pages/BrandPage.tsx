@@ -748,7 +748,7 @@ const BRAND_META: Record<string, {
     filterBySlug: true,
     faqs: [
       { q: "What is Freepik Premium?", a: "Freepik Premium gives you unlimited downloads of millions of premium vectors, photos, PSD files, and icons — plus AI-powered image generation, reimagine, and upscaling tools." },
-      { q: "Is Freepik Premium safe to buy through AIPS?", a: "Yes. AIPS provides working access with a 30-day replacement warranty. We have served a growing community of customers since 2024." },
+      { q: "Is Freepik Premium safe to buy through AIPS?", a: "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 10,000+ customers since 2022." },
       { q: "How do I buy without a credit card?", a: "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes." },
       { q: "What's the difference between shared and personal?", a: "Shared (৳499): Access through a shared pool — budget-friendly. Personal (৳1,730): Your own dedicated Freepik account — full control and privacy." },
       { q: "How fast is delivery?", a: "Freepik Premium shared plans: 5–30 minutes. Personal plans: 2–4 hours." },
@@ -766,7 +766,7 @@ const BRAND_META: Record<string, {
     faqs: [
       { q: "What is Kling AI?", a: "Kling AI is a leading text-to-video and image-to-video AI platform from China. It creates cinematic-quality videos with character consistency and realistic motion. Popular among content creators in Bangladesh." },
       { q: "Is Kling AI better than Runway?", a: "Different strengths. Kling AI excels at cinematic quality and character consistency — great for storytelling. Runway offers more advanced editing and effects. Many creators use both." },
-      { q: "Is Kling AI safe to buy through AIPS?", a: "Yes. AIPS provides working access with a 30-day replacement warranty. We have served a growing community of customers since 2024." },
+      { q: "Is Kling AI safe to buy through AIPS?", a: "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 10,000+ customers since 2022." },
       { q: "How do I buy without a credit card?", a: "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes." },
       { q: "How fast is delivery?", a: "Kling AI shared plans: 5–30 minutes. Personal plans: 2–4 hours." },
     ],
@@ -783,7 +783,7 @@ const BRAND_META: Record<string, {
     faqs: [
       { q: "What is Synthesia?", a: "Synthesia is the world's #1 AI video generation platform for business. Create professional videos with AI avatars in 120+ languages — no camera, no studio, no actors needed." },
       { q: "Is Synthesia better than HeyGen?", a: "Synthesia is stronger for corporate and educational content with 140+ avatars. HeyGen focuses more on social media and personal branding. Choose based on your use case." },
-      { q: "Is Synthesia safe to buy through AIPS?", a: "Yes. AIPS provides working access with a 30-day replacement warranty. We have served a growing community of customers since 2024." },
+      { q: "Is Synthesia safe to buy through AIPS?", a: "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 10,000+ customers since 2022." },
       { q: "How do I buy without a credit card?", a: "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes." },
       { q: "How fast is delivery?", a: "Synthesia shared plans: 5–30 minutes. Personal plans: 2–4 hours." },
     ],
@@ -800,7 +800,7 @@ const BRAND_META: Record<string, {
     faqs: [
       { q: "What is Windsurf?", a: "Windsurf by Codeium is an AI-native IDE with Cascade agent mode — the AI can autonomously plan, write, test, and debug code. It's like having a senior developer pair-programming with you 24/7. Supports 70+ languages." },
       { q: "How is Windsurf different from Cursor?", a: "Windsurf's Cascade agent is more autonomous — it can plan multi-step tasks and execute them. Cursor is more interactive with composer mode. Both are excellent; many developers use both for different workflows." },
-      { q: "Is Windsurf safe to buy through AIPS?", a: "Yes. AIPS provides working access with a 30-day replacement warranty. We have served a growing community of customers since 2024." },
+      { q: "Is Windsurf safe to buy through AIPS?", a: "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 10,000+ customers since 2022." },
       { q: "How do I buy without a credit card?", a: "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes." },
       { q: "How fast is delivery?", a: "Windsurf shared plans: 5–30 minutes. Personal plans: 2–4 hours." },
     ],
@@ -816,7 +816,7 @@ const BRAND_META: Record<string, {
     filterBySlug: true,
     faqs: [
       { q: "What can I do with CapCut Pro?", a: "CapCut Pro gives you professional video editing for TikTok, Instagram Reels, and YouTube Shorts. Features include AI effects, auto-captions, keyframe animation, 4K export, no watermark, advanced transitions, and background removal." },
-      { q: "Is CapCut Pro safe to buy through AIPS?", a: "Yes. AIPS provides working CapCut Pro access — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. We have served a growing community of customers since 2024." },
+      { q: "Is CapCut Pro safe to buy through AIPS?", a: "Yes. AIPS provides working CapCut Pro access — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. We have served 10,000+ customers since 2022." },
       { q: "How do I buy CapCut Pro in Bangladesh without a credit card?", a: "Message AI Premium Shop on WhatsApp (+880 1865-385348). Choose your plan. Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes. No international credit card needed." },
       { q: "What's the difference between shared and personal?", a: "Shared (৳299): Access CapCut Pro features through a shared pool — great for budget users. Personal (৳1,195): Your own dedicated CapCut Pro account with full control — best for professionals and agencies." },
       { q: "How fast is delivery?", a: "CapCut Pro shared plans: 5–30 minutes. Personal plans: 2–4 hours. The clock starts after payment confirmation on WhatsApp." },
@@ -2244,7 +2244,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             },
             {
               q: `Is ${meta.displayName} available in Bangladesh?`,
-              a: `Yes. AI Premium Shop (AIPS) offers official ${meta.displayName} subscriptions in Bangladesh. All plans are delivered within 5–30 minutes via WhatsApp after payment confirmation. We have served a growing community of customers since 2024.`,
+              a: `Yes. AI Premium Shop (AIPS) offers official ${meta.displayName} subscriptions in Bangladesh. All plans are delivered within 5–30 minutes via WhatsApp after payment confirmation. We have served 10,000+ customers since 2022.`,
             },
             {
               q: `How do I buy ${meta.displayName} in Bangladesh without a credit card?`,
@@ -2252,7 +2252,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             },
             {
               q: `Is it safe to buy ${meta.displayName} through AI Premium Shop?`,
-              a: `Yes. AIPS provides working paid ${meta.displayName} subscriptions — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. Over 3,000 customers served since 2024.`,
+              a: `Yes. AIPS provides working paid ${meta.displayName} subscriptions — shared plans split a legitimate subscription, personal plans are dedicated accounts. All plans include a 30-day replacement warranty. Over 3,000 customers served since 2022.`,
             },
           ];
           return (

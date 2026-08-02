@@ -22,6 +22,11 @@
       "permanent": true
     },
     {
+      "source": "/claude-team-bangladesh",
+      "destination": "/claude-pro-bangladesh",
+      "permanent": true
+    },
+    {
       "source": "/midjourney",
       "destination": "/midjourney-bangladesh",
       "permanent": true

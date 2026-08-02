@@ -696,6 +696,18 @@ console.log(`prerender: fallback sweep wrote ${fallbacks} pages; sitemap coverag
 <h2>Most wanted AI subscriptions in Bangladesh</h2>
 <ul>${featuredLi}</ul>
 
+<h2>Trending AI tools right now</h2>
+<p>The searches climbing fastest this quarter, based on this site's own real search-console data — plan
+comparisons, team accounts, and the tools people ask about most on WhatsApp.</p>
+<ul>${[
+  ["chatgpt-plans-comparison-bangladesh", "ChatGPT Plans — Plus vs Business vs Pro compared"],
+  ["claude-pro-bangladesh", "Claude Team — for teams and small agencies"],
+  ["gemini-advanced-bangladesh", "Google AI Pro — Gemini, 2TB storage, Workspace AI"],
+  ["github-copilot-bangladesh", "GitHub Copilot — code 50% faster in your IDE"],
+  ["midjourney-bangladesh", "Midjourney — the image generator everyone asks for"],
+  ["chatgpt-business-bangladesh", "ChatGPT Business — admin controls, no training on your data"],
+].map(([slug, label]) => `<li><a href="/${slug}">${esc(label)}</a></li>`).join("")}</ul>
+
 <h2>Browse by category</h2>
 <ul>${catLi}</ul>
 

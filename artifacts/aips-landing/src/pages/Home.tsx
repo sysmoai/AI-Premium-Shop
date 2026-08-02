@@ -14,6 +14,7 @@ import { PricingTiersSection } from "@/sections/PricingTiersSection";
 import { FeaturedProductsSection, FEATURED_PRODUCTS } from "@/sections/FeaturedProductsSection";
 import { PaymentMethodsSection } from "@/sections/PaymentMethodsSection";
 import { PainPointSection } from "@/sections/PainPointSection";
+import { TrendingNowSection } from "@/sections/TrendingNowSection";
 import { AIAgentsSection } from "@/sections/AIAgentsSection";
 import { OffersSection } from "@/sections/OffersSection";
 import { CategorySection } from "@/sections/CategorySection";
@@ -22,6 +23,7 @@ import { HowItWorksSection } from "@/sections/HowItWorksSection";
 import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { FinalCTASection } from "@/sections/FinalCTASection";
 import { CommunitySocialCards } from "@/components/CommunitySocialCards";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { NeuralDivider } from "@/components/NeuralDivider";
 
 type Segment = "students" | "freelancers" | "creators" | "smbs" | "educators" | null;
@@ -149,6 +151,9 @@ export default function Home() {
         {/* 6. FIND YOUR SOLUTION — 6 pain-point cards */}
         <div className="scroll-reveal"><PainPointSection /></div>
 
+        {/* 6B. TRENDING NOW — real search-demand data, not a guess */}
+        <div className="scroll-reveal"><TrendingNowSection /></div>
+
         {/* 3. AI AGENTS — The 2026 Game Changer */}
         <div className="scroll-reveal"><AIAgentsSection /></div>
 
@@ -166,16 +171,18 @@ export default function Home() {
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center">The AI Agent Economy</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 {[
-                  { value: "$34K", unit: "/mo profit", label: "Solo AI agency", color: "#f4b942" },
-                  { value: "45%", unit: "higher rates", label: "AI freelancers", color: "#22c55e" },
-                  { value: "18,000%", unit: "growth", label: "AI services on Fiverr", color: "#a855f7" },
-                  { value: "8M", unit: "SMEs", label: "BD needs AI automation", color: "#3b82f6" },
+                  { value: 34, prefix: "$", suffix: "K", unit: "/mo profit", label: "Solo AI agency", color: "#f4b942" },
+                  { value: 45, suffix: "%", unit: "higher rates", label: "AI freelancers", color: "#22c55e" },
+                  { value: 18000, suffix: "%", unit: "growth", label: "AI services on Fiverr", color: "#a855f7" },
+                  { value: 8, suffix: "M", unit: "SMEs", label: "BD needs AI automation", color: "#3b82f6" },
                 ].map((stat) => (
                   <div
                     key={stat.label}
                     className="bg-gray-800/50 rounded-xl p-6 text-center transition-all duration-300 hover:scale-[1.05] cursor-default"
                   >
-                    <div className="text-4xl md:text-5xl font-black mb-1" style={{ color: stat.color }}>{stat.value}</div>
+                    <div className="text-4xl md:text-5xl font-black mb-1" style={{ color: stat.color }}>
+                      <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
+                    </div>
                     <div className="text-sm text-gray-400 mb-0.5">{stat.unit}</div>
                     <div className="text-xs text-gray-500">{stat.label}</div>
                   </div>

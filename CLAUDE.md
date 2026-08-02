@@ -219,6 +219,19 @@ from trying to deploy it. The canonical app is `artifacts/aips-landing`.
 BlogPage.tsx). If new posts are added to BlogPage.tsx, add their slug/title to
 the BLOG_POSTS array in `scripts/prerender-products.mjs`.
 
+## Session 6 (2026-08-02, Fable 5) — verified session 5's claim, fixed blog-slug drift
+
+Session 5's "269 pages" was measured against the sitemap: 18 URLs were NOT
+covered. The hardcoded BLOG_POSTS array used invented slugs — 14 static pages
+shipped at non-routes (soft-404 on hydration with self-canonicals) while the
+14 real post URLs stayed blank. Fixed by parsing slugs/titles/excerpts from
+BlogPostPage.tsx's ALL_POSTS_META at build time (parse, never retype). Added a
+sitemap-driven fallback sweep so any uncovered sitemap URL gets a safe generic
+page — caught /chatgpt-plans-bangladesh, /chatgpt-plans-comparison-bangladesh,
+/google-ai-pro-bangladesh. Build now asserts **271/271 sitemap coverage**.
+Verified live: real blog slugs serve real titles, wrong slugs serve only the
+shell.
+
 ### Priority open items (post-session)
 1. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
    would shrink these substantially.

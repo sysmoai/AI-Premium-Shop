@@ -1,0 +1,26 @@
+{
+  "_README": "CEO price approval ledger. A price may appear publicly on aipremiumshop.com ONLY if it has an entry here with status 'approved'. Anything else renders as 'Request current price on WhatsApp'. Never add an entry without an explicit written CEO decision — the approval_source field must quote or reference it.",
+  "_schema_version": "price-approvals-v1",
+  "approvals": [
+    {
+      "approval_id": "APR-2026-08-02-001",
+      "canonical_name": "ChatGPT Plus",
+      "repo_slug": "chatgpt-plus-bangladesh",
+      "tier": "Starter Shared",
+      "access_model": "shared",
+      "approved_price_bdt": 499,
+      "currency": "BDT",
+      "billing_cycle": "monthly",
+      "status": "approved",
+      "approved_by": "Emon Hossain (CEO)",
+      "approved_at": "2026-08-02",
+      "approval_source": "Direct written CEO decision in Claude Code session 2e1dc0f6: 'ChatGPT Plus shared seat ৳499'",
+      "resolves_conflict": "ATLAS conflict #1 — sources disagreed across BDT 350 / 399 / 499 / 599",
+      "conflict_resolution_note": "BDT 350 was a phantom price previously purged from the live site; 399 and 599 came from stale source documents. 499 matches what the live catalog already serves, so this approval confirms existing production behavior rather than changing it.",
+      "verified_live": true
+    }
+  ],
+  "pending_ceo": {
+    "_note": "26 remaining ATLAS price conflicts await a decision. Per CEO instruction (option A) each is confirmed individually before any price publishes. See docs/coordination/CEO_PRICE_DECISION_SHEET.md for the answerable list. Until decided, these records stay request_price_only and display no number."
+  }
+}

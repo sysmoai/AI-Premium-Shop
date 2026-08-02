@@ -3,17 +3,17 @@
 # Regenerate with: node scripts/generate-llms-txt.mjs
 # Helps LLMs and AI crawlers understand this site for discovery and citation.
 # Format: llms.txt standard (https://llmstxt.org)
-# Generated: 2026-08-01
+# Generated: 2026-08-02
 
 ## Site Info
 name: AI Premium Shop (AIPS)
 domain: aipremiumshop.com
-description: Bangladesh's AI subscription marketplace. 87 premium AI tools — ChatGPT, Claude, Midjourney, Gemini, GitHub Copilot, Runway — from BDT 299/mo via bKash/Nagad/Rocket.
+description: Bangladesh's AI subscription marketplace. 101 premium AI tools — ChatGPT, Claude, Midjourney, Gemini, GitHub Copilot, Runway — from BDT 299/mo via bKash/Nagad/Rocket.
 tagline: Premium AI Tools in Bangladesh — From BDT 299/month
 founded: 2024
-products: 87
+products: 101
 categories: 9
-request-price products (contact for current price): 11
+request-price products (contact for current price): 25
 payments: bKash, Nagad, Rocket, Bank Transfer, Binance
 delivery: 5-30 minutes (shared plans), 2-4 hours (personal accounts)
 contact: +8801865385348 (WhatsApp)
@@ -40,12 +40,12 @@ contact: +8801865385348 (WhatsApp)
 - Sitemap: https://aipremiumshop.com/sitemap.xml
 
 ## Categories
-- AI Assistant & Chat (10): https://aipremiumshop.com/ai-assistant — ChatGPT Plus, ChatGPT Go, ChatGPT Business, ChatGPT Pro
+- AI Assistant & Chat (12): https://aipremiumshop.com/ai-assistant — ChatGPT Plus, ChatGPT Go, ChatGPT Business, ChatGPT Pro
 - AI Image & Design (8): https://aipremiumshop.com/ai-image — Midjourney Standard, Ideogram Plus, Leonardo AI, Adobe Firefly
-- AI Video (12): https://aipremiumshop.com/ai-video — CapCut Pro, Runway Standard, HeyGen Creator, Pika Labs
+- AI Video (13): https://aipremiumshop.com/ai-video — CapCut Pro, Runway Standard, HeyGen Creator, Pika Labs
 - AI Voice & Music (5): https://aipremiumshop.com/ai-voice-music — ElevenLabs Starter, Suno AI Pro, Udio Pro, Murf AI
-- AI Code & Dev Tools (7): https://aipremiumshop.com/ai-code — GitHub Copilot Pro, Cursor Pro, v0.dev Pro, Replit Core
-- AI Workspace (22): https://aipremiumshop.com/ai-workspace — Notion Business, Manus AI, Otter.ai Pro, Gamma Plus
+- AI Code & Dev Tools (11): https://aipremiumshop.com/ai-code — GitHub Copilot Pro, Cursor Pro, v0.dev Pro, Replit Core
+- AI Workspace (29): https://aipremiumshop.com/ai-workspace — Notion Business, Manus AI, Otter.ai Pro, Gamma Plus
 - AI Writing & SEO (15): https://aipremiumshop.com/ai-writing — Writesonic Individual, Grammarly Premium, QuillBot Premium, Jasper AI Creator
 - AI Design & Creative (4): https://aipremiumshop.com/ai-design — Canva Pro, Recraft, Photoroom Pro, Krea AI
 - Bundles & Packages (4): https://aipremiumshop.com/bundles — Student Essentials Package, Freelancer Bundle, Business Package, B2B Implementation Service

@@ -8881,6 +8881,669 @@
         "30-day replacement guarantee",
         "Real human WhatsApp support, not a bot"
       ]
+    },
+    {
+      "id": "you-request",
+      "name": "You.com",
+      "slug": "you-bangladesh",
+      "brand": "You.com",
+      "brandSlug": "you-bangladesh",
+      "provider": "You.com",
+      "brandColor": "#5b21b6",
+      "category": "ai-assistant",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI search and research assistant that cites its sources and can switch between multiple underlying models. Useful when you need answers with references rather than a single unsourced reply.",
+      "descriptionBN": "AI সার্চ ও রিসার্চ অ্যাসিস্ট্যান্ট — সোর্স উল্লেখ করে উত্তর দেয় এবং একাধিক মডেল ব্যবহার করা যায়।",
+      "capabilities": [
+        "search",
+        "text",
+        "research"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want You.com from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://you.com",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does You.com cost in Bangladesh?",
+          "a": "Plan pricing for You.com is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for You.com?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is You.com delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "monica-request",
+      "name": "Monica",
+      "slug": "monica-bangladesh",
+      "brand": "Monica",
+      "brandSlug": "monica-bangladesh",
+      "provider": "Monica",
+      "brandColor": "#0ea5e9",
+      "category": "ai-assistant",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "All-in-one AI assistant that runs as a browser extension and app — summarise any page, translate, write and rewrite text, and chat with multiple AI models from one place without switching tabs.",
+      "descriptionBN": "ব্রাউজার এক্সটেনশন ও অ্যাপ হিসেবে চলা AI অ্যাসিস্ট্যান্ট — যেকোনো পেজ সামারি, অনুবাদ, লেখা ও একাধিক AI মডেলের সাথে চ্যাট।",
+      "capabilities": [
+        "text",
+        "translate",
+        "summarize",
+        "browser"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Monica from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://monica.im",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Monica cost in Bangladesh?",
+          "a": "Plan pricing for Monica is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Monica?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Monica delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "fireflies-request",
+      "name": "Fireflies.ai",
+      "slug": "fireflies-bangladesh",
+      "brand": "Fireflies",
+      "brandSlug": "fireflies-bangladesh",
+      "provider": "Fireflies.ai",
+      "brandColor": "#6366f1",
+      "category": "ai-workspace",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Meeting assistant that joins your calls, records and transcribes them, then produces searchable notes and action items. Works with the common video-conferencing platforms.",
+      "descriptionBN": "মিটিং অ্যাসিস্ট্যান্ট — কল রেকর্ড ও ট্রান্সক্রাইব করে, নোট ও অ্যাকশন আইটেম তৈরি করে। সাধারণ ভিডিও কনফারেন্সিং প্ল্যাটফর্মে কাজ করে।",
+      "capabilities": [
+        "transcription",
+        "meetings",
+        "search",
+        "summarize"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Fireflies.ai from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://fireflies.ai/pricing",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Fireflies.ai cost in Bangladesh?",
+          "a": "Plan pricing for Fireflies.ai is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Fireflies.ai?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Fireflies.ai delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "meetgeek-request",
+      "name": "MeetGeek",
+      "slug": "meetgeek-bangladesh",
+      "brand": "MeetGeek",
+      "brandSlug": "meetgeek-bangladesh",
+      "provider": "MeetGeek",
+      "brandColor": "#0891b2",
+      "category": "ai-workspace",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Automatic meeting recording, transcription and summary tool. Captures calls, generates notes and highlights, and can push summaries into your other work tools.",
+      "descriptionBN": "স্বয়ংক্রিয় মিটিং রেকর্ডিং, ট্রান্সক্রিপশন ও সামারি টুল — নোট ও হাইলাইট তৈরি করে অন্য টুলে পাঠাতে পারে।",
+      "capabilities": [
+        "transcription",
+        "meetings",
+        "summarize"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want MeetGeek from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://meetgeek.ai",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does MeetGeek cost in Bangladesh?",
+          "a": "Plan pricing for MeetGeek is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for MeetGeek?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is MeetGeek delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "lindy-ai-request",
+      "name": "Lindy AI",
+      "slug": "lindy-ai-bangladesh",
+      "brand": "Lindy",
+      "brandSlug": "lindy-ai-bangladesh",
+      "provider": "Lindy",
+      "brandColor": "#db2777",
+      "category": "ai-workspace",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI agent builder for business workflows — create assistants that handle email, scheduling, lead follow-up and other recurring tasks by connecting to the tools you already use.",
+      "descriptionBN": "বিজনেস ওয়ার্কফ্লোর জন্য AI এজেন্ট বিল্ডার — ইমেইল, শিডিউলিং ও লিড ফলো-আপের মতো কাজ স্বয়ংক্রিয় করা যায়।",
+      "capabilities": [
+        "agents",
+        "automation",
+        "email"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Lindy AI from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.lindy.ai",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Lindy AI cost in Bangladesh?",
+          "a": "Plan pricing for Lindy AI is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Lindy AI?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Lindy AI delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "relevance-ai-request",
+      "name": "Relevance AI",
+      "slug": "relevance-ai-bangladesh",
+      "brand": "Relevance AI",
+      "brandSlug": "relevance-ai-bangladesh",
+      "provider": "Relevance AI",
+      "brandColor": "#2563eb",
+      "category": "ai-workspace",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Platform for building and running AI agents and multi-agent teams for business tasks such as research, data processing and sales support, without building infrastructure yourself.",
+      "descriptionBN": "AI এজেন্ট ও মাল্টি-এজেন্ট টিম তৈরির প্ল্যাটফর্ম — রিসার্চ, ডেটা প্রসেসিং ও সেলস সাপোর্টের কাজে ব্যবহৃত হয়।",
+      "capabilities": [
+        "agents",
+        "automation",
+        "data"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Relevance AI from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://relevanceai.com",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Relevance AI cost in Bangladesh?",
+          "a": "Plan pricing for Relevance AI is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Relevance AI?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Relevance AI delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "gumloop-request",
+      "name": "Gumloop",
+      "slug": "gumloop-bangladesh",
+      "brand": "Gumloop",
+      "brandSlug": "gumloop-bangladesh",
+      "provider": "Gumloop",
+      "brandColor": "#f59e0b",
+      "category": "ai-workspace",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "No-code workspace for building AI-powered automations on a visual canvas — chain together scraping, AI processing and delivery steps to automate research and content workflows.",
+      "descriptionBN": "নো-কোড AI অটোমেশন ওয়ার্কস্পেস — ভিজ্যুয়াল ক্যানভাসে স্ক্র্যাপিং, AI প্রসেসিং ও ডেলিভারি ধাপ যুক্ত করে কাজ স্বয়ংক্রিয় করা যায়।",
+      "capabilities": [
+        "automation",
+        "no-code",
+        "agents"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Gumloop from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.gumloop.com",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Gumloop cost in Bangladesh?",
+          "a": "Plan pricing for Gumloop is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Gumloop?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Gumloop delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "stack-ai-request",
+      "name": "Stack AI",
+      "slug": "stack-ai-bangladesh",
+      "brand": "Stack AI",
+      "brandSlug": "stack-ai-bangladesh",
+      "provider": "Stack AI",
+      "brandColor": "#334155",
+      "category": "ai-workspace",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "No-code builder for AI applications and internal assistants — connect your documents and data sources to build tools such as document Q&A and support assistants.",
+      "descriptionBN": "AI অ্যাপ ও ইন্টারনাল অ্যাসিস্ট্যান্ট তৈরির নো-কোড বিল্ডার — ডকুমেন্ট ও ডেটা সোর্স যুক্ত করে Q&A টুল বানানো যায়।",
+      "capabilities": [
+        "no-code",
+        "rag",
+        "agents"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Stack AI from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.stack-ai.com",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Stack AI cost in Bangladesh?",
+          "a": "Plan pricing for Stack AI is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Stack AI?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Stack AI delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "lovable-request",
+      "name": "Lovable.dev",
+      "slug": "lovable-bangladesh",
+      "brand": "Lovable",
+      "brandSlug": "lovable-bangladesh",
+      "provider": "Lovable",
+      "brandColor": "#ec4899",
+      "category": "ai-code",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI app builder that turns a written description into a working web application with editable code. Aimed at shipping functional prototypes and small products without a full development setup.",
+      "descriptionBN": "AI অ্যাপ বিল্ডার — লেখা বর্ণনা থেকে কার্যকর ওয়েব অ্যাপ ও এডিটযোগ্য কোড তৈরি করে। দ্রুত প্রোটোটাইপ ও ছোট প্রোডাক্ট বানানোর জন্য।",
+      "capabilities": [
+        "code",
+        "web-apps",
+        "no-code"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Lovable.dev from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://lovable.dev",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Lovable.dev cost in Bangladesh?",
+          "a": "Plan pricing for Lovable.dev is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Lovable.dev?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Lovable.dev delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "bolt-request",
+      "name": "Bolt.new",
+      "slug": "bolt-bangladesh",
+      "brand": "Bolt",
+      "brandSlug": "bolt-bangladesh",
+      "provider": "StackBlitz",
+      "brandColor": "#1e293b",
+      "category": "ai-code",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "In-browser AI development environment from StackBlitz — describe an app and it scaffolds, runs and deploys full-stack code without any local setup.",
+      "descriptionBN": "StackBlitz-এর ব্রাউজারভিত্তিক AI ডেভেলপমেন্ট এনভায়রনমেন্ট — বর্ণনা দিলে ফুল-স্ট্যাক কোড তৈরি, রান ও ডিপ্লয় করে, লোকাল সেটআপ লাগে না।",
+      "capabilities": [
+        "code",
+        "web-apps",
+        "deploy"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Bolt.new from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://bolt.new",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Bolt.new cost in Bangladesh?",
+          "a": "Plan pricing for Bolt.new is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Bolt.new?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Bolt.new delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "dify-ai-request",
+      "name": "Dify AI",
+      "slug": "dify-ai-bangladesh",
+      "brand": "Dify",
+      "brandSlug": "dify-ai-bangladesh",
+      "provider": "Dify",
+      "brandColor": "#0f766e",
+      "category": "ai-code",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Platform for building LLM applications — visual workflow builder, retrieval over your own documents, and agent tooling. Available as a cloud service and as open-source software you can self-host.",
+      "descriptionBN": "LLM অ্যাপ তৈরির প্ল্যাটফর্ম — ভিজ্যুয়াল ওয়ার্কফ্লো, নিজের ডকুমেন্টে রিট্রিভাল ও এজেন্ট টুলিং। ক্লাউড ও সেলফ-হোস্ট দুইভাবেই ব্যবহারযোগ্য।",
+      "capabilities": [
+        "rag",
+        "agents",
+        "no-code",
+        "open-source"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Dify AI from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://dify.ai",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Dify AI cost in Bangladesh?",
+          "a": "Plan pricing for Dify AI is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Dify AI?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Dify AI delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "flowise-ai-request",
+      "name": "Flowise AI",
+      "slug": "flowise-ai-bangladesh",
+      "brand": "Flowise",
+      "brandSlug": "flowise-ai-bangladesh",
+      "provider": "Flowise",
+      "brandColor": "#16a34a",
+      "category": "ai-code",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Drag-and-drop builder for LLM flows and agents. Open-source with a hosted cloud option, commonly used to prototype chatbots and retrieval pipelines over private data.",
+      "descriptionBN": "LLM ফ্লো ও এজেন্ট তৈরির ড্র্যাগ-অ্যান্ড-ড্রপ বিল্ডার। ওপেন-সোর্স, ক্লাউড অপশনসহ — চ্যাটবট ও রিট্রিভাল পাইপলাইন প্রোটোটাইপ করতে ব্যবহৃত হয়।",
+      "capabilities": [
+        "rag",
+        "agents",
+        "no-code",
+        "open-source"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Flowise AI from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://flowiseai.com",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Flowise AI cost in Bangladesh?",
+          "a": "Plan pricing for Flowise AI is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Flowise AI?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Flowise AI delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "fliki-request",
+      "name": "Fliki",
+      "slug": "fliki-bangladesh",
+      "brand": "Fliki",
+      "brandSlug": "fliki-bangladesh",
+      "provider": "Fliki",
+      "brandColor": "#8b5cf6",
+      "category": "ai-video",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Text-to-video and text-to-speech tool — turn scripts, blog posts or ideas into narrated videos using AI voices, with stock media and subtitles. Often used for social and faceless video content.",
+      "descriptionBN": "টেক্সট-টু-ভিডিও ও টেক্সট-টু-স্পিচ টুল — স্ক্রিপ্ট বা ব্লগ থেকে AI ভয়েসে ন্যারেটেড ভিডিও তৈরি করে, স্টক মিডিয়া ও সাবটাইটেলসহ।",
+      "capabilities": [
+        "video-gen",
+        "tts",
+        "subtitles"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Fliki from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://fliki.ai/pricing",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does Fliki cost in Bangladesh?",
+          "a": "Plan pricing for Fliki is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for Fliki?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is Fliki delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "notebooklm-request",
+      "name": "NotebookLM",
+      "slug": "notebooklm-bangladesh",
+      "brand": "NotebookLM",
+      "brandSlug": "notebooklm-bangladesh",
+      "provider": "Google",
+      "brandColor": "#4285f4",
+      "category": "ai-workspace",
+      "price": null,
+      "requestPrice": true,
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "Google's research and note-taking assistant, grounded in documents you upload — ask questions about your own sources, generate summaries and study guides, and produce audio overviews. A free tier exists; higher limits come through Google's paid plans, so AI Premium Shop confirms current options on WhatsApp.",
+      "descriptionBN": "Google-এর রিসার্চ ও নোট অ্যাসিস্ট্যান্ট — আপনার আপলোড করা ডকুমেন্টের ভিত্তিতে প্রশ্নের উত্তর, সামারি ও স্টাডি গাইড তৈরি করে। ফ্রি টিয়ার আছে; বেশি লিমিটের জন্য পেইড প্ল্যান।",
+      "capabilities": [
+        "research",
+        "rag",
+        "summarize",
+        "audio"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want NotebookLM from AI Premium Shop. Please share the current price, plans and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://notebooklm.google.com",
+      "lastVerifiedDate": "2026-08-02",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "faq": [
+        {
+          "q": "How much does NotebookLM cost in Bangladesh?",
+          "a": "Plan pricing for NotebookLM is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
+        },
+        {
+          "q": "How do I pay for NotebookLM?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        },
+        {
+          "q": "How is NotebookLM delivered?",
+          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
+        }
+      ],
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
     }
   ]
 }

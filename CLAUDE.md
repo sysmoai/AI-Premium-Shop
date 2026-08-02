@@ -232,6 +232,35 @@ page — caught /chatgpt-plans-bangladesh, /chatgpt-plans-comparison-bangladesh,
 Verified live: real blog slugs serve real titles, wrong slugs serve only the
 shell.
 
+## Session 7 (2026-08-02, Fable 5) — blog taxonomy, nav/footer overhaul, homepage ticker
+
+Full-site pass per CEO directive: audited for stale info (none found — all
+counts already catalog-derived), then shipped:
+- `src/lib/blogTaxonomy.ts` — 10 blog categories, single source read by
+  BlogPage's new URL-synced filter (`?category=`), Navbar's new Blog
+  mega-menu (desktop) + accordion (mobile), and PageFooter's new Blog &
+  Guides column (6-col grid now, was 5). This is the scaffold
+  `docs/BLOG_365_ROADMAP.md` grows into for the 365+ blog plan — every new
+  post just needs a `categoryKey`, no UI work.
+- `src/lib/topBrands.ts` — brand/href/price computation shared between
+  Navbar's Popular Brands and the Hero's ticker (previously Navbar computed
+  it privately, Hero had a separate plain-text, price-less, link-less brand
+  list). Hero now shows a "🔥 MOST WANTED this week" marquee of real
+  BrandIcon + name + live catalog price chips, pauses on hover.
+- `.btn-cta` (used site-wide) gained a one-shot shine sweep on hover; Navbar's
+  Order Now switched from a duplicated inline gradient to this shared class.
+- `docs/BLOG_365_ROADMAP.md` — category quotas from the Notion Keyword
+  Universe, Q1 topic bank (~90 posts), per-post checklist, explicit warning
+  against mass template-generated thin content.
+
+All verified live (not just build-clean): ticker prices confirmed against
+catalog, `/blog?category=strategy` returns correct filtered title/h1/cards,
+footer Blog column renders, zero console errors. **Local dev preview
+(`preview_start` on `aips-landing`) was unreachable from this environment's
+Bash tool** (connection refused on the same port the Browser pane reported
+started) — verification was done against the live deploy instead, as in
+every other cycle this session.
+
 ### Priority open items (post-session)
 1. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
    would shrink these substantially.

@@ -542,6 +542,34 @@ scraper that assumed the old literal shape. `pnpm run build`'s
 numbers *in* it are the current ones — only `validate-blog-prices.mjs` and
 manual live-DOM verification do that.
 
+## Session 15 (2026-08-02, Fable 5) — homepage: real-demand section, animated counters, a live traffic leak fixed
+
+Pulled this site's own GSC Performance data *before* deciding what to feature
+— real climbing queries beyond the brand name are ChatGPT plan comparisons,
+Claude Team, Google AI Pro (466 impressions for only 13 clicks — a real CTR
+opportunity), GitHub Copilot, Midjourney. Built `TrendingNowSection` around
+exactly those six, prices via `tierPrice`/`cheapestPriceFor` (never typed),
+mirrored into the homepage's static prerender body so it's crawlable
+pre-hydration too.
+
+**Found and fixed a real, verified traffic leak while reading that data**:
+22 clicks + 240 impressions over 3 months land on `/claude-team-bangladesh`,
+which has never been a route — silently 200s to the bare homepage shell
+instead of the real Claude Team tier (BDT 3,990/mo, under
+`claude-pro-bangladesh`). Added a permanent redirect in `vercel.json`;
+confirmed live (`308 -> /claude-pro-bangladesh`).
+
+**New `AnimatedCounter` component** (framer-motion `useSpring` + `useInView`,
+counts up once on scroll-into-view, holds at final value, skips the
+animation entirely under `prefers-reduced-motion` since there's no
+vestibular-safe way to "reduce" a number ticking up). Applied to the
+"AI Agent Economy" stat block. Verified live: settles at the exact original
+values ($34K / 45% / 18,000% / 8M), zero console errors.
+
+All changes verified in the rendered DOM after deploy, not just build
+success: real prices in the Trending cards, real internal links, redirect
+status checked directly with curl, hydration clean (1 h1, 0px overflow).
+
 ### Priority open items (post-session)
 1. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
    would shrink these substantially.

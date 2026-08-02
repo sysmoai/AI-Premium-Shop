@@ -367,30 +367,20 @@ for (const [route, { file }] of Object.entries(INFO_PAGES)) {
 }
 
 // --- Blog posts: static slugs and titles from BlogPage.tsx's hardcoded posts array
-const BLOG_POSTS = [
-  { slug: "best-ai-tools-university-students-bangladesh-2026", title: "Best AI Tools for University Students Bangladesh 2026" },
-  { slug: "chatgpt-mastery-bangladesh-2026", title: "ChatGPT Mastery Guide Bangladesh 2026" },
-  { slug: "claude-power-user-bangladesh-2026", title: "Claude Pro Power User Guide 2026" },
-  { slug: "notion-for-bangladesh-freelancers-2026", title: "Notion for Bangladesh Freelancers 2026" },
-  { slug: "midjourney-complete-bangladesh-2026", title: "Midjourney Complete Guide for Bangladesh 2026" },
-  { slug: "buy-higgsfield-ai-bangladesh", title: "How to Buy Higgsfield AI in Bangladesh — Plans, Credits & bKash Payment (2026)" },
-  { slug: "manus-ai-price-bangladesh", title: "Manus AI Price in Bangladesh 2026 — Plans & Payment Guide" },
-  { slug: "how-to-buy-claude-pro-bangladesh", title: "How to Buy Claude Pro in Bangladesh — Plans, Price & bKash Payment Guide (2026)" },
-  { slug: "how-to-buy-google-ai-pro-bangladesh", title: "How to Buy Google AI Pro in Bangladesh — Plans & Payment Guide (2026)" },
-  { slug: "buy-ai-without-international-card-bangladesh", title: "How to Buy AI Tools Without an International Card in Bangladesh" },
-  { slug: "why-3-ai-tools-better-than-1", title: "Why 3 AI Tools Beat 1 — The Stack Strategy (2026)" },
-  { slug: "openai-codex-vs-claude-code-bangladesh-2026", title: "OpenAI Codex vs Claude Code — Which is Better for Bangladesh 2026" },
-  { slug: "top-10-ai-tools-bangladesh-2026", title: "Top 10 AI Tools Bangladesh 2026 — Ranked by Real Users" },
-  { slug: "best-ai-for-upwork-freelancers-bangladesh", title: "Best AI Tools for Upwork Freelancers Bangladesh 2026" },
-  { slug: "ai-tools-for-remote-jobs-bangladesh-2026", title: "AI Tools for Remote Jobs Bangladesh 2026" },
-  { slug: "how-to-save-money-ai-subscriptions-bangladesh-2026", title: "How to Save Money on AI Subscriptions Bangladesh 2026" },
-  { slug: "chatgpt-vs-claude-vs-gemini-bangladesh-2026", title: "ChatGPT vs Claude vs Gemini — Ultimate Bangladesh Guide 2026" },
-  { slug: "avoid-ai-subscription-scams-bangladesh", title: "How to Avoid AI Subscription Scams Bangladesh — 7 Red Flags to Check" },
-];
+// Blog slugs/titles/excerpts parsed from BlogPostPage.tsx's ALL_POSTS_META so
+// they cannot drift from the real routes. A hardcoded copy of this list
+// shipped 14 static pages at slugs that don't exist as routes (soft-404s on
+// hydration) while the 14 real post URLs stayed blank — parse, never retype.
+const blogSrc = fs.readFileSync(path.join(APP, "src/pages/BlogPostPage.tsx"), "utf8");
+const BLOG_POSTS = [...blogSrc.matchAll(/"([a-z0-9-]+)":\s*{\s*title:\s*"([^"]+)",\s*excerpt:\s*"([^"]+)"/g)]
+  .map((m) => ({ slug: m[1], title: m[2], excerpt: m[3] }));
+// De-dup (the file also has a full-content map keyed by the same slugs).
+const seenBlog = new Set();
+const BLOG_UNIQUE = BLOG_POSTS.filter((b) => !seenBlog.has(b.slug) && seenBlog.add(b.slug));
 let blogCount = 0;
-for (const { slug, title } of BLOG_POSTS) {
+for (const { slug, title, excerpt } of BLOG_UNIQUE) {
   writeRoute(`/blog/${slug}`, title,
-    `Read: ${title}. AI tools in Bangladesh with BDT prices. AI Premium Shop.`,
+    excerpt ? `${excerpt} | AI Premium Shop Bangladesh.` : `Read: ${title}. AI tools in Bangladesh with BDT prices. AI Premium Shop.`,
     `<main><h1>${esc(title)}</h1><p>AI tools and guides for Bangladesh users. Pay with bKash or Nagad.</p>
 <p><a href="/blog">All blog posts</a> · <a href="/products">All AI tools</a> · <a href="/guides">AI Guides</a></p></main>`);
   blogCount++;
@@ -418,3 +408,25 @@ for (const [route, { file, label }] of Object.entries(BANGLA_PAGES)) {
 }
 
 console.log(`prerender: wrote remaining routes (guides, best-ai-for, comparisons, budget, Bangla, info, blog posts)`);
+
+// ---- Fallback sweep: any sitemap URL still lacking a static file gets a
+// safe generic page (humanized title, self-canonical, link-rich body, no
+// price claims). Guarantees the sitemap never points at a blank shell even
+// when a new route class appears before anyone extends the sections above.
+const sitemapXml = fs.readFileSync(path.join(APP, "public/sitemap.xml"), "utf8");
+const smRoutes = [...sitemapXml.matchAll(/<loc>https:\/\/aipremiumshop\.com([^<]*)<\/loc>/g)]
+  .map((m) => (m[1] || "/").replace(/\/$/, "") || "/");
+let fallbacks = 0;
+for (const route of smRoutes) {
+  if (route === "/") continue;
+  const file = path.join(DIST, route.replace(/^\//, ""), "index.html");
+  if (fs.existsSync(file)) continue;
+  const words = route.split("/").pop().replace(/-/g, " ").replace(/\bbangladesh\b/i, "Bangladesh")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+  writeRoute(route, `${words} | AI Premium Shop`,
+    `${words} — premium AI subscriptions in Bangladesh. Pay with bKash or Nagad. AI Premium Shop.`,
+    `<main><h1>${esc(words)}</h1><p>Premium AI subscriptions for Bangladesh with local payment (bKash, Nagad, Rocket) and fast WhatsApp delivery.</p>
+<p><a href="/products">All AI tools</a> · <a href="/pricing">Pricing</a> · <a href="/guides">Guides</a> · <a href="/how-to-order">How to order</a></p></main>`);
+  fallbacks++;
+}
+console.log(`prerender: fallback sweep wrote ${fallbacks} pages; sitemap coverage now ${smRoutes.filter((r) => r === "/" || fs.existsSync(path.join(DIST, r.replace(/^\//, ""), "index.html"))).length}/${smRoutes.length}`);

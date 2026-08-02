@@ -388,6 +388,70 @@ bodies a regex cannot safely lift — heads/excerpts correct, hydration carries
 full text. Verified live: all three classes serve rich static HTML, hydration
 clean (1 h1, no leftover), 0px overflow, no console errors.
 
+## Session 12 (2026-08-02, Fable 5) — Google Search Console: verified, submitted, audited
+
+Given live browser access to `aipremiumshopbd@gmail.com` (already signed in).
+Did everything achievable without owning DNS or the Google account's other
+services:
+
+**Property verified.** Added `https://aipremiumshop.com/` as a URL-prefix
+property (Domain-type needs DNS TXT, not reachable from here). Verified via
+the HTML-file method: `public/googleaf2155254f74ede1.html` is committed and
+**must never be deleted** — removing it un-verifies the property.
+
+**Sitemap resubmitted and immediately re-read**: discovered pages jumped
+**161 → 272** in the same session (confirms this week's catalog + prerender
+work is now visible to Google, not just deployed). A prior, unrelated session
+had already submitted the sitemap back in April — this account already had a
+GSC property SCOUT/APEX never documented; check for stale assumptions before
+claiming "no GSC" in future sessions.
+
+**Real, live pages needing a crawl vs. legacy dead URLs — do not confuse
+these two GSC buckets:**
+- **119 "Not found (404)" + 52 "Soft 404"** are near-entirely pre-migration
+  artifacts: WordPress/WooCommerce paths (`/product-category/quillbot/`,
+  `/downloads/coffee-shop/`, `/shop/`) and an old URL scheme (`/buy/*`,
+  `/bd/ai-tools/*`, `/categories/*`, `/products/*` plural). First detected
+  4/7/26, still being periodically reconfirmed by Google as of Jul 25-26 —
+  this is expected 404-recheck behavior, **not a live bug**. No code fix
+  applies; these correctly 404 today and will fade from Google's queue on
+  their own schedule. Do not build redirects for them — they were never real
+  content peers of anything current.
+- **27 "Discovered – currently not indexed" + 31 "Crawled – currently not
+  indexed"** ARE real, current, live routes (`/ai-writing`, `/ai-design`,
+  `/best-ai-for-students`, `/canva-pro-bangladesh`, `/capcut-pro-bangladesh`,
+  `/chatgpt-vs-claude-bangladesh`, etc.) that Google found via the sitemap but
+  had a stale (7/24) or nonexistent crawl of. This is the real, actionable
+  gap — the sitemap resubmission above targets exactly this bucket.
+
+**Requested priority re-indexing** on `/products` and `/canva-pro-bangladesh`
+via URL Inspection — both confirmed **already indexed**, both freshly
+re-crawled live during this session (verified: "Crawled successfully on
+Aug 2, 2026" in the tool). Did not burn the full daily quota chasing every
+one of the 58 real gap-pages by hand; the sitemap resubmission is the scalable
+fix for that bucket and doesn't have a quota.
+
+**Product snippets / Merchant listings show as "invalid"** (239 / 118 items)
+— on inspection this is exclusively a missing optional `review`/
+`aggregateRating` field. **Do not fabricate ratings to clear this.** The
+catalog's own truth-validator already flags "9 records carry unverified
+trust.reviewCount/rating — must not be rendered" — this GSC warning and that
+validator agree, and fixing one by faking data would violate the other. Leave
+it; it does not block organic indexing, only Shopping-tab rich results this
+site doesn't use.
+
+**Real traffic already exists** (first hard numbers this project has had):
+468 total clicks / ~90 days, 163 clicks / 1.55K impressions in the last 28
+days, clicks **+42%** — some evidence the SEO work is already working, even
+before this session's fixes propagate. "Trending down" content is dominated
+by the same legacy dead URLs above, which is expected and not a regression.
+
+**GSC UI note for future sessions**: the URL Inspection search box's
+autocomplete is UI-fragile via automated input — plain `Return` frequently
+does not submit a freshly-typed URL that has no history entry. `Alt+Return`
+worked reliably in this session; clicking an existing history-dropdown
+suggestion always worked. If both fail, navigating away and back resets it.
+
 ### Priority open items (post-session)
 1. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
    would shrink these substantially.

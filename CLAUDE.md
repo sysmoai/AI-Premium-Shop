@@ -452,6 +452,43 @@ does not submit a freshly-typed URL that has no history entry. `Alt+Return`
 worked reliably in this session; clicking an existing history-dropdown
 suggestion always worked. If both fail, navigating away and back resets it.
 
+## Session 13 (2026-08-02, Fable 5) — trust-signal sourceUrl fill, Bing Webmaster Tools
+
+**32 products got a real `sourceUrl`** (Airtable, Buffer, ClickUp, DeepL,
+HubSpot, Notion AI, Semrush, Zapier, Zotero and 23 more) — each linked to
+that provider's own official pricing page, closing the validator gap tracked
+all session. **Deliberately did NOT bulk-fill `officialUSD`** (38 records
+remain) — that field is a specific numeric price claim, not a homepage link,
+and guessing it risks recreating the wrong-officialUSD → wrong-"%off" bug
+class fixed earlier this week. Left as validator warnings pending real
+per-product verification. AIPS's own 13 bundle rows correctly have no
+external sourceUrl — no third-party provider to cite.
+
+**Bing Webmaster Tools set up** via the one-click "Import from Google Search
+Console" flow (signed in as `aipremiumshopbd@gmail.com`, already authorized
+for GSC) — no separate DNS/HTML verification needed. `sitemap.xml` imported
+and shows "Processing" (Bing states up to 48h to reflect). Matters beyond
+classic search: Bing's index also feeds Copilot and other AI-answer
+surfaces, which is directly relevant to "trusted AI subscription provider"
+visibility. One cosmetic artifact from the import: a second, bogus sitemap
+row (`/chatgpt-plans-bangladesh`, a page URL not a sitemap) appears in the
+Sitemaps list — harmless, Bing will fail to parse it as a sitemap and ignore
+it; left as-is rather than spending a turn hunting for a delete control.
+
+**Found but explicitly did NOT act on**: two Notion pages ("AIPS Pricing
+Decision Package", "Audit #5 — Price-Integrity Audit", both 2026-07-26/27)
+propose a price-floor formula and flag several current tiers as possibly
+"below floor." Checked against this repo's own `pricing.ts` — its
+`formulaPrice()` uses the same math but is explicitly documented as *"cost of
+buying direct from abroad,"* a savings-comparison anchor, not a break-even
+floor. The Notion pages are self-marked "internal only... not live pricing
+approval" and pending CEO sign-off, and their floor math doesn't account for
+this site's actual shared-seat economics (cost splits across N users, so a
+low per-seat price can be well above floor). Repricing live customer prices
+from an unresolved, differently-scoped proposal would be a real revenue/
+compliance risk if wrong — surfaced to the CEO instead of auto-applied.
+See [[aips-google-search-console]] for the fuller AITP-vs-AIPS workspace note.
+
 ### Priority open items (post-session)
 1. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
    would shrink these substantially.

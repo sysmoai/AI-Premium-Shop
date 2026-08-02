@@ -8,12 +8,12 @@
 ## Site Info
 name: AI Premium Shop (AIPS)
 domain: aipremiumshop.com
-description: Bangladesh's AI subscription marketplace. 117 premium AI tools — ChatGPT, Claude, Midjourney, Gemini, GitHub Copilot, Runway — from BDT 299/mo via bKash/Nagad/Rocket.
+description: Bangladesh's AI subscription marketplace. 197 premium AI tools — ChatGPT, Claude, Midjourney, Gemini, GitHub Copilot, Runway — from BDT 299/mo via bKash/Nagad/Rocket.
 tagline: Premium AI Tools in Bangladesh — From BDT 299/month
 founded: 2024
-products: 117
+products: 197
 categories: 9
-request-price products (contact for current price): 41
+request-price products (contact for current price): 121
 payments: bKash, Nagad, Rocket, Bank Transfer, Binance
 delivery: 5-30 minutes (shared plans), 2-4 hours (personal accounts)
 contact: +8801865385348 (WhatsApp)
@@ -40,15 +40,15 @@ contact: +8801865385348 (WhatsApp)
 - Sitemap: https://aipremiumshop.com/sitemap.xml
 
 ## Categories
-- AI Assistant & Chat (14): https://aipremiumshop.com/ai-assistant — ChatGPT Plus, ChatGPT Go, ChatGPT Business, ChatGPT Pro
-- AI Image & Design (8): https://aipremiumshop.com/ai-image — Midjourney Standard, Ideogram Plus, Leonardo AI, Adobe Firefly
-- AI Video (19): https://aipremiumshop.com/ai-video — CapCut Pro, Runway Standard, HeyGen Creator, Pika Labs
-- AI Voice & Music (7): https://aipremiumshop.com/ai-voice-music — ElevenLabs Starter, Suno AI Pro, Udio Pro, Murf AI
-- AI Code & Dev Tools (15): https://aipremiumshop.com/ai-code — GitHub Copilot Pro, Cursor Pro, v0.dev Pro, Replit Core
-- AI Workspace (30): https://aipremiumshop.com/ai-workspace — Notion Business, Manus AI, Otter.ai Pro, Gamma Plus
-- AI Writing & SEO (15): https://aipremiumshop.com/ai-writing — Writesonic Individual, Grammarly Premium, QuillBot Premium, Jasper AI Creator
-- AI Design & Creative (5): https://aipremiumshop.com/ai-design — Canva Pro, Recraft, Photoroom Pro, Krea AI
-- Bundles & Packages (4): https://aipremiumshop.com/bundles — Student Essentials Package, Freelancer Bundle, Business Package, B2B Implementation Service
+- AI Assistant & Chat (16): https://aipremiumshop.com/ai-assistant — ChatGPT Plus, ChatGPT Go, ChatGPT Business, ChatGPT Pro
+- AI Image & Design (12): https://aipremiumshop.com/ai-image — Midjourney Standard, Ideogram Plus, Leonardo AI, Adobe Firefly
+- AI Video (26): https://aipremiumshop.com/ai-video — CapCut Pro, Runway Standard, HeyGen Creator, Pika Labs
+- AI Voice & Music (17): https://aipremiumshop.com/ai-voice-music — ElevenLabs Starter, Suno AI Pro, Udio Pro, Murf AI
+- AI Code & Dev Tools (18): https://aipremiumshop.com/ai-code — GitHub Copilot Pro, Cursor Pro, v0.dev Pro, Replit Core
+- AI Workspace (56): https://aipremiumshop.com/ai-workspace — Notion Business, Manus AI, Otter.ai Pro, Gamma Plus
+- AI Writing & SEO (20): https://aipremiumshop.com/ai-writing — Writesonic Individual, Grammarly Premium, QuillBot Premium, Jasper AI Creator
+- AI Design & Creative (19): https://aipremiumshop.com/ai-design — Canva Pro, Recraft, Photoroom Pro, Krea AI
+- Bundles & Packages (13): https://aipremiumshop.com/bundles — Student Essentials Package, Freelancer Bundle, Business Package, B2B Implementation Service
 
 ## All Products (cheapest tier, lowest price first)
 - CapCut Pro (from BDT 299/mo): https://aipremiumshop.com/capcut-pro-bangladesh

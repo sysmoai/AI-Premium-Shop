@@ -13482,6 +13482,583 @@
         }
       ],
       "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+    },
+    {
+      "id": "ai-developer-starter-pack",
+      "name": "AI Developer Starter Pack",
+      "slug": "ai-developer-starter-pack-bangladesh",
+      "brand": "AIPS",
+      "brandSlug": "bundles",
+      "provider": "AIPS",
+      "brandColor": "#f4b942",
+      "category": "bundles",
+      "tier": "Bundle",
+      "accessType": "bundle",
+      "description": "AIPS bundle for students starting out in development — Bolt.new, Replit Core, GitHub Copilot together in one package, so you pay once instead of managing separate subscriptions. Bundle pricing is confirmed on WhatsApp.",
+      "descriptionBN": "ডেভেলপমেন্ট শুরু করা শিক্ষার্থীদের জন্য — Bolt.new, Replit Core ও GitHub Copilot এক প্যাকেজে। একসাথে নিলে আলাদা সাবস্ক্রিপশনের ঝামেলা নেই। বান্ডেলের দাম WhatsApp-এ নিশ্চিত করা হয়।",
+      "capabilities": [
+        "bundle"
+      ],
+      "bundleTools": [
+        "Bolt.new",
+        "Replit Core",
+        "GitHub Copilot"
+      ],
+      "faq": [
+        {
+          "q": "What is included in the AI Developer Starter Pack?",
+          "a": "Bolt.new, Replit Core, GitHub Copilot — bundled together for students starting out in development. Exact plan tiers are confirmed on WhatsApp when we quote the current bundle price."
+        },
+        {
+          "q": "How much does the AI Developer Starter Pack cost in Bangladesh?",
+          "a": "Bundle pricing depends on the current price of each included tool, so we confirm the up-to-date bundle price on WhatsApp before you order."
+        },
+        {
+          "q": "How do I pay for the AI Developer Starter Pack?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        }
+      ],
+      "price": null,
+      "requestPrice": true,
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "status": "Active",
+      "lastVerifiedDate": "2026-08-02",
+      "whatsappMsg": "Hi, I want AI Developer Starter Pack from AI Premium Shop. Please share the current price and next steps.",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "atlas_source": "ATLAS aips-bundle entities, CEO-approved 2026-08-02 (request-price until prices confirmed)"
+    },
+    {
+      "id": "business-power-package",
+      "name": "Business Power Package",
+      "slug": "business-power-package-bangladesh",
+      "brand": "AIPS",
+      "brandSlug": "bundles",
+      "provider": "AIPS",
+      "brandColor": "#f4b942",
+      "category": "bundles",
+      "tier": "Bundle",
+      "accessType": "bundle",
+      "description": "AIPS bundle for business owners who want writing, analysis, docs and design covered — ChatGPT Business (Personal), Claude Pro (Personal), Notion Business, Adobe Creative Cloud together in one package, so you pay once instead of managing separate subscriptions. Bundle pricing is confirmed on WhatsApp.",
+      "descriptionBN": "ব্যবসার জন্য — ChatGPT Business, Claude Pro, Notion Business ও Adobe Creative Cloud একসাথে। একসাথে নিলে আলাদা সাবস্ক্রিপশনের ঝামেলা নেই। বান্ডেলের দাম WhatsApp-এ নিশ্চিত করা হয়।",
+      "capabilities": [
+        "bundle"
+      ],
+      "bundleTools": [
+        "ChatGPT Business (Personal)",
+        "Claude Pro (Personal)",
+        "Notion Business",
+        "Adobe Creative Cloud"
+      ],
+      "faq": [
+        {
+          "q": "What is included in the Business Power Package?",
+          "a": "ChatGPT Business (Personal), Claude Pro (Personal), Notion Business, Adobe Creative Cloud — bundled together for business owners who want writing, analysis, docs and design covered. Exact plan tiers are confirmed on WhatsApp when we quote the current bundle price."
+        },
+        {
+          "q": "How much does the Business Power Package cost in Bangladesh?",
+          "a": "Bundle pricing depends on the current price of each included tool, so we confirm the up-to-date bundle price on WhatsApp before you order."
+        },
+        {
+          "q": "How do I pay for the Business Power Package?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        }
+      ],
+      "price": null,
+      "requestPrice": true,
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "status": "Active",
+      "lastVerifiedDate": "2026-08-02",
+      "whatsappMsg": "Hi, I want Business Power Package from AI Premium Shop. Please share the current price and next steps.",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "atlas_source": "ATLAS aips-bundle entities, CEO-approved 2026-08-02 (request-price until prices confirmed)"
+    },
+    {
+      "id": "content-creator-pack",
+      "name": "Content Creator Pack",
+      "slug": "content-creator-pack-bangladesh",
+      "brand": "AIPS",
+      "brandSlug": "bundles",
+      "provider": "AIPS",
+      "brandColor": "#f4b942",
+      "category": "bundles",
+      "tier": "Bundle",
+      "accessType": "bundle",
+      "description": "AIPS bundle for creators producing video and social content — CapCut Pro, Canva Pro, ChatGPT Plus, ElevenLabs together in one package, so you pay once instead of managing separate subscriptions. Bundle pricing is confirmed on WhatsApp.",
+      "descriptionBN": "কনটেন্ট ক্রিয়েটরদের জন্য — CapCut Pro, Canva Pro, ChatGPT Plus ও ElevenLabs এক প্যাকেজে। একসাথে নিলে আলাদা সাবস্ক্রিপশনের ঝামেলা নেই। বান্ডেলের দাম WhatsApp-এ নিশ্চিত করা হয়।",
+      "capabilities": [
+        "bundle"
+      ],
+      "bundleTools": [
+        "CapCut Pro",
+        "Canva Pro",
+        "ChatGPT Plus",
+        "ElevenLabs"
+      ],
+      "faq": [
+        {
+          "q": "What is included in the Content Creator Pack?",
+          "a": "CapCut Pro, Canva Pro, ChatGPT Plus, ElevenLabs — bundled together for creators producing video and social content. Exact plan tiers are confirmed on WhatsApp when we quote the current bundle price."
+        },
+        {
+          "q": "How much does the Content Creator Pack cost in Bangladesh?",
+          "a": "Bundle pricing depends on the current price of each included tool, so we confirm the up-to-date bundle price on WhatsApp before you order."
+        },
+        {
+          "q": "How do I pay for the Content Creator Pack?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        }
+      ],
+      "price": null,
+      "requestPrice": true,
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "status": "Active",
+      "lastVerifiedDate": "2026-08-02",
+      "whatsappMsg": "Hi, I want Content Creator Pack from AI Premium Shop. Please share the current price and next steps.",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "atlas_source": "ATLAS aips-bundle entities, CEO-approved 2026-08-02 (request-price until prices confirmed)"
+    },
+    {
+      "id": "digital-marketing-pro-pack",
+      "name": "Digital Marketing Pro Pack",
+      "slug": "digital-marketing-pro-pack-bangladesh",
+      "brand": "AIPS",
+      "brandSlug": "bundles",
+      "provider": "AIPS",
+      "brandColor": "#f4b942",
+      "category": "bundles",
+      "tier": "Bundle",
+      "accessType": "bundle",
+      "description": "AIPS bundle for marketers running campaigns and content at scale — Jasper AI, Canva Pro, ChatGPT Business, HubSpot together in one package, so you pay once instead of managing separate subscriptions. Bundle pricing is confirmed on WhatsApp.",
+      "descriptionBN": "ডিজিটাল মার্কেটারদের জন্য — Jasper AI, Canva Pro, ChatGPT Business ও HubSpot একসাথে। একসাথে নিলে আলাদা সাবস্ক্রিপশনের ঝামেলা নেই। বান্ডেলের দাম WhatsApp-এ নিশ্চিত করা হয়।",
+      "capabilities": [
+        "bundle"
+      ],
+      "bundleTools": [
+        "Jasper AI",
+        "Canva Pro",
+        "ChatGPT Business",
+        "HubSpot"
+      ],
+      "faq": [
+        {
+          "q": "What is included in the Digital Marketing Pro Pack?",
+          "a": "Jasper AI, Canva Pro, ChatGPT Business, HubSpot — bundled together for marketers running campaigns and content at scale. Exact plan tiers are confirmed on WhatsApp when we quote the current bundle price."
+        },
+        {
+          "q": "How much does the Digital Marketing Pro Pack cost in Bangladesh?",
+          "a": "Bundle pricing depends on the current price of each included tool, so we confirm the up-to-date bundle price on WhatsApp before you order."
+        },
+        {
+          "q": "How do I pay for the Digital Marketing Pro Pack?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        }
+      ],
+      "price": null,
+      "requestPrice": true,
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "status": "Active",
+      "lastVerifiedDate": "2026-08-02",
+      "whatsappMsg": "Hi, I want Digital Marketing Pro Pack from AI Premium Shop. Please share the current price and next steps.",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "atlas_source": "ATLAS aips-bundle entities, CEO-approved 2026-08-02 (request-price until prices confirmed)"
+    },
+    {
+      "id": "freelancer-pro-pack",
+      "name": "Freelancer Pro Pack",
+      "slug": "freelancer-pro-pack-bangladesh",
+      "brand": "AIPS",
+      "brandSlug": "bundles",
+      "provider": "AIPS",
+      "brandColor": "#f4b942",
+      "category": "bundles",
+      "tier": "Bundle",
+      "accessType": "bundle",
+      "description": "AIPS bundle for freelancers delivering writing, design and voice work — ChatGPT (Personal), Midjourney, Canva, ElevenLabs together in one package, so you pay once instead of managing separate subscriptions. Bundle pricing is confirmed on WhatsApp.",
+      "descriptionBN": "ফ্রিল্যান্সারদের জন্য — ChatGPT, Midjourney, Canva ও ElevenLabs এক প্যাকেজে। একসাথে নিলে আলাদা সাবস্ক্রিপশনের ঝামেলা নেই। বান্ডেলের দাম WhatsApp-এ নিশ্চিত করা হয়।",
+      "capabilities": [
+        "bundle"
+      ],
+      "bundleTools": [
+        "ChatGPT (Personal)",
+        "Midjourney",
+        "Canva",
+        "ElevenLabs"
+      ],
+      "faq": [
+        {
+          "q": "What is included in the Freelancer Pro Pack?",
+          "a": "ChatGPT (Personal), Midjourney, Canva, ElevenLabs — bundled together for freelancers delivering writing, design and voice work. Exact plan tiers are confirmed on WhatsApp when we quote the current bundle price."
+        },
+        {
+          "q": "How much does the Freelancer Pro Pack cost in Bangladesh?",
+          "a": "Bundle pricing depends on the current price of each included tool, so we confirm the up-to-date bundle price on WhatsApp before you order."
+        },
+        {
+          "q": "How do I pay for the Freelancer Pro Pack?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        }
+      ],
+      "price": null,
+      "requestPrice": true,
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "status": "Active",
+      "lastVerifiedDate": "2026-08-02",
+      "whatsappMsg": "Hi, I want Freelancer Pro Pack from AI Premium Shop. Please share the current price and next steps.",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "atlas_source": "ATLAS aips-bundle entities, CEO-approved 2026-08-02 (request-price until prices confirmed)"
+    },
+    {
+      "id": "full-stack-freelancer-stack",
+      "name": "Full-Stack Freelancer Stack",
+      "slug": "full-stack-freelancer-stack-bangladesh",
+      "brand": "AIPS",
+      "brandSlug": "bundles",
+      "provider": "AIPS",
+      "brandColor": "#f4b942",
+      "category": "bundles",
+      "tier": "Bundle",
+      "accessType": "bundle",
+      "description": "AIPS bundle for developers shipping client projects end to end — Cursor Pro, Bolt.new, Vercel Pro, Supabase, GitHub Copilot together in one package, so you pay once instead of managing separate subscriptions. Bundle pricing is confirmed on WhatsApp.",
+      "descriptionBN": "ফুল-স্ট্যাক ডেভেলপারদের জন্য — Cursor Pro, Bolt.new, Vercel Pro, Supabase ও GitHub Copilot একসাথে। একসাথে নিলে আলাদা সাবস্ক্রিপশনের ঝামেলা নেই। বান্ডেলের দাম WhatsApp-এ নিশ্চিত করা হয়।",
+      "capabilities": [
+        "bundle"
+      ],
+      "bundleTools": [
+        "Cursor Pro",
+        "Bolt.new",
+        "Vercel Pro",
+        "Supabase",
+        "GitHub Copilot"
+      ],
+      "faq": [
+        {
+          "q": "What is included in the Full-Stack Freelancer Stack?",
+          "a": "Cursor Pro, Bolt.new, Vercel Pro, Supabase, GitHub Copilot — bundled together for developers shipping client projects end to end. Exact plan tiers are confirmed on WhatsApp when we quote the current bundle price."
+        },
+        {
+          "q": "How much does the Full-Stack Freelancer Stack cost in Bangladesh?",
+          "a": "Bundle pricing depends on the current price of each included tool, so we confirm the up-to-date bundle price on WhatsApp before you order."
+        },
+        {
+          "q": "How do I pay for the Full-Stack Freelancer Stack?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        }
+      ],
+      "price": null,
+      "requestPrice": true,
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "status": "Active",
+      "lastVerifiedDate": "2026-08-02",
+      "whatsappMsg": "Hi, I want Full-Stack Freelancer Stack from AI Premium Shop. Please share the current price and next steps.",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "atlas_source": "ATLAS aips-bundle entities, CEO-approved 2026-08-02 (request-price until prices confirmed)"
+    },
+    {
+      "id": "research-powerhouse-package",
+      "name": "Research Powerhouse Package",
+      "slug": "research-powerhouse-package-bangladesh",
+      "brand": "AIPS",
+      "brandSlug": "bundles",
+      "provider": "AIPS",
+      "brandColor": "#f4b942",
+      "category": "bundles",
+      "tier": "Bundle",
+      "accessType": "bundle",
+      "description": "AIPS bundle for researchers and students doing serious reading and writing — Claude, Perplexity, Grammarly together in one package, so you pay once instead of managing separate subscriptions. Bundle pricing is confirmed on WhatsApp.",
+      "descriptionBN": "গবেষক ও শিক্ষার্থীদের জন্য — Claude, Perplexity ও Grammarly এক প্যাকেজে। একসাথে নিলে আলাদা সাবস্ক্রিপশনের ঝামেলা নেই। বান্ডেলের দাম WhatsApp-এ নিশ্চিত করা হয়।",
+      "capabilities": [
+        "bundle"
+      ],
+      "bundleTools": [
+        "Claude",
+        "Perplexity",
+        "Grammarly"
+      ],
+      "faq": [
+        {
+          "q": "What is included in the Research Powerhouse Package?",
+          "a": "Claude, Perplexity, Grammarly — bundled together for researchers and students doing serious reading and writing. Exact plan tiers are confirmed on WhatsApp when we quote the current bundle price."
+        },
+        {
+          "q": "How much does the Research Powerhouse Package cost in Bangladesh?",
+          "a": "Bundle pricing depends on the current price of each included tool, so we confirm the up-to-date bundle price on WhatsApp before you order."
+        },
+        {
+          "q": "How do I pay for the Research Powerhouse Package?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        }
+      ],
+      "price": null,
+      "requestPrice": true,
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "status": "Active",
+      "lastVerifiedDate": "2026-08-02",
+      "whatsappMsg": "Hi, I want Research Powerhouse Package from AI Premium Shop. Please share the current price and next steps.",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "atlas_source": "ATLAS aips-bundle entities, CEO-approved 2026-08-02 (request-price until prices confirmed)"
+    },
+    {
+      "id": "thesis-writer-pack",
+      "name": "Thesis Writer Pack",
+      "slug": "thesis-writer-pack-bangladesh",
+      "brand": "AIPS",
+      "brandSlug": "bundles",
+      "provider": "AIPS",
+      "brandColor": "#f4b942",
+      "category": "bundles",
+      "tier": "Bundle",
+      "accessType": "bundle",
+      "description": "AIPS bundle for thesis and dissertation writers — Claude Pro (Personal), Grammarly, Perplexity together in one package, so you pay once instead of managing separate subscriptions. Bundle pricing is confirmed on WhatsApp.",
+      "descriptionBN": "থিসিস লেখকদের জন্য — Claude Pro, Grammarly ও Perplexity একসাথে। একসাথে নিলে আলাদা সাবস্ক্রিপশনের ঝামেলা নেই। বান্ডেলের দাম WhatsApp-এ নিশ্চিত করা হয়।",
+      "capabilities": [
+        "bundle"
+      ],
+      "bundleTools": [
+        "Claude Pro (Personal)",
+        "Grammarly",
+        "Perplexity"
+      ],
+      "faq": [
+        {
+          "q": "What is included in the Thesis Writer Pack?",
+          "a": "Claude Pro (Personal), Grammarly, Perplexity — bundled together for thesis and dissertation writers. Exact plan tiers are confirmed on WhatsApp when we quote the current bundle price."
+        },
+        {
+          "q": "How much does the Thesis Writer Pack cost in Bangladesh?",
+          "a": "Bundle pricing depends on the current price of each included tool, so we confirm the up-to-date bundle price on WhatsApp before you order."
+        },
+        {
+          "q": "How do I pay for the Thesis Writer Pack?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        }
+      ],
+      "price": null,
+      "requestPrice": true,
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "status": "Active",
+      "lastVerifiedDate": "2026-08-02",
+      "whatsappMsg": "Hi, I want Thesis Writer Pack from AI Premium Shop. Please share the current price and next steps.",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "atlas_source": "ATLAS aips-bundle entities, CEO-approved 2026-08-02 (request-price until prices confirmed)"
+    },
+    {
+      "id": "video-creator-pack",
+      "name": "Video Creator Pack",
+      "slug": "video-creator-pack-bangladesh",
+      "brand": "AIPS",
+      "brandSlug": "bundles",
+      "provider": "AIPS",
+      "brandColor": "#f4b942",
+      "category": "bundles",
+      "tier": "Bundle",
+      "accessType": "bundle",
+      "description": "AIPS bundle for video creators covering generation, voice and avatars — Runway, ElevenLabs, HeyGen, ChatGPT together in one package, so you pay once instead of managing separate subscriptions. Bundle pricing is confirmed on WhatsApp.",
+      "descriptionBN": "ভিডিও ক্রিয়েটরদের জন্য — Runway, ElevenLabs, HeyGen ও ChatGPT এক প্যাকেজে। একসাথে নিলে আলাদা সাবস্ক্রিপশনের ঝামেলা নেই। বান্ডেলের দাম WhatsApp-এ নিশ্চিত করা হয়।",
+      "capabilities": [
+        "bundle"
+      ],
+      "bundleTools": [
+        "Runway",
+        "ElevenLabs",
+        "HeyGen",
+        "ChatGPT"
+      ],
+      "faq": [
+        {
+          "q": "What is included in the Video Creator Pack?",
+          "a": "Runway, ElevenLabs, HeyGen, ChatGPT — bundled together for video creators covering generation, voice and avatars. Exact plan tiers are confirmed on WhatsApp when we quote the current bundle price."
+        },
+        {
+          "q": "How much does the Video Creator Pack cost in Bangladesh?",
+          "a": "Bundle pricing depends on the current price of each included tool, so we confirm the up-to-date bundle price on WhatsApp before you order."
+        },
+        {
+          "q": "How do I pay for the Video Creator Pack?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        }
+      ],
+      "price": null,
+      "requestPrice": true,
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "status": "Active",
+      "lastVerifiedDate": "2026-08-02",
+      "whatsappMsg": "Hi, I want Video Creator Pack from AI Premium Shop. Please share the current price and next steps.",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "atlas_source": "ATLAS aips-bundle entities, CEO-approved 2026-08-02 (request-price until prices confirmed)"
+    },
+    {
+      "id": "buddypro-request",
+      "name": "BuddyPro",
+      "slug": "buddypro-bangladesh",
+      "brand": "BuddyPro",
+      "brandSlug": "buddypro-bangladesh",
+      "provider": "BuddyPro",
+      "brandColor": "#16a34a",
+      "category": "ai-workspace",
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI chatbot platform for WhatsApp — automate customer replies, order questions and follow-ups on the channel Bangladeshi customers actually use.",
+      "descriptionBN": "WhatsApp-এর জন্য AI চ্যাটবট প্ল্যাটফর্ম — কাস্টমার রিপ্লাই, অর্ডার প্রশ্ন ও ফলো-আপ স্বয়ংক্রিয় করা যায়।",
+      "capabilities": [
+        "chatbots",
+        "whatsapp",
+        "automation"
+      ],
+      "sourceUrl": "https://buddypro.io",
+      "faq": [
+        {
+          "q": "How much does BuddyPro cost in Bangladesh?",
+          "a": "Plan pricing for BuddyPro is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order."
+        },
+        {
+          "q": "How do I pay for BuddyPro?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        }
+      ],
+      "price": null,
+      "requestPrice": true,
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "status": "Active",
+      "lastVerifiedDate": "2026-08-02",
+      "whatsappMsg": "Hi, I want BuddyPro from AI Premium Shop. Please share the current price and next steps.",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "atlas_source": "ATLAS registered-pricing-tbd, CEO-approved 2026-08-02"
+    },
+    {
+      "id": "chataid-request",
+      "name": "ChatAid",
+      "slug": "chataid-bangladesh",
+      "brand": "ChatAid",
+      "brandSlug": "chataid-bangladesh",
+      "provider": "ChatAid",
+      "brandColor": "#2563eb",
+      "category": "ai-workspace",
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI CRM chatbot — answers customer questions from your business data and keeps conversations organized so leads don't slip through.",
+      "descriptionBN": "AI CRM চ্যাটবট — আপনার বিজনেস ডেটা থেকে কাস্টমারের প্রশ্নের উত্তর দেয় ও কথোপকথন গুছিয়ে রাখে।",
+      "capabilities": [
+        "chatbots",
+        "crm",
+        "support"
+      ],
+      "sourceUrl": "https://chataid.com",
+      "faq": [
+        {
+          "q": "How much does ChatAid cost in Bangladesh?",
+          "a": "Plan pricing for ChatAid is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order."
+        },
+        {
+          "q": "How do I pay for ChatAid?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        }
+      ],
+      "price": null,
+      "requestPrice": true,
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "status": "Active",
+      "lastVerifiedDate": "2026-08-02",
+      "whatsappMsg": "Hi, I want ChatAid from AI Premium Shop. Please share the current price and next steps.",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "atlas_source": "ATLAS registered-pricing-tbd, CEO-approved 2026-08-02"
+    },
+    {
+      "id": "hellofrank-request",
+      "name": "HelloFrank",
+      "slug": "hellofrank-bangladesh",
+      "brand": "HelloFrank",
+      "brandSlug": "hellofrank-bangladesh",
+      "provider": "HelloFrank",
+      "brandColor": "#f59e0b",
+      "category": "ai-workspace",
+      "tier": "All Plans",
+      "accessType": "personal",
+      "description": "AI customer-support chatbot — handles routine support questions automatically and hands off to a human when the conversation needs one.",
+      "descriptionBN": "AI কাস্টমার-সাপোর্ট চ্যাটবট — সাধারণ প্রশ্নের উত্তর স্বয়ংক্রিয়ভাবে দেয়, প্রয়োজনে মানুষের কাছে হস্তান্তর করে।",
+      "capabilities": [
+        "chatbots",
+        "support",
+        "automation"
+      ],
+      "sourceUrl": "https://hellofrank.ai",
+      "faq": [
+        {
+          "q": "How much does HelloFrank cost in Bangladesh?",
+          "a": "Plan pricing for HelloFrank is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order."
+        },
+        {
+          "q": "How do I pay for HelloFrank?",
+          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
+        }
+      ],
+      "price": null,
+      "requestPrice": true,
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "status": "Active",
+      "lastVerifiedDate": "2026-08-02",
+      "whatsappMsg": "Hi, I want HelloFrank from AI Premium Shop. Please share the current price and next steps.",
+      "uniqueSellingPoints": [
+        "Pay with bKash or Nagad — no international card needed",
+        "Current price and plan options confirmed on WhatsApp",
+        "Real human support, not a bot"
+      ],
+      "atlas_source": "ATLAS registered-pricing-tbd, CEO-approved 2026-08-02"
     }
   ]
 }

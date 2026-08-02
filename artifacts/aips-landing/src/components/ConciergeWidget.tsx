@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { MessageCircle, Send, X, Bot, RotateCcw, ArrowUpRight, ShieldCheck, ThumbsUp, ThumbsDown } from "lucide-react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { MessageCircle, Send, X, Bot, RotateCcw, ArrowUpRight, ShieldCheck, ThumbsUp, ThumbsDown, Loader2 } from "lucide-react";
 import { useLocation } from "wouter";
 
 const WHATSAPP_FALLBACK = "https://wa.me/8801865385348?text=Hi%2C%20I%20need%20help%20choosing%20an%20AI%20subscription";
@@ -177,13 +177,14 @@ export function ConciergeWidget() {
   const endRef = useRef<HTMLDivElement>(null);
   const launcherRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const hasOpenedRef = useRef(false);
   const abortRef = useRef<AbortController | null>(null);
+  const feedbackLock = useRef<Set<string>>(new Set());
 
-  // Restore an in-progress conversation across navigations — the widget
-  // unmounts on every route change, and losing the thread mid-decision was
-  // the fastest way to send someone back to square one.
-  useEffect(() => {
+  // Restore across navigations BEFORE paint — useLayoutEffect avoids the
+  // flash-of-empty-state that useEffect causes on every route change.
+  useLayoutEffect(() => {
     try {
       const raw = sessionStorage.getItem(STORE_KEY);
       if (!raw) return;
@@ -205,13 +206,13 @@ export function ConciergeWidget() {
     }
   }, [msgs, suggestions, whatsapp]);
 
-  // Only autoscroll when the reader is already at the bottom, so scrolling up
-  // to re-read an earlier recommendation isn't yanked away by new tokens.
+  // Autoscroll: use smooth behavior during streaming so the user can read
+  // tokens naturally. Only scroll when near bottom (120px threshold).
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
     const nearBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 120;
-    if (nearBottom) endRef.current?.scrollIntoView({ behavior: streaming ? "auto" : "smooth" });
+    if (nearBottom) endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [msgs, streaming, busy]);
 
   // Skip on mount — only move focus on an actual open/close transition, never
@@ -225,11 +226,63 @@ export function ConciergeWidget() {
     }
   }, [open]);
 
+  // Keyboard: Escape closes, / opens, focus trap inside dialog.
   useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    if (!open) return () => {};
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setOpen(false); return; }
+      if (e.key === "Tab") {
+        const panel = panelRef.current;
+        if (!panel) return;
+        const focusable = panel.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), input:not([disabled]), [href], [tabindex]:not([tabindex="-1"])',
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  // Global / shortcut to open from anywhere on the page.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "/" && !open && document.activeElement === document.body) {
+        e.preventDefault();
+        setOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  // iOS visualViewport: when the keyboard opens, adjust the panel height so
+  // the input stays visible instead of getting pushed off-screen.
+  useEffect(() => {
+    if (!open || typeof window === "undefined" || !window.visualViewport) return;
+    const vv = window.visualViewport;
+    const onResize = () => {
+      const panel = panelRef.current;
+      if (!panel) return;
+      const keyboardOpen = vv.height < window.innerHeight * 0.75;
+      if (keyboardOpen) {
+        panel.style.height = `${Math.min(560, vv.height - 120)}px`;
+        panel.style.bottom = `${vv.height - vv.height + 8}px`;
+      } else {
+        panel.style.height = "";
+        panel.style.bottom = "";
+      }
+    };
+    vv.addEventListener("resize", onResize);
+    vv.addEventListener("scroll", onResize);
+    return () => {
+      vv.removeEventListener("resize", onResize);
+      vv.removeEventListener("scroll", onResize);
+    };
   }, [open]);
 
   useEffect(() => () => abortRef.current?.abort(), []);
@@ -336,15 +389,20 @@ export function ConciergeWidget() {
       : "এই মুহূর্তে উত্তর দিতে পারছি না";
   }
 
-  // Fire-and-forget: the click is acknowledged optimistically in the UI. A
-  // failed rating is not worth interrupting a conversation to report.
+  // Fire-and-forget with dedup — a failed rating is not worth interrupting
+  // a conversation, but rapid double-clicks shouldn't send two requests.
   const rate = useCallback((turnId: string, value: 1 | -1) => {
+    if (feedbackLock.current.has(turnId)) return;
+    feedbackLock.current.add(turnId);
     setMsgs((prev) => prev.map((m) => (m.turnId === turnId ? { ...m, feedback: value } : m)));
     fetch("/api/feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ turnId, value }),
-    }).catch(() => {});
+    }).catch(() => {
+      // Surface silently in dev — the UI already reflects the action optimistically
+      if (import.meta.env.DEV) console.warn("[concierge] feedback POST failed for", turnId);
+    });
   }, []);
 
   function reset() {
@@ -363,39 +421,53 @@ export function ConciergeWidget() {
   }
 
   const chips = msgs.length === 0 ? OPENERS : suggestions;
-  // The panel sits above the launcher (bottom 152 + 52 tall + gap). Capping
-  // the height against the viewport keeps it from running off the top of the
-  // screen on short phones, where a flat 70vh used to overflow.
+  // Panel: right-aligned above the launcher with safe-area padding.
+  // `max()` fallback for very short viewports; `100dvh` where supported.
   const panelStyle = useMemo(
-    () => ({ backgroundColor: "#0f1430", height: "min(560px, calc(100vh - 248px))", right: 24, bottom: 216 }),
+    () => ({
+      backgroundColor: "#0f1430",
+      height: "min(560px, calc(100dvh - 248px))",
+      right: "max(16px, env(safe-area-inset-right, 16px))",
+      bottom: `calc(216px + env(safe-area-inset-bottom, 0px))`,
+      paddingBottom: "env(safe-area-inset-bottom, 0px)",
+    }),
+    [],
+  );
+
+  const launcherStyle = useMemo(
+    () => ({
+      backgroundColor: "#f4b942",
+      width: 52,
+      height: 52,
+      right: "max(24px, env(safe-area-inset-right, 24px))",
+      bottom: `calc(152px + env(safe-area-inset-bottom, 0px))`,
+    }),
     [],
   );
 
   return (
     <>
-      {/* Launcher — stacked directly above the FloatingWhatsApp bubble (same right-edge
-          alignment, fixed gap) so the two never overlap at any viewport width. Also
-          clears the fixed mobile order bar in App.tsx (MobileOrderBar, h-14), which
-          sits lower still. */}
+      {/* Launcher — stacked above FloatingWhatsApp with safe-area awareness */}
       <button
         ref={launcherRef}
         onClick={() => setOpen((v) => !v)}
-        aria-label={open ? "Close AI assistant" : "Open AI assistant"}
+        aria-label={open ? "Close AI assistant" : "Open AI assistant — press / to open"}
         aria-expanded={open}
         aria-controls="concierge-panel"
-        className="fixed z-50 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
-        style={{ backgroundColor: "#f4b942", width: 52, height: 52, right: 24, bottom: 152 }}
+        className="fixed z-50 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27] focus-visible:ring-[#f4b942]"
+        style={launcherStyle}
       >
         {open ? <X className="w-6 h-6" style={{ color: "#0a0e27" }} /> : <Bot className="w-6 h-6" style={{ color: "#0a0e27" }} />}
       </button>
 
       {open && (
         <div
+          ref={panelRef}
           id="concierge-panel"
           role="dialog"
           aria-modal="true"
           aria-label="AIPS AI Assistant chat"
-          className="fixed z-50 w-[calc(100vw-2rem)] max-w-sm rounded-2xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
+          className="fixed z-50 w-[min(calc(100vw-2rem),384px)] rounded-2xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
           style={panelStyle}
         >
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-2" style={{ backgroundColor: "#151b3d" }}>
@@ -411,9 +483,9 @@ export function ConciergeWidget() {
                 onClick={reset}
                 aria-label="Start a new conversation"
                 title="New conversation"
-                className="p-1.5 rounded-lg hover:bg-white/10 transition-colors flex-shrink-0"
+                className="p-2 rounded-lg hover:bg-white/10 transition-colors flex-shrink-0 min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f4b942]"
               >
-                <RotateCcw className="w-3.5 h-3.5" style={{ color: "#8b93a7" }} />
+                <RotateCcw className="w-4 h-4" style={{ color: "#8b93a7" }} />
               </button>
             )}
           </div>
@@ -491,10 +563,16 @@ export function ConciergeWidget() {
             )}
 
             {busy && !streaming && (
-              <div className="text-sm rounded-xl px-3 py-2 inline-flex items-center gap-1.5" style={{ backgroundColor: "#151b3d", color: "#8b93a7" }}>
-                <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ backgroundColor: "#8b93a7", animationDelay: "0ms" }} />
-                <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ backgroundColor: "#8b93a7", animationDelay: "150ms" }} />
-                <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ backgroundColor: "#8b93a7", animationDelay: "300ms" }} />
+              <div className="flex justify-start">
+                <div className="text-sm rounded-xl px-3 py-2 inline-flex items-center gap-2 animate-pulse" style={{ backgroundColor: "#151b3d", color: "#8b93a7" }}>
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  <span>searching catalog…</span>
+                </div>
+              </div>
+            )}
+            {busy && streaming && (
+              <div className="text-[10px] px-1" style={{ color: "#64748b" }}>
+                generating response…
               </div>
             )}
 
@@ -557,9 +635,9 @@ export function ConciergeWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && send(input)}
-                placeholder="প্রশ্ন লিখুন…"
+                placeholder="আপনার প্রশ্ন…"
                 aria-label="Ask the AI assistant"
-                className="flex-1 text-sm rounded-xl px-3 py-2 border border-white/15 bg-transparent text-white placeholder:text-white/40 focus:outline-none focus:border-white/35"
+                className="flex-1 text-sm rounded-xl px-3 py-2 border border-white/15 bg-transparent text-white placeholder:text-white/40 focus:outline-none focus:border-[#f4b942]/60 focus:ring-1 focus:ring-[#f4b942]/30"
               />
               <button
                 onClick={() => send(input)}

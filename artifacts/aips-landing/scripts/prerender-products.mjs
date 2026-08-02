@@ -67,12 +67,23 @@ for (const [slug, recs] of bySlug) {
   const desc = seo.metaDescription ?? seo.desc;
 
   const faqs = p.faq ?? [];
+  const today = new Date().toISOString().split("T")[0];
+  const verificationDate = p.verificationDate ?? today;
   const ld = [
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
       { "@type": "ListItem", position: 2, name: p.category, item: `${SITE}/${p.category}` },
       { "@type": "ListItem", position: 3, name: p.name },
     ]},
+    { "@context": "https://schema.org", "@type": ["Product", "SoftwareApplication"],
+      name: p.name,
+      description: p.description ?? desc,
+      applicationCategory: p.category,
+      operatingSystem: "Web",
+      ...(fromPrice != null ? { offers: { "@type": "Offer", price: fromPrice, priceCurrency: "BDT", availability: "https://schema.org/InStock" } } : {}),
+      dateModified: verificationDate,
+      brand: { "@type": "Brand", name: p.brand ?? p.name },
+    },
     ...(faqs.length ? [{ "@context": "https://schema.org", "@type": "FAQPage",
       mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }] : []),
   ];
@@ -80,7 +91,17 @@ for (const [slug, recs] of bySlug) {
   const tiers = recs.filter((r) => typeof r.price === "number")
     .map((r) => `<li>${esc(r.tier ?? r.name)} — ${fmtBDT(r.price)}/month</li>`).join("");
   const body = `
-<nav aria-label="breadcrumb"><a href="/">Home</a> › <a href="/${esc(p.category)}">${esc(p.category)}</a> › ${esc(p.name)}</nav>
+<nav aria-label="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="/"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" />
+  </span> ›
+  <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="/${esc(p.category)}"><span itemprop="name">${esc(p.category)}</span></a><meta itemprop="position" content="2" />
+  </span> ›
+  <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <span itemprop="name">${esc(p.name)}</span><meta itemprop="position" content="3" />
+  </span>
+</nav>
 <main>
 <h1>${esc(p.name)}</h1>
 <p>${esc(p.description ?? "")}</p>
@@ -103,6 +124,7 @@ ${faqs.length ? `<section><h2>Frequently asked questions</h2>${faqs.map((f) => `
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(desc)}" />
 <meta property="og:url" content="${canonical}" />
+<meta http-equiv="last-modified" content="${verificationDate}" />
 ${ld.map((x) => `<script type="application/ld+json">${JSON.stringify(x)}</script>`).join("\n")}
 </head>`;
   html = html.replace("</head>", headExtra);

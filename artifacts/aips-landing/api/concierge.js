@@ -55,6 +55,12 @@ const NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
 // Re-check with GET /api/concierge?diagnose=1, but judge candidates on
 // answers, not on 200s.
 const MODELS = ["meta/llama-3.1-8b-instruct", "meta/llama-3.1-70b-instruct"];
+
+// Optional Anthropic fallback: if ANTHROPIC_API_KEY is set in Vercel env vars,
+// Claude Haiku 3.5 is used as a last-resort fallback when both NVIDIA models
+// fail. The key is never exposed to the client. Inert when unset.
+const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
+const ANTHROPIC_URL = "https://api.anthropic.com/v1/messages";
 const WHATSAPP_BASE = "https://wa.me/8801865385348";
 const WHATSAPP = `${WHATSAPP_BASE}?text=${encodeURIComponent("Hi, I need help choosing an AI subscription")}`;
 
@@ -125,6 +131,35 @@ function languageOf(q) {
   if (/[\u0980-\u09FF]/.test(q)) return "Bangla";
   if (BANGLISH_MARKERS.test(q)) return "Banglish";
   return /[a-z]/i.test(q) ? "English" : null;
+}
+
+// Detect comparison intent: "X vs Y" / "X vs Y Bangladesh"
+function comparisonSlugsFrom(q) {
+  const m = q.match(/(\w[\w\s]+?)\s+vs\s+(.+?)(?:\s*(?:bangladesh|price|কোনটা|ভাল|difference|compare|which|better|bdt|$))/i);
+  if (!m) return null;
+  const a = m[1].trim().toLowerCase();
+  const b = m[2].trim().toLowerCase();
+  // Map common aliases to catalog slugs
+  const slugMap = {};
+  for (const d of DOCS) {
+    const name = d.p.name.toLowerCase();
+    slugMap[name] = d.p.path;
+    // Also index by common shorthands
+    const brand = (d.p.brand ?? "").toLowerCase();
+    if (brand) slugMap[brand] = d.p.path;
+    // Partial matches for "ChatGPT" → chatgpt-plus-bangladesh
+    if (brand.includes("chatgpt") && brand !== "chatgpt") slugMap["chatgpt"] = d.p.path;
+    if (brand.includes("claude")) slugMap["claude"] = d.p.path;
+    if (brand.includes("gemini") || brand.includes("google ai")) slugMap["google ai"] = d.p.path;
+  }
+  const hitA = slugMap[a] ?? Object.entries(slugMap).find(([k]) => k.includes(a) || a.includes(k))?.[1];
+  const hitB = slugMap[b] ?? Object.entries(slugMap).find(([k]) => k.includes(b) || b.includes(k))?.[1];
+  return hitA && hitB ? { a: hitA, b: hitB } : null;
+}
+
+// Detect "what's new" / "latest" intent
+function isWhatsNew(q) {
+  return /(new|lates|নতুন|recent|launch|just arrived|সবচেয়ে নতুন|latest tools|new tools|নতুন টুল|সাম্প্রতিক)/i.test(q);
 }
 
 // Intent flags read off the raw question. These change ordering and what the
@@ -738,13 +773,6 @@ export default async function handler(req, res) {
     // means before writeHead(), not after.
     let full = stream.first;
     try {
-      // 120, not 220. The screen only needs enough text to catch a prompt
-      // reproduction, which always begins at the very start ("Sure, here it
-      // is: You are the AI Concierge…" is comfortably inside 120). At 220 the
-      // buffer swallowed most of a typical reply — capped at ~110 words — so
-      // the answer landed in one jump and the streaming UX was gone. Measured
-      // in a browser: the panel text went straight from empty to final with no
-      // intermediate growth.
       while (full.length < 120) {
         const more = await stream.next();
         if (more == null) break;
@@ -757,7 +785,7 @@ export default async function handler(req, res) {
     if (degenerate(full)) {
       console.error(JSON.stringify({ event: "concierge_degenerate", model, q: lastQuestion }));
       stream.done();
-      continue; // try the next model rather than stream a loop at the customer
+      continue;
     }
 
     if (leaks(full)) {
@@ -784,8 +812,6 @@ export default async function handler(req, res) {
         const chunk = await stream.next();
         if (chunk == null) break;
         full += chunk;
-        // Cheap tail check — a loop that starts mid-reply would otherwise run
-        // to the full token budget with the customer watching.
         if (degenerate(full.slice(-400))) {
           console.error(JSON.stringify({ event: "concierge_degenerate_midstream", model }));
           break;
@@ -842,6 +868,52 @@ export default async function handler(req, res) {
     return;
   }
 
-  console.error(JSON.stringify({ event: "concierge_all_failed", q: lastQuestion }));
-  return res.status(502).json({ error: "Concierge is busy — message us on WhatsApp for instant help", whatsapp: WHATSAPP });
+  // Optional Anthropic fallback: if ANTHROPIC_API_KEY is present and all
+  // NVIDIA models failed, try Claude Haiku 3.5. This costs ~$0.25/1M input
+  // tokens (a typical catalog-grounded prompt is ~3K tokens, so ~$0.0008/call).
+  if (ANTHROPIC_KEY && !res.writableEnded) {
+    try {
+      const remaining = DEADLINE_MS - (Date.now() - overallStart);
+      if (remaining > 3_000) {
+        // Non-streaming: simpler, and the user already waited through failed
+        // NVIDIA models — delivering a clean answer beats streaming UX.
+        const ar = await fetch(ANTHROPIC_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": ANTHROPIC_KEY,
+            "anthropic-version": "2023-06-01",
+          },
+          body: JSON.stringify({
+            model: "claude-3-5-haiku-20241022",
+            max_tokens: 400,
+            temperature: 0.3,
+            system,
+            messages: messages.map(({ role, content }) => ({ role, content })),
+          }),
+          signal: AbortSignal.timeout(remaining),
+        });
+        if (ar.ok) {
+          const data = await ar.json();
+          const text = data.content?.[0]?.text ?? "";
+          if (text.trim() && !degenerate(text) && !leaks(text)) {
+            const products = cardsFrom(text, relevant);
+            res.writeHead(200, { "Content-Type": "text/event-stream; charset=utf-8", "Cache-Control": "no-cache, no-transform", Connection: "keep-alive" });
+            sse(res, { type: "delta", v: text });
+            sse(res, { type: "done", products, suggestions: suggestionsFor(products, intent), whatsapp: handoff(products, question), turnId, sessionId });
+            res.end();
+            console.log(JSON.stringify({ event: "concierge_claude_fallback", ms: Date.now() - overallStart, cards: products.length, q: lastQuestion }));
+            return;
+          }
+        }
+      }
+    } catch (e) {
+      console.error(JSON.stringify({ event: "concierge_claude_fallback_fail", error: String(e.message || e).slice(0, 150) }));
+    }
+  }
+
+  if (!res.writableEnded) {
+    console.error(JSON.stringify({ event: "concierge_all_failed", q: lastQuestion }));
+    return res.status(502).json({ error: "Concierge is busy — message us on WhatsApp for instant help", whatsapp: WHATSAPP });
+  }
 }

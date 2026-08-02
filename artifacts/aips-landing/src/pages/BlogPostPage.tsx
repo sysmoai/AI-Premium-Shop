@@ -326,7 +326,7 @@ function ProductBox({
                   ? (p.priceNote ?? "Price on WhatsApp")
                   : `${from != null ? "from " : ""}${taka(amount)}/mo`}
               </div>
-              <Link href={p.slug} className="text-gray-400 hover:text-[#f4b942] text-xs mt-2 inline-block transition-colors">
+              <Link href={p.slug} className="text-gray-400 hover:text-[#f4b942] text-xs mt-1 inline-flex items-center min-h-[44px] transition-colors">
                 Order →
               </Link>
             </div>

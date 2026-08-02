@@ -333,7 +333,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
         onMouseLeave={closeDropdown}
       >
         {/* ── Main bar ── */}
-        <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between gap-2 lg:gap-6">
           {/* No aria-label here: the visible "AI PREMIUM SHOP" wordmark inside
               (decorative=true hides only the redundant icon image) is left as
               the link's one accessible-name source, so visible text and
@@ -342,8 +342,18 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
               label-content-name-mismatch) even with aria-hidden on the text,
               since aria-hidden removes it from the a11y tree but not from
               the rendered page that axe compares the label against. */}
-          <a href="/" onClick={(e) => { e.preventDefault(); go("/"); }} className="flex-shrink-0">
-            <PrimaryBrandLogo size="medium" layout="horizontal" decorative />
+          {/* The medium wordmark is 234px wide and was flex-shrink-0, so on a
+              375px viewport the row needed 406px: the mobile button group ran
+              to x=390 and the menu toggle was clipped off-screen. Small
+              wordmark below lg fixes the arithmetic. Only one is in the a11y
+              tree at a time — `hidden` is display:none, not visibility. */}
+          <a href="/" onClick={(e) => { e.preventDefault(); go("/"); }} className="flex-shrink-0 min-w-0">
+            <span className="lg:hidden">
+              <PrimaryBrandLogo size="small" layout="horizontal" decorative />
+            </span>
+            <span className="hidden lg:inline-block">
+              <PrimaryBrandLogo size="medium" layout="horizontal" decorative />
+            </span>
           </a>
 
           {/* Desktop nav */}
@@ -372,17 +382,21 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
           </div>
 
           {/* Mobile right */}
-          <div className="lg:hidden flex items-center gap-1 -mr-1">
-            <button className="p-2 rounded-lg hover:bg-white/10 transition-colors"
+          {/* 44x44 minimum: these were p-2 (36x36), below every mobile
+              touch-target guideline, on the site's three most-used controls.
+              No negative margin — it was pushing the group past the viewport. */}
+          <div className="lg:hidden flex items-center">
+            <button className="w-11 h-11 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors"
               aria-label="Search" style={{ color: "#c9ceda" }} onClick={() => setSearchOpen(true)}>
               <Search className="w-5 h-5" />
             </button>
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
-              className="p-2 rounded-lg" aria-label="WhatsApp" style={{ color: "#25d366" }}>
+              className="w-11 h-11 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors"
+              aria-label="Order on WhatsApp" style={{ color: "#25d366" }}>
               <MessageCircle className="w-5 h-5" />
             </a>
-            <button className="p-2 text-white rounded-lg hover:bg-white/10 transition-colors"
-              onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+            <button className="w-11 h-11 flex items-center justify-center text-white rounded-lg hover:bg-white/10 transition-colors"
+              onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu" aria-expanded={menuOpen}>
               {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>

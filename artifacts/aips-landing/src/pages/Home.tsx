@@ -22,6 +22,7 @@ import { HowItWorksSection } from "@/sections/HowItWorksSection";
 import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { FinalCTASection } from "@/sections/FinalCTASection";
 import { CommunitySocialCards } from "@/components/CommunitySocialCards";
+import { NeuralDivider } from "@/components/NeuralDivider";
 
 type Segment = "students" | "freelancers" | "creators" | "smbs" | "educators" | null;
 
@@ -137,6 +138,8 @@ export default function Home() {
         {/* 3. PRICING TIERS — Visual pricing cards */}
         <div className="scroll-reveal"><PricingTiersSection /></div>
 
+        <NeuralDivider />
+
         {/* 4. FEATURED PRODUCTS — Top 12 products */}
         <div className="scroll-reveal"><FeaturedProductsSection /></div>
 
@@ -190,6 +193,8 @@ export default function Home() {
 
         {/* 5. BROWSE BY CATEGORY */}
         <div className="scroll-reveal"><CategorySection /></div>
+
+        <NeuralDivider />
 
         {/* 6. WHY AI PREMIUM SHOP */}
         <div className="scroll-reveal"><WhyUsSection /></div>

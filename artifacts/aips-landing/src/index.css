@@ -493,8 +493,19 @@
   100% { left: calc(100% - 12px); opacity: 0; }
 }
 
+/* Neural divider node pulse — opacity only, so it never triggers layout or
+   large repaints. Disabled entirely under reduced-motion below. */
+@keyframes neural-pulse {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 1; }
+}
+.neural-node {
+  animation: neural-pulse 3.2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none !important; }
+  .neural-node { animation: none !important; opacity: 0.6 !important; }
   .glow-offer-blue, .glow-offer-dark { animation: none !important; }
   .float-card-stack { animation: none !important; }
   .badge-pulse { animation: none !important; }

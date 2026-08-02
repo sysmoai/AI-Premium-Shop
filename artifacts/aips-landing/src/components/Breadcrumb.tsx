@@ -23,7 +23,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
               <span style={{ color: "#6b7280" }}>›</span>
             )}
             {item.href && index < items.length - 1 ? (
-              <Link href={item.href} className="hover:text-white transition-colors" style={{ color: "#c9ceda" }}>{item.name}</Link>
+              <Link href={item.href} className="hover:text-white transition-colors inline-flex items-center min-h-[44px] md:min-h-0" style={{ color: "#c9ceda" }}>{item.name}</Link>
             ) : (
               <span style={{ color: index === items.length - 1 ? "#e2e8f0" : "#c9ceda" }}>{item.name}</span>
             )}

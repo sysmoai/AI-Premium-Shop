@@ -474,15 +474,110 @@ const BLOG_POSTS = [...blogSrc.matchAll(/"([a-z0-9-]+)":\s*{\s*title:\s*"([^"]+)
 // De-dup (the file also has a full-content map keyed by the same slugs).
 const seenBlog = new Set();
 const BLOG_UNIQUE = BLOG_POSTS.filter((b) => !seenBlog.has(b.slug) && seenBlog.add(b.slug));
+// Full post bodies live in a second map in the same file, keyed by the same
+// slugs, as JSX (`content: (...)`). Rather than ship a stub excerpt for 19
+// fully-written guides, extract their real prose: JSX is consistent enough
+// across posts (h2/h3/p/li plus a fixed set of helper components) that a
+// structural parse is safe and never invents text — every string here is
+// lifted verbatim from the component, or is a plain reformatting of its own
+// literal props (e.g. StatCards' `items` array becomes a <ul>).
+// Placeholder markers so real <a href> tags survive esc() at the call site
+// (stripInlineJsx runs before esc(), and esc() would otherwise turn a kept
+// anchor's quotes into &quot; and break it). Swapped back to real tags after
+// escaping.
+const A_OPEN = "\u0001", A_CLOSE = "\u0002", A_END = "\u0003";
+function stripInlineJsx(s) {
+  // Both <Link href="..."> (internal) and plain <a href="..." ...> (some
+  // posts use raw anchors) collapse to a real link. The closing tag is also
+  // marker-protected (not left as literal `</a>` text) -- otherwise esc()
+  // downstream turns it into `&lt;/a&gt;`, since by then it looks like any
+  // other piece of prose, not markup.
+  return s
+    .replace(/<Link\s+href="([^"]+)"[^>]*>([\s\S]*?)<\/Link>/g, `${A_OPEN}$1${A_CLOSE}$2${A_END}`)
+    .replace(/<a\s+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g, `${A_OPEN}$1${A_CLOSE}$2${A_END}`)
+    .replace(/<\/?(strong|em|span|br)[^>]*\/?>/g, "")
+    .replace(/\{"\s*"\}/g, " ")
+    .replace(/\{[^{}]*\}/g, "")
+    .replace(/&apos;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+function restoreLinks(escaped) {
+  return escaped
+    .replace(/\u0001([^\u0001\u0002]*)\u0002/g, '<a href="$1">')
+    .replace(/\u0003/g, "</a>");
+}
+function extractBlogBody(contentBlock) {
+  const parts = [];
+  // Walk top-level tags in document order across the handful of shapes every
+  // post actually uses.
+  const re = /<h2[^>]*>([\s\S]*?)<\/h2>|<h3[^>]*>([\s\S]*?)<\/h3>|<p[^>]*>([\s\S]*?)<\/p>|<StatCards\s+items=\{(\[[\s\S]*?\])\}\s*\/>|<StepIndicators\s+steps=\{(\[[\s\S]*?\])\}\s*\/>|<ComparisonTable[\s\S]*?headers=\{(\[[\s\S]*?\])\}[\s\S]*?rows=\{(\[[\s\S]*?\])\}[\s\S]*?\/>|<CalloutBox>([\s\S]*?)<\/CalloutBox>|<ul[^>]*>([\s\S]*?)<\/ul>|<ol[^>]*>([\s\S]*?)<\/ol>/g;
+  let m;
+  while ((m = re.exec(contentBlock))) {
+    const [, h2, h3, p, statItems, stepItems, cmpHeaders, cmpRows, callout, ul, ol] = m;
+    if (h2) parts.push(`<h2>${esc(stripInlineJsx(h2))}</h2>`);
+    else if (h3) parts.push(`<h3>${esc(stripInlineJsx(h3))}</h3>`);
+    else if (p) { const t = stripInlineJsx(p); if (t) parts.push(`<p>${esc(t)}</p>`); }
+    else if (callout) parts.push(`<p><strong>${esc(stripInlineJsx(callout))}</strong></p>`);
+    else if (statItems) {
+      try {
+        const items = evalLiteral(statItems);
+        parts.push(`<ul>${items.map((i) => `<li>${esc(i.value)} — ${esc(i.label)}</li>`).join("")}</ul>`);
+      } catch { /* skip if the literal doesn't parse cleanly */ }
+    } else if (stepItems) {
+      try {
+        const steps = evalLiteral(stepItems);
+        parts.push(`<ol>${steps.map((s) => `<li><strong>${esc(s.title)}</strong> — ${esc(s.desc)}</li>`).join("")}</ol>`);
+      } catch { /* skip */ }
+    } else if (cmpHeaders && cmpRows) {
+      try {
+        const headers = evalLiteral(cmpHeaders);
+        const rows = evalLiteral(cmpRows, true);
+        parts.push(`<table><tr>${headers.map((h) => `<th>${esc(h)}</th>`).join("")}</tr>${rows.map((r) => `<tr>${r.map((c) => `<td>${esc(String(c))}</td>`).join("")}</tr>`).join("")}</table>`);
+      } catch { /* skip */ }
+    } else if (ul) {
+      const items = [...ul.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/g)].map((x) => stripInlineJsx(x[1])).filter(Boolean);
+      if (items.length) parts.push(`<ul>${items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`);
+    } else if (ol) {
+      const items = [...ol.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/g)].map((x) => stripInlineJsx(x[1])).filter(Boolean);
+      if (items.length) parts.push(`<ol>${items.map((i) => `<li>${esc(i)}</li>`).join("")}</ol>`);
+    }
+  }
+  return restoreLinks(parts.join("\n"));
+}
+// JSX object/array literals here are plain string/number data (no functions,
+// no identifiers) — safe to evaluate directly rather than hand-writing a JSON
+// parser for a syntax that's already valid JS.
+function evalLiteral(src, rowsOfArrays = false) {
+  // eslint-disable-next-line no-new-func
+  return new Function(`return (${src});`)();
+}
+
+const postsMapStart = blogSrc.indexOf("\nconst POSTS: Record<");
+const postsMapSrc = postsMapStart >= 0 ? blogSrc.slice(postsMapStart) : "";
+
 let blogCount = 0;
 for (const { slug, title, excerpt } of BLOG_UNIQUE) {
-  writeRoute(`/blog/${slug}`, title,
-    excerpt ? `${excerpt} | AI Premium Shop Bangladesh.` : `Read: ${title}. AI tools in Bangladesh with BDT prices. AI Premium Shop.`,
-    `<main><h1>${esc(title)}</h1><p>AI tools and guides for Bangladesh users. Pay with bKash or Nagad.</p>
+  const entryStart = postsMapSrc.indexOf(`"${slug}": {`);
+  let bodyHtml = "";
+  if (entryStart >= 0) {
+    const contentStart = postsMapSrc.indexOf("content: (", entryStart);
+    // Matching close paren for `content: ( ... ),` — find the next line that
+    // is just `    ),` at the same indent, which is how every post in this
+    // file closes its content block.
+    const contentEnd = postsMapSrc.indexOf("\n    ),", contentStart);
+    if (contentStart >= 0 && contentEnd >= 0) {
+      bodyHtml = extractBlogBody(postsMapSrc.slice(contentStart, contentEnd));
+    }
+  }
+  const desc = excerpt ? `${excerpt} | AI Premium Shop Bangladesh.` : `Read: ${title}. AI tools in Bangladesh with BDT prices. AI Premium Shop.`;
+  writeRoute(`/blog/${slug}`, title, desc,
+    `<main><h1>${esc(title)}</h1>
+${bodyHtml || `<p>${esc(desc)}</p>`}
 <p><a href="/blog">All blog posts</a> · <a href="/products">All AI tools</a> · <a href="/guides">AI Guides</a></p></main>`);
   blogCount++;
 }
-console.log(`prerender: blog — wrote ${blogCount} static post pages`);
+console.log(`prerender: blog — wrote ${blogCount} static post pages (${BLOG_UNIQUE.filter((b) => postsMapSrc.includes(`"${b.slug}": {`)).length} with full extracted body)`);
 
 // --- Bangla pages (from BanglaBN.tsx, StudentsBN.tsx, etc.)
 const BANGLA_PAGES = {

@@ -7,7 +7,7 @@ import { productPath } from "@/lib/productRoutes";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { productListSchema } from "@/utils/schemas";
+import { productListSchema, faqSchema } from "@/utils/schemas";
 // catalog-pages carries the 17 fields the page chunks render — not plans/faq/
 // useCases/descriptionBN, which are 100+ KB this page never reads.
 import productsData from "../../data/catalog-pages.json";
@@ -67,6 +67,21 @@ const PERSONAS: { key: string; label: string; guide: string; cats: string[]; cap
     caps: ["crm", "chatbots", "support", "meetings", "transcription", "email", "whatsapp", "automation"] },
 ];
 const VALID_PERSONA = new Set(PERSONAS.map((p) => p.key));
+
+// Rendered as visible content below the grid and emitted as FAQPage JSON-LD.
+// Answers mirror claims already made site-wide — do not invent new terms here.
+const SHOPPING_FAQS = [
+  { q: "How do I pay for AI subscriptions in Bangladesh?",
+    a: "bKash, Nagad, Rocket or bank transfer. You never need an international credit card — that's the point of AI Premium Shop." },
+  { q: "How fast is delivery?",
+    a: "Most tools are delivered in 5–30 minutes via WhatsApp after payment confirmation. Tools marked 'request price' get a confirmed delivery time along with the quote." },
+  { q: "What does the 30-day warranty cover?",
+    a: "If your access stops working within 30 days, we replace it. See the refund policy for exact terms." },
+  { q: "What's the difference between shared and personal plans?",
+    a: "Shared plans split one premium subscription between a few users — cheapest way in. Personal plans are private accounts only you use. Choose personal if you need your own chat history, settings and privacy." },
+  { q: "Why do some tools say 'request price' instead of showing a number?",
+    a: "Provider pricing for those tools changes frequently. Instead of publishing a stale figure, we confirm the current price on WhatsApp before you pay." },
+];
 
 function matchesPersona(p: { category: string; capabilities?: string[] }, key: string): boolean {
   const def = PERSONAS.find((d) => d.key === key);
@@ -220,11 +235,13 @@ export default function ProductsPage() {
   }, [categoryFilter, accessFilter, sort, persona, query]);
 
   const filterLabel = useMemo(() => {
-    if (categoryFilter === "all" && accessFilter === "all") return null;
+    if (categoryFilter === "all" && accessFilter === "all" && persona === "all" && !query.trim()) return null;
     const cat = categoryFilter === "all" ? "AI tools" : CATEGORY_LABELS[categoryFilter] ?? "AI tools";
     const access = accessFilter === "all" ? "" : accessFilter === "shared" ? "shared " : "personal ";
-    return `${access}${cat}`.trim();
-  }, [categoryFilter, accessFilter]);
+    const who = persona === "all" ? "" : ` for ${PERSONAS.find((d) => d.key === persona)?.label.replace(/^\S+\s/, "").toLowerCase() ?? persona}`;
+    const q = query.trim() ? ` matching “${query.trim()}”` : "";
+    return `${access}${cat}${who}${q}`.trim();
+  }, [categoryFilter, accessFilter, persona, query]);
 
   const filtered = useMemo(() => {
     let list = [...ALL] as Product[];
@@ -277,7 +294,7 @@ export default function ProductsPage() {
         // No breadcrumbSchema here: <Breadcrumb> below already injects its own
         // BreadcrumbList JSON-LD from these same items — adding it here too
         // duplicated the block (2x BreadcrumbList in the rendered page).
-        jsonLd={[productListSchema(ALL)]}
+        jsonLd={[productListSchema(ALL), faqSchema(SHOPPING_FAQS)]}
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "All Products" }]} />
 
@@ -448,6 +465,45 @@ export default function ProductsPage() {
             ))}
           </div>
         </div>
+
+        {/* Crawlable buying-guide content: answers the four documented
+            customer pains (trust, delivery, plan confusion, payment) in
+            indexable prose instead of leaving this page as a bare grid.
+            Facts only — payment methods, delivery SLA and warranty match the
+            claims already made site-wide. */}
+        <section className="mt-10 mb-8 p-6 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
+          <h2 className="text-xl font-bold text-white mb-3">Buying premium AI subscriptions in Bangladesh</h2>
+          <div className="text-sm leading-relaxed space-y-3" style={{ color: "#c9ceda" }}>
+            <p>
+              AI Premium Shop is a one-stop catalog of {TOTAL_PRODUCTS} premium AI tools for Bangladesh — from{" "}
+              <Link href="/chatgpt-plans-bangladesh" className="underline" style={{ color: "#f4b942" }}>ChatGPT plans</Link>,{" "}
+              <Link href="/claude-pro-bangladesh" className="underline" style={{ color: "#f4b942" }}>Claude Pro</Link> and{" "}
+              <Link href="/midjourney-bangladesh" className="underline" style={{ color: "#f4b942" }}>Midjourney</Link> to
+              SEO suites, video generators and <Link href="/bundles" className="underline" style={{ color: "#f4b942" }}>money-saving bundles</Link>.
+              Every price is listed in BDT, and you pay with bKash, Nagad, Rocket or bank transfer — no international card needed.
+            </p>
+            <p>
+              <strong className="text-white">Shared vs Personal:</strong> shared plans split one premium subscription between a few users at the
+              lowest price; personal plans give you a private account. Both come with the same delivery and{" "}
+              <Link href="/refund-policy" className="underline" style={{ color: "#f4b942" }}>30-day replacement warranty</Link>.
+              Some newer tools show “request price” — provider pricing changes often, so we confirm the current rate on WhatsApp instead of publishing a stale number.
+            </p>
+            <p>
+              New here? Read <Link href="/how-to-order" className="underline" style={{ color: "#f4b942" }}>how ordering works</Link>,
+              compare plans on the <Link href="/pricing" className="underline" style={{ color: "#f4b942" }}>pricing page</Link>,
+              or ask the <Link href="/support" className="underline" style={{ color: "#f4b942" }}>support team</Link> anything.
+            </p>
+          </div>
+          <h3 className="text-lg font-bold text-white mt-6 mb-3">Common questions</h3>
+          <div className="space-y-4 text-sm" style={{ color: "#c9ceda" }}>
+            {SHOPPING_FAQS.map((f) => (
+              <div key={f.q}>
+                <p className="font-semibold text-white">{f.q}</p>
+                <p>{f.a}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         <div
           className="p-8 rounded-2xl text-center border border-white/10"

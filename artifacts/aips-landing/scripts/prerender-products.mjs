@@ -114,3 +114,95 @@ ${ld.map((x) => `<script type="application/ld+json">${JSON.stringify(x)}</script
 }
 
 console.log(`prerender: wrote ${written} static product pages (${bySlug.size} slugs, brand-page slugs excluded: ${[...brandSlugs].filter((s) => products.some((p) => p.slug === s)).length})`);
+
+// ---- Hub routes: /products, the 9 category routes, and the 40 brand routes.
+// Titles/descriptions mirror each page component's own SEOHead values —
+// category titles are parsed out of CategoryPage.tsx so they cannot drift.
+
+const writeRoute = (route, title, desc, body, extraLd = []) => {
+  const canonical = `${SITE}${route === "/products" ? "/products" : route}`;
+  let html = template
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
+    .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
+    .replace('<div id="root"></div>', `<div id="root">${body}</div>`);
+  html = html.replace("</head>", `<link rel="canonical" href="${canonical}" />
+<meta property="og:title" content="${esc(title)}" />
+<meta property="og:description" content="${esc(desc)}" />
+<meta property="og:url" content="${canonical}" />
+${extraLd.map((x) => `<script type="application/ld+json">${JSON.stringify(x)}</script>`).join("\n")}
+</head>`);
+  const dir = path.join(DIST, route.replace(/^\//, ""));
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "index.html"), html);
+};
+
+const linkFor = (slug) => (brandSlugs.has(slug) ? `/${slug}` : `/product/${slug}`);
+const distinct = [...new Map(products.map((p) => [p.slug, p])).values()];
+const productLi = (p) => {
+  const recs = products.filter((r) => r.slug === p.slug);
+  const prices = recs.map((r) => r.price).filter((x) => typeof x === "number");
+  const priceStr = prices.length ? ` — from ${fmtBDT(Math.min(...prices))}/month` : " — price on WhatsApp";
+  return `<li><a href="${linkFor(p.slug)}">${esc(p.name)}</a>${priceStr}</li>`;
+};
+
+// Category titles/descriptions parsed from CategoryPage.tsx's config blocks.
+const catSrc = fs.readFileSync(path.join(APP, "src/pages/CategoryPage.tsx"), "utf8");
+const catMeta = {};
+for (const m of catSrc.matchAll(/["']?([a-z-]+)["']?:\s*{[^{}]*?seoTitle:\s*"([^"]+)"[\s\S]{0,1500}?metaDescription:\s*"([^"]+)"/g)) {
+  catMeta[m[1]] = { title: m[2], desc: m[3] };
+}
+const CATEGORY_LABELS = {
+  "ai-assistant": "AI Assistant & Chat", "ai-image": "AI Image & Design", "ai-video": "AI Video",
+  "ai-voice-music": "AI Voice & Music", "ai-code": "AI Code & Dev Tools", "ai-workspace": "AI Workspace",
+  "ai-writing": "AI Writing & SEO", "ai-design": "AI Design & Creative", "bundles": "Bundles & Packages",
+};
+
+let hubs = 0;
+for (const [cat, label] of Object.entries(CATEGORY_LABELS)) {
+  const list = distinct.filter((p) => p.category === cat);
+  if (!list.length) continue;
+  const meta = catMeta[cat] ?? { title: `${label} — Prices in BDT | AI Premium Shop Bangladesh`,
+    desc: `${list.length} ${label} subscriptions with BDT prices. Pay with bKash or Nagad. AI Premium Shop Bangladesh.` };
+  writeRoute(cat === "bundles" ? "/bundles" : `/${cat}`, meta.title, meta.desc,
+    `<main><h1>${esc(label)}</h1><p>${esc(meta.desc)}</p><ul>${list.map(productLi).join("")}</ul>
+<p><a href="/products">All AI tools</a> · <a href="/pricing">Pricing</a> · <a href="/how-to-order">How to order</a></p></main>`);
+  hubs++;
+}
+
+// /products — the master list: every distinct product as a real link.
+const total = distinct.length;
+writeRoute("/products",
+  `All ${total} AI Tools — Prices in BDT | AI Premium Shop Bangladesh`,
+  `Browse ${total} AI subscriptions. ChatGPT, Claude, Midjourney & more. Prices in BDT. Local payment. Fast delivery. AI Premium Shop.`,
+  `<main><h1>All ${total} AI Tools</h1>
+<p>${products.length} premium subscriptions with BDT prices. Pay with bKash, Nagad, Rocket or bank transfer. Delivery via WhatsApp.</p>
+${Object.entries(CATEGORY_LABELS).map(([cat, label]) => {
+    const list = distinct.filter((p) => p.category === cat);
+    return list.length ? `<h2><a href="/${cat === "bundles" ? "bundles" : cat}">${esc(label)}</a></h2><ul>${list.map(productLi).join("")}</ul>` : "";
+  }).join("")}
+<p><a href="/best-ai-for-students">Best AI for students</a> · <a href="/best-ai-for-freelancers">for freelancers</a> · <a href="/best-ai-for-developers">for developers</a> · <a href="/best-ai-for-creators">for creators</a> · <a href="/best-ai-for-business">for business</a></p></main>`);
+hubs++;
+
+// Brand routes: catalog-derived head matching BrandPage's price claims.
+let brands = 0;
+for (const slug of brandSlugs) {
+  const recs = products.filter((p) => p.slug === slug);
+  if (!recs.length) continue; // route parsed from source that isn't a catalog slug
+  const p = recs[0];
+  const prices = recs.map((r) => r.price).filter((x) => typeof x === "number");
+  const fromPrice = prices.length ? Math.min(...prices) : null;
+  const title = fromPrice
+    ? `${p.brand ?? p.name} price in Bangladesh — ${fmtBDT(fromPrice)}/mo | AI Premium Shop`
+    : `${p.brand ?? p.name} price in Bangladesh | AI Premium Shop`;
+  const desc = fromPrice
+    ? `${p.brand ?? p.name} in Bangladesh from ${fmtBDT(fromPrice)}/month. Pay with bKash or Nagad. Delivery ${p.deliverySLA ?? "via WhatsApp"}. 30-day warranty. AI Premium Shop.`
+    : `Get ${p.brand ?? p.name} in Bangladesh — current price confirmed on WhatsApp. Pay with bKash or Nagad. AI Premium Shop.`;
+  const tiers = recs.filter((r) => typeof r.price === "number")
+    .map((r) => `<li>${esc(r.tier ?? r.name)} — ${fmtBDT(r.price)}/month</li>`).join("");
+  writeRoute(`/${slug}`, title, desc,
+    `<main><h1>${esc(p.brand ?? p.name)}</h1><p>${esc(p.description ?? desc)}</p>${tiers ? `<ul>${tiers}</ul>` : ""}
+<p><a href="/products">All AI tools</a> · <a href="/${esc(p.category)}">${esc(CATEGORY_LABELS[p.category] ?? p.category)}</a> · <a href="/how-to-order">How to order</a></p></main>`);
+  brands++;
+}
+
+console.log(`prerender: wrote ${hubs} hub pages (products + categories) and ${brands} brand pages; category meta parsed for ${Object.keys(catMeta).length}/9`);

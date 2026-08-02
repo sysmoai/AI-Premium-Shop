@@ -76,13 +76,56 @@ for (const rel of FILES) {
   });
 }
 
-if (problems.length) {
-  console.error(`✖ validate-blog-prices: ${problems.length} price(s) do not match any catalog tier\n`);
-  for (const p of problems) {
-    console.error(`  ${p.file}:${p.line}  "${p.brand}" quoted at ${p.amount}`);
-    console.error(`     real tiers: ${p.valid}`);
-    console.error(`     ${p.text}\n`);
+// --- Structured check: `slug: "x-bangladesh", price: "BDT N/month"` pairs.
+// This shape (persona guides, GuidePage.tsx's tool tables, DevelopersBN) names
+// the exact catalog slug next to the price, so unlike free-form prose it can
+// be checked exactly rather than by fuzzy brand-proximity — and it's exactly
+// where this bug keeps recurring: three separate persona guides quoted
+// Claude Pro at 1,495 (Copilot's real price) on top of the seven earlier
+// prose surfaces. Every file with this literal shape should be listed here.
+const STRUCTURED_FILES = [
+  "src/pages/guides/StudentsGuide.tsx",
+  "src/pages/guides/FreelancersGuide.tsx",
+  "src/pages/guides/CreatorsGuide.tsx",
+  "src/pages/guides/SMBGuide.tsx",
+  "src/pages/guides/EducatorsGuide.tsx",
+  "src/pages/GuidePage.tsx",
+  "src/pages/DevelopersBN.tsx",
+];
+const pricesBySlug = new Map();
+for (const p of products) {
+  if (typeof p.price !== "number") continue;
+  if (!pricesBySlug.has(p.slug)) pricesBySlug.set(p.slug, new Set());
+  pricesBySlug.get(p.slug).add(p.price);
+}
+const structuredProblems = [];
+for (const rel of STRUCTURED_FILES) {
+  const full = path.join(APP, rel);
+  if (!fs.existsSync(full)) continue;
+  const src = fs.readFileSync(full, "utf8");
+  for (const m of src.matchAll(/slug:\s*"([a-z0-9-]+)",\s*price:\s*"(?:BDT|৳)\s?([\d,]+)\/month"/g)) {
+    const [, slug, amountStr] = m;
+    const amount = Number(amountStr.replace(/,/g, ""));
+    const valid = pricesBySlug.get(slug);
+    if (!valid?.size || valid.has(amount)) continue;
+    const line = src.slice(0, m.index).split("\n").length;
+    structuredProblems.push({ file: rel, line, slug, amount, valid: [...valid].sort((a, b) => a - b).join(", ") });
+  }
+}
+
+const allProblems = [...problems.map((p) => ({ ...p, kind: "prose" })), ...structuredProblems.map((p) => ({ ...p, kind: "structured" }))];
+
+if (allProblems.length) {
+  console.error(`✖ validate-blog-prices: ${allProblems.length} price(s) do not match any catalog tier\n`);
+  for (const p of allProblems) {
+    if (p.kind === "structured") {
+      console.error(`  ${p.file}:${p.line}  slug "${p.slug}" quoted at ${p.amount}`);
+    } else {
+      console.error(`  ${p.file}:${p.line}  "${p.brand}" quoted at ${p.amount}`);
+      console.error(`     ${p.text}`);
+    }
+    console.error(`     real tiers: ${p.valid}\n`);
   }
   process.exit(1);
 }
-console.log(`✔ validate-blog-prices: no brand quoted at a price it does not have (${WATCHED.length} brands checked)`);
+console.log(`✔ validate-blog-prices: no brand/slug quoted at a price it does not have (${WATCHED.length} brands + ${STRUCTURED_FILES.length} structured files checked)`);

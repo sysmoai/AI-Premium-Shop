@@ -489,6 +489,59 @@ from an unresolved, differently-scoped proposal would be a real revenue/
 compliance risk if wrong — surfaced to the CEO instead of auto-applied.
 See [[aips-google-search-console]] for the fuller AITP-vs-AIPS workspace note.
 
+## Session 14 (2026-08-02, Fable 5) — "100% of the site": blog extraction, 6th+ recurrence of the 1,495 bug, permanent gate
+
+**Extracted full static bodies for all 19 blog posts** (avg 300 → 3,100
+chars). The real prose lives as JSX in `BlogPostPage.tsx`'s content map;
+wrote a structural extractor (`extractBlogBody` in prerender-products.mjs)
+that walks h2/h3/p/li plus the 4 content helper components (StatCards →
+`<ul>`, StepIndicators → `<ol>`, ComparisonTable → real `<table>`, CalloutBox
+→ highlighted `<p>`) and renders each from its own literal props via
+`evalLiteral` (`new Function` on JS array/object literals from this repo's
+own committed source at build time — not external input). Two escaping bugs
+found verifying it: inline `<a href>` tags (not just `<Link>`) were dropped
+as literal `&lt;a href=...&gt;` text with a stray `style={}`, and after the
+first fix the closing `</a>` still got re-escaped. Fixed with three
+marker-protected placeholders (open+href, close) restored after `esc()`.
+Thin pages: 51 → 32.
+
+**The ৳1,495-for-Claude-Pro bug recurred a 4th, 5th and 6th time** — this
+session found it in `src/pages/guides/{Students,Educators,Freelancers}Guide.tsx`
+(serving `/guides/*`), then discovered **`GuidePage.tsx` — the file that
+actually renders the higher-traffic `/best-ai-for-*` routes — had it in FOUR
+more places**, plus Suno AI wrong twice, Google AI Pro wrong three times, and
+two invented tier names ("ChatGPT Team", "Notion AI — Plus Plan") that don't
+exist in the catalog. All converted to `tierPrice()`/`cheapestPriceFor()`,
+matching the pattern the file's own `aioSnippet` strings already used two
+lines above each broken one.
+
+**Then the prerender extractor for GuidePage.tsx's `tools:` array broke**,
+because it only matched `price: "..."` (a plain string) — converting to a
+computed template literal made the price silently vanish from the static
+"Top picks" list. Added `resolveGuidePrice()` to evaluate the two call
+shapes actually used against this script's own already-loaded catalog data.
+Verified in the *built HTML*, not just build-success: Claude Pro's entry
+reads "BDT 1590/mo", no entry resolves to the `?` failure-fallback.
+
+**Closed the whole bug class with a permanent gate** rather than fixing it
+again next time: `validate-blog-prices.mjs` now also does an exact
+slug+price structural check across 7 files with that literal shape
+(5 guides, GuidePage.tsx, DevelopersBN.tsx), plus GuidePage.tsx was added to
+the existing prose brand-proximity checker. Tuning that addition surfaced two
+legitimate combo/stack totals ("ChatGPT + Notion ৳1,150") that would have
+been false positives — the EXEMPT pattern now skips any window containing a
+literal `+`. Regression-tested both checks by deliberately reintroducing a
+wrong price and confirming each still fails correctly.
+
+**Lesson for next session**: when a "price" gets converted from a string
+literal to a computed value anywhere, grep for every consumer that parses
+that file's *source text* by regex (the prerender script does, for several
+files) — fixing the source of truth can silently break a downstream text
+scraper that assumed the old literal shape. `pnpm run build`'s
+`audit-prerender` gate checks that a body exists; it does not check that the
+numbers *in* it are the current ones — only `validate-blog-prices.mjs` and
+manual live-DOM verification do that.
+
 ### Priority open items (post-session)
 1. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
    would shrink these substantially.

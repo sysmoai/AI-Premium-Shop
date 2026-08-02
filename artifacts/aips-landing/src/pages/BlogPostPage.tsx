@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
+import { TOTAL_PRODUCTS, tierPrice, cheapestPriceFor, taka } from "@/lib/catalogStats";
 import { Link } from "wouter";
 import {
   ChevronLeft,
@@ -179,7 +179,7 @@ const ALL_POSTS_META: Record<string, { title: string; excerpt: string; category:
   },
   "buy-claude-pro-bangladesh": {
     title: "How to Buy Claude Pro in Bangladesh with bKash, Nagad or Rocket (2026)",
-    excerpt: "What Claude Pro includes vs Free and Max, pricing from BDT 1,495, and the 3-step WhatsApp order flow.",
+    excerpt: "What Claude Pro includes vs Free and Max, pricing from BDT 599, and the 3-step WhatsApp order flow.",
     category: "🧠 AI Assistant",
     gradient: "bg-gradient-to-br from-amber-600 to-orange-900",
   },
@@ -286,20 +286,45 @@ function RelatedPosts({ slugs }: { slugs: string[] }) {
   );
 }
 
-function ProductBox({ products }: { products: { name: string; price: string; slug: string }[] }) {
+// Prices are looked up from the catalog, never passed in as text. Typed
+// strings had already drifted on live pages: "Claude Pro — BDT 1,495/mo"
+// (no such tier; 1,495 is the buy-abroad formula price, not an AIPS price)
+// and "ElevenLabs Creator — BDT 748/mo" on three posts (748 is the Starter
+// tier; Creator is 3,490). Passing `tier` prices that exact tier; omitting it
+// prices the cheapest tier and says "from".
+function ProductBox({
+  products,
+}: {
+  // priceNote is only for entries with NO published price (request-price
+  // products, where the label is prose like "মূল্য: WhatsApp-এ"). It must
+  // never carry a number — numbers come from the catalog.
+  products: { name: string; slug: string; catalogSlug?: string; tier?: string; priceNote?: string }[];
+}) {
   return (
     <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 my-8">
       <h3 className="text-white font-semibold text-lg mb-4">Tools Mentioned in This Article</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {products.map((p, i) => (
-          <div key={i} className="bg-gray-800 rounded-lg p-4">
-            <div className="text-white font-semibold text-sm">{p.name}</div>
-            <div className="text-[#f4b942] font-bold mt-1">{p.price}</div>
-            <Link href={p.slug} className="text-gray-400 hover:text-[#f4b942] text-xs mt-2 inline-block transition-colors">
-              Order →
-            </Link>
-          </div>
-        ))}
+        {products.map((p, i) => {
+          // Hub routes (/chatgpt-plans-bangladesh, /bundles) are not catalog
+          // slugs, so they carry an explicit catalogSlug to price against.
+          const slug = p.catalogSlug ?? p.slug.replace(/^\/(?:product\/)?/, "");
+          const exact = p.tier ? tierPrice(slug, p.tier) : null;
+          const from = exact == null ? cheapestPriceFor(slug) : null;
+          const amount = exact ?? from;
+          return (
+            <div key={i} className="bg-gray-800 rounded-lg p-4">
+              <div className="text-white font-semibold text-sm">{p.name}</div>
+              <div className="text-[#f4b942] font-bold mt-1">
+                {amount == null
+                  ? (p.priceNote ?? "Price on WhatsApp")
+                  : `${from != null ? "from " : ""}${taka(amount)}/mo`}
+              </div>
+              <Link href={p.slug} className="text-gray-400 hover:text-[#f4b942] text-xs mt-2 inline-block transition-colors">
+                Order →
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -469,9 +494,9 @@ const POSTS: Record<
 
         <ProductBox
           products={[
-            { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plans-bangladesh" },
-            { name: "Midjourney Standard", price: "BDT 1,199/mo", slug: "/midjourney-bangladesh" },
-            { name: "ElevenLabs Creator", price: "BDT 748/mo", slug: "/elevenlabs-bangladesh" },
+            { name: "ChatGPT Plus Starter", slug: "/chatgpt-plans-bangladesh", catalogSlug: "chatgpt-plus-bangladesh", tier: "Starter Shared" },
+            { name: "Midjourney Standard", slug: "/midjourney-bangladesh" },
+            { name: "ElevenLabs Creator", slug: "/elevenlabs-bangladesh" },
           ]}
         />
 
@@ -535,7 +560,7 @@ const POSTS: Record<
           Get it at <Link href="/chatgpt-plus-bangladesh" className="text-[#f4b942] hover:underline">ChatGPT Plus Bangladesh</Link>.
         </p>
 
-        <h2 className="text-xl font-bold text-white mt-8 mb-4">2. Claude Pro (BDT 1,495) — For Thesis & Research</h2>
+        <h2 className="text-xl font-bold text-white mt-8 mb-4">2. Claude Pro (from BDT 599) — For Thesis & Research</h2>
         <p className="text-gray-300 leading-relaxed">
           Claude Pro's 200K context window is a game changer for thesis work. You can upload your entire draft plus multiple reference papers and have a conversation about them — asking Claude to identify gaps, suggest citations, and improve arguments.
         </p>
@@ -587,7 +612,7 @@ const POSTS: Record<
           rows={[
             ["ChatGPT Plus Starter", "BDT 499", "Writing, coding, general AI"],
             ["Perplexity Pro", "BDT 599", "Research with citations"],
-            ["Claude Pro", "BDT 1,495", "Thesis, long documents"],
+            ["Claude Pro", "from BDT 599", "Thesis, long documents"],
             ["Student Bundle", "BDT 449", "Best value combo"],
           ]}
           highlightCol={1}
@@ -595,9 +620,9 @@ const POSTS: Record<
 
         <ProductBox
           products={[
-            { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plus-bangladesh" },
-            { name: "Perplexity Pro", price: "BDT 599/mo", slug: "/perplexity-pro-bangladesh" },
-            { name: "Student Bundle", price: "BDT 449/mo", slug: "/bundles" },
+            { name: "ChatGPT Plus Starter", slug: "/chatgpt-plus-bangladesh" },
+            { name: "Perplexity Pro", slug: "/perplexity-pro-bangladesh" },
+            { name: "Student Bundle", slug: "/bundles", catalogSlug: "student-package-bangladesh" },
           ]}
         />
 
@@ -691,9 +716,9 @@ const POSTS: Record<
 
         <ProductBox
           products={[
-            { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plans-bangladesh" },
-            { name: "Claude Pro", price: "BDT 1,495/mo", slug: "/claude-pro-bangladesh" },
-            { name: "Midjourney Standard", price: "BDT 1,199/mo", slug: "/midjourney-bangladesh" },
+            { name: "ChatGPT Plus Starter", slug: "/chatgpt-plans-bangladesh", catalogSlug: "chatgpt-plus-bangladesh", tier: "Starter Shared" },
+            { name: "Claude Pro", slug: "/claude-pro-bangladesh" },
+            { name: "Midjourney Standard", slug: "/midjourney-bangladesh" },
           ]}
         />
 
@@ -784,9 +809,9 @@ const POSTS: Record<
 
         <ProductBox
           products={[
-            { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plans-bangladesh" },
-            { name: "ChatGPT Plus Premium", price: "BDT 999/mo", slug: "/chatgpt-plans-bangladesh" },
-            { name: "ChatGPT Personal", price: "BDT 2,990/mo", slug: "/chatgpt-plans-bangladesh" },
+            { name: "ChatGPT Plus Starter", slug: "/chatgpt-plans-bangladesh", catalogSlug: "chatgpt-plus-bangladesh", tier: "Starter Shared" },
+            { name: "ChatGPT Plus Premium", slug: "/chatgpt-plans-bangladesh", catalogSlug: "chatgpt-plus-bangladesh", tier: "Premium Shared" },
+            { name: "ChatGPT Personal", slug: "/chatgpt-plans-bangladesh", catalogSlug: "chatgpt-plus-bangladesh", tier: "Personal" },
           ]}
         />
 
@@ -883,7 +908,7 @@ const POSTS: Record<
             ["Graphic design", "Midjourney", "BDT 1,199", "$30-100", "$300-1,000"],
             ["Video creation", "Runway", "BDT 1,794", "$100-500", "$500-2,500"],
             ["Voice work", "ElevenLabs", "BDT 748", "$10-50", "$200-1,000"],
-            ["Data & research", "Claude", "BDT 1,495", "$50-200", "$500-2,000"],
+            ["Data & research", "Claude", "from BDT 599", "$50-200", "$500-2,000"],
           ]}
           highlightCol={4}
         />
@@ -908,9 +933,9 @@ const POSTS: Record<
 
         <ProductBox
           products={[
-            { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plans-bangladesh" },
-            { name: "Midjourney Standard", price: "BDT 1,199/mo", slug: "/midjourney-bangladesh" },
-            { name: "Freelancer Bundle", price: "BDT 1,299/mo", slug: "/bundles" },
+            { name: "ChatGPT Plus Starter", slug: "/chatgpt-plans-bangladesh", catalogSlug: "chatgpt-plus-bangladesh", tier: "Starter Shared" },
+            { name: "Midjourney Standard", slug: "/midjourney-bangladesh" },
+            { name: "Freelancer Bundle", slug: "/bundles", catalogSlug: "freelancer-package-bangladesh" },
           ]}
         />
 
@@ -1167,9 +1192,9 @@ const POSTS: Record<
 
         <ProductBox
           products={[
-            { name: "ChatGPT Business", price: "from ৳699/mo", slug: "/chatgpt-business-bangladesh" },
-            { name: "Claude Pro", price: "from ৳1,590/mo", slug: "/claude-pro-bangladesh" },
-            { name: "Cursor Pro", price: "from ৳2,990/mo", slug: "/cursor-bangladesh" },
+            { name: "ChatGPT Business", slug: "/chatgpt-business-bangladesh" },
+            { name: "Claude Pro", slug: "/claude-pro-bangladesh" },
+            { name: "Cursor Pro", slug: "/cursor-bangladesh" },
           ]}
         />
 
@@ -1242,9 +1267,9 @@ const POSTS: Record<
 
         <ProductBox
           products={[
-            { name: "Higgsfield AI — All Plans", price: "মূল্য: WhatsApp-এ", slug: "/product/higgsfield-ai-bangladesh" },
-            { name: "ElevenLabs Creator", price: "BDT 748/mo", slug: "/elevenlabs-bangladesh" },
-            { name: "Midjourney Standard", price: "BDT 1,199/mo", slug: "/midjourney-bangladesh" },
+            { name: "Higgsfield AI — All Plans", slug: "/product/higgsfield-ai-bangladesh", priceNote: "মূল্য: WhatsApp-এ" },
+            { name: "ElevenLabs Creator", slug: "/elevenlabs-bangladesh" },
+            { name: "Midjourney Standard", slug: "/midjourney-bangladesh" },
           ]}
         />
 
@@ -1305,9 +1330,9 @@ const POSTS: Record<
 
         <ProductBox
           products={[
-            { name: "Manus Pro — Credit Tiers", price: "মূল্য: WhatsApp-এ", slug: "/product/manus-pro-bangladesh" },
-            { name: "Manus Team — Per Seat", price: "মূল্য: WhatsApp-এ", slug: "/product/manus-team-bangladesh" },
-            { name: "Manus AI — Overview", price: "See page", slug: "/manus-ai-bangladesh" },
+            { name: "Manus Pro — Credit Tiers", slug: "/product/manus-pro-bangladesh", priceNote: "মূল্য: WhatsApp-এ" },
+            { name: "Manus Team — Per Seat", slug: "/product/manus-team-bangladesh", priceNote: "মূল্য: WhatsApp-এ" },
+            { name: "Manus AI — Overview", slug: "/manus-ai-bangladesh", priceNote: "See page" },
           ]}
         />
 
@@ -1326,7 +1351,7 @@ const POSTS: Record<
   },
   "buy-claude-pro-bangladesh": {
     title: "How to Buy Claude Pro in Bangladesh with bKash, Nagad or Rocket (2026)",
-    description: "Get Claude Pro in Bangladesh without an international card. What Pro includes vs Free and Max, current AIPS pricing from BDT 1,495, and the WhatsApp order flow.",
+    description: "Get Claude Pro in Bangladesh without an international card. What Pro includes vs Free and Max, current AIPS pricing from BDT 599, and the WhatsApp order flow.",
     canonical: "https://aipremiumshop.com/blog/buy-claude-pro-bangladesh",
     date: "July 30, 2026",
     readTime: "5 min read",
@@ -1351,7 +1376,7 @@ const POSTS: Record<
 
         <h2 className="text-xl font-bold text-white mt-8 mb-4">বাংলাদেশে দাম কত?</h2>
         <p className="text-gray-300 leading-relaxed">
-          AI Premium Shop-এ Claude Pro শুরু হয় <strong>BDT 1,495/মাস</strong> থেকে — bKash, Nagad, Rocket বা ব্যাংক ট্রান্সফারে, কোনো আন্তর্জাতিক কার্ড ছাড়াই। Max ও Team টিয়ারের বর্তমান দাম এবং শেয়ার্ড অপশনগুলোর বিস্তারিত <a href="/claude-pro-bangladesh" className="underline" style={{ color: "#d97706" }}>Claude Pro Bangladesh পেজে</a> পাবেন। সব প্ল্যানের প্রাইস পেজে আপডেট রাখা হয় — পুরনো ব্লগের দাম নয়, পেজের দামই চূড়ান্ত।
+          AI Premium Shop-এ Claude Pro শুরু হয় <strong>BDT 599/মাস</strong> থেকে — bKash, Nagad, Rocket বা ব্যাংক ট্রান্সফারে, কোনো আন্তর্জাতিক কার্ড ছাড়াই। Max ও Team টিয়ারের বর্তমান দাম এবং শেয়ার্ড অপশনগুলোর বিস্তারিত <a href="/claude-pro-bangladesh" className="underline" style={{ color: "#d97706" }}>Claude Pro Bangladesh পেজে</a> পাবেন। সব প্ল্যানের প্রাইস পেজে আপডেট রাখা হয় — পুরনো ব্লগের দাম নয়, পেজের দামই চূড়ান্ত।
         </p>
 
         <h2 className="text-xl font-bold text-white mt-8 mb-4">Ordering Takes Three Steps</h2>
@@ -1370,9 +1395,9 @@ const POSTS: Record<
 
         <ProductBox
           products={[
-            { name: "Claude Pro", price: "From BDT 1,495/mo", slug: "/claude-pro-bangladesh" },
-            { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plans-bangladesh" },
-            { name: "Perplexity Pro", price: "BDT 599/mo", slug: "/perplexity-pro-bangladesh" },
+            { name: "Claude Pro", slug: "/claude-pro-bangladesh" },
+            { name: "ChatGPT Plus Starter", slug: "/chatgpt-plans-bangladesh", catalogSlug: "chatgpt-plus-bangladesh", tier: "Starter Shared" },
+            { name: "Perplexity Pro", slug: "/perplexity-pro-bangladesh" },
           ]}
         />
 
@@ -1426,9 +1451,9 @@ const POSTS: Record<
 
         <ProductBox
           products={[
-            { name: "Google AI Pro", price: "From BDT 599/mo", slug: "/gemini-advanced-bangladesh" },
-            { name: "Google AI Ultra", price: "মূল্য: WhatsApp-এ", slug: "/product/google-ai-ultra-bangladesh" },
-            { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plans-bangladesh" },
+            { name: "Google AI Pro", slug: "/gemini-advanced-bangladesh" },
+            { name: "Google AI Ultra", slug: "/product/google-ai-ultra-bangladesh", priceNote: "মূল্য: WhatsApp-এ" },
+            { name: "ChatGPT Plus Starter", slug: "/chatgpt-plans-bangladesh", catalogSlug: "chatgpt-plus-bangladesh", tier: "Starter Shared" },
           ]}
         />
 
@@ -1558,9 +1583,9 @@ const POSTS: Record<
 
         <ProductBox
           products={[
-            { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plans-bangladesh" },
-            { name: "Claude Pro", price: "From BDT 1,495/mo", slug: "/claude-pro-bangladesh" },
-            { name: "Google AI Pro", price: "From BDT 599/mo", slug: "/gemini-advanced-bangladesh" },
+            { name: "ChatGPT Plus Starter", slug: "/chatgpt-plans-bangladesh", catalogSlug: "chatgpt-plus-bangladesh", tier: "Starter Shared" },
+            { name: "Claude Pro", slug: "/claude-pro-bangladesh" },
+            { name: "Google AI Pro", slug: "/gemini-advanced-bangladesh" },
           ]}
         />
 
@@ -1612,9 +1637,9 @@ const POSTS: Record<
 
         <ProductBox
           products={[
-            { name: "ChatGPT Plus Starter", price: "BDT 499/mo", slug: "/chatgpt-plans-bangladesh" },
-            { name: "Canva Pro", price: "From BDT 399/mo", slug: "/canva-pro-bangladesh" },
-            { name: "ElevenLabs Creator", price: "BDT 748/mo", slug: "/elevenlabs-bangladesh" },
+            { name: "ChatGPT Plus Starter", slug: "/chatgpt-plans-bangladesh", catalogSlug: "chatgpt-plus-bangladesh", tier: "Starter Shared" },
+            { name: "Canva Pro", slug: "/canva-pro-bangladesh" },
+            { name: "ElevenLabs Creator", slug: "/elevenlabs-bangladesh" },
           ]}
         />
 

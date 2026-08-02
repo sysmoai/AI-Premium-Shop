@@ -64,7 +64,41 @@ for (const [title, entries] of byTitle) {
   }
 }
 
-console.log(`audit-prerender: ${routes.length} sitemap URLs checked`);
+// Internal links must point at routes that actually exist. A hardcoded
+// guide->picks mapping shipped a link to /best-ai-for-educators on every
+// build; that route has never existed. Any directory with an index.html is a
+// real destination, so the set of valid targets is the built output itself.
+const validTargets = new Set(["/"]);
+(function walk(dir) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const full = path.join(dir, entry.name);
+    if (fs.existsSync(path.join(full, "index.html"))) {
+      validTargets.add("/" + path.relative(DIST, full).split(path.sep).join("/"));
+    }
+    walk(full);
+  }
+})(DIST);
+
+const brokenLinks = new Map();
+for (const route of routes) {
+  const file = fileFor(route);
+  if (!fs.existsSync(file)) continue;
+  const html = fs.readFileSync(file, "utf8");
+  const inner = html.match(/<div id="root">([\s\S]*)$/)?.[1] ?? "";
+  for (const m of inner.matchAll(/href="(\/[^"#?]*)"/g)) {
+    const target = m[1].replace(/\/$/, "") || "/";
+    if (validTargets.has(target)) continue;
+    if (!brokenLinks.has(target)) brokenLinks.set(target, new Set());
+    brokenLinks.get(target).add(route);
+  }
+}
+for (const [target, sources] of brokenLinks) {
+  const list = [...sources];
+  fail.push(`broken internal link ${target} — linked from ${list.length} page(s), e.g. ${list.slice(0, 3).join(", ")}`);
+}
+
+console.log(`audit-prerender: ${routes.length} sitemap URLs checked, ${validTargets.size} link targets`);
 warn.forEach((w) => console.log(`  ⚠ ${w}`));
 if (fail.length) {
   console.error(`\n✖ ${fail.length} hard failure(s):`);

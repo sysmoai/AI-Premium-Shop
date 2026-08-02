@@ -96,7 +96,7 @@ const POSTS = [
   {
     slug: "buy-claude-pro-bangladesh",
     title: "How to Buy Claude Pro in Bangladesh with bKash, Nagad or Rocket (2026)",
-    excerpt: "What Claude Pro includes vs Free and Max, pricing from BDT 1,495, and the 3-step order flow — no international card.",
+    excerpt: "What Claude Pro includes vs Free and Max, pricing from BDT 599, and the 3-step order flow — no international card.",
     category: "🧠 AI Assistant",
     categoryKey: "assistant",
     readTime: "5 min read",
@@ -257,8 +257,11 @@ export default function BlogPage() {
     () => (category === "all" ? POSTS : POSTS.filter((p) => p.categoryKey === category)),
     [category],
   );
-  const featured = filtered[0] ?? POSTS[0];
-  const gridPosts = filtered.slice(1);
+  // No `?? POSTS[0]` fallback: a category with no posts yet was rendering an
+  // unrelated post as its featured article — "Voice & Music AI" showed an
+  // "AI Video" post. An empty category must read as empty.
+  const featured = filtered[0] ?? null;
+  const gridPosts = filtered.length ? filtered.slice(1) : [];
   const activeCat = category === "all" ? null : BLOG_CATEGORY_MAP[category];
 
   return (
@@ -310,6 +313,28 @@ export default function BlogPage() {
           </div>
         </motion.div>
 
+        {!featured && (
+          <div className="rounded-2xl border border-white/10 p-10 text-center mb-8" style={{ backgroundColor: "#151b3d" }}>
+            <p className="text-white font-semibold text-lg mb-2">Guides for this topic are on the way.</p>
+            <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>
+              We publish new AI guides every week. In the meantime, browse the tools themselves or ask us directly.
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <button onClick={() => setCategory("all")}
+                className="px-5 py-2.5 rounded-xl text-sm font-semibold"
+                style={{ backgroundColor: "rgba(244,185,66,0.12)", color: "#f4b942", border: "1px solid rgba(244,185,66,0.25)" }}>
+                See all guides
+              </button>
+              <Link href="/products"
+                className="px-5 py-2.5 rounded-xl text-sm font-semibold"
+                style={{ backgroundColor: "rgba(244,185,66,0.12)", color: "#f4b942", border: "1px solid rgba(244,185,66,0.25)" }}>
+                Browse all AI tools
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {featured && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -350,6 +375,7 @@ export default function BlogPage() {
             </div>
           </Link>
         </motion.div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {gridPosts.map((post, i) => {

@@ -351,14 +351,26 @@ const GUIDE_PAGES = {
   smallbusiness: { file: "guides/SMBGuide.tsx", label: "Small Business Guide" },
   educators: { file: "guides/EducatorsGuide.tsx", label: "Educators Guide" },
 };
+// Which /best-ai-for-* routes actually exist, read from App.tsx. A hardcoded
+// `key === "smallbusiness" ? "business" : key` mapping assumed every guide had
+// a matching picks page; "educators" does not, so every build shipped a link
+// to /best-ai-for-educators, which 404s. Emit the link only when the target
+// is a real route.
+const BEST_AI_ROUTES = new Set(
+  [...fs.readFileSync(path.join(APP, "src/App.tsx"), "utf8")
+    .matchAll(/<Route path="\/best-ai-for-([a-z-]+)"/g)].map((m) => m[1]),
+);
+const GUIDE_TO_PICKS = { smallbusiness: "business" };
 for (const [key, { file, label }] of Object.entries(GUIDE_PAGES)) {
   const src = fs.readFileSync(path.join(APP, "src/pages", file), "utf8");
   const gm = src.match(/title="([^"]+)"[\s\S]{0,200}?description="([^"]+)"/);
   const title = gm?.[1] ?? `AI Guide for ${label} Bangladesh | AI Premium Shop`;
   const desc = gm?.[2] ?? `Complete AI guide for ${label.toLowerCase()} in Bangladesh. Pick the right AI tools with BDT prices.`;
+  const picks = GUIDE_TO_PICKS[key] ?? key;
+  const picksLink = BEST_AI_ROUTES.has(picks) ? ` · <a href="/best-ai-for-${picks}">Best AI picks</a>` : "";
   writeRoute(`/guides/${key}`, title, desc,
     `<main><h1>${esc(title)}</h1><p>${esc(desc)}</p>
-<p><a href="/guides">All guides</a> · <a href="/products">All AI tools</a> · <a href="/best-ai-for-${key === "smallbusiness" ? "business" : key}">Best AI picks</a></p></main>`);
+<p><a href="/guides">All guides</a> · <a href="/products">All AI tools</a>${picksLink}</p></main>`);
 }
 
 // --- Info pages: parse titles/descriptions from components

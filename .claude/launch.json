@@ -2,39 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "aips-landing",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@workspace/aips-landing", "dev"],
-      "port": 5173,
-      "autoPort": true
-    },
-    {
-      "name": "aips-website",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@workspace/aips-website", "dev"],
-      "port": 3000,
-      "autoPort": true
-    },
-    {
-      "name": "api-server",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@workspace/api-server", "dev"],
-      "port": 3001,
-      "autoPort": true
-    },
-    {
-      "name": "mockup-sandbox",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@workspace/mockup-sandbox", "dev"],
-      "port": 5174,
-      "autoPort": true
-    },
-    {
-      "name": "figma-make-v2",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@workspace/figma-make-v2", "dev"],
-      "port": 5175,
-      "autoPort": true
+      "name": "aips-preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "preview", "--config", "artifacts/aips-landing/vite.config.ts", "--port", "4173"],
+      "port": 4173
     }
   ]
 }

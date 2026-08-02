@@ -189,6 +189,19 @@ raw HTML contains content, hydration clean, no console errors. Head format
 mirrors ProductPage.tsx's seo block — keep them in sync. Brand/category/guide
 routes are still empty shells — extending prerender to them is the next lever.
 
+## Session 4c (2026-08-02) — /products master list upgraded
+
+Audit grounded in Notion (SYS — Problem Library: scam fear, activation delays,
+plan confusion, payment friction; SEO & AIO Keyword Universe: BN/Banglish/EN
+clusters by intent — token in ~/.cortex-sync.env). Shipped and verified live:
+search (?q=), persona quick-filters (?for= — students/freelancers/developers/
+marketers/creators/teachers/business, matched on capabilities+category so new
+products join automatically, each linking to its guide), and real crawlable
+links from cards to product pages via productPath() — the master list went
+from ~5 to 799 product anchors. catalog-pages.json now carries capabilities.
+KNOWN NIT: the h1 doesn't yet reflect persona/search filters (only
+category/access) — fix with the next deploy, don't spend a slot on it alone.
+
 ### Highest-value open items
 1. **Prerender remaining routes** (brand pages, categories, guides, Bangla pages) — /product/* done, ~114 URLs still blank without JS.
 2. **`artifacts/aips-website`** — parallel unused Next.js app with a diverging

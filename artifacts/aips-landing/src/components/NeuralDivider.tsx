@@ -5,10 +5,10 @@
  * network request, stays crisp on every DPI, and inherits brand colours so a
  * palette change can't leave a stale asset behind.
  *
- * Responsive by construction — the viewBox scales with the container and the
- * node positions are percentages, so it works from 320px to ultrawide without
- * breakpoints. `preserveAspectRatio="none"` would distort the circles, so the
- * band keeps its ratio and simply crops.
+ * Responsive by construction — one 20:1 viewBox that matches the band's own
+ * aspect ratio, so nodes stay round and stay visible from 320px to ultrawide
+ * without a single breakpoint. (A square viewBox here scaled 14x and cropped
+ * every node out of frame, leaving only bare diagonal lines.)
  *
  * Motion is opacity-only (no layout, no paint of large areas), and the whole
  * animation is disabled under prefers-reduced-motion via the shared
@@ -24,14 +24,14 @@ interface NeuralDividerProps {
 // Fixed layout — a random one would reflow differently on every render and
 // make the page feel unstable between navigations.
 const NODES = [
-  { x: 6, y: 62, r: 2.5, d: 0 },
-  { x: 18, y: 30, r: 3.5, d: 0.4 },
-  { x: 30, y: 70, r: 2, d: 0.8 },
-  { x: 42, y: 38, r: 4, d: 1.2 },
-  { x: 54, y: 66, r: 2.5, d: 1.6 },
-  { x: 66, y: 28, r: 3, d: 2.0 },
-  { x: 78, y: 60, r: 2, d: 2.4 },
-  { x: 90, y: 36, r: 3.5, d: 2.8 },
+  { x: 8, y: 6.4, r: 0.9, d: 0 },
+  { x: 32, y: 2.9, r: 1.3, d: 0.4 },
+  { x: 56, y: 7.2, r: 0.8, d: 0.8 },
+  { x: 84, y: 3.6, r: 1.5, d: 1.2 },
+  { x: 110, y: 6.8, r: 0.9, d: 1.6 },
+  { x: 138, y: 2.6, r: 1.2, d: 2.0 },
+  { x: 164, y: 6.2, r: 0.8, d: 2.4 },
+  { x: 190, y: 3.4, r: 1.3, d: 2.8 },
 ];
 
 const EDGES: [number, number][] = [
@@ -46,7 +46,7 @@ export function NeuralDivider({ height = 72, className = "" }: NeuralDividerProp
       style={{ height }}
       aria-hidden="true"
     >
-      <svg viewBox="0 0 100 100" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
+      <svg viewBox="0 0 200 10" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
         <defs>
           <linearGradient id="nd-line" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="#f4b942" stopOpacity="0" />

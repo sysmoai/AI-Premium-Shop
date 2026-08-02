@@ -1,0 +1,553 @@
+[
+  {
+    "canonical_id": "quora-poe",
+    "name": "Poe",
+    "raw": {
+      "name": "Poe",
+      "provider": "Quora",
+      "category_raw": "AI Assistants / LLM Chat; Search / agent",
+      "price_usd_raw": "$19.99/mo, $249.99/yr (Page E)",
+      "price_bdt_raw": "Page F Product Index: Poe Pro Shared ৳599/Personal ৳2,990 official $20",
+      "aips_status_raw": "Listed in Product Index (row 7); not confirmed in live catalog sample",
+      "sources": [
+        "AIPS Master AI Subscription Catalog — All Tools, All Categories (BD)",
+        "PRODUCT INDEX — All 23 Products (VAT-Inclusive Pricing 2026), inside AIPS — Product"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "mistral-ai-mistral-le-chat",
+    "name": "Mistral Le Chat",
+    "raw": {
+      "name": "Mistral Le Chat",
+      "provider": "Mistral AI",
+      "category_raw": "AI Assistants / LLM Chat; Open model / enterprise",
+      "price_usd_raw": "Pro $14.99/mo (Page B, Page E); Team $24.99/user/mo (Page B)",
+      "price_bdt_raw": null,
+      "aips_status_raw": "Watchlist/Gap status per Top100 page (not yet activated)",
+      "sources": [
+        "AIPS — Global AI Tools, Subscriptions & APIs Complete Market Intelligence Report — Verified 2026-07-30",
+        "AIPS Master AI Subscription Catalog — All Tools, All Categories (BD)",
+        "AIPS Top 100 AI Product Universe v1 — Subscription + Agentic AI + API Platforms"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "canva-canva-pro",
+    "name": "Canva Pro",
+    "raw": {
+      "name": "Canva Pro",
+      "provider": "Canva",
+      "category_raw": "AI Image & Design; Image generation",
+      "price_usd_raw": "Pro $18/mo (~$144/yr) per Page E; DB1: Business subscription, no explicit USD row; Page B: Pro $144/yr, Business $250/yr/person",
+      "price_bdt_raw": "DB6 live catalog: Canva Pro ৳199 (orig ৳499) | Page D Top100: Canva Pro Shared ৳399 | Page F Product Index: Canva Pro Shared ৳399/Personal ৳2,299 official $15",
+      "aips_status_raw": "Active, Featured, high order count (31) in live catalog (PG_ID 8)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Global AI Tools, Subscriptions & APIs Complete Market Intelligence Report — Verified 2026-07-30",
+        "AIPS Top 100 AI Product Universe v1 — Subscription + Agentic AI + API Platforms",
+        "AIPS Master AI Subscription Catalog — All Tools, All Categories (BD)",
+        "PRODUCT INDEX — All 23 Products (VAT-Inclusive Pricing 2026), inside AIPS — Product",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [
+        "Shared price ৳199 (live catalog) vs ৳399 (Top100/Product Index) — 2x difference."
+      ],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "recraft-recraft",
+    "name": "Recraft",
+    "raw": {
+      "name": "Recraft",
+      "provider": "Recraft",
+      "category_raw": "AI Image & Design; Image generation",
+      "price_usd_raw": "Basic $12, Advanced $48 (Page E)",
+      "price_bdt_raw": null,
+      "aips_status_raw": "Not in AIPS catalogs; research-only mention",
+      "sources": [
+        "AIPS — Global AI Tools, Subscriptions & APIs Complete Market Intelligence Report — Verified 2026-07-30",
+        "AIPS Master AI Subscription Catalog — All Tools, All Categories (BD)"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "stability-ai-stability-ai-stable-diffusion",
+    "name": "Stability AI (Stable Diffusion)",
+    "raw": {
+      "name": "Stability AI (Stable Diffusion)",
+      "provider": "Stability AI",
+      "category_raw": "Image generation",
+      "price_usd_raw": "Hosted API/open weights, no flat consumer price disclosed (DB1)",
+      "price_bdt_raw": null,
+      "aips_status_raw": "Needs re-verification / Partial-custom pricing per DB1",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Global AI Tools, Subscriptions & APIs Complete Market Intelligence Report — Verified 2026-07-30"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "black-forest-labs-black-forest-labs-flux",
+    "name": "Black Forest Labs / FLUX",
+    "raw": {
+      "name": "Black Forest Labs / FLUX",
+      "provider": "Black Forest Labs",
+      "category_raw": "Image generation; Media API",
+      "price_usd_raw": "Hosted API + open/dev weights + enterprise licensing, no flat price (DB1)",
+      "price_bdt_raw": null,
+      "aips_status_raw": "Partial/custom pricing per DB1",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Global AI Tools, Subscriptions & APIs Complete Market Intelligence Report — Verified 2026-07-30"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "luma-ai-luma-ai-dream-machine",
+    "name": "Luma AI (Dream Machine)",
+    "raw": {
+      "name": "Luma AI (Dream Machine)",
+      "provider": "Luma AI",
+      "category_raw": "Video generation",
+      "price_usd_raw": "Plus $30, Pro $90, Ultra $300/mo (Page B); Page E: $9.99/$29.99/$99.99",
+      "price_bdt_raw": null,
+      "aips_status_raw": "Watchlist/Gap status per Top100 page",
+      "sources": [
+        "AIPS — Global AI Tools, Subscriptions & APIs Complete Market Intelligence Report — Verified 2026-07-30",
+        "AIPS Master AI Subscription Catalog — All Tools, All Categories (BD)",
+        "AIPS Top 100 AI Product Universe v1 — Subscription + Agentic AI + API Platforms"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "bytedance-capcut-pro",
+    "name": "CapCut Pro",
+    "raw": {
+      "name": "CapCut Pro",
+      "provider": "ByteDance",
+      "category_raw": "AI Video & Audio; Video editing",
+      "price_usd_raw": "~$7.99-$9.99 region-varies (Page E)",
+      "price_bdt_raw": "DB6 live catalog: CapCut Pro ৳299 (orig ৳599) | Page D Top100: CapCut Pro (AI) Shared ৳299 | Page F Product Index: CapCut Pro Shared ৳299/Personal ৳1,299 official $8",
+      "aips_status_raw": "Active, Featured in live catalog (PG_ID 84)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Global AI Tools, Subscriptions & APIs Complete Market Intelligence Report — Verified 2026-07-30",
+        "AIPS Top 100 AI Product Universe v1 — Subscription + Agentic AI + API Platforms",
+        "AIPS Master AI Subscription Catalog — All Tools, All Categories (BD)",
+        "PRODUCT INDEX — All 23 Products (VAT-Inclusive Pricing 2026), inside AIPS — Product",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "grammarly-grammarly",
+    "name": "Grammarly",
+    "raw": {
+      "name": "Grammarly",
+      "provider": "Grammarly",
+      "category_raw": "AI Productivity; Writing / Productivity",
+      "price_usd_raw": "Pro $30/mo ($12 annual) (Page E)",
+      "price_bdt_raw": "DB6 live catalog: Grammarly Premium ৳299 (orig ৳1,500), Featured, order count 201 | Page D Top100: Grammarly Premium Shared ৳399 | Page F Product Index: Grammarly Premium Shared ৳399/Personal ৳1,799 official $12",
+      "aips_status_raw": "Active, Featured in live catalog (PG_ID 16)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Global AI Tools, Subscriptions & APIs Complete Market Intelligence Report — Verified 2026-07-30",
+        "AIPS Top 100 AI Product Universe v1 — Subscription + Agentic AI + API Platforms",
+        "AIPS Master AI Subscription Catalog — All Tools, All Categories (BD)",
+        "PRODUCT INDEX — All 23 Products (VAT-Inclusive Pricing 2026), inside AIPS — Product",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [
+        "৳299 (live catalog) vs ৳399 (Top100/Product Index)."
+      ],
+      "aliases": [
+        "Grammarly Premium"
+      ],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "linkedin-linkedin-premium-career",
+    "name": "LinkedIn Premium Career",
+    "raw": {
+      "name": "LinkedIn Premium Career",
+      "provider": "LinkedIn",
+      "category_raw": "Career & Learning",
+      "price_usd_raw": "$39.99/mo (Page E)",
+      "price_bdt_raw": null,
+      "aips_status_raw": "P0 priority per Page E; separate LinkedIn Premium Bangladesh product page exists in workspace (not opened in this pass)",
+      "sources": [
+        "AIPS Master AI Subscription Catalog — All Tools, All Categories (BD)"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-ai-premium-monthly-access-pass",
+    "name": "AI Premium Monthly Access Pass",
+    "raw": {
+      "name": "AI Premium Monthly Access Pass",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Freelancer Packages (bundle)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳999 (orig ৳2,290), Featured",
+      "aips_status_raw": "Active bundle in live catalog (PG_ID 29)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": "Bundle/package, not a single external tool — included per instructions to capture everything found."
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-full-stack-freelancer-stack",
+    "name": "Full-Stack Freelancer Stack",
+    "raw": {
+      "name": "Full-Stack Freelancer Stack",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Freelancer Packages (bundle: Cursor Pro, Bolt.new, Vercel Pro, Supabase, GitHub Copilot)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳4,999 (orig ৳7,990), Featured",
+      "aips_status_raw": "Active bundle (PG_ID 97)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-video-production-suite",
+    "name": "Video Production Suite",
+    "raw": {
+      "name": "Video Production Suite",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Freelancer Packages (bundle: Runway, CapCut Pro, Synthesia, ElevenLabs, HeyGen)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳5,999 (orig ৳9,990)",
+      "aips_status_raw": "Active bundle (PG_ID 99)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-digital-marketing-pro-pack",
+    "name": "Digital Marketing Pro Pack",
+    "raw": {
+      "name": "Digital Marketing Pro Pack",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Freelancer Packages (bundle: Jasper AI, Canva Pro, ChatGPT Business, HubSpot)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳3,499 (orig ৳5,990)",
+      "aips_status_raw": "Active bundle (PG_ID 98)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-content-creator-pack",
+    "name": "Content Creator Pack",
+    "raw": {
+      "name": "Content Creator Pack",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Student Packages (bundle: CapCut Pro, Canva Pro, ChatGPT Plus, ElevenLabs)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳1,499 (orig ৳2,790), Featured",
+      "aips_status_raw": "Active bundle (PG_ID 96)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-ai-developer-starter-pack",
+    "name": "AI Developer Starter Pack",
+    "raw": {
+      "name": "AI Developer Starter Pack",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Student Packages (bundle: Bolt.new, Replit Core, GitHub Copilot)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳1,299 (orig ৳2,490), Featured",
+      "aips_status_raw": "Active bundle (PG_ID 95)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-b2b-implementation-package",
+    "name": "B2B Implementation Package",
+    "raw": {
+      "name": "B2B Implementation Package",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Freelancer Packages (done-for-you rollout)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳25,000 (orig ৳34,900)",
+      "aips_status_raw": "Active bundle (PG_ID 67)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-business-power-package",
+    "name": "Business Power Package",
+    "raw": {
+      "name": "Business Power Package",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Freelancer Packages (bundle: ChatGPT Business Personal, Claude Pro Personal, Notion Business, Adobe CC)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳15,000 (orig ৳19,900)",
+      "aips_status_raw": "Active bundle (PG_ID 66)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-designer-power-pack",
+    "name": "Designer Power Pack",
+    "raw": {
+      "name": "Designer Power Pack",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Freelancer Packages (bundle: Adobe CC, Midjourney, Ideogram)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳4,990 (orig ৳8,490)",
+      "aips_status_raw": "Active bundle (PG_ID 27)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-freelancer-pro-pack",
+    "name": "Freelancer Pro Pack",
+    "raw": {
+      "name": "Freelancer Pro Pack",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Freelancer Packages (bundle: ChatGPT personal, Midjourney, Canva, ElevenLabs)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳3,999 (orig ৳5,990), Featured",
+      "aips_status_raw": "Active bundle (PG_ID 26)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-freelancer-starter-pack",
+    "name": "Freelancer Starter Pack",
+    "raw": {
+      "name": "Freelancer Starter Pack",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Freelancer Packages",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳1,099 (orig ৳1,690)",
+      "aips_status_raw": "Active bundle (PG_ID 25)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-video-creator-pack",
+    "name": "Video Creator Pack",
+    "raw": {
+      "name": "Video Creator Pack",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Freelancer Packages (bundle: Runway, ElevenLabs, HeyGen, ChatGPT)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳5,290 (orig ৳8,990)",
+      "aips_status_raw": "Active bundle (PG_ID 28)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-internship-boost-pack",
+    "name": "Internship Boost Pack",
+    "raw": {
+      "name": "Internship Boost Pack",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Student Packages",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳699 (orig ৳1,490)",
+      "aips_status_raw": "Active bundle (PG_ID 24)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-thesis-writer-pack",
+    "name": "Thesis Writer Pack",
+    "raw": {
+      "name": "Thesis Writer Pack",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Student Packages (bundle: Claude Pro Personal, Grammarly, Perplexity)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳1,690 (orig ৳2,890)",
+      "aips_status_raw": "Active bundle (PG_ID 23)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-creative-student-bundle",
+    "name": "Creative Student Bundle",
+    "raw": {
+      "name": "Creative Student Bundle",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Student Packages (bundle: Canva Pro, Midjourney, Runway)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳1,399 (orig ৳2,890)",
+      "aips_status_raw": "Active bundle (PG_ID 22)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-research-powerhouse-package",
+    "name": "Research Powerhouse Package",
+    "raw": {
+      "name": "Research Powerhouse Package",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Student Packages (bundle: Claude, Perplexity, Grammarly)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳1,199 (orig ৳2,290)",
+      "aips_status_raw": "Active bundle (PG_ID 21)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-university-pro-package",
+    "name": "University Pro Package",
+    "raw": {
+      "name": "University Pro Package",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Student Packages (bundle: ChatGPT, Claude, Notion AI)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳899 (orig ৳1,990), Featured",
+      "aips_status_raw": "Active bundle (PG_ID 20)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  },
+  {
+    "canonical_id": "aips-bundle-student-essentials-package",
+    "name": "Student Essentials Package",
+    "raw": {
+      "name": "Student Essentials Package",
+      "provider": "AIPS (bundle)",
+      "category_raw": "Student Packages (bundle: ChatGPT Plus, Grammarly, Canva Pro)",
+      "price_usd_raw": null,
+      "price_bdt_raw": "DB6 live catalog: ৳449 (orig ৳1,290), Featured",
+      "aips_status_raw": "Active bundle (PG_ID 19)",
+      "sources": [
+        "AIPS — Global AI Labs, Subscriptions & API Intelligence (DB 3333d3da, live/current copy)",
+        "AIPS — Products (Catalog) [live database nested inside AIPS Product Catalog — Master]"
+      ],
+      "conflicts": [],
+      "aliases": [],
+      "notes": null
+    }
+  }
+]

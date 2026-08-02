@@ -1,0 +1,191 @@
+[
+  {
+    "canonical_id": "openai-chatgpt-plus",
+    "name": "ChatGPT Plus",
+    "conflicts": [
+      "Shared-seat BDT price differs across sources: DB6 live catalog ৳350 vs AI Offers Master ৳350/৳399 vs Top100 page ৳499 vs Product Index page ৳599 — not resolved, flagging for CEO pricing review (matches known pricing-drift issue noted elsewhere in workspace)."
+    ]
+  },
+  {
+    "canonical_id": "openai-chatgpt-business",
+    "name": "ChatGPT Business",
+    "conflicts": [
+      "'ChatGPT Business/Team — Personal-like (1 user)' priced ৳3,899 in AI Offers Master vs ৳3,990 'ChatGPT Business Personal' in live Products Catalog — likely same SKU, price mismatch not resolved."
+    ]
+  },
+  {
+    "canonical_id": "anthropic-claude-pro",
+    "name": "Claude Pro",
+    "conflicts": [
+      "Personal-seat price: DB6/Product Index ৳2,990 vs AI Offers Master ৳2,950. Shared-seat price: DB6 Premium Shared ৳1,495 vs Top100/Product Index Shared ৳599 vs Tool-stack starter table ৳699 — multiple unreconciled BDT figures."
+    ]
+  },
+  {
+    "canonical_id": "anthropic-claude-team",
+    "name": "Claude Team",
+    "conflicts": [
+      "৳4,390 (live catalog) vs ৳3,950 (AI Offers Master) for what appears to be the same Team/Premium personal seat product."
+    ]
+  },
+  {
+    "canonical_id": "google-google-ai-pro-gemini-advanced",
+    "name": "Google AI Pro (Gemini Advanced)",
+    "conflicts": [
+      "Price varies ৳499-৳599 depending on source, and Product Index cites $20 official USD while Market Intel report cites $19.99 for 'AI Pro' — minor rounding, plus Personal-seat price differs (৳2,990 Product Index vs ৳500 live catalog, likely different SKU/tier)."
+    ]
+  },
+  {
+    "canonical_id": "perplexity-perplexity-pro",
+    "name": "Perplexity Pro",
+    "conflicts": [
+      "Personal-seat price differs sharply: ৳3,290 (live catalog) vs ৳2,742 (AI Offers Master, formula-derived) vs ৳2,950 (Product Index). Shared-seat: ৳350 (live catalog/Offers Master) vs ৳599 (Top100/Product Index)."
+    ]
+  },
+  {
+    "canonical_id": "perplexity-perplexity-max",
+    "name": "Perplexity Max",
+    "conflicts": [
+      "৳29,900 (live catalog) vs ৳10,990 (Product Index, described at $70 official vs actual $200 US price) — Product Index figure looks stale/miscalculated."
+    ]
+  },
+  {
+    "canonical_id": "xai-supergrok-grok-xai",
+    "name": "SuperGrok / Grok (xAI)",
+    "conflicts": [
+      "Personal-seat price ৳4,990 (Top100/Product Index) not present as a live catalog SKU (live catalog only has ৳3,990 Standard / ৳1,495 Lite) — mapping unclear."
+    ]
+  },
+  {
+    "canonical_id": "manus-meta-manus-ai-manus-ai",
+    "name": "Manus AI",
+    "conflicts": [
+      "At least 4 different BDT figures across sources: ৳2,490 (live catalog personal), ৳1,495 (Top100/Product Index service), ৳699 (Tool-stack table starter) — this is the exact ৳1,495 pricing-drift pattern flagged elsewhere in the workspace memory."
+    ]
+  },
+  {
+    "canonical_id": "midjourney-midjourney",
+    "name": "Midjourney",
+    "conflicts": [
+      "Personal-seat Standard price ৳4,390 (live catalog) vs ৳4,990 (Product Index). Pro Personal ৳8,970 (live catalog) vs ৳9,490 (Product Index)."
+    ]
+  },
+  {
+    "canonical_id": "canva-canva-pro",
+    "name": "Canva Pro",
+    "conflicts": [
+      "Shared price ৳199 (live catalog) vs ৳399 (Top100/Product Index) — 2x difference."
+    ]
+  },
+  {
+    "canonical_id": "ideogram-ai-ideogram",
+    "name": "Ideogram",
+    "conflicts": [
+      "Live catalog Ideogram Pro Personal ৳8,970 vs Product Index ৳3,990 — large mismatch, may be different tier."
+    ]
+  },
+  {
+    "canonical_id": "leonardoai-leonardo-ai",
+    "name": "Leonardo AI",
+    "conflicts": [
+      "Shared price ৳599 (live catalog) vs ৳499 (Product Index)."
+    ]
+  },
+  {
+    "canonical_id": "runway-runway",
+    "name": "Runway",
+    "conflicts": [
+      "Runway 'Standard' Personal price ৳1,794 (live catalog) vs ৳1,299 (Top100) — labeled the same tier, different price."
+    ]
+  },
+  {
+    "canonical_id": "heygen-heygen",
+    "name": "HeyGen",
+    "conflicts": [
+      "৳1,499 (live catalog, labeled Shared) vs ৳1,399 (Top100, labeled Personal) — same tool, different seat-type label and price."
+    ]
+  },
+  {
+    "canonical_id": "synthesia-synthesia",
+    "name": "Synthesia",
+    "conflicts": [
+      "Live catalog ৳2,499 vs Top100 ৳1,499 for 'Starter' tier."
+    ]
+  },
+  {
+    "canonical_id": "descript-descript",
+    "name": "Descript",
+    "conflicts": [
+      "Three different BDT prices: ৳1,299 (live catalog), ৳1,099 (Top100), ৳599 (Offers Master/tool-stack table)."
+    ]
+  },
+  {
+    "canonical_id": "elevenlabs-elevenlabs",
+    "name": "ElevenLabs",
+    "conflicts": [
+      "Creator-tier price: ৳3,289 (live catalog) vs ৳950 (Top100/Product Index, likely different seat class) vs ৳599 (Offers Master starter) — very wide spread, needs SKU reconciliation."
+    ]
+  },
+  {
+    "canonical_id": "suno-suno",
+    "name": "Suno",
+    "conflicts": [
+      "Personal 'Premier' price ৳3,990 (live catalog) vs Product Index Personal ৳4,990 for what's badged as the top Suno tier."
+    ]
+  },
+  {
+    "canonical_id": "github-microsoft-github-copilot",
+    "name": "GitHub Copilot",
+    "conflicts": [
+      "Personal price ৳1,495 (live catalog / Product Index) vs ৳399 (Top100, though Top100 labels it 'Personal-seat' at what looks like a shared price point) — labeling inconsistent."
+    ]
+  },
+  {
+    "canonical_id": "vercel-v0dev-vercel",
+    "name": "v0.dev (Vercel)",
+    "conflicts": [
+      "৳1,090 (live catalog) vs ৳999 (Top100)."
+    ]
+  },
+  {
+    "canonical_id": "lovable-lovabledev",
+    "name": "Lovable.dev",
+    "conflicts": [
+      "৳999 (live catalog) vs ৳799 (Offers Master/tool-stack table)."
+    ]
+  },
+  {
+    "canonical_id": "grammarly-grammarly",
+    "name": "Grammarly",
+    "conflicts": [
+      "৳299 (live catalog) vs ৳399 (Top100/Product Index)."
+    ]
+  },
+  {
+    "canonical_id": "notion-notion-ai-notion-business",
+    "name": "Notion AI / Notion Business",
+    "conflicts": [
+      "Notion AI Add-on ৳390 (live catalog) vs Notion Plus ৳499 (Product Index) — may be different products (add-on vs plan) but names overlap."
+    ]
+  },
+  {
+    "canonical_id": "writesonic-writesonic",
+    "name": "Writesonic",
+    "conflicts": [
+      "৳890 (live catalog) vs ৳499 (Top100) for Writesonic Pro/Individual."
+    ]
+  },
+  {
+    "canonical_id": "make-make-makecom",
+    "name": "Make (Make.com)",
+    "conflicts": [
+      "৳1,390 (live catalog) vs ৳599 (Offers Master)."
+    ]
+  },
+  {
+    "canonical_id": "n8n-n8n",
+    "name": "n8n",
+    "conflicts": [
+      "Live catalog itself has two 'n8n Cloud Starter' rows at different prices (৳899 vs ৳3,249 orig ৳1,490 vs ৳3,080) — internal duplicate/inconsistency, not just cross-source. Also Top100 cites ৳999 Personal, a third figure."
+    ]
+  }
+]

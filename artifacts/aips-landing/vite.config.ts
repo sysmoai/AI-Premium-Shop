@@ -61,6 +61,12 @@ export default defineConfig({
           react: ["react", "react-dom", "wouter"],
           query: ["@tanstack/react-query"],
           icons: ["lucide-react"],
+          // framer-motion was being inlined into every route chunk that used
+          // it (BrandPage, CategoryPage, products, ComparisonPage…), so the
+          // same ~40 KB of animation runtime downloaded again on each
+          // navigation. Hoisting it to one long-lived chunk means it is
+          // fetched once and cached across the whole site.
+          motion: ["framer-motion"],
         },
       },
     },

@@ -31,7 +31,13 @@ const brandSlugs = new Set([...routesSrc.matchAll(/"([a-z0-9-]+)"/g)].map((m) =>
 
 const template = fs.readFileSync(path.join(DIST, "index.html"), "utf8");
 if (!template.includes('<div id="root"></div>')) {
-  console.error("prerender: template root div not found — bailing rather than corrupting output");
+  // Most likely cause: this script was run twice without an intervening
+  // `vite build`. The homepage section at the bottom overwrites
+  // dist/public/index.html — the same file read here as the template — so on
+  // a second standalone run the root div is already populated. Bailing keeps
+  // us from nesting prerendered content inside itself. Run `pnpm run build`.
+  console.error("prerender: template root div not found in dist/public/index.html — bailing rather than corrupting output.");
+  console.error("prerender: run `pnpm run build` (vite build regenerates a clean index.html) rather than this script alone.");
   process.exit(1);
 }
 
@@ -430,3 +436,80 @@ for (const route of smRoutes) {
   fallbacks++;
 }
 console.log(`prerender: fallback sweep wrote ${fallbacks} pages; sitemap coverage now ${smRoutes.filter((r) => r === "/" || fs.existsSync(path.join(DIST, r.replace(/^\//, ""), "index.html"))).length}/${smRoutes.length}`);
+
+// ---- Homepage. The one route the fallback sweep deliberately skips, and the
+// only page on the site that was still shipping an empty <div id="root"> —
+// i.e. the single most important URL was invisible to any crawler that does
+// not execute JS. Content mirrors what Home.tsx actually renders: the hero
+// headline, catalog-derived counts/prices, the real category list, featured
+// brands and the same FAQ set (parsed from Home.tsx, never retyped).
+{
+  const homeSrc = fs.readFileSync(path.join(APP, "src/pages/Home.tsx"), "utf8");
+  const faqs = [...homeSrc.matchAll(/question:\s*"([^"]+)",\s*answer:\s*\n?\s*"([^"]+)"/g)]
+    .map((m) => ({ q: m[1], a: m[2] }));
+  if (!faqs.length) console.warn("prerender: homepage FAQ parse matched 0 — check Home.tsx FAQS shape");
+
+  const prices = products.map((p) => p.price).filter((x) => typeof x === "number");
+  const minPrice = Math.min(...prices);
+  const maxPrice = Math.max(...prices);
+  const total = distinct.length;
+
+  // Featured = the cheapest listed tier of each of the best-known brands, so
+  // the homepage states real, current entry prices rather than a static list.
+  const featuredSlugs = [
+    "chatgpt-plus-bangladesh", "claude-pro-bangladesh", "midjourney-bangladesh",
+    "gemini-advanced-bangladesh", "github-copilot-bangladesh", "perplexity-pro-bangladesh",
+    "elevenlabs-bangladesh", "runway-bangladesh", "canva-pro-bangladesh",
+  ];
+  const featuredLi = featuredSlugs.map((slug) => {
+    const recs = products.filter((p) => p.slug === slug);
+    if (!recs.length) return "";
+    const ps = recs.map((r) => r.price).filter((x) => typeof x === "number");
+    const label = recs[0].brand ?? recs[0].name;
+    return `<li><a href="${linkFor(slug)}">${esc(label)}</a>${ps.length ? ` — from ${fmtBDT(Math.min(...ps))}/month` : " — price on WhatsApp"}</li>`;
+  }).filter(Boolean).join("");
+
+  const catLi = Object.entries(CATEGORY_LABELS).map(([cat, label]) => {
+    const n = distinct.filter((p) => p.category === cat).length;
+    if (!n) return "";
+    return `<li><a href="/${cat === "bundles" ? "bundles" : cat}">${esc(label)}</a> — ${n} tools</li>`;
+  }).filter(Boolean).join("");
+
+  const ld = [
+    { "@context": "https://schema.org", "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a } })) },
+  ];
+
+  const body = `<main>
+<h1>What Takes You 3 Hours — AI Does in 15 Minutes.</h1>
+<p><strong>${total} premium AI tools</strong>, ${products.length} plans from ${fmtBDT(minPrice)} to ${fmtBDT(maxPrice)}. ChatGPT, Claude, Midjourney, Notion and more — <strong>no international card needed</strong>.</p>
+<p>Pay with bKash, Nagad, Rocket, bank transfer or Binance. Delivery over WhatsApp, typically in 5–30 minutes, with a 30-day replacement warranty. Trusted by 10,000+ customers across Bangladesh since 2022.</p>
+
+<h2>Most wanted AI subscriptions in Bangladesh</h2>
+<ul>${featuredLi}</ul>
+
+<h2>Browse by category</h2>
+<ul>${catLi}</ul>
+
+<h2>Find the right AI for your work</h2>
+<ul>
+<li><a href="/best-ai-for-students">Best AI tools for students</a></li>
+<li><a href="/best-ai-for-freelancers">Best AI tools for freelancers</a></li>
+<li><a href="/best-ai-for-developers">Best AI tools for developers</a></li>
+<li><a href="/best-ai-for-creators">Best AI tools for content creators</a></li>
+<li><a href="/best-ai-for-business">Best AI tools for business</a></li>
+<li><a href="/best-ai-for-job-seekers">Best AI tools for job seekers</a></li>
+</ul>
+
+${faqs.length ? `<h2>Frequently asked questions</h2>${faqs.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}` : ""}
+
+<p><a href="/products">Browse all ${total} AI tools</a> · <a href="/pricing">Pricing</a> · <a href="/bundles">Bundles</a> · <a href="/how-to-order">How to order</a> · <a href="/blog">AI guides</a> · <a href="/bn">বাংলা</a></p>
+</main>`;
+
+  writeRoute("/",
+    `AI Premium Shop — ${total} Premium AI Tools Bangladesh | From BDT ${minPrice}`,
+    `Buy ChatGPT, Claude, Midjourney, Copilot, DeepSeek and more AI tools in Bangladesh. bKash/Nagad payment, WhatsApp delivery. From BDT ${minPrice}/month.`,
+    body, ld);
+  console.log(`prerender: homepage written (${faqs.length} FAQs, ${featuredSlugs.length} featured brands)`);
+}

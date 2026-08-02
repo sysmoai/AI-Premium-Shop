@@ -176,7 +176,7 @@ export function PricingTiersSection() {
               {/* CTA */}
               <a
                 href="/products"
-                className="w-full py-2 rounded-lg text-center text-xs font-semibold transition-all duration-200 hover:scale-105"
+                className="w-full min-h-[44px] flex items-center justify-center rounded-lg text-center text-xs font-semibold transition-all duration-200 hover:scale-105"
                 style={{
                   backgroundColor: tier.color + "22",
                   color: tier.color,

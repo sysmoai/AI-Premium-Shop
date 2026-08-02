@@ -249,7 +249,7 @@ export function OffersSection() {
                       href={`https://wa.me/8801865385348?text=${encodeURIComponent(product.msg)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-2 px-4 rounded-lg font-bold text-sm flex items-center justify-center gap-1.5 transition-colors duration-200"
+                      className="w-full min-h-[44px] px-4 rounded-lg font-bold text-sm flex items-center justify-center gap-1.5 transition-colors duration-200"
                       style={{ backgroundColor: "#f4b942", color: "#0a0e27" }}
                       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#fbbf24")}
                       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f4b942")}

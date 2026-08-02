@@ -127,6 +127,122 @@ const NEW = [
     bn: "Google-এর রিসার্চ ও নোট অ্যাসিস্ট্যান্ট — আপনার আপলোড করা ডকুমেন্টের ভিত্তিতে প্রশ্নের উত্তর, সামারি ও স্টাডি গাইড তৈরি করে। ফ্রি টিয়ার আছে; বেশি লিমিটের জন্য পেইড প্ল্যান।",
     caps: ["research", "rag", "summarize", "audio"],
   },
+  // ---- Batch 2 (2026-08-02): D2 coverage gaps from the discovery scope ----
+  // D1 measured at 15/16 (only Meta AI absent, and it is free — nothing to sell).
+  // D2 measured at 21/38; these are the well-known, currently-operating paid
+  // products from that gap. Obscure entries stay in atlas-needs-verification.md.
+  {
+    name: "Poe", brand: "Poe", provider: "Quora", category: "ai-assistant",
+    color: "#5d3fd3", access: "personal", src: "https://poe.com",
+    desc: "Quora's multi-model AI app — reach many leading chat and image models through one paid subscription instead of subscribing to each provider separately. Useful when you want to compare model outputs side by side.",
+    bn: "Quora-এর মাল্টি-মডেল AI অ্যাপ — একটি সাবস্ক্রিপশনেই একাধিক শীর্ষ চ্যাট ও ইমেজ মডেল ব্যবহার করা যায়, আলাদা আলাদা সাবস্ক্রিপশন লাগে না।",
+    caps: ["text", "image-gen", "multi-model"],
+  },
+  {
+    name: "Genspark", brand: "Genspark", provider: "Genspark", category: "ai-assistant",
+    color: "#0d9488", access: "personal", src: "https://www.genspark.ai",
+    desc: "AI agent and search assistant that runs multi-step research tasks and compiles the results into structured pages rather than returning a list of links.",
+    bn: "AI এজেন্ট ও সার্চ অ্যাসিস্ট্যান্ট — মাল্টি-স্টেপ রিসার্চ চালিয়ে ফলাফল গুছিয়ে উপস্থাপন করে, শুধু লিংকের তালিকা নয়।",
+    caps: ["search", "agents", "research"],
+  },
+  {
+    name: "Consensus", brand: "Consensus", provider: "Consensus", category: "ai-workspace",
+    color: "#1d4ed8", access: "personal", src: "https://consensus.app",
+    desc: "AI search engine over peer-reviewed research papers — ask a question and get findings drawn from published studies with citations. Built for literature review and evidence-checking rather than general web search.",
+    bn: "পিয়ার-রিভিউড গবেষণাপত্রের উপর AI সার্চ ইঞ্জিন — প্রশ্ন করলে প্রকাশিত গবেষণা থেকে সাইটেশনসহ উত্তর দেয়। থিসিস ও লিটারেচার রিভিউর জন্য উপযোগী।",
+    caps: ["research", "search", "citations"],
+  },
+  {
+    name: "Hailuo AI (MiniMax)", brand: "Hailuo", provider: "MiniMax", category: "ai-video",
+    color: "#e11d48", access: "personal", src: "https://hailuoai.video",
+    desc: "MiniMax's video generation model — create short video clips from text prompts or a starting image. Sold on credit-based plans, with output quality that has made it popular for social and ad content.",
+    bn: "MiniMax-এর ভিডিও জেনারেশন মডেল — টেক্সট বা ছবি থেকে ছোট ভিডিও ক্লিপ তৈরি করে। ক্রেডিট-ভিত্তিক প্ল্যান, সোশ্যাল ও অ্যাড কনটেন্টে জনপ্রিয়।",
+    caps: ["video-gen", "image-to-video"],
+  },
+  {
+    name: "PixVerse", brand: "PixVerse", provider: "AIsphere", category: "ai-video",
+    color: "#7c3aed", access: "personal", src: "https://pixverse.ai",
+    desc: "AI video generator for short-form content — text-to-video and image-to-video with motion and style controls, commonly used for social clips and effects-driven videos.",
+    bn: "শর্ট-ফর্ম কনটেন্টের জন্য AI ভিডিও জেনারেটর — টেক্সট ও ছবি থেকে ভিডিও, মোশন ও স্টাইল কন্ট্রোলসহ।",
+    caps: ["video-gen", "image-to-video"],
+  },
+  {
+    name: "Vidu", brand: "Vidu", provider: "ShengShu Technology", category: "ai-video",
+    color: "#0891b2", access: "personal", src: "https://www.vidu.com",
+    desc: "Video generation model from ShengShu — text-to-video and reference-based generation with character consistency features aimed at short narrative and promotional clips.",
+    bn: "ShengShu-এর ভিডিও জেনারেশন মডেল — টেক্সট থেকে ভিডিও ও রেফারেন্স-ভিত্তিক জেনারেশন, ক্যারেক্টার কনসিসটেন্সি ফিচারসহ।",
+    caps: ["video-gen", "character-consistency"],
+  },
+  {
+    name: "D-ID", brand: "D-ID", provider: "D-ID", category: "ai-video",
+    color: "#ec4899", access: "personal", src: "https://www.d-id.com/pricing",
+    desc: "Talking-avatar platform that animates a photo or digital human to speak your script, with support for multiple languages. Used for presenter-style videos without filming.",
+    bn: "টকিং-অ্যাভাটার প্ল্যাটফর্ম — ছবি বা ডিজিটাল হিউম্যানকে আপনার স্ক্রিপ্ট বলাতে পারে, একাধিক ভাষায়। ক্যামেরা ছাড়াই প্রেজেন্টার ভিডিও।",
+    caps: ["avatar", "video-gen", "tts"],
+  },
+  {
+    name: "Captions", brand: "Captions", provider: "Captions", category: "ai-video",
+    color: "#111827", access: "personal", src: "https://www.captions.ai",
+    desc: "AI video editing app built for talking-head content — automatic subtitles, eye-contact correction, dubbing and editing aimed at creators producing short-form social video.",
+    bn: "টকিং-হেড কনটেন্টের জন্য AI ভিডিও এডিটিং অ্যাপ — অটোমেটিক সাবটাইটেল, আই-কন্টাক্ট কারেকশন, ডাবিং ও এডিটিং।",
+    caps: ["video-edit", "subtitles", "dubbing"],
+  },
+  {
+    name: "Tavus", brand: "Tavus", provider: "Tavus", category: "ai-video",
+    color: "#2563eb", access: "personal", src: "https://www.tavus.io",
+    desc: "AI video platform for personalized and conversational video — generate a digital replica that can address individual recipients or hold real-time video conversations. Primarily an API/business product.",
+    bn: "পার্সোনালাইজড ও কথোপকথনমূলক ভিডিওর জন্য AI প্ল্যাটফর্ম — ডিজিটাল রেপ্লিকা তৈরি করে ব্যক্তিভিত্তিক ভিডিও বা রিয়েল-টাইম কথোপকথন চালাতে পারে।",
+    caps: ["avatar", "video-gen", "api"],
+  },
+  {
+    name: "Soundraw", brand: "Soundraw", provider: "Soundraw", category: "ai-voice-music",
+    color: "#f59e0b", access: "personal", src: "https://soundraw.io",
+    desc: "AI music generator for creators — produce royalty-free background tracks by choosing mood, genre and length, then customise the arrangement. Aimed at video and social content soundtracks.",
+    bn: "ক্রিয়েটরদের জন্য AI মিউজিক জেনারেটর — মুড, জঁর ও দৈর্ঘ্য বেছে রয়্যালটি-ফ্রি ব্যাকগ্রাউন্ড ট্র্যাক তৈরি ও কাস্টমাইজ করা যায়।",
+    caps: ["music-gen", "royalty-free"],
+  },
+  {
+    name: "AIVA", brand: "AIVA", provider: "AIVA Technologies", category: "ai-voice-music",
+    color: "#6366f1", access: "personal", src: "https://www.aiva.ai",
+    desc: "AI music composition tool focused on soundtrack and score generation — create original instrumental pieces in a chosen style and edit the composition, with licensing tiers for commercial use.",
+    bn: "সাউন্ডট্র্যাক ও স্কোর তৈরির জন্য AI মিউজিক কম্পোজিশন টুল — নির্দিষ্ট স্টাইলে অরিজিনাল ইনস্ট্রুমেন্টাল তৈরি ও এডিট করা যায়।",
+    caps: ["music-gen", "composition"],
+  },
+  {
+    name: "Tabnine", brand: "Tabnine", provider: "Tabnine", category: "ai-code",
+    color: "#0f172a", access: "personal", src: "https://www.tabnine.com/pricing",
+    desc: "AI code completion assistant that works across major IDEs, with an emphasis on privacy and the option to run models without sending code to shared services.",
+    bn: "প্রধান IDE-গুলোতে কাজ করা AI কোড কমপ্লিশন অ্যাসিস্ট্যান্ট — প্রাইভেসির উপর জোর, কোড শেয়ার না করেও ব্যবহারের অপশন আছে।",
+    caps: ["code", "autocomplete", "privacy"],
+  },
+  {
+    name: "JetBrains AI Assistant", brand: "JetBrains AI", provider: "JetBrains", category: "ai-code",
+    color: "#000000", access: "personal", src: "https://www.jetbrains.com/ai/",
+    desc: "AI assistant built into JetBrains IDEs (IntelliJ, PyCharm, WebStorm and others) — code completion, explanation, refactoring and commit-message generation inside the editor you already use.",
+    bn: "JetBrains IDE-তে (IntelliJ, PyCharm, WebStorm) বিল্ট-ইন AI অ্যাসিস্ট্যান্ট — কোড কমপ্লিশন, ব্যাখ্যা, রিফ্যাক্টরিং ও কমিট মেসেজ তৈরি।",
+    caps: ["code", "refactor", "ide"],
+  },
+  {
+    name: "Sourcegraph Cody", brand: "Cody", provider: "Sourcegraph", category: "ai-code",
+    color: "#a855f7", access: "personal", src: "https://sourcegraph.com/cody",
+    desc: "AI coding assistant with codebase-wide context from Sourcegraph's code search — answers questions and writes code informed by your whole repository rather than the open file alone.",
+    bn: "কোডবেস-ব্যাপী কনটেক্সটসহ AI কোডিং অ্যাসিস্ট্যান্ট — শুধু খোলা ফাইল নয়, পুরো রিপোজিটরির ভিত্তিতে প্রশ্নের উত্তর ও কোড লেখে।",
+    caps: ["code", "codebase-context", "search"],
+  },
+  {
+    name: "Devin (Cognition)", brand: "Devin", provider: "Cognition", category: "ai-code",
+    color: "#1e293b", access: "personal", src: "https://devin.ai",
+    desc: "Autonomous AI software engineer from Cognition — takes a task, plans it, writes and tests code, and iterates in its own environment. Positioned at the high end of the market with pricing to match.",
+    bn: "Cognition-এর অটোনমাস AI সফটওয়্যার ইঞ্জিনিয়ার — কাজ নিয়ে পরিকল্পনা করে, কোড লেখে ও টেস্ট করে, নিজের এনভায়রনমেন্টে কাজ করে। উচ্চমূল্যের প্রোডাক্ট।",
+    caps: ["code", "agents", "autonomous"],
+  },
+  {
+    name: "Beautiful.ai", brand: "Beautiful.ai", provider: "Beautiful.ai", category: "ai-design",
+    color: "#0ea5e9", access: "personal", src: "https://www.beautiful.ai/pricing",
+    desc: "AI presentation builder that applies design rules automatically as you add content, so slides stay visually consistent without manual layout work. Aimed at business decks and pitches.",
+    bn: "AI প্রেজেন্টেশন বিল্ডার — কনটেন্ট যোগ করার সাথে সাথে ডিজাইন রুল প্রয়োগ করে, ম্যানুয়াল লেআউট ছাড়াই স্লাইড সুসংগত থাকে।",
+    caps: ["presentations", "design", "templates"],
+  },
 ];
 
 const slugify = (s) =>

@@ -157,6 +157,19 @@ failed both when only instructed. Do not "simplify" them.
 Regenerate with `node scripts/generate-catalog-lite.mjs`; the validator fails
 if it drifts.
 
+## Session 4 (2026-08-02, Fable 5) — full-universe coverage closed to 84%
+
+PR #4 merged to main: (1) measurement pass over the 467-tool universe — sellable
+coverage was 232/356 = 65%, 129 missing, evidence in `data/coverage/`; (2) batch
+3 of 68 request-price additions (CEO option B — no prices published, ever).
+Catalog is now **185 distinct products / 227 records**; sitemap 259 URLs.
+Coverage: **300/356 = 84%**. The 61 exclusions are documented with reasons in
+`data/coverage/triage-2026-08-02.md` — the remaining real gaps are blocked on
+CEO decisions: 12 ATLAS bundles need composition+pricing, Turnitin needs a
+licensing call. v0.dev Pro was a coverage-matcher miss (already sold at ৳999);
+the add-script's duplicate guard caught it. Adobe Creative Cloud / Express are
+admitted via a narrow exact-name allowlist over the brand-prefix guard.
+
 ### Highest-value open items
 1. **No SSR** — content invisible without JS. Largest remaining architectural call.
 2. **`artifacts/aips-website`** — parallel unused Next.js app with a diverging

@@ -297,6 +297,22 @@ const GUIDE_META = {
 // "why" prose, the ranked tool picks (name + reason as the page renders
 // them), and the FAQs — emitted with FAQPage JSON-LD. These pages target the
 // site's core "best AI for X" queries and were two-line stubs.
+// Resolves a `price:` field lifted from GuidePage.tsx's `tools:` array,
+// whether it's a plain string or a template literal calling tierPrice()/
+// cheapestPriceFor() (both patterns are live in that file). Evaluated against
+// this script's own already-loaded `products` array rather than importing
+// the real catalogStats.ts module, since that file is TypeScript/ESM meant
+// for the Vite build, not this plain-Node script.
+function resolveGuidePrice(raw) {
+  if (raw.startsWith('"')) return raw.slice(1, -1);
+  const inner = raw.slice(1, -1); // strip backticks
+  return inner.replace(/\$\{(tierPrice|cheapestPriceFor)\("([a-z0-9-]+)"(?:,\s*"([^"]+)")?\)\}/g, (_, fn, slug, tier) => {
+    const recs = products.filter((p) => p.slug === slug && typeof p.price === "number");
+    const match = fn === "tierPrice" ? recs.find((p) => p.tier === tier) : recs.sort((a, b) => a.price - b.price)[0];
+    return match ? String(match.price) : "?";
+  });
+}
+
 const guideSrc = fs.readFileSync(path.join(APP, "src/pages/GuidePage.tsx"), "utf8");
 const guideBlock = (key) => {
   // Keys appear both bare (students:) and quoted ("designers":) — try both.
@@ -311,8 +327,13 @@ for (const [key, meta] of Object.entries(GUIDE_META)) {
   const h1 = blk.match(/h1:\s*"([^"]+)"/)?.[1] ?? meta.title;
   const whyH = blk.match(/whyHeading:\s*"([^"]+)"/)?.[1];
   const whyT = blk.match(/whyText:\s*"([^"]+)"/)?.[1];
-  const tools = [...blk.matchAll(/rank:\s*\d+,\s*name:\s*"([^"]+)",\s*price:\s*"([^"]+)",\s*reason:\s*"([^"]+)"/g)]
-    .map((m) => ({ name: m[1], price: m[2], reason: m[3] }));
+  // price is either a plain string ("BDT 599/mo") or a template literal built
+  // from tierPrice()/cheapestPriceFor() calls ({@link resolveGuidePrice}) —
+  // both shapes are live in this file, so both must be handled or a fixed
+  // price silently vanishes from the prerendered page (exactly what happened
+  // the first time these calls were introduced and this regex wasn't updated).
+  const tools = [...blk.matchAll(/rank:\s*\d+,\s*name:\s*"([^"]+)",\s*price:\s*(`[^`]+`|"[^"]+"),\s*reason:\s*"([^"]+)"/g)]
+    .map((m) => ({ name: m[1], price: resolveGuidePrice(m[2]), reason: m[3] }));
   const gfaqs = [...blk.matchAll(/\{\s*q:\s*"([^"]+)",\s*a:\s*"([^"]+)"/g)].map((m) => ({ q: m[1], a: m[2] }));
   const ld = gfaqs.length ? [{ "@context": "https://schema.org", "@type": "FAQPage",
     mainEntity: gfaqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }] : [];

@@ -252,9 +252,27 @@ for (const slug of brandSlugs) {
     : `Get ${p.brand ?? p.name} in Bangladesh — current price confirmed on WhatsApp. Pay with bKash or Nagad. AI Premium Shop.`;
   const tiers = recs.filter((r) => typeof r.price === "number")
     .map((r) => `<li>${esc(r.tier ?? r.name)} — ${fmtBDT(r.price)}/month</li>`).join("");
+  // The 40 brand pages are the highest-converting URLs on the site and were
+  // serving ~2 sentences of static content while /product/* pages got their
+  // full catalog surface. Same treatment now: BN description, USPs, use
+  // cases, and FAQs (merged across tier records, deduped by question), plus
+  // FAQPage JSON-LD.
+  const seenQ = new Set();
+  const faqs = recs.flatMap((r) => r.faq ?? [])
+    .filter((f) => !seenQ.has(f.q) && seenQ.add(f.q));
+  const usps = p.uniqueSellingPoints ?? [];
+  const useCases = recs.flatMap((r) => r.useCases ?? []).slice(0, 6);
+  const ld = faqs.length ? [{ "@context": "https://schema.org", "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a } })) }] : [];
   writeRoute(`/${slug}`, title, desc,
-    `<main><h1>${esc(p.brand ?? p.name)}</h1><p>${esc(p.description ?? desc)}</p>${tiers ? `<ul>${tiers}</ul>` : ""}
-<p><a href="/products">All AI tools</a> · <a href="/${esc(p.category)}">${esc(CATEGORY_LABELS[p.category] ?? p.category)}</a> · <a href="/how-to-order">How to order</a></p></main>`);
+    `<main><h1>${esc(p.brand ?? p.name)}</h1><p>${esc(p.description ?? desc)}</p>
+${p.descriptionBN ? `<p lang="bn">${esc(p.descriptionBN)}</p>` : ""}
+${tiers ? `<h2>Plans and prices in Bangladesh</h2><ul>${tiers}</ul>` : `<p>Current price is confirmed on WhatsApp.</p>`}
+${usps.length ? `<h2>Why buy from AI Premium Shop</h2><ul>${usps.map((u) => `<li>${esc(u)}</li>`).join("")}</ul>` : ""}
+${useCases.length ? `<h2>What people use it for</h2><ul>${useCases.map((u) => `<li>${esc(u)}</li>`).join("")}</ul>` : ""}
+${faqs.length ? `<h2>Frequently asked questions</h2>${faqs.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}` : ""}
+<p><a href="/products">All AI tools</a> · <a href="/${esc(p.category)}">${esc(CATEGORY_LABELS[p.category] ?? p.category)}</a> · <a href="/how-to-order">How to order</a></p></main>`, ld);
   brands++;
 }
 
@@ -275,10 +293,35 @@ const GUIDE_META = {
   marketers: { title: "Best AI for Digital Marketers Bangladesh 2026", desc: "Best AI tools for digital marketers in Bangladesh 2026. ChatGPT, Midjourney, Perplexity. BDT prices." },
   ecommerce: { title: "Best AI for E-commerce Bangladesh 2026", desc: "Best AI tools for e-commerce sellers in Bangladesh 2026. Product photos, descriptions, customer support AI." },
 };
+// Body content parsed from GuidePage.tsx's GUIDES config per key: h1, the
+// "why" prose, the ranked tool picks (name + reason as the page renders
+// them), and the FAQs — emitted with FAQPage JSON-LD. These pages target the
+// site's core "best AI for X" queries and were two-line stubs.
+const guideSrc = fs.readFileSync(path.join(APP, "src/pages/GuidePage.tsx"), "utf8");
+const guideBlock = (key) => {
+  // Keys appear both bare (students:) and quoted ("designers":) — try both.
+  let start = guideSrc.indexOf(`  ${key}: {`);
+  if (start < 0) start = guideSrc.indexOf(`  "${key}": {`);
+  if (start < 0) return null;
+  const next = guideSrc.indexOf("\n  }," , start);
+  return next < 0 ? null : guideSrc.slice(start, next);
+};
 for (const [key, meta] of Object.entries(GUIDE_META)) {
+  const blk = guideBlock(key) ?? "";
+  const h1 = blk.match(/h1:\s*"([^"]+)"/)?.[1] ?? meta.title;
+  const whyH = blk.match(/whyHeading:\s*"([^"]+)"/)?.[1];
+  const whyT = blk.match(/whyText:\s*"([^"]+)"/)?.[1];
+  const tools = [...blk.matchAll(/rank:\s*\d+,\s*name:\s*"([^"]+)",\s*price:\s*"([^"]+)",\s*reason:\s*"([^"]+)"/g)]
+    .map((m) => ({ name: m[1], price: m[2], reason: m[3] }));
+  const gfaqs = [...blk.matchAll(/\{\s*q:\s*"([^"]+)",\s*a:\s*"([^"]+)"/g)].map((m) => ({ q: m[1], a: m[2] }));
+  const ld = gfaqs.length ? [{ "@context": "https://schema.org", "@type": "FAQPage",
+    mainEntity: gfaqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }] : [];
   writeRoute(`/best-ai-for-${key}`, meta.title, meta.desc,
-    `<main><h1>${esc(meta.title)}</h1><p>${esc(meta.desc)}</p>
-<p><a href="/products">All AI tools</a> · <a href="/guides">All guides</a> · <a href="/pricing">Pricing</a></p></main>`);
+    `<main><h1>${esc(h1)}</h1><p>${esc(meta.desc)}</p>
+${whyH && whyT ? `<h2>${esc(whyH)}</h2><p>${esc(whyT)}</p>` : ""}
+${tools.length ? `<h2>Top picks</h2><ol>${tools.map((t) => `<li><strong>${esc(t.name)}</strong> (${esc(t.price)}) — ${esc(t.reason)}</li>`).join("")}</ol>` : ""}
+${gfaqs.length ? `<h2>Frequently asked questions</h2>${gfaqs.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}` : ""}
+<p><a href="/products">All AI tools</a> · <a href="/guides">All guides</a> · <a href="/pricing">Pricing</a></p></main>`, ld);
 }
 
 // --- /best-ai-subscription-2026 (from BestAISubscriptionPage.tsx)
@@ -297,9 +340,20 @@ const BUDGET_META = {
   "ai-under-3000": { title: "AI Tools Under ৳3,000 Bangladesh 2026 — From BDT 700/mo", desc: "AI tools under BDT 3000 in Bangladesh. Personal accounts for pros. Mid-range AI subscriptions." },
 };
 for (const [key, meta] of Object.entries(BUDGET_META)) {
+  // The whole point of a budget page is the list — derive it from the
+  // catalog (cheapest tier per product under the threshold in the key) so it
+  // updates on every build instead of shipping a two-line stub.
+  const limit = Number(key.match(/ai-under-(\d+)/)?.[1] ?? 0);
+  const under = [...new Map(products
+    .filter((r) => typeof r.price === "number" && r.price <= limit)
+    .sort((a, b) => a.price - b.price)
+    .map((r) => [r.slug, r])).values()];
+  const list = under.map((r) => `<li><a href="${linkFor(r.slug)}">${esc(r.name)}</a> — ${fmtBDT(r.price)}/month</li>`).join("");
   writeRoute(`/${key}`, meta.title, meta.desc,
     `<main><h1>${esc(meta.title)}</h1><p>${esc(meta.desc)}</p>
-<p><a href="/products">All AI tools</a> · <a href="/pricing">Pricing</a></p></main>`);
+${list ? `<h2>Every tool under ${fmtBDT(limit)} right now (${under.length})</h2><ul>${list}</ul>` : ""}
+<p>All prices include WhatsApp delivery and the 30-day replacement warranty. Pay with bKash, Nagad, Rocket or bank transfer.</p>
+<p><a href="/products">All AI tools</a> · <a href="/pricing">Pricing</a> · <a href="/how-to-order">How to order</a></p></main>`);
 }
 writeRoute("/best-ai-budget-bangladesh", BUDGET_META["ai-under-500"].title, BUDGET_META["ai-under-500"].desc,
   `<main><h1>Best AI Budget Bangladesh</h1><p>Affordable premium AI tools under BDT 500. Pay with bKash or Nagad.</p>

@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, ChevronRight, Star, Users, Calendar, Shield, Zap } from "lucide-react";
 import { PaymentBadges } from "@/components/PaymentBadges";
 import { TOTAL_PRODUCTS, TOTAL_PLANS, MIN_PRICE, MAX_PRICE, taka, cheapestPriceFor } from "@/lib/catalogStats";
+import { computeTopBrands } from "@/lib/topBrands";
+import { BrandIcon } from "@/components/BrandIcon";
 import type React from "react";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
@@ -18,12 +20,12 @@ const ROTATING_LINES = [
   { problem: "Creating video content?", solution: "Runway generates videos from text" },
 ];
 
-const BRAND_NAMES = [
-  "ChatGPT", "Claude", "Midjourney", "Gemini", "GitHub Copilot",
-  "Runway", "Notion", "ElevenLabs", "Cursor", "Suno", "Perplexity",
-  "Ideogram", "HeyGen", "Udio", "Replit", "Canva", "Grammarly",
-  "Grok", "Jasper", "v0.dev", "Descript", "Murf", "Pika",
-];
+// Real, clickable, catalog-priced chips replace what used to be a purely
+// decorative (aria-hidden) list of plain brand-name text. Same source as the
+// Navbar's Popular Brands column (@/lib/topBrands) — one place computes
+// prices, both surfaces render them, so a repriced brand can't show two
+// different numbers depending which component the visitor is looking at.
+const TOP_DEMAND_BRANDS = computeTopBrands();
 
 // Prices are the real cheapest tier of each product, read from the catalog —
 // previously Claude Pro was hard-coded to ৳1,590 (its mid Premium Shared tier)
@@ -63,7 +65,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
     return () => clearInterval(timer);
   }, []);
 
-  const doubled = [...BRAND_NAMES, ...BRAND_NAMES];
+  const doubledBrands = [...TOP_DEMAND_BRANDS, ...TOP_DEMAND_BRANDS];
 
   return (
     <section
@@ -204,26 +206,43 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             </AnimatePresence>
           </motion.div>
 
-          {/* Brand marquee */}
+          {/* Most-wanted tools ticker — real links + real catalog prices, not
+              decorative text. Pauses on hover (::hover rule below) so it can
+              actually be read and clicked rather than just glanced at. */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.32 }}
-            className="w-full overflow-hidden mb-8"
+            className="w-full overflow-hidden mb-8 hero-ticker"
+            // Decorative loop (the list is duplicated to make the marquee
+            // seamless, so a screen reader would otherwise hear every brand
+            // twice with no useful order). The same brands are reachable —
+            // and keyboard/AT accessible — from the Navbar mega-menu,
+            // BrandShowcaseSection and their own pages; tabIndex={-1} on each
+            // link below keeps this aria-hidden subtree free of focusable
+            // descendants, which is itself an a11y violation otherwise.
             aria-hidden="true"
           >
+            <div className="flex items-center gap-2 mb-2 justify-center lg:justify-start">
+              <span className="text-xs font-bold tracking-wide" style={{ color: "#f4b942" }}>🔥 MOST WANTED</span>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>this week in Bangladesh</span>
+            </div>
             <div
-              className="marquee-track flex gap-6 whitespace-nowrap"
-              style={{ animation: "marquee 28s linear infinite" }}
+              className="marquee-track flex gap-3 whitespace-nowrap w-max"
+              style={{ animation: "marquee 40s linear infinite" }}
             >
-              {doubled.map((brand, i) => (
-                <span
+              {doubledBrands.map((b, i) => (
+                <a
                   key={i}
-                  className="text-sm tracking-widest uppercase flex-shrink-0"
-                  style={{ color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em" }}
+                  href={b.href}
+                  className="flex items-center gap-2 flex-shrink-0 px-3 py-2 rounded-xl border transition-colors hover:border-[#f4b942]/50"
+                  style={{ backgroundColor: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.08)" }}
+                  tabIndex={-1}
                 >
-                  {brand} ·
-                </span>
+                  <BrandIcon brand={b.brand} size={20} />
+                  <span className="text-sm font-semibold text-white">{b.name}</span>
+                  <span className="text-xs" style={{ color: "#f4b942" }}>{b.price}</span>
+                </a>
               ))}
             </div>
           </motion.div>

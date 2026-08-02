@@ -207,8 +207,12 @@
 
 /* AIPS Utility Classes */
 @layer utilities {
-  /* CTA gradient — pink to orange */
+  /* CTA gradient — pink to orange. `position:relative` + `overflow:hidden`
+     here (not per-usage) so the shine sweep below works everywhere this
+     class is already used, with no per-component changes. */
   .btn-cta {
+    position: relative;
+    overflow: hidden;
     background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
     background-size: 200% 200%;
     background-position: 0% 50%;
@@ -224,10 +228,29 @@
   .btn-cta:active {
     transform: translateY(0);
   }
+  /* One-shot diagonal shine on hover — a single sweep, not a looping
+     animation, so it reads as premium polish rather than a distracting
+     flourish on a button used dozens of times across the site. */
+  .btn-cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.35) 48%, transparent 66%);
+    transform: translateX(-120%);
+    pointer-events: none;
+  }
+  .btn-cta:hover::after {
+    transform: translateX(120%);
+    transition: transform 0.65s ease;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     .btn-cta {
       transition: none;
+    }
+    .btn-cta:hover::after {
+      transition: none;
+      transform: translateX(-120%);
     }
   }
 
@@ -401,6 +424,12 @@
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+/* Pausing on hover only matters for the Hero's interactive ticker (real
+   links inside), not the purely decorative uses of .marquee-track — but
+   pausing a decorative strip on hover has no downside either. */
+.hero-ticker:hover .marquee-track {
+  animation-play-state: paused;
 }
 
 /* Scroll reveal */

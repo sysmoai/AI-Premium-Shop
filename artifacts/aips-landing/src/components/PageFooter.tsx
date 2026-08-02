@@ -1,5 +1,6 @@
 import { useLocation } from "wouter";
 import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
+import { BLOG_CATEGORIES } from "@/lib/blogTaxonomy";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 // text picked per-bg so it clears WCAG AA (4.5:1). White fails on Nagad
@@ -34,10 +35,17 @@ const SOLUTION_LINKS = [
 
 const COMPANY_LINKS = [
   { label: "About",   href: "/about" },
-  { label: "Blog",    href: "/blog" },
   { label: "Support", href: "/support" },
   { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/contact" },
+];
+
+// Top 5 blog categories by post count, plus the hub. Mirrors the same
+// taxonomy the Navbar mega-menu and BlogPage filter read — one list, three
+// surfaces, so a new category can never go missing from one of them.
+const BLOG_LINKS = [
+  { label: "All Guides", href: "/blog" },
+  ...BLOG_CATEGORIES.slice(0, 5).map((c) => ({ label: `${c.emoji} ${c.label}`, href: c.href })),
 ];
 
 const LEGAL_LINKS = [
@@ -67,7 +75,7 @@ export function PageFooter() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
 
         {/* ── Main grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-8">
 
           {/* Col 1 — Brand (spans 2 cols on lg) */}
           <div className="lg:col-span-2">
@@ -105,7 +113,13 @@ export function PageFooter() {
             {SOLUTION_LINKS.map((l) => <FooterLink key={l.label} {...l} />)}
           </div>
 
-          {/* Col 4 — Company + Legal */}
+          {/* Col 4 — Blog & Guides */}
+          <div>
+            <h4 className="text-white text-sm font-semibold mb-3">Blog & Guides</h4>
+            {BLOG_LINKS.map((l) => <FooterLink key={l.label} {...l} />)}
+          </div>
+
+          {/* Col 5 — Company + Legal */}
           <div>
             <h4 className="text-white text-sm font-semibold mb-3">Company</h4>
             {COMPANY_LINKS.map((l) => <FooterLink key={l.label} {...l} />)}

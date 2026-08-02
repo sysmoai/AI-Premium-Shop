@@ -10,12 +10,14 @@ import {
 } from "lucide-react";
 import { useLocation } from "wouter";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
-import { TOTAL_PRODUCTS, categoryStats, brandStats, taka, cheapestPriceFor, tierPrice } from "@/lib/catalogStats";
+import { TOTAL_PRODUCTS, categoryStats, taka, cheapestPriceFor, tierPrice } from "@/lib/catalogStats";
 // catalog-lite carries only the fields this module reads. Importing the full
 // products.json here put 227 KB of plans/faq/useCases into the main bundle for
 // every visitor — see scripts/generate-catalog-lite.mjs.
 import productsData from "../../data/catalog-lite.json";
 import { formulaPrice } from "@/lib/pricing";
+import { BLOG_CATEGORIES } from "@/lib/blogTaxonomy";
+import { computeTopBrands } from "@/lib/topBrands";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
@@ -52,27 +54,9 @@ const CATEGORIES = [
 // Google AI Pro showed 83% against a real ৳599 entry (true discount: 80%).
 // Both badges below are now genuinely computed — no `badge` field is set on
 // the source rows, so there's nothing for a stale literal to hide behind.
-const POPULAR_BRANDS = [
-  { name: "ChatGPT",         brand: "ChatGPT",    showPlans: true,  href: "/chatgpt-plans-bangladesh" },
-  { name: "Claude",          brand: "Claude",     showPlans: true,  href: "/claude-pro-bangladesh" },
-  { name: "Midjourney",      brand: "Midjourney", showPlans: true,  href: "/midjourney-bangladesh" },
-  { name: "Google AI Pro",   brand: "Google",     showPlans: false, officialPrice: 2990, href: "/gemini-advanced-bangladesh" },
-  { name: "GitHub Copilot",  brand: "GitHub",     showPlans: false, href: "/github-copilot-bangladesh" },
-  { name: "Cursor",          brand: "Cursor",     showPlans: false, href: "/cursor-bangladesh" },
-  { name: "Notion Business", brand: "Notion",     showPlans: false, officialPrice: 2990, href: "/notion-business-bangladesh" },
-  { name: "Perplexity",      brand: "Perplexity", showPlans: false, href: "/perplexity-pro-bangladesh" },
-].map((b) => {
-  const s = brandStats(b.brand);
-  const off = "officialPrice" in b && b.officialPrice && s.fromPrice != null
-    ? `${Math.round((1 - s.fromPrice / (b.officialPrice as number)) * 100)}% OFF`
-    : "";
-  return {
-    ...b,
-    price: s.fromPrice != null ? `from ${taka(s.fromPrice)}` : "price on WhatsApp",
-    badge: off || (b.showPlans && s.plans > 1 ? `${s.plans} plans` : ""),
-    badgeGreen: !!off,
-  };
-});
+// Top 8 of the shared TOP_BRAND_DEFS — the mega-menu column has room for 8;
+// the full 14 power the Hero ticker. Same source, no drift between them.
+const POPULAR_BRANDS = computeTopBrands().slice(0, 8);
 
 const SOLUTIONS = [
   { icon: GraduationCap, label: "Students",    href: "/best-ai-for-students" },
@@ -260,7 +244,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
   const [scrolled, setScrolled] = useState(alwaysSolid);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [openMenu, setOpenMenu] = useState<"products" | "bundles" | null>(null);
+  const [openMenu, setOpenMenu] = useState<"products" | "bundles" | "blog" | null>(null);
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [location, navigate] = useLocation();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -282,7 +266,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const openDropdown = (name: "products" | "bundles") => {
+  const openDropdown = (name: "products" | "bundles" | "blog") => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setOpenMenu(name);
   };
@@ -296,7 +280,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
     setMenuOpen(false);
   };
 
-  const navBtn = (key: "products" | "bundles", label: string) => {
+  const navBtn = (key: "products" | "bundles" | "blog", label: string) => {
     const active = activeLink === key;
     const isOpen = openMenu === key;
     return (
@@ -369,7 +353,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
             {navLink("/pricing", "Pricing", "pricing")}
             {navLink("/guides", "Guides", "guides")}
             {navLink("/support", "Support", "support")}
-            {navLink("/blog", "Blog", "blog")}
+            {navBtn("blog", "Blog")}
           </nav>
 
           {/* Desktop right */}
@@ -381,8 +365,7 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
             </button>
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
               data-testid="navbar-cta"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity flex-shrink-0"
-              style={{ background: "linear-gradient(135deg,#ec4899,#f97316)", color: "#fff" }}>
+              className="btn-cta inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm flex-shrink-0">
               <MessageCircle className="w-4 h-4" />
               Order Now
             </a>
@@ -551,6 +534,42 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
               </div>
             </motion.div>
           )}
+
+          {/* ── Blog Mega Menu ── */}
+          {openMenu === "blog" && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              className="hidden lg:block absolute left-0 right-0 top-full border-b border-gray-800 shadow-2xl"
+              style={{ backgroundColor: "#0a0e27" }}
+              onMouseEnter={() => openDropdown("blog")}
+            >
+              <div className="max-w-4xl mx-auto px-6 py-6">
+                <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-semibold">Browse Guides by Topic</h4>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+                  {BLOG_CATEGORIES.map((c) => (
+                    <a key={c.key} href={c.href}
+                      onClick={(e) => { e.preventDefault(); go(c.href); }}
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-800/50 transition-colors">
+                      <span className="text-base flex-shrink-0">{c.emoji}</span>
+                      <span className="text-white text-sm font-medium leading-tight">{c.label}</span>
+                    </a>
+                  ))}
+                </div>
+                <div className="flex justify-between items-center border-t border-gray-800 pt-4 mt-4"
+                  style={{ background: "linear-gradient(to right, rgba(244,185,66,0.06), transparent)" }}>
+                  <span className="text-gray-400 text-sm">Guides, comparisons and pricing — updated for Bangladesh</span>
+                  <a href="/blog" onClick={(e) => { e.preventDefault(); go("/blog"); }}
+                    className="text-sm font-medium hover:underline flex items-center gap-1"
+                    style={{ color: "#f4b942" }}>
+                    View All Posts <ChevronRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
         </AnimatePresence>
 
         {/* ── Mobile Menu ── */}
@@ -583,6 +602,10 @@ export function Navbar({ alwaysSolid = false }: NavbarProps) {
                       ...BUNDLES_LEFT.map((b) => ({ label: b.name, href: "/bundles", meta: b.price })),
                       ...BUNDLES_RIGHT.map((b) => ({ label: b.name, href: "/bundles", meta: b.price })),
                     ],
+                  },
+                  {
+                    key: "blog-topics", label: "Blog Topics",
+                    items: BLOG_CATEGORIES.map((c) => ({ label: `${c.emoji} ${c.label}`, href: c.href, meta: "" })),
                   },
                 ].map((section) => (
                   <div key={section.key} className="rounded-lg my-0.5" style={{ backgroundColor: "#111827" }}>

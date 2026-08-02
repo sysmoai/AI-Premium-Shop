@@ -1,5 +1,7 @@
+import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { BLOG_CATEGORIES, BLOG_CATEGORY_MAP } from "@/lib/blogTaxonomy";
 import {
   Clock,
   TrendingUp,
@@ -24,6 +26,7 @@ const POSTS = [
     title: "How to Buy Higgsfield AI in Bangladesh — Plans, Credits & bKash Payment (2026)",
     excerpt: "Get Higgsfield's AI video tools in Bangladesh without an international card. Plans and credits explained, bKash/Nagad payment, activation on your own account.",
     category: "🎬 AI Video",
+    categoryKey: "image-video",
     readTime: "6 min read",
     date: "Jul 30, 2026",
     gradient: "bg-gradient-to-br from-purple-600 to-fuchsia-900",
@@ -35,6 +38,7 @@ const POSTS = [
     title: "Why 3 AI Tools Beat 1 — The Real Math for Bangladesh Users (2026)",
     excerpt: "Why professionals now stack 3-5 AI subscriptions instead of one all-in-one tool, and 3 ready-made combos by use case.",
     category: "💡 Strategy",
+    categoryKey: "strategy",
     readTime: "5 min read",
     date: "Jul 30, 2026",
     gradient: "bg-gradient-to-br from-yellow-600 to-amber-900",
@@ -46,6 +50,7 @@ const POSTS = [
     title: "How to Avoid AI Subscription Scams in Bangladesh — 7 Red Flags (2026)",
     excerpt: "Lifetime offers, impossible prices, PIN requests — the exact scam patterns in BD Facebook groups and the 3 questions that expose any seller (including us).",
     category: "🛡 Safety",
+    categoryKey: "safety",
     readTime: "6 min read",
     date: "Jul 30, 2026",
     gradient: "bg-gradient-to-br from-red-600 to-rose-900",
@@ -57,6 +62,7 @@ const POSTS = [
     title: "How to Buy AI Tools in Bangladesh Without an International Card (2026 Guide)",
     excerpt: "Every real payment route honestly compared — endorsed cards, virtual cards, relatives abroad, local services — with the risks nobody mentions.",
     category: "💳 Payments",
+    categoryKey: "payments",
     readTime: "7 min read",
     date: "Jul 30, 2026",
     gradient: "bg-gradient-to-br from-emerald-600 to-teal-900",
@@ -68,6 +74,7 @@ const POSTS = [
     title: "How to Buy Google AI Pro in Bangladesh — Gemini, Veo & NotebookLM (2026)",
     excerpt: "What Google AI Pro includes vs Free and Ultra, from BDT 599/mo, and the 3-step bKash/Nagad order flow.",
     category: "🧠 AI Assistant",
+    categoryKey: "assistant",
     readTime: "5 min read",
     date: "Jul 30, 2026",
     gradient: "bg-gradient-to-br from-blue-600 to-cyan-900",
@@ -79,6 +86,7 @@ const POSTS = [
     title: "Manus AI Price in Bangladesh — Plans, Credits & WebDev Costs (2026)",
     excerpt: "Free vs Pro credit tiers vs Team seats — what Manus credits actually buy, WebDev cost realities, and how to pay in BDT.",
     category: "🤖 AI Agent",
+    categoryKey: "agents",
     readTime: "6 min read",
     date: "Jul 30, 2026",
     gradient: "bg-gradient-to-br from-slate-700 to-zinc-900",
@@ -90,6 +98,7 @@ const POSTS = [
     title: "How to Buy Claude Pro in Bangladesh with bKash, Nagad or Rocket (2026)",
     excerpt: "What Claude Pro includes vs Free and Max, pricing from BDT 1,495, and the 3-step order flow — no international card.",
     category: "🧠 AI Assistant",
+    categoryKey: "assistant",
     readTime: "5 min read",
     date: "Jul 30, 2026",
     gradient: "bg-gradient-to-br from-amber-600 to-orange-900",
@@ -101,6 +110,7 @@ const POSTS = [
     title: "How to Earn Money with AI in Bangladesh — 5 Proven Methods (2026)",
     excerpt: "5 ways Bangladeshis are using AI to earn — freelancing, content, tutoring, automation. Earnings vary with skill and effort; tools start from BDT 299.",
     category: "💰 Income",
+    categoryKey: "freelancers",
     readTime: "5 min read",
     date: "Apr 12, 2026",
     gradient: "bg-gradient-to-br from-green-600 to-emerald-900",
@@ -112,6 +122,7 @@ const POSTS = [
     title: "Best AI Tools for University Students Bangladesh 2026",
     excerpt: "Top AI tools for BD university students. Research, assignments, thesis, exam prep. From BDT 299/mo.",
     category: "🎓 Students",
+    categoryKey: "students",
     readTime: "5 min read",
     date: "Apr 12, 2026",
     gradient: "bg-gradient-to-br from-blue-600 to-indigo-900",
@@ -123,6 +134,7 @@ const POSTS = [
     title: "How to Pay for AI Tools with bKash Bangladesh 2026",
     excerpt: "Buy ChatGPT, Claude, Midjourney with bKash or Nagad. No credit card. 5-30 min delivery.",
     category: "💳 Payment Guide",
+    categoryKey: "payments",
     readTime: "5 min read",
     date: "Apr 12, 2026",
     gradient: "bg-gradient-to-br from-pink-600 to-rose-900",
@@ -134,6 +146,7 @@ const POSTS = [
     title: "ChatGPT Plus vs Free — Worth BDT 499? Bangladesh Review",
     excerpt: "Is ChatGPT Plus worth BDT 499/mo? Honest comparison: GPT-5, DALL-E, agents, deep research.",
     category: "🔍 Comparison",
+    categoryKey: "strategy",
     readTime: "5 min read",
     date: "Apr 12, 2026",
     gradient: "bg-gradient-to-br from-teal-600 to-emerald-900",
@@ -145,6 +158,7 @@ const POSTS = [
     title: "AI Freelancing Guide Bangladesh 2026 — Earn in 7 Days",
     excerpt: "Start AI freelancing in Bangladesh in 7 days. Tools, platforms, pricing, and what earnings are realistic.",
     category: "💻 Freelancing",
+    categoryKey: "freelancers",
     readTime: "5 min read",
     date: "Apr 12, 2026",
     gradient: "bg-gradient-to-br from-purple-600 to-violet-900",
@@ -156,6 +170,7 @@ const POSTS = [
     title: "Best AI Tools in Bangladesh 2026: Complete Guide",
     excerpt: "ChatGPT, Claude, Midjourney, and 54 more. We rank every major AI tool by value, use case, and availability in Bangladesh — with BDT prices and local payment info.",
     category: "Guide",
+    categoryKey: "strategy",
     readTime: "8 min read",
     date: "April 2026",
     gradient: "bg-gradient-to-br from-teal-700 to-green-900",
@@ -167,6 +182,7 @@ const POSTS = [
     title: "ChatGPT vs Claude in Bangladesh 2026: Which is Better?",
     excerpt: "Side-by-side comparison of ChatGPT Plus and Claude Pro for writing, coding, research, and everyday tasks. With prices in BDT and honest recommendations.",
     category: "Comparison",
+    categoryKey: "strategy",
     readTime: "6 min read",
     date: "April 2026",
     gradient: "bg-gradient-to-br from-amber-600 to-orange-900",
@@ -178,6 +194,7 @@ const POSTS = [
     title: "How to Get ChatGPT Plus in Bangladesh (No Visa Card Needed)",
     excerpt: "Step-by-step guide to activating ChatGPT Plus in Bangladesh using bKash or Nagad — from BDT 499/month. No international credit card required.",
     category: "How-to",
+    categoryKey: "payments",
     readTime: "4 min read",
     date: "March 2026",
     gradient: "bg-gradient-to-br from-yellow-600 to-amber-900",
@@ -189,6 +206,7 @@ const POSTS = [
     title: "5 AI Tools Every Bangladeshi Freelancer Needs in 2026",
     excerpt: "Freelancers using AI earn 44% more on average. Here are the 5 tools that pay for themselves fastest — with realistic prices in BDT and use cases for Upwork and Fiverr.",
     category: "Freelancers",
+    categoryKey: "freelancers",
     readTime: "5 min read",
     date: "March 2026",
     gradient: "bg-gradient-to-br from-pink-600 to-rose-900",
@@ -200,6 +218,7 @@ const POSTS = [
     title: "Midjourney in Bangladesh 2026: Full Guide + Pricing",
     excerpt: "Everything you need to know about Midjourney in Bangladesh. Plans from ৳1,199/mo. How to order, what you can create, and how shared accounts work.",
     category: "Guide",
+    categoryKey: "image-video",
     readTime: "5 min read",
     date: "February 2026",
     gradient: "bg-gradient-to-br from-violet-600 to-purple-900",
@@ -211,6 +230,7 @@ const POSTS = [
     title: "OpenAI Codex vs Claude Code in Bangladesh — What Changed in April 2026?",
     excerpt: "OpenAI launched Codex on April 16, 2026. Claude Code already exists. Cursor and Replit are in the mix. Here's what changed and what it means for Bangladesh developers.",
     category: "🛠️ Developers",
+    categoryKey: "coding",
     readTime: "6 min read",
     date: "Apr 17, 2026",
     gradient: "bg-gradient-to-br from-cyan-600 to-blue-900",
@@ -219,15 +239,33 @@ const POSTS = [
   },
 ];
 
-const featured = POSTS[0];
-const gridPosts = POSTS.slice(1);
+function readCategory(): string {
+  if (typeof window === "undefined") return "all";
+  const c = new URLSearchParams(window.location.search).get("category") ?? "all";
+  return c === "all" || BLOG_CATEGORY_MAP[c] ? c : "all";
+}
 
 export default function BlogPage() {
+  const [category, setCategory] = useState<string>(readCategory());
+
+  useEffect(() => {
+    const qs = category === "all" ? "" : `?category=${category}`;
+    window.history.replaceState(null, "", `/blog${qs}`);
+  }, [category]);
+
+  const filtered = useMemo(
+    () => (category === "all" ? POSTS : POSTS.filter((p) => p.categoryKey === category)),
+    [category],
+  );
+  const featured = filtered[0] ?? POSTS[0];
+  const gridPosts = filtered.slice(1);
+  const activeCat = category === "all" ? null : BLOG_CATEGORY_MAP[category];
+
   return (
     <PageLayout>
       <SEOHead
-        title="AI Blog Bangladesh — Guides, Tips & Strategies | AI Premium Shop"
-        description="AI guides, comparisons, and tips for Bangladesh. Learn how to earn, study, and work smarter with AI tools."
+        title={activeCat ? `${activeCat.label} — AI Blog Bangladesh | AI Premium Shop` : "AI Blog Bangladesh — Guides, Tips & Strategies | AI Premium Shop"}
+        description={activeCat ? `${activeCat.description} AI Premium Shop Bangladesh.` : "AI guides, comparisons, and tips for Bangladesh. Learn how to earn, study, and work smarter with AI tools."}
         canonical="https://aipremiumshop.com/blog"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Blog" }]} />
@@ -239,14 +277,36 @@ export default function BlogPage() {
           transition={{ duration: 0.5 }}
           className="bg-gradient-to-br from-[#0a0e27] to-[#151b3d] rounded-2xl p-8 md:p-12 mb-8 border border-white/10"
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-white">AI Blog Bangladesh</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-white">{activeCat ? `${activeCat.emoji} ${activeCat.label}` : "AI Blog Bangladesh"}</h1>
           <p className="text-gray-400 text-lg mt-2">
-            Guides, tips, and strategies to earn more and work smarter with AI
+            {activeCat ? activeCat.description : "Guides, tips, and strategies to earn more and work smarter with AI"}
           </p>
+          {/* Category filter — URL-synced (?category=) so each topic cluster is
+              a real, shareable, linkable page rather than one flat feed. This
+              is also the scaffold the 365+ blog roadmap grows into: every new
+              post slots under one of these categories automatically. */}
           <div className="flex flex-wrap gap-2 mt-4">
-            <span className="bg-gray-800 text-gray-300 text-sm rounded-full px-4 py-1.5">💰 Earn with AI</span>
-            <span className="bg-gray-800 text-gray-300 text-sm rounded-full px-4 py-1.5">🎓 Students</span>
-            <span className="bg-gray-800 text-gray-300 text-sm rounded-full px-4 py-1.5">💻 Freelancers</span>
+            <button
+              onClick={() => setCategory("all")}
+              className="text-sm rounded-full px-4 py-1.5 transition-colors"
+              style={category === "all" ? { backgroundColor: "#f4b942", color: "#0A0E27", fontWeight: 600 } : { backgroundColor: "#1f2937", color: "#d1d5db" }}
+            >
+              All Posts ({POSTS.length})
+            </button>
+            {BLOG_CATEGORIES.map((c) => {
+              const count = POSTS.filter((p) => p.categoryKey === c.key).length;
+              if (!count) return null;
+              return (
+                <button
+                  key={c.key}
+                  onClick={() => setCategory(category === c.key ? "all" : c.key)}
+                  className="text-sm rounded-full px-4 py-1.5 transition-colors"
+                  style={category === c.key ? { backgroundColor: c.color, color: "#0A0E27", fontWeight: 600 } : { backgroundColor: "#1f2937", color: "#d1d5db" }}
+                >
+                  {c.emoji} {c.label} ({count})
+                </button>
+              );
+            })}
           </div>
         </motion.div>
 

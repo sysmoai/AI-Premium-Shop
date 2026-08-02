@@ -1,8 +1,9 @@
 import { useState, useMemo, useEffect } from "react";
 import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { motion } from "framer-motion";
-import { MessageCircle, Filter, ArrowUpDown, ChevronRight } from "lucide-react";
-import { Link, useLocation } from "wouter";
+import { MessageCircle, Filter, ArrowUpDown, ChevronRight, Search, X } from "lucide-react";
+import { Link } from "wouter";
+import { productPath } from "@/lib/productRoutes";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
@@ -36,6 +37,44 @@ const CATEGORY_ORDER = ["ai-assistant", "ai-image", "ai-code", "ai-voice-music",
 
 type SortKey = "price-asc" | "price-desc" | "name";
 
+// Persona quick-filters. Grounded in the Notion Problem Library / segment
+// research (2026-08-02): every segment buys 3-4 tools, and the top pains are
+// plan confusion and not knowing which tools fit their work — so the catalog
+// answers "what should a student/freelancer/developer buy" directly, and each
+// persona links to its full guide page. Matching uses capabilities plus
+// category so new catalog entries join a persona automatically.
+const PERSONAS: { key: string; label: string; guide: string; cats: string[]; caps: string[] }[] = [
+  { key: "students", label: "🎓 Students", guide: "/best-ai-for-students",
+    cats: ["ai-writing"],
+    caps: ["research", "citations", "academic-writing", "literature-review", "pdf-chat", "math", "step-by-step", "learning", "certificates"] },
+  { key: "freelancers", label: "💼 Freelancers", guide: "/best-ai-for-freelancers",
+    cats: ["ai-design", "ai-image"],
+    caps: ["design", "writing", "templates", "image-gen", "image-edit", "logo", "web-design", "stock-assets", "career", "networking"] },
+  { key: "developers", label: "👨‍💻 Developers", guide: "/best-ai-for-developers",
+    cats: ["ai-code"],
+    caps: ["code", "api", "agents", "automation", "no-code", "rag"] },
+  { key: "marketers", label: "📈 Marketers", guide: "/best-ai-for-business",
+    cats: [],
+    caps: ["seo", "keywords", "backlinks", "ads", "social", "scheduling", "content-strategy", "audit", "sales", "insights"] },
+  { key: "creators", label: "🎬 Creators", guide: "/best-ai-for-creators",
+    cats: ["ai-video", "ai-voice-music"],
+    caps: ["video-gen", "video-edit", "avatar", "music-gen", "tts", "subtitles", "clipping", "image-to-video", "stock-assets"] },
+  { key: "teachers", label: "👩‍🏫 Teachers", guide: "/best-ai-for-students",
+    cats: [],
+    caps: ["presentations", "slides", "training", "learning", "diagrams", "summarize", "academic-writing", "step-by-step"] },
+  { key: "business", label: "🏢 Business", guide: "/best-ai-for-business",
+    cats: ["bundles", "ai-workspace"],
+    caps: ["crm", "chatbots", "support", "meetings", "transcription", "email", "whatsapp", "automation"] },
+];
+const VALID_PERSONA = new Set(PERSONAS.map((p) => p.key));
+
+function matchesPersona(p: { category: string; capabilities?: string[] }, key: string): boolean {
+  const def = PERSONAS.find((d) => d.key === key);
+  if (!def) return true;
+  if (def.cats.includes(p.category)) return true;
+  return (p.capabilities ?? []).some((c) => def.caps.includes(c));
+}
+
 interface Product {
   id: string;
   name: string;
@@ -52,11 +91,11 @@ interface Product {
   description: string;
   deliverySLA: string;
   whatsappMsg?: string;
+  capabilities?: string[];
   featured?: boolean;
 }
 
 function ProductCard({ p }: { p: Product }) {
-  const [, navigate] = useLocation();
   const waLink = `${WHATSAPP}?text=${encodeURIComponent(p.whatsappMsg ?? (p.requestPrice ? `Hi, I want ${p.name}. Please share the current price.` : `Hi, I want to order ${p.name} (BDT ${p.price})`))}`;
   return (
     <motion.div
@@ -71,7 +110,9 @@ function ProductCard({ p }: { p: Product }) {
       <div className="p-5 flex flex-col flex-1 gap-3">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <div className="font-bold text-white text-sm leading-tight">{p.name}</div>
+            {/* A real anchor, not a JS handler: crawlers reach the 157 product
+                pages from this master list, and users get cmd-click/preview. */}
+            <Link href={productPath(p.slug)} className="font-bold text-white text-sm leading-tight hover:underline">{p.name}</Link>
             <div className="text-xs mt-0.5" style={{ color: p.brandColor }}>{p.brand}</div>
           </div>
           {p.badge && (
@@ -118,14 +159,14 @@ function ProductCard({ p }: { p: Product }) {
             <MessageCircle className="w-4 h-4" />
             Order
           </a>
-          <button
-            onClick={() => navigate(`/product/${p.slug}`)}
+          <Link
+            href={productPath(p.slug)}
             className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity flex-shrink-0 ml-2"
             style={{ backgroundColor: "rgba(244,185,66,0.12)", color: "#f4b942", border: "1px solid rgba(244,185,66,0.25)" }}
           >
             <ChevronRight className="w-4 h-4" />
             Details
-          </button>
+          </Link>
         </div>
       </div>
     </motion.div>
@@ -140,17 +181,20 @@ const VALID_ACCESS = new Set(["all", "shared", "personal"]);
 const VALID_SORT = new Set(["price-asc", "price-desc", "name"]);
 
 function readParams() {
-  if (typeof window === "undefined") return { category: "all", access: "all", sort: "price-asc" as SortKey };
+  if (typeof window === "undefined") return { category: "all", access: "all", sort: "price-asc" as SortKey, persona: "all", query: "" };
   const q = new URLSearchParams(window.location.search);
   const category = q.get("category") ?? "all";
   const access = q.get("access") ?? "all";
   const sort = q.get("sort") ?? "price-asc";
+  const persona = q.get("for") ?? "all";
   return {
     // Validated rather than trusted — these come from a URL anyone can edit,
     // and an unknown value would silently render an empty catalogue.
     category: category === "all" || CATEGORY_ORDER.includes(category) ? category : "all",
     access: VALID_ACCESS.has(access) ? access : "all",
     sort: (VALID_SORT.has(sort) ? sort : "price-asc") as SortKey,
+    persona: persona === "all" || VALID_PERSONA.has(persona) ? persona : "all",
+    query: (q.get("q") ?? "").slice(0, 80),
   };
 }
 
@@ -159,6 +203,8 @@ export default function ProductsPage() {
   const [categoryFilter, setCategoryFilter] = useState<string>(initial.category);
   const [accessFilter, setAccessFilter] = useState<string>(initial.access);
   const [sort, setSort] = useState<SortKey>(initial.sort);
+  const [persona, setPersona] = useState<string>(initial.persona);
+  const [query, setQuery] = useState<string>(initial.query);
 
   // replaceState rather than push: changing a dropdown should not stack up
   // history entries the back button has to walk through.
@@ -167,9 +213,11 @@ export default function ProductsPage() {
     if (categoryFilter !== "all") q.set("category", categoryFilter);
     if (accessFilter !== "all") q.set("access", accessFilter);
     if (sort !== "price-asc") q.set("sort", sort);
+    if (persona !== "all") q.set("for", persona);
+    if (query) q.set("q", query);
     const qs = q.toString();
     window.history.replaceState(null, "", qs ? `/products?${qs}` : "/products");
-  }, [categoryFilter, accessFilter, sort]);
+  }, [categoryFilter, accessFilter, sort, persona, query]);
 
   const filterLabel = useMemo(() => {
     if (categoryFilter === "all" && accessFilter === "all") return null;
@@ -182,11 +230,21 @@ export default function ProductsPage() {
     let list = [...ALL] as Product[];
     if (categoryFilter !== "all") list = list.filter((p) => p.category === categoryFilter);
     if (accessFilter !== "all") list = list.filter((p) => p.accessType === accessFilter);
+    if (persona !== "all") list = list.filter((p) => matchesPersona(p, persona));
+    if (query.trim()) {
+      const needle = query.trim().toLowerCase();
+      list = list.filter((p) =>
+        p.name.toLowerCase().includes(needle) ||
+        (p.brand ?? "").toLowerCase().includes(needle) ||
+        (p.description ?? "").toLowerCase().includes(needle) ||
+        (p.capabilities ?? []).some((c) => c.toLowerCase().includes(needle)),
+      );
+    }
     if (sort === "price-asc") list.sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity));
     else if (sort === "price-desc") list.sort((a, b) => (b.price ?? -Infinity) - (a.price ?? -Infinity));
     else list.sort((a, b) => a.name.localeCompare(b.name));
     return list;
-  }, [categoryFilter, accessFilter, sort]);
+  }, [categoryFilter, accessFilter, sort, persona, query]);
 
   const grouped = useMemo(() => {
     if (categoryFilter !== "all") return null;
@@ -236,6 +294,51 @@ export default function ProductsPage() {
               ? `Filtered from ${ALL.length} subscriptions. Local payment. Fast delivery.`
               : `${ALL.length} premium subscriptions. Local payment. Fast delivery.`}
           </p>
+        </div>
+
+        {/* Persona quick-filters: the #1 documented customer pain is not
+            knowing which tools fit their work — answer it before the wall of
+            cards, not in guides buried at the bottom of the page. */}
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          <span className="text-sm font-semibold mr-1" style={{ color: "#c9ceda" }}>I am a:</span>
+          {PERSONAS.map((d) => (
+            <button
+              key={d.key}
+              onClick={() => setPersona(persona === d.key ? "all" : d.key)}
+              aria-pressed={persona === d.key}
+              className="text-sm px-3 py-1.5 rounded-full border transition-colors"
+              style={persona === d.key
+                ? { backgroundColor: "#f4b942", color: "#0A0E27", borderColor: "#f4b942", fontWeight: 600 }
+                : { color: "#c9ceda", borderColor: "rgba(255,255,255,0.2)" }}
+            >
+              {d.label}
+            </button>
+          ))}
+          {persona !== "all" && (
+            <Link href={PERSONAS.find((d) => d.key === persona)!.guide}
+              className="text-sm underline ml-1" style={{ color: "#f4b942" }}>
+              Full guide →
+            </Link>
+          )}
+        </div>
+
+        <div className="relative mb-4">
+          <Search aria-hidden="true" className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2" style={{ color: "#c9ceda" }} />
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={`Search ${ALL.length} subscriptions — try "video", "SEO", "research"…`}
+            aria-label="Search products"
+            className="w-full pl-11 pr-10 py-3 rounded-2xl border border-white/10 text-sm text-white placeholder:text-[#8b92a8] focus:outline-none focus:border-[#f4b942]"
+            style={{ backgroundColor: "#151b3d" }}
+          />
+          {query && (
+            <button onClick={() => setQuery("")} aria-label="Clear search"
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-white/10">
+              <X className="w-4 h-4" style={{ color: "#c9ceda" }} />
+            </button>
+          )}
         </div>
 
         <div className="flex flex-wrap items-center gap-3 mb-8 p-4 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
@@ -313,7 +416,14 @@ export default function ProductsPage() {
 
         {filtered.length === 0 && (
           <div className="text-center py-20" style={{ color: "#c9ceda" }}>
-            <p className="text-lg">No products match your filters.</p>
+            <p className="text-lg mb-2">No products match your search.</p>
+            <p className="text-sm mb-6">We add tools every week — if you need something we don't list yet, we can usually source it.</p>
+            <a href={`${WHATSAPP}?text=${encodeURIComponent(`Hi, I'm looking for "${query || "an AI tool"}" — can you help me get it?`)}`}
+              target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold"
+              style={{ backgroundColor: "#008236", color: "#fff" }}>
+              <MessageCircle className="w-4 h-4" /> Ask us on WhatsApp
+            </a>
           </div>
         )}
 

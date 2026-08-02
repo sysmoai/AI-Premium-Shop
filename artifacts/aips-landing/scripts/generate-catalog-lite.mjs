@@ -55,6 +55,7 @@ export const buildPages = (products) =>
     description: p.description ?? null,
     whatsappMsg: p.whatsappMsg ?? null,
     featured: p.featured ?? false,
+    capabilities: p.capabilities ?? [],
   }));
 
 export const readProducts = () => JSON.parse(readFileSync(join(ROOT, "data/products.json"), "utf8")).products;

@@ -1,7 +1,7 @@
 {
   "project": "AI Premium Shop",
   "branch": "feat/aips-ssot-claim-price-guards",
-  "headSha": "PENDING_COMMIT",
+  "headSha": "bb0222c9c535fd2addc855b208a97900b4644983",
   "productionSha": "82e5c4bb6d8a442d47421b1c6455e475169f7fc6",
   "activeStage": "Phase 0/1 — access verification and catalog truth reconciliation (coordinator's Step 2)",
   "completedBatch": "Session 4: capability report, AIPS_CURRENT_TRUTH.md, conflict ledger, context-file updates, llms.txt resync, .gitignore secret-exclusion fix, dangerous local commit neutralized",

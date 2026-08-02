@@ -301,6 +301,39 @@ on the high-latency mobile connections this audience uses, and it adds a
 loading flash to the 40 highest-converting pages. Revisit only with real
 field data (needs GA4, which the CEO has deferred).
 
+## Session 9 (2026-08-02, Fable 5) — the ৳1,495 bug again, on seven surfaces
+
+**Claude Pro was quoted at BDT 1,495 across the blog** — ProductBox card, an
+h2, two comparison tables, the meta description, Bangla body copy, and the
+excerpt duplicated in BOTH BlogPage.tsx and BlogPostPage.tsx. Claude's real
+tiers are 599 / 1,590 / 2,990 / 3,990 / 14,950 / 29,900. The site was
+overstating its own entry price by 2.5×. **1,495 IS a real price — GitHub
+Copilot Pro — which is why it survived review and kept being re-pasted.**
+Also fixed "ElevenLabs Creator — BDT 748" on three posts (748 is Starter;
+Creator is 3,490).
+
+Structural fixes so this class cannot recur:
+- **`ProductBox` no longer accepts a price string.** It takes a slug (+
+  optional tier) and reads from `tierPrice`/`cheapestPriceFor`. All 23 call
+  sites migrated; a hand-typed price is now a compile error.
+- **`scripts/validate-blog-prices.mjs` gates the build** for prose, which
+  can't be catalog-derived. It flags a BDT figure whose nearest preceding
+  brand lacks that price. Attribution is deliberately conservative — skips
+  ranges, savings, totals, official/abroad costs, quoted scam prices, and any
+  figure with another figure between it and the brand. It went 24 findings →
+  3 → 0 during tuning; every one of the 21 dropped was a false positive. A
+  noisy gate gets muted, and a muted gate catches nothing.
+
+Also fixed this session:
+- **Empty blog categories rendered an unrelated post as "featured"** — my own
+  `?? POSTS[0]` fallback from session 7. "Voice & Music AI" (0 posts) showed
+  an "AI Video" post under its heading. Now a real empty state.
+- **`/guides/educators` linked to `/best-ai-for-educators`**, which has never
+  been a route. The guide→picks mapping now validates against routes parsed
+  from App.tsx. `audit-prerender` now fails on ANY broken internal link
+  (regression-tested by breaking one deliberately).
+- **First Voice & Music post written**, filling the last empty category.
+
 ### Priority open items (post-session)
 1. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
    would shrink these substantially.

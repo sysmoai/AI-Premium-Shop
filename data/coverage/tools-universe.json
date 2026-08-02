@@ -1,0 +1,72 @@
+{
+  "_README": "The full AIPS system tools universe, transcribed verbatim from the CEO's coverage directive (2026-08-02). This is the denominator for coverage measurement. Entries are grouped by the directive's own section headings. `sellable` marks whether the item is something AI Premium Shop could legitimately sell at all — free products, research labs, and enterprise cloud platforms are catalogued for completeness but are NOT catalog gaps.",
+  "groups": {
+    "chat_assistants": {
+      "sellable": true,
+      "tools": ["ChatGPT Free","ChatGPT Go","ChatGPT Plus","ChatGPT Pro","ChatGPT Business Monthly","ChatGPT Business Annual","ChatGPT Enterprise","ChatGPT Edu","Codex","OpenAI API","Claude Free","Claude Pro Monthly","Claude Pro Annual","Claude Max 5x","Claude Max 20x","Claude Team","Claude Enterprise","Claude Code","Claude Cowork","Claude Research","Claude API","Google Gemini Free","Google AI Plus","Google AI Pro","Google AI Ultra","Gemini Advanced","Workspace Gemini","NotebookLM","NotebookLM Plus","Flow","AI Studio","Gemini API","Gemma","Vertex AI","Grok free","SuperGrok","SuperGrok Lite","SuperGrok Heavy","X Premium access","Grok API","Perplexity Free","Perplexity Pro","Perplexity Max","Perplexity Enterprise Pro","Sonar API","Microsoft Copilot","Copilot Pro","Microsoft 365 Copilot","Copilot Chat","Copilot Studio","Security Copilot","Meta AI","Llama","Meta AI Studio","DeepSeek","Mistral Le Chat","La Plateforme","Codestral","Manus Free","Manus Pro 4000","Manus Pro 8000","Manus Team","Manus 1.6 Lite","Manus 1.6","Manus 1.6 Max","Wide Research","AI Slides","Browser Operator","Manus API","Poe","You.com","Monica","Pi","Qwen Chat","Kimi","Doubao","Yuanbao","ERNIE Bot","GLM","Spark","SenseChat"]
+    },
+    "search_research_agents": {
+      "sellable": true,
+      "tools": ["Genspark","Elicit","Consensus","Scite","SciSpace","Scholarcy","Wolfram","Turnitin","Paperpal","Jenni AI","Lindy","Relay","Gumloop","Ada","Voiceflow"]
+    },
+    "image_design": {
+      "sellable": true,
+      "tools": ["Midjourney Basic","Midjourney Standard","Midjourney Pro","Midjourney Mega","Adobe Firefly","Adobe Creative Cloud AI","Adobe Express","Canva Free","Canva Pro","Canva Business","Canva Enterprise","Magic Studio","Dream Lab","Ideogram","Leonardo.Ai","Freepik","Magnific","Recraft","Photoroom","Playground AI","Krea AI","Clipdrop","Civitai","FLUX","Stability AI","DreamStudio","Stable Diffusion","LiblibAI","Remove.bg","DALL-E credits setup"]
+    },
+    "video_avatar_edit": {
+      "sellable": true,
+      "tools": ["Runway","Higgsfield","Kling AI","Sora","Google Veo","Luma Dream Machine","Pika","Hailuo","PixVerse","Vidu","Haiper","LTX Studio","Argil","Vizard","Pictory","HeyGen","Synthesia","D-ID","Captions","Tavus","Colossyan","Akool","CapCut Pro","Opus Clip","Descript","Veed.io","Filmora","Riverside AI Clips"]
+    },
+    "audio_music_voice": {
+      "sellable": true,
+      "tools": ["ElevenLabs","Suno","Udio","Murf","PlayHT","Cartesia","Deepgram","AssemblyAI","Speechify","Synthflow","Soundraw","AIVA","Stable Audio","MiniMax Music","Resemble AI","LALAL.AI","Adobe Podcast","WellSaid Labs","Krisp"]
+    },
+    "code_dev": {
+      "sellable": true,
+      "tools": ["GitHub Copilot Pro","GitHub Copilot Pro+","GitHub Copilot Business","GitHub Copilot Enterprise","Cursor","Windsurf","Replit","Tabnine","JetBrains AI","Devin","Poolside","Lovable","Bolt.new","v0.dev","Sourcegraph Cody","Qodo","Augment","Amazon Q Developer"]
+    },
+    "writing_productivity": {
+      "sellable": true,
+      "tools": ["Grammarly","QuillBot","Notion AI","Notion Business","Jasper","Copy.ai","Writesonic","Rytr","Wordtune","Sudowrite","HyperWrite","ClickUp AI","Monday.com AI","Airtable AI","Buffer AI","Hootsuite AI"]
+    },
+    "presentation_design_apps": {
+      "sellable": true,
+      "tools": ["Figma","Framer","Gamma Plus","Gamma Pro","Beautiful.ai","Tome","Plus AI","Decktopus","Looka","Designs.ai","Pitch","SlidesAI","Napkin AI"]
+    },
+    "seo_marketing_support": {
+      "sellable": true,
+      "tools": ["Ahrefs","Semrush","Surfer SEO","SE Ranking","Moz","Frase","MarketMuse","AdCreative.ai","Predis.ai","Simplified","Ocoya","Mailchimp AI","HubSpot Starter","Intercom Fin","Tidio","Chatbase","Zendesk AI"]
+    },
+    "automation": {
+      "sellable": true,
+      "tools": ["Zapier AI","Make","n8n","Yellow.ai","Haptik","Gupshup"]
+    },
+    "meetings": {
+      "sellable": true,
+      "tools": ["Otter.ai","Fireflies.ai","Fathom","tl;dv","Read AI"]
+    },
+    "creative_assets_learning": {
+      "sellable": true,
+      "tools": ["Envato Elements","Freepik Premium","Storyblocks","Motion Array","LinkedIn Premium Career","LinkedIn Premium Business","LinkedIn Learning","Coursera Plus","Skillshare","DataCamp"]
+    },
+    "cloud_api_platforms": {
+      "sellable": false,
+      "_why": "Developer/enterprise cloud infrastructure billed per-usage against the customer's own cloud account. Not a consumer subscription AIPS resells; appropriate as education/API-setup service at most.",
+      "tools": ["Hugging Face","Replicate","Together AI","Fireworks AI","Groq","OpenRouter","Cerebras","Databricks Mosaic AI","Snowflake Cortex","SiliconFlow","LightOn","Silo AI","AWS Bedrock","SageMaker","Amazon Q","Nova","NVIDIA NIM","NeMo","DGX","IBM watsonx","Oracle OCI Generative AI","Azure AI Foundry","Azure OpenAI"]
+    },
+    "global_regional_labs": {
+      "sellable": false,
+      "_why": "Research labs, national AI programmes and open-weight model families. These are provider/intelligence entities, not purchasable consumer subscriptions. ATLAS classified 205 such rows research_only for exactly this reason.",
+      "tools": ["Alibaba Qwen","ByteDance Doubao","Baidu ERNIE","Tencent Hunyuan","Zhipu GLM","Moonshot Kimi","Huawei Pangu","iFlytek","SenseTime","01.AI Yi","StepFun","Baichuan","ShengShu","AIsphere","Cohere","DeepL","Aleph Alpha","Naver CLOVA X","LG EXAONE","Kakao","Upstage","SKT A.X","Samsung Gauss","NCSoft VARCO","Wrtn","Saltlux","Sakana AI","Preferred Networks","NTT tsuzumi","NEC cotomi","Fujitsu Kozuchi","Rakuten AI","SoftBank AI","LINE Yahoo AI","CyberAgent","Stockmark","ELYZA","Sarvam","Krutrim","AI4Bharat","CoRover BharatGPT","Gnani.ai","Uniphore","Observe.AI","Qure.ai","Zoho Zia","Freshworks Freddy","G42 Jais","TII Falcon","Humain","Inception","AI71","Presight","SDAIA ALLaM","Aramco METABRAIN","QCRI","Lelapa InkubaLM","Masakhane","Awarri","Data Science Nigeria","InstaDeep","Vambo AI","Jacaranda Health","Latam-GPT","Maritaca Sabia","NeuralMind","Botmaker","Aivo","Yalo","NotCo AI","AI Singapore","SEA-LION","NCS AI","Grab AI","GoTo AI","Tokopedia AI","VinAI","FPT AI","Zalo AI","SCB 10X Typhoon","ThaiLLM","Mesolitica","Atlassian Intelligence","Culture Amp AI","Harrison.ai","Relevance AI","Marqo","Soul Machines"]
+    },
+    "aips_catalog_db": {
+      "sellable": true,
+      "_why": "Products the AIPS catalog DB says should exist on the website. Highest priority to close.",
+      "tools": ["Adobe Firefly","Airtable AI","B2B Implementation Service","Buffer AI Assist","Business Package","Canva Pro AI","CapCut Pro AI","Chatbase","ChatGPT Business","ChatGPT Go","ChatGPT Plus","ChatGPT Pro BD","Claude Pro","ClickUp AI","Copy.ai Pro","Cursor Pro","DALL-E Credits Setup","DeepL Pro","Descript Pro","ElevenLabs Creator","Elicit Pro","Freelancer Bundle","Freepik Premium","Gamma Plus","Gamma Pro","Gemini Advanced","GitHub Copilot","Google AI Pro","Google AI Studio Pro Setup","Looker Studio Setup","Google Workspace AI Admin Setup","Grammarly Premium","SuperGrok","SuperGrok Lite","HeyGen Creator","Hootsuite AI","HubSpot Starter","Ideogram Basic","Ideogram Plus","Ideogram Pro","Intercom Fin Setup","Jasper AI Creator","Kling AI","Leonardo AI","Mailchimp AI","Make Pro","Manus AI","Microsoft Copilot Pro","Midjourney Basic","Midjourney Standard","Midjourney Pro","Midjourney Mega","Monday.com AI","Murf AI Pro","n8n Cloud","Notion Team Setup","Notion AI","Notion Business","Opus Clip","Otter AI Pro","Perplexity Pro","Pictory AI","Pika Labs","Poe Pro","QuillBot Premium","Remove.bg Pro","Replit Core AI","Riverside AI Clips","Runway Standard","Scholarcy Premium","Semrush AI Writing Assist","Student Essentials Package","Suno Pro","Surfer SEO AI","Synthesia Starter","Tidio AI Chat","Tome AI","Udio Pro","v0.dev Pro","VEED Pro","Windsurf Pro","Wordtune Premium","Writesonic Pro","Zapier AI Automation","Zotero Citation Setup"]
+    },
+    "atlas_bundles": {
+      "sellable": true,
+      "tools": ["AI Developer Starter Pack","BuddyPro","Business Power Package","ChatAid","Content Creator Pack","Digital Marketing Pro Pack","Freelancer Pro Pack","Full-Stack Freelancer Stack","HelloFrank","Research Powerhouse Package","Thesis Writer Pack","University Pro Package","Video Creator Pack"]
+    }
+  }
+}

@@ -118,7 +118,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
         <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl w-full">
           {/* Trust pill */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8 text-sm font-medium"
@@ -133,7 +133,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
 
           {/* Visual headline */}
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.55 }}
             className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white leading-tight mb-6"
@@ -145,7 +145,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
 
           {/* Subheadline */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-lg md:text-xl text-gray-400 max-w-2xl mb-6 leading-relaxed"
@@ -160,7 +160,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
 
           {/* Payment Methods */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.5 }}
             className="text-base md:text-lg text-gray-400 max-w-2xl mb-8 leading-relaxed"
@@ -178,7 +178,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
 
           {/* Animated rotating text */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
             className="h-14 flex items-center justify-center lg:justify-start mb-6 w-full"
@@ -210,7 +210,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
               decorative text. Pauses on hover (::hover rule below) so it can
               actually be read and clicked rather than just glanced at. */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.32 }}
             className="w-full overflow-hidden mb-8 hero-ticker"
@@ -249,7 +249,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
 
           {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-10"
@@ -277,7 +277,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
 
           {/* Payment badges */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.45 }}
             className="flex justify-center lg:justify-start"
@@ -288,7 +288,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
 
         {/* RIGHT: Floating card stack (desktop only) */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
+          initial={false}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5, duration: 0.7 }}
           className="hidden lg:flex flex-col items-center justify-center flex-shrink-0"
@@ -340,7 +340,7 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
 
       {/* Trust badges bar */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.55 }}
         className="relative z-10 mt-16 w-full max-w-4xl mx-auto"

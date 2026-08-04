@@ -37,45 +37,45 @@ import {
 const WHATSAPP = "https://wa.me/8801865385348";
 
 const BRAND_COMPETITORS: Record<string, {
-  name1: string; slug1: string; price1: string; strength1: string;
-  name2: string; slug2: string; price2: string; strength2: string;
+  name1: string; slug1: string; strength1: string;
+  name2: string; slug2: string; strength2: string;
   compPage?: string;
 }> = {
-  "chatgpt-plans-bangladesh": { name1: "Claude", slug1: "/claude-pro-bangladesh", price1: "from BDT 1,495", strength1: "#1 for writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 499", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
-  "chatgpt-plus-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", price1: "from BDT 1,495", strength1: "#1 for writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 499", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
-  "chatgpt-business-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", price1: "from BDT 1,495", strength1: "Best writing quality, long documents", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 499", strength2: "Google Workspace integration" },
-  "chatgpt-pro-bangladesh": { name1: "Claude Max 5x", slug1: "/claude-pro-bangladesh", price1: "from BDT 14,950", strength1: "Extended thinking, 1M context window", name2: "GitHub Copilot Pro", slug2: "/github-copilot-bangladesh", price2: "BDT 1,495", strength2: "Best AI coding tool in VS Code" },
-  "claude-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 499", strength1: "All-rounder: images, agents, web search", name2: "Perplexity Pro", slug2: "/perplexity-pro-bangladesh", price2: "from BDT 499", strength2: "AI-powered web research with citations", compPage: "/chatgpt-vs-claude" },
-  "gemini-advanced-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 499", strength1: "Image gen, coding agents, widest capabilities", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Writing quality & long document analysis", compPage: "/chatgpt-vs-gemini" },
-  "supergrok-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 499", strength1: "More affordable, image generation", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Best writing & reasoning quality" },
-  "perplexity-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 499", strength1: "Broader AI capabilities, image gen", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Long document analysis, best writing" },
-  "midjourney-bangladesh": { name1: "Ideogram", slug1: "/ideogram-bangladesh", price1: "from BDT 2,990", strength1: "Text in images, typography design", name2: "Leonardo AI", slug2: "/leonardo-ai-bangladesh", price2: "from BDT 599", strength2: "Budget image generation, character consistency" },
-  "ideogram-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", price1: "from BDT 1,199", strength1: "Highest quality photorealistic & artistic images", name2: "Leonardo AI", slug2: "/leonardo-ai-bangladesh", price2: "from BDT 599", strength2: "Budget image generation" },
-  "leonardo-ai-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", price1: "from BDT 1,199", strength1: "Best quality images across all styles", name2: "Ideogram", slug2: "/ideogram-bangladesh", price2: "from BDT 2,990", strength2: "Text in images & typography" },
-  "runway-bangladesh": { name1: "HeyGen", slug1: "/heygen-bangladesh", price1: "from BDT 1,499", strength1: "AI avatars & video translation", name2: "Midjourney", slug2: "/midjourney-bangladesh", price2: "from BDT 1,199", strength2: "Best image generation" },
-  "heygen-bangladesh": { name1: "Runway", slug1: "/runway-bangladesh", price1: "from BDT 1,794", strength1: "Video editing & AI video generation", name2: "ElevenLabs", slug2: "/elevenlabs-bangladesh", price2: "from BDT 748", strength2: "AI voice cloning & dubbing" },
-  "elevenlabs-bangladesh": { name1: "Suno AI", slug1: "/suno-ai-bangladesh", price1: "from BDT 1,495", strength1: "AI music generation with commercial license", name2: "HeyGen", slug2: "/heygen-bangladesh", price2: "from BDT 1,499", strength2: "AI video creation with avatars" },
-  "suno-ai-bangladesh": { name1: "ElevenLabs", slug1: "/elevenlabs-bangladesh", price1: "from BDT 748", strength1: "Voice cloning & audio production", name2: "Udio", slug2: "/udio-bangladesh", price2: "from BDT 499", strength2: "Budget AI music generation" },
-  "github-copilot-bangladesh": { name1: "Cursor Pro", slug1: "/cursor-bangladesh", price1: "from BDT 2,990", strength1: "AI-native editor with autonomous agent mode", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Best for complex code reasoning", compPage: "/copilot-vs-cursor" },
-  "cursor-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", price1: "BDT 1,495", strength1: "Works in existing VS Code/JetBrains IDE", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", price2: "from BDT 1,495", strength2: "Long context code review & reasoning", compPage: "/copilot-vs-cursor" },
-  "notion-business-bangladesh": { name1: "Google AI Pro", slug1: "/gemini-advanced-bangladesh", price1: "BDT 499", strength1: "AI in Gmail, Docs, Sheets + 2TB storage", name2: "Otter.ai", slug2: "/otter-ai-bangladesh", price2: "from BDT 799", strength2: "Meeting transcription & AI notes" },
-  "replit-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", price1: "BDT 1,495", strength1: "Best IDE code completion plugin", name2: "Cursor Pro", slug2: "/cursor-bangladesh", price2: "from BDT 2,990", strength2: "Full AI-native coding environment" },
-  "v0-dev-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", price1: "BDT 1,495", strength1: "Best for general backend/frontend coding", name2: "Replit Core", slug2: "/replit-bangladesh", price2: "BDT 500", strength2: "Cloud dev environment with AI" },
-  "freepik-premium-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", price1: "from BDT 1,199", strength1: "Best AI image generation", name2: "Canva Pro", slug2: "/canva-pro-bangladesh", price2: "from BDT 510", strength2: "All-in-one design with AI Magic Studio" },
-  "kling-ai-bangladesh": { name1: "Runway", slug1: "/runway-bangladesh", price1: "from BDT 1,794", strength1: "Professional AI video generation", name2: "Pika Labs", slug2: "/pika-labs-bangladesh", price2: "from BDT 310", strength2: "Text-to-video AI for TikTok" },
-  "synthesia-bangladesh": { name1: "HeyGen", slug1: "/heygen-bangladesh", price1: "from BDT 1,499", strength1: "AI avatars & video translation", name2: "Runway", slug2: "/runway-bangladesh", price2: "from BDT 1,794", strength2: "Professional AI video creation" },
-  "windsurf-bangladesh": { name1: "Cursor", slug1: "/cursor-bangladesh", price1: "from BDT 2,990", strength1: "AI-native IDE with agent mode", name2: "GitHub Copilot", slug2: "/github-copilot-bangladesh", price2: "from BDT 1,495", strength2: "AI coding assistant for VS Code" },
-  "capcut-pro-bangladesh": { name1: "Runway", slug1: "/runway-bangladesh", price1: "from BDT 1,794", strength1: "Professional AI video generation", name2: "Canva Pro", slug2: "/products", price2: "from BDT 499", strength2: "Design + video templates" },
-  "grammarly-premium-bangladesh": { name1: "QuillBot", slug1: "/quillbot-premium-bangladesh", price1: "from BDT 390", strength1: "AI paraphrasing and citation tool", name2: "ChatGPT Plus", slug2: "/chatgpt-plans-bangladesh", price2: "from BDT 499", strength2: "All-rounder AI for writing and research" },
-  "quillbot-premium-bangladesh": { name1: "Grammarly Premium", slug1: "/grammarly-premium-bangladesh", price1: "from BDT 470", strength1: "Grammar, tone, and plagiarism checking", name2: "ChatGPT Plus", slug2: "/chatgpt-plans-bangladesh", price2: "from BDT 499", strength2: "Broader AI writing assistant" },
-  "canva-pro-bangladesh": { name1: "Adobe Firefly", slug1: "/adobe-firefly-bangladesh", price1: "from BDT 190", strength1: "AI image generation inside Photoshop", name2: "Gamma", slug2: "/gamma-bangladesh", price2: "from BDT 399", strength2: "AI presentations and documents" },
-  "microsoft-copilot-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 499", strength1: "More affordable with image generation", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", price2: "BDT 499", strength2: "AI in Gmail, Docs, and 2TB storage" },
-  "jasper-ai-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", price1: "from BDT 499", strength1: "General-purpose AI writing", name2: "Writesonic", slug2: "/writesonic-bangladesh", price2: "BDT 799", strength2: "AI writing tool for SEO content" },
-  "adobe-firefly-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", price1: "from BDT 1,199", strength1: "Highest artistic quality AI images", name2: "Canva Pro", slug2: "/canva-pro-bangladesh", price2: "from BDT 510", strength2: "All-in-one design with AI Magic Studio" },
-  "pika-labs-bangladesh": { name1: "Runway", slug1: "/runway-bangladesh", price1: "from BDT 1,794", strength1: "Professional AI video generation", name2: "CapCut Pro", slug2: "/capcut-pro-bangladesh", price2: "from BDT 399", strength2: "Video editing for TikTok and Reels" },
-  "opus-clip-bangladesh": { name1: "CapCut Pro", slug1: "/capcut-pro-bangladesh", price1: "from BDT 399", strength1: "Video editing with AI effects", name2: "Pika Labs", slug2: "/pika-labs-bangladesh", price2: "from BDT 310", strength2: "Text-to-video AI generation" },
-  "descript-pro-bangladesh": { name1: "Opus Clip", slug1: "/opus-clip-bangladesh", price1: "from BDT 590", strength1: "Repurpose long videos into Shorts", name2: "CapCut Pro", slug2: "/capcut-pro-bangladesh", price2: "from BDT 399", strength2: "Mobile-first video editing" },
-  "murf-ai-bangladesh": { name1: "ElevenLabs", slug1: "/elevenlabs-bangladesh", price1: "from BDT 499", strength1: "Most realistic AI voice cloning", name2: "Suno AI", slug2: "/suno-ai-bangladesh", price2: "from BDT 1,495", strength2: "AI music generation" },
+  "chatgpt-plans-bangladesh": { name1: "Claude", slug1: "/claude-pro-bangladesh", strength1: "#1 for writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
+  "chatgpt-plus-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", strength1: "#1 for writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
+  "chatgpt-business-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", strength1: "Best writing quality, long documents", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace integration" },
+  "chatgpt-pro-bangladesh": { name1: "Claude Max 5x", slug1: "/claude-pro-bangladesh", strength1: "Extended thinking, 1M context window", name2: "GitHub Copilot Pro", slug2: "/github-copilot-bangladesh", strength2: "Best AI coding tool in VS Code" },
+  "claude-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "All-rounder: images, agents, web search", name2: "Perplexity Pro", slug2: "/perplexity-pro-bangladesh", strength2: "AI-powered web research with citations", compPage: "/chatgpt-vs-claude" },
+  "gemini-advanced-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "Image gen, coding agents, widest capabilities", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", strength2: "Writing quality & long document analysis", compPage: "/chatgpt-vs-gemini" },
+  "supergrok-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "More affordable, image generation", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", strength2: "Best writing & reasoning quality" },
+  "perplexity-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "Broader AI capabilities, image gen", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", strength2: "Long document analysis, best writing" },
+  "midjourney-bangladesh": { name1: "Ideogram", slug1: "/ideogram-bangladesh", strength1: "Text in images, typography design", name2: "Leonardo AI", slug2: "/leonardo-ai-bangladesh", strength2: "Budget image generation, character consistency" },
+  "ideogram-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", strength1: "Highest quality photorealistic & artistic images", name2: "Leonardo AI", slug2: "/leonardo-ai-bangladesh", strength2: "Budget image generation" },
+  "leonardo-ai-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", strength1: "Best quality images across all styles", name2: "Ideogram", slug2: "/ideogram-bangladesh", strength2: "Text in images & typography" },
+  "runway-bangladesh": { name1: "HeyGen", slug1: "/heygen-bangladesh", strength1: "AI avatars & video translation", name2: "Midjourney", slug2: "/midjourney-bangladesh", strength2: "Best image generation" },
+  "heygen-bangladesh": { name1: "Runway", slug1: "/runway-bangladesh", strength1: "Video editing & AI video generation", name2: "ElevenLabs", slug2: "/elevenlabs-bangladesh", strength2: "AI voice cloning & dubbing" },
+  "elevenlabs-bangladesh": { name1: "Suno AI", slug1: "/suno-ai-bangladesh", strength1: "AI music generation with commercial license", name2: "HeyGen", slug2: "/heygen-bangladesh", strength2: "AI video creation with avatars" },
+  "suno-ai-bangladesh": { name1: "ElevenLabs", slug1: "/elevenlabs-bangladesh", strength1: "Voice cloning & audio production", name2: "Udio", slug2: "/udio-bangladesh", strength2: "Budget AI music generation" },
+  "github-copilot-bangladesh": { name1: "Cursor Pro", slug1: "/cursor-bangladesh", strength1: "AI-native editor with autonomous agent mode", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", strength2: "Best for complex code reasoning", compPage: "/copilot-vs-cursor" },
+  "cursor-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", strength1: "Works in existing VS Code/JetBrains IDE", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", strength2: "Long context code review & reasoning", compPage: "/copilot-vs-cursor" },
+  "notion-business-bangladesh": { name1: "Google AI Pro", slug1: "/gemini-advanced-bangladesh", strength1: "AI in Gmail, Docs, Sheets + 2TB storage", name2: "Otter.ai", slug2: "/otter-ai-bangladesh", strength2: "Meeting transcription & AI notes" },
+  "replit-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", strength1: "Best IDE code completion plugin", name2: "Cursor Pro", slug2: "/cursor-bangladesh", strength2: "Full AI-native coding environment" },
+  "v0-dev-bangladesh": { name1: "GitHub Copilot", slug1: "/github-copilot-bangladesh", strength1: "Best for general backend/frontend coding", name2: "Replit Core", slug2: "/replit-bangladesh", strength2: "Cloud dev environment with AI" },
+  "freepik-premium-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", strength1: "Best AI image generation", name2: "Canva Pro", slug2: "/canva-pro-bangladesh", strength2: "All-in-one design with AI Magic Studio" },
+  "kling-ai-bangladesh": { name1: "Runway", slug1: "/runway-bangladesh", strength1: "Professional AI video generation", name2: "Pika Labs", slug2: "/pika-labs-bangladesh", strength2: "Text-to-video AI for TikTok" },
+  "synthesia-bangladesh": { name1: "HeyGen", slug1: "/heygen-bangladesh", strength1: "AI avatars & video translation", name2: "Runway", slug2: "/runway-bangladesh", strength2: "Professional AI video creation" },
+  "windsurf-bangladesh": { name1: "Cursor", slug1: "/cursor-bangladesh", strength1: "AI-native IDE with agent mode", name2: "GitHub Copilot", slug2: "/github-copilot-bangladesh", strength2: "AI coding assistant for VS Code" },
+  "capcut-pro-bangladesh": { name1: "Runway", slug1: "/runway-bangladesh", strength1: "Professional AI video generation", name2: "Canva Pro", slug2: "/products", strength2: "Design + video templates" },
+  "grammarly-premium-bangladesh": { name1: "QuillBot", slug1: "/quillbot-premium-bangladesh", strength1: "AI paraphrasing and citation tool", name2: "ChatGPT Plus", slug2: "/chatgpt-plans-bangladesh", strength2: "All-rounder AI for writing and research" },
+  "quillbot-premium-bangladesh": { name1: "Grammarly Premium", slug1: "/grammarly-premium-bangladesh", strength1: "Grammar, tone, and plagiarism checking", name2: "ChatGPT Plus", slug2: "/chatgpt-plans-bangladesh", strength2: "Broader AI writing assistant" },
+  "canva-pro-bangladesh": { name1: "Adobe Firefly", slug1: "/adobe-firefly-bangladesh", strength1: "AI image generation inside Photoshop", name2: "Gamma", slug2: "/gamma-bangladesh", strength2: "AI presentations and documents" },
+  "microsoft-copilot-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "More affordable with image generation", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "AI in Gmail, Docs, and 2TB storage" },
+  "jasper-ai-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "General-purpose AI writing", name2: "Writesonic", slug2: "/writesonic-bangladesh", strength2: "AI writing tool for SEO content" },
+  "adobe-firefly-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", strength1: "Highest artistic quality AI images", name2: "Canva Pro", slug2: "/canva-pro-bangladesh", strength2: "All-in-one design with AI Magic Studio" },
+  "pika-labs-bangladesh": { name1: "Runway", slug1: "/runway-bangladesh", strength1: "Professional AI video generation", name2: "CapCut Pro", slug2: "/capcut-pro-bangladesh", strength2: "Video editing for TikTok and Reels" },
+  "opus-clip-bangladesh": { name1: "CapCut Pro", slug1: "/capcut-pro-bangladesh", strength1: "Video editing with AI effects", name2: "Pika Labs", slug2: "/pika-labs-bangladesh", strength2: "Text-to-video AI generation" },
+  "descript-pro-bangladesh": { name1: "Opus Clip", slug1: "/opus-clip-bangladesh", strength1: "Repurpose long videos into Shorts", name2: "CapCut Pro", slug2: "/capcut-pro-bangladesh", strength2: "Mobile-first video editing" },
+  "murf-ai-bangladesh": { name1: "ElevenLabs", slug1: "/elevenlabs-bangladesh", strength1: "Most realistic AI voice cloning", name2: "Suno AI", slug2: "/suno-ai-bangladesh", strength2: "AI music generation" },
 };
 
 const BEST_FOR_LABELS: Record<string, string> = {
@@ -235,8 +235,8 @@ const BRAND_META: Record<string, {
   "claude-pro-bangladesh": {
     displayName: "Claude",
     tagline: "Claude Pro Bangladesh — from ৳1,590/month",
-    seoTitle: "Claude Pro Bangladesh — From BDT 1,495/mo | AI Premium Shop",
-    seoDescription: "Claude Pro Bangladesh from BDT 1,495/mo. Opus 4.6, 200K context, Claude Code. bKash/Nagad. 5-15 min delivery. AI Premium Shop.",
+    seoTitle: "Claude Pro Bangladesh — From BDT 599/mo | AI Premium Shop",
+    seoDescription: "Claude Pro Bangladesh from BDT 599/mo. Opus 4.6, 200K context, Claude Code. bKash/Nagad. 5-15 min delivery. AI Premium Shop.",
     description: "Claude by Anthropic is the AI that rivals and often surpasses ChatGPT for writing, coding, and nuanced analysis. Claude Opus 4.6 leads in creative writing, legal documents, research, and complex reasoning. Available from Premium Shared (৳1,590) to Max 20x (৳29,900). Pay via bKash.",
     accentColor: "#d97706",
     faqs: [
@@ -266,9 +266,9 @@ const BRAND_META: Record<string, {
 
   "supergrok-bangladesh": {
     displayName: "SuperGrok",
-    tagline: "SuperGrok Bangladesh — from ৳1,495/month",
-    seoTitle: "SuperGrok Bangladesh — From BDT 1,495/mo | AI Premium Shop",
-    seoDescription: "SuperGrok Bangladesh from BDT 1,495/mo. Grok 4.1, real-time X data, image & video gen, AI agents. bKash/Nagad. AI Premium Shop.",
+    tagline: "SuperGrok Bangladesh — from ৳699/month",
+    seoTitle: "SuperGrok Bangladesh — From BDT 699/mo | AI Premium Shop",
+    seoDescription: "SuperGrok Bangladesh from BDT 699/mo. Grok 4.1, real-time X data, image & video gen, AI agents. bKash/Nagad. AI Premium Shop.",
     description: "SuperGrok by xAI (Elon Musk's AI company) gives you Grok 4.1 — one of the most intelligent AI models available. Real-time access to X (Twitter) data, AI image generation, HD video generation, and 4x AI agents. Available as Lite (৳1,699) or Standard (৳4,990). Personal accounts only.",
     accentColor: "#1a1a2e",
     faqs: [
@@ -363,8 +363,8 @@ const BRAND_META: Record<string, {
   "suno-ai-bangladesh": {
     displayName: "Suno AI",
     tagline: "Suno AI Bangladesh — from ৳4,990/month",
-    seoTitle: "Suno AI Bangladesh — From BDT 1,495/mo | AI Premium Shop",
-    seoDescription: "Suno AI Bangladesh from BDT 1,495/mo. AI music generation, 500 songs/mo, Bangla songs. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
+    seoTitle: "Suno AI Bangladesh — From BDT 1,199/mo | AI Premium Shop",
+    seoDescription: "Suno AI Bangladesh from BDT 1,199/mo. AI music generation, 500 songs/mo, Bangla songs. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "Suno AI creates complete original songs from a text prompt — vocals, instruments, and lyrics included. Generate pop, hip-hop, folk, Bangla fusion, electronic, or any genre in seconds. Pro plan: 2,500 credits (~500 songs) for ৳4,990. Premier: 10,000 credits (~2,000 songs) for ৳3,990.",
     accentColor: "#7c3aed",
     faqs: [
@@ -1397,10 +1397,10 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 </thead>
                 <tbody>
                   {[
-                    { seg: "✍️ Writers & Researchers", why: "Best writing quality of any AI", plan: "Premium Shared", price: "৳1,495", link: "/best-ai-for-students" },
+                    { seg: "✍️ Writers & Researchers", why: "Best writing quality of any AI", plan: "Premium Shared", price: "৳1,590", link: "/best-ai-for-students" },
                     { seg: "⚖️ Lawyers & Legal", why: "Legal document analysis, case research", plan: "Personal", price: "৳2,990", link: "/best-ai-for-business" },
                     { seg: "🖥️ Developers", why: "Claude Code = autonomous coding agent", plan: "Premium Shared", price: "৳1,590", link: "/best-ai-for-developers" },
-                    { seg: "🎬 Content Creators", why: "Long-form blogs, scripts, newsletters", plan: "Premium Shared", price: "৳1,495", link: "/best-ai-for-creators" },
+                    { seg: "🎬 Content Creators", why: "Long-form blogs, scripts, newsletters", plan: "Premium Shared", price: "৳1,590", link: "/best-ai-for-creators" },
                     { seg: "🏢 Agencies", why: "Team plan with admin controls", plan: "Team", price: "৳3,990", link: "/best-ai-for-business" },
                     { seg: "⚡ Power Users", why: "5x–20x limits, 1M context window", plan: "Max 5x/20x", price: "৳14,950–29,900", link: "/" },
                   ].map((row, i) => (
@@ -2346,14 +2346,15 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   {
                     label: "Price (AIPS)",
                     a: cheapest && cheapest.price != null ? `from BDT ${cheapest.price.toLocaleString()}` : "—",
-                    // Derived, not read from the map: 35 of the 70 price
-                    // literals in ALTERNATIVES were wrong — Claude Pro listed
-                    // at BDT 1,495 against a real 599, Cursor at 2,990 against
-                    // 699, and Adobe Firefly at 190 against 799, which
-                    // undercharges. The slug is trustworthy; the typed price
-                    // was not.
-                    b: altPrice(comp.slug1) ?? comp.price1,
-                    c: altPrice(comp.slug2) ?? comp.price2,
+                    // Always derived from the catalog, never typed: 35 of the
+                    // 70 hand-typed price literals this table used to carry
+                    // were wrong (Claude Pro at BDT 1,495 against a real 599,
+                    // Cursor at 2,990 against 699, Adobe Firefly at 190
+                    // against 799) — the fields were removed rather than
+                    // corrected, since a typed number next to a trustworthy
+                    // slug is exactly how that drift kept recurring.
+                    b: altPrice(comp.slug1) ?? "—",
+                    c: altPrice(comp.slug2) ?? "—",
                   },
                   { label: "Best for", a: BEST_FOR_LABELS[brandSlug] ?? meta.tagline, b: comp.strength1, c: comp.strength2 },
                   { label: "Delivery", a: cheapest?.deliverySLA ?? "5–30 min", b: "5–30 min", c: "5–30 min" },

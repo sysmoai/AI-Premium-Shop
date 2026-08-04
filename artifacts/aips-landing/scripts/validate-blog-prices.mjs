@@ -42,13 +42,38 @@ const WATCHED = ["claude", "chatgpt", "midjourney", "perplexity", "elevenlabs",
 // — those can't be checked against one brand's tier list at all.
 const EXEMPT = /officially|official|abroad|exchange|saving|save[ds]?\b|total|combined|bundle|package|scam|fake|lifetime|earn|income|revenue|per project|per hour|\/hour|up to|budget|under |\$|month total|stack|\+/i;
 
-const FILES = ["src/pages/BlogPostPage.tsx", "src/pages/BlogPage.tsx", "src/pages/GuidePage.tsx"];
+const FILES = [
+  "src/pages/BlogPostPage.tsx", "src/pages/BlogPage.tsx", "src/pages/GuidePage.tsx",
+  "src/pages/BestAISubscriptionPage.tsx", "src/pages/BrandPage.tsx", "src/pages/BudgetPage.tsx",
+  "src/pages/CategoryPage.tsx", "src/pages/ComparisonPage.tsx", "src/pages/FAQPage.tsx",
+  "src/pages/GuidesIndexPage.tsx", "src/pages/Home.tsx", "src/pages/HowToOrderPage.tsx",
+  "src/pages/PricingPage.tsx", "src/pages/RefundPolicyPage.tsx", "src/pages/SupportPage.tsx",
+  "src/pages/BanglaBN.tsx", "src/pages/CreatorsBN.tsx", "src/pages/DevelopersBN.tsx",
+  "src/pages/EducatorsBangla.tsx", "src/pages/FreelancersBN.tsx", "src/pages/SMBBangla.tsx",
+  "src/pages/StudentsBN.tsx",
+  "src/pages/guides/StudentsGuide.tsx", "src/pages/guides/FreelancersGuide.tsx",
+  "src/pages/guides/CreatorsGuide.tsx", "src/pages/guides/SMBGuide.tsx", "src/pages/guides/EducatorsGuide.tsx",
+  "src/sections/AIAgentsSection.tsx", "src/sections/FeaturedProductsSection.tsx",
+  "src/sections/HeroSection.tsx", "src/sections/OffersSection.tsx", "src/sections/PainPointSection.tsx",
+  "src/sections/PaymentMethodsSection.tsx", "src/sections/PricingTiersSection.tsx",
+  "src/sections/SegmentHeroContent.tsx", "src/sections/TestimonialsSection.tsx", "src/sections/WhyUsSection.tsx",
+];
 const problems = [];
 
 for (const rel of FILES) {
   const lines = fs.readFileSync(path.join(APP, rel), "utf8").split("\n");
+  let inBlockComment = false;
   lines.forEach((line, i) => {
-    if (/^\s*\/\//.test(line)) return; // our own comments about past bugs
+    if (/^\s*\/\//.test(line)) return; // our own line comments about past bugs
+
+    // Multi-line JSX block comments ({/* ... */}) — a continuation line has
+    // no leading marker of its own, so track open/close state across lines
+    // rather than only checking the line that starts the comment.
+    const wasInBlockComment = inBlockComment;
+    if (/\/\*/.test(line) && !/\*\//.test(line)) inBlockComment = true;
+    else if (inBlockComment && /\*\//.test(line)) inBlockComment = false;
+    if (wasInBlockComment) return;
+
     const lower = line.toLowerCase();
     for (const m of line.matchAll(/(?:BDT|৳)\s?([\d,]{3,7})/g)) {
       const amount = Number(m[1].replace(/,/g, ""));
@@ -64,7 +89,19 @@ for (const rel of FILES) {
       // If another figure sits between the brand and this one, this figure
       // belongs to whatever came after that brand — e.g. "Cursor Pro (৳2,990)
       // or Replit Core (৳500)", where ৳500 is Replit's, not Cursor's.
-      if (/(?:BDT|৳)\s?[\d,]{3,7}/.test(windowText)) continue;
+      if (/(?:bdt|৳)\s?[\d,]{3,7}/.test(windowText)) continue;
+
+      // "Brand1, Brand2, Brand3 in Bangladesh. From BDT X." (CategoryPage's
+      // metaDescription convention) is a category-floor price across every
+      // listed brand, not a claim about whichever watched brand happens to be
+      // nearest — a sentence boundary right before "from bdt"/"থেকে" signals
+      // exactly that shape.
+      // Same category-floor shape, but as one clause with no sentence break —
+      // "Grammarly, QuillBot, Jasper, Writesonic from BDT 390/mo." A 2+-comma
+      // list immediately before "from" is that shape; a single brand name
+      // right before "from" ("ChatGPT Plus from BDT 499") is not.
+      if (/\.\s*from\s*$/i.test(windowText)) continue;
+      if (/from\s*$/i.test(windowText) && (windowText.match(/,/g) ?? []).length >= 2) continue;
 
       const near = WATCHED.filter((b) => windowText.includes(b));
       if (near.length !== 1) continue; // ambiguous or unattributed — skip

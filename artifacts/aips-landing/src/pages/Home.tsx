@@ -189,7 +189,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-center text-sm" style={{ color: "#c9ceda" }}>
-                Start with ChatGPT Pro (BDT 4,500) or Manus AI (BDT 2,500) and build AI agent services.
+                Start with ChatGPT Pro (BDT 4,500) or Manus AI (BDT 5,990) and build AI agent services.
               </p>
             </div>
           </div>

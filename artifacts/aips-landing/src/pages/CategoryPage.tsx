@@ -37,7 +37,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     accent: "#10a37f",
     faqs: [
       { q: "What's the difference between Shared and Personal accounts?", a: "Shared accounts are cost-effective: you access the same plan as other users (no chat history sharing). Personal accounts are yours alone — full privacy, custom settings, and no usage limits from others." },
-      { q: "Which AI assistant is best for students in Bangladesh?", a: "ChatGPT Plus Shared (BDT 499) is the best starter. For more demanding work, Claude Pro Premium Shared (BDT 1,495) offers the best writing and analysis — ranked #1 on Chatbot Arena." },
+      { q: "Which AI assistant is best for students in Bangladesh?", a: "ChatGPT Plus Shared (BDT 499) is the best starter. For more demanding work, Claude Pro Premium Shared (BDT 1,590) offers the best writing and analysis — ranked #1 on Chatbot Arena." },
       { q: "Can I switch models after ordering?", a: "Yes — you get access to all models within your plan. ChatGPT Plus includes GPT-5.4, image generation, web search, and AI agents. Claude Pro includes all Claude models including Opus 4.6." },
       { q: "How fast is delivery?", a: "Most AI assistant accounts are delivered within 5–30 minutes of payment confirmation, even at midnight." },
     ],
@@ -88,7 +88,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     description:
       "Generate and edit videos with AI. Runway Gen-4 for professional video generation. HeyGen for AI avatar videos in 15+ languages. Kling AI creates cinematic text-to-video with character consistency. Synthesia makes professional AI avatar videos in 120+ languages. Pika Labs creates cinematic text-to-video clips. Opus Clip transforms long videos into viral Shorts. Descript Pro edits video by editing text. CapCut Pro is the #1 video editor for TikTok, Reels & Shorts. All accessible in Bangladesh with bKash payment.",
     metaDescription:
-      "Runway, HeyGen, Kling AI, Synthesia in Bangladesh. From BDT 270. AI video generation & avatars. Local payment.",
+      "Runway, HeyGen, Kling AI, Synthesia in Bangladesh. From BDT 299. AI video generation & avatars. Local payment.",
     accent: "#ec4899",
     faqs: [
       { q: "What can I make with Runway?", a: "Runway Gen-4 creates video from text prompts or reference images, applies motion effects, removes backgrounds from video, and provides advanced editing tools used by professional filmmakers and video editors." },
@@ -221,7 +221,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     description:
       "Create professional designs with AI. Canva Pro's Magic Studio generates images, edits photos, writes copy, and animates designs. Adobe Firefly produces commercially safe AI images inside Photoshop and Express. Perfect for Bangladeshi social media managers, marketers, and small businesses.",
     metaDescription:
-      "Canva Pro, Adobe Firefly in Bangladesh. From BDT 190. AI design tools. bKash/Nagad. Fast delivery.",
+      "Canva Pro, Adobe Firefly in Bangladesh. From BDT 399. AI design tools. bKash/Nagad. Fast delivery.",
     accent: "#7c3aed",
     faqs: [
       { q: "What's the difference between Canva Pro and Adobe Firefly?", a: "Canva Pro is an all-in-one design platform with AI tools, 100M+ stock assets, and templates for non-designers. Adobe Firefly is AI image generation built into Adobe Creative Cloud — best for designers already using Photoshop and Illustrator." },

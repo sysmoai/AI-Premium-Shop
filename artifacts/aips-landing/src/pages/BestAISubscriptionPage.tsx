@@ -27,7 +27,7 @@ const TOP_TOOLS = [
     bestFor: ["Professionals", "Students", "Job seekers"],
   },
   {
-    rank: 3, name: "Claude Pro", price: "from BDT 1,495/mo", badge: "#1 for Writing",
+    rank: 3, name: "Claude Pro", price: "from BDT 599/mo", badge: "#1 for Writing",
     badgeColor: "#d97706", slug: "/claude-pro-bangladesh",
     why: "Ranked #1 on Chatbot Arena. Best writing quality, 1M token context window, and Claude Code for developers. The top choice for writers, researchers, and analysts.",
     bestFor: ["Writers", "Researchers", "Lawyers", "Developers"],
@@ -69,7 +69,7 @@ const TOP_TOOLS = [
     bestFor: ["Teams", "Managers", "Knowledge workers"],
   },
   {
-    rank: 10, name: "Suno AI", price: "from BDT 1,495/mo", badge: "Best for Music",
+    rank: 10, name: "Suno AI", price: "from BDT 1,199/mo", badge: "Best for Music",
     badgeColor: "#ec4899", slug: "/suno-ai-bangladesh",
     why: "Generate complete songs with lyrics, instruments, and vocals from a text prompt. The best AI music generator for content creators and marketers who need background music.",
     bestFor: ["Musicians", "Content creators", "Video editors"],
@@ -77,13 +77,13 @@ const TOP_TOOLS = [
 ];
 
 const CATEGORY_TABLE = [
-  { category: "AI Writing", best: "Claude Pro", price: "BDT 1,495/mo", runner: "ChatGPT Plus", slug: "/claude-pro-bangladesh" },
+  { category: "AI Writing", best: "Claude Pro", price: "BDT 599/mo", runner: "ChatGPT Plus", slug: "/claude-pro-bangladesh" },
   { category: "AI Coding", best: "GitHub Copilot Pro", price: "BDT 1,495/mo", runner: "Cursor Pro", slug: "/github-copilot-bangladesh" },
   { category: "AI Images", best: "Midjourney", price: "BDT 1,199/mo", runner: "Ideogram", slug: "/midjourney-bangladesh" },
-  { category: "AI Research", best: "Perplexity Pro", price: "BDT 499/mo", runner: "ChatGPT Plus", slug: "/perplexity-pro-bangladesh" },
+  { category: "AI Research", best: "Perplexity Pro", price: "BDT 599/mo", runner: "ChatGPT Plus", slug: "/perplexity-pro-bangladesh" },
   { category: "AI Video", best: "Runway", price: "BDT 1,794/mo", runner: "HeyGen", slug: "/runway-bangladesh" },
   { category: "AI Voice", best: "ElevenLabs", price: "BDT 748/mo", runner: "HeyGen", slug: "/elevenlabs-bangladesh" },
-  { category: "AI Music", best: "Suno AI", price: "BDT 1,495/mo", runner: "Udio", slug: "/suno-ai-bangladesh" },
+  { category: "AI Music", best: "Suno AI", price: "BDT 1,199/mo", runner: "Udio", slug: "/suno-ai-bangladesh" },
   { category: "AI Workspace", best: "Notion AI", price: "BDT 800/mo", runner: "Google AI Pro", slug: "/notion-business-bangladesh" },
 ];
 

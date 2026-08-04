@@ -92,22 +92,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      window.__loadTrace = [{ t: performance.now(), e: "inline-script-start", rootChildren: document.getElementById("root").children.length }];
-      new MutationObserver((muts) => {
-        for (const m of muts) {
-          window.__loadTrace.push({
-            t: performance.now(),
-            e: "mutation",
-            type: m.type,
-            removed: m.removedNodes.length,
-            added: m.addedNodes.length,
-            rootChildrenAfter: document.getElementById("root").children.length,
-            rootHTMLLenAfter: document.getElementById("root").innerHTML.length,
-          });
-        }
-      }).observe(document.getElementById("root"), { childList: true, subtree: false });
-    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

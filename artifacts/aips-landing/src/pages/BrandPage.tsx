@@ -234,7 +234,7 @@ const BRAND_META: Record<string, {
 
   "claude-pro-bangladesh": {
     displayName: "Claude",
-    tagline: "Claude Pro Bangladesh — from ৳1,590/month",
+    tagline: "Claude Pro Bangladesh — from ৳599/month",
     seoTitle: "Claude Pro Bangladesh — From BDT 599/mo | AI Premium Shop",
     seoDescription: "Claude Pro Bangladesh from BDT 599/mo. Opus 4.6, 200K context, Claude Code. bKash/Nagad. 5-15 min delivery. AI Premium Shop.",
     description: "Claude by Anthropic is the AI that rivals and often surpasses ChatGPT for writing, coding, and nuanced analysis. Claude Opus 4.6 leads in creative writing, legal documents, research, and complex reasoning. Available from Premium Shared (৳1,590) to Max 20x (৳29,900). Pay via bKash.",
@@ -362,7 +362,7 @@ const BRAND_META: Record<string, {
 
   "suno-ai-bangladesh": {
     displayName: "Suno AI",
-    tagline: "Suno AI Bangladesh — from ৳4,990/month",
+    tagline: "Suno AI Bangladesh — from ৳1,199/month",
     seoTitle: "Suno AI Bangladesh — From BDT 1,199/mo | AI Premium Shop",
     seoDescription: "Suno AI Bangladesh from BDT 1,199/mo. AI music generation, 500 songs/mo, Bangla songs. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "Suno AI creates complete original songs from a text prompt — vocals, instruments, and lyrics included. Generate pop, hip-hop, folk, Bangla fusion, electronic, or any genre in seconds. Pro plan: 2,500 credits (~500 songs) for ৳4,990. Premier: 10,000 credits (~2,000 songs) for ৳3,990.",
@@ -378,7 +378,7 @@ const BRAND_META: Record<string, {
 
   "github-copilot-bangladesh": {
     displayName: "GitHub Copilot",
-    tagline: "GitHub Copilot Bangladesh — from ৳1,495/month",
+    tagline: "GitHub Copilot Bangladesh — from ৳399/month",
     seoTitle: "GitHub Copilot Bangladesh — BDT 1,495/mo | AI Premium Shop",
     seoDescription: "GitHub Copilot Bangladesh BDT 1,495/mo. AI code completion in VS Code & JetBrains. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "GitHub Copilot Pro is the most widely used AI coding assistant. It integrates directly into VS Code, JetBrains, Neovim, and other IDEs — providing real-time code completions, inline chat, and automated PR reviews. Available as Pro (৳1,495) or Pro+ (৳5,831) with 5x usage.",
@@ -394,7 +394,7 @@ const BRAND_META: Record<string, {
 
   "cursor-bangladesh": {
     displayName: "Cursor",
-    tagline: "Cursor Pro Bangladesh — from ৳2,990/month",
+    tagline: "Cursor Pro Bangladesh — from ৳699/month",
     seoTitle: "Cursor Pro Bangladesh — From BDT 2,990/mo | AI Premium Shop",
     seoDescription: "Cursor Pro Bangladesh from BDT 2,990/mo. AI-native IDE, agent mode, full codebase context. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
     description: "Cursor is the AI-native code editor trusted by engineering teams at OpenAI, Stripe, Figma, and thousands of startups. Built on VS Code — all your extensions work. Cursor understands your entire codebase and can make multi-file edits, explain complex code, and build features end-to-end. From ৳2,990/month.",

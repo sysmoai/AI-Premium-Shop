@@ -94,6 +94,85 @@ staying invisible.
   `hydrateRoot`. It therefore never *attempts* hydration and cannot emit a
   hydration mismatch warning.
 
+## Root cause 3 — the prerendered shell PAINTED, then was thrown away (the big one)
+
+Root causes 1 and 2 removed the white flash, and the owner reported the blink was
+still there. It was, and this was why.
+
+`scripts/prerender-products.mjs` writes a plain, **class-free** HTML copy of each
+page into `<div id="root">` so crawlers that do not execute JS see real content.
+`main.tsx` then calls `createRoot(...).render()`, which **does not hydrate** — it
+empties the container and renders fresh.
+
+Measured on production, 1280px viewport:
+
+| | |
+|---|---|
+| first frame | 106 elements, **0** with a class attribute, `<h1>` computing to **16px**, `<main>` at full 1265px bleed with no padding |
+| duration | DOM interactive 87ms, JS chunks land ~370ms — so **~300-400ms** on a warm fast connection, far longer on mobile data |
+| second frame | `createRoot` empties `#root`, real design paints |
+
+A wall of unstyled text for a third of a second, replaced wholesale. That is the
+blink, on every page.
+
+The SEO work in the same session made it **worse**: growing the static bodies
+(homepage 3,489 → 4,517 chars, Higgsfield 1,536 → 8,702) grew exactly the content
+that painted unstyled and was then discarded.
+
+### Fix
+
+The prerendered body is wrapped in `#prerender-shell`, and `index.html` hides it
+for any browser that will run React:
+
+```html
+<style>html.js #prerender-shell { display: none !important; }</style>
+<script>document.documentElement.className += " js";</script>
+```
+
+Both live in `<head>`, and the script is **synchronous**, so the class is set
+before `<body>` is parsed — the shell is never painted, rather than being shown
+and then removed (which would be the same flash by another route).
+
+Verified on production across 5 routes: `display: none`, painted height 0,
+**0 visible characters** at first paint, background already `#0a0e27`, and
+4,545 / 3,774 / 8,702 / 7,890 / 156 chars still served to crawlers.
+
+**This is not cloaking.** Googlebot executes JS, gets the `.js` class, and sees
+exactly what a user sees — the React render. Only agents that cannot run JS at
+all fall back to the shell, which is precisely who it was written for.
+
+### The mistake worth remembering
+
+The first attempt shipped the correct rule inside an **unterminated CSS comment**
+— I closed it with `-->` (HTML) instead of `*/` (CSS), so everything after it,
+including the hide rule, was swallowed. The `.js` class was set correctly and
+`display` was still `block`.
+
+`seo-check` passed it because it asserted the rule *text* was present in `<head>`.
+Presence is not the property that matters. It now counts `/*` against `*/`, fails
+on `-->` inside CSS, and strips comments before asserting the rule exists.
+
+## Root cause 4 — .scroll-reveal could hide content permanently
+
+`.scroll-reveal` starts at `opacity: 0` and waits for an IntersectionObserver to
+add `.visible`. Measured live: **16 of 16** homepage sections sat at opacity 0.
+
+Two defects, duplicated in `Home.tsx` and `BanglaBN.tsx`:
+
+1. `threshold: 0.1` required 10% of the element visible. An element taller than
+   10× the viewport can never reach a 0.1 ratio — so the tallest, most
+   content-heavy sections were the ones that could never reveal.
+2. No fallback at all. Any failure to add `.visible` left a blank page with full
+   scroll height.
+
+Now `src/hooks/useScrollReveal.ts`: `threshold: 0` with a small `rootMargin`, an
+immediate reveal when `IntersectionObserver` is absent or the user prefers
+reduced motion, and a 3s fail-open backstop. Plus a `prefers-reduced-motion` rule
+in `index.css` and a `<noscript>` rule in `index.html`.
+
+Content visibility must fail **open**. An animation that does not play is a
+cosmetic loss; content that never appears is the page being broken.
+
 ## Known remaining behaviour — the static → React swap
 
 `main.tsx` calls `createRoot(container).render(<App/>)` on a container that
@@ -105,7 +184,9 @@ the crawlable static body is discarded and replaced by React's tree on every
 load. React does this within a single commit, so there is no blank *paint*, but
 the two markups differ in layout, so there is a content shift.
 
-This was **not** changed in this pass, deliberately:
+The swap still happens — but it is no longer *visible*, because the shell is
+never painted. What remains is a dark screen until React mounts. This was not
+changed further, deliberately:
 
 - Switching to `hydrateRoot` would be the textbook fix, but the static markup is
   **not React-generated** — it is built by a string extractor in

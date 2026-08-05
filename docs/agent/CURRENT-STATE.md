@@ -13,7 +13,7 @@ long-form session log; this is the short "where things stand" view.
 |---|---|---|
 | `/product/higgsfield-ai-bangladesh` | Live, enquiry-only, 8,702 static chars (was 1,536) | curl'd after deploy; 1 h1, 9 h2, no Offer node, disclaimer present |
 | Higgsfield compliance | Category F, CTA disabled | `docs/compliance/higgsfield-offer-review.md`, gated by `validate-higgsfield-offer.mjs` |
-| Page-load white flash | Fixed | inline critical CSS in `index.html`; `docs/performance/page-load-flash.md` |
+| Page-load blink | Fixed — 4 root causes | 0 visible chars at first paint on 5 routes; `docs/performance/page-load-flash.md` |
 | `/ai-video` decision hub | Live, 3,770 static chars (was 1,112) | `src/sections/AIVideoHub.tsx` + prerender extraction |
 | Homepage AI Video module | Live, 4,517 static chars (was 3,489) | `src/sections/AIVideoFeatureSection.tsx` |
 | `/privacy` duplicate canonical | Fixed | both `/privacy` and `/privacy-policy` now canonicalise to `/privacy-policy` |
@@ -23,6 +23,9 @@ long-form session log; this is the short "where things stand" view.
 
 - `pnpm run build` → blog-price gate → **Higgsfield compliance gate** → vite build
   → prerender → prerender audit.
+- **Anti-flash contract** is asserted on every built page by `seo:check`: shell
+  wrapper, hide rule (with comments stripped, so a commented-out rule fails),
+  balanced CSS comments, the `.js` script, and the inline background.
 - `pnpm run seo:check` → 273 built pages: duplicate/missing titles and
   descriptions, H1 count, canonical host, soft-404 and placeholder text, leaked
   JS values, unsupported "official"/unscoped "unlimited", expired offer dates,

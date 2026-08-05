@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MIN_PRICE, TOTAL_PRODUCTS } from "@/lib/catalogStats";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Navbar } from "@/components/Navbar";
 import { SEOHead } from "@/components/SEOHead";
 import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema, productListSchema } from "@/utils/schemas";
@@ -76,17 +77,7 @@ export default function Home() {
   const [selectedSegment, setSelectedSegment] = useState<Segment>(null);
   const [showSegmentSelector, setShowSegmentSelector] = useState(false);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll(".scroll-reveal").forEach(el => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  useScrollReveal();
 
   const handleSegmentSelect = (segment: Segment) => {
     setSelectedSegment(segment);

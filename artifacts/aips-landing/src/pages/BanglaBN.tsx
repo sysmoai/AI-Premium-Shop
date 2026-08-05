@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { MIN_PRICE, TOTAL_PRODUCTS } from "@/lib/catalogStats";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Navbar } from "@/components/Navbar";
 import { SEOHead } from "@/components/SEOHead";
 import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema } from "@/utils/schemas";
@@ -15,17 +15,7 @@ function bnNum(n: number | string) {
 }
 
 export default function BanglaBN() {
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll(".scroll-reveal").forEach(el => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  useScrollReveal();
 
   const FAQS_BN = [
     {

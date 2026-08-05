@@ -7,6 +7,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { BrandIcon } from "@/components/BrandIcon";
 import { faqSchema } from "@/utils/schemas";
+import { AIVideoHub } from "@/sections/AIVideoHub";
 import productsData from "../../data/products.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -391,6 +392,10 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
           <p className="text-lg mb-4" style={{ color: config.accent }}>{config.subtitle}</p>
           <p className="max-w-2xl leading-relaxed" style={{ color: "#c9ceda" }}>{config.description}</p>
         </div>
+
+        {/* AI Video decision hub — this category's search intent is "which one
+            should I buy", not "show me a list". See src/sections/AIVideoHub.tsx. */}
+        {categoryId === "ai-video" && <AIVideoHub />}
 
         {/* Bundle Breakdown — only for bundles category */}
         {categoryId === "bundles" && (

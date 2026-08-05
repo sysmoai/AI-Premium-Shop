@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+/* The Google Fonts @import that used to sit here was removed, not relocated.
+   index.html already loads the same Inter stylesheet via <link>, so this was a
+   duplicate request — and the worse of the two: a CSS @import cannot begin
+   downloading until index.css itself has arrived, serialising
+   HTML -> index.css -> fonts.googleapis.com -> font files. That chain sat
+   directly in front of first paint and lengthened the white-flash window the
+   inline critical style in index.html now closes. Keep font loading in the
+   HTML <link> only. */
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";

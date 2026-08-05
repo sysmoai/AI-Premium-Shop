@@ -17,23 +17,14 @@
       #root { min-height: 100vh; }
 
       /* The prerendered SEO shell must never be PAINTED to a browser that is
-         going to run React.
-
-         scripts/prerender-products.mjs writes a plain, class-free HTML copy of
-         each page into #root so that crawlers which do not execute JS still see
-         real content. main.tsx then calls createRoot(), which does not hydrate —
-         it empties the container and renders fresh. The shell was therefore
-         painting for ~300-400ms (much longer on mobile data) as a wall of
-         unstyled 16px full-bleed text, and was then replaced wholesale by the
-         real design. That swap is the "blink".
-
-         Hiding it is not cloaking: Googlebot executes JS, so it gets the .js
-         class and sees exactly what a user sees — the React render. Only agents
-         that cannot run JS at all fall back to the shell, which is precisely who
-         it was written for. Nothing sees content a comparable user would not.
-
-         Because the background above is already correct, the pre-React frame is
-         now a plain dark screen rather than a contrasting flash of text. -->
+         going to run React. prerender-products.mjs writes a class-free HTML copy
+         of each page into #root for crawlers that do not execute JS; main.tsx
+         then calls createRoot(), which does not hydrate — it empties the
+         container and renders fresh. So the shell painted for ~300-400ms as a
+         wall of unstyled text and was then replaced wholesale. That is the
+         "blink". Not cloaking: Googlebot runs JS, gets .js, and sees the React
+         render exactly as a user does. Full write-up:
+         docs/performance/page-load-flash.md */
       html.js #prerender-shell { display: none !important; }
     </style>
     <script>

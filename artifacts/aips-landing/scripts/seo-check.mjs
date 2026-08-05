@@ -123,8 +123,28 @@ for (const p of pages) {
   if (!html.includes('id="prerender-shell"')) {
     errors.push(`${route}: prerendered body is not wrapped in #prerender-shell — it will paint as unstyled text before React mounts`);
   }
-  if (!/html\.js\s+#prerender-shell\s*\{[^}]*display:\s*none/.test(head)) {
-    errors.push(`${route}: <head> is missing the rule that hides #prerender-shell for JS browsers`);
+
+  // Check the inline CSS PARSES, not merely that the rule text is present.
+  // Learned the hard way: a CSS comment closed with `-->` instead of `*/` left
+  // the hide rule inside an unterminated comment. The text was there, the rule
+  // was dead, and a presence-only check passed while the bug shipped.
+  for (const m of head.matchAll(/<style>([\s\S]*?)<\/style>/g)) {
+    const css = m[1];
+    const opens = (css.match(/\/\*/g) || []).length;
+    const closes = (css.match(/\*\//g) || []).length;
+    if (opens !== closes) {
+      errors.push(`${route}: inline <style> has ${opens} "/*" and ${closes} "*/" — an unterminated CSS comment silently kills every rule after it`);
+    }
+    if (/-->/.test(css)) {
+      errors.push(`${route}: inline <style> contains "-->" — that is an HTML comment terminator, not CSS; use "*/"`);
+    }
+  }
+  // With comments stripped, the rule must still be there — i.e. it is live CSS,
+  // not commented-out text.
+  const liveCss = [...head.matchAll(/<style>([\s\S]*?)<\/style>/g)]
+    .map((m) => m[1].replace(/\/\*[\s\S]*?\*\//g, "")).join("\n");
+  if (!/html\.js\s+#prerender-shell\s*\{[^}]*display:\s*none/.test(liveCss)) {
+    errors.push(`${route}: the rule hiding #prerender-shell for JS browsers is missing or commented out`);
   }
   if (!/document\.documentElement\.className\s*\+=\s*["'] js["']/.test(head)) {
     errors.push(`${route}: <head> is missing the synchronous script that adds the .js class`);

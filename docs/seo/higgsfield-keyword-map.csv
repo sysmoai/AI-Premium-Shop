@@ -1,0 +1,37 @@
+query,language,country,intent,funnel_stage,volume_source,current_ranking,current_url,target_url,content_type,conversion_value,difficulty,cannibalization_risk,priority,notes
+higgsfield ai price in bangladesh,en,BD,commercial,decision,not-measured,unknown,/product/higgsfield-ai-bangladesh,/product/higgsfield-ai-bangladesh,product,high,low,none,P0,"Primary target. Page live 2026-08-05 with price + duration + ownership in static HTML."
+higgsfield ai bangladesh,en,BD,commercial,decision,not-measured,unknown,/product/higgsfield-ai-bangladesh,/product/higgsfield-ai-bangladesh,product,high,low,none,P0,Same page; do not build a second.
+buy higgsfield ai with bkash,en,BD,transactional,decision,not-measured,unknown,/product/higgsfield-ai-bangladesh,/product/higgsfield-ai-bangladesh,product,high,low,none,P0,"Payment section covers bKash/Nagad/Rocket/bank/Binance explicitly."
+higgsfield ai subscription bangladesh,en,BD,commercial,decision,not-measured,unknown,/product/higgsfield-ai-bangladesh,/product/higgsfield-ai-bangladesh,product,high,low,none,P0,
+higgsfield ai payment bangladesh,en,BD,commercial,decision,not-measured,unknown,/product/higgsfield-ai-bangladesh,/product/higgsfield-ai-bangladesh,product,high,low,none,P1,
+higgsfield ai personal account,en,BD,informational,consideration,not-measured,unknown,/product/higgsfield-ai-bangladesh,/product/higgsfield-ai-bangladesh,product,medium,low,none,P1,"Account-ownership section answers this directly — a real differentiator."
+higgsfield ai plus price,en,GLOBAL,commercial,decision,not-measured,none,,/product/higgsfield-ai-bangladesh,product,medium,medium,none,P2,"BLOCKED by B3: cannot publish plan-specific entitlements unverified."
+higgsfield 1200 credits,en,GLOBAL,informational,consideration,not-measured,none,,/product/higgsfield-ai-bangladesh,product,low,low,none,P3,"BLOCKED by B3. Credit count is in pendingVerification — do not publish as fact."
+higgsfield unlimited plan,en,GLOBAL,informational,consideration,not-measured,none,,/product/higgsfield-ai-bangladesh,product,low,medium,none,P3,"BLOCKED by B3. Unscoped 'unlimited' fails the build gate by design."
+higgsfield supercomputer,en,GLOBAL,informational,awareness,not-measured,none,,TBD-supercomputer-guide,guide,low,medium,none,P3,"BLOCKED by B3. Backlog #6. Do not write speculatively."
+ai video generator price in bangladesh,en,BD,commercial,decision,not-measured,unknown,/ai-video,/ai-video,category-hub,high,medium,none,P0,"Hub rebuilt 2026-08-05 as a decision page, not a product list."
+ai video subscription bangladesh,en,BD,commercial,decision,not-measured,unknown,/ai-video,/ai-video,category-hub,high,medium,none,P0,
+buy ai video tool with bkash,en,BD,transactional,decision,not-measured,unknown,/ai-video,/ai-video,category-hub,high,low,none,P1,"'Buying these from Bangladesh' section covers payment."
+best ai video generator,en,GLOBAL,commercial,consideration,not-measured,unknown,/ai-video,/ai-video,category-hub,medium,high,none,P2,"Section 15 forbids an untested 'best' claim — hub frames by job, not ranking."
+affordable ai video generator,en,BD,commercial,consideration,not-measured,unknown,/ai-video,/ai-video,category-hub,medium,medium,none,P2,"Cheapest entry point is derived from the catalog, never typed."
+text to video ai,en,GLOBAL,informational,awareness,not-measured,unknown,/ai-video,/ai-video,category-hub,medium,high,low,P1,"Covered as one of the five jobs on the hub."
+image to video ai,en,GLOBAL,informational,awareness,not-measured,unknown,/ai-video,/ai-video,category-hub,medium,high,low,P1,"Covered as one of the five jobs. Highest commercial relevance for BD sellers."
+ai ugc video generator,en,GLOBAL,commercial,consideration,not-measured,none,,/ai-video,category-hub,high,medium,low,P1,"Covered as a job on the hub; a dedicated guide is Backlog item."
+ai ad video generator,en,BD,commercial,consideration,not-measured,none,,/ai-video,category-hub,high,medium,low,P1,
+product video generator,en,BD,commercial,consideration,not-measured,none,,/ai-video,category-hub,high,medium,low,P1,
+ai talking avatar,en,GLOBAL,informational,awareness,not-measured,unknown,/heygen-bangladesh,/heygen-bangladesh,product,medium,medium,low,P2,"Hub routes this job to HeyGen/Synthesia rather than Higgsfield."
+ai lip sync video,en,GLOBAL,informational,awareness,not-measured,none,,/heygen-bangladesh,product,medium,medium,low,P2,
+ai reels generator,en,BD,commercial,consideration,not-measured,none,,/ai-video,category-hub,medium,medium,low,P2,
+youtube shorts ai generator,en,GLOBAL,commercial,consideration,not-measured,unknown,/opus-clip-bangladesh,/opus-clip-bangladesh,product,medium,medium,low,P2,"Editing/repurposing job, not generation."
+character consistent ai video,en,GLOBAL,informational,consideration,not-measured,none,,/ai-video,category-hub,low,high,none,P3,
+agentic ai video,en,GLOBAL,informational,awareness,not-measured,none,,TBD-agentic-workflow-guide,guide,low,high,none,P3,"BLOCKED by B3 — cannot describe an agentic workflow we have not run."
+ai video agent,en,GLOBAL,informational,awareness,not-measured,none,,TBD-agentic-workflow-guide,guide,low,high,none,P3,BLOCKED by B3.
+higgsfield vs runway,en,GLOBAL,commercial,decision,not-measured,none,,TBD-comparison,comparison,high,medium,none,P2,"BLOCKED: section 13 requires real side-by-side testing. Backlog #5."
+higgsfield vs kling,en,GLOBAL,commercial,decision,not-measured,none,,TBD-comparison,comparison,high,medium,none,P2,BLOCKED — same.
+seedance vs kling,en,GLOBAL,commercial,decision,not-measured,none,,TBD-comparison,comparison,medium,medium,none,P3,"BLOCKED — and model names must be verified before use at all."
+এআই ভিডিও জেনারেটর,bn,BD,informational,awareness,not-measured,none,,/creators-bn,bangla-guide,medium,low,none,P2,"B7: needs a native-speaker read before expanding Bangla prose."
+এআই ভিডিও বানানোর টুল,bn,BD,informational,awareness,not-measured,none,,/creators-bn,bangla-guide,medium,low,none,P2,B7.
+বাংলাদেশে এআই ভিডিও সাবস্ক্রিপশন,bn,BD,commercial,decision,not-measured,none,,TBD-bangla-ai-video-guide,bangla-guide,high,low,none,P2,"Backlog #9. Must be real local value, not a translation of the English hub."
+বিকাশ দিয়ে এআই টুল কিনুন,bn,BD,transactional,decision,not-measured,none,,/bn,bangla-guide,high,low,none,P2,B7.
+ছবি থেকে ভিডিও বানানোর এআই,bn,BD,informational,awareness,not-measured,none,,TBD-bangla-ai-video-guide,bangla-guide,medium,low,none,P3,B7.
+Higgsfield AI দাম বাংলাদেশ,bn,BD,commercial,decision,not-measured,none,,/product/higgsfield-ai-bangladesh,product,high,low,none,P1,"Page already carries a Bangla description line; a fuller Bangla section needs B7."

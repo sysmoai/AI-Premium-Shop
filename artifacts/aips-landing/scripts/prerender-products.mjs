@@ -129,6 +129,10 @@ ${li(hfOffer.related.alternatives, (a) => {
 ${hfOffer.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}
 </section>
 
+<p><a href="https://wa.me/8801865385348?text=${encodeURIComponent(`Hi, I'm asking about ${hfOffer.platform.vendor} AI via AI Premium Shop.
+Plan: ${off.durationMonths} month · Indicative: ${fmtBDT(off.priceBDT)}
+Page: ${hfOffer.canonical}
+What I want to make: `)}" rel="noopener">Check the current price on WhatsApp</a></p>
 <p><a href="/products">Browse all AI tools</a> · <a href="/pricing">Pricing</a> · <a href="/how-to-order">How to order</a></p>
 </main>`;
 }
@@ -259,6 +263,32 @@ const ALIAS_CANONICAL = (() => {
     const target = declared.get(m[2]);
     if (target && target !== `${SITE}${m[1]}`) map.set(m[1], target);
   }
+
+  // Plain alias routes: <Route path="/x" component={SomePage} />, where two
+  // different paths share one component and that component declares a single
+  // fixed canonical. Handled generically rather than per-page — /privacy and
+  // /privacy-policy both render PrivacyPolicyPage, whose SEOHead canonicalises
+  // to /privacy-policy, but the prerender was self-canonicalising each path and
+  // therefore shipping two competing pages with identical titles. seo-check.mjs
+  // flags exactly this, and any future alias of the same shape is now covered.
+  const byComponent = new Map(); // component name -> [route, ...]
+  for (const m of appSrc.matchAll(/<Route path="(\/[^"]*)"\s+component=\{(\w+)\}\s*\/>/g)) {
+    if (!byComponent.has(m[2])) byComponent.set(m[2], []);
+    byComponent.get(m[2]).push(m[1]);
+  }
+  for (const [component, routes] of byComponent) {
+    if (routes.length < 2) continue;
+    const file = path.join(APP, `src/pages/${component}.tsx`);
+    if (!fs.existsSync(file)) continue;
+    const declaredCanonical = fs.readFileSync(file, "utf8").match(/canonical=["']([^"']+)["']/)?.[1];
+    if (!declaredCanonical) {
+      console.warn(`prerender: ${component} serves ${routes.length} routes but declares no canonical — duplicate-content risk at ${routes.join(", ")}`);
+      continue;
+    }
+    for (const r of routes) {
+      if (declaredCanonical !== `${SITE}${r}`) map.set(r, declaredCanonical);
+    }
+  }
   return map;
 })();
 
@@ -300,6 +330,46 @@ const CATEGORY_LABELS = {
   "ai-writing": "AI Writing & SEO", "ai-design": "AI Design & Creative", "bundles": "Bundles & Packages",
 };
 
+
+// ---- AI Video hub static body.
+// /ai-video is the category with the strongest commercial intent, and its static
+// body was a bare <ul> of products while React rendered a full decision hub —
+// i.e. the useful content existed only for visitors who execute JS. This reads
+// AIVideoHub.tsx's own JOBS array rather than restating it, so the two cannot
+// drift the way typed prices historically have.
+function aiVideoHubBody() {
+  const src = fs.readFileSync(path.join(APP, "src/sections/AIVideoHub.tsx"), "utf8");
+  const m = src.match(/const JOBS = (\[[\s\S]*?\n\];)/);
+  if (!m) { console.warn("prerender: AIVideoHub JOBS array not matched — /ai-video hub body skipped"); return ""; }
+  let jobs;
+  try {
+    // Drop `icon: Identifier,` — a component reference, not data.
+    jobs = evalLiteral(m[1].replace(/\n\s*icon:\s*\w+,/g, "").replace(/;$/, ""));
+  } catch (e) {
+    console.warn("prerender: AIVideoHub JOBS eval failed —", e.message);
+    return "";
+  }
+  const priceFor = (slug) => {
+    const ps = products.filter((p) => p.slug === slug).map((p) => p.price).filter((n) => typeof n === "number");
+    return ps.length ? ` — from ${fmtBDT(Math.min(...ps))}/month` : " — price on WhatsApp";
+  };
+  const nameFor = (slug) => {
+    const rec = products.find((p) => p.slug === slug);
+    return rec ? rec.name.split(/—\s*/)[0].trim() : slug;
+  };
+  return `
+<section><h2>Which AI video tool do you actually need?</h2>
+<p>"AI video" covers at least five different jobs, and the tools are not interchangeable between them. A platform that writes a cinematic scene from a sentence is a poor choice for animating your product photo, and neither one replaces an editor. Pick the job first — the tool follows.</p>
+<p>Nearly all of these platforms bill in <strong>credits</strong>, not videos. A credit allowance is a budget: a longer clip on a heavier model costs more than a short clip on a light one. Ask what a single clip costs before you judge whether an allowance is generous.</p>
+${jobs.map((j) => `<h3>${esc(j.title)}</h3><p>${esc(j.body)}</p><ul>${j.picks.map((sl) => `<li><a href="${linkFor(sl)}">${esc(nameFor(sl))}</a>${priceFor(sl)}</li>`).join("")}</ul>`).join("")}
+</section>
+<section><h2>Buying these from Bangladesh</h2>
+<h3>Payment</h3><p>Every one of these platforms bills in USD, which most Bangladeshi debit cards cannot complete. We handle that step — you pay in BDT via bKash, Nagad, Rocket, bank transfer or Binance Pay.</p>
+<h3>Account ownership</h3><p>Check this before buying anywhere, including here. A personal plan means the account is in your name with your own password. Ask explicitly which type you are getting — the answer changes what happens if you want to cancel.</p>
+<h3>How we verify</h3><p>Each product page carries the date we last checked its facts and a link to the provider's own pricing page. Where we have not verified a claim, we say so on the page rather than repeating it.</p>
+</section>`;
+}
+
 let hubs = 0;
 for (const [cat, label] of Object.entries(CATEGORY_LABELS)) {
   const list = distinct.filter((p) => p.category === cat);
@@ -307,7 +377,7 @@ for (const [cat, label] of Object.entries(CATEGORY_LABELS)) {
   const meta = catMeta[cat] ?? { title: `${label} — Prices in BDT | AI Premium Shop Bangladesh`,
     desc: `${list.length} ${label} subscriptions with BDT prices. Pay with bKash or Nagad. AI Premium Shop Bangladesh.` };
   writeRoute(cat === "bundles" ? "/bundles" : `/${cat}`, meta.title, meta.desc,
-    `<main><h1>${esc(label)}</h1><p>${esc(meta.desc)}</p><ul>${list.map(productLi).join("")}</ul>
+    `<main><h1>${esc(label)}</h1><p>${esc(meta.desc)}</p>${cat === "ai-video" ? aiVideoHubBody() : ""}<ul>${list.map(productLi).join("")}</ul>
 <p><a href="/products">All AI tools</a> · <a href="/pricing">Pricing</a> · <a href="/how-to-order">How to order</a></p></main>`);
   hubs++;
 }
@@ -785,6 +855,11 @@ console.log(`prerender: fallback sweep wrote ${fallbacks} pages; sitemap coverag
 
 <h2>Most wanted AI subscriptions in Bangladesh</h2>
 <ul>${featuredLi}</ul>
+
+<h2>AI Video — make video ads, reels and avatars, paid for in taka</h2>
+<p>${new Set(products.filter((x) => x.category === "ai-video").map((x) => x.slug)).size} AI video tools, covering five different jobs: generating footage from a prompt, animating a product photo, talking avatars, UGC-style ads, and editing what you already shot. They are not interchangeable — <a href="/ai-video">the category page walks you through which one fits your work</a>.</p>
+<p><strong>${esc(hfOffer.platform.vendor)} AI</strong> — ${esc(hfOffer.platform.summary)} Indicative ${fmtBDT(hfOffer.offer.priceBDT)} for ${hfOffer.offer.durationMonths} month, enquiry only: ${hfOffer.pendingVerification.items.length} supplied claims about this plan are still unverified and are <a href="/product/${esc(hfOffer.productSlug)}">listed openly on the product page</a> rather than sold as features.</p>
+<p>How we handle claims: product pages carry the date we last checked their facts, each links to the provider's own pricing page so you can check us, and where a claim is not verified we publish that instead of repeating it.</p>
 
 <h2>Trending AI tools right now</h2>
 <p>The searches climbing fastest this quarter, based on this site's own real search-console data — plan

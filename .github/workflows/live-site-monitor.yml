@@ -1,0 +1,122 @@
+# Live production monitor (spec section 22).
+#
+# Checks the deployed site, which is the only thing that proves a deploy worked.
+# CLAUDE.md's working rule #3 exists because "HTTP 200" alone has repeatedly
+# hidden real breakage on this SPA: every unmatched path returns 200 and renders
+# client-side, so a blank page and a working page are indistinguishable by status
+# code. Every assertion here therefore checks CONTENT, not just the status.
+#
+# Opens a GitHub issue on failure rather than emailing — the repo is the paging
+# channel the owner already watches.
+
+name: Live site monitor
+
+on:
+  schedule:
+    # 02:30 UTC daily = 08:30 Asia/Dhaka, so a failure is seen at the start of
+    # the Bangladesh working day rather than overnight.
+    - cron: "30 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check critical pages
+        id: check
+        run: |
+          set -uo pipefail
+          SITE="https://aipremiumshop.com"
+          FAILURES=""
+
+          # route|a string that MUST appear in the served HTML
+          CHECKS=$(cat <<'EOF'
+          /|AI Premium Shop
+          /products|All
+          /pricing|Pricing
+          /ai-video|Which AI video tool do you actually need
+          /product/higgsfield-ai-bangladesh|What we have not verified
+          /product/higgsfield-ai-bangladesh|not affiliated with
+          /how-to-order|order
+          /refund-policy|refund
+          EOF
+          )
+
+          while IFS='|' read -r route marker; do
+            [ -z "$route" ] && continue
+            route=$(echo "$route" | xargs)
+            body=$(curl -sS --max-time 30 -w '\n%{http_code}' "$SITE$route" || echo "CURL_FAILED")
+            code=$(echo "$body" | tail -1)
+            html=$(echo "$body" | sed '$d')
+            if [ "$code" != "200" ]; then
+              FAILURES="$FAILURES\n- \`$route\` returned HTTP $code"
+              continue
+            fi
+            if ! echo "$html" | grep -qF "$marker"; then
+              FAILURES="$FAILURES\n- \`$route\` is 200 but missing expected content: \"$marker\""
+            fi
+          done <<< "$CHECKS"
+
+          # Infrastructure files
+          for f in /sitemap.xml /robots.txt; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "$SITE$f")
+            [ "$code" = "200" ] || FAILURES="$FAILURES\n- \`$f\` returned HTTP $code"
+          done
+
+          # The anti-flash critical CSS must survive future edits to index.html.
+          if ! curl -sS --max-time 30 "$SITE/" | tr -d '\n' | grep -q 'background-color: *#0a0e27'; then
+            FAILURES="$FAILURES\n- homepage is missing the inline anti-flash background (see docs/performance/page-load-flash.md)"
+          fi
+
+          # The WhatsApp CTA is the only conversion path on the site.
+          if ! curl -sS --max-time 30 "$SITE/product/higgsfield-ai-bangladesh" | grep -q 'wa.me/8801865385348'; then
+            FAILURES="$FAILURES\n- Higgsfield page is missing its WhatsApp CTA"
+          fi
+
+          # An enquiry-only offer must never emit a priced Offer node.
+          if curl -sS --max-time 30 "$SITE/product/higgsfield-ai-bangladesh" | grep -q '"@type":"Offer"'; then
+            FAILURES="$FAILURES\n- Higgsfield page emits Offer structured data while the offer is enquiry-only"
+          fi
+
+          if [ -n "$FAILURES" ]; then
+            echo "failures<<EOF" >> "$GITHUB_OUTPUT"
+            echo -e "$FAILURES" >> "$GITHUB_OUTPUT"
+            echo "EOF" >> "$GITHUB_OUTPUT"
+            echo -e "Live site check FAILED:$FAILURES"
+            exit 1
+          fi
+          echo "All live checks passed."
+
+      - name: Open an issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = `Automated live-site check failed on ${new Date().toISOString()}.
+
+            ${{ steps.check.outputs.failures || '(see the workflow log)' }}
+
+            Rollback: \`git revert\` the last commit on \`main\` and push — Vercel redeploys on push.
+            Runbook: \`docs/agent/NEXT-SESSION.md\`.`;
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'live-monitor',
+            });
+            if (existing.data.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.data[0].number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title: 'Live site monitor failure', body, labels: ['live-monitor'],
+              });
+            }

@@ -15,7 +15,41 @@
         margin: 0;
       }
       #root { min-height: 100vh; }
+
+      /* The prerendered SEO shell must never be PAINTED to a browser that is
+         going to run React.
+
+         scripts/prerender-products.mjs writes a plain, class-free HTML copy of
+         each page into #root so that crawlers which do not execute JS still see
+         real content. main.tsx then calls createRoot(), which does not hydrate —
+         it empties the container and renders fresh. The shell was therefore
+         painting for ~300-400ms (much longer on mobile data) as a wall of
+         unstyled 16px full-bleed text, and was then replaced wholesale by the
+         real design. That swap is the "blink".
+
+         Hiding it is not cloaking: Googlebot executes JS, so it gets the .js
+         class and sees exactly what a user sees — the React render. Only agents
+         that cannot run JS at all fall back to the shell, which is precisely who
+         it was written for. Nothing sees content a comparable user would not.
+
+         Because the background above is already correct, the pre-React frame is
+         now a plain dark screen rather than a contrasting flash of text. -->
+      html.js #prerender-shell { display: none !important; }
     </style>
+    <script>
+      // Synchronous and in <head>: the class is set before <body> is parsed, so
+      // #prerender-shell is hidden on the FIRST paint rather than being shown
+      // and then removed (which would be the same flash by another route).
+      document.documentElement.className += " js";
+    </script>
+    <noscript>
+      <style>
+        /* Without JS the IntersectionObserver that adds .visible never runs, so
+           every .scroll-reveal block would sit at opacity 0 forever — a blank
+           page with full scroll height. Fail open. */
+        .scroll-reveal { opacity: 1 !important; transform: none !important; }
+      </style>
+    </noscript>
 
     <!-- Primary SEO -->
     <title>AI Premium Shop — 197 Premium AI Tools Bangladesh | From BDT 299</title>

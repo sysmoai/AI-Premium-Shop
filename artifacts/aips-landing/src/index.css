@@ -449,6 +449,23 @@
   opacity: 1;
   transform: translateY(0);
 }
+/* prefers-reduced-motion users were still getting every homepage section fading
+   and sliding in on load — the reveal animation had no reduced-motion path at
+   all. On a page with a dozen .scroll-reveal blocks that reads as the page
+   flickering into place.
+
+   (The other failure mode — the IntersectionObserver in Home.tsx never running,
+   which would leave every section at opacity 0 forever — is handled by a
+   <noscript> rule in index.html, because "JS did not run" is exactly the case
+   CSS cannot detect on its own.) */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 /* WhatsApp button box-shadow pulse */
 @keyframes wa-pulse {

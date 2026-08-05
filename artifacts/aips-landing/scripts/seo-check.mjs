@@ -113,6 +113,26 @@ for (const p of pages) {
   // --- thin content
   if (text.length < 600) warnings.push(`${route}: only ${text.length} chars of static content`);
 
+  // --- the anti-flash contract (docs/performance/page-load-flash.md)
+  // All three pieces must be present together. Any one of them missing brings
+  // back a visible page-load flash, and each is one careless edit away:
+  //   1. the prerendered SEO copy must be inside #prerender-shell,
+  //   2. the stylesheet that hides it for JS browsers must be inline in <head>,
+  //   3. the script that adds html.js must be inline and synchronous.
+  const head = html.split("</head>")[0];
+  if (!html.includes('id="prerender-shell"')) {
+    errors.push(`${route}: prerendered body is not wrapped in #prerender-shell — it will paint as unstyled text before React mounts`);
+  }
+  if (!/html\.js\s+#prerender-shell\s*\{[^}]*display:\s*none/.test(head)) {
+    errors.push(`${route}: <head> is missing the rule that hides #prerender-shell for JS browsers`);
+  }
+  if (!/document\.documentElement\.className\s*\+=\s*["'] js["']/.test(head)) {
+    errors.push(`${route}: <head> is missing the synchronous script that adds the .js class`);
+  }
+  if (!/background-color:\s*#0a0e27/.test(head)) {
+    errors.push(`${route}: <head> is missing the inline background — first paint will be white`);
+  }
+
   // --- claim integrity. "official" and "unlimited" are checked per SENTENCE
   //     here (not per block as in validate-higgsfield-offer) because rendered
   //     HTML has no block structure to key off; a negation anywhere in the same

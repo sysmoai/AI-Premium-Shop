@@ -42,6 +42,13 @@ if (!template.includes('<div id="root"></div>')) {
   process.exit(1);
 }
 
+// Every prerendered body is wrapped in #prerender-shell. index.html hides that
+// id for any browser that runs JS, so the class-free SEO copy is never painted
+// to a human — see the comment in index.html and
+// docs/performance/page-load-flash.md. Crawlers that cannot execute JS still
+// receive it as ordinary visible HTML.
+const shell = (body) => `<div id="prerender-shell">${body}</div>`;
+
 const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const fmtBDT = (n) => `৳${n.toLocaleString("en-US")}`;
 
@@ -217,7 +224,7 @@ ${faqs.length ? `<section><h2>Frequently asked questions</h2>${faqs.map((f) => `
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
-    .replace('<div id="root"></div>', `<div id="root">${body}</div>`);
+    .replace('<div id="root"></div>', `<div id="root">${shell(body)}</div>`);
   // canonical + og overrides appended to <head> (last one wins for crawlers
   // that respect a single canonical; SEOHead replaces them on hydration).
   const headExtra = `<link rel="canonical" href="${canonical}" />
@@ -297,7 +304,7 @@ const writeRoute = (route, title, desc, body, extraLd = []) => {
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
-    .replace('<div id="root"></div>', `<div id="root">${body}</div>`);
+    .replace('<div id="root"></div>', `<div id="root">${shell(body)}</div>`);
   html = html.replace("</head>", `<link rel="canonical" href="${canonical}" />
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(desc)}" />

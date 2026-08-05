@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Anti-flash critical CSS. Must stay the FIRST style, above every
+         stylesheet link, and must not move into index.css — see
+         docs/performance/page-load-flash.md for why both break it. -->
+    <style>
+      :root { color-scheme: dark; }
+      html, body {
+        background-color: #0a0e27;
+        color: #ffffff;
+        margin: 0;
+      }
+      #root { min-height: 100vh; }
+    </style>
+
     <!-- Primary SEO -->
     <title>AI Premium Shop — 197 Premium AI Tools Bangladesh | From BDT 299</title>
     <meta name="description" content="197 premium AI tools (239 plans) in Bangladesh from BDT 299 to BDT 29,900. ChatGPT, Claude, Midjourney, Notion &amp; more. 5 Payment Methods: bKash, Nagad, Rocket, Bank, Binance. 5-30 min delivery. 10,000+ customers." />

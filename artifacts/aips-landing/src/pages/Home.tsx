@@ -15,6 +15,7 @@ import { FeaturedProductsSection, FEATURED_PRODUCTS } from "@/sections/FeaturedP
 import { PaymentMethodsSection } from "@/sections/PaymentMethodsSection";
 import { PainPointSection } from "@/sections/PainPointSection";
 import { TrendingNowSection } from "@/sections/TrendingNowSection";
+import { AIVideoFeatureSection } from "@/sections/AIVideoFeatureSection";
 import { AIAgentsSection } from "@/sections/AIAgentsSection";
 import { OffersSection } from "@/sections/OffersSection";
 import { CategorySection } from "@/sections/CategorySection";
@@ -155,6 +156,8 @@ export default function Home() {
         <div className="scroll-reveal"><TrendingNowSection /></div>
 
         {/* 3. AI AGENTS — The 2026 Game Changer */}
+        <div className="scroll-reveal"><AIVideoFeatureSection /></div>
+
         <div className="scroll-reveal"><AIAgentsSection /></div>
 
         {/* 3B. AI AGENT ECONOMY */}

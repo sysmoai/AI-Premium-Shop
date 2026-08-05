@@ -23,6 +23,7 @@ const DIST = path.join(APP, "dist/public");
 const SITE = "https://aipremiumshop.com";
 
 const { products } = JSON.parse(fs.readFileSync(path.join(APP, "data/products.json"), "utf8"));
+const hfOffer = JSON.parse(fs.readFileSync(path.join(APP, "data/higgsfield-offer.json"), "utf8"));
 
 // Mirror productRoutes.ts: brand-page slugs live at /{slug}; BrandPage owns
 // that surface, so only /product/<slug> pages are prerendered here.
@@ -43,6 +44,94 @@ if (!template.includes('<div id="root"></div>')) {
 
 const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const fmtBDT = (n) => `৳${n.toLocaleString("en-US")}`;
+
+// The Higgsfield page is a dedicated component (HiggsfieldPage.tsx), not the
+// generic product template, so the generic body builder below would emit a
+// static page that says something different from what React renders. This
+// mirrors the component's own sections from the same JSON source of truth.
+//
+// The unverified-claims and disclaimer sections are included deliberately: they
+// are the parts a crawler and an AI answer engine most need to see, and
+// omitting them from the static body would mean the pre-JS page reads as a
+// straightforward sales page while the hydrated one carries the caveats.
+function higgsfieldBody() {
+  const off = hfOffer.offer;
+  const p = hfOffer.platform;
+  const li = (arr, f) => `<ul>${arr.map(f).join("")}</ul>`;
+  return `
+<nav aria-label="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="/"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" />
+  </span> ›
+  <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="${esc(hfOffer.related.categoryPath)}"><span itemprop="name">AI Video</span></a><meta itemprop="position" content="2" />
+  </span> ›
+  <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <span itemprop="name">${esc(p.vendor)} AI</span><meta itemprop="position" content="3" />
+  </span>
+</nav>
+<main>
+<h1>${esc(hfOffer.seo.h1)}</h1>
+<p>${esc(p.summary)}</p>
+<p><strong>Indicative price: ${fmtBDT(off.priceBDT)} for ${off.durationMonths} month.</strong> ${esc(off.priceNote)}</p>
+<p>${esc(hfOffer.compliance.disclaimer)}</p>
+
+<section><h2>Who owns the account</h2>
+<p>${esc(off.accountOwnershipNote)}</p>
+${li([["Account owner", "You"], ["Renewal controlled by", "You, directly with the vendor"], ["Cancellation controlled by", "You, directly with the vendor"]],
+  ([k, v]) => `<li>${esc(k)}: ${esc(v)}</li>`)}
+</section>
+
+<section><h2>What the platform does</h2>
+${li(p.capabilities, (c) => `<li>${esc(c)}</li>`)}
+<p>Source: <a href="${esc(p.sourceUrl)}" rel="nofollow noopener">${esc(p.sourceUrl)}</a> — verified ${esc(p.verifiedOn)}.</p>
+</section>
+
+<section><h2>How the credit system works</h2>
+<p>${esc(hfOffer.credits.explainer)}</p>
+<h3>Ask us these before you pay</h3>
+${li(hfOffer.credits.questionsToAsk, (q) => `<li>${esc(q)}</li>`)}
+</section>
+
+<section><h2>What we have not verified</h2>
+<p>These were supplied to us as selling points. We have not confirmed them against current vendor documentation or the account interface, so they are listed as open questions rather than features.</p>
+${li(hfOffer.pendingVerification.items, (i) => `<li><strong>${esc(i.claim)}</strong> — ${esc(i.why)}</li>`)}
+</section>
+
+<section><h2>What people use it for</h2>
+${p.useCases.map((u) => `<h3>${esc(u.title)}</h3><p>${esc(u.body)}</p>`).join("")}
+</section>
+
+<section><h2>Who should not buy this</h2>
+${li(p.notSuitableFor, (n) => `<li>${esc(n)}</li>`)}
+</section>
+
+<section><h2>How it works</h2>
+<p>Payment methods: ${esc(hfOffer.payment.methods.join(", "))}. ${esc(hfOffer.payment.note)}</p>
+<ol>${hfOffer.process.map((s) => `<li><strong>${esc(s.step)}</strong> — ${esc(s.body)}</li>`).join("")}</ol>
+</section>
+
+<section><h2>Alternatives in AI Video</h2>
+${li(hfOffer.related.alternatives, (a) => {
+    // Mirror productPath(): slugs in BRAND_PAGE_SLUGS live at /{slug}; only the
+    // rest are under /product/{slug}. Hardcoding /product/ here shipped four
+    // broken links that audit-prerender caught — the React component was right
+    // because it calls productPath(), this string builder has to match it.
+    const href = brandSlugs.has(a.slug) ? `/${a.slug}` : `/product/${a.slug}`;
+    const rec = products.find((p) => p.slug === a.slug);
+    const label = rec ? rec.name.split(/—\s*/)[0].trim() : a.slug.replace(/-bangladesh$/, "").replace(/-/g, " ");
+    return `<li><a href="${esc(href)}">${esc(label)}</a> — ${esc(a.why)}</li>`;
+  })}
+<p><a href="${esc(hfOffer.related.categoryPath)}">Compare every AI video tool</a></p>
+</section>
+
+<section><h2>Frequently asked questions</h2>
+${hfOffer.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}
+</section>
+
+<p><a href="/products">Browse all AI tools</a> · <a href="/pricing">Pricing</a> · <a href="/how-to-order">How to order</a></p>
+</main>`;
+}
 
 // Group records by slug (multi-tier products have several records per slug).
 const bySlug = new Map();
@@ -69,10 +158,11 @@ for (const [slug, recs] of bySlug) {
         title: `${p.name} price in Bangladesh — ${fmtBDT(fromPrice)}/mo | AI Premium Shop`,
         desc: `${p.name} price in Bangladesh is ${fmtBDT(fromPrice)}/month at AI Premium Shop. Pay with bKash or Nagad. Delivery ${p.deliverySLA ?? "as scheduled"}. 30-day warranty. Trusted by 10,000+ customers since 2022.`,
       });
-  const title = seo.title;
-  const desc = seo.metaDescription ?? seo.desc;
+  const isHiggsfield = slug === hfOffer.productSlug;
+  const title = isHiggsfield ? hfOffer.seo.title : seo.title;
+  const desc = isHiggsfield ? hfOffer.seo.metaDescription : (seo.metaDescription ?? seo.desc);
 
-  const faqs = p.faq ?? [];
+  const faqs = isHiggsfield ? hfOffer.faq : (p.faq ?? []);
   const today = new Date().toISOString().split("T")[0];
   const verificationDate = p.verificationDate ?? today;
   const ld = [
@@ -96,7 +186,7 @@ for (const [slug, recs] of bySlug) {
 
   const tiers = recs.filter((r) => typeof r.price === "number")
     .map((r) => `<li>${esc(r.tier ?? r.name)} — ${fmtBDT(r.price)}/month</li>`).join("");
-  const body = `
+  const body = isHiggsfield ? higgsfieldBody() : `
 <nav aria-label="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
   <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
     <a itemprop="item" href="/"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" />

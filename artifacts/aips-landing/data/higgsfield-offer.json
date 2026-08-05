@@ -1,0 +1,164 @@
+{
+  "_readme": [
+    "SINGLE SOURCE OF TRUTH for the Higgsfield AI offer (spec section 7).",
+    "Nothing about this offer may be typed into a component. Every price, credit",
+    "count, model name, date and claim on /product/higgsfield-ai-bangladesh is read",
+    "from this file and gated by scripts/validate-higgsfield-offer.mjs at build time.",
+    "",
+    "Two DIFFERENT kinds of fact live here and must never be merged:",
+    "  1. platform.*  — what the Higgsfield product itself does. Verifiable from the",
+    "     vendor's own public pages. Cite sourceUrl + verifiedOn for each.",
+    "  2. offer.*     — what AI Premium Shop sells and at what price. Owner-attested.",
+    "     AIPS can verify its own service price; it CANNOT verify vendor entitlements",
+    "     (credit counts, 'unlimited' models, Supercomputer scope) without either",
+    "     current vendor documentation or written authorization.",
+    "",
+    "Anything in the second category that is not verified goes in pendingVerification",
+    "and is rendered as an open question, never as a feature bullet."
+  ],
+
+  "id": "higgsfield-ai-offer",
+  "productSlug": "higgsfield-ai-bangladesh",
+  "canonical": "https://aipremiumshop.com/product/higgsfield-ai-bangladesh",
+  "previousSlugs": [],
+
+  "compliance": {
+    "status": "inquiry-only",
+    "category": "F",
+    "categoryLabel": "Unverified delivery model",
+    "authorizationOnFile": false,
+    "authorizationEvidence": null,
+    "ctaEnabled": false,
+    "transactionalCheckout": false,
+    "decidedOn": "2026-08-05",
+    "decidedBy": "Emon Hossain (owner) — confirmed no written reseller/affiliate authorization from Higgsfield",
+    "reviewDoc": "docs/compliance/higgsfield-offer-review.md",
+    "disclaimer": "AI Premium Shop is an independent service. We are not affiliated with, authorized by, or endorsed by Higgsfield. Higgsfield and all product names are trademarks of their respective owners.",
+    "bannedTerms": ["official", "authorized reseller", "official partner", "partner", "endorsed", "100% safe", "zero risk", "guaranteed permanent", "lifetime guarantee"]
+  },
+
+  "offer": {
+    "displayName": "Higgsfield AI — purchase and setup assistance",
+    "priceBDT": 1199,
+    "priceCurrency": "BDT",
+    "priceStatus": "indicative",
+    "priceSource": "owner-attested",
+    "priceVerifiedOn": "2026-08-05",
+    "priceNote": "Indicative price for AI Premium Shop's assistance with a 1-month Higgsfield Plus subscription. Not an enabled checkout — confirmed on WhatsApp before any payment, because the vendor's own plan pricing and entitlements change and have not been re-verified for this offer.",
+    "durationMonths": 1,
+    "accountOwnership": "customer",
+    "accountOwnershipNote": "You create and control your own Higgsfield account with your own email, password and recovery access. AI Premium Shop never holds your login and never places you in a shared workspace.",
+    "deliveryModel": "customer-owned-account-setup-assistance",
+    "renewalOwner": "customer",
+    "cancellationOwner": "customer",
+    "supportChannel": "WhatsApp",
+    "whatsapp": "8801865385348",
+    "onboarding": "Free live Google Meet walkthrough — account setup, first render, and how the credit system works.",
+    "onboardingVerified": true,
+    "offerStart": null,
+    "offerEnd": null,
+    "timezone": "Asia/Dhaka",
+    "expiredCreativeDate": "2026-08-02",
+    "expiredCreativeNote": "The promotional creatives supplied by the owner carry an offer-end date of 2 August 2026, which has passed. That date is deliberately NOT published, and no countdown is rendered. Set offerStart/offerEnd to real future dates to re-enable a dated promotion."
+  },
+
+  "platform": {
+    "vendor": "Higgsfield",
+    "vendorHome": "https://higgsfield.ai",
+    "sourceUrl": "https://higgsfield.ai/pricing",
+    "verifiedOn": "2026-07-30",
+    "verifiedBy": "AI Premium Shop catalog review",
+    "summary": "Higgsfield is an AI video and image creation platform. It generates video from text prompts and from still images, with cinematic camera-motion controls, talking-avatar and lip-sync output, and UGC-style ad formats. Plans are credit-based and cover individuals, teams and enterprise.",
+    "capabilities": [
+      "Text-to-video generation",
+      "Image-to-video animation from a still product photo",
+      "Cinematic camera-motion controls (pans, dollies, orbits)",
+      "Talking-avatar and lip-sync video",
+      "UGC-style advertisement formats",
+      "AI image generation",
+      "Credit-based monthly plans (individual, team, enterprise)"
+    ],
+    "useCases": [
+      { "title": "Product ads for Facebook and Instagram", "body": "Turn one product photograph into a short motion ad — the image-to-video path, not a fresh text prompt, so the product itself stays recognisable." },
+      { "title": "Vertical reels and TikTok-style video", "body": "9:16 short-form output for social campaigns, generated from a script or a storyboard of stills." },
+      { "title": "YouTube Shorts", "body": "Short vertical clips for creators publishing on a schedule who cannot film every episode." },
+      { "title": "UGC-style advertisements", "body": "Creator-style presenter footage for e-commerce sellers who have no on-camera talent budget." },
+      { "title": "Talking-avatar explainers", "body": "An avatar delivering a script in Bangla or English, for training, onboarding or product explainers." },
+      { "title": "Lip-sync and dubbing", "body": "Matching mouth movement to a recorded or synthesised voice track." },
+      { "title": "Cinematic scenes and concept films", "body": "Camera-controlled shots for storyboards, pitch films and concept work before a real shoot is budgeted." },
+      { "title": "Character-consistent sequences", "body": "Keeping a recognisable subject across multiple clips in one campaign." },
+      { "title": "Marketing-asset variations", "body": "Producing several cuts of one concept to test which creative performs, instead of committing to a single edit." },
+      { "title": "Freelance AI video services", "body": "Bangladeshi freelancers delivering video work to overseas clients without a studio or an international card." }
+    ],
+    "notSuitableFor": [
+      "Long-form video — this is a short-clip generator, not a replacement for an editor on a 20-minute piece.",
+      "Frame-exact brand control — generated footage varies between runs; if a client signs off shot-by-shot, generation is the wrong tool.",
+      "Work requiring a real named person's likeness — you need that person's permission, and no subscription grants it.",
+      "Anyone expecting unlimited output. Every credit-based plan has a ceiling; see the credits section."
+    ]
+  },
+
+  "pendingVerification": {
+    "_note": "Claims supplied as business inputs that are NOT yet backed by current vendor documentation or written authorization. These render as open questions on the page. Move an item into platform.capabilities or offer.* only with a sourceUrl and a verifiedOn date.",
+    "items": [
+      { "claim": "1,200 monthly credits on the Plus plan", "why": "Credit allocations change with vendor pricing revisions. Not re-checked against higgsfield.ai/pricing for this offer." },
+      { "claim": "Unlimited access to eligible models", "why": "No documented scope. 'Unlimited' with an undefined boundary is exactly the claim spec section 15 forbids — which interfaces, which models, what fair-use ceiling, what queue priority?" },
+      { "claim": "Seedance unlimited access", "why": "Model availability varies by plan, account and region. Needs confirmation in the actual account UI." },
+      { "claim": "Supercomputer access", "why": "Unconfirmed whether it is included at this tier, whether its actions consume credits, and whether any 'unlimited' benefit extends into it." },
+      { "claim": "Specific model line-up (Seedance, Kling, Veo, Sora, WAN)", "why": "Model rosters on aggregator platforms change without notice. Publishing a stale list misleads buyers; version numbers especially must not be guessed." },
+      { "claim": "30-day replacement guarantee", "why": "No written policy on file for a customer-owned third-party account AIPS does not control." }
+    ]
+  },
+
+  "credits": {
+    "explainer": "Higgsfield plans are credit-based: each generation spends credits, and different models and clip lengths cost different amounts. Two things follow. First, a monthly credit figure is a budget, not a video count — a longer clip on a heavier model costs more than a short one on a light model. Second, any 'unlimited' offer needs a stated scope: unlimited on which models, through which interface, and under what fair-use ceiling. AI Premium Shop will not quote a credit figure for this offer until it is confirmed against the vendor's current pricing page and the account itself.",
+    "questionsToAsk": [
+      "How many credits does this plan actually include this month?",
+      "Which models are credit-free, and which spend credits?",
+      "What does one 5-second clip cost on the model I want to use?",
+      "Do credits roll over, or expire at the end of the billing month?",
+      "Does the Supercomputer / agent workflow spend credits from the same pool?"
+    ]
+  },
+
+  "payment": {
+    "methods": ["bKash", "Nagad", "Rocket", "Bank transfer", "Binance Pay"],
+    "note": "No international card required. This is the whole reason the service exists — Higgsfield bills in USD and most Bangladeshi debit cards cannot complete that charge."
+  },
+
+  "process": [
+    { "step": "Message on WhatsApp", "body": "Tell us what you want to make — product ads, reels, avatars. We confirm the current vendor plan and the live price before anything is paid." },
+    { "step": "You create your own account", "body": "You sign up at higgsfield.ai with your own email and set your own password. You keep recovery access. We never ask for your password." },
+    { "step": "Payment assistance", "body": "We handle the USD side of the subscription payment that a local card cannot complete. The service fee and the subscription cost are stated separately before you pay." },
+    { "step": "Free Google Meet onboarding", "body": "A live walkthrough: first render, how credits are spent, and which model suits the work you described." },
+    { "step": "You own the renewal", "body": "The subscription is on your account. You control renewal and cancellation directly with the vendor." }
+  ],
+
+  "faq": [
+    { "q": "Who owns the Higgsfield account?", "a": "You do. You create it with your own email, set your own password, and keep recovery access. AI Premium Shop assists with the payment and the setup — it does not hold, share or resell logins." },
+    { "q": "Is AI Premium Shop an official Higgsfield partner?", "a": "No. We are an independent service and have no reseller, affiliate or partnership authorization from Higgsfield. We help Bangladeshi customers pay for and set up a subscription they own themselves." },
+    { "q": "Why is the price confirmed on WhatsApp instead of shown as a checkout?", "a": "Because the vendor's plan pricing and entitlements change, and this specific offer has not been re-verified against Higgsfield's current pricing page. Quoting a live figure and confirming it before payment is more honest than publishing a number that may already be stale." },
+    { "q": "Can you guarantee unlimited video generation?", "a": "No. Every credit-based plan has limits, and we will not describe any plan as unlimited without the vendor's current documentation stating the exact scope — which models, which interfaces, and what fair-use ceiling applies." },
+    { "q": "How do I pay from Bangladesh?", "a": "bKash, Nagad, Rocket, bank transfer or Binance Pay. No international card is needed on your side." },
+    { "q": "What happens when the month ends?", "a": "The subscription sits on your own account, so renewal and cancellation are yours to control directly with Higgsfield. Nothing renews through us." },
+    { "q": "Can I get a refund?", "a": "Refund terms for a customer-owned third-party subscription are set by the vendor, not by us. Before you pay, ask us what is and is not recoverable for your specific case — we would rather tell you upfront than argue after." }
+  ],
+
+  "related": {
+    "category": "ai-video",
+    "categoryPath": "/ai-video",
+    "alternatives": [
+      { "slug": "runway-bangladesh", "why": "Established text-to-video and image-to-video platform with published tier pricing." },
+      { "slug": "kling-ai-bangladesh", "why": "Strong image-to-video motion; popular for product animation." },
+      { "slug": "heygen-bangladesh", "why": "Purpose-built for talking avatars and multilingual lip-sync." },
+      { "slug": "capcut-pro-bangladesh", "why": "The budget entry point if you mainly need editing plus light AI, not generation." }
+    ]
+  },
+
+  "seo": {
+    "title": "Higgsfield AI in Bangladesh — price, plans and setup help | AI Premium Shop",
+    "metaDescription": "Higgsfield AI for Bangladesh: what the platform does, how its credit system works, and how to pay without an international card. Account stays in your name. Independent service — price confirmed on WhatsApp.",
+    "h1": "Higgsfield AI in Bangladesh",
+    "ogImage": "https://aipremiumshop.com/images/og/default-og.png"
+  }
+}

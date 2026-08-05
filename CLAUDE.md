@@ -570,8 +570,95 @@ All changes verified in the rendered DOM after deploy, not just build
 success: real prices in the Trending cards, real internal links, redirect
 status checked directly with curl, hydration clean (1 h1, 0px overflow).
 
+## Session 16 (2026-08-05, Opus 5) — Higgsfield offer done compliantly, AI Video hub, page-load flash root-caused
+
+**The blink the owner reported is fixed, and it was not a React problem.**
+`background-color: #0a0e27` lived only in `src/index.css` — an external
+render-blocking stylesheet. `index.html` set no background at all, so the
+browser painted its own default canvas (WHITE), then repainted dark once the
+CSS applied: a full-viewport flash on every cold load of a dark site, invisible
+on a warm cache, which is how it survived fifteen sessions. Fixed with an inline
+critical `<style>` as the first thing in `<head>` plus `color-scheme: dark`.
+Also deleted the Google Fonts `@import` from index.css — index.html already
+`<link>`s the same stylesheet, and a CSS `@import` cannot start downloading
+until the importing sheet arrives, so it serialised HTML → index.css → fonts
+CSS → font files directly in front of first paint. **Do not move that inline
+style or restore that @import.** Ruled out and documented: Suspense fallback
+(already an empty sized div), theme flash (no toggle exists), hydration
+mismatch (`createRoot`, so it never attempts hydration). Full write-up in
+`docs/performance/page-load-flash.md`, including why `hydrateRoot` is NOT the
+right fix here — the static bodies are built by a string extractor, not React.
+
+**Higgsfield is live at `/product/higgsfield-ai-bangladesh` as enquiry-only,
+compliance category F.** The owner confirmed there is no written reseller or
+affiliate authorization, so: no checkout, no "official"/"partner"/"authorized",
+customer owns the account, independent-provider disclaimer above the fold.
+Rather than dropping the six unverifiable supplied claims (1,200 credits,
+unlimited Seedance, Supercomputer access, the model roster, the replacement
+guarantee), the page publishes them in a **"What we have not verified"**
+section with the reason each is unconfirmed. 1,536 → 8,702 static visible chars.
+
+**The claims are now gated at build time, not by review discipline.**
+`scripts/validate-higgsfield-offer.mjs` runs before `vite build` and fails on an
+expired offer date (in Dhaka time), a CTA enabled under category F/G, a price
+without a fresh verification date, "unlimited" without a stated scope, banned
+authorization wording outside a negation, and any attempt to hardcode the price
+or a credit count into the component. Regression-tested by deliberately
+re-enabling the expired date and the CTA. This matters because this file already
+records the same wrong-price bug recurring **six times** — correct content
+decays, a gate that exits non-zero does not.
+
+**New `pnpm run seo:check`** (`scripts/seo-check.mjs`) over all 273 built pages:
+duplicate/missing titles and descriptions, H1 count, canonical host, soft-404
+and placeholder text, leaked JS values, unsupported "official"/unscoped
+"unlimited", expired offer dates, malformed WhatsApp CTAs, img alt/dimensions,
+JSON-LD parse + fabricated ratings + Offer-vs-compliance contradiction.
+Currently **0 errors**. It immediately found a real pre-existing bug: `/privacy`
+and `/privacy-policy` were two self-canonical pages with identical titles,
+because the prerender's alias-canonical resolver only covered Comparison/Budget
+pages. Generalised to plain `component={X}` routes.
+
+**Two of my own bugs, caught by this repo's own gates rather than by me** —
+worth recording because both are the same lesson. (1) The Higgsfield prerender
+linked four alternatives at `/product/<slug>` when they are brand-page slugs
+living at `/<slug>`; the React component was right because it calls
+`productPath()`, the string builder was wrong because it did not. `audit-prerender`
+caught it. (2) My first `seo-check` split FAQ questions from their answers and
+rejected "Is AI Premium Shop an official Higgsfield partner?" — the question that
+exists *in order to* answer "No". A compliance check must operate on the unit a
+reader actually sees, or it punishes honest disclosure.
+
+**AI Video surfaces rebuilt**: `/ai-video` is now a decision hub (the five
+distinct jobs the category covers, which product does each, where to start by
+situation, and the payment/account-ownership realities of buying from
+Bangladesh) — 1,112 → 3,770 static chars. New homepage module, 3,489 → 4,517.
+Both prices derived from the catalog at render time, never typed. The hub's
+static body is extracted from `AIVideoHub.tsx`'s own JOBS array via the existing
+`evalLiteral` helper, so the static and rendered versions cannot drift.
+
+**Also fixed**: 22 broken template strings on 11 live product pages that read
+"Delivery in Confirmed on WhatsApp" and "Typically Confirmed on WhatsApp via
+WhatsApp after payment confirmation".
+
+**New**: `.github/workflows/seo-quality.yml` (gates on push/PR + weekly, so
+time-based expiry fails on its own) and `live-site-monitor.yml` (daily 08:30
+Dhaka; every assertion checks CONTENT not status, because working rule #3 above
+exists for a reason). `docs/agent/*` is the resumable work system —
+**read `docs/agent/NEXT-SESSION.md` first next time.**
+
+**The biggest thing NOT done, and it needs the owner, not the repo**: the
+"10,000+ customers since 2022" claim has no evidence on file and still renders
+on ~70 product pages plus 4 hardcoded sites in `ProductPage.tsx` and the
+site-wide default meta description. It was removed from the Higgsfield record
+and deliberately avoided on the new page (which is why that page does not use
+`ProductPage.tsx`), but bulk-editing 70 live revenue pages on an unresolved
+business fact is the owner's call. See `docs/agent/BLOCKERS.md` B1.
+
 ### Priority open items (post-session)
-1. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
+1. **B1 — "10,000+ customers" claim** has no evidence; ~70 live pages. Owner decision.
+2. **B3 — six Higgsfield entitlements** unverified; blocks the page converting.
+3. **Playwright cold-load screenshot test** — spec asked for one; no Playwright in the repo yet.
+4. **BrandPage 160 KB / BlogPostPage 116 KB** chunks — same catalog-lite pattern
    would shrink these substantially.
 2. **Conversation store inert** — needs `POSTGRES_URL` + `INSIGHTS_TOKEN`.
 3. **Deploy cap** (100/24h, free plan) remains the binding constraint on iteration.

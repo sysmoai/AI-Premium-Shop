@@ -1,0 +1,74 @@
+# Deterministic repo-side SEO/claim gate (spec section 22/23).
+#
+# Runs on every PR and push touching the live app, and weekly so that a claim
+# that goes stale with the calendar — an offer whose end date passes, a price
+# verification older than 90 days — fails on its own without anyone editing code.
+#
+# This job needs no secrets and makes no network calls: it builds and inspects
+# dist/public. Live-site checks live in live-site-monitor.yml.
+
+name: SEO quality
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "artifacts/aips-landing/**"
+      - ".github/workflows/seo-quality.yml"
+  pull_request:
+    paths:
+      - "artifacts/aips-landing/**"
+  schedule:
+    # 01:00 UTC Monday = 07:00 Asia/Dhaka. Catches time-based expiry.
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: seo-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: artifacts/aips-landing
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        working-directory: .
+        run: pnpm install --filter ./artifacts/aips-landing --no-frozen-lockfile
+
+      # Claim gates run before the build so a compliance violation fails fast
+      # and cheaply rather than after a full vite build.
+      - name: Higgsfield offer compliance gate
+        run: node scripts/validate-higgsfield-offer.mjs
+
+      - name: Catalog validators
+        run: node scripts/validate-catalog.mjs && node scripts/validate-truth.mjs
+        continue-on-error: true # pre-existing warnings; tracked in docs/agent/BLOCKERS.md
+
+      - name: Build (includes blog-price gate, prerender, prerender audit)
+        run: pnpm run build
+
+      - name: SEO check
+        run: pnpm run seo:check
+
+      - name: Upload built HTML on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-public
+          path: artifacts/aips-landing/dist/public
+          retention-days: 5

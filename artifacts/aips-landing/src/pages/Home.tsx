@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MIN_PRICE, TOTAL_PRODUCTS } from "@/lib/catalogStats";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Navbar } from "@/components/Navbar";
 import { SEOHead } from "@/components/SEOHead";
 import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema, productListSchema } from "@/utils/schemas";
@@ -15,6 +16,7 @@ import { FeaturedProductsSection, FEATURED_PRODUCTS } from "@/sections/FeaturedP
 import { PaymentMethodsSection } from "@/sections/PaymentMethodsSection";
 import { PainPointSection } from "@/sections/PainPointSection";
 import { TrendingNowSection } from "@/sections/TrendingNowSection";
+import { AIVideoFeatureSection } from "@/sections/AIVideoFeatureSection";
 import { AIAgentsSection } from "@/sections/AIAgentsSection";
 import { OffersSection } from "@/sections/OffersSection";
 import { CategorySection } from "@/sections/CategorySection";
@@ -75,17 +77,7 @@ export default function Home() {
   const [selectedSegment, setSelectedSegment] = useState<Segment>(null);
   const [showSegmentSelector, setShowSegmentSelector] = useState(false);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll(".scroll-reveal").forEach(el => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  useScrollReveal();
 
   const handleSegmentSelect = (segment: Segment) => {
     setSelectedSegment(segment);
@@ -155,6 +147,8 @@ export default function Home() {
         <div className="scroll-reveal"><TrendingNowSection /></div>
 
         {/* 3. AI AGENTS — The 2026 Game Changer */}
+        <div className="scroll-reveal"><AIVideoFeatureSection /></div>
+
         <div className="scroll-reveal"><AIAgentsSection /></div>
 
         {/* 3B. AI AGENT ECONOMY */}

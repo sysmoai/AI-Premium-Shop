@@ -23,6 +23,7 @@ const DIST = path.join(APP, "dist/public");
 const SITE = "https://aipremiumshop.com";
 
 const { products } = JSON.parse(fs.readFileSync(path.join(APP, "data/products.json"), "utf8"));
+const hfOffer = JSON.parse(fs.readFileSync(path.join(APP, "data/higgsfield-offer.json"), "utf8"));
 
 // Mirror productRoutes.ts: brand-page slugs live at /{slug}; BrandPage owns
 // that surface, so only /product/<slug> pages are prerendered here.
@@ -41,8 +42,107 @@ if (!template.includes('<div id="root"></div>')) {
   process.exit(1);
 }
 
+// Every prerendered body is wrapped in #prerender-shell. index.html hides that
+// id for any browser that runs JS, so the class-free SEO copy is never painted
+// to a human — see the comment in index.html and
+// docs/performance/page-load-flash.md. Crawlers that cannot execute JS still
+// receive it as ordinary visible HTML.
+const shell = (body) => `<div id="prerender-shell">${body}</div>`;
+
 const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const fmtBDT = (n) => `৳${n.toLocaleString("en-US")}`;
+
+// The Higgsfield page is a dedicated component (HiggsfieldPage.tsx), not the
+// generic product template, so the generic body builder below would emit a
+// static page that says something different from what React renders. This
+// mirrors the component's own sections from the same JSON source of truth.
+//
+// The unverified-claims and disclaimer sections are included deliberately: they
+// are the parts a crawler and an AI answer engine most need to see, and
+// omitting them from the static body would mean the pre-JS page reads as a
+// straightforward sales page while the hydrated one carries the caveats.
+function higgsfieldBody() {
+  const off = hfOffer.offer;
+  const p = hfOffer.platform;
+  const li = (arr, f) => `<ul>${arr.map(f).join("")}</ul>`;
+  return `
+<nav aria-label="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="/"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" />
+  </span> ›
+  <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="${esc(hfOffer.related.categoryPath)}"><span itemprop="name">AI Video</span></a><meta itemprop="position" content="2" />
+  </span> ›
+  <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <span itemprop="name">${esc(p.vendor)} AI</span><meta itemprop="position" content="3" />
+  </span>
+</nav>
+<main>
+<h1>${esc(hfOffer.seo.h1)}</h1>
+<p>${esc(p.summary)}</p>
+<p><strong>Indicative price: ${fmtBDT(off.priceBDT)} for ${off.durationMonths} month.</strong> ${esc(off.priceNote)}</p>
+<p>${esc(hfOffer.compliance.disclaimer)}</p>
+
+<section><h2>Who owns the account</h2>
+<p>${esc(off.accountOwnershipNote)}</p>
+${li([["Account owner", "You"], ["Renewal controlled by", "You, directly with the vendor"], ["Cancellation controlled by", "You, directly with the vendor"]],
+  ([k, v]) => `<li>${esc(k)}: ${esc(v)}</li>`)}
+</section>
+
+<section><h2>What the platform does</h2>
+${li(p.capabilities, (c) => `<li>${esc(c)}</li>`)}
+<p>Source: <a href="${esc(p.sourceUrl)}" rel="nofollow noopener">${esc(p.sourceUrl)}</a> — verified ${esc(p.verifiedOn)}.</p>
+</section>
+
+<section><h2>How the credit system works</h2>
+<p>${esc(hfOffer.credits.explainer)}</p>
+<h3>Ask us these before you pay</h3>
+${li(hfOffer.credits.questionsToAsk, (q) => `<li>${esc(q)}</li>`)}
+</section>
+
+<section><h2>What we have not verified</h2>
+<p>These were supplied to us as selling points. We have not confirmed them against current vendor documentation or the account interface, so they are listed as open questions rather than features.</p>
+${li(hfOffer.pendingVerification.items, (i) => `<li><strong>${esc(i.claim)}</strong> — ${esc(i.why)}</li>`)}
+</section>
+
+<section><h2>What people use it for</h2>
+${p.useCases.map((u) => `<h3>${esc(u.title)}</h3><p>${esc(u.body)}</p>`).join("")}
+</section>
+
+<section><h2>Who should not buy this</h2>
+${li(p.notSuitableFor, (n) => `<li>${esc(n)}</li>`)}
+</section>
+
+<section><h2>How it works</h2>
+<p>Payment methods: ${esc(hfOffer.payment.methods.join(", "))}. ${esc(hfOffer.payment.note)}</p>
+<ol>${hfOffer.process.map((s) => `<li><strong>${esc(s.step)}</strong> — ${esc(s.body)}</li>`).join("")}</ol>
+</section>
+
+<section><h2>Alternatives in AI Video</h2>
+${li(hfOffer.related.alternatives, (a) => {
+    // Mirror productPath(): slugs in BRAND_PAGE_SLUGS live at /{slug}; only the
+    // rest are under /product/{slug}. Hardcoding /product/ here shipped four
+    // broken links that audit-prerender caught — the React component was right
+    // because it calls productPath(), this string builder has to match it.
+    const href = brandSlugs.has(a.slug) ? `/${a.slug}` : `/product/${a.slug}`;
+    const rec = products.find((p) => p.slug === a.slug);
+    const label = rec ? rec.name.split(/—\s*/)[0].trim() : a.slug.replace(/-bangladesh$/, "").replace(/-/g, " ");
+    return `<li><a href="${esc(href)}">${esc(label)}</a> — ${esc(a.why)}</li>`;
+  })}
+<p><a href="${esc(hfOffer.related.categoryPath)}">Compare every AI video tool</a></p>
+</section>
+
+<section><h2>Frequently asked questions</h2>
+${hfOffer.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}
+</section>
+
+<p><a href="https://wa.me/8801865385348?text=${encodeURIComponent(`Hi, I'm asking about ${hfOffer.platform.vendor} AI via AI Premium Shop.
+Plan: ${off.durationMonths} month · Indicative: ${fmtBDT(off.priceBDT)}
+Page: ${hfOffer.canonical}
+What I want to make: `)}" rel="noopener">Check the current price on WhatsApp</a></p>
+<p><a href="/products">Browse all AI tools</a> · <a href="/pricing">Pricing</a> · <a href="/how-to-order">How to order</a></p>
+</main>`;
+}
 
 // Group records by slug (multi-tier products have several records per slug).
 const bySlug = new Map();
@@ -69,10 +169,11 @@ for (const [slug, recs] of bySlug) {
         title: `${p.name} price in Bangladesh — ${fmtBDT(fromPrice)}/mo | AI Premium Shop`,
         desc: `${p.name} price in Bangladesh is ${fmtBDT(fromPrice)}/month at AI Premium Shop. Pay with bKash or Nagad. Delivery ${p.deliverySLA ?? "as scheduled"}. 30-day warranty. Trusted by 10,000+ customers since 2022.`,
       });
-  const title = seo.title;
-  const desc = seo.metaDescription ?? seo.desc;
+  const isHiggsfield = slug === hfOffer.productSlug;
+  const title = isHiggsfield ? hfOffer.seo.title : seo.title;
+  const desc = isHiggsfield ? hfOffer.seo.metaDescription : (seo.metaDescription ?? seo.desc);
 
-  const faqs = p.faq ?? [];
+  const faqs = isHiggsfield ? hfOffer.faq : (p.faq ?? []);
   const today = new Date().toISOString().split("T")[0];
   const verificationDate = p.verificationDate ?? today;
   const ld = [
@@ -96,7 +197,7 @@ for (const [slug, recs] of bySlug) {
 
   const tiers = recs.filter((r) => typeof r.price === "number")
     .map((r) => `<li>${esc(r.tier ?? r.name)} — ${fmtBDT(r.price)}/month</li>`).join("");
-  const body = `
+  const body = isHiggsfield ? higgsfieldBody() : `
 <nav aria-label="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
   <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
     <a itemprop="item" href="/"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" />
@@ -123,7 +224,7 @@ ${faqs.length ? `<section><h2>Frequently asked questions</h2>${faqs.map((f) => `
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
-    .replace('<div id="root"></div>', `<div id="root">${body}</div>`);
+    .replace('<div id="root"></div>', `<div id="root">${shell(body)}</div>`);
   // canonical + og overrides appended to <head> (last one wins for crawlers
   // that respect a single canonical; SEOHead replaces them on hydration).
   const headExtra = `<link rel="canonical" href="${canonical}" />
@@ -169,6 +270,32 @@ const ALIAS_CANONICAL = (() => {
     const target = declared.get(m[2]);
     if (target && target !== `${SITE}${m[1]}`) map.set(m[1], target);
   }
+
+  // Plain alias routes: <Route path="/x" component={SomePage} />, where two
+  // different paths share one component and that component declares a single
+  // fixed canonical. Handled generically rather than per-page — /privacy and
+  // /privacy-policy both render PrivacyPolicyPage, whose SEOHead canonicalises
+  // to /privacy-policy, but the prerender was self-canonicalising each path and
+  // therefore shipping two competing pages with identical titles. seo-check.mjs
+  // flags exactly this, and any future alias of the same shape is now covered.
+  const byComponent = new Map(); // component name -> [route, ...]
+  for (const m of appSrc.matchAll(/<Route path="(\/[^"]*)"\s+component=\{(\w+)\}\s*\/>/g)) {
+    if (!byComponent.has(m[2])) byComponent.set(m[2], []);
+    byComponent.get(m[2]).push(m[1]);
+  }
+  for (const [component, routes] of byComponent) {
+    if (routes.length < 2) continue;
+    const file = path.join(APP, `src/pages/${component}.tsx`);
+    if (!fs.existsSync(file)) continue;
+    const declaredCanonical = fs.readFileSync(file, "utf8").match(/canonical=["']([^"']+)["']/)?.[1];
+    if (!declaredCanonical) {
+      console.warn(`prerender: ${component} serves ${routes.length} routes but declares no canonical — duplicate-content risk at ${routes.join(", ")}`);
+      continue;
+    }
+    for (const r of routes) {
+      if (declaredCanonical !== `${SITE}${r}`) map.set(r, declaredCanonical);
+    }
+  }
   return map;
 })();
 
@@ -177,7 +304,7 @@ const writeRoute = (route, title, desc, body, extraLd = []) => {
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
-    .replace('<div id="root"></div>', `<div id="root">${body}</div>`);
+    .replace('<div id="root"></div>', `<div id="root">${shell(body)}</div>`);
   html = html.replace("</head>", `<link rel="canonical" href="${canonical}" />
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(desc)}" />
@@ -210,6 +337,46 @@ const CATEGORY_LABELS = {
   "ai-writing": "AI Writing & SEO", "ai-design": "AI Design & Creative", "bundles": "Bundles & Packages",
 };
 
+
+// ---- AI Video hub static body.
+// /ai-video is the category with the strongest commercial intent, and its static
+// body was a bare <ul> of products while React rendered a full decision hub —
+// i.e. the useful content existed only for visitors who execute JS. This reads
+// AIVideoHub.tsx's own JOBS array rather than restating it, so the two cannot
+// drift the way typed prices historically have.
+function aiVideoHubBody() {
+  const src = fs.readFileSync(path.join(APP, "src/sections/AIVideoHub.tsx"), "utf8");
+  const m = src.match(/const JOBS = (\[[\s\S]*?\n\];)/);
+  if (!m) { console.warn("prerender: AIVideoHub JOBS array not matched — /ai-video hub body skipped"); return ""; }
+  let jobs;
+  try {
+    // Drop `icon: Identifier,` — a component reference, not data.
+    jobs = evalLiteral(m[1].replace(/\n\s*icon:\s*\w+,/g, "").replace(/;$/, ""));
+  } catch (e) {
+    console.warn("prerender: AIVideoHub JOBS eval failed —", e.message);
+    return "";
+  }
+  const priceFor = (slug) => {
+    const ps = products.filter((p) => p.slug === slug).map((p) => p.price).filter((n) => typeof n === "number");
+    return ps.length ? ` — from ${fmtBDT(Math.min(...ps))}/month` : " — price on WhatsApp";
+  };
+  const nameFor = (slug) => {
+    const rec = products.find((p) => p.slug === slug);
+    return rec ? rec.name.split(/—\s*/)[0].trim() : slug;
+  };
+  return `
+<section><h2>Which AI video tool do you actually need?</h2>
+<p>"AI video" covers at least five different jobs, and the tools are not interchangeable between them. A platform that writes a cinematic scene from a sentence is a poor choice for animating your product photo, and neither one replaces an editor. Pick the job first — the tool follows.</p>
+<p>Nearly all of these platforms bill in <strong>credits</strong>, not videos. A credit allowance is a budget: a longer clip on a heavier model costs more than a short clip on a light one. Ask what a single clip costs before you judge whether an allowance is generous.</p>
+${jobs.map((j) => `<h3>${esc(j.title)}</h3><p>${esc(j.body)}</p><ul>${j.picks.map((sl) => `<li><a href="${linkFor(sl)}">${esc(nameFor(sl))}</a>${priceFor(sl)}</li>`).join("")}</ul>`).join("")}
+</section>
+<section><h2>Buying these from Bangladesh</h2>
+<h3>Payment</h3><p>Every one of these platforms bills in USD, which most Bangladeshi debit cards cannot complete. We handle that step — you pay in BDT via bKash, Nagad, Rocket, bank transfer or Binance Pay.</p>
+<h3>Account ownership</h3><p>Check this before buying anywhere, including here. A personal plan means the account is in your name with your own password. Ask explicitly which type you are getting — the answer changes what happens if you want to cancel.</p>
+<h3>How we verify</h3><p>Each product page carries the date we last checked its facts and a link to the provider's own pricing page. Where we have not verified a claim, we say so on the page rather than repeating it.</p>
+</section>`;
+}
+
 let hubs = 0;
 for (const [cat, label] of Object.entries(CATEGORY_LABELS)) {
   const list = distinct.filter((p) => p.category === cat);
@@ -217,7 +384,7 @@ for (const [cat, label] of Object.entries(CATEGORY_LABELS)) {
   const meta = catMeta[cat] ?? { title: `${label} — Prices in BDT | AI Premium Shop Bangladesh`,
     desc: `${list.length} ${label} subscriptions with BDT prices. Pay with bKash or Nagad. AI Premium Shop Bangladesh.` };
   writeRoute(cat === "bundles" ? "/bundles" : `/${cat}`, meta.title, meta.desc,
-    `<main><h1>${esc(label)}</h1><p>${esc(meta.desc)}</p><ul>${list.map(productLi).join("")}</ul>
+    `<main><h1>${esc(label)}</h1><p>${esc(meta.desc)}</p>${cat === "ai-video" ? aiVideoHubBody() : ""}<ul>${list.map(productLi).join("")}</ul>
 <p><a href="/products">All AI tools</a> · <a href="/pricing">Pricing</a> · <a href="/how-to-order">How to order</a></p></main>`);
   hubs++;
 }
@@ -695,6 +862,11 @@ console.log(`prerender: fallback sweep wrote ${fallbacks} pages; sitemap coverag
 
 <h2>Most wanted AI subscriptions in Bangladesh</h2>
 <ul>${featuredLi}</ul>
+
+<h2>AI Video — make video ads, reels and avatars, paid for in taka</h2>
+<p>${new Set(products.filter((x) => x.category === "ai-video").map((x) => x.slug)).size} AI video tools, covering five different jobs: generating footage from a prompt, animating a product photo, talking avatars, UGC-style ads, and editing what you already shot. They are not interchangeable — <a href="/ai-video">the category page walks you through which one fits your work</a>.</p>
+<p><strong>${esc(hfOffer.platform.vendor)} AI</strong> — ${esc(hfOffer.platform.summary)} Indicative ${fmtBDT(hfOffer.offer.priceBDT)} for ${hfOffer.offer.durationMonths} month, enquiry only: ${hfOffer.pendingVerification.items.length} supplied claims about this plan are still unverified and are <a href="/product/${esc(hfOffer.productSlug)}">listed openly on the product page</a> rather than sold as features.</p>
+<p>How we handle claims: product pages carry the date we last checked their facts, each links to the provider's own pricing page so you can check us, and where a claim is not verified we publish that instead of repeating it.</p>
 
 <h2>Trending AI tools right now</h2>
 <p>The searches climbing fastest this quarter, based on this site's own real search-console data — plan

@@ -8348,31 +8348,35 @@
       "whatsappMsg": "Hi, I want Higgsfield AI from AI Premium Shop. Please share the current price, plans and next steps.",
       "status": "Active",
       "sourceUrl": "https://higgsfield.ai/pricing",
-      "lastVerifiedDate": "2026-07-30",
+      "lastVerifiedDate": "2026-08-05",
       "faq": [
         {
-          "q": "Is Higgsfield AI safe to buy through AI Premium Shop?",
-          "a": "Yes. AIPS provides working access with a 30-day replacement guarantee. We have served 10,000+ customers since 2022."
+          "q": "Who owns the Higgsfield account?",
+          "a": "You do. You create it with your own email, set your own password, and keep recovery access. AI Premium Shop assists with payment and setup — it does not hold, share or resell logins."
         },
         {
-          "q": "How long does delivery take for Higgsfield AI?",
-          "a": "Typically Confirmed on WhatsApp via WhatsApp after payment confirmation."
+          "q": "Is AI Premium Shop an official Higgsfield partner?",
+          "a": "No. We are an independent service with no reseller, affiliate or partnership authorization from Higgsfield. We help Bangladeshi customers pay for and set up a subscription they own themselves."
         },
         {
-          "q": "What payment methods can I use for Higgsfield AI?",
-          "a": "bKash, Nagad, Rocket, bank transfer, or Binance Pay. No international card needed."
+          "q": "What payment methods can I use?",
+          "a": "bKash, Nagad, Rocket, bank transfer, or Binance Pay. No international card needed on your side."
         },
         {
-          "q": "Is Higgsfield AI a personal, dedicated account?",
-          "a": "Yes, this is a personal account exclusively yours — full privacy, your own login, no shared limits."
+          "q": "Why is the price confirmed on WhatsApp?",
+          "a": "Higgsfield's plan pricing and entitlements change, and this offer has not been re-verified against their current pricing page. Quoting a live figure before payment is more honest than publishing one that may already be stale."
         }
       ],
       "uniqueSellingPoints": [
         "Pay with bKash or Nagad — no international card needed",
-        "Delivery in Confirmed on WhatsApp",
-        "30-day replacement guarantee",
-        "Real human WhatsApp support, not a bot"
-      ]
+        "The account is created in your name and stays yours",
+        "Free live Google Meet setup walkthrough",
+        "Current price confirmed on WhatsApp before you pay"
+      ],
+      "complianceStatus": "inquiry-only",
+      "deliveryModel": "customer-owned-account-setup-assistance",
+      "accountOwnership": "customer",
+      "offerDataSource": "data/higgsfield-offer.json"
     },
     {
       "id": "manus-pro-request",
@@ -8415,7 +8419,7 @@
         },
         {
           "q": "How long does delivery take for Manus Pro?",
-          "a": "Typically Confirmed on WhatsApp via WhatsApp after payment confirmation."
+          "a": "Delivery timing is confirmed on WhatsApp before payment, because provider setup time varies by plan."
         },
         {
           "q": "What payment methods can I use for Manus Pro?",
@@ -8428,7 +8432,7 @@
       ],
       "uniqueSellingPoints": [
         "Pay with bKash or Nagad — no international card needed",
-        "Delivery in Confirmed on WhatsApp",
+        "Delivery timing confirmed on WhatsApp before you pay",
         "30-day replacement guarantee",
         "Real human WhatsApp support, not a bot"
       ]
@@ -8473,7 +8477,7 @@
         },
         {
           "q": "How long does delivery take for Manus Team?",
-          "a": "Typically Confirmed on WhatsApp via WhatsApp after payment confirmation."
+          "a": "Delivery timing is confirmed on WhatsApp before payment, because provider setup time varies by plan."
         },
         {
           "q": "What payment methods can I use for Manus Team?",
@@ -8486,7 +8490,7 @@
       ],
       "uniqueSellingPoints": [
         "Pay with bKash or Nagad — no international card needed",
-        "Delivery in Confirmed on WhatsApp",
+        "Delivery timing confirmed on WhatsApp before you pay",
         "30-day replacement guarantee",
         "Real human WhatsApp support, not a bot"
       ]
@@ -8531,7 +8535,7 @@
         },
         {
           "q": "How long does delivery take for Google AI Ultra?",
-          "a": "Typically Confirmed on WhatsApp via WhatsApp after payment confirmation."
+          "a": "Delivery timing is confirmed on WhatsApp before payment, because provider setup time varies by plan."
         },
         {
           "q": "What payment methods can I use for Google AI Ultra?",
@@ -8544,7 +8548,7 @@
       ],
       "uniqueSellingPoints": [
         "Pay with bKash or Nagad — no international card needed",
-        "Delivery in Confirmed on WhatsApp",
+        "Delivery timing confirmed on WhatsApp before you pay",
         "30-day replacement guarantee",
         "Real human WhatsApp support, not a bot"
       ]
@@ -8588,7 +8592,7 @@
         },
         {
           "q": "How long does delivery take for Microsoft 365 Copilot?",
-          "a": "Typically Confirmed on WhatsApp via WhatsApp after payment confirmation."
+          "a": "Delivery timing is confirmed on WhatsApp before payment, because provider setup time varies by plan."
         },
         {
           "q": "What payment methods can I use for Microsoft 365 Copilot?",
@@ -8601,7 +8605,7 @@
       ],
       "uniqueSellingPoints": [
         "Pay with bKash or Nagad — no international card needed",
-        "Delivery in Confirmed on WhatsApp",
+        "Delivery timing confirmed on WhatsApp before you pay",
         "30-day replacement guarantee",
         "Real human WhatsApp support, not a bot"
       ]
@@ -8647,7 +8651,7 @@
         },
         {
           "q": "How long does delivery take for DeepSeek API Setup?",
-          "a": "Typically Confirmed on WhatsApp via WhatsApp after payment confirmation."
+          "a": "Delivery timing is confirmed on WhatsApp before payment, because provider setup time varies by plan."
         },
         {
           "q": "What payment methods can I use for DeepSeek API Setup?",
@@ -8656,7 +8660,7 @@
       ],
       "uniqueSellingPoints": [
         "Pay with bKash or Nagad — no international card needed",
-        "Delivery in Confirmed on WhatsApp",
+        "Delivery timing confirmed on WhatsApp before you pay",
         "30-day replacement guarantee",
         "Real human WhatsApp support, not a bot"
       ]
@@ -8701,7 +8705,7 @@
         },
         {
           "q": "How long does delivery take for Qwen / Alibaba Model Studio API Setup?",
-          "a": "Typically Confirmed on WhatsApp via WhatsApp after payment confirmation."
+          "a": "Delivery timing is confirmed on WhatsApp before payment, because provider setup time varies by plan."
         },
         {
           "q": "What payment methods can I use for Qwen / Alibaba Model Studio API Setup?",
@@ -8710,7 +8714,7 @@
       ],
       "uniqueSellingPoints": [
         "Pay with bKash or Nagad — no international card needed",
-        "Delivery in Confirmed on WhatsApp",
+        "Delivery timing confirmed on WhatsApp before you pay",
         "30-day replacement guarantee",
         "Real human WhatsApp support, not a bot"
       ]
@@ -8754,7 +8758,7 @@
         },
         {
           "q": "How long does delivery take for Luma Dream Machine?",
-          "a": "Typically Confirmed on WhatsApp via WhatsApp after payment confirmation."
+          "a": "Delivery timing is confirmed on WhatsApp before payment, because provider setup time varies by plan."
         },
         {
           "q": "What payment methods can I use for Luma Dream Machine?",
@@ -8767,7 +8771,7 @@
       ],
       "uniqueSellingPoints": [
         "Pay with bKash or Nagad — no international card needed",
-        "Delivery in Confirmed on WhatsApp",
+        "Delivery timing confirmed on WhatsApp before you pay",
         "30-day replacement guarantee",
         "Real human WhatsApp support, not a bot"
       ]
@@ -8812,7 +8816,7 @@
         },
         {
           "q": "How long does delivery take for Recraft?",
-          "a": "Typically Confirmed on WhatsApp via WhatsApp after payment confirmation."
+          "a": "Delivery timing is confirmed on WhatsApp before payment, because provider setup time varies by plan."
         },
         {
           "q": "What payment methods can I use for Recraft?",
@@ -8825,7 +8829,7 @@
       ],
       "uniqueSellingPoints": [
         "Pay with bKash or Nagad — no international card needed",
-        "Delivery in Confirmed on WhatsApp",
+        "Delivery timing confirmed on WhatsApp before you pay",
         "30-day replacement guarantee",
         "Real human WhatsApp support, not a bot"
       ]
@@ -8870,7 +8874,7 @@
         },
         {
           "q": "How long does delivery take for Photoroom Pro?",
-          "a": "Typically Confirmed on WhatsApp via WhatsApp after payment confirmation."
+          "a": "Delivery timing is confirmed on WhatsApp before payment, because provider setup time varies by plan."
         },
         {
           "q": "What payment methods can I use for Photoroom Pro?",
@@ -8883,7 +8887,7 @@
       ],
       "uniqueSellingPoints": [
         "Pay with bKash or Nagad — no international card needed",
-        "Delivery in Confirmed on WhatsApp",
+        "Delivery timing confirmed on WhatsApp before you pay",
         "30-day replacement guarantee",
         "Real human WhatsApp support, not a bot"
       ]
@@ -8928,7 +8932,7 @@
         },
         {
           "q": "How long does delivery take for Krea AI?",
-          "a": "Typically Confirmed on WhatsApp via WhatsApp after payment confirmation."
+          "a": "Delivery timing is confirmed on WhatsApp before payment, because provider setup time varies by plan."
         },
         {
           "q": "What payment methods can I use for Krea AI?",
@@ -8941,7 +8945,7 @@
       ],
       "uniqueSellingPoints": [
         "Pay with bKash or Nagad — no international card needed",
-        "Delivery in Confirmed on WhatsApp",
+        "Delivery timing confirmed on WhatsApp before you pay",
         "30-day replacement guarantee",
         "Real human WhatsApp support, not a bot"
       ]

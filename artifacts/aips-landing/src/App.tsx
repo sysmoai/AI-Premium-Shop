@@ -35,6 +35,7 @@ const SupportPage = lazy(() => import("@/pages/SupportPage"));
 const HowToOrderPage = lazy(() => import("@/pages/HowToOrderPage"));
 const BestAISubscriptionPage = lazy(() => import("@/pages/BestAISubscriptionPage"));
 const ProductPage = lazy(() => import("@/pages/ProductPage"));
+const HiggsfieldPage = lazy(() => import("@/pages/HiggsfieldPage"));
 const GuidesIndexPage = lazy(() => import("@/pages/GuidesIndexPage"));
 const StudentsGuide = lazy(() => import("@/pages/guides/StudentsGuide"));
 const FreelancersGuide = lazy(() => import("@/pages/guides/FreelancersGuide"));
@@ -158,7 +159,12 @@ function Router() {
       <Route path="/ai-under-1000">{() => <BudgetPage budgetKey="ai-under-1000" />}</Route>
       <Route path="/ai-under-3000">{() => <BudgetPage budgetKey="ai-under-3000" />}</Route>
 
-      {/* Product detail pages */}
+      {/* Product detail pages.
+          Higgsfield gets a dedicated component and MUST stay above the generic
+          /product/:slug route — wouter matches in order, so the catch-all would
+          otherwise win and render the template whose hardcoded trust claims this
+          page exists to avoid. See docs/compliance/higgsfield-offer-review.md. */}
+      <Route path="/product/higgsfield-ai-bangladesh" component={HiggsfieldPage} />
       <Route path="/product/:slug">{(params) => <ProductPage productSlug={params.slug} />}</Route>
 
       {/* Info pages */}

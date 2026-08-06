@@ -48,8 +48,9 @@ export default function BanglaBN() {
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
         title={`AI প্রিমিয়াম শপ — ${bnNum(TOTAL_PRODUCTS)}টি AI টুল বাংলাদেশে | bKash/Nagad পেমেন্ট`}
-        description={`ChatGPT, Claude, Midjourney, Copilot, DeepSeek সহ সকল AI টুল বাংলাদেশে। bKash/Nagad পেমেন্ট, ৫-৩০ মিনিটে ডেলিভারি। ৳${MIN_PRICE}/মাস থেকে শুরু।`}
+        description={`ChatGPT, Claude, Midjourney, Copilot, DeepSeek সহ সকল AI টুল বাংলাদেশে। bKash/Nagad পেমেন্ট, ৫-৩০ মিনিটে ডেলিভারি। ৳${bnNum(MIN_PRICE)}/মাস থেকে শুরু।`}
         canonical="https://aipremiumshop.com/bn"
+        lang="bn-BD"
         hreflang={{ bn: "/bn", en: "/" }}
         jsonLd={[
           ORG_SCHEMA,
@@ -77,7 +78,7 @@ export default function BanglaBN() {
                 bKash/Nagad পেমেন্ট। ৫–৩০ মিনিটে ডেলিভারি।
               </p>
               <p className="text-lg text-gray-400 mb-8">
-                মাত্র ৳{MIN_PRICE} থেকে শুরু করুন। কোনো আন্তর্জাতিক কার্ডের দরকার নেই।
+                মাত্র ৳{bnNum(MIN_PRICE)} থেকে শুরু করুন। কোনো আন্তর্জাতিক কার্ডের দরকার নেই।
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a

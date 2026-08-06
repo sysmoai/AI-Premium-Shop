@@ -214,15 +214,25 @@
 
 /* Pre-hydration SEO snapshot styling. Every prerendered route (see
    scripts/prerender-products.mjs) writes plain semantic HTML with no classes
-   — deliberately, since it must stay simple and crawlable. createRoot()
-   discards this markup wholesale on mount (it doesn't hydrate), so it's what
-   every visitor sees, unstyled, for the ~1s+ it takes the JS bundle to
-   execute — a plain browser-default text dump on the dark background before
-   the real UI replaces it. `#root > main` only ever matches this pre-mount
-   state: the hydrated app always nests its own <main> one level deeper
-   (inside a wrapper div), so this can never leak into or restyle the
-   production UI, and simply stops matching the moment React mounts. */
-#root > main {
+   — deliberately, since it must stay simple and crawlable.
+
+   WHO SEES THIS NOW: not JS-capable visitors. index.html wraps the snapshot in
+   #prerender-shell and hides it for any browser that runs React, because
+   createRoot() discards the markup wholesale and that swap was the reported
+   page-load "blink" (docs/performance/page-load-flash.md). What remains is the
+   audience the snapshot was written for in the first place: crawlers and
+   clients that cannot execute JS. They should still get a readable page rather
+   than a browser-default text dump, which is what these rules deliver.
+
+   SELECTOR NOTE: this block originally used `#root > main`. Adding the
+   #prerender-shell wrapper changed the structure to
+   #root > #prerender-shell > main, so that direct-child selector matched
+   nothing and this entire block died silently — styling that is only ever seen
+   by non-JS clients has no one to report it broken. The selectors now target
+   the wrapper directly, and seo-check.mjs asserts the two stay in agreement.
+   These cannot leak into the production UI: #prerender-shell is removed from
+   the DOM the moment React mounts. */
+#prerender-shell > main {
   display: block;
   max-width: 720px;
   margin: 0 auto;
@@ -230,43 +240,43 @@
   font-size: 15px;
   line-height: 1.6;
 }
-#root > main h1 {
+#prerender-shell > main h1 {
   font-size: 28px;
   line-height: 1.25;
   margin-bottom: 16px;
 }
-#root > main h2 {
+#prerender-shell > main h2 {
   font-size: 20px;
   margin: 32px 0 12px;
 }
-#root > main p {
+#prerender-shell > main p {
   color: #c9ceda;
   margin-bottom: 12px;
 }
-#root > main ul,
-#root > main ol {
+#prerender-shell > main ul,
+#prerender-shell > main ol {
   list-style: none;
   padding: 0;
   margin: 0 0 16px;
 }
-#root > main li {
+#prerender-shell > main li {
   padding: 10px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
-#root > main a {
+#prerender-shell > main a {
   color: #f4b942;
   text-decoration: none;
 }
-#root > main a:hover {
+#prerender-shell > main a:hover {
   text-decoration: underline;
 }
-#root > main table {
+#prerender-shell > main table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 16px;
 }
-#root > main th,
-#root > main td {
+#prerender-shell > main th,
+#prerender-shell > main td {
   text-align: left;
   padding: 8px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);

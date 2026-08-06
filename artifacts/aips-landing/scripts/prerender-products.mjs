@@ -299,12 +299,16 @@ const ALIAS_CANONICAL = (() => {
   return map;
 })();
 
-const writeRoute = (route, title, desc, body, extraLd = []) => {
+const writeRoute = (route, title, desc, body, extraLd = [], lang = null) => {
   const canonical = ALIAS_CANONICAL.get(route) ?? `${SITE}${route === "/products" ? "/products" : route}`;
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
     .replace('<div id="root"></div>', `<div id="root">${shell(body)}</div>`);
+  // index.html is the shell for EVERY route and hardcodes lang="en", so the
+  // Bangla pages were serving Bangla prose inside an English document — wrong
+  // for crawlers, for hreflang consistency and for screen readers.
+  if (lang) html = html.replace(/<html lang="[^"]*"/, `<html lang="${lang}"`);
   html = html.replace("</head>", `<link rel="canonical" href="${canonical}" />
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(desc)}" />
@@ -777,14 +781,42 @@ const BANGLA_PAGES = {
   "/smb-bn": { file: "SMBBangla.tsx", label: "ব্যবসায়ীদের জন্য" },
   "/educators-bn": { file: "EducatorsBangla.tsx", label: "শিক্ষকদের জন্য" },
 };
+// The Bangla pages write their SEOHead title/description as TEMPLATE LITERALS
+// (title={`...`}), not plain strings, so the old /title="([^"]+)"/ pattern never
+// matched a single one of them — every Bangla route silently fell back to the
+// generic label below and shipped ~156 chars of static content. Match both
+// shapes, and resolve the catalog constants the template literals interpolate.
+// Mirrors src/lib/catalogStats.ts, derived from the same products.json — so the
+// static Bangla <title> can never quote a different figure from the rendered one.
+const bnPrices = products.map((p) => p.price).filter((n) => typeof n === "number");
+const bnConst = {
+  MIN_PRICE: Math.min(...bnPrices),
+  MAX_PRICE: Math.max(...bnPrices),
+  TOTAL_PRODUCTS: distinct.length,
+  TOTAL_PLANS: products.length,
+};
+// Bengali digits, matching bnNum() in the Bangla page components. A title that
+// says "197টি" next to body copy saying "১৯৭টি" is the same inconsistency the
+// brief calls out, just in the one place nobody looks at.
+const BN_DIGITS = "০১২৩৪৫৬৭৮৯";
+const bnDigits = (v) => String(v).replace(/[0-9]/g, (d) => BN_DIGITS[Number(d)]);
+const resolveTpl = (raw) =>
+  raw.replace(/\$\{(?:bnNum\()?([A-Z_]+)\)?\}/g, (_, k) =>
+    (k in bnConst ? bnDigits(bnConst[k]) : `\${${k}}`));
+
 for (const [route, { file, label }] of Object.entries(BANGLA_PAGES)) {
   const src = fs.readFileSync(path.join(APP, "src/pages", file), "utf8");
-  const m = src.match(/title="([^"]+)"[\s\S]{0,300}?description="([^"]+)"/);
-  const title = m?.[1] ?? `AI Premium Shop বাংলাদেশ — ${label}`;
-  const desc = m?.[2] ?? "প্রিমিয়াম AI টুলস বাংলাদেশে BDT মূল্যে। bKash বা Nagad-এ পেমেন্ট করুন।";
-  writeRoute(route, title, desc,
-    `<main><h1>${esc(title)}</h1><p lang="bn">${esc(desc)}</p>
-<p lang="bn"><a href="/bn">হোম</a> · <a href="/products">সব AI টুল</a> · <a href="/guides">গাইড</a></p></main>`);
+  const m = src.match(/title=\{?[`"]([^`"]+)[`"]\}?[\s\S]{0,400}?description=\{?[`"]([^`"]+)[`"]\}?/);
+  if (!m) console.warn(`prerender: ${file} — could not parse SEOHead title/description; using fallback`);
+  const title = m ? resolveTpl(m[1]) : `AI Premium Shop বাংলাদেশ — ${label}`;
+  const desc = m ? resolveTpl(m[2]) : "প্রিমিয়াম AI টুলস বাংলাদেশে BDT মূল্যে। bKash বা Nagad-এ পেমেন্ট করুন।";
+  const body = route === "/bn" && typeof bnHomepageBody === "function"
+    ? bnHomepageBody()
+    : `<main><h1>${esc(title)}</h1><p>${esc(desc)}</p>
+<p><a href="/bn">হোম</a> · <a href="/products">সব AI টুল</a> · <a href="/guides">গাইড</a></p></main>`;
+  // lang="bn-BD" on the document, so the inner lang="bn" attributes the old
+  // version sprinkled around are no longer papering over an English <html>.
+  writeRoute(route, title, desc, body, [], "bn-BD");
 }
 
 console.log(`prerender: wrote remaining routes (guides, best-ai-for, comparisons, budget, Bangla, info, blog posts)`);

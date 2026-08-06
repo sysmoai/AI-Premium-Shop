@@ -22,6 +22,14 @@ interface SEOHeadProps {
   /** Hreflang tags: e.g. { en: "/", bn: "/faq" } */
   hreflang?: Record<string, string>;
   /**
+   * BCP-47 language tag for the document, e.g. "bn-BD".
+   * index.html hardcodes lang="en" because it is the shell for every route, so
+   * the Bangla pages were declaring English to crawlers and screen readers both
+   * before AND after hydration. The prerender writes the correct value into the
+   * static HTML; this keeps it correct once React takes over.
+   */
+  lang?: string;
+  /**
    * Set true on pages that should never be indexed (currently: NotFound).
    * Every unmatched path returns HTTP 200 through the SPA's catch-all
    * rewrite, so without an explicit noindex a crawler has no signal that
@@ -44,6 +52,7 @@ export function SEOHead({
   ogImages,
   jsonLd,
   hreflang,
+  lang,
   noindex = false,
 }: SEOHeadProps) {
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
@@ -51,6 +60,9 @@ export function SEOHead({
 
   useEffect(() => {
     document.title = fullTitle;
+    // Default back to "en" rather than leaving a previous page's value behind:
+    // this is an SPA, so navigating bn -> en must reset the attribute.
+    document.documentElement.setAttribute("lang", lang ?? "en");
 
     const setMeta = (sel: string, content: string) => {
       let el = document.querySelector(sel);
@@ -115,11 +127,11 @@ export function SEOHead({
     // Hreflang — remove existing, set new
     document.querySelectorAll('link[rel="alternate"][hreflang]').forEach((el) => el.remove());
     if (hreflang) {
-      Object.entries(hreflang).forEach(([lang, path]) => {
+      Object.entries(hreflang).forEach(([hrefLangCode, path]) => {
         const href = path.startsWith("http") ? path : `${SITE_URL}${path}`;
         const link = document.createElement("link");
         link.setAttribute("rel", "alternate");
-        link.setAttribute("hreflang", lang);
+        link.setAttribute("hreflang", hrefLangCode);
         link.setAttribute("href", href);
         document.head.appendChild(link);
       });
@@ -151,7 +163,7 @@ export function SEOHead({
       // never leaves the tag behind for whatever page mounts next.
       setMeta('meta[name="robots"]', "index, follow");
     };
-  }, [fullTitle, description, canonicalUrl, ogImage, ogImages, jsonLd, hreflang, noindex]);
+  }, [fullTitle, description, canonicalUrl, ogImage, ogImages, jsonLd, hreflang, lang, noindex]);
 
   return null;
 }

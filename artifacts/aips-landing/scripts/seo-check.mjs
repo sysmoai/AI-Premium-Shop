@@ -31,6 +31,30 @@ if (!fs.existsSync(DIST)) {
 
 const offer = JSON.parse(fs.readFileSync(path.join(APP, "data/higgsfield-offer.json"), "utf8"));
 
+// --- The pre-hydration snapshot styling must target the wrapper the prerender
+// actually emits. These two live in different files (src/index.css and
+// scripts/prerender-products.mjs) and nothing else couples them: when the
+// wrapper was introduced, the CSS kept saying `#root > main`, matched nothing,
+// and the whole block died silently — nobody notices, because the only audience
+// for that styling is crawlers and no-JS clients, who do not file bug reports.
+{
+  const cssFiles = fs.existsSync(path.join(DIST, "assets"))
+    ? fs.readdirSync(path.join(DIST, "assets")).filter((f) => f.endsWith(".css"))
+    : [];
+  if (!cssFiles.length) {
+    errors.push("build: no CSS bundle found in dist/public/assets");
+  } else {
+    const css = cssFiles.map((f) => fs.readFileSync(path.join(DIST, "assets", f), "utf8")).join("\n");
+    if (!css.includes("#prerender-shell>main") && !css.includes("#prerender-shell > main")) {
+      errors.push(
+        "src/index.css: the pre-hydration snapshot rules do not target `#prerender-shell > main`. " +
+        "The prerender wraps every static body in #prerender-shell, so a `#root > main` selector " +
+        "matches nothing and non-JS clients get an unstyled text dump.",
+      );
+    }
+  }
+}
+
 const errors = [];
 const warnings = [];
 

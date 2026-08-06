@@ -53,7 +53,7 @@ const COMPARISONS: Record<string, CompConfig> = {
     productB: { name: "Claude (Anthropic)", color: "#d97706", orderText: "Order Claude" },
     rows: [
       { feature: "Best for", a: "All-rounder: code, images, search, agents", b: "Writing, reasoning, long documents" },
-      { feature: "Top model", a: "GPT-5.4", b: "Claude Opus 4.6" },
+      { feature: "Top model", a: "GPT-5.4", b: "Claude Opus 5" },
       { feature: "Image generation", a: true, b: false },
       { feature: "Video generation", a: "Yes (Sora — Pro only)", b: false },
       { feature: "Code assistant", a: "Codex agent in ChatGPT", b: "Claude Code terminal" },
@@ -160,7 +160,7 @@ const COMPARISONS: Record<string, CompConfig> = {
       { feature: "AIPS price", a: "From BDT 399/mo", b: "From BDT 699/mo" },
       { feature: "Works in", a: "VS Code, JetBrains, Neovim, Visual Studio", b: "Cursor editor (VS Code fork)" },
       { feature: "Agent mode", a: "Cloud agents (limited)", b: "Full autonomous agent mode" },
-      { feature: "AI models", a: "GPT-5.4, Claude Opus 4.6, Gemini", b: "All frontier models" },
+      { feature: "AI models", a: "GPT-5.4, Claude Opus 5, Gemini", b: "All frontier models" },
       { feature: "Codebase indexing", a: "Partial", b: "Full codebase understanding" },
       { feature: "Chat with code", a: true, b: true },
       { feature: "Code completion", a: true, b: true },

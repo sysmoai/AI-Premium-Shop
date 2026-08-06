@@ -961,7 +961,7 @@
       "tier": "Premium Shared",
       "accessType": "shared",
       "badge": "Top Pick",
-      "description": "Premium shared Claude Pro. Higher reliability, fewer users. Opus 4.6, Claude Code, MCP integrations.",
+      "description": "Premium shared Claude Pro. Higher reliability, fewer users. Opus 5, Claude Code, MCP integrations.",
       "capabilities": [
         "text",
         "code",
@@ -973,7 +973,7 @@
       "featured": true,
       "whatsappMsg": "Hi, I want Claude Pro Premium Shared (৳1590/mo)",
       "status": "Active",
-      "descriptionBN": "Claude Pro — Opus 4.6 সহ সেরা রাইটিং ও কোডিং AI। Claude Code, ২০০K কনটেক্সট, MCP ইন্টিগ্রেশন।",
+      "descriptionBN": "Claude Pro — Opus 5 সহ সেরা রাইটিং ও কোডিং AI। Claude Code, ২০০K কনটেক্সট, MCP ইন্টিগ্রেশন।",
       "useCases": [
         "বড় ডকুমেন্ট/রিপোর্ট বিশ্লেষণ (২০০K টোকেন কনটেক্সট)",
         "Claude Code দিয়ে ফুল-স্ট্যাক ডেভেলপমেন্ট",
@@ -991,7 +991,7 @@
           "billingCycle": "monthly",
           "deliveryType": "shared",
           "whatsIncluded": [
-            "Claude Sonnet 4.6",
+            "Claude Sonnet 5",
             "8-seat shared pool",
             "Text, code, vision, documents",
             "200K token context",
@@ -1021,7 +1021,7 @@
           "billingCycle": "monthly",
           "deliveryType": "shared",
           "whatsIncluded": [
-            "Claude Opus 4.6",
+            "Claude Opus 5",
             "2-3 user shared pool",
             "200K context",
             "Full Claude Code",
@@ -1054,7 +1054,7 @@
           "deliveryType": "personal",
           "whatsIncluded": [
             "Your own Anthropic account",
-            "Claude Opus 4.6",
+            "Claude Opus 5",
             "200K context",
             "Full Claude Code",
             "MCP integrations",
@@ -1152,7 +1152,7 @@
             "Collaboration features",
             "Shared projects",
             "Central billing",
-            "Claude Opus 4.6"
+            "Claude Opus 5"
           ],
           "features": [
             "text",
@@ -1313,7 +1313,7 @@
       "officialUSD": 20,
       "tier": "Personal",
       "accessType": "personal",
-      "description": "Full personal Claude Pro. All models incl. Opus 4.6, extended thinking, Claude Code, 200K context.",
+      "description": "Full personal Claude Pro. All models incl. Opus 5, extended thinking, Claude Code, 200K context.",
       "capabilities": [
         "text",
         "code",
@@ -1325,7 +1325,7 @@
       "featured": true,
       "whatsappMsg": "Hi, I want Claude Pro Personal (৳2990/mo)",
       "status": "Active",
-      "descriptionBN": "Claude Pro — Opus 4.6 সহ সেরা রাইটিং ও কোডিং AI। Claude Code, ২০০K কনটেক্সট, MCP ইন্টিগ্রেশন।",
+      "descriptionBN": "Claude Pro — Opus 5 সহ সেরা রাইটিং ও কোডিং AI। Claude Code, ২০০K কনটেক্সট, MCP ইন্টিগ্রেশন।",
       "useCases": [
         "বড় ডকুমেন্ট/রিপোর্ট বিশ্লেষণ (২০০K টোকেন কনটেক্সট)",
         "Claude Code দিয়ে ফুল-স্ট্যাক ডেভেলপমেন্ট",
@@ -1488,7 +1488,7 @@
       "featured": false,
       "whatsappMsg": "Hi, I want Claude Max 5x (৳14950/mo)",
       "status": "Active",
-      "descriptionBN": "Claude Pro — Opus 4.6 সহ সেরা রাইটিং ও কোডিং AI। Claude Code, ২০০K কনটেক্সট, MCP ইন্টিগ্রেশন।",
+      "descriptionBN": "Claude Pro — Opus 5 সহ সেরা রাইটিং ও কোডিং AI। Claude Code, ২০০K কনটেক্সট, MCP ইন্টিগ্রেশন।",
       "useCases": [
         "বড় ডকুমেন্ট/রিপোর্ট বিশ্লেষণ (২০০K টোকেন কনটেক্সট)",
         "Claude Code দিয়ে ফুল-স্ট্যাক ডেভেলপমেন্ট",
@@ -1651,7 +1651,7 @@
       "featured": false,
       "whatsappMsg": "Hi, I want Claude Max 20x (৳29900/mo)",
       "status": "Active",
-      "descriptionBN": "Claude Pro — Opus 4.6 সহ সেরা রাইটিং ও কোডিং AI। Claude Code, ২০০K কনটেক্সট, MCP ইন্টিগ্রেশন।",
+      "descriptionBN": "Claude Pro — Opus 5 সহ সেরা রাইটিং ও কোডিং AI। Claude Code, ২০০K কনটেক্সট, MCP ইন্টিগ্রেশন।",
       "useCases": [
         "বড় ডকুমেন্ট/রিপোর্ট বিশ্লেষণ (২০০K টোকেন কনটেক্সট)",
         "Claude Code দিয়ে ফুল-স্ট্যাক ডেভেলপমেন্ট",
@@ -1814,7 +1814,7 @@
       "featured": false,
       "whatsappMsg": "Hi, I want Claude Team (৳3990/seat/mo)",
       "status": "Active",
-      "descriptionBN": "Claude Pro — Opus 4.6 সহ সেরা রাইটিং ও কোডিং AI। Claude Code, ২০০K কনটেক্সট, MCP ইন্টিগ্রেশন।",
+      "descriptionBN": "Claude Pro — Opus 5 সহ সেরা রাইটিং ও কোডিং AI। Claude Code, ২০০K কনটেক্সট, MCP ইন্টিগ্রেশন।",
       "useCases": [
         "বড় ডকুমেন্ট/রিপোর্ট বিশ্লেষণ (২০০K টোকেন কনটেক্সট)",
         "Claude Code দিয়ে ফুল-স্ট্যাক ডেভেলপমেন্ট",
@@ -6463,7 +6463,7 @@
       "officialUSD": 20,
       "tier": "Starter Shared",
       "accessType": "shared",
-      "description": "Premium shared Claude Pro. Higher reliability, fewer users. Opus 4.6, Claude Code, MCP integrations.",
+      "description": "Premium shared Claude Pro. Higher reliability, fewer users. Opus 5, Claude Code, MCP integrations.",
       "capabilities": [
         "text",
         "code",
@@ -6475,7 +6475,7 @@
       "featured": true,
       "whatsappMsg": "Hi, I want Claude Pro Premium Shared (৳599/mo)",
       "status": "Active",
-      "descriptionBN": "Claude Pro — Opus 4.6 সহ সেরা রাইটিং ও কোডিং AI। Claude Code, ২০০K কনটেক্সট, MCP ইন্টিগ্রেশন।",
+      "descriptionBN": "Claude Pro — Opus 5 সহ সেরা রাইটিং ও কোডিং AI। Claude Code, ২০০K কনটেক্সট, MCP ইন্টিগ্রেশন।",
       "useCases": [
         "বড় ডকুমেন্ট/রিপোর্ট বিশ্লেষণ (২০০K টোকেন কনটেক্সট)",
         "Claude Code দিয়ে ফুল-স্ট্যাক ডেভেলপমেন্ট",

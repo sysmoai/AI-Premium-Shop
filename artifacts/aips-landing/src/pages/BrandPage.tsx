@@ -236,8 +236,8 @@ const BRAND_META: Record<string, {
     displayName: "Claude",
     tagline: "Claude Pro Bangladesh — from ৳599/month",
     seoTitle: "Claude Pro Bangladesh — From BDT 599/mo | AI Premium Shop",
-    seoDescription: "Claude Pro Bangladesh from BDT 599/mo. Opus 4.6, 200K context, Claude Code. bKash/Nagad. 5-15 min delivery. AI Premium Shop.",
-    description: "Claude by Anthropic is the AI that rivals and often surpasses ChatGPT for writing, coding, and nuanced analysis. Claude Opus 4.6 leads in creative writing, legal documents, research, and complex reasoning. Available from Premium Shared (৳1,590) to Max 20x (৳29,900). Pay via bKash.",
+    seoDescription: "Claude Pro Bangladesh from BDT 599/mo. Opus 5, 200K context, Claude Code. bKash/Nagad. 5-15 min delivery. AI Premium Shop.",
+    description: "Claude by Anthropic is the AI that rivals and often surpasses ChatGPT for writing, coding, and nuanced analysis. Claude Opus 5 leads in creative writing, legal documents, research, and complex reasoning. Available from Premium Shared (৳1,590) to Max 20x (৳29,900). Pay via bKash.",
     accentColor: "#d97706",
     faqs: [
       { q: "Is Claude better than ChatGPT for writing?", a: "Claude (especially Opus) consistently scores higher for nuanced writing, creative content, legal documents, and academic papers. ChatGPT is stronger for coding and tool use. Most professionals use both." },
@@ -1323,7 +1323,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
           <div className="mb-14">
             <div className="text-center mb-8">
               <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest mb-3" style={{ backgroundColor: "#d9770620", color: "#d97706" }}>Strong AI for Writing & Code</span>
-              <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">Claude Opus 4.6 — Built for Writing &amp; Code</h2>
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">Claude Opus 5 — Built for Writing &amp; Code</h2>
               <p className="text-sm max-w-2xl mx-auto" style={{ color: "#c9ceda" }}>Long-document reasoning, strong coding performance, 1M token context.</p>
             </div>
 
@@ -1375,9 +1375,6 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 </div>
               ))}
             </div>
-            <div className="mt-4 p-4 rounded-xl text-sm text-center" style={{ backgroundColor: "#d9770610", color: "#d97706" }}>
-              Claude Opus 4.6 scored highest on SWE-bench, GPQA, and Chatbot Arena — the three most trusted AI benchmarks. It is objectively the smartest AI for writing and code analysis.
-            </div>
           </div>
         )}
 
@@ -1413,29 +1410,6 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   ))}
                 </tbody>
               </table>
-            </div>
-          </div>
-        )}
-
-        {/* Claude 1C: FOMO for Writers */}
-        {brandSlug === "claude-pro-bangladesh" && (
-          <div className="bg-amber-500/5 border-l-4 border-amber-500 rounded-lg p-6 my-8">
-            <div className="text-base font-bold mb-3" style={{ color: "#d97706" }}>⚠️ If You Write for a Living and You're NOT Using Claude…</div>
-            <p className="text-sm mb-4" style={{ color: "#c9ceda" }}>
-              You're competing with one hand tied behind your back. Every writer using Claude Opus 4.6 produces <strong className="text-white">3× more content at higher quality</strong>. Clients are comparing proposals written by AI-assisted writers against your manual work — and choosing the AI-assisted ones.
-            </p>
-            <div className="grid sm:grid-cols-3 gap-3 text-center text-sm">
-              {[
-                { label: "More content", stat: "3×", sub: "produced per day" },
-                { label: "Faster delivery", stat: "60%", sub: "deadline improvement" },
-                { label: "Higher earnings", stat: "44%", sub: "avg income increase" },
-              ].map((s) => (
-                <div key={s.label} className="p-3 rounded-xl" style={{ backgroundColor: "#d9770615" }}>
-                  <div className="text-3xl font-bold text-amber-400">{s.stat}</div>
-                  <div className="font-semibold text-white">{s.label}</div>
-                  <div className="text-xs mt-0.5" style={{ color: "#9ca3af" }}>{s.sub}</div>
-                </div>
-              ))}
             </div>
           </div>
         )}

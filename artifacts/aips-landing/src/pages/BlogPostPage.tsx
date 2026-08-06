@@ -1061,7 +1061,7 @@ const POSTS: Record<
         <h3>1. <Link href="/chatgpt-plans-bangladesh" className="text-[#f4b942] hover:underline">ChatGPT Plus</Link> — from ৳499/month</h3>
         <p>ChatGPT Plus is the most versatile AI assistant available. With GPT-5 multimodal capabilities, it handles writing, coding, research, image generation, and agent-based automation. The shared plan at ৳499/month is the best starting point for anyone new to AI.</p>
         <h3>2. <Link href="/claude-pro-bangladesh" className="text-[#f4b942] hover:underline">Claude Pro</Link> — from ৳1,590/month</h3>
-        <p>Claude Pro is widely regarded as the best AI for writing quality. Its 200K context window, Opus 4.6 model, and Claude Code make it the #1 choice for writers, researchers, and developers who need deep reasoning.</p>
+        <p>Claude Pro is widely regarded as strong for writing quality. Its 200K context window, Opus 5 model, and Claude Code make it a top choice for writers, researchers, and developers who need deep reasoning.</p>
         <h3>3. Google AI Pro — ৳599/month</h3>
         <p>AIPS-exclusive pricing. Full Google AI Pro plan on your own Gmail account. Gemini 3.1 Pro, 2TB storage, AI in Docs, Sheets, Gmail. The best value for professionals who already use Google Workspace.</p>
         <h3>4. <Link href="/midjourney-bangladesh" className="text-[#f4b942] hover:underline">Midjourney</Link> — from ৳1,199/month</h3>
@@ -1088,7 +1088,7 @@ const POSTS: Record<
         <p>ChatGPT Plus Premium Shared: <strong>৳999/month</strong></p>
         <p><Link href="/claude-pro-bangladesh" className="text-[#f4b942] hover:underline">Claude Pro</Link> Premium Shared: <strong>৳1,590/month</strong></p>
         <h2>Writing Quality</h2>
-        <p><strong>Winner: Claude.</strong> Claude Pro with Opus 4.6 produces more nuanced, human-sounding prose. For long-form content — research papers, reports, blog posts — Claude's output requires less editing. ChatGPT is faster but can sound more generic.</p>
+        <p><strong>Winner: Claude.</strong> Claude Pro with Opus 5 produces more nuanced, human-sounding prose. For long-form content — research papers, reports, blog posts — Claude's output requires less editing. ChatGPT is faster but can sound more generic.</p>
         <h2>Coding</h2>
         <p><strong>Winner: Tie (with edge to Claude for complex tasks).</strong> ChatGPT Plus has Codex agent mode and DALL-E for design mockups. Claude has Claude Code for terminal-level coding and 200K context for analyzing large codebases. Both are excellent. Most developers use both.</p>
         <h2>Research & Factual Accuracy</h2>
@@ -1238,7 +1238,7 @@ const POSTS: Record<
         <ul className="list-disc pl-6 space-y-2 text-gray-300">
           <li><strong className="text-white">1M token context window</strong> — understands entire large codebases in a single session</li>
           <li><strong className="text-white">Terminal-native</strong> — works where your code actually lives</li>
-          <li><strong className="text-white">Extended reasoning</strong> — Opus 4.6 is exceptional for debugging complex architectural issues</li>
+          <li><strong className="text-white">Extended reasoning</strong> — Opus 5 is exceptional for debugging complex architectural issues</li>
           <li><strong className="text-white">Claude Max 5x/20x</strong> — highest access levels for professional engineering teams</li>
         </ul>
         <p className="text-gray-300 leading-relaxed">

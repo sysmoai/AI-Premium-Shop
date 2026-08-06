@@ -37,6 +37,7 @@ const MUTED = { color: "#c9ceda" };
 const { compliance, platform, credits, payment, process: steps, faq, related, seo } = offer;
 const o = offer.offer;
 const pending = offer.pendingVerification.items;
+const verifiedFacts = offer.platformVerifiedFacts?.items ?? [];
 
 /** Section heading + optional lede, so every block has one consistent shape. */
 function Section({ id, title, lede, children }: {
@@ -227,6 +228,27 @@ export default function HiggsfieldPage() {
             </ul>
           </div>
         </Section>
+
+        {verifiedFacts.length > 0 && (
+          <Section id="verified" title="What we have verified about the platform"
+            lede="General facts about Higgsfield itself, checked directly against the vendor's own current terms and blog pages — not this specific offer's plan or entitlements, which stay in the section below until confirmed.">
+            <div className="space-y-3">
+              {verifiedFacts.map((f) => (
+                <div key={f.claim} className="rounded-xl border p-4 flex items-start gap-3"
+                  style={{ backgroundColor: "rgba(34,197,94,0.05)", borderColor: "rgba(34,197,94,0.2)" }}>
+                  <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#22c55e" }} />
+                  <div>
+                    <p className="text-sm" style={MUTED}>{f.claim}</p>
+                    <a href={f.sourceUrl} target="_blank" rel="noopener noreferrer nofollow"
+                      className="text-xs underline hover:text-white" style={MUTED}>
+                      Source — verified {f.verifiedOn}
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Section>
+        )}
 
         {/* ---- The section most competitors will not publish ---------------- */}
         <Section id="unverified" title="What we have not verified"

@@ -102,6 +102,11 @@ ${li(p.capabilities, (c) => `<li>${esc(c)}</li>`)}
 ${li(hfOffer.credits.questionsToAsk, (q) => `<li>${esc(q)}</li>`)}
 </section>
 
+${hfOffer.platformVerifiedFacts?.items?.length ? `<section><h2>What we have verified about the platform</h2>
+<p>General facts about Higgsfield itself, checked directly against the vendor's own current terms and blog pages — not this specific offer's plan or entitlements, which stay in the section below until confirmed.</p>
+${li(hfOffer.platformVerifiedFacts.items, (f) => `<li>${esc(f.claim)} — <a href="${esc(f.sourceUrl)}" rel="nofollow noopener">source</a>, verified ${esc(f.verifiedOn)}</li>`)}
+</section>` : ""}
+
 <section><h2>What we have not verified</h2>
 <p>These were supplied to us as selling points. We have not confirmed them against current vendor documentation or the account interface, so they are listed as open questions rather than features.</p>
 ${li(hfOffer.pendingVerification.items, (i) => `<li><strong>${esc(i.claim)}</strong> — ${esc(i.why)}</li>`)}

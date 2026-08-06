@@ -127,6 +127,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Bangla. Inter has NO Bengali glyphs, so every Bangla character on /bn and
+         the -bn routes was falling back to whatever the OS happened to pick —
+         Vrinda on Windows, Kohinoor on iOS, Noto on Android. Three devices, three
+         different-looking pages, none of them designed.
+
+         Anek Bangla is a VARIABLE font by Ek Type, drawn for Bengali rather than
+         adapted from a Latin face: one file covers weight 100-800, which matters
+         on Bangladeshi mobile data where a second static family would be another
+         ~150KB. Scoped in index.css to html[lang^="bn"], so English routes keep
+         Inter and pay nothing for this. -->
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300..800&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>

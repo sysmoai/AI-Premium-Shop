@@ -631,3 +631,134 @@
   35% { transform: translate(-60px, 30px) scale(1.12); }
   65% { transform: translate(40px, -40px) scale(0.9); }
 }
+
+/* ============================================================================
+   BANGLA TYPOGRAPHY
+   ---------------------------------------------------------------------------
+   Scoped to html[lang^="bn"], which the prerender writes into the static HTML
+   and SEOHead maintains after hydration. English routes never match, so they
+   keep Inter and download none of this.
+
+   Bengali needs more leading than Latin at the same size: the script carries
+   both ascenders and a continuous headline stroke (matra), so lines set at
+   Latin's comfortable 1.5 collide. 1.85 for body, 1.25 for display.
+   ========================================================================= */
+html[lang^="bn"] {
+  --font-bn: "Anek Bangla", "Hind Siliguri", "Noto Sans Bengali", "Nirmala UI", sans-serif;
+}
+html[lang^="bn"] body,
+html[lang^="bn"] button,
+html[lang^="bn"] input,
+html[lang^="bn"] select,
+html[lang^="bn"] textarea {
+  font-family: var(--font-bn);
+  line-height: 1.85;
+  /* Anek's default figures are Latin; Bengali digits come from the copy itself. */
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+html[lang^="bn"] h1,
+html[lang^="bn"] h2,
+html[lang^="bn"] h3,
+html[lang^="bn"] h4 {
+  font-family: var(--font-bn);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+html[lang^="bn"] h1 { font-weight: 700; }
+html[lang^="bn"] h2 { font-weight: 650; }
+html[lang^="bn"] h3 { font-weight: 600; }
+/* Product names, prices and codes stay Latin — they are proper nouns and read
+   wrong in a Bengali face. */
+html[lang^="bn"] .latin,
+html[lang^="bn"] code,
+html[lang^="bn"] kbd {
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+/* --- Editorial furniture for the Bangla homepage ------------------------- */
+
+/* Section index numerals (০১, ০২ …). Large, gold, low-opacity — a magazine
+   device that gives the page a reading order without adding chrome. */
+.bn-index {
+  font-family: var(--font-bn);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 7vw, 4.25rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #f4b942;
+  opacity: 0.22;
+  user-select: none;
+}
+
+/* Hairline rule with a gold ingress — the one repeated ornament. */
+.bn-rule {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, #f4b942 0%, rgba(244, 185, 66, 0.35) 12%, rgba(255, 255, 255, 0.09) 40%, transparent 100%);
+}
+
+/* Atmospheric depth. Two offset radial washes + a fine grain, so the dark
+   background reads as lit rather than flat #0a0e27. */
+.bn-atmosphere {
+  position: relative;
+  isolation: isolate;
+}
+.bn-atmosphere::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(58rem 32rem at 12% -8%, rgba(244, 185, 66, 0.10), transparent 62%),
+    radial-gradient(46rem 30rem at 96% 6%, rgba(16, 185, 129, 0.09), transparent 60%),
+    radial-gradient(38rem 26rem at 50% 108%, rgba(139, 92, 246, 0.07), transparent 60%);
+}
+.bn-atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  /* Inline SVG feTurbulence: grain without a network request. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* Cards: a hairline top-light so they sit on the background instead of being
+   pasted onto it. */
+.bn-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.012) 34%, transparent 100%), #151b3d;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 16px;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.bn-card:hover {
+  border-color: rgba(244, 185, 66, 0.34);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 44px -22px rgba(0, 0, 0, 0.9);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bn-card, .bn-card:hover { transform: none; transition: border-color 0.25s ease; }
+}
+
+/* Staggered entrance for the hero only — one orchestrated moment on load
+   rather than effects scattered down the page. */
+@keyframes bn-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.bn-rise > * {
+  animation: bn-rise 0.62s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.bn-rise > *:nth-child(1) { animation-delay: 0.02s; }
+.bn-rise > *:nth-child(2) { animation-delay: 0.10s; }
+.bn-rise > *:nth-child(3) { animation-delay: 0.18s; }
+.bn-rise > *:nth-child(4) { animation-delay: 0.26s; }
+.bn-rise > *:nth-child(5) { animation-delay: 0.34s; }
+.bn-rise > *:nth-child(6) { animation-delay: 0.42s; }
+@media (prefers-reduced-motion: reduce) {
+  .bn-rise > * { animation: none; }
+}

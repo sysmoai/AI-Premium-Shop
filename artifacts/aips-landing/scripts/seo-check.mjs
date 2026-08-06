@@ -31,6 +31,9 @@ if (!fs.existsSync(DIST)) {
 
 const offer = JSON.parse(fs.readFileSync(path.join(APP, "data/higgsfield-offer.json"), "utf8"));
 
+const errors = [];
+const warnings = [];
+
 // --- /bn: the component and the static prerender must read the SAME source.
 // Before this, BanglaBN.tsx carried its own hardcoded Bangla while the prerender
 // emitted different content — two versions of the same page, one for crawlers
@@ -68,9 +71,6 @@ const offer = JSON.parse(fs.readFileSync(path.join(APP, "data/higgsfield-offer.j
     }
   }
 }
-
-const errors = [];
-const warnings = [];
 
 // Collect every built page.
 const pages = [];

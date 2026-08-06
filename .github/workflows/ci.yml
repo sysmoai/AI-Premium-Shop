@@ -26,8 +26,16 @@ jobs:
       # bearing on the live site (artifacts/aips-landing) and isn't worth
       # fixing in abandoned code -- gating CI on it only blocks unrelated
       # changes to the app that's actually shipped.
-      - run: pnpm --filter='!aips-website' -r --if-present typecheck
-      - run: pnpm --filter='!aips-website' -r --if-present lint
+      #
+      # @workspace/api-server is excluded for the same reason, discovered
+      # 2026-08-07: unreferenced anywhere by aips-landing, last touched
+      # 2026-05-03 (an abandoned early Express/Drizzle backend from before
+      # the current static-data + Vercel-serverless-function architecture),
+      # and it has its own real pre-existing typecheck errors (unbuilt
+      # lib/db project reference, several implicit-anys). It just never had
+      # a DEPRECATED.md marker like aips-website does. See BACKLOG.md.
+      - run: pnpm --filter='!aips-website' --filter='!@workspace/api-server' -r --if-present typecheck
+      - run: pnpm --filter='!aips-website' --filter='!@workspace/api-server' -r --if-present lint
 
   notion-drift:
     # Fails when the site catalog no longer matches the Notion SSOT (R11).

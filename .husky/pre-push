@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+# Local enforcement of the same gates .github/workflows/ci.yml and
+# seo-quality.yml run — added 2026-08-07 because the sysmoai GitHub account
+# is Actions-billing-locked ("account is locked due to a billing issue"),
+# so GitHub never actually starts those jobs (100+ consecutive runs,
+# confirmed zero successes, unrelated to any code in this repo). Until
+# billing is resolved, this is the only thing standing between a broken
+# push and main. Once GitHub Actions is unlocked again this keeps running
+# too — a local + remote gate is strictly safer than either alone, so
+# there's no reason to remove it later.
+#
+# Skip with `git push --no-verify` only for genuine emergencies — that
+# also skips this without asking, so use it deliberately, not by habit.
+
+set -e
+
+echo "== pre-push: workspace typecheck + lint =="
+# aips-website: DEPRECATED Next.js rebuild, never promoted, not deployed.
+# @workspace/api-server: unreferenced by aips-landing (the live site),
+# last touched 2026-05-03 (3+ months before this hook), has its own real
+# pre-existing typecheck errors (unbuilt lib/db reference + implicit-anys)
+# discovered 2026-08-07 while writing this hook — same category as
+# aips-website, just missing the DEPRECATED.md marker. See BACKLOG.md.
+pnpm --filter='!aips-website' --filter='!@workspace/api-server' -r --if-present typecheck
+pnpm --filter='!aips-website' --filter='!@workspace/api-server' -r --if-present lint
+
+echo "== pre-push: aips-landing gates (claims, build, seo) =="
+cd artifacts/aips-landing
+node scripts/validate-higgsfield-offer.mjs
+node scripts/validate-catalog.mjs
+node scripts/validate-truth.mjs
+pnpm run build
+pnpm run seo:check
+
+echo "== pre-push: all gates passed =="

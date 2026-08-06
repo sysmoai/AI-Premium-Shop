@@ -171,6 +171,59 @@ deleting/unaliasing live infrastructure is a hard-to-reverse action on shared
 state, explicitly one of the "questions that genuinely require owner
 approval" the master prompt itself calls for.
 
+## B13 — GitHub Actions is billing-locked on the `sysmoai` account (MEDIUM, mitigated)
+
+**Status:** open. Owner action required (GitHub billing, not code). Local
+mitigation shipped 2026-08-07 — see below.
+
+Every job in every workflow run (`CI`, `SEO quality`) carries the identical
+annotation: *"The job was not started because your account is locked due
+to a billing issue."* Checked 200 runs back to 2026-08-02 (4 days before
+this whole session's work began) — **zero successes**. Not caused by any
+commit; the job never starts, so no code change can fix it. Confirmed via
+`gh run view <id>` on multiple runs across both workflows.
+
+`main` has no branch-protection rule requiring these checks, so this has
+never blocked a push or merge — only automated verification and the
+Actions-tab status.
+
+**Fix (owner-only):** log in as `sysmoai` at `github.com/settings/billing`
+— it's a personal account, not an org — and resolve whatever's outstanding
+(declined card, unpaid invoice, or an Actions spending limit at $0). Then
+either push again or `gh run rerun <run-id>` on the queued/failed runs.
+Nothing on the code side needs to change for CI to go green once this is
+cleared.
+
+**Mitigation (done, doesn't require the above):** added a `husky` pre-push
+git hook (`.husky/pre-push`, wired via the root `package.json`'s
+`prepare` script so it installs automatically on `pnpm install`) that runs
+the same real checks `ci.yml` and `seo-quality.yml` would: workspace
+typecheck + lint, then `aips-landing`'s claim gates
+(`validate-higgsfield-offer.mjs`, `validate-catalog.mjs`,
+`validate-truth.mjs`), build, and `seo:check`. It runs locally, before any
+push leaves the machine, entirely independent of GitHub's account status.
+Verified end-to-end, exit 0. This isn't a substitute for real CI running
+on every collaborator's and every CI runner's copy of the code — it only
+protects pushes made from a checkout that has the hook installed — but it
+closes the actual gap (nothing verifying code before it reaches `main`)
+without needing the billing issue resolved first. Once B13 itself clears,
+GitHub Actions resumes as a second, independent layer — no conflict, no
+need to remove the hook.
+
+**Found while wiring the hook, not previously known:** `pnpm --filter
+'!aips-website' -r typecheck` — the exact command `ci.yml` has always
+run — fails on `artifacts/api-server`, a workspace member with real
+pre-existing typecheck errors (unbuilt `lib/db` project reference, several
+implicit-anys). Investigated: unreferenced anywhere by `aips-landing` (the
+live site), last touched 2026-05-03, an abandoned early Express/Drizzle
+backend from before the current static-data + Vercel-serverless-function
+architecture. Same category as `aips-website` (already excluded, with its
+own `DEPRECATED.md`), it just never got the marker. Excluded it the same
+way in both `ci.yml` and the new hook, with the reasoning recorded inline
+in both files. Because CI has (as far as this investigation can tell)
+never once succeeded in this repo's history, this had gone undetected —
+nobody has had a working automated signal to catch it until now.
+
 ## B12 — `http://www.aipremiumshop.com` is a 2-hop redirect (LOW)
 
 `http://www` → `https://www` (308) → `https://` non-www (308) → 200. The other

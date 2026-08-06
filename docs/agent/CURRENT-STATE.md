@@ -1,9 +1,44 @@
 # Current state
 
-**Last updated:** 2026-08-07 (7th turn: **DEPLOYED TO PRODUCTION**)
-**Branch:** `seo/homepage-product-authority` merged to `main` (merge commit
-`feaac91`), pushed to `origin/main`, and deployed live to
-**https://aipremiumshop.com** via `vercel --prod`. 19 commits total shipped.
+**Last updated:** 2026-08-07 (8th turn, "full permission" — payment-logo
+fix **DEPLOYED TO PRODUCTION**)
+**Branch:** `main` (direct commit `5ddea78` on top of the merged
+`seo/homepage-product-authority` work), pushed to `origin/main`, deployed
+live to **https://aipremiumshop.com** via `vercel --prod --yes`. Confirmed
+via exact JS bundle hash match (`index-DC2vV1vm.js`, identical to local
+build output) plus the standard `deploy-live.sh --verify` pass (product
+count/price in `<head>`, no phantom claims, concierge healthy, key routes
+200).
+
+## This turn (8th): payment-logo text-only fallback — BACKLOG #21 done
+
+`PaymentMethodsSection.tsx`'s hand-drawn SVG letter-marks (colored
+rectangle + single bold letter approximating bKash/Nagad/Rocket's real
+logos) replaced with a plain colored accent bar + the existing bold-text
+name — the master prompt's own sanctioned fallback for "no authorized
+logo file available." `PaymentBadges.tsx`/`PageFooter.tsx` confirmed
+already text-only, no change needed. Docs updated
+(`docs/compliance/payment-methods.md`, `docs/brand/payment-assets.md`,
+`BACKLOG.md`). Gates run clean: build, seo:check, validate-catalog,
+validate-truth, validate-higgsfield-offer — no new warnings, diff scoped
+to 1 component file + 3 docs.
+
+**Task #14** (remove stray Vercel deployment aliases, B11) remains
+blocked — not by missing info, but by Claude Code's own auto-mode safety
+classifier, which explicitly declined the `vercel alias rm` mutation and
+instructed not to attempt a workaround. Exact commands are in
+`docs/agent/OWNER-ACTIONS.md` OA1 for the owner to run directly, or the
+owner can adjust Bash permission settings to unblock it for a future
+session.
+
+**Next up:** Task #16 (verify "Claude Opus 4.6" is still Anthropic's
+current Claude Pro consumer model — BACKLOG #20) and Task #17 (attempt
+`lib/api-client-react` typecheck fix — BACKLOG #14).
+
+---
+
+**Prior state, for reference (7th turn — full homepage/trust/SEO/chatbot
+remediation deploy):**
 
 ## Production deployment — verified live, 2026-08-07
 

@@ -34,7 +34,7 @@ const CARDS = [
       "Exam prep feels scattered and disorganized",
     ],
     solution:
-      "AI handles study notes, assignments, and research — in 30 minutes flat.",
+      "Use AI to understand difficult topics, organize research and improve your own drafts.",
     price: `From BDT ${MIN_PRICE}/mo`,
     cta: "See Student Solutions",
     href: "/best-ai-for-students",
@@ -53,7 +53,7 @@ const CARDS = [
       "No international card to buy premium AI tools",
     ],
     solution:
-      "AI writes proposals in 2 minutes. Delivers 50% faster. Pay with bKash.",
+      "Draft proposals, research client industries and build repeatable delivery workflows. Pay with bKash.",
     price: `From BDT ${MIN_PRICE}/mo`,
     cta: "See Freelancer Solutions",
     href: "/best-ai-for-freelancers",
@@ -72,7 +72,7 @@ const CARDS = [
       "Background music keeps getting copyright strikes",
     ],
     solution:
-      "AI script in 2 min. AI thumbnail in 1 min. AI music — zero copyright issues.",
+      "Plan scripts, design thumbnail concepts, generate media and repurpose content faster.",
     price: `From BDT ${MIN_PRICE}/mo`,
     cta: "See Creator Solutions",
     href: "/best-ai-for-creators",
@@ -91,7 +91,7 @@ const CARDS = [
       "You're burning out trying to manage everything alone",
     ],
     solution:
-      "AI Agents handle sales, support, and content — one system, zero burnout.",
+      "Reduce repetitive support, content and reporting work with controlled AI workflows — human review stays in the loop.",
     price: "From BDT 500/mo",
     cta: "See Business Solutions",
     href: "/best-ai-for-business",
@@ -110,7 +110,7 @@ const CARDS = [
       "Not sure which skills to learn in the AI era",
     ],
     solution:
-      "AI builds a professional CV in 5 minutes. Mock interviews. Skill roadmap.",
+      "Improve your CV, practice interviews and build an evidence-based skill roadmap.",
     price: `From BDT ${MIN_PRICE}/mo`,
     cta: "See Job Seeker Solutions",
     href: "/best-ai-for-job-seekers",
@@ -129,7 +129,7 @@ const CARDS = [
       "No time to learn new frameworks",
     ],
     solution:
-      "AI Copilot — code 50% faster. Instant bug fixes. Every language supported.",
+      "Generate boilerplate, investigate bugs and review code with AI — human verification before you ship.",
     price: "From BDT 1,495/mo",
     cta: "See Developer Solutions",
     href: "/best-ai-for-developers",

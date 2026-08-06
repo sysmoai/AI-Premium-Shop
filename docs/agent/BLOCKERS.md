@@ -104,6 +104,30 @@ Playwright is already Backlog #4; this raises its priority from "nice" to
 
 Until then: after any change to a component, LOOK at the rendered page.
 
+## B10 — Floating chat buttons click-jack CTAs on mobile (MEDIUM, costs conversions)
+
+**Status:** open. Needs a product decision, not a code decision.
+
+Measured on live /bn at 375x812: the fixed chat FAB covers a **52x51px** region of
+the "সব প্ল্যান ও দাম দেখুন" CTA (CTA at 20,609 335x64). Tapping that corner opens
+the chat widget instead of the CTA. Site-wide behaviour, not specific to /bn —
+9b32e97 already fixed one instance of the same class (the sort dropdown on
+Products/Pricing).
+
+It is inherent to the pattern: the FABs are viewport-fixed bottom-right, and any
+full-width in-flow button passes under them at some scroll position. Padding the
+buttons would leave them visibly asymmetric.
+
+**The question for the owner:** on mobile the StickyMobileBar already provides a
+persistent "Order Now" conversion path, so the floating chat buttons duplicate it
+while blocking real CTAs. Options:
+ 1. Hide the FABs on mobile (`md:hidden` inverted) and rely on the sticky bar.
+ 2. Keep one FAB, drop the second — the stack is what makes the collision large.
+ 3. Accept it.
+
+Option 1 is probably right, but it removes a conversion affordance from every
+page on the site, so it is not mine to make unilaterally.
+
 ## B8 — Vercel free-tier deploy cap (LOW, operational)
 
 100 deploys / rolling 24h, shared across the team's projects. Over the cap,

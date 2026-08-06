@@ -1,5 +1,75 @@
 # Worklog
 
+## Savings-claims validation + hreflang fix + fabricated-testimonials removal — 2026-08-07 (Sonnet 5, same day, sixth turn)
+
+Continuation per a fourth master prompt covering the remaining P0 list.
+Reconciled state (clean, matched docs exactly), then worked through:
+
+**P0.3 — savings-percentage validation.** `validate-catalog.mjs` already
+tracked "% off" but missed "Savings vs official: ~88%"-style bare
+percentages. Added a regex check, found 7 instances, and while fixing them
+computed the real numbers (RATE × officialUSD from `data/products.json`)
+rather than assuming "unverified" — found ComparisonPage.tsx's "~88%" claim
+for ChatGPT Plus is actually ~83%, i.e. wrong, not just unsupported.
+Removed the three "Savings vs official" table rows entirely rather than
+publish a different guessed number. Found and fixed adjacent violations in
+the same pass: a fabricated "92% of developers... GitHub Survey 2025" stat
+with a "code 55% faster" claim attached, and a "vs Hiring: BDT 37,000/mo...
+85% savings" comparison built on an invented baseline cost — both in
+GuidePage.tsx, both removed.
+
+**A line-ending mistake and its fix.** The Node script used to remove the
+three table rows wrote the file back with mixed CRLF/CR line endings
+instead of the repo's LF convention, turning a 3-line change into a 900-line
+diff. Caught by checking `git show --stat` before moving on, fixed with a
+follow-up commit, verified the *cumulative* diff across both commits was
+the intended 3 lines. Worth remembering: node's `fs.writeFileSync` doesn't
+preserve original line-ending style — check `file <path>` after any
+script-driven edit to a text file, not just after manual Edit-tool changes.
+
+**P0.8 — hreflang audit.** Found hreflang was static and IDENTICAL across
+all 272 pages, hardcoded once in `index.html`, which every prerendered page
+starts from and nothing overrode. Every page told Google its Bangla
+alternate was the homepage, regardless of whether it had a real one — a
+correct, reciprocal client-side mapping already existed
+(`GuidePage.tsx`'s `BANGLA_ALTERNATE`) but only applied after React
+hydrated, never reaching the static HTML crawlers primarily use for
+hreflang. Fixed with a `HREFLANG_PAIRS` map in the prerender script itself;
+also fixed region codes sitewide (bare "en"/"bn" → "en-BD"/"bn-BD") across
+every client-side `hreflang` prop so hydration doesn't immediately
+re-introduce the mismatch. Verified live via `vercel curl` on a paired page
+and its reciprocal Bangla page — both correct.
+
+**The most severe finding this project has produced.** While fixing
+EducatorsGuide.tsx's hreflang prop, found a "Success Stories" section with
+four fabricated testimonials: named individuals ("Dr. Karim Hassan,
+Professor, Dhaka University") with invented outcomes attributed to a real
+university. Checked the other four guide pages — same pattern in all of
+them. StudentsGuide had fake grade improvements at BUET/Dhaka University/
+IUB/AIUB; FreelancersGuide had fabricated EARNINGS claims ("$5/hr to
+$25/hr, income tripled") plus a fake Fiverr rating and Toptal status;
+CreatorsGuide had fake follower counts (500K, 2M) and growth percentages;
+SMBGuide had fabricated cost savings and win-rate figures. A prior session
+had added a small "illustrative example, not verified" disclaimer under
+each — concluded that doesn't neutralize a named-person-plus-quote
+presentation, and removed all five sections entirely rather than soften
+the copy further. Also removed matching fabricated hero-stat blocks on the
+same pages (fake "550+ educators", fake "15 hours saved/week", a fake
+"GitHub Survey 2025" citation).
+
+**P0.6 — payment-method compliance.** Confirmed (not previously checked
+this precisely) that `PaymentMethodsSection.tsx`, `PaymentBadges.tsx`, and
+`PageFooter.tsx` all render hand-drawn inline SVGs standing in for real
+bKash/Nagad/Rocket logos — `public/` has no actual brand asset files.
+Documented thoroughly (`docs/compliance/payment-methods.md`,
+`docs/brand/payment-assets.md`) rather than attempting to source or
+generate replacement logos, which the master prompt's own rules
+explicitly forbid doing without a legitimate official source.
+
+Two fresh Vercel previews deployed and verified against real
+infrastructure across this turn — not just local build output. Branch is
+now 16 commits, still entirely local.
+
 ## Vendor compliance + Higgsfield verification + superlative cleanup — 2026-08-07 (Sonnet 5, same day, fifth turn)
 
 Continuation of the fourth turn's `NEXT-TASK.md`, doing both Option A and

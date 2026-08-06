@@ -176,7 +176,7 @@ export function AIVideoHub() {
             {
               icon: Wallet,
               title: "Payment",
-              body: "Every one of these platforms bills in USD, which most Bangladeshi debit cards cannot complete. We handle that step — you pay in BDT via bKash, Nagad, Rocket, bank transfer or Binance Pay.",
+              body: "Every one of these platforms bills in USD, which most Bangladeshi debit cards cannot complete. We handle that step — you pay in BDT via bKash, Nagad, Rocket or bank transfer.",
             },
             {
               icon: ShieldCheck,

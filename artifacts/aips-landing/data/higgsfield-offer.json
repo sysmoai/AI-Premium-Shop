@@ -122,7 +122,7 @@
   },
 
   "payment": {
-    "methods": ["bKash", "Nagad", "Rocket", "Bank transfer", "Binance Pay"],
+    "methods": ["bKash", "Nagad", "Rocket", "Bank transfer"],
     "note": "No international card required. This is the whole reason the service exists — Higgsfield bills in USD and most Bangladeshi debit cards cannot complete that charge."
   },
 
@@ -139,7 +139,7 @@
     { "q": "Is AI Premium Shop an official Higgsfield partner?", "a": "No. We are an independent service and have no reseller, affiliate or partnership authorization from Higgsfield. We help Bangladeshi customers pay for and set up a subscription they own themselves." },
     { "q": "Why is the price confirmed on WhatsApp instead of shown as a checkout?", "a": "Because the vendor's plan pricing and entitlements change, and this specific offer has not been re-verified against Higgsfield's current pricing page. Quoting a live figure and confirming it before payment is more honest than publishing a number that may already be stale." },
     { "q": "Can you guarantee unlimited video generation?", "a": "No. Every credit-based plan has limits, and we will not describe any plan as unlimited without the vendor's current documentation stating the exact scope — which models, which interfaces, and what fair-use ceiling applies." },
-    { "q": "How do I pay from Bangladesh?", "a": "bKash, Nagad, Rocket, bank transfer or Binance Pay. No international card is needed on your side." },
+    { "q": "How do I pay from Bangladesh?", "a": "bKash, Nagad, Rocket or bank transfer. No international card is needed on your side." },
     { "q": "What happens when the month ends?", "a": "The subscription sits on your own account, so renewal and cancellation are yours to control directly with Higgsfield. Nothing renews through us." },
     { "q": "Can I get a refund?", "a": "Refund terms for a customer-owned third-party subscription are set by the vendor, not by us. Before you pay, ask us what is and is not recoverable for your specific case — we would rather tell you upfront than argue after." }
   ],

@@ -168,7 +168,7 @@ function intentOf(q) {
   const n = asciiDigits(q);
   const cheap = /(cheap|budget|সস্তা|কম দাম|কমদাম|সাশ্রয়|শস্তা|under|মধ্যে|kom dam|shosta)/i.test(n);
   const privacy = /(personal|private|প্রাইভেসি|প্রাইভেট|নিজের|একার|shared|শেয়ার)/i.test(n);
-  const payment = /(bkash|বিকাশ|nagad|নগদ|rocket|রকেট|pay|পেমেন্ট|টাকা দ|binance|bank|ব্যাংক)/i.test(n);
+  const payment = /(bkash|বিকাশ|nagad|নগদ|rocket|রকেট|pay|পেমেন্ট|টাকা দ|bank|ব্যাংক)/i.test(n);
   const policy = /(refund|রিফান্ড|warranty|ওয়ারেন্টি|ফেরত|delivery|ডেলিভারি|কত সময়|how long|নিরাপদ|safe|legit|আসল)/i.test(n);
   const budgetCap = n.match(/(\d{3,5})/);
   return {
@@ -334,14 +334,14 @@ function buildSystem(relevant, intent, playbook, page, lang) {
     .filter(Boolean)
     .join("\n");
 
-  return `You are the AI Concierge for AI Premium Shop (aipremiumshop.com), which resells legitimate premium AI subscriptions in Bangladesh, paid via bKash/Nagad/Rocket/Bank Transfer/Binance.
+  return `You are the AI Concierge for AI Premium Shop (aipremiumshop.com), which resells legitimate premium AI subscriptions in Bangladesh, paid via bKash/Nagad/Rocket/Bank Transfer.
 
 HOW THE BUSINESS WORKS (use this — it is the site's own published policy, don't improvise beyond it):
 - Shared plans: 2-7 customers share one legitimate subscription (like family sharing) — lower price, full feature access, less privacy.
 - Personal plans: a dedicated account for one customer — full privacy, higher price.
 - Every order includes a 30-day replacement warranty.
 - Refunds: only within 15 minutes of delivery, only for a genuine service mismatch. Subscription fees are otherwise non-refundable.
-- Ordering has 4 steps: (1) pick a tool and tier, (2) message WhatsApp to confirm, (3) pay via bKash/Nagad/Rocket/Bank Transfer/Binance, (4) receive account access. The delivery clock starts after payment is confirmed on WhatsApp.
+- Ordering has 4 steps: (1) pick a tool and tier, (2) message WhatsApp to confirm, (3) pay via bKash/Nagad/Rocket/Bank Transfer, (4) receive account access. The delivery clock starts after payment is confirmed on WhatsApp.
 - Undecided beginners: the standard starting recommendation is ChatGPT Plus Starter Shared — it covers writing, coding, research, and images. Quote its real current price from the catalog below.
 - The full catalog is ${catalog.length} tools, cheapest entry ${taka(CHEAPEST_OVERALL)}/mo. Breadth by category: ${CATEGORY_INDEX}
 - You can link a filtered catalogue view, which is often more useful than naming three products: /products?access=shared for the cheaper shared plans, /products?category=ai-video, or both combined (/products?category=ai-code&access=personal). Valid categories: ai-assistant, ai-image, ai-code, ai-voice-music, ai-video, ai-workspace, ai-writing, bundles. Use this when someone asks to see everything of a kind rather than a specific recommendation.

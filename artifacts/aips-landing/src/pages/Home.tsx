@@ -44,7 +44,7 @@ const FAQS = [
   {
     question: "What payment methods do you accept?",
     answer:
-      "bKash, Nagad, Rocket, Bank Transfer, and Binance (crypto). No international credit card needed.",
+      "bKash, Nagad, Rocket, and Bank Transfer. No international credit card needed.",
   },
   {
     question: "What is your refund policy?",

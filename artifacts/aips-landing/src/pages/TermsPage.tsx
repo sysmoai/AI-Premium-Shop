@@ -20,7 +20,7 @@ const TERMS = [
   {
     title: "3. Payment Terms",
     content:
-      "All payments are due before service delivery. We accept bKash, Nagad, Rocket, bank transfer, and Binance USDT. Prices are listed in Bangladeshi Taka (BDT) and are subject to change without prior notice. Current prices are always confirmed during the ordering process on WhatsApp.",
+      "All payments are due before service delivery. We accept bKash, Nagad, Rocket, and bank transfer. Prices are listed in Bangladeshi Taka (BDT) and are subject to change without prior notice. Current prices are always confirmed during the ordering process on WhatsApp.",
   },
   {
     title: "4. Delivery",

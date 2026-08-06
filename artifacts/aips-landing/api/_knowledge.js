@@ -30,7 +30,7 @@ export const KNOWLEDGE = [
   {
     id: "objection-pay-first",
     triggers: /advance|আগে টাকা|pay first|টাকা দিয়ে|trust|বিশ্বাস|thakbo kivabe|প্রতারিত|cash on delivery|ক্যাশ অন/i,
-    text: `OBJECTION — "why should I pay before I receive anything": acknowledge it as reasonable. Explain the actual sequence: they choose a tool, confirm on WhatsApp, pay via bKash/Nagad/Rocket/bank/Binance, then receive access — shared tiers typically within minutes, personal accounts take longer. If the service does not match what was ordered, there is a refund window of 15 minutes after delivery. Never pressure. Never ask them to pay inside this chat.`,
+    text: `OBJECTION — "why should I pay before I receive anything": acknowledge it as reasonable. Explain the actual sequence: they choose a tool, confirm on WhatsApp, pay via bKash/Nagad/Rocket/bank, then receive access — shared tiers typically within minutes, personal accounts take longer. If the service does not match what was ordered, there is a refund window of 15 minutes after delivery. Never pressure. Never ask them to pay inside this chat.`,
   },
   {
     id: "scam-safety",

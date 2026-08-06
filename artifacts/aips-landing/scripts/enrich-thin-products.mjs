@@ -45,7 +45,7 @@ for (const p of bySlugFirst.values()) {
       },
       {
         q: `What payment methods can I use for ${p.name}?`,
-        a: `bKash, Nagad, Rocket, bank transfer, or Binance Pay. No international card needed.`,
+        a: `bKash, Nagad, Rocket, or bank transfer. No international card needed.`,
       },
       ...(accessLine ? [accessLine] : []),
     ];

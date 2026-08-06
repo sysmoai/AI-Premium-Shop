@@ -165,15 +165,14 @@ export const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             transition={{ delay: 0.25, duration: 0.5 }}
             className="text-base md:text-lg text-gray-400 max-w-2xl mb-8 leading-relaxed"
           >
-            5 Payment Methods:{" "}
+            4 Payment Methods:{" "}
             <span className="inline-block bg-[#E2136E] text-white px-2.5 py-1 rounded-full text-xs font-semibold">bKash</span>{" "}
-            {/* Nagad/Binance: white text on these two brand colors fails WCAG AA
-                contrast (2.32:1 and 1.80:1 measured, need 4.5:1) — dark text passes
-                comfortably (7.50:1 and 9.65:1) without changing the brand color. */}
+            {/* Nagad: white text on this brand color fails WCAG AA contrast
+                (2.32:1 measured, need 4.5:1) — dark text passes comfortably
+                (7.50:1) without changing the brand color. */}
             <span className="inline-block bg-[#F6921E] text-[#1a1a1a] px-2.5 py-1 rounded-full text-xs font-semibold">Nagad</span>{" "}
             <span className="inline-block bg-[#8b2f97] text-white px-2.5 py-1 rounded-full text-xs font-semibold">Rocket</span>{" "}
-            <span className="inline-block bg-[#1a5276] text-white px-2.5 py-1 rounded-full text-xs font-semibold">Bank</span>{" "}
-            <span className="inline-block bg-[#f0b90b] text-[#1a1a1a] px-2.5 py-1 rounded-full text-xs font-semibold">Binance</span>
+            <span className="inline-block bg-[#1a5276] text-white px-2.5 py-1 rounded-full text-xs font-semibold">Bank</span>
           </motion.p>
 
           {/* Animated rotating text */}

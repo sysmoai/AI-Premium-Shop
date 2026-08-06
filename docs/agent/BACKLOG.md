@@ -16,8 +16,6 @@ Ordered by value / effort. Anything blocked names its blocker from `BLOCKERS.md`
 | 10 | Shared-access authorization audit (44 products) | B5 (owner) |
 | 11 | BrandPage 160 KB / BlogPostPage 116 KB chunk reduction | — |
 | 12 | Proper SSG so static bodies come from the components themselves | — (large) |
-| 13 | Fix the workspace lockfile `overrides` mismatch | — |
-| 14 | Build `lib/api-client-react` so `pnpm run typecheck` passes | — |
 | 15 | Payment methods have no single source of truth — at least 5 independent hardcoded lists found (`PaymentMethodsSection.tsx`, `PaymentBadges.tsx`, `PageFooter.tsx`, `data/brand.json`, `scripts/generate-llms-txt.mjs`), each requiring its own manual edit when a method is added/removed. Binance had to be removed from all 5 separately on 2026-08-07 — see `docs/homepage/executive-audit.md` | — (real refactor: one data source, every component/script reads it) |
 | 17 | Delivery-time claims disagree across surfaces: prerendered homepage body and About page say "5–30 minutes"; `FAQPage.tsx`'s English and Bangla FAQs say "5–15 minutes... max 2-3 hours off-hours" (internally consistent with each other, just not with the other two surfaces) | — (owner: which is actually true) |
 | 18 | `midjourney-bangladesh`'s "Pro Shared" tier is priced ৳4,788 — more than BOTH the "Personal" (৳2,495) and "Pro" personal (৳3,990) tiers of the same product. A shared/split tier costing more than the equivalent (or a cheaper) personal tier defeats the commercial premise of sharing; either a real pricing error or a legitimate reason not evident from the data (e.g. Pro Shared includes something Pro Personal doesn't). Caught by the new `validate-catalog.mjs` shared-vs-personal check (2026-08-07) — see `docs/agent/OWNER-ACTIONS.md`-style evidence in the commit | — (owner: confirm the price or fix it) |
@@ -137,6 +135,25 @@ current standings, not just removing the phrasing on principle.
   pills). Build, seo:check, validate-catalog, validate-truth,
   validate-higgsfield-offer all clean; diff scoped to the one file plus
   doc updates.
+- **`lib/api-client-react` typecheck (#14) and the root lockfile install
+  (#13) — both verified resolved, cause unclear.** Ran the exact commands
+  documented as failing: `pnpm install --frozen-lockfile` at the repo root
+  (previously reported to fail on an `overrides` mismatch) and
+  `pnpm run typecheck` in `artifacts/aips-landing` (previously 15
+  TS6305/TS7006 errors from the unbuilt `@workspace/api-client-react`
+  reference). Both now complete cleanly — exit 0, zero errors. No lockfile
+  or config file was edited to make this happen (`git status` clean before
+  and after); `@tanstack/react-query` simply wasn't present in
+  `lib/api-client-react/node_modules` in this checkout and a scoped
+  `pnpm install --filter @workspace/api-client-react` populated it, after
+  which the full root install also succeeded without complaint. Recording
+  honestly rather than claiming a fix I can't fully explain: either
+  something earlier this session's dependency/lockfile changes already
+  resolved the root cause and the docs just hadn't caught up, or this was
+  an environment-specific gap in this checkout that a normal `pnpm
+  install` clears. If `pnpm run typecheck` or a root `pnpm install
+  --frozen-lockfile` ever fails again, don't assume this entry means it
+  can't — re-verify fresh.
 
 **Explicitly not doing:** bulk AI-generated product descriptions; near-duplicate
 pages per keyword variant; fabricated ratings to clear the GSC "Product snippets

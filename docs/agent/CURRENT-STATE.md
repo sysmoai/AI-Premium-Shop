@@ -184,15 +184,19 @@ why that split is the recurring source of drift bugs found this session.
 
 ## Pre-existing failures (not caused by any session)
 
-- `pnpm run typecheck`: 15 TS6305/TS7006 errors, unbuilt
-  `lib/api-client-react`. `build` doesn't run typecheck, doesn't block
-  deploy.
-- `pnpm install --frozen-lockfile` fails at the workspace root (lockfile
-  `overrides` mismatch). Use
-  `pnpm install --filter ./artifacts/aips-landing --no-frozen-lockfile`.
 - `validate-truth.mjs` / `validate-catalog.mjs` warn-level unverified-claim
   counts (warranty, unlimited, delivery-time terms) — long-standing
   compliance debt, tracked, not new.
+- **No longer reproducing, 2026-08-07 (8th turn):** the documented
+  `pnpm run typecheck` 15-error failure and the root
+  `pnpm install --frozen-lockfile` lockfile-overrides failure. Ran both
+  exact commands, both now exit 0 clean. No lockfile/config was edited to
+  cause this (`git status` clean throughout) — `lib/api-client-react`'s
+  own `node_modules` just wasn't populated in this checkout; a scoped
+  `pnpm install --filter @workspace/api-client-react` fixed it, and the
+  root install then also succeeded. See BACKLOG.md's done section for the
+  full honest writeup — cause not fully explained, don't assume this can
+  never fail again without re-checking.
 
 ## Not done, and why
 

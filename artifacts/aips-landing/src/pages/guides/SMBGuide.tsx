@@ -81,40 +81,6 @@ export default function SMBGuide() {
     },
   ];
 
-  const testimonials = [
-    {
-      name: "Riyaz Mahmud",
-      business: "E-commerce Store - Dhaka",
-      quote:
-        "AI tools helped us reduce operational costs by ৳50,000/month. We automated customer support, email marketing, and inventory management. That's real money saved.",
-      role: "Business Owner",
-      image: "👨‍💼",
-    },
-    {
-      name: "Fatima Begum",
-      business: "Digital Marketing Agency",
-      quote:
-        "ChatGPT Team allows my 5-person team to collaborate on client work without confusion. Client emails, proposals, and strategies are 80% faster to produce.",
-      role: "Agency Owner",
-      image: "👩‍💼",
-    },
-    {
-      name: "Hassan Khan",
-      business: "Manufacturing Company",
-      quote:
-        "Notion AI created our entire internal knowledge base in 2 weeks. Onboarding new staff used to take 3 months. Now it's 1 week.",
-      role: "Operations Manager",
-      image: "👨‍💼",
-    },
-    {
-      name: "Saira Khan",
-      business: "Consulting Firm",
-      quote:
-        "Claude Pro helps us write better client proposals. Our win rate improved by 35%. The quality of our deliverables is noticeably better.",
-      role: "Consulting Lead",
-      image: "👩‍💼",
-    },
-  ];
 
   const faqs = [
     {
@@ -379,36 +345,6 @@ export default function SMBGuide() {
                 </Link>
               </motion.div>
             ))}
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="px-4 py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">What Bangladesh Business Owners Are Achieving</h2>
-
-            <p className="text-sm text-gray-500 text-center -mt-8 mb-10">Illustrative examples of how customers in Bangladesh typically use these tools — representative scenarios, not verified individual reviews.</p>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {testimonials.map((testimonial, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  className="bg-white rounded-lg p-8 border-l-4 border-amber-600"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="text-4xl">{testimonial.image}</div>
-                    <div>
-                      <div className="font-bold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600">{testimonial.business}</div>
-                      <div className="text-sm text-amber-600 font-medium">{testimonial.role}</div>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 italic">"{testimonial.quote}"</p>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </section>
 

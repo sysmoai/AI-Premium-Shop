@@ -127,7 +127,7 @@ export default function FreelancersGuide() {
     },
     {
       q: "How much can I save vs. official subscription prices?",
-      a: "Significantly. ChatGPT Plus costs $20/month officially (BDT 2,400+ with exchange and fees). We offer it for BDT 499—that's 79% savings. GitHub Copilot costs $20/month officially; we offer BDT 1,495. Midjourney is $20/month officially; we offer BDT 1,199.",
+      a: "ChatGPT Plus costs $20/month officially (BDT 2,400+ with exchange and fees, and needs an international card). We offer it for BDT 499 via local payment. GitHub Copilot costs $20/month officially; we offer BDT 1,495. Midjourney is $20/month officially; we offer BDT 1,199.",
     },
     {
       q: "Do I need an international credit card?",

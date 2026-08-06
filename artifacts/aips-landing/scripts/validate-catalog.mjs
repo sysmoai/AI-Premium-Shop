@@ -363,6 +363,30 @@ for (const [term, n] of Object.entries(claimCounts).sort((a, b) => b[1] - a[1]))
   warnings.push(`unverified-claim term "${term}": ${n} occurrences (data + pages)`);
 }
 
+// ---------- 4a. bare percentage-savings claims (warnings) ----------
+// The "% off" substring check above catches "83% off" but not "Savings vs
+// official: ~88%" or "~80%" sitting in a table cell next to a "vs official"
+// label — same unsupported-savings-number problem, different phrasing. Found
+// by grepping ComparisonPage.tsx directly: three comparison tables state
+// hand-typed savings percentages ("~88%", "~80%", "~70%", "~60%", "~83%")
+// with no visible calculation. Some percentages elsewhere in the codebase
+// (BudgetPage.tsx) ARE computed from product.officialUSD at render time —
+// this check flags hand-typed bare percentages specifically, not every "%"
+// in the codebase, so it doesn't fire on those.
+const BARE_PERCENT = /~?\d{1,3}%(?!\s*off\b)/gi;
+const SAVINGS_CONTEXT = /saving|vs\.?\s*official|cheaper|discount/i;
+for (const f of walk("src/pages")) {
+  const content = read(f);
+  const lines = content.split("\n");
+  lines.forEach((line, i) => {
+    if (!SAVINGS_CONTEXT.test(line)) return;
+    const matches = line.match(BARE_PERCENT);
+    if (matches) {
+      warnings.push(`${f}:${i + 1}: bare savings percentage "${matches.join(", ")}" near savings-language, no visible calculation — ${line.trim().slice(0, 90)}`);
+    }
+  });
+}
+
 // ---------- 5. governance-field coverage (warnings) ----------
 const GOVERNANCE_FIELDS = ["commercialStatus", "verificationDate", "sourceUrl", "officialUSD"];
 for (const f of GOVERNANCE_FIELDS) {

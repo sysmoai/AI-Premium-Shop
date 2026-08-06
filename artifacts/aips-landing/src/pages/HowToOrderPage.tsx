@@ -81,7 +81,7 @@ const FAQS = [
   },
   {
     q: "What is a shared account?",
-    a: "A shared account means 2-5 users share the cost of a single subscription. Each user has their own chat history and sessions — you don't see each other's conversations. Shared accounts are 60-88% cheaper than buying the subscription yourself.",
+    a: "A shared account means 2-5 users share the cost of a single subscription. Each user has their own chat history and sessions — you don't see each other's conversations. Shared accounts cost meaningfully less per person than a personal account on the same plan.",
   },
   {
     q: "What's included in the 30-day warranty?",

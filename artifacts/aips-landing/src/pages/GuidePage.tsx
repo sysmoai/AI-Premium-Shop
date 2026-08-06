@@ -165,7 +165,7 @@ const GUIDES: Record<string, GuideConfig> = {
     faqs: [
       { q: "Which AI tool is best for writing client proposals?", a: "ChatGPT Plus and Claude Pro are both excellent for proposals. Claude Pro has slightly better writing quality, while ChatGPT is better for proposals that require research or data." },
       { q: "Can I use AI-generated content for client work?", a: "Most clients allow AI-assisted work as long as the final deliverable meets their quality standards. Always review and edit AI outputs. Disclose AI usage if your client contract requires it." },
-      { q: "How much can I save compared to direct subscriptions?", a: "Significantly. ChatGPT Plus costs $20/month officially (≈BDT 2,400 with exchange and fees). With AIPS you pay BDT 499–950 depending on the plan — saving 60–85%." },
+      { q: "How much can I save compared to direct subscriptions?", a: "ChatGPT Plus costs $20/month officially (≈BDT 2,400+ with exchange and fees, and needs an international card). With AIPS you pay BDT 499–950 depending on the plan, using local bKash/Nagad payment." },
       { q: "Can I get multiple tools at a discount?", a: "Yes. Message us on WhatsApp about bundle pricing. We offer package discounts when you take multiple subscriptions together." },
     ],
     accentColor: "#10a37f",
@@ -873,7 +873,7 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
             </div>
             <div className="rounded-xl p-6" style={{ backgroundColor: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.2)" }}>
               <p className="text-sm" style={{ color: "#c9ceda" }}>
-                92% of developers now use AI coding tools (GitHub Survey 2025). The 8% who don't are competing against developers who code 55% faster.
+                AI coding tools are now widely used across the developer community. Teams that adopt them early get a head start on the workflow changes they bring.
               </p>
             </div>
           </motion.div>
@@ -901,14 +901,6 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
               <div className="flex justify-between items-center py-2 mb-3">
                 <span className="font-bold text-white">Total</span>
                 <span className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT 5,586/mo</span>
-              </div>
-              <div className="flex justify-between items-center py-1 mb-1">
-                <span className="text-sm" style={{ color: "#c9ceda" }}>vs Hiring</span>
-                <span className="text-sm font-semibold line-through" style={{ color: "#ef4444" }}>BDT 37,000/mo</span>
-              </div>
-              <div className="flex justify-between items-center py-1">
-                <span className="text-sm font-bold text-white">Save</span>
-                <span className="text-sm font-bold" style={{ color: "#22c55e" }}>BDT 31,414/mo (85% savings)</span>
               </div>
             </div>
           </motion.div>

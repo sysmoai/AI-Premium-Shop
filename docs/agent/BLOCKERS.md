@@ -78,6 +78,32 @@ Carried from session 15. The Bangla pages exist and are consistent with the
 English facts, but nobody has confirmed they read naturally. Session 16 added
 only two short Bangla link labels, no new Bangla prose.
 
+## B9 — Nothing in CI executes the React app (HIGH, caused a live outage)
+
+**Status:** open. Real gap, demonstrated 2026-08-06.
+
+A hook-order bug (`useT()` placed below an early `return null` in CookieBanner)
+threw React error #310 at the App root. `createRoot` emptied #root and rendered
+nothing: **every page went blank in production**.
+
+It passed every gate we have:
+ - `pnpm run build` — Vite bundles, it does not execute the app.
+ - `pnpm run seo:check` — inspects static HTML, which is byte-identical whether
+   or not the app crashes on mount.
+ - `audit-prerender` — same blind spot.
+ - `live-site-monitor` — greps the SERVED HTML for markers, and the prerendered
+   markers are all still present on a crashed page.
+
+Only a screenshot caught it, and only because the failure was total. A subtler
+render bug would still ship today.
+
+**Fix (not yet done):** one smoke test that loads the built app in a real browser
+and asserts `#root` has children and the console has no errors, on ~3 routes.
+Playwright is already Backlog #4; this raises its priority from "nice" to
+"the only thing standing between a render bug and production".
+
+Until then: after any change to a component, LOOK at the rendered page.
+
 ## B8 — Vercel free-tier deploy cap (LOW, operational)
 
 100 deploys / rolling 24h, shared across the team's projects. Over the cap,

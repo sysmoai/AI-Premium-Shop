@@ -18,7 +18,32 @@ anything else.
 
 Then read `CURRENT-STATE.md` and `BLOCKERS.md`.
 
-## The single highest-value next task
+## FIRST: finish the /bn rebuild (started 2026-08-06, session 17)
+
+`data/bn-homepage.json` is the single source of truth for the Bangla homepage and
+is already live in the STATIC body (/bn went 285 -> 7,850 visible chars).
+
+**`src/pages/BanglaBN.tsx` still renders its older content.** Rebuild it to read
+`data/bn-homepage.json` — the same file the prerender uses — so the crawlable
+copy and the rendered copy cannot drift. Nothing is visibly broken today (JS
+visitors never see the static body, it is hidden by #prerender-shell), but the
+two are now different content, which is exactly the drift this project keeps
+getting bitten by.
+
+Then add a `seo:check` rule asserting the two agree, the way the anti-flash
+contract is asserted.
+
+**Still outstanding from the /bn brief** (the research workflow for these died on
+a session usage limit and returned nothing — do not assume any of it exists):
+ - Bangladesh SERP/competitor gap analysis
+ - Bangla + Banglish keyword and intent map -> docs/seo/
+ - The 5-step AI Tool Finder (interactive)
+ - /bn/* locale URL architecture (currently /students-bn, not /bn/students)
+ - Explainer video, case studies, support-team section
+ - Native-speaker Bangla review of data/bn-homepage.json (BLOCKERS B7) —
+   `lastReviewedByNativeSpeaker` is null in that file until someone signs off.
+
+## The next highest-value task after that
 
 **Resolve B1** — the "10,000+ customers since 2022" claim. It is the largest
 remaining trust liability, it blocks nothing technically, and it is a one-commit

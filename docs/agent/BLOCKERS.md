@@ -133,3 +133,54 @@ page on the site, so it is not mine to make unilaterally.
 100 deploys / rolling 24h, shared across the team's projects. Over the cap,
 pushes silently do nothing. `scripts/deploy-live.sh --wait` parks and retries.
 The only real fix is a paid plan — an owner decision.
+
+## B11 — A decommissioned deployment is still live and publicly crawlable, serving stale facts (HIGH)
+
+**Status:** open. Needs an owner decision or explicit permission to act on
+Vercel infrastructure (not fixable by a code change/deploy).
+
+`artifacts/aips-website` (a parallel Next.js rebuild, "PROJECT PHOENIX") was
+formally archived 2026-07-30 per its own `DEPRECATED.md`: "kept SPA, archived
+Next.js," git auto-deploy turned off, explicit "Do NOT deploy this app."
+Turning off auto-deploy stops *future* deploys — it does not take down the
+*last* deployment that was already live. That deployment is still up today at
+`https://aips-website-two.vercel.app/`, returns HTTP 200, has **no canonical
+tag and a permissive `robots.txt` ("Allow: /")**, and serves a stale catalog:
+title "118+ Premium AI Tools" and "3,000+ customers" (current canonical site:
+197 tools, 10,000+ customers). This is the live source of the "conflicting
+indexed versions" pattern the second and third master prompts both
+hypothesized (197 vs 80/118 tools, 10,000+ vs 3,000+ customers, since 2022 vs
+since 2024) — not a CDN-cache or www/non-www issue, a genuinely separate,
+forgotten, indexable deployment.
+
+**Fixed as defense-in-depth, does not fix the live risk:** hardened
+`artifacts/aips-website/src/app/robots.ts` to unconditionally disallow all
+crawlers, so if this app is ever accidentally redeployed it won't repeat this.
+The file change cannot reach the currently-live deployment without deploying
+it, which `DEPRECATED.md` explicitly forbids.
+
+**What actually fixes the live exposure (owner decision, one of):**
+1. Delete the `aips-website` Vercel project (`prj_...` — see `DEPRECATED.md`
+   for the id format used for the *other* project; find this one's id via
+   `vercel project ls`).
+2. Remove/unalias just the `aips-website-two.vercel.app` deployment or domain
+   via the Vercel dashboard or `vercel remove`, keeping the project shell if
+   there's a reason to keep it around.
+3. At minimum, enable Vercel Deployment Protection (password/SSO) on that
+   project so it stops being publicly crawlable.
+
+Not done unilaterally this session — deleting/unaliasing live infrastructure
+is a hard-to-reverse action on shared state, and is explicitly one of the
+"questions that genuinely require owner approval" the master prompt itself
+calls for.
+
+## B12 — `http://www.aipremiumshop.com` is a 2-hop redirect (LOW)
+
+`http://www` → `https://www` (308) → `https://` non-www (308) → 200. The other
+three host/scheme combinations (`http://`, `https://www`, `https://`) are all
+single-hop to the canonical `https://aipremiumshop.com/`. This is a Vercel
+Domains configuration issue (each domain has its own http→https rule, then a
+separate www→apex rule chains on top) — not fixable from application code.
+Low severity; search engines handle 2-hop redirects fine in practice. Owner
+can flatten it to one hop in Vercel's dashboard (Project → Settings →
+Domains) if it's worth the five minutes.

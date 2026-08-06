@@ -1,5 +1,28 @@
 # Worklog
 
+## Host/version-consistency task group — 2026-08-07 (Sonnet 5, same day, third turn)
+
+P0 task group 2 of the third master prompt's ordering ("host and version
+consistency" / Hypothesis 1 — conflicting indexed versions). Found the real
+cause: not CDN staleness or a www/non-www misconfiguration on the live site
+(both checked, both clean except one low-severity 2-hop redirect — B12), but
+a **decommissioned Next.js app whose last deployment is still live and
+publicly crawlable** at `aips-website-two.vercel.app`, serving a stale
+catalog ("118+ tools", "3,000+ customers"). Its own `DEPRECATED.md` (dated
+2026-07-30) already documents the decision to archive it and turn off
+auto-deploy — that stopped future deploys, not the one already live.
+Recorded as `BLOCKERS.md` B11 (needs owner approval to delete/unalias — a
+Vercel infrastructure action, not a code change) and B12 (the 2-hop
+redirect). Hardened that app's `robots.ts` to disallow all crawlers as
+defense-in-depth, since editing its code can't reach the already-live
+deployment (redeploying it is explicitly forbidden by its own docs).
+
+Also created the durable context files the third master prompt asked for:
+`SITE-CONTEXT.md`, `ARCHITECTURE.md`, `RESEARCH-CACHE.md`, `NEXT-TASK.md`
+(supersedes `NEXT-SESSION.md` going forward). Rewrote `CURRENT-STATE.md`,
+which had drifted 2-3 sessions stale (see the note already in
+`NEXT-SESSION.md` from earlier the same day).
+
 ## Evidence-collection session — 2026-08-07 (Sonnet 5)
 
 No code changed — scope was deliberately limited to verification (per an

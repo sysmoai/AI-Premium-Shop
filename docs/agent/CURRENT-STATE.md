@@ -1,55 +1,83 @@
 # Current state
 
-**Last updated:** 2026-08-05 (session 16, Opus 5)
-**Branch:** main
-**Deployed:** yes — merge commit `65eba1e` + follow-up, live on aipremiumshop.com
+**Last updated:** 2026-08-07 (same-day session: evidence collection →
+implementation → host/version consistency)
+**Branch:** `seo/homepage-product-authority` — **5 commits, NOT pushed, NOT
+merged, NOT deployed.** `main` is unchanged from commit `1e147bb`.
 
-Read this file and `NEXT-SESSION.md` first. The root `CLAUDE.md` remains the
-long-form session log; this is the short "where things stand" view.
+Read this file and `NEXT-TASK.md` first. `SITE-CONTEXT.md` and
+`ARCHITECTURE.md` are the "understand the system" references — read those
+once, not every session. `WORKLOG.md` is the full session-by-session log.
 
-## What is live and verified
+## What's on the branch, not yet live
 
-| Thing | State | Evidence |
-|---|---|---|
-| `/product/higgsfield-ai-bangladesh` | Live, enquiry-only, 8,702 static chars (was 1,536) | curl'd after deploy; 1 h1, 9 h2, no Offer node, disclaimer present |
-| Higgsfield compliance | Category F, CTA disabled | `docs/compliance/higgsfield-offer-review.md`, gated by `validate-higgsfield-offer.mjs` |
-| Page-load blink | Fixed — 4 root causes | 0 visible chars at first paint on 5 routes; `docs/performance/page-load-flash.md` |
-| `/ai-video` decision hub | Live, 3,770 static chars (was 1,112) | `src/sections/AIVideoHub.tsx` + prerender extraction |
-| Homepage AI Video module | Live, 4,517 static chars (was 3,489) | `src/sections/AIVideoFeatureSection.tsx` |
-| `/privacy` duplicate canonical | Fixed | both `/privacy` and `/privacy-policy` now canonicalise to `/privacy-policy` |
-| `seo:check` | Passes clean (0 errors, 160 warnings) | `pnpm run seo:check` |
+| Commit | What |
+|---|---|
+| `6df67ed` | 404.html + `vercel.json` rewrite removal (soft-404 fix); prerender source-leak regex fix + `SOURCE_LEAK` seo-check gate; `/pricing`/`/about`/`/faq` metadata interpolation fix; `/best-ai-for-job-seekers` prerender collision fix; homepage solution-cards prerendering |
+| `6bf90f2` | Unsupported outcome claims removed from the 6 solution cards |
+| `60ad59d` | Binance removed sitewide (12+ files incl. the live AI concierge's own system prompt); 3 Bangla FAQ business-fact conflicts fixed |
+| `115bc9b` | Docs for the above |
+| (this session) | `artifacts/aips-website/src/app/robots.ts` hardened to disallow-all (defense-in-depth for an archived app); `BLOCKERS.md` B11/B12 |
 
-## Gates that now run
+Full evidence for every fix: `docs/homepage/executive-audit.md`.
 
-- `pnpm run build` → blog-price gate → **Higgsfield compliance gate** → vite build
-  → prerender → prerender audit.
-- **Anti-flash contract** is asserted on every built page by `seo:check`: shell
-  wrapper, hide rule (with comments stripped, so a commented-out rule fails),
-  balanced CSS comments, the `.js` script, and the inline background.
-- `pnpm run seo:check` → 273 built pages: duplicate/missing titles and
-  descriptions, H1 count, canonical host, soft-404 and placeholder text, leaked
-  JS values, unsupported "official"/unscoped "unlimited", expired offer dates,
-  malformed WhatsApp CTAs, `<img>` alt and dimensions, JSON-LD parse + fake
-  rating + Offer-vs-compliance-state contradiction.
-- `.github/workflows/seo-quality.yml` — on push/PR to the app, plus weekly so
-  time-based expiry fails on its own.
-- `.github/workflows/live-site-monitor.yml` — daily 08:30 Dhaka, content-based
-  (not status-code-based) checks against production; opens a labelled issue on
-  failure.
+## Verified, this session
+
+- `pnpm run build` (in `artifacts/aips-landing`) — clean, 272/272 sitemap
+  routes, 0 errors.
+- `pnpm run seo:check` — 0 errors, 140 warnings (pre-existing categories,
+  none new).
+- `pnpm run typecheck` — same 14 pre-existing errors as always (unbuilt
+  `lib/api-client-react`), zero new.
+- `pnpm run validate:truth` — canonical facts intact.
+- **Deployed a Vercel preview** (not production) and confirmed against real
+  routing: unknown URLs now 404 (`Content-Disposition: filename="404.html"`),
+  `/best-ai-for-job-seekers` has its own correct H1, `/pricing`/`/about` meta
+  descriptions correct, homepage has all 6 solution cards, no Binance
+  anywhere. Preview URL was in a session's earlier turn — re-deploy fresh
+  before relying on it, preview URLs aren't durable.
+
+## New finding this session: B11 (HIGH, open)
+
+A decommissioned Next.js rebuild (`artifacts/aips-website`, archived
+2026-07-30) has a **still-live, publicly crawlable deployment**
+(`aips-website-two.vercel.app`) with no canonical tag, a permissive
+`robots.txt`, and a stale catalog ("118+ tools", "3,000+ customers"). This is
+the actual live source of the "conflicting indexed versions" pattern named in
+every recent audit prompt. Fixing it requires a Vercel infrastructure action
+(delete/unalias the project or deployment) that needs owner approval — not
+resolved this session. See `BLOCKERS.md` B11 for full detail and options.
 
 ## Known-good numbers (do not retype these — derive them)
 
-Catalog: 239 records, 157 distinct product slugs, 40 brand-page slugs, 272
-sitemap routes, 273 built pages. All prices come from `data/products.json` via
-`catalogStats.ts` / `tierPrice()` / `cheapestPriceFor()`.
+Catalog: 239 records, 197 distinct product slugs (157 `/product/<slug>` +
+40 brand-page `/​<slug>`), 272 sitemap routes, 273 built pages. All prices
+from `data/products.json` via `catalogStats.ts` / `tierPrice()` /
+`cheapestPriceFor()` (components) or the parallel `CATALOG_STATS` object in
+`scripts/prerender-products.mjs` (prerender — see `ARCHITECTURE.md` for why
+these are two separate implementations of the same formulas, and why that's
+the recurring source of drift bugs).
 
-## Pre-existing failures (NOT caused by session 16)
+## Pre-existing failures (not caused by any session)
 
-- `pnpm run typecheck` fails: `lib/api-client-react/dist` is not built, so 14
-  TS6305/TS7006 errors in `AddToCartButton`, `CartButton`, `api-config` and
-  `pages/admin/*`. `build` does not run typecheck, so this does not block deploy.
-- `pnpm install --frozen-lockfile` fails at the workspace root: the lockfile's
-  `overrides` do not match `figma-make-v2`'s. Use
+- `pnpm run typecheck` fails: `lib/api-client-react/dist` is not built → 14
+  TS6305/TS7006 errors in `AddToCartButton`, `CartButton`, `api-config`,
+  `pages/admin/*`. `build` doesn't run typecheck, doesn't block deploy.
+- `pnpm install --frozen-lockfile` fails at the workspace root (lockfile
+  `overrides` mismatch with `figma-make-v2`). Use
   `pnpm install --filter ./artifacts/aips-landing --no-frozen-lockfile`.
-- `validate-truth.mjs` reports ~127 unverified claims across the catalog. Real,
-  and the biggest item is in BLOCKERS.md.
+- `validate-truth.mjs` / `validate-catalog.mjs` report warn-level unverified
+  claims (127 "warranty", 122 "unlimited", 118 "5-30 min", etc. — see
+  `BACKLOG.md` #16 for the newest addition, 9 "#1"-type superlatives).
+
+## Not done, and why
+
+- Not pushed/deployed — needs your explicit go-ahead (see `NEXT-TASK.md`).
+- B11 (stray live deployment) — infrastructure action, needs your approval.
+- B1 (10,000+ customers), B2 (30-day warranty policy), B5 (44 shared-access
+  products) — all owner decisions, unchanged.
+- Higgsfield offer (BDT 1,199/~1,200 credits) — still unverified against the
+  vendor; see `RESEARCH-CACHE.md` for exactly what needs checking before any
+  of that work proceeds.
+- No Playwright/browser smoke test exists (B9) — still the single biggest
+  gap in the test suite.

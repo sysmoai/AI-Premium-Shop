@@ -2,97 +2,15 @@ export const dynamic = "force-static";
 
 import type { MetadataRoute } from "next";
 
+// This app is archived — see DEPRECATED.md. Its last live deployment
+// (aips-website-two.vercel.app) was found still publicly crawlable with no
+// robots protection, serving a stale catalog ("118+ tools", "3,000+
+// customers" vs the canonical site's current 197/10,000+) — exactly the
+// "conflicting indexed versions" risk this file exists to prevent. Disallow
+// everything unconditionally: this app should never be crawled, deployed, or
+// linked. See docs/agent/BLOCKERS.md B11.
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aipremiumshop.com";
-
   return {
-    rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: [
-          "/admin",
-          "/api",
-          "/_next",
-          "/private",
-          "/checkout",
-          "/cart",
-        ],
-      },
-      /* --- OpenAI crawlers --- */
-      {
-        userAgent: "GPTBot",
-        allow: "/",
-      },
-      {
-        userAgent: "OAI-SearchBot",
-        allow: "/",
-      },
-      {
-        userAgent: "ChatGPT-User",
-        allow: "/",
-      },
-      /* --- Anthropic crawlers --- */
-      {
-        userAgent: "ClaudeBot",
-        allow: "/",
-      },
-      {
-        userAgent: "Claude-User",
-        allow: "/",
-      },
-      {
-        userAgent: "Claude-Web",
-        allow: "/",
-      },
-      /* --- Perplexity crawlers --- */
-      {
-        userAgent: "PerplexityBot",
-        allow: "/",
-      },
-      {
-        userAgent: "Perplexity-User",
-        allow: "/",
-      },
-      /* --- Google / Apple / Other AI crawlers --- */
-      {
-        userAgent: "Google-Extended",
-        allow: "/",
-      },
-      {
-        userAgent: "Applebot-Extended",
-        allow: "/",
-      },
-      {
-        userAgent: "CCBot",
-        allow: "/",
-        crawlDelay: 10,
-      },
-      {
-        userAgent: "Bytespider",
-        allow: "/",
-        crawlDelay: 10,
-      },
-      {
-        userAgent: "AhrefsBot",
-        allow: "/",
-        crawlDelay: 10,
-      },
-      {
-        userAgent: "SemrushBot",
-        allow: "/",
-        crawlDelay: 10,
-      },
-      {
-        userAgent: "MJ12bot",
-        disallow: "/",
-      },
-      {
-        userAgent: "DotBot",
-        disallow: "/",
-      },
-    ],
-    sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl,
+    rules: [{ userAgent: "*", disallow: "/" }],
   };
 }

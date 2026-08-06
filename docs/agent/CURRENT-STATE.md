@@ -1,11 +1,43 @@
 # Current state
 
-**Last updated:** 2026-08-07 (same-day session, 6th turn: evidence collection
-→ implementation → host/version consistency → catalogue integrity → vendor
-compliance/Higgsfield verification → savings-claims validation → hreflang
-fix → fabricated-testimonials removal)
-**Branch:** `seo/homepage-product-authority` — **16 commits, NOT pushed, NOT
-merged, NOT deployed.** `main` is unchanged from commit `1e147bb`.
+**Last updated:** 2026-08-07 (7th turn: **DEPLOYED TO PRODUCTION**)
+**Branch:** `seo/homepage-product-authority` merged to `main` (merge commit
+`feaac91`), pushed to `origin/main`, and deployed live to
+**https://aipremiumshop.com** via `vercel --prod`. 19 commits total shipped.
+
+## Production deployment — verified live, 2026-08-07
+
+```
+✓ vercel --prod --yes  →  ▲ Aliased  https://aipremiumshop.com
+✓ Homepage <head> states real product count (197) and entry price (299)
+✓ No phantom stale claims (118+, ৳350)
+✓ /api/concierge healthy: {"ok":true,"products":197,"keyConfigured":true}
+✓ Key routes 200: / /products /pricing /blog /claude-pro-bangladesh
+✓ Unknown URL → real HTTP 404 (was 200-homepage before this session — F1)
+✓ /best-ai-for-job-seekers → correct H1 (was Students' H1 — F4)
+✓ Zero Binance mentions anywhere
+✓ Zero fabricated-testimonial content
+✓ hreflang correct + reciprocal on a real paired page
+```
+
+Everything this whole session found and fixed is now live for real
+customers. Pre-deploy gate caught one issue: `validate-catalog.mjs`
+reported `public/llms.txt` out of sync — regenerated via
+`node scripts/generate-llms-txt.mjs`, turned out to be a no-op (content was
+already correct, `git add` found nothing to stage) but worth having caught
+it rather than assumed.
+
+**Not yet done post-deploy:** the reminder `deploy-live.sh` itself prints —
+"HTTP 200 does not prove this SPA rendered... for a full check of
+rendered text/console errors, run the headless crawl." No headless
+browser check was run against the live production site this turn (curl-
+based checks only). Low risk given the extensive local+preview
+verification already done throughout this session, but worth noting the
+gap explicitly rather than silently.
+
+---
+
+**Prior state (pre-deploy), for reference:**
 
 Read this file and `NEXT-TASK.md` first. `SITE-CONTEXT.md` and
 `ARCHITECTURE.md` are the "understand the system" references. `WORKLOG.md`

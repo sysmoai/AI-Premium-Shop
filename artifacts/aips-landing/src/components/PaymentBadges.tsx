@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useT } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 // text picked per-bg so it clears WCAG AA (4.5:1) — white fails on #f6921e
@@ -16,11 +17,14 @@ interface PaymentBadgesProps {
   label?: string;
 }
 
-export function PaymentBadges({ className, label = "We Accept" }: PaymentBadgesProps) {
+export function PaymentBadges({ className, label }: PaymentBadgesProps) {
+  const t = useT();
+  // Default follows the route locale; an explicit prop still wins.
+  const resolved = label ?? t("We Accept", "পেমেন্ট নেওয়া হয়");
   return (
     <div className={cn("flex flex-wrap items-center gap-2.5", className)}>
-      {label && (
-        <span className="text-sm" style={{ color: "#c9ceda" }}>{label}:</span>
+      {resolved && (
+        <span className="text-sm" style={{ color: "#c9ceda" }}>{resolved}:</span>
       )}
       {paymentMethods.map((method, i) => (
         <motion.div

@@ -179,7 +179,7 @@ export default function HiggsfieldPage() {
           <Info className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#f4b942" }} />
           <div>
             <div className="font-semibold text-white mb-1 text-sm">Independent service</div>
-            <p className="text-sm leading-relaxed" style={MUTED}>{compliance.disclaimer}</p>
+            <p className="text-sm leading-relaxed pr-16 sm:pr-20" style={MUTED}>{compliance.disclaimer}</p>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 import { useLocation } from "wouter";
+import { useT } from "@/lib/locale";
 import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { BLOG_CATEGORIES } from "@/lib/blogTaxonomy";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
@@ -68,6 +69,7 @@ function FooterLink({ label, href }: { label: string; href: string }) {
 }
 
 export function PageFooter() {
+  const t = useT();
   const [, navigate] = useLocation();
 
   return (
@@ -83,7 +85,8 @@ export function PageFooter() {
               <span className="text-lg font-bold text-white">AI PREMIUM SHOP</span>
             </a>
             <p className="text-sm text-gray-400 mt-2 max-w-xs leading-relaxed">
-              Premium AI subscriptions in Bangladesh. {TOTAL_PRODUCTS} tools. Local payment via bKash, Nagad and Rocket.
+              {t(`Premium AI subscriptions in Bangladesh. ${TOTAL_PRODUCTS} tools. Local payment via bKash, Nagad and Rocket.`,
+                 `বাংলাদেশে প্রিমিয়াম AI সাবস্ক্রিপশন। ${TOTAL_PRODUCTS}টি টুল। bKash, Nagad ও রকেটে পেমেন্ট।`)}
             </p>
             <div className="flex items-center gap-3 mt-4">
               <a href="https://www.facebook.com/aipremiumshopfb" target="_blank" rel="noopener noreferrer"

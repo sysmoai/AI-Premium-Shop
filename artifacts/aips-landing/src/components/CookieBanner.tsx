@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useT } from "@/lib/locale";
 import { Link } from "wouter";
 
 const STORAGE_KEY = "cookie_consent";
@@ -27,6 +28,8 @@ export function CookieBanner({ onConsent }: CookieBannerProps) {
 
   if (!visible) return null;
 
+  const t = useT();
+
   return (
     <div
       className="fixed bottom-0 inset-x-0 z-50 flex items-center justify-between px-4 md:px-8 gap-4"
@@ -37,18 +40,18 @@ export function CookieBanner({ onConsent }: CookieBannerProps) {
       }}
     >
       <span className="text-xs flex-1 truncate" style={{ color: "#c9ceda" }}>
-        We use cookies to improve your experience.
+        {t("We use cookies to improve your experience.", "আপনার অভিজ্ঞতা উন্নত করতে আমরা কুকি ব্যবহার করি।")}
       </span>
       <div className="flex items-center gap-3 flex-shrink-0">
         <Link href="/privacy-policy" className="text-xs hover:text-white transition-colors" style={{ color: "#c9ceda" }}>
-          Privacy Policy
+          {t("Privacy Policy", "প্রাইভেসি পলিসি")}
         </Link>
         <button
           onClick={accept}
           className="px-4 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity"
           style={{ backgroundColor: "#f4b942", color: "#0a0e27" }}
         >
-          Accept
+          {t("Accept", "ঠিক আছে")}
         </button>
       </div>
     </div>

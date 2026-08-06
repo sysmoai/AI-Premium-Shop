@@ -104,7 +104,7 @@ export default function BanglaBN() {
         <div className="rounded-2xl border p-5 mb-16 flex items-start gap-3"
           style={{ backgroundColor: "rgba(244,185,66,0.06)", borderColor: "rgba(244,185,66,0.25)" }}>
           <Info className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#f4b942" }} />
-          <p className="text-sm leading-relaxed" style={MUTED}>{sub(bn.disclaimer)}</p>
+          <p className="text-sm leading-relaxed pr-16 sm:pr-20" style={MUTED}>{sub(bn.disclaimer)}</p>
         </div>
 
         {/* ---- Which tool for which job ---- */}

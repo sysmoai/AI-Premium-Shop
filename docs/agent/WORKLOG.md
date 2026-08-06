@@ -1,5 +1,23 @@
 # Worklog
 
+## Evidence-collection session — 2026-08-07 (Sonnet 5)
+
+No code changed — scope was deliberately limited to verification (per an
+external audit brief covering routing, payments compliance, animation, SEO
+and content-quality). Ran the repo's own drift checks (`build`, `seo:check`,
+the `higgsfield-ai-bangladesh` curl check) — all green, production on
+`main`'s HEAD (`1e147bb`). Full findings in `docs/homepage/executive-audit.md`;
+five new issues (F1–F5) added to `BACKLOG.md` as items 0a–0e, all root-caused
+with file:line references, none fixed yet. Confirmed several of the audit
+brief's specific claims were stale (Higgsfield template bug already fixed in
+session 16; About/homepage customer-count and founding-year numbers are now
+internally consistent, though still evidence-less per existing B1).
+
+Also flagged: `WORKLOG.md`/`NEXT-SESSION.md` were stale by 2-3 sessions
+(the `/bn` rebuild `NEXT-SESSION.md` called "next" was already done;
+`BLOCKERS.md` B9/B10 exist but have no corresponding `WORKLOG.md` entries).
+Patched `NEXT-SESSION.md` to flag this rather than silently trust it.
+
 ## Session 16 — 2026-08-05 (Opus 5)
 
 Higgsfield offer implemented compliantly, AI Video surfaces rebuilt, page-load

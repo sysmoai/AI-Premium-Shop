@@ -1,5 +1,45 @@
 # Worklog
 
+## Catalogue integrity + owner-actions doc — 2026-08-07 (Sonnet 5, same day, fourth turn)
+
+Reconciled repo/doc state per the fourth master prompt's checklist first:
+confirmed branch (`seo/homepage-product-authority`, 5 commits, unpushed),
+confirmed `robots.ts` from the prior turn has no dead code, confirmed
+`CURRENT-STATE.md` has no duplicate headers. All clean — no cleanup needed.
+
+Then gathered exact Vercel evidence for B11 (project ID
+`prj_gDXbOWXKZP7S1KxPnLkyHs5TVuer`, deployment ID
+`dpl_DPfznLnKPh1q4fs4VkdJteRjBACK`, three aliases, creation/last-deploy date)
+via `vercel project inspect` / `vercel inspect` / `vercel ls`, which
+**corrected the prior turn's root-cause narrative**: the stray live
+deployment is not the archived Next.js app (confusingly similar project
+name only) — it's a duplicate Vercel project whose Root Directory is
+already `artifacts/aips-landing` (the correct app), created and deployed
+once on 2026-07-30, never redeployed since. Wrote `docs/agent/OWNER-
+ACTIONS.md` with exact recommended commands (`vercel alias rm` ×3,
+reversible) and the corrected `BLOCKERS.md` B11 entry.
+
+P0 task group "catalogue plan-and-price integrity": read
+`validate-catalog.mjs` first rather than assuming a gap — it was already
+far more thorough than expected (plan/price consistency, whatsappMsg drift,
+sitemap sync, 4 separate generated-file sync checks, banned-claims scan).
+The one real missing check — shared tier priced at or above the equivalent
+personal tier — found a genuine anomaly on first run: `midjourney-
+bangladesh`'s "Pro Shared" (৳4,788) costs more than both its "Personal"
+(৳2,495) and "Pro" personal (৳3,990) tiers. Added as a permanent warning-
+level check, recorded for owner review (BACKLOG.md #18) rather than guessed
+at a fix.
+
+Verified `pnpm run build` still clean after the validator change (0 errors,
+272/272 routes) — the validator isn't wired into `build`, so this was a
+sanity check, not a required gate for this specific change.
+
+**Next up:** shared-account/vendor compliance (B5, large, owner-decision-
+heavy) and Higgsfield offer verification (needs real external web research
+against higgsfield.ai — see `RESEARCH-CACHE.md` for the exact open
+questions) are both better scoped as their own focused sessions rather than
+continuing to stack onto an already-long one. See `NEXT-TASK.md`.
+
 ## Host/version-consistency task group — 2026-08-07 (Sonnet 5, same day, third turn)
 
 P0 task group 2 of the third master prompt's ordering ("host and version

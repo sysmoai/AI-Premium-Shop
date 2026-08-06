@@ -1,80 +1,70 @@
 # Next task — start here
 
-**Written:** 2026-08-07, end of the host/version-consistency task group.
-Supersedes `NEXT-SESSION.md` (kept for its own historical record; this file
-is now canonical going forward per the credit-efficient operating mode).
+**Written:** 2026-08-07, end of the catalogue-integrity task group (4th
+turn of this same-day session).
 
 ## Do this first (2 minutes)
 
 ```bash
-git log --oneline -6                    # confirm you're still on
-                                         # seo/homepage-product-authority,
-                                         # 5 commits ahead of main
+git log --oneline -7                    # confirm seo/homepage-product-authority,
+                                         # 6 commits ahead of main, unpushed
 cd artifacts/aips-landing
-pnpm run build && pnpm run seo:check    # expect: clean, 0 errors
+pnpm run build && pnpm run seo:check && node scripts/validate-catalog.mjs
+# expect: build clean 272/272, seo:check 0 errors, validate-catalog 0 hard
+# failures / 17 warnings (2 new: the Midjourney Pro Shared anomaly)
 ```
 
-Then read `CURRENT-STATE.md` (what's on the branch, what's verified) and
-`BLOCKERS.md` B11/B12 (new this session, need your decision — see below)
-before starting new work.
+Then read `CURRENT-STATE.md` in full — it's current as of this write.
 
-## Next P0 task group: catalogue price and plan integrity (Hypothesis 3 / master-prompt section 7-8)
+## Waiting on you (nothing below is blocked on these — proceed independently)
 
-Not yet done as a *systematic* pass — this session only spot-checked the
-three named examples (Midjourney Mega, Runway Unlimited, Perplexity Max —
-all clean, not reproducible, see `docs/homepage/executive-audit.md`). The
-master prompt asks for something stronger: **repair the data model so this
-class of bug can't recur**, not spot-check more examples by hand.
+1. **OWNER-ACTIONS.md OA1** — stale duplicate Vercel deployment
+   (`aips-website-two.vercel.app`) still live, stale catalog numbers public.
+   Recommended: `vercel alias rm` the three aliases listed there (reversible,
+   one command each).
+2. **OWNER-ACTIONS.md OA2** — `http://www` 2-hop redirect, 5-min dashboard
+   fix, low priority.
+3. **BACKLOG.md #18** — confirm whether Midjourney's "Pro Shared" tier
+   (৳4,788, more than both its Personal tiers) is a pricing error or
+   intentional.
+4. Whether to push the branch / open a PR / deploy to production.
 
-Concretely:
+## Next P0 task group: your call between two independent options
 
-1. Read `scripts/validate-catalog.mjs` — it already exists and already
-   catches some of this (`data/products.json: 239 records...` warnings).
-   Extend it, don't rebuild it. Add checks for the specific failure modes
-   section 7 of the master prompt lists that aren't covered yet:
-   - a plan's displayed name doesn't match the tier its price belongs to
-   - a "personal" `accessType` record priced the same as a "shared" one for
-     the same product (or vice versa) — likely a copy-paste error if so
-   - a product's homepage/brand-page "from" price isn't actually its
-     cheapest *tier* (this exact bug class was already fixed in prior
-     sessions per git history `fc38e57`/`d38e494` — add a regression check
-     so it can't come back silently)
-2. Run it against all 239 records, not a sample. It's a data-file scan, not
-   per-page rendering — cheap, no reason to spot-check.
-3. Anything the script flags as an actual mismatch (not just a warning-level
-   "unverified claim"): fix in `data/products.json` directly, one commit,
-   with the specific record(s) named in the commit message.
-4. If the script finds zero real mismatches (plausible, given the 3 spot
-   checks were clean and prior sessions already hunted this bug class hard),
-   say so plainly rather than manufacturing work — commit the script
-   extension alone as "closes the gap so this can't recur," and move to the
-   next task group.
+**Option A — Shared-account and vendor compliance (master-prompt section 8 /
+BLOCKERS.md B5).** Large, but partially unblocked: you don't need to wait for
+per-vendor legal review to do the mechanical part —
+1. Build `docs/compliance/vendor-matrix.csv` skeleton from what's already in
+   `data/products.json` (44 records with `accessType: "shared"`, grouped by
+   vendor/brand) — this is a repo-only task, no research needed.
+2. Flag (don't yet remove) every place `src/pages/GuidePage.tsx`,
+   `FAQPage.tsx`, or product pages describe shared accounts as "similar to
+   family sharing" or unconditionally "safe" — a repo grep, not new writing.
+   Do not rewrite this copy without your sign-off; B5 says explicitly this
+   isn't a decision to make unilaterally per-vendor.
 
-## Also waiting on you (not blocking the task above)
+**Option B — Higgsfield offer verification (master-prompt sections 10-11 /
+RESEARCH-CACHE.md).** Needs real external web research against
+`higgsfield.ai/pricing`, `/terms-of-use-agreement`, and the two blog posts
+listed in `RESEARCH-CACHE.md`. This is genuinely new work (not re-research —
+nothing has been checked yet), best done as its own focused session since
+it's a different mode of work (external fetch + read + record) than the
+repo-mechanical work this session has been doing. Record findings in
+`RESEARCH-CACHE.md`'s table before touching any code, per the credit-
+efficient operating mode's "record research once" rule.
 
-- **B11** — a decommissioned Next.js app's last deployment is still live and
-  publicly crawlable with stale facts (`aips-website-two.vercel.app`).
-  Needs your OK to delete/unalias it via Vercel — I won't do that
-  unilaterally. See `BLOCKERS.md` B11 for the exact options.
-- **B12** — `http://www.aipremiumshop.com` is a 2-hop redirect. Low severity,
-  5-minute fix in Vercel's dashboard if you want it flattened.
-- Whether to push this branch / open a PR / deploy the preview to
-  production — still sitting on the branch, untouched, per the last report.
+Recommend **A first** — it's unblocked, mechanical, and directly de-risks
+the largest remaining compliance exposure (44 products); B needs you to
+decide whether the proposed BDT 1,199/1,200-credit offer is still the one to
+verify, since three master prompts in a row have called it "proposed, not
+verified" without changing.
 
-## After catalogue integrity: the rest of the P0 order (master-prompt section 36)
+## After A or B: remaining P0 order (unchanged from last write)
 
-4. Shared-account compliance (B5 — 44 products, needs your vendor-by-vendor
-   read, not mine to make).
-5. Conflicting business facts — largely addressed (Bangla FAQ fixes this
-   session), but no *systematic* sweep of every page has been done, only the
-   pages this session happened to touch.
-6. Remaining audience pages — job-seekers fixed; students/freelancers/
-   creators/business/developers not individually re-audited this session.
-7. Higgsfield offer verification — needs external web research against
-   `higgsfield.ai`'s actual current terms/pricing; see `RESEARCH-CACHE.md`
-   for the exact open questions. Do this in its own bounded session — it's
-   real external research, not repo work.
-8. Homepage/AI Video conversion improvements beyond what's done.
-9. Remaining technical SEO (hreflang, structured data audit per section 24).
-10. Content expansion — explicitly last; master prompt says don't polish
-    content while P0 defects remain, and several still do (above).
+- Conflicting business facts — largely addressed; no systematic full-site
+  sweep has been done, only pages this session happened to touch.
+- Remaining audience pages — job-seekers fixed; students/freelancers/
+  creators/business/developers not individually re-audited.
+- Homepage/AI Video conversion improvements beyond what's done.
+- Remaining technical SEO (hreflang, structured-data audit).
+- Content expansion — explicitly last.

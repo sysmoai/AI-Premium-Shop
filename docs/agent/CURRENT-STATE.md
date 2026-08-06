@@ -1,8 +1,8 @@
 # Current state
 
 **Last updated:** 2026-08-07 (same-day session: evidence collection →
-implementation → host/version consistency)
-**Branch:** `seo/homepage-product-authority` — **5 commits, NOT pushed, NOT
+implementation → host/version consistency → catalogue integrity)
+**Branch:** `seo/homepage-product-authority` — **6 commits, NOT pushed, NOT
 merged, NOT deployed.** `main` is unchanged from commit `1e147bb`.
 
 Read this file and `NEXT-TASK.md` first. `SITE-CONTEXT.md` and
@@ -17,7 +17,8 @@ once, not every session. `WORKLOG.md` is the full session-by-session log.
 | `6bf90f2` | Unsupported outcome claims removed from the 6 solution cards |
 | `60ad59d` | Binance removed sitewide (12+ files incl. the live AI concierge's own system prompt); 3 Bangla FAQ business-fact conflicts fixed |
 | `115bc9b` | Docs for the above |
-| (this session) | `artifacts/aips-website/src/app/robots.ts` hardened to disallow-all (defense-in-depth for an archived app); `BLOCKERS.md` B11/B12 |
+| `94632bc` | `artifacts/aips-website/src/app/robots.ts` hardened to disallow-all (defense-in-depth for an archived app); `BLOCKERS.md` B11/B12 opened |
+| `6c4673e` | `validate-catalog.mjs` shared-vs-personal price sanity check (found a real Midjourney anomaly, BACKLOG.md #18); `docs/agent/OWNER-ACTIONS.md` with exact Vercel evidence/commands; B11's root-cause narrative corrected |
 
 Full evidence for every fix: `docs/homepage/executive-audit.md`.
 
@@ -37,16 +38,20 @@ Full evidence for every fix: `docs/homepage/executive-audit.md`.
   anywhere. Preview URL was in a session's earlier turn — re-deploy fresh
   before relying on it, preview URLs aren't durable.
 
-## New finding this session: B11 (HIGH, open)
+## New finding this session: B11 (HIGH, open) — corrected
 
-A decommissioned Next.js rebuild (`artifacts/aips-website`, archived
-2026-07-30) has a **still-live, publicly crawlable deployment**
-(`aips-website-two.vercel.app`) with no canonical tag, a permissive
-`robots.txt`, and a stale catalog ("118+ tools", "3,000+ customers"). This is
-the actual live source of the "conflicting indexed versions" pattern named in
-every recent audit prompt. Fixing it requires a Vercel infrastructure action
-(delete/unalias the project or deployment) that needs owner approval — not
-resolved this session. See `BLOCKERS.md` B11 for full detail and options.
+A **stale duplicate Vercel project** (not the archived Next.js app — that
+was this session's first guess, corrected after `vercel project inspect`)
+has a still-live, publicly crawlable deployment
+(`aips-website-two.vercel.app`, project `prj_gDXbOWXKZP7S1KxPnLkyHs5TVuer`)
+with no canonical tag, a permissive `robots.txt`, and a stale catalog ("118+
+tools", "3,000+ customers"). Its Root Directory is already
+`artifacts/aips-landing` — the correct app — but it was deployed once on
+2026-07-30 and never redeployed since. This is the actual live source of
+the "conflicting indexed versions" pattern named in every recent audit
+prompt. Exact evidence, commands, and three remediation options (safest:
+`vercel alias rm` ×3, reversible) are in `docs/agent/OWNER-ACTIONS.md` OA1 —
+needs your go-ahead, not resolved this session.
 
 ## Known-good numbers (do not retype these — derive them)
 
@@ -73,11 +78,15 @@ the recurring source of drift bugs).
 ## Not done, and why
 
 - Not pushed/deployed — needs your explicit go-ahead (see `NEXT-TASK.md`).
-- B11 (stray live deployment) — infrastructure action, needs your approval.
+- B11 (stray live deployment), B12 (2-hop www redirect) — infrastructure
+  actions, need your approval; exact steps in `OWNER-ACTIONS.md`.
+- BACKLOG.md #18 (Midjourney Pro Shared priced above Pro Personal) — needs
+  your confirmation: real error or intentional.
 - B1 (10,000+ customers), B2 (30-day warranty policy), B5 (44 shared-access
   products) — all owner decisions, unchanged.
 - Higgsfield offer (BDT 1,199/~1,200 credits) — still unverified against the
   vendor; see `RESEARCH-CACHE.md` for exactly what needs checking before any
-  of that work proceeds.
+  of that work proceeds. Needs real external web research — scope as its own
+  session rather than stacking onto this one.
 - No Playwright/browser smoke test exists (B9) — still the single biggest
   gap in the test suite.

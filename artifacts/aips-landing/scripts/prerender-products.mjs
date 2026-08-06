@@ -306,6 +306,41 @@ const ALIAS_CANONICAL = (() => {
   return map;
 })();
 
+// Reciprocal EN <-> BN route pairs for hreflang. Mirrors GuidePage.tsx's own
+// BANGLA_ALTERNATE map (kept in sync manually — that file's comment says the
+// same) plus the homepage and the one Bangla page outside GuidePage's system
+// (EducatorsBangla, which pairs with /guides/educators, not a /best-ai-for-*
+// route). A route with no entry here gets NO hreflang alternate tags at all.
+//
+// Previously every route got the SAME static 3 tags from index.html's
+// template — hardcoded there because that file is the initial HTML for every
+// route (Vercel serves it as the fallback shell) and nothing overrode it for
+// prerendered pages. That was already a fix for a worse bug (hreflang="bn"
+// pointing at /faq sitewide) but still asserted the HOMEPAGE's pair on
+// 265+ pages that have no Bangla equivalent — telling Google e.g.
+// /best-ai-for-students' Bangla alternate is the homepage, not /students-bn.
+// SEOHead.tsx's useEffect DOES set the correct pair client-side for the 6
+// pages that have one, but only after React mounts — never reaching the
+// prerendered HTML crawlers and view-source see. This fixes both: correct
+// pairs where one exists, none where it doesn't, in the static HTML itself.
+const HREFLANG_PAIRS = {
+  "/": "/bn",
+  "/bn": "/",
+  "/best-ai-for-students": "/students-bn",
+  "/students-bn": "/best-ai-for-students",
+  "/best-ai-for-freelancers": "/freelancers-bn",
+  "/freelancers-bn": "/best-ai-for-freelancers",
+  "/best-ai-for-creators": "/creators-bn",
+  "/creators-bn": "/best-ai-for-creators",
+  "/best-ai-for-business": "/smb-bn",
+  "/smb-bn": "/best-ai-for-business",
+  "/best-ai-for-developers": "/developers-bn",
+  "/developers-bn": "/best-ai-for-developers",
+  "/guides/educators": "/educators-bn",
+  "/educators-bn": "/guides/educators",
+};
+const isBnRoute = (r) => HREFLANG_PAIRS[r] !== undefined && (r === "/bn" || r.endsWith("-bn"));
+
 const writeRoute = (route, title, desc, body, extraLd = [], lang = null) => {
   const canonical = ALIAS_CANONICAL.get(route) ?? `${SITE}${route === "/products" ? "/products" : route}`;
   let html = template
@@ -316,7 +351,21 @@ const writeRoute = (route, title, desc, body, extraLd = [], lang = null) => {
   // Bangla pages were serving Bangla prose inside an English document — wrong
   // for crawlers, for hreflang consistency and for screen readers.
   if (lang) html = html.replace(/<html lang="[^"]*"/, `<html lang="${lang}"`);
+  // Strip index.html's static hreflang block (correct only for "/" and "/bn"
+  // themselves) — replaced below with the route-correct set, or nothing.
+  html = html.replace(/\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>\n?/g, "");
+  const bnAlt = HREFLANG_PAIRS[route];
+  const hreflangTags = bnAlt
+    ? isBnRoute(route)
+      ? `<link rel="alternate" hreflang="bn-BD" href="${SITE}${route}" />
+<link rel="alternate" hreflang="en-BD" href="${SITE}${bnAlt}" />
+<link rel="alternate" hreflang="x-default" href="${SITE}${bnAlt}" />`
+      : `<link rel="alternate" hreflang="en-BD" href="${SITE}${route}" />
+<link rel="alternate" hreflang="bn-BD" href="${SITE}${bnAlt}" />
+<link rel="alternate" hreflang="x-default" href="${SITE}${route}" />`
+    : "";
   html = html.replace("</head>", `<link rel="canonical" href="${canonical}" />
+${hreflangTags}
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(desc)}" />
 <meta property="og:url" content="${canonical}" />

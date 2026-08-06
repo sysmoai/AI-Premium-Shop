@@ -16,7 +16,7 @@ export default function SMBBangla() {
         description="আপনার ছোট ব্যবসা স্বয়ংক্রিয় করুন AI দিয়ে। গ্রাহক সেবা, মার্কেটিং, বিক্রয় অটোমেশন। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/smb-bn"
         jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA]}
-        hreflang={{ bn: "/smb-bn", en: "/best-ai-for-business" }}
+        hreflang={{ "bn-BD": "/smb-bn", "en-BD": "/best-ai-for-business" }}
       />
 
       <Navbar />

@@ -234,7 +234,7 @@ export default function FAQPage() {
         // claim bn: "/faq" too, i.e. English and Bangla are the same document,
         // the same lie the sitewide index.html default told about every page.
         // Only state a hreflang pair when a real alternate exists.
-        hreflang={{ en: "/faq" }}
+        hreflang={{ "en-BD": "/faq" }}
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "FAQ" }]} />
 

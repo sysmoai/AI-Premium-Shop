@@ -792,7 +792,6 @@ const POSTS: Record<
             ["Nagad", "Send to our Nagad number", "5-30 min", "None"],
             ["Rocket", "Send to our Rocket number", "5-30 min", "None"],
             ["Bank Transfer", "Transfer to our account", "Same day", "None"],
-            ["Binance USDT", "Crypto transfer", "15-60 min", "Network fee"],
           ]}
           highlightCol={0}
         />

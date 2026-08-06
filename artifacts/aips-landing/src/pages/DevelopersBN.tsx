@@ -14,7 +14,7 @@ export default function DevelopersBN() {
         description="GitHub Copilot, Claude Pro, Cursor দিয়ে কোডিং দ্রুত করুন। বাংলাদেশে সাশ্রয়ী দামে। ৳399 থেকে শুরু।"
         canonical="https://aipremiumshop.com/developers-bn"
         jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA]}
-        hreflang={{ bn: "/developers-bn", en: "/best-ai-for-developers" }}
+        hreflang={{ "bn-BD": "/developers-bn", "en-BD": "/best-ai-for-developers" }}
       />
 
       <Navbar />

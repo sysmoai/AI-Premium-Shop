@@ -16,7 +16,7 @@ export default function CreatorsBN() {
         description="YouTube, TikTok, Instagram ক্রিয়েটরদের জন্য ChatGPT, Midjourney, Runway, ElevenLabs। আরও দ্রুত, আরও ভাল কন্টেন্ট তৈরি করুন। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/creators-bn"
         jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA]}
-        hreflang={{ bn: "/creators-bn", en: "/best-ai-for-creators" }}
+        hreflang={{ "bn-BD": "/creators-bn", "en-BD": "/best-ai-for-creators" }}
       />
 
       <Navbar />

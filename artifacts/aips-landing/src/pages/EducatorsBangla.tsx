@@ -16,7 +16,7 @@ export default function EducatorsBangla() {
         description="শিক্ষাকে AI দিয়ে সহজ করুন। পাঠ পরিকল্পনা, প্রশ্ন তৈরি, শিক্ষার্থী প্রতিক্রিয়া স্বয়ংক্রিয়। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/educators-bn"
         jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA]}
-        hreflang={{ bn: "/educators-bn", en: "/guides/educators" }}
+        hreflang={{ "bn-BD": "/educators-bn", "en-BD": "/guides/educators" }}
       />
 
       <Navbar />

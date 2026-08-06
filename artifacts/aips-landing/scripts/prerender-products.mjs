@@ -3,10 +3,12 @@
 // The SPA ships an empty <div id="root"> for every URL, so crawlers that don't
 // execute JS see 271 identical blank shells. This writes real static HTML —
 // per-page <title>, meta description, canonical, JSON-LD, and readable body
-// content — into dist/public/product/<slug>/index.html. Vercel serves files
-// before applying the /(.*) -> /index.html rewrite, so these take precedence
-// for crawlers while the bundled SPA still hydrates and takes over on load
-// (createRoot().render() replaces the static children).
+// content — into dist/public/product/<slug>/index.html. Vercel serves a
+// static file match directly (no rewrite involved) for any of these paths,
+// while the bundled SPA still hydrates and takes over on load
+// (createRoot().render() replaces the static children). vercel.json no
+// longer has a catch-all rewrite to /index.html — see that file and the
+// /404.html generation below for why.
 //
 // Everything is derived from data/products.json at build time: titles and
 // descriptions mirror ProductPage.tsx's seo block exactly, prices come from
@@ -99,6 +101,11 @@ ${li(p.capabilities, (c) => `<li>${esc(c)}</li>`)}
 <h3>Ask us these before you pay</h3>
 ${li(hfOffer.credits.questionsToAsk, (q) => `<li>${esc(q)}</li>`)}
 </section>
+
+${hfOffer.platformVerifiedFacts?.items?.length ? `<section><h2>What we have verified about the platform</h2>
+<p>General facts about Higgsfield itself, checked directly against the vendor's own current terms and blog pages — not this specific offer's plan or entitlements, which stay in the section below until confirmed.</p>
+${li(hfOffer.platformVerifiedFacts.items, (f) => `<li>${esc(f.claim)} — <a href="${esc(f.sourceUrl)}" rel="nofollow noopener">source</a>, verified ${esc(f.verifiedOn)}</li>`)}
+</section>` : ""}
 
 <section><h2>What we have not verified</h2>
 <p>These were supplied to us as selling points. We have not confirmed them against current vendor documentation or the account interface, so they are listed as open questions rather than features.</p>
@@ -299,6 +306,41 @@ const ALIAS_CANONICAL = (() => {
   return map;
 })();
 
+// Reciprocal EN <-> BN route pairs for hreflang. Mirrors GuidePage.tsx's own
+// BANGLA_ALTERNATE map (kept in sync manually — that file's comment says the
+// same) plus the homepage and the one Bangla page outside GuidePage's system
+// (EducatorsBangla, which pairs with /guides/educators, not a /best-ai-for-*
+// route). A route with no entry here gets NO hreflang alternate tags at all.
+//
+// Previously every route got the SAME static 3 tags from index.html's
+// template — hardcoded there because that file is the initial HTML for every
+// route (Vercel serves it as the fallback shell) and nothing overrode it for
+// prerendered pages. That was already a fix for a worse bug (hreflang="bn"
+// pointing at /faq sitewide) but still asserted the HOMEPAGE's pair on
+// 265+ pages that have no Bangla equivalent — telling Google e.g.
+// /best-ai-for-students' Bangla alternate is the homepage, not /students-bn.
+// SEOHead.tsx's useEffect DOES set the correct pair client-side for the 6
+// pages that have one, but only after React mounts — never reaching the
+// prerendered HTML crawlers and view-source see. This fixes both: correct
+// pairs where one exists, none where it doesn't, in the static HTML itself.
+const HREFLANG_PAIRS = {
+  "/": "/bn",
+  "/bn": "/",
+  "/best-ai-for-students": "/students-bn",
+  "/students-bn": "/best-ai-for-students",
+  "/best-ai-for-freelancers": "/freelancers-bn",
+  "/freelancers-bn": "/best-ai-for-freelancers",
+  "/best-ai-for-creators": "/creators-bn",
+  "/creators-bn": "/best-ai-for-creators",
+  "/best-ai-for-business": "/smb-bn",
+  "/smb-bn": "/best-ai-for-business",
+  "/best-ai-for-developers": "/developers-bn",
+  "/developers-bn": "/best-ai-for-developers",
+  "/guides/educators": "/educators-bn",
+  "/educators-bn": "/guides/educators",
+};
+const isBnRoute = (r) => HREFLANG_PAIRS[r] !== undefined && (r === "/bn" || r.endsWith("-bn"));
+
 const writeRoute = (route, title, desc, body, extraLd = [], lang = null) => {
   const canonical = ALIAS_CANONICAL.get(route) ?? `${SITE}${route === "/products" ? "/products" : route}`;
   let html = template
@@ -309,7 +351,21 @@ const writeRoute = (route, title, desc, body, extraLd = [], lang = null) => {
   // Bangla pages were serving Bangla prose inside an English document — wrong
   // for crawlers, for hreflang consistency and for screen readers.
   if (lang) html = html.replace(/<html lang="[^"]*"/, `<html lang="${lang}"`);
+  // Strip index.html's static hreflang block (correct only for "/" and "/bn"
+  // themselves) — replaced below with the route-correct set, or nothing.
+  html = html.replace(/\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>\n?/g, "");
+  const bnAlt = HREFLANG_PAIRS[route];
+  const hreflangTags = bnAlt
+    ? isBnRoute(route)
+      ? `<link rel="alternate" hreflang="bn-BD" href="${SITE}${route}" />
+<link rel="alternate" hreflang="en-BD" href="${SITE}${bnAlt}" />
+<link rel="alternate" hreflang="x-default" href="${SITE}${bnAlt}" />`
+      : `<link rel="alternate" hreflang="en-BD" href="${SITE}${route}" />
+<link rel="alternate" hreflang="bn-BD" href="${SITE}${bnAlt}" />
+<link rel="alternate" hreflang="x-default" href="${SITE}${route}" />`
+    : "";
   html = html.replace("</head>", `<link rel="canonical" href="${canonical}" />
+${hreflangTags}
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(desc)}" />
 <meta property="og:url" content="${canonical}" />
@@ -375,7 +431,7 @@ function aiVideoHubBody() {
 ${jobs.map((j) => `<h3>${esc(j.title)}</h3><p>${esc(j.body)}</p><ul>${j.picks.map((sl) => `<li><a href="${linkFor(sl)}">${esc(nameFor(sl))}</a>${priceFor(sl)}</li>`).join("")}</ul>`).join("")}
 </section>
 <section><h2>Buying these from Bangladesh</h2>
-<h3>Payment</h3><p>Every one of these platforms bills in USD, which most Bangladeshi debit cards cannot complete. We handle that step — you pay in BDT via bKash, Nagad, Rocket, bank transfer or Binance Pay.</p>
+<h3>Payment</h3><p>Every one of these platforms bills in USD, which most Bangladeshi debit cards cannot complete. We handle that step — you pay in BDT via bKash, Nagad, Rocket or bank transfer.</p>
 <h3>Account ownership</h3><p>Check this before buying anywhere, including here. A personal plan means the account is in your name with your own password. Ask explicitly which type you are getting — the answer changes what happens if you want to cancel.</p>
 <h3>How we verify</h3><p>Each product page carries the date we last checked its facts and a link to the provider's own pricing page. Where we have not verified a claim, we say so on the page rather than repeating it.</p>
 </section>`;
@@ -486,9 +542,27 @@ function resolveGuidePrice(raw) {
 
 const guideSrc = fs.readFileSync(path.join(APP, "src/pages/GuidePage.tsx"), "utf8");
 const guideBlock = (key) => {
-  // Keys appear both bare (students:) and quoted ("designers":) — try both.
-  let start = guideSrc.indexOf(`  ${key}: {`);
-  if (start < 0) start = guideSrc.indexOf(`  "${key}": {`);
+  // Anchor on the unique `slug: "best-ai-for-<key>"` field inside the real
+  // GUIDES content block, then walk backward for that block's own opening
+  // brace — NOT a forward indexOf search from the top of the file.
+  // GuidePage.tsx also has GUIDE_ICONS/GUIDE_GLOWS lookup maps earlier in the
+  // file using the identical `"<key>": {` shape for any key that must be
+  // quoted (hyphenated ones like "job-seekers" can't be a bare identifier in
+  // either map), so a forward search found that unrelated icon-map entry
+  // first, bounded the "block" all the way through to the next `\n  },` —
+  // which landed inside GUIDES.students — and extracted ITS h1/copy for
+  // /best-ai-for-job-seekers. Reproduced and confirmed as the cause of that
+  // page prerendering the Students page's content — see
+  // docs/homepage/executive-audit.md F4. Keys with no hyphen (designers,
+  // marketers, ecommerce) never collided: their icon-map entries use extra
+  // alignment spaces ("designers:     {") that don't match this lookup's
+  // single-space pattern, so the forward search always skipped past them —
+  // pure luck, not a property of the fix that was actually in place.
+  const slugAt = guideSrc.indexOf(`slug: "best-ai-for-${key}"`);
+  if (slugAt < 0) return null;
+  let start = guideSrc.lastIndexOf(`  ${key}: {`, slugAt);
+  const quotedStart = guideSrc.lastIndexOf(`  "${key}": {`, slugAt);
+  if (quotedStart > start) start = quotedStart;
   if (start < 0) return null;
   const next = guideSrc.indexOf("\n  }," , start);
   return next < 0 ? null : guideSrc.slice(start, next);
@@ -620,15 +694,44 @@ for (const [key, { file, label }] of Object.entries(GUIDE_PAGES)) {
 }
 
 // --- Info pages: parse titles/descriptions from components
-// Parse SEOHead title/description: handles "string", 'string', and backtick templates.
-const parseSeoHead = (src) => {
+//
+// Mirrors src/lib/catalogStats.ts's formulas exactly. This script is plain
+// Node and cannot import that TS/ESM module (same constraint documented on
+// resolveGuidePrice() above), so the same numbers are recomputed here against
+// the same already-loaded `products` array.
+const listedPricesForStats = products.filter((p) => !p.requestPrice && p.price != null).map((p) => p.price);
+const CATALOG_STATS = {
+  TOTAL_PRODUCTS: distinct.length,
+  TOTAL_PLANS: products.length,
+  MIN_PRICE: Math.min(...listedPricesForStats),
+  MAX_PRICE: Math.max(...listedPricesForStats),
+};
+
+// Resolves ${VarName} placeholders in an SEOHead title/description template
+// literal against CATALOG_STATS. This used to just strip every ${...} blank,
+// which is how /pricing, /about and /faq shipped meta descriptions like
+// "tools from BDT ." to production — see docs/homepage/executive-audit.md F3.
+// Unknown variables still strip blank (safer than leaking "${Foo}" into
+// output) but warn, so a future new variable fails loudly instead of quietly
+// reintroducing this bug.
+const resolveInterpolation = (s, route) => s.replace(/\$\{(\w+)\}/g, (full, name) => {
+  if (name in CATALOG_STATS) return String(CATALOG_STATS[name]);
+  console.warn(`prerender: ${route} — unresolvable "\${${name}}" in SEOHead title/description, stripped blank`);
+  return "";
+});
+
+// Parse SEOHead title/description: handles "string", {`template`}, and
+// {'string'} forms. Each branch's character class excludes only its own
+// delimiter — the previous combined backtick/single-quote branch excluded
+// BOTH quote characters from inside a backtick string, so any copy with an
+// apostrophe (AboutPage's "Bangladesh's") failed to match at all and silently
+// fell through to the generic fallback description instead of its real one.
+const parseSeoHead = (src, route) => {
   let title = null, desc = null;
-  // Try double-quoted, single-quoted, and template-literal title
-  let m = src.match(/title=\{"([^"]*)"\}/) || src.match(/title=\{(["'`])([^"'`]+?)\1\}/s) || src.match(/title="([^"]+)"/);
-  if (m) title = (m[2] ?? m[1]).replace(/\$\{[^}]+\}/g, "").replace(/\s+/g, " ").trim();
-  // Try double-quoted, single-quoted, and template-literal description
-  m = src.match(/description=\{"([^"]*)"\}/) || src.match(/description=\{(["'`])([^"'`]+?)\1\}/s) || src.match(/description="([^"]+)"/);
-  if (m) desc = (m[2] ?? m[1]).replace(/\$\{[^}]+\}/g, "").replace(/\s+/g, " ").trim();
+  let m = src.match(/title="([^"]+)"/) || src.match(/title=\{`([^`]+)`\}/s) || src.match(/title=\{'([^']+)'\}/s) || src.match(/title=\{"([^"]*)"\}/);
+  if (m) title = resolveInterpolation(m[1], route).replace(/\s+/g, " ").trim();
+  m = src.match(/description="([^"]+)"/) || src.match(/description=\{`([^`]+)`\}/s) || src.match(/description=\{'([^']+)'\}/s) || src.match(/description=\{"([^"]*)"\}/);
+  if (m) desc = resolveInterpolation(m[1], route).replace(/\s+/g, " ").trim();
   return { title, desc };
 };
 
@@ -647,7 +750,7 @@ const INFO_PAGES = {
 };
 for (const [route, { file }] of Object.entries(INFO_PAGES)) {
   const src = fs.readFileSync(path.join(APP, "src/pages", file), "utf8");
-  const { title: t, desc: d } = parseSeoHead(src);
+  const { title: t, desc: d } = parseSeoHead(src, route);
   const title = t || "AI Premium Shop Bangladesh";
   const desc = d || "Premium AI tools in Bangladesh with BDT prices. Pay with bKash or Nagad.";
   writeRoute(route, title, desc,
@@ -906,6 +1009,42 @@ for (const route of smRoutes) {
 }
 console.log(`prerender: fallback sweep wrote ${fallbacks} pages; sitemap coverage now ${smRoutes.filter((r) => r === "/" || fs.existsSync(path.join(DIST, r.replace(/^\//, ""), "index.html"))).length}/${smRoutes.length}`);
 
+// ---- Homepage "Find Your Solution" section: the six audience cards
+// (headline, problems, solution, price, CTA) from PainPointSection.tsx's own
+// CARDS array. This section renders correctly for real users after hydration
+// but was entirely absent from the prerendered/pre-hydration homepage HTML —
+// every other major section on the site gets this treatment, this one was
+// missed. See docs/homepage/executive-audit.md F5.
+function solutionCardsBody() {
+  const src = fs.readFileSync(path.join(APP, "src/sections/PainPointSection.tsx"), "utf8");
+  const m = src.match(/const CARDS = (\[[\s\S]*?\n\];)/);
+  if (!m) { console.warn("prerender: PainPointSection CARDS array not matched — homepage solution cards skipped"); return ""; }
+  let cards;
+  try {
+    // Drop `Icon: Identifier,` / `SvgComp: Identifier,` — component
+    // references, not data — and resolve the one catalog-derived price this
+    // array uses (same technique as resolveGuidePrice() above).
+    const literal = m[1]
+      .replace(/\n\s*(Icon|SvgComp):\s*\w+,/g, "")
+      .replace(/\$\{MIN_PRICE\}/g, String(CATALOG_STATS.MIN_PRICE))
+      .replace(/;$/, "");
+    cards = evalLiteral(literal);
+  } catch (e) {
+    console.warn("prerender: PainPointSection CARDS eval failed —", e.message);
+    return "";
+  }
+  return `
+<section aria-labelledby="solutions-heading">
+<h2 id="solutions-heading">Find Your Solution — Every Problem Has an AI Solution</h2>
+${cards.map((c) => `<article>
+<h3>${esc(c.headline)}</h3>
+<ul>${c.pains.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>
+<p><strong>Solution:</strong> ${esc(c.solution)}</p>
+<p>${esc(c.price)} — <a href="${esc(c.href)}">${esc(c.cta)}</a></p>
+</article>`).join("")}
+</section>`;
+}
+
 // ---- Homepage. The one route the fallback sweep deliberately skips, and the
 // only page on the site that was still shipping an empty <div id="root"> —
 // i.e. the single most important URL was invisible to any crawler that does
@@ -953,7 +1092,7 @@ console.log(`prerender: fallback sweep wrote ${fallbacks} pages; sitemap coverag
   const body = `<main>
 <h1>What Takes You 3 Hours — AI Does in 15 Minutes.</h1>
 <p><strong>${total} premium AI tools</strong>, ${products.length} plans from ${fmtBDT(minPrice)} to ${fmtBDT(maxPrice)}. ChatGPT, Claude, Midjourney, Notion and more — <strong>no international card needed</strong>.</p>
-<p>Pay with bKash, Nagad, Rocket, bank transfer or Binance. Delivery over WhatsApp, typically in 5–30 minutes, with a 30-day replacement warranty. Trusted by 10,000+ customers across Bangladesh since 2022.</p>
+<p>Pay with bKash, Nagad, Rocket or bank transfer. Delivery over WhatsApp, typically in 5–30 minutes, with a 30-day replacement warranty. Trusted by 10,000+ customers across Bangladesh since 2022.</p>
 
 <h2>Most wanted AI subscriptions in Bangladesh</h2>
 <ul>${featuredLi}</ul>
@@ -970,7 +1109,7 @@ comparisons, team accounts, and the tools people ask about most on WhatsApp.</p>
   ["chatgpt-plans-comparison-bangladesh", "ChatGPT Plans — Plus vs Business vs Pro compared"],
   ["claude-pro-bangladesh", "Claude Team — for teams and small agencies"],
   ["gemini-advanced-bangladesh", "Google AI Pro — Gemini, 2TB storage, Workspace AI"],
-  ["github-copilot-bangladesh", "GitHub Copilot — code 50% faster in your IDE"],
+  ["github-copilot-bangladesh", "GitHub Copilot — AI code completion in your IDE"],
   ["midjourney-bangladesh", "Midjourney — the image generator everyone asks for"],
   ["chatgpt-business-bangladesh", "ChatGPT Business — admin controls, no training on your data"],
 ].map(([slug, label]) => `<li><a href="/${slug}">${esc(label)}</a></li>`).join("")}</ul>
@@ -978,15 +1117,7 @@ comparisons, team accounts, and the tools people ask about most on WhatsApp.</p>
 <h2>Browse by category</h2>
 <ul>${catLi}</ul>
 
-<h2>Find the right AI for your work</h2>
-<ul>
-<li><a href="/best-ai-for-students">Best AI tools for students</a></li>
-<li><a href="/best-ai-for-freelancers">Best AI tools for freelancers</a></li>
-<li><a href="/best-ai-for-developers">Best AI tools for developers</a></li>
-<li><a href="/best-ai-for-creators">Best AI tools for content creators</a></li>
-<li><a href="/best-ai-for-business">Best AI tools for business</a></li>
-<li><a href="/best-ai-for-job-seekers">Best AI tools for job seekers</a></li>
-</ul>
+${solutionCardsBody()}
 
 ${faqs.length ? `<h2>Frequently asked questions</h2>${faqs.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}` : ""}
 
@@ -998,6 +1129,42 @@ ${faqs.length ? `<h2>Frequently asked questions</h2>${faqs.map((f) => `<h3>${esc
     `Buy ChatGPT, Claude, Midjourney, Copilot, DeepSeek and more AI tools in Bangladesh. bKash/Nagad payment, WhatsApp delivery. From BDT ${minPrice}/month.`,
     body, ld);
   console.log(`prerender: homepage written (${faqs.length} FAQs, ${featuredSlugs.length} featured brands)`);
+}
+
+// ---- /404.html — mirrors src/pages/not-found.tsx. vercel.json's rewrite
+// used to send EVERY unmatched path to /index.html with an HTTP 200, so any
+// invalid or mistyped URL (including ones crawlers try, like
+// /products/<slug> — this app's real pattern is /product/<slug>, singular)
+// rendered the homepage as if it were that page. The app's own client router
+// already has a real `<Route component={NotFound} />` catch-all and shows it
+// correctly once JS hydrates — but the pre-hydration paint and anything that
+// doesn't execute JS saw the homepage at 200. Vercel serves a root-level
+// 404.html (with a real 404 status) for any request that matches neither a
+// static file nor a rewrite; removing the catch-all rewrite from vercel.json
+// (see that file) lets this take over instead of index.html. See
+// docs/homepage/executive-audit.md F1.
+{
+  const total = distinct.length;
+  const body = `
+<main>
+<section style="min-height:70vh;display:flex;align-items:center;justify-content:center;padding:5rem 1rem;text-align:center">
+<div>
+<h1>404 — Page Not Found</h1>
+<p>The page you're looking for doesn't exist or has been moved.</p>
+<p><a href="/">Browse All ${total} AI Tools</a> · <a href="https://wa.me/8801865385348">Order on WhatsApp</a></p>
+<p>Popular pages: <a href="/chatgpt-plans-bangladesh">ChatGPT Plans</a> · <a href="/claude-pro-bangladesh">Claude Pro</a> · <a href="/midjourney-bangladesh">Midjourney</a> · <a href="/bundles">Bundles</a></p>
+</div>
+</section>
+</main>`;
+  const title = "Page Not Found | AI Premium Shop";
+  const desc = `The page you're looking for doesn't exist or has been moved. Browse ${total} AI tools on AI Premium Shop.`;
+  let html = template
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
+    .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
+    .replace('<div id="root"></div>', `<div id="root">${shell(body)}</div>`)
+    .replace("</head>", `<meta name="robots" content="noindex" />\n</head>`);
+  fs.writeFileSync(path.join(DIST, "404.html"), html);
+  console.log("prerender: wrote 404.html (static not-found body, robots noindex)");
 }
 
 // ============================================================================
@@ -1035,6 +1202,10 @@ function isProse(s) {
   if (/#[0-9a-fA-F]{3,8}\b|rgba?\(|\d+px|\d+rem/.test(s)) return false; // css values
   if (!/[a-zA-Z\u0980-\u09FF]/.test(s)) return false;           // needs letters (Latin or Bengali)
   if (/^[A-Z0-9_]+$/.test(s)) return false;                     // CONST_KEYS
+  // Defense in depth against the quote-collision class of bug fixed above:
+  // reject anything that still looks like JS/TSX source rather than prose,
+  // even if some future match spans a code boundary another way.
+  if (/\buseState\(|\buseEffect\(|\buseMemo\(|\buseCallback\(|=>\s*\{|^\)[;,]|\bconst\s*\[|\bimport\s.*\bfrom\b/.test(s)) return false;
   return true;
 }
 
@@ -1065,7 +1236,19 @@ function extractComponentProse(src) {
   }
 
   // Double-quoted, single-quoted, and backtick literals with no interpolation.
-  for (const m of s.matchAll(/"((?:[^"\\]|\\.){30,1200})"|'((?:[^'\\]|\\.){30,1200})'|`([^`$\\]{30,1200})`/g)) {
+  //
+  // The length floor here used to be {30,1200} — matching the {30,1200} floor
+  // isProse() applies below. That let a short real literal (e.g. useState("all"))
+  // fail to match on its own, so its closing quote got reinterpreted as the
+  // OPENING quote of a fresh match that ran forward to the next same-type
+  // quote — landing well past the string, into surrounding code. On
+  // PricingPage.tsx this produced two adjacent 3-char useState("all") calls
+  // and "captured" the raw source between them: "); const [accessFilter,
+  // setAccessFilter] = useState(" — shipped to production inside a <p> tag.
+  // Matching every literal ({0,1200}) and filtering by length in isProse()
+  // instead means the regex always finds each literal's own real closing
+  // quote, so it can never skip past one and treat code as prose.
+  for (const m of s.matchAll(/"((?:[^"\\]|\\.){0,1200})"|'((?:[^'\\]|\\.){0,1200})'|`([^`$\\]{0,1200})`/g)) {
     const raw = (m[1] ?? m[2] ?? m[3] ?? "").replace(/\\"/g, '"').replace(/\\'/g, "'").trim();
     if (!isProse(raw)) continue;
     const key = raw.slice(0, 60);

@@ -94,7 +94,21 @@
       "Long-form video — this is a short-clip generator, not a replacement for an editor on a 20-minute piece.",
       "Frame-exact brand control — generated footage varies between runs; if a client signs off shot-by-shot, generation is the wrong tool.",
       "Work requiring a real named person's likeness — you need that person's permission, and no subscription grants it.",
-      "Anyone expecting unlimited output. Every credit-based plan has a ceiling; see the credits section."
+      "Anyone expecting unlimited output. Every credit-based plan has a ceiling; see the credits section.",
+      "Anyone who needs fast, parallel Supercomputer or agent-workflow generation on the entry plan — those tools always spend credits regardless of plan, and 'unlimited' mode itself runs one generation at a time on a relaxed queue, not in parallel."
+    ]
+  },
+
+  "platformVerifiedFacts": {
+    "_note": "General facts about the Higgsfield platform confirmed against the vendor's own current terms/blog pages (not this specific AIPS offer's tier or entitlements — those stay in pendingVerification). Each item is safe to state as fact site-wide; do not infer from these that AIPS's proposed 1,200-credit Plus offer includes any of them without separately confirming the plan.",
+    "items": [
+      { "claim": "\"Unlimited\" is not a plan — it's a toggle available via a 1-day free trial, a 7-day window bundled with Plus/Max/Ultra, or a separate paid \"Unlimited Models Marketplace\" bundle. It covers all 11 image, 7 video and 5 audio models across all three paths.", "sourceUrl": "https://higgsfield.ai/blog/new-unlimited-more-models", "verifiedOn": "2026-08-07" },
+      { "claim": "\"Unlimited\" never covers MCP, CLI, Canvas, Supercomputer, Marketing Studio or Shorts Studio — those spend credits regardless of plan or unlimited status.", "sourceUrl": "https://higgsfield.ai/blog/new-unlimited-more-models", "verifiedOn": "2026-08-07" },
+      { "claim": "\"Unlimited\" mode runs on a relaxed queue: one image, one video and one audio generation at a time — not in parallel. Credit-paid generations use a separate, faster priority queue.", "sourceUrl": "https://higgsfield.ai/blog/new-unlimited-more-models", "verifiedOn": "2026-08-07" },
+      { "claim": "4K output under unlimited mode is limited to Max-annual and Ultra-annual plans; other tiers cap at 1080p.", "sourceUrl": "https://higgsfield.ai/blog/new-unlimited-more-models", "verifiedOn": "2026-08-07" },
+      { "claim": "Supercomputer requires a paid plan (\"Plus or above\" for most meaningful actions) and is never free — an example animation step (Seedance 2.0, 10s, 1080p, High) costs ~90 credits (~$4.50); a full production workflow ~200 credits (~$10).", "sourceUrl": "https://higgsfield.ai/blog/higgsfield-supercomputer-guide", "verifiedOn": "2026-08-07" },
+      { "claim": "Account/login credential sharing is expressly prohibited (\"You may not share your Account or login credentials with anyone\"), and creating an account on behalf of another individual is prohibited except for an entity the creator is authorized to represent — AIPS has no such authorization (see compliance.authorizationOnFile). This is why this offer's account-ownership model requires the customer to create and hold their own account.", "sourceUrl": "https://higgsfield.ai/terms-of-use-agreement", "verifiedOn": "2026-08-07" },
+      { "claim": "Commercial use of generated Inputs/Outputs is unrestricted — Higgsfield claims no ownership and places no commercial-use limit on what a customer generates.", "sourceUrl": "https://higgsfield.ai/terms-of-use-agreement", "verifiedOn": "2026-08-07" }
     ]
   },
 
@@ -102,9 +116,9 @@
     "_note": "Claims supplied as business inputs that are NOT yet backed by current vendor documentation or written authorization. These render as open questions on the page. Move an item into platform.capabilities or offer.* only with a sourceUrl and a verifiedOn date.",
     "items": [
       { "claim": "1,200 monthly credits on the Plus plan", "why": "Credit allocations change with vendor pricing revisions. Not re-checked against higgsfield.ai/pricing for this offer." },
-      { "claim": "Unlimited access to eligible models", "why": "No documented scope. 'Unlimited' with an undefined boundary is exactly the claim spec section 15 forbids — which interfaces, which models, what fair-use ceiling, what queue priority?" },
+      { "claim": "Unlimited access to eligible models", "why": "The general platform scope is now verified (see platformVerifiedFacts) — but whether THIS offer's specific proposed plan (1,200 credits, BDT 1,199/mo) actually includes the unlimited toggle at all is still unconfirmed. Unlimited is bundled with Plus/Max/Ultra or sold separately as a Marketplace bundle; which one (if any) the proposed BDT 1,199 price maps to has not been checked against the vendor's current (client-rendered, not fetchable by automated tooling) pricing page." },
       { "claim": "Seedance unlimited access", "why": "Model availability varies by plan, account and region. Needs confirmation in the actual account UI." },
-      { "claim": "Supercomputer access", "why": "Unconfirmed whether it is included at this tier, whether its actions consume credits, and whether any 'unlimited' benefit extends into it." },
+      { "claim": "Supercomputer access", "why": "Now verified that Supercomputer NEVER falls under 'unlimited' and always spends credits regardless of plan (see platformVerifiedFacts) — what remains unconfirmed is only whether the proposed offer's plan tier grants Supercomputer access at all, and the exact vendor-cost-per-credit rate needed for docs/higgsfield/unit-economics.md's calculation." },
       { "claim": "Specific model line-up (Seedance, Kling, Veo, Sora, WAN)", "why": "Model rosters on aggregator platforms change without notice. Publishing a stale list misleads buyers; version numbers especially must not be guessed." },
       { "claim": "30-day replacement guarantee", "why": "No written policy on file for a customer-owned third-party account AIPS does not control." }
     ]
@@ -122,7 +136,7 @@
   },
 
   "payment": {
-    "methods": ["bKash", "Nagad", "Rocket", "Bank transfer", "Binance Pay"],
+    "methods": ["bKash", "Nagad", "Rocket", "Bank transfer"],
     "note": "No international card required. This is the whole reason the service exists — Higgsfield bills in USD and most Bangladeshi debit cards cannot complete that charge."
   },
 
@@ -136,10 +150,11 @@
 
   "faq": [
     { "q": "Who owns the Higgsfield account?", "a": "You do. You create it with your own email, set your own password, and keep recovery access. AI Premium Shop assists with the payment and the setup — it does not hold, share or resell logins." },
+    { "q": "Why does AI Premium Shop use this model instead of a shared or pre-made account?", "a": "Higgsfield's own terms of use prohibit sharing account credentials with anyone and prohibit creating an account on behalf of another individual without written authorization to represent them — which AI Premium Shop does not have. A customer-owned account, set up by the customer themselves with our assistance, is the only model consistent with those terms." },
     { "q": "Is AI Premium Shop an official Higgsfield partner?", "a": "No. We are an independent service and have no reseller, affiliate or partnership authorization from Higgsfield. We help Bangladeshi customers pay for and set up a subscription they own themselves." },
     { "q": "Why is the price confirmed on WhatsApp instead of shown as a checkout?", "a": "Because the vendor's plan pricing and entitlements change, and this specific offer has not been re-verified against Higgsfield's current pricing page. Quoting a live figure and confirming it before payment is more honest than publishing a number that may already be stale." },
     { "q": "Can you guarantee unlimited video generation?", "a": "No. Every credit-based plan has limits, and we will not describe any plan as unlimited without the vendor's current documentation stating the exact scope — which models, which interfaces, and what fair-use ceiling applies." },
-    { "q": "How do I pay from Bangladesh?", "a": "bKash, Nagad, Rocket, bank transfer or Binance Pay. No international card is needed on your side." },
+    { "q": "How do I pay from Bangladesh?", "a": "bKash, Nagad, Rocket or bank transfer. No international card is needed on your side." },
     { "q": "What happens when the month ends?", "a": "The subscription sits on your own account, so renewal and cancellation are yours to control directly with Higgsfield. Nothing renews through us." },
     { "q": "Can I get a refund?", "a": "Refund terms for a customer-owned third-party subscription are set by the vendor, not by us. Before you pay, ask us what is and is not recoverable for your specific case — we would rather tell you upfront than argue after." }
   ],

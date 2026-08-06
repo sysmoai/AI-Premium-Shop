@@ -34,6 +34,21 @@ const offer = JSON.parse(fs.readFileSync(path.join(APP, "data/higgsfield-offer.j
 const errors = [];
 const warnings = [];
 
+// --- /404.html: Vercel's fallback for any path matching neither a static
+// file nor a redirect. vercel.json used to rewrite every unmatched path to
+// /index.html at HTTP 200 — this file (and removing that rewrite) is the fix.
+// See docs/homepage/executive-audit.md F1.
+{
+  const notFoundPath = path.join(DIST, "404.html");
+  if (!fs.existsSync(notFoundPath)) {
+    errors.push("dist/public/404.html is missing — unmatched paths will fall back to Vercel's generic error page instead of a branded, indexable-as-noindex 404");
+  } else {
+    const html = fs.readFileSync(notFoundPath, "utf8");
+    if (!/noindex/.test(html)) errors.push("dist/public/404.html: missing robots noindex");
+    if (!/404/.test(html)) errors.push("dist/public/404.html: doesn't look like a not-found page (no \"404\" text)");
+  }
+}
+
 // --- /bn: the component and the static prerender must read the SAME source.
 // Before this, BanglaBN.tsx carried its own hardcoded Bangla while the prerender
 // emitted different content — two versions of the same page, one for crawlers
@@ -103,6 +118,22 @@ const PLACEHOLDER = [/\blorem ipsum\b/i, /\bcoming soon\b/i, /\bTODO\b/, /\bLoad
 // legitimately writes "'Unlimited' with an undefined boundary", which is prose,
 // not a leaked JS value.
 const VALUE_LEAK = [/>\s*(undefined|NaN)\s*</, /৳\s*(undefined|NaN)\b/, /\b(undefined|NaN)\s*\/\s*(mo|month)\b/, /:\s*(undefined|NaN)\s*[<,]/];
+// Raw JS/TSX source fragments that must never reach crawlable text. Found live
+// on /pricing: a quote-pairing bug in the prerender's prose-extraction regex
+// captured "); const [accessFilter, setAccessFilter] = useState(" out of
+// PricingPage.tsx and shipped it inside a <p> tag. That regex is fixed (see
+// scripts/prerender-products.mjs, extractComponentProse) — this is the
+// regression test the fix needs, checked against every built page's stripped
+// text, not just the one page it happened on. See
+// docs/homepage/executive-audit.md F3.
+const SOURCE_LEAK = [
+  /\buseState\(|\buseEffect\(|\buseMemo\(|\buseCallback\(/,
+  /\bconst\s*\[\s*\w+,\s*set[A-Z]\w*\s*\]/,
+  /=>\s*\{/,
+  /^\)[;,]/m,
+  /\bimport\s+[\w{}, ]+\s+from\s+["']/,
+  /\bclassName=["']/,
+];
 
 for (const p of pages) {
   const { route, html } = p;
@@ -146,6 +177,9 @@ for (const p of pages) {
   }
   for (const re of VALUE_LEAK) {
     if (re.test(html)) { errors.push(`${route}: leaked JS value in rendered output — "${html.match(re)[0].trim()}"`); break; }
+  }
+  for (const re of SOURCE_LEAK) {
+    if (re.test(text)) { errors.push(`${route}: leaked JS/TSX source fragment in crawlable text — "${text.match(re)[0].trim()}"`); break; }
   }
 
   // --- thin content

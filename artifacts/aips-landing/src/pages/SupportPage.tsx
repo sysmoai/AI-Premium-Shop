@@ -30,7 +30,7 @@ const FAQS = [
   },
   {
     q: "What payment methods do you support?",
-    a: "bKash, Nagad, Rocket, Bank Transfer, and Binance (USDT). No international credit card needed.",
+    a: "bKash, Nagad, Rocket, and Bank Transfer. No international credit card needed.",
   },
 ];
 

@@ -84,11 +84,11 @@ name: AI Premium Shop (AIPS)
 domain: aipremiumshop.com
 description: Bangladesh's AI subscription marketplace. ${distinct.length} premium AI tools — ChatGPT, Claude, Midjourney, Gemini, GitHub Copilot, Runway — from BDT ${minPrice}/mo via bKash/Nagad/Rocket.
 tagline: Premium AI Tools in Bangladesh — From BDT ${minPrice}/month
-founded: 2024
+founded: 2022
 products: ${distinct.length}
 categories: ${byCategory.length}
 request-price products (contact for current price): ${requestPriceCount}
-payments: bKash, Nagad, Rocket, Bank Transfer, Binance
+payments: bKash, Nagad, Rocket, Bank Transfer
 delivery: 5-30 minutes (shared plans), 2-4 hours (personal accounts)
 contact: +8801865385348 (WhatsApp)
 

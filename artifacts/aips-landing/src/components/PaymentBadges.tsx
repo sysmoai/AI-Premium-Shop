@@ -3,13 +3,14 @@ import { useT } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 // text picked per-bg so it clears WCAG AA (4.5:1) — white fails on #f6921e
-// (2.32:1) and #f0b90b (1.80:1); #1a1a1a passes both at 7.50:1 / 9.65:1.
+// (2.32:1); #1a1a1a passes at 7.50:1.
+// Binance (crypto) removed pending written Bangladesh legal/compliance review
+// of the exact transaction flow — see docs/homepage/executive-audit.md F2.
 const paymentMethods = [
   { name: "bKash", bg: "#e2136e", text: "#fff" },
   { name: "Nagad", bg: "#f6921e", text: "#1a1a1a" },
   { name: "Rocket", bg: "#8b2f97", text: "#fff" },
   { name: "Bank Transfer", bg: "#1a5276", text: "#fff" },
-  { name: "Binance", bg: "#f0b90b", text: "#1a1a1a" },
 ];
 
 interface PaymentBadgesProps {

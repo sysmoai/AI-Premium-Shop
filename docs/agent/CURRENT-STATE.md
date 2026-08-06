@@ -1,55 +1,119 @@
 # Current state
 
-**Last updated:** 2026-08-05 (session 16, Opus 5)
-**Branch:** main
-**Deployed:** yes — merge commit `65eba1e` + follow-up, live on aipremiumshop.com
+**Last updated:** 2026-08-07 (same-day session, 6th turn: evidence collection
+→ implementation → host/version consistency → catalogue integrity → vendor
+compliance/Higgsfield verification → savings-claims validation → hreflang
+fix → fabricated-testimonials removal)
+**Branch:** `seo/homepage-product-authority` — **16 commits, NOT pushed, NOT
+merged, NOT deployed.** `main` is unchanged from commit `1e147bb`.
 
-Read this file and `NEXT-SESSION.md` first. The root `CLAUDE.md` remains the
-long-form session log; this is the short "where things stand" view.
+Read this file and `NEXT-TASK.md` first. `SITE-CONTEXT.md` and
+`ARCHITECTURE.md` are the "understand the system" references. `WORKLOG.md`
+is the full session-by-session log — long at this point, read the most
+recent entries first.
 
-## What is live and verified
+## What's on the branch, not yet live — grouped by theme
 
-| Thing | State | Evidence |
-|---|---|---|
-| `/product/higgsfield-ai-bangladesh` | Live, enquiry-only, 8,702 static chars (was 1,536) | curl'd after deploy; 1 h1, 9 h2, no Offer node, disclaimer present |
-| Higgsfield compliance | Category F, CTA disabled | `docs/compliance/higgsfield-offer-review.md`, gated by `validate-higgsfield-offer.mjs` |
-| Page-load blink | Fixed — 4 root causes | 0 visible chars at first paint on 5 routes; `docs/performance/page-load-flash.md` |
-| `/ai-video` decision hub | Live, 3,770 static chars (was 1,112) | `src/sections/AIVideoHub.tsx` + prerender extraction |
-| Homepage AI Video module | Live, 4,517 static chars (was 3,489) | `src/sections/AIVideoFeatureSection.tsx` |
-| `/privacy` duplicate canonical | Fixed | both `/privacy` and `/privacy-policy` now canonicalise to `/privacy-policy` |
-| `seo:check` | Passes clean (0 errors, 160 warnings) | `pnpm run seo:check` |
+**Routing/rendering (F1-F5):** real 404.html, source-code-leak regex fix,
+`/pricing`/`/about`/`/faq` metadata fix, job-seekers prerender-collision
+fix, homepage solution-cards prerendering.
 
-## Gates that now run
+**Compliance:** Binance removed sitewide (12+ files incl. the live AI
+concierge's system prompt); vendor-compliance matrix skeleton (37 vendors,
+all unverified by construction); Higgsfield offer verified against the
+vendor's actual current terms (found the account-ownership model is
+*required* by ToS, not just cautious; found a real unit-economics red flag
+in the proposed BDT 1,199 price); payment-method compliance docs (found the
+current logos are hand-drawn approximations, not real assets).
 
-- `pnpm run build` → blog-price gate → **Higgsfield compliance gate** → vite build
-  → prerender → prerender audit.
-- **Anti-flash contract** is asserted on every built page by `seo:check`: shell
-  wrapper, hide rule (with comments stripped, so a commented-out rule fails),
-  balanced CSS comments, the `.js` script, and the inline background.
-- `pnpm run seo:check` → 273 built pages: duplicate/missing titles and
-  descriptions, H1 count, canonical host, soft-404 and placeholder text, leaked
-  JS values, unsupported "official"/unscoped "unlimited", expired offer dates,
-  malformed WhatsApp CTAs, `<img>` alt and dimensions, JSON-LD parse + fake
-  rating + Offer-vs-compliance-state contradiction.
-- `.github/workflows/seo-quality.yml` — on push/PR to the app, plus weekly so
-  time-based expiry fails on its own.
-- `.github/workflows/live-site-monitor.yml` — daily 08:30 Dhaka, content-based
-  (not status-code-based) checks against production; opens a labelled issue on
-  failure.
+**Content integrity:** unsupported outcome claims removed from the 6
+solution cards; 3 Bangla FAQ business-fact conflicts fixed; 9+ "#1"/
+superlative claims fixed (cross-checked against arena.ai's live leaderboard,
+not just assumed); 7 bare savings-percentage claims fixed (one confirmed
+actively wrong via real math, not just unverified); **fabricated
+testimonials removed from all 5 guide pages** — fake named individuals with
+invented grades/earnings/follower-counts/cost-savings, the most severe
+finding this whole project has produced.
 
-## Known-good numbers (do not retype these — derive them)
+**Technical SEO:** catalogue shared-vs-personal price sanity check (found a
+real Midjourney anomaly, owner review pending); **hreflang fixed sitewide**
+— every one of 272 pages was asserting the homepage's Bangla pair
+regardless of whether it had one; now correct reciprocal pairs (or none)
+in the actual static HTML, not just client-side.
 
-Catalog: 239 records, 157 distinct product slugs, 40 brand-page slugs, 272
-sitemap routes, 273 built pages. All prices come from `data/products.json` via
-`catalogStats.ts` / `tierPrice()` / `cheapestPriceFor()`.
+**Infrastructure:** stray duplicate Vercel deployment found, root-caused,
+and documented with exact remediation commands (not executed — owner
+action); 2-hop `www` redirect documented.
 
-## Pre-existing failures (NOT caused by session 16)
+Full evidence: `docs/homepage/executive-audit.md` (F1-F5),
+`docs/higgsfield/offer-evidence.md` + `unit-economics.md`,
+`docs/compliance/` (vendor-review.md, payment-methods.md),
+`docs/agent/OWNER-ACTIONS.md`, `docs/agent/RESEARCH-CACHE.md`.
 
-- `pnpm run typecheck` fails: `lib/api-client-react/dist` is not built, so 14
-  TS6305/TS7006 errors in `AddToCartButton`, `CartButton`, `api-config` and
-  `pages/admin/*`. `build` does not run typecheck, so this does not block deploy.
-- `pnpm install --frozen-lockfile` fails at the workspace root: the lockfile's
-  `overrides` do not match `figma-make-v2`'s. Use
+## Verified, this session (every commit individually, not batched)
+
+- `pnpm run build` — clean, 272/272 sitemap routes, 0 errors, every commit.
+- `pnpm run seo:check` — 0 errors throughout.
+- `pnpm run typecheck` — 15 pre-existing errors, unchanged, confirmed no
+  new ones after every content/component change.
+- `node scripts/validate-catalog.mjs` — 0 hard failures.
+- `node scripts/validate-higgsfield-offer.mjs` — OK.
+- **Two fresh Vercel previews deployed and checked against real
+  infrastructure** (not just local build output): confirmed 404 behavior,
+  job-seekers H1, pricing/about meta descriptions, homepage solution cards,
+  zero Binance mentions, the Higgsfield "What we have verified" section,
+  zero superlative claims, **correct hreflang tags on a real paired page**,
+  and **zero fabricated-testimonial content** — all checked live via
+  `vercel curl`, not assumed from local output.
+
+## Open owner-decision items (nothing below blocks further safe work)
+
+- **B11** (stray deployment) / **B12** (2-hop redirect) — exact commands in
+  `OWNER-ACTIONS.md`.
+- **BACKLOG #18** — Midjourney "Pro Shared" priced above its own personal
+  tiers.
+- **BACKLOG #20** — is "Claude Opus 4.6" still the current model?
+- **BACKLOG #21** — payment logos are unofficial; supply real assets or
+  approve the text-only interim fallback.
+- **`docs/higgsfield/unit-economics.md`** — needs real vendor-cost numbers
+  before the BDT 1,199 offer can be considered launch-ready.
+- B1 (10,000+ customers), B2 (warranty policy), B5 (44 shared-access
+  products, matrix skeleton exists, no vendor terms actually checked yet).
+
+## Known-good numbers (do not retype — derive them)
+
+Catalog: 239 records, 197 distinct product slugs, 272 sitemap routes, 273
+built pages. Formulas live in `catalogStats.ts` (components) and a parallel
+`CATALOG_STATS` object in `scripts/prerender-products.mjs` (prerender) —
+see `ARCHITECTURE.md` for why these are two separate implementations and
+why that split is the recurring source of drift bugs found this session.
+
+## Pre-existing failures (not caused by any session)
+
+- `pnpm run typecheck`: 15 TS6305/TS7006 errors, unbuilt
+  `lib/api-client-react`. `build` doesn't run typecheck, doesn't block
+  deploy.
+- `pnpm install --frozen-lockfile` fails at the workspace root (lockfile
+  `overrides` mismatch). Use
   `pnpm install --filter ./artifacts/aips-landing --no-frozen-lockfile`.
-- `validate-truth.mjs` reports ~127 unverified claims across the catalog. Real,
-  and the biggest item is in BLOCKERS.md.
+- `validate-truth.mjs` / `validate-catalog.mjs` warn-level unverified-claim
+  counts (warranty, unlimited, delivery-time terms) — long-standing
+  compliance debt, tracked, not new.
+
+## Not done, and why
+
+- Not pushed/deployed — this branch is now a substantial 16 commits of real
+  fixes. Recommend push/PR for review rather than continuing to grow it
+  further — see `NEXT-TASK.md`.
+- Owner-decision items above — genuinely not mine to resolve.
+- **Playwright/browser smoke tests (B9)** — still not started. The single
+  biggest remaining gap: nothing in any gate actually executes the built
+  app in a browser.
+- **Full individual audience-page audit** — the testimonial-fabrication
+  sweep touched all 5 guide pages but was scoped to that one issue; the
+  master prompt's full per-page checklist (unique intent, ethical
+  limitations, internal links, etc.) hasn't been run against any of them.
+- `docs/seo/` structured-data and full technical-SEO audit beyond hreflang
+  — hreflang specifically was audited and fixed; canonical/schema/sitemap
+  were spot-checked in earlier turns, not exhaustively re-verified this
+  turn.

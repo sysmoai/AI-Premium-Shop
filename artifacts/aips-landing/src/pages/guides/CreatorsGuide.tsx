@@ -81,40 +81,6 @@ export default function CreatorsGuide() {
     },
   ];
 
-  const testimonials = [
-    {
-      name: "Fahim Ahmmed",
-      platform: "YouTube - 500K subscribers",
-      quote:
-        "AI tools helped me grow from 50K to 500K subscribers in 8 months. I can now publish 3-4 videos per week where I used to publish 1.",
-      role: "Tech YouTuber",
-      image: "🎬",
-    },
-    {
-      name: "Zara Khan",
-      platform: "TikTok - 2M followers",
-      quote:
-        "Midjourney thumbnails increased my CTR by 40%. ChatGPT scripts help me stay consistent with posting. AI is my creative partner.",
-      role: "Creator",
-      image: "🎭",
-    },
-    {
-      name: "Tasnim Rana",
-      platform: "Instagram - 300K followers",
-      quote:
-        "AI voiceovers and music allow me to produce Reels 10x faster. I went from 5 Reels/month to 30 Reels/month with AI.",
-      role: "Content Creator",
-      image: "📸",
-    },
-    {
-      name: "Karim Hassan",
-      platform: "Podcast - Top 1%",
-      quote:
-        "AI tools revolutionized my content production. Scripts, music, voiceovers—all from AI. Now I can focus on growth and strategy.",
-      role: "Podcaster",
-      image: "🎙️",
-    },
-  ];
 
   const faqs = [
     {
@@ -375,36 +341,6 @@ export default function CreatorsGuide() {
                 </Link>
               </motion.div>
             ))}
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="px-4 py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Success Stories from Creators</h2>
-
-            <p className="text-sm text-gray-500 text-center -mt-8 mb-10">Illustrative examples of how customers in Bangladesh typically use these tools — representative scenarios, not verified individual reviews.</p>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {testimonials.map((testimonial, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  className="bg-white rounded-lg p-8 border-l-4 border-pink-600"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="text-4xl">{testimonial.image}</div>
-                    <div>
-                      <div className="font-bold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600">{testimonial.platform}</div>
-                      <div className="text-sm text-pink-600 font-medium">{testimonial.role}</div>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 italic">"{testimonial.quote}"</p>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </section>
 

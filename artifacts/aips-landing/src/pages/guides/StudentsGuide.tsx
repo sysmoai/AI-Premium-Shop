@@ -80,41 +80,6 @@ export default function StudentsGuide() {
     },
   ];
 
-  const testimonials = [
-    {
-      name: "Fatima Ahmed",
-      university: "BUET, Dhaka",
-      quote:
-        "ChatGPT helped me understand thermodynamics concepts that I struggled with for weeks. I went from a D to an A- in that subject.",
-      role: "Engineering Student",
-      image: "👩‍🎓",
-    },
-    {
-      name: "Raihan Khan",
-      university: "Dhaka University",
-      quote:
-        "Using Claude for essay writing improved my grades significantly. My professors commented on the quality of my critical analysis.",
-      role: "Literature Student",
-      image: "👨‍🎓",
-    },
-    {
-      name: "Priya Das",
-      university: "Independent University Bangladesh",
-      quote:
-        "GitHub Copilot made my programming assignments so much easier. I went from spending 8 hours to 3 hours per assignment.",
-      role: "CS Student",
-      image: "👩‍💻",
-    },
-    {
-      name: "Zahir Hossain",
-      university: "AIUB, Dhaka",
-      quote:
-        "AI tools helped me prepare for my final exams in just 2 weeks. I scored in the top 10% of my class.",
-      role: "Business Student",
-      image: "👨‍🎓",
-    },
-  ];
-
   const faqs = [
     {
       q: "Is using AI tools for university assignments considered cheating?",
@@ -374,36 +339,6 @@ export default function StudentsGuide() {
                 </Link>
               </motion.div>
             ))}
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="px-4 py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Success Stories from Bangladesh Students</h2>
-
-            <p className="text-sm text-gray-500 text-center -mt-8 mb-10">Illustrative examples of how customers in Bangladesh typically use these tools — representative scenarios, not verified individual reviews.</p>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {testimonials.map((testimonial, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  className="bg-white rounded-lg p-8 border-l-4 border-blue-600"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="text-4xl">{testimonial.image}</div>
-                    <div>
-                      <div className="font-bold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600">{testimonial.university}</div>
-                      <div className="text-sm text-blue-600 font-medium">{testimonial.role}</div>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 italic">"{testimonial.quote}"</p>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </section>
 

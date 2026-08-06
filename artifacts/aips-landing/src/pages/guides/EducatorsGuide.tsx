@@ -81,41 +81,6 @@ export default function EducatorsGuide() {
     },
   ];
 
-  const testimonials = [
-    {
-      name: "Dr. Karim Hassan",
-      institution: "Dhaka University",
-      quote:
-        "AI lesson planning tools saved me 15 hours per week. I can now spend more time mentoring students instead of creating materials. Student satisfaction increased by 40%.",
-      role: "Professor",
-      image: "👨‍🏫",
-    },
-    {
-      name: "Shirin Aktar",
-      institution: "BRAC School, Dhaka",
-      quote:
-        "Using AI for grading feedback means I can provide personalized comments to all 60 students instead of generic feedback. They say my feedback is the most helpful they've ever received.",
-      role: "School Teacher",
-      image: "👩‍🏫",
-    },
-    {
-      name: "Rashid Ali",
-      institution: "Online Tutoring Platform",
-      quote:
-        "AI generates quiz questions in seconds. I used to spend 2 hours creating assessments. Now it's 15 minutes. Quality is actually better because AI generates varied question types.",
-      role: "Tutor",
-      image: "👨‍🏫",
-    },
-    {
-      name: "Nida Fatima",
-      institution: "Private Institute",
-      quote:
-        "My students now have unlimited practice materials. AI creates variations of questions so they don't get bored. Exam scores improved because they practice more.",
-      role: "Educator",
-      image: "👩‍🏫",
-    },
-  ];
-
   const faqs = [
     {
       q: "Is using AI tools ethical in education?",
@@ -186,9 +151,9 @@ export default function EducatorsGuide() {
     <PageLayout>
       <SEOHead
         title="AI Teaching Toolkit: Create Better Lessons, Grade Faster | Bangladesh"
-        description="Best AI tools for educators in Bangladesh 2026. Lesson planning, assessment, grading. Increase student engagement 40%. From BDT 399/month."
+        description="Best AI tools for educators in Bangladesh 2026. Lesson planning, assessment, grading support. From BDT 399/month."
         canonical="https://aipremiumshop.com/guides/educators"
-        hreflang={{ en: "/guides/educators", bn: "/educators-bn" }}
+        hreflang={{ "en-BD": "/guides/educators", "bn-BD": "/educators-bn" }}
         ogImage="https://aipremiumshop.com/og-educators.jpg"
         jsonLd={[breadcrumbSchema([{ name: "Home", href: "/" }, { name: "Educators Guide" }])]}
       />
@@ -232,20 +197,6 @@ export default function EducatorsGuide() {
             </a>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 md:gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-violet-600">15 hours</div>
-              <div className="text-sm text-gray-600">Time saved per week</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-violet-600">550+</div>
-              <div className="text-sm text-gray-600">Educators using us</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-violet-600">+40%</div>
-              <div className="text-sm text-gray-600">Student engagement boost</div>
-            </div>
-          </div>
         </motion.section>
 
         {/* Problem */}
@@ -299,7 +250,7 @@ export default function EducatorsGuide() {
             >
               <BarChart3 className="w-12 h-12 mb-4" />
               <h3 className="text-xl font-bold mb-3">Higher Engagement</h3>
-              <p>Visually rich lessons, varied question types, and quick feedback keep students engaged. Engagement increases by 40% on average.</p>
+              <p>Visually rich lessons, varied question types, and quick feedback can help keep students engaged.</p>
             </motion.div>
 
             <motion.div
@@ -376,36 +327,6 @@ export default function EducatorsGuide() {
                 </Link>
               </motion.div>
             ))}
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="px-4 py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Success Stories from Bangladesh Educators</h2>
-
-            <p className="text-sm text-gray-500 text-center -mt-8 mb-10">Illustrative examples of how customers in Bangladesh typically use these tools — representative scenarios, not verified individual reviews.</p>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {testimonials.map((testimonial, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  className="bg-white rounded-lg p-8 border-l-4 border-violet-600"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="text-4xl">{testimonial.image}</div>
-                    <div>
-                      <div className="font-bold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600">{testimonial.institution}</div>
-                      <div className="text-sm text-violet-600 font-medium">{testimonial.role}</div>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 italic">"{testimonial.quote}"</p>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </section>
 

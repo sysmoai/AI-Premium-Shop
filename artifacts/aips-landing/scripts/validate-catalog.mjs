@@ -293,6 +293,27 @@ for (const [slug, recs] of bySlug) {
   }
 }
 
+// ---------- 2d. shared-vs-personal price sanity ----------
+// A shared tier splits one subscription's cost across several customers, so
+// it should cost less than the closest personal tier of the same product —
+// that's the entire commercial premise of "shared". Any shared record priced
+// at or above a personal record's price for the same slug is a data anomaly:
+// either a real pricing/labeling error, or a legitimate case (a shared
+// higher-capability tier vs. a cheaper personal entry tier) that needs a
+// human to confirm, not a script to silently accept. Warning, not a hard
+// failure — this needs business judgement, not an automatic price change.
+for (const [slug, recs] of bySlug) {
+  const shared = recs.filter((r) => r.accessType === "shared" && typeof r.price === "number");
+  const personal = recs.filter((r) => r.accessType === "personal" && typeof r.price === "number");
+  for (const s of shared) {
+    for (const p of personal) {
+      if (s.price >= p.price) {
+        warnings.push(`slug "${slug}": shared tier "${s.tier}" (৳${s.price}) costs the same or more than personal tier "${p.tier}" (৳${p.price}) — confirm this is intentional, not a pricing error`);
+      }
+    }
+  }
+}
+
 // ---------- 3. secret scan ----------
 const SECRET_PATTERNS = [
   [/sk-[A-Za-z0-9_-]{20,}/, "OpenAI-style key"],
@@ -340,6 +361,30 @@ for (const file of scanTargets) {
 }
 for (const [term, n] of Object.entries(claimCounts).sort((a, b) => b[1] - a[1])) {
   warnings.push(`unverified-claim term "${term}": ${n} occurrences (data + pages)`);
+}
+
+// ---------- 4a. bare percentage-savings claims (warnings) ----------
+// The "% off" substring check above catches "83% off" but not "Savings vs
+// official: ~88%" or "~80%" sitting in a table cell next to a "vs official"
+// label — same unsupported-savings-number problem, different phrasing. Found
+// by grepping ComparisonPage.tsx directly: three comparison tables state
+// hand-typed savings percentages ("~88%", "~80%", "~70%", "~60%", "~83%")
+// with no visible calculation. Some percentages elsewhere in the codebase
+// (BudgetPage.tsx) ARE computed from product.officialUSD at render time —
+// this check flags hand-typed bare percentages specifically, not every "%"
+// in the codebase, so it doesn't fire on those.
+const BARE_PERCENT = /~?\d{1,3}%(?!\s*off\b)/gi;
+const SAVINGS_CONTEXT = /saving|vs\.?\s*official|cheaper|discount/i;
+for (const f of walk("src/pages")) {
+  const content = read(f);
+  const lines = content.split("\n");
+  lines.forEach((line, i) => {
+    if (!SAVINGS_CONTEXT.test(line)) return;
+    const matches = line.match(BARE_PERCENT);
+    if (matches) {
+      warnings.push(`${f}:${i + 1}: bare savings percentage "${matches.join(", ")}" near savings-language, no visible calculation — ${line.trim().slice(0, 90)}`);
+    }
+  });
 }
 
 // ---------- 5. governance-field coverage (warnings) ----------

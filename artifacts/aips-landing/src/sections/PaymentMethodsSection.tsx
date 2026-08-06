@@ -50,18 +50,10 @@ const paymentMethods = [
     speed: "Verified within 2 hours",
     gradient: "from-blue-600 to-blue-700",
   },
-  {
-    name: "Binance",
-    logo: (
-      <svg viewBox="0 0 100 100" className="w-12 h-12">
-        <rect fill="#F0B90B" width="100" height="100" rx="12" />
-        <text x="50" y="55" fontSize="48" fontWeight="900" fill="#111" textAnchor="middle" dy="0.3em">₿</text>
-      </svg>
-    ),
-    description: "Cryptocurrency",
-    speed: "Instant confirmation",
-    gradient: "from-yellow-400 to-yellow-500",
-  },
+  // Binance (crypto) removed pending written Bangladesh legal/compliance
+  // review of the exact transaction flow — Bangladesh Bank's 2022 circular
+  // restricts virtual-asset transactions, and no such review is on file. See
+  // docs/homepage/executive-audit.md F2. Do not re-add without that review.
 ];
 
 export function PaymentMethodsSection() {
@@ -85,7 +77,7 @@ export function PaymentMethodsSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {paymentMethods.map((method, idx) => (
             <motion.div
               key={method.name}

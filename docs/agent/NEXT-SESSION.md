@@ -1,6 +1,48 @@
 # Next session — start here
 
-**Written:** 2026-08-05, end of session 16.
+**Written:** 2026-08-07, evidence-collection session (no code changed).
+
+**Note on this file:** it was last substantively written at the end of
+session 16 (2026-08-05) and pointed at the `/bn` rebuild as the top
+priority. Git history shows that rebuild happened (session 17,
+2026-08-06 — see `27c960a`, `53aaf64` and related commits) plus a
+cookie-banner hotfix (B9) and a floating-button finding (B10), none of
+which got a `WORKLOG.md` entry. **Do not trust the "FIRST: finish the /bn
+rebuild" section below as current** — re-verify `/bn` state before acting on
+it. This is itself an instance of the doc-staleness problem this project
+keeps getting bitten by; reconciling `WORKLOG.md` with actual git history is
+a good five-minute task for whoever picks this up.
+
+## Do this first, revised (2026-08-07)
+
+Five new, precisely-diagnosed issues were found this session — see
+`docs/homepage/executive-audit.md` for full evidence and `BACKLOG.md` items
+0a–0e. In priority order:
+
+1. **0a — every unknown URL returns HTTP 200 serving the homepage.**
+   Site-wide soft-404 via Vercel's SPA rewrite. Highest severity, needs
+   careful scoping (client-side routes must keep working) — don't rush a fix
+   without enumerating the real route list first.
+2. **0b — Binance is live as an accepted payment method** (homepage FAQ text
+   + JSON-LD), no compliance doc on file. Matches the master-prompt
+   "BINANCE RULE" exactly. Disable pending written legal approval, the same
+   pattern already used for B4 (Higgsfield reseller authorization).
+3. **0c — `/pricing` meta description broken** (`PricingPage.tsx:62`, both
+   `TOTAL_PRODUCTS` and `MIN_PRICE` render empty in prerendered output).
+   Small, well-scoped, one file.
+4. **0d — `/best-ai-for-job-seekers` prerenders the Students page's H1**.
+   Root cause fully diagnosed in the audit doc (`guideBlock()` in
+   `scripts/prerender-products.mjs` collides with `GuidePage.tsx`'s
+   `GUIDE_ICONS` map on the `job-seekers` key specifically). Small, one file.
+5. **0e — homepage "Find Your Solution" section absent from prerendered
+   HTML.** `PainPointSection.tsx` is real and correct; it just never got the
+   same static-extraction treatment every other section has.
+
+Then continue to the (unverified-as-current) items below.
+
+---
+
+## Original next-session note, written end of session 16 — verify before use
 
 ## Do this first (5 minutes)
 

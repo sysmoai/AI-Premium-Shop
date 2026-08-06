@@ -30,7 +30,7 @@ const FAQS = [
   },
   {
     q: "What payment methods does AI Premium Shop accept?",
-    a: "bKash, Nagad, Rocket, bank transfer, and Binance Pay. No international credit card needed.",
+    a: "bKash, Nagad, Rocket, and bank transfer. No international credit card needed.",
   },
   {
     q: "Can I pay in installments?",
@@ -142,14 +142,21 @@ Not sure? Message us on WhatsApp and we'll recommend the perfect tool.`,
   },
   {
     q: "Can I pay in USD or use PayPal?",
-    a: "We primarily accept local payments (bKash, Nagad, Rocket). For international clients, we accept Binance USDT. We don't accept PayPal at this time.",
+    a: "We accept local Bangladesh payment methods only — bKash, Nagad, Rocket, and bank transfer. We don't currently support USD, PayPal, or international card payments. Message us on WhatsApp if you're an international customer and need another arrangement.",
   },
 ];
 
 const BN_FAQS = [
   {
     q: "AI Premium Shop কী?",
-    a: "AI Premium Shop বাংলাদেশের #১ AI সাবস্ক্রিপশন প্রদানকারী। ২০২৪ সাল থেকে ৩,০০০+ গ্রাহককে সেবা দিচ্ছি। ChatGPT Plus ৳৩৫০/মাস, Claude Pro, Midjourney সহ ৭৬+ AI টুলস। bKash/Nagad দিয়ে পেমেন্ট। ৩০ দিনের ওয়ারেন্টি।",
+    // Previously: "#১" (unsupported "number one" claim), "২০২৪ সাল থেকে" (conflicts
+    // with the English site's "since 2022"), "৩,০০০+ গ্রাহক" (conflicts with the
+    // English site's 10,000+ figure — itself unverified, tracked as BLOCKERS.md
+    // B1), a hardcoded "৭৬+" tool count (real count is TOTAL_PRODUCTS, currently
+    // 197), and a stale ৳350 ChatGPT Plus price (catalogStats.ts's own header
+    // comment already documents ৳350 as a known-wrong historical number). Fixed
+    // to match the English site's current claims and derive from the catalog.
+    a: `AI Premium Shop বাংলাদেশের একটি AI সাবস্ক্রিপশন প্রোভাইডার, ২০২২ সাল থেকে সক্রিয়। ChatGPT Plus ৳${cheapestPriceFor("chatgpt-plus-bangladesh")}/মাস থেকে শুরু, সাথে Claude Pro, Midjourney সহ ${TOTAL_PRODUCTS}+ AI টুলস। bKash/Nagad-এ পেমেন্ট করুন। ৩০ দিনের রিপ্লেসমেন্ট ওয়ারেন্টি সহ।`,
   },
   {
     q: "ChatGPT Plus কীভাবে কিনবো?",
@@ -157,7 +164,12 @@ const BN_FAQS = [
   },
   {
     q: "শেয়ার্ড অ্যাকাউন্ট কি নিরাপদ?",
-    a: "হ্যাঁ। আপনি প্রাইভেট প্রোফাইল পান। অন্য ইউজার আপনার চ্যাট দেখতে পারে না। ৩,০০০+ গ্রাহকের কোনো ডাটা সমস্যা হয়নি।",
+    // Dropped the trailing "৳৩,০০০+ গ্রাহকের কোনো ডাটা সমস্যা হয়নি" clause — an
+    // unverified customer-count used as safety evidence, absent from the
+    // English equivalent ("Is my data safe with a shared ChatGPT account?").
+    // Kept the rest matching that answer's existing scope; broader review of
+    // shared-account safety language is BLOCKERS.md B5, not resolved here.
+    a: "হ্যাঁ। আপনি প্রাইভেট প্রোফাইল পান। অন্য ইউজার আপনার চ্যাট দেখতে পারে না।",
   },
   {
     q: "ডেলিভারি কত দ্রুত?",
@@ -165,7 +177,7 @@ const BN_FAQS = [
   },
   {
     q: "কোন পেমেন্ট মাধ্যম গ্রহণ করেন?",
-    a: "bKash, Nagad, Rocket, ব্যাংক ট্রান্সফার, এবং Binance Pay। কোনো ইন্টারন্যাশনাল কার্ডের প্রয়োজন নেই।",
+    a: "bKash, Nagad, Rocket, এবং ব্যাংক ট্রান্সফার। কোনো ইন্টারন্যাশনাল কার্ডের প্রয়োজন নেই।",
   },
 ];
 
@@ -222,7 +234,7 @@ export default function FAQPage() {
         // claim bn: "/faq" too, i.e. English and Bangla are the same document,
         // the same lie the sitewide index.html default told about every page.
         // Only state a hreflang pair when a real alternate exists.
-        hreflang={{ en: "/faq" }}
+        hreflang={{ "en-BD": "/faq" }}
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "FAQ" }]} />
 

@@ -81,41 +81,6 @@ export default function FreelancersGuide() {
     },
   ];
 
-  const testimonials = [
-    {
-      name: "Akash Mondal",
-      platform: "Upwork - BDT 2,500/hr",
-      quote:
-        "AI tools helped me go from $5/hr to $25/hr. I can now write proposals, deliver projects, and handle more clients simultaneously. My income tripled.",
-      role: "Content Writer",
-      image: "👨‍💻",
-    },
-    {
-      name: "Sania Akter",
-      platform: "Fiverr - 5 stars",
-      quote:
-        "Midjourney allows me to offer graphic design services without expensive Adobe subscriptions. My clients love the quality and fast turnaround.",
-      role: "Graphic Designer",
-      image: "👩‍🎨",
-    },
-    {
-      name: "Riyaz Hossain",
-      platform: "Toptal - Senior Dev",
-      quote:
-        "GitHub Copilot + Claude Pro lets me complete projects 50% faster. I charge the same rate but can handle way more clients.",
-      role: "Web Developer",
-      image: "👨‍💻",
-    },
-    {
-      name: "Noor Islam",
-      platform: "99designs - Top Rated",
-      quote:
-        "AI tools are now essential in freelancing. Clients expect fast delivery and high quality. AI lets me deliver both without burning out.",
-      role: "UI/UX Designer",
-      image: "👩‍🎨",
-    },
-  ];
-
   const faqs = [
     {
       q: "Can I use AI-generated content for client work?",
@@ -127,7 +92,7 @@ export default function FreelancersGuide() {
     },
     {
       q: "How much can I save vs. official subscription prices?",
-      a: "Significantly. ChatGPT Plus costs $20/month officially (BDT 2,400+ with exchange and fees). We offer it for BDT 499—that's 79% savings. GitHub Copilot costs $20/month officially; we offer BDT 1,495. Midjourney is $20/month officially; we offer BDT 1,199.",
+      a: "ChatGPT Plus costs $20/month officially (BDT 2,400+ with exchange and fees, and needs an international card). We offer it for BDT 499 via local payment. GitHub Copilot costs $20/month officially; we offer BDT 1,495. Midjourney is $20/month officially; we offer BDT 1,199.",
     },
     {
       q: "Do I need an international credit card?",
@@ -375,36 +340,6 @@ export default function FreelancersGuide() {
                 </Link>
               </motion.div>
             ))}
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="px-4 py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Real Success Stories</h2>
-
-            <p className="text-sm text-gray-500 text-center -mt-8 mb-10">Illustrative examples of how customers in Bangladesh typically use these tools — representative scenarios, not verified individual reviews.</p>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {testimonials.map((testimonial, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  className="bg-white rounded-lg p-8 border-l-4 border-emerald-600"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="text-4xl">{testimonial.image}</div>
-                    <div>
-                      <div className="font-bold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600">{testimonial.platform}</div>
-                      <div className="text-sm text-emerald-600 font-medium">{testimonial.role}</div>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 italic">"{testimonial.quote}"</p>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </section>
 

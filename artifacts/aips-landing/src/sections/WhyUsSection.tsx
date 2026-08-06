@@ -30,7 +30,7 @@ const PILLARS = [
   {
     Icon: CreditCard,
     title: "Local Payment",
-    description: "bKash, Nagad, Rocket, Bank Transfer, Binance. No international card.",
+    description: "bKash, Nagad, Rocket, Bank Transfer. No international card.",
     color: "#10a37f",
   },
   {

@@ -56,20 +56,16 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://aipremiumshop.com/images/og/default-og.png" />
 
-    <!-- Hreflang for the homepage default (this file is the initial HTML for
-         EVERY route, since vercel.json rewrites /(.*) to /index.html — it is
-         what a crawler sees before JS executes, and what view-source and any
-         non-JS-executing bot see always).
-         Previously hreflang="bn" pointed at /faq — an English page — on
-         every single URL on the site, because this static file is served
-         everywhere and nothing overrode it for the 20+ pages that never
-         call SEOHead with a hreflang prop. SEOHead removes and replaces
-         these tags client-side, but only once React mounts.
-         The homepage's real Bangla equivalent is /bn; this now states that
-         correctly as the default, and SEOHead overrides it after mount for
-         any page that has a different (or no) Bangla counterpart. -->
-    <link rel="alternate" hreflang="en" href="https://aipremiumshop.com/" />
-    <link rel="alternate" hreflang="bn" href="https://aipremiumshop.com/bn" />
+    <!-- Hreflang for this file specifically (the homepage — its real Bangla
+         equivalent is /bn). This is ALSO the template scripts/prerender-
+         products.mjs's writeRoute() starts every one of the 272 built pages
+         from: it strips these 3 tags and injects the route-correct set (or
+         none, if the route has no Bangla counterpart) via its own
+         HREFLANG_PAIRS map — see that file's comment for the full history.
+         These only matter as-written if this raw file is ever served
+         un-prerendered (e.g. a local dev server before `pnpm run build`). -->
+    <link rel="alternate" hreflang="en-BD" href="https://aipremiumshop.com/" />
+    <link rel="alternate" hreflang="bn-BD" href="https://aipremiumshop.com/bn" />
     <link rel="alternate" hreflang="x-default" href="https://aipremiumshop.com/" />
 
     <!-- JSON-LD: Organization + LocalBusiness + WebSite with SearchAction -->

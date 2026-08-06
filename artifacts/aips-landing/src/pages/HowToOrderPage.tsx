@@ -77,11 +77,11 @@ const FAQS = [
   },
   {
     q: "What payment methods do you accept?",
-    a: "bKash, Nagad, Rocket, Bank Transfer (BRAC/DBL/Dutch-Bangla), and Binance (USDT). No international credit card or PayPal required.",
+    a: "bKash, Nagad, Rocket, and Bank Transfer (BRAC/DBL/Dutch-Bangla). No international credit card or PayPal required.",
   },
   {
     q: "What is a shared account?",
-    a: "A shared account means 2-5 users share the cost of a single subscription. Each user has their own chat history and sessions — you don't see each other's conversations. Shared accounts are 60-88% cheaper than buying the subscription yourself.",
+    a: "A shared account means 2-5 users share the cost of a single subscription. Each user has their own chat history and sessions — you don't see each other's conversations. Shared accounts cost meaningfully less per person than a personal account on the same plan.",
   },
   {
     q: "What's included in the 30-day warranty?",
@@ -163,7 +163,6 @@ export default function HowToOrderPage() {
                             Nagad: { bg: "#F6921E", text: "#1a1a1a" },
                             Rocket: { bg: "#8B2F8B", text: "#fff" },
                             "Bank Transfer": { bg: "#3b82f6", text: "#1a1a1a" },
-                            Binance: { bg: "#F0B90B", text: "#111" },
                           };
                           const c = PM[m] ?? { bg: "#f4b942", text: "#0a0e27" };
                           return (

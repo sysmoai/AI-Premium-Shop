@@ -5,14 +5,15 @@ import { BLOG_CATEGORIES } from "@/lib/blogTaxonomy";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 // text picked per-bg so it clears WCAG AA (4.5:1). White fails on Nagad
-// (2.32:1), Bank's #4285f4 (3.56:1), and Binance (1.80:1); #1a1a1a passes
-// all three (7.50:1, 4.88:1, 9.65:1) — Bank is the tightest margin.
+// (2.32:1) and Bank's #4285f4 (3.56:1); #1a1a1a passes both (7.50:1, 4.88:1)
+// — Bank is the tightest margin.
+// Binance (crypto) removed pending written Bangladesh legal/compliance review
+// of the exact transaction flow — see docs/homepage/executive-audit.md F2.
 const PAYMENT_BADGES = [
   { label: "bKash",   bg: "#E2136E", text: "#fff" },
   { label: "Nagad",   bg: "#F6921E", text: "#1a1a1a" },
   { label: "Rocket",  bg: "#8B2F8B", text: "#fff" },
   { label: "Bank",    bg: "#4285f4", text: "#1a1a1a" },
-  { label: "Binance", bg: "#F0B90B", text: "#1a1a1a" },
 ];
 
 const PRODUCT_LINKS = [

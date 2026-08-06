@@ -45,6 +45,18 @@ not by React, so hydration would mismatch on every page. The flash's actual root
 cause was the missing pre-CSS background, which the inline style fixes outright.
 Proper SSG is scoped as separate work in `docs/performance/page-load-flash.md`.
 
+## D17 — Did not delete/unalias the stray live `aips-website-two.vercel.app` deployment
+
+Found it publicly live, serving stale facts, with no canonical tag and a
+permissive robots.txt — see `BLOCKERS.md` B11. The actual fix is a Vercel
+infrastructure action (delete the project, remove the deployment/alias, or
+turn on Deployment Protection), not a code change. Deleting or unaliasing
+live infrastructure is hard to reverse and affects shared state outside this
+repository's own deploy pipeline, so it needs the owner's explicit go-ahead
+even though the CLI session had the access to do it directly. Hardened the
+archived app's `robots.ts` instead — safe, reversible, and closes the gap if
+that app is ever accidentally redeployed, without touching what's live today.
+
 ## D16.6 — Alias canonicals resolved generically
 
 `/privacy` vs `/privacy-policy` was fixed by extending the prerender's existing

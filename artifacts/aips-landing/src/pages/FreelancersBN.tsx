@@ -16,7 +16,7 @@ export default function FreelancersBN() {
         description="Upwork ও Fiverr-এর কাজের জন্য AI। ChatGPT, Claude, Midjourney দিয়ে প্রস্তাব লেখা, কন্টেন্ট তৈরি, কোড ডেলিভারি। বাংলাদেশে ৳499 থেকে।"
         canonical="https://aipremiumshop.com/freelancers-bn"
         jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA]}
-        hreflang={{ bn: "/freelancers-bn", en: "/best-ai-for-freelancers" }}
+        hreflang={{ "bn-BD": "/freelancers-bn", "en-BD": "/best-ai-for-freelancers" }}
       />
 
       <Navbar />

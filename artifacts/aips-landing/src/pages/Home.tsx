@@ -44,7 +44,7 @@ const FAQS = [
   {
     question: "What payment methods do you accept?",
     answer:
-      "bKash, Nagad, Rocket, Bank Transfer, and Binance (crypto). No international credit card needed.",
+      "bKash, Nagad, Rocket, and Bank Transfer. No international credit card needed.",
   },
   {
     question: "What is your refund policy?",
@@ -90,7 +90,7 @@ export default function Home() {
         title={`AI Premium Shop — ${TOTAL_PRODUCTS} Premium AI Tools Bangladesh | From BDT ${MIN_PRICE}`}
         description={`Buy ChatGPT, Claude, Midjourney, Copilot, DeepSeek and more AI tools in Bangladesh. bKash/Nagad payment, WhatsApp delivery. From BDT ${MIN_PRICE}/month.`}
         canonical="https://aipremiumshop.com/"
-        hreflang={{ en: "/", bn: "/bn" }}
+        hreflang={{ "en-BD": "/", "bn-BD": "/bn" }}
         jsonLd={[
           ORG_SCHEMA,
           WEBSITE_SCHEMA,

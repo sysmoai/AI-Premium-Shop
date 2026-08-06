@@ -38,7 +38,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     accent: "#10a37f",
     faqs: [
       { q: "What's the difference between Shared and Personal accounts?", a: "Shared accounts are cost-effective: you access the same plan as other users (no chat history sharing). Personal accounts are yours alone — full privacy, custom settings, and no usage limits from others." },
-      { q: "Which AI assistant is best for students in Bangladesh?", a: "ChatGPT Plus Shared (BDT 499) is the best starter. For more demanding work, Claude Pro Premium Shared (BDT 1,590) offers the best writing and analysis — ranked #1 on Chatbot Arena." },
+      { q: "Which AI assistant is best for students in Bangladesh?", a: "ChatGPT Plus Shared (BDT 499) is a good starting point. For more demanding work, Claude Pro Premium Shared (BDT 1,590) is known for strong writing and analysis quality." },
       { q: "Can I switch models after ordering?", a: "Yes — you get access to all models within your plan. ChatGPT Plus includes GPT-5.4, image generation, web search, and AI agents. Claude Pro includes all Claude models including Opus 4.6." },
       { q: "How fast is delivery?", a: "Most AI assistant accounts are delivered within 5–30 minutes of payment confirmation, even at midnight." },
     ],
@@ -87,7 +87,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     seoTitle: "AI Video Generator — Runway, HeyGen Bangladesh",
     subtitle: "Runway, HeyGen — text-to-video & AI avatars",
     description:
-      "Generate and edit videos with AI. Runway Gen-4 for professional video generation. HeyGen for AI avatar videos in 15+ languages. Kling AI creates cinematic text-to-video with character consistency. Synthesia makes professional AI avatar videos in 120+ languages. Pika Labs creates cinematic text-to-video clips. Opus Clip transforms long videos into viral Shorts. Descript Pro edits video by editing text. CapCut Pro is the #1 video editor for TikTok, Reels & Shorts. All accessible in Bangladesh with bKash payment.",
+      "Generate and edit videos with AI. Runway Gen-4 for professional video generation. HeyGen for AI avatar videos in 15+ languages. Kling AI creates cinematic text-to-video with character consistency. Synthesia makes professional AI avatar videos in 120+ languages. Pika Labs creates cinematic text-to-video clips. Opus Clip transforms long videos into viral Shorts. Descript Pro edits video by editing text. CapCut Pro is a video editor with AI effects for TikTok, Reels & Shorts. All accessible in Bangladesh with bKash payment.",
     metaDescription:
       "Runway, HeyGen, Kling AI, Synthesia in Bangladesh. From BDT 299. AI video generation & avatars. Local payment.",
     accent: "#ec4899",
@@ -192,7 +192,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     seoTitle: "AI Writing & SEO Tools — Writesonic Bangladesh",
     subtitle: "Grammarly, QuillBot, Jasper, Writesonic — AI writing & marketing",
     description:
-      "AI-powered writing, grammar checking, and content creation for students, professionals, and marketers. Grammarly Premium perfects English writing with real-time grammar, tone, and plagiarism checking. QuillBot Premium is the #1 AI paraphrasing tool for students. Jasper AI creates marketing copy for agencies. Writesonic generates SEO-optimized blog posts and social content. All available in Bangladesh via bKash or Nagad.",
+      "AI-powered writing, grammar checking, and content creation for students, professionals, and marketers. Grammarly Premium checks English writing with real-time grammar, tone, and plagiarism checking. QuillBot Premium is an AI paraphrasing tool for students. Jasper AI creates marketing copy for agencies. Writesonic generates SEO-optimized blog posts and social content. All available in Bangladesh via bKash or Nagad.",
     metaDescription:
       "AI writing tools in Bangladesh 2026. Grammarly, QuillBot, Jasper, Writesonic from BDT 390/mo. Grammar checking, paraphrasing, SEO content. Pay with bKash, Nagad, Rocket.",
     accent: "#6366f1",

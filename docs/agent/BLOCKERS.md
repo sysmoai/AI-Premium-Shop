@@ -133,3 +133,48 @@ page on the site, so it is not mine to make unilaterally.
 100 deploys / rolling 24h, shared across the team's projects. Over the cap,
 pushes silently do nothing. `scripts/deploy-live.sh --wait` parks and retries.
 The only real fix is a paid plan — an owner decision.
+
+## B11 — A stale duplicate deployment is still live and publicly crawlable, serving old catalog numbers (HIGH)
+
+**Status:** open. Needs an owner decision or explicit permission to act on
+Vercel infrastructure (not fixable by a code change/deploy). Exact commands
+and evidence: `docs/agent/OWNER-ACTIONS.md` OA1.
+
+**Corrected from this blocker's first version:** despite the name, this is
+**not** the archived Next.js app (`artifacts/aips-website/`, see its own
+`DEPRECATED.md`) — that confusion came from the Vercel *project* being named
+"aips-website" too. `vercel project inspect aips-website` shows its Root
+Directory is `artifacts/aips-landing` — the same, correct, currently-live
+Vite app. The project was created 2026-07-30 (the same date `DEPRECATED.md`
+records the "kept SPA, archived Next.js" decision), deployed exactly once,
+and never redeployed since — a duplicate/test project from that day's
+consolidation work, abandoned in favor of the real production project. It's
+frozen at an 8-day-old snapshot of the *correct* app, not a different
+architecture: stale catalog numbers ("118+ tools", "3,000+ customers" vs
+today's 197/10,000+), no canonical tag, permissive `robots.txt`. This is the
+live source of the "conflicting indexed versions" pattern the second and
+third master prompts both hypothesized. No custom domain is at risk — only
+three auto-generated `*.vercel.app` subdomains alias to it.
+
+**Fixed separately, unrelated but worth keeping:** hardened
+`artifacts/aips-website/src/app/robots.ts` (the actual archived Next.js
+app's own code) to unconditionally disallow all crawlers, defense-in-depth
+against that different, unrelated app ever being redeployed by mistake. Does
+not touch this blocker's live deployment.
+
+**What actually fixes this (owner decision — see OWNER-ACTIONS.md OA1 for
+exact commands):** remove the three aliases pointing at the stale deployment
+(safest, one command each, fully reversible), enable Vercel Deployment
+Protection on the project (dashboard, also reversible), or delete the whole
+project (most thorough, not reversible). Not done unilaterally this session —
+deleting/unaliasing live infrastructure is a hard-to-reverse action on shared
+state, explicitly one of the "questions that genuinely require owner
+approval" the master prompt itself calls for.
+
+## B12 — `http://www.aipremiumshop.com` is a 2-hop redirect (LOW)
+
+`http://www` → `https://www` (308) → `https://` non-www (308) → 200. The other
+three host/scheme combinations are single-hop to the canonical
+`https://aipremiumshop.com/`. Vercel Domains configuration issue, not
+fixable from application code. Low severity — explicitly not blocking any
+higher-impact work. Exact dashboard path: `docs/agent/OWNER-ACTIONS.md` OA2.

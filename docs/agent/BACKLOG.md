@@ -22,7 +22,7 @@ Ordered by value / effort. Anything blocked names its blocker from `BLOCKERS.md`
 | 17 | Delivery-time claims disagree across surfaces: prerendered homepage body and About page say "5–30 minutes"; `FAQPage.tsx`'s English and Bangla FAQs say "5–15 minutes... max 2-3 hours off-hours" (internally consistent with each other, just not with the other two surfaces) | — (owner: which is actually true) |
 | 18 | `midjourney-bangladesh`'s "Pro Shared" tier is priced ৳4,788 — more than BOTH the "Personal" (৳2,495) and "Pro" personal (৳3,990) tiers of the same product. A shared/split tier costing more than the equivalent (or a cheaper) personal tier defeats the commercial premise of sharing; either a real pricing error or a legitimate reason not evident from the data (e.g. Pro Shared includes something Pro Personal doesn't). Caught by the new `validate-catalog.mjs` shared-vs-personal check (2026-08-07) — see `docs/agent/OWNER-ACTIONS.md`-style evidence in the commit | — (owner: confirm the price or fix it) |
 | 20 | Is "Claude Opus 4.6" still the model Anthropic's actual Claude Pro consumer subscription currently exposes? Left the model name in place while removing the false "#1 on Chatbot Arena" ranking claim attached to it (2026-08-07) — Chatbot Arena's current leaderboard shows newer Claude models (Opus 5 family) on top, which raises the question of whether "Opus 4.6" itself is stale, but that's a different claim than the one checked and wasn't verified either way | — (owner or a fresh WebFetch check against Anthropic's own current Claude Pro plan page) |
-| 21 | Payment logos are hand-drawn SVG approximations, not official bKash/Nagad/Rocket assets — `docs/compliance/payment-methods.md` / `docs/brand/payment-assets.md` (2026-08-07). Interim fallback specified (text-only labels) but not applied — visible design change deserving its own go-ahead | — (owner: supply real asset files, or approve the text-only interim swap) |
+| 21 | Real bKash/Nagad/Rocket logo asset files still don't exist in the repo — text-only interim fallback applied 2026-08-07 (was: hand-drawn SVG approximations in `PaymentMethodsSection.tsx`; `PaymentBadges.tsx`/`PageFooter.tsx` were already text-only). See `docs/compliance/payment-methods.md` / `docs/brand/payment-assets.md` | — (owner: supply real asset files whenever convenient; not urgent now that the fabricated-mark risk is resolved) |
 | 22 | Playwright smoke tests (B9) — still not started. The one gap every other gate in this repo has a blind spot for: nothing executes the built app in a real browser. Two concrete journeys already specified by the master prompt: Homepage→Find Your Solution→Audience page→Category→Product→Policy→WhatsApp, and Homepage→AI Video→Higgsfield→Credits→Unlimited→Service opportunities→WhatsApp | — (new dependency, real scoping work) |
 | 23 | Individual re-audit of all 6 audience pages against the master prompt's per-page requirement list (unique intent, ethical limitations, Bangladesh context, FAQ, internal links) — partially covered as a side effect of the testimonial-fabrication sweep (2026-08-07), which touched all 5 guide pages, but that was a narrow pass for one issue class, not the full audit | — (large, ~6 pages × full checklist) |
 | 24 | Chatbot: broaden the shared-account-privacy system-prompt fix (2026-08-07) into a fuller pass over `api/concierge.js`'s system prompt — same live-testing method (real queries against production, not simulated) found only one bug this turn because only ~4 queries were tried; a proper pass would sample many more intents | — (real testing time, not blocked) |
@@ -108,6 +108,19 @@ current standings, not just removing the phrasing on principle.
 - **Payment-method compliance documentation** — confirmed the current
   bKash/Nagad/Rocket "logos" are hand-drawn SVG approximations, not real
   assets (#21).
+
+**Also done, 2026-08-07 (third continuation session, "full permission" turn):**
+
+- **Payment logos — text-only fallback applied (#21).**
+  `PaymentMethodsSection.tsx`'s hand-drawn SVG letter-marks (colored
+  rectangle + single bold letter approximating each brand's real logo)
+  replaced with a plain colored accent bar (no letterform) plus the
+  existing bold text name — per the master prompt's own sanctioned interim
+  fallback for when no official asset file is available. Confirmed
+  `PaymentBadges.tsx`/`PageFooter.tsx` needed no change (already text-only
+  pills). Build, seo:check, validate-catalog, validate-truth,
+  validate-higgsfield-offer all clean; diff scoped to the one file plus
+  doc updates.
 
 **Explicitly not doing:** bulk AI-generated product descriptions; near-duplicate
 pages per keyword variant; fabricated ratings to clear the GSC "Product snippets

@@ -1,51 +1,41 @@
 import { motion } from "framer-motion";
 
+// Text-only labels, not logo marks — see docs/brand/payment-assets.md.
+// These SVGs used to be hand-drawn imitations of the real bKash/Nagad/Rocket
+// marks (a colored rectangle with a single bold letter approximating each
+// brand's actual logo). No official asset file exists in this repo, and
+// obtaining one needs a human downloading from each provider's own brand/
+// merchant kit — an agent session can't legitimately source or approximate
+// one. Per the master prompt's own explicit fallback: "If no authorized
+// production-quality logo file is available: do not invent one, use a
+// text-only payment label temporarily." This card's brand-colored badge is
+// now plain text, not a redrawn mark — swap in a real <img> per
+// docs/brand/payment-assets.md's instructions once one exists.
 const paymentMethods = [
   {
     name: "bKash",
-    logo: (
-      <svg viewBox="0 0 100 100" className="w-12 h-12">
-        <rect fill="#E2136E" width="100" height="100" rx="12" />
-        <text x="50" y="55" fontSize="50" fontWeight="bold" fill="#fff" textAnchor="middle" dy="0.3em">b</text>
-      </svg>
-    ),
+    badgeColor: "#E2136E",
     description: "Mobile money",
     speed: "5-30 min delivery",
     gradient: "from-pink-500 to-pink-600",
   },
   {
     name: "Nagad",
-    logo: (
-      <svg viewBox="0 0 100 100" className="w-12 h-12">
-        <rect fill="#F6921E" width="100" height="100" rx="12" />
-        <text x="50" y="55" fontSize="45" fontWeight="bold" fill="#fff" textAnchor="middle" dy="0.3em">N</text>
-      </svg>
-    ),
+    badgeColor: "#F6921E",
     description: "SMS-based payment",
     speed: "5-30 min delivery",
     gradient: "from-orange-500 to-orange-600",
   },
   {
     name: "Rocket",
-    logo: (
-      <svg viewBox="0 0 100 100" className="w-12 h-12">
-        <rect fill="#8B2F97" width="100" height="100" rx="12" />
-        <text x="50" y="55" fontSize="50" fontWeight="bold" fill="#fff" textAnchor="middle" dy="0.3em">R</text>
-      </svg>
-    ),
+    badgeColor: "#8B2F97",
     description: "Digital wallet",
     speed: "5-30 min delivery",
     gradient: "from-purple-500 to-purple-600",
   },
   {
     name: "Bank Transfer",
-    logo: (
-      <svg viewBox="0 0 100 100" className="w-12 h-12">
-        <rect fill="#1A5276" width="100" height="100" rx="12" />
-        <path d="M20 35L50 20L80 35L80 75H20V35Z" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        <line x1="50" y1="20" x2="50" y2="75" stroke="#fff" strokeWidth="2" />
-      </svg>
-    ),
+    badgeColor: "#1A5276",
     description: "Direct deposit",
     speed: "Verified within 2 hours",
     gradient: "from-blue-600 to-blue-700",
@@ -90,7 +80,11 @@ export function PaymentMethodsSection() {
             >
               <div className="bg-gradient-to-b from-slate-900 to-slate-950 rounded-[10px] p-6 text-center space-y-3 border border-slate-800">
                 <div className="flex justify-center">
-                  {method.logo}
+                  <span
+                    aria-hidden="true"
+                    className="block w-10 h-1.5 rounded-full"
+                    style={{ backgroundColor: method.badgeColor }}
+                  />
                 </div>
                 <h3 className="text-white font-bold text-lg">{method.name}</h3>
                 <p className="text-gray-400 text-sm">{method.description}</p>

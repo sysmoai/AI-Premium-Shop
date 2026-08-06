@@ -1,8 +1,10 @@
 # Payment method compliance
 
-**Date:** 2026-08-07. **Status:** logos are a confirmed, unresolved
-compliance gap (see below) — everything else on this page is descriptive
-of current implementation, not a new finding.
+**Date:** 2026-08-07. **Status:** logos were a confirmed compliance gap;
+`PaymentMethodsSection.tsx` has since been switched to the text-only
+interim fallback (see Logo Compliance below) — the underlying gap (no real
+official asset files) is still open, only the invented-mark risk is
+resolved.
 
 ## Current accepted methods (post Binance-removal, 2026-08-07)
 
@@ -24,16 +26,18 @@ Bangladesh legal/compliance review (none on file).
 | Checkout process | Customer sends payment manually to a number/account given over WhatsApp; no integrated gateway | Same | Same | Same |
 | "Partner" language used anywhere? | Not found in this session's searches — good, matches the rule against calling providers "partners" without an agreement | — | — | — |
 
-## Logo compliance — confirmed gap, not fixed this session
+## Logo compliance — text-only fallback applied, real assets still needed
 
-`src/sections/PaymentMethodsSection.tsx`, `src/components/PaymentBadges.tsx`,
-and `src/components/PageFooter.tsx` all render **hand-drawn inline SVGs**:
-a colored rounded rectangle with a single bold letter ("b", "N", "R") in
-each provider's approximate brand color. These are not official assets —
-they're approximations built from scratch in this codebase. `public/`
-contains no bKash/Nagad/Rocket image files at all (checked this session).
+`src/components/PaymentBadges.tsx` and `src/components/PageFooter.tsx`
+already rendered brand-colored text (`{method.name}` in a colored pill),
+not fabricated logo marks — no change needed there.
+`src/sections/PaymentMethodsSection.tsx` previously rendered **hand-drawn
+inline SVGs**: a colored rounded rectangle with a single bold letter ("b",
+"N", "R") in each provider's approximate brand color — an invented
+approximation of each real logo, not a text label. `public/` contains no
+bKash/Nagad/Rocket image files at all (checked 2026-08-07).
 
-This is exactly the risk the master prompt's payment-asset rules exist to
+This was exactly the risk the master prompt's payment-asset rules exist to
 prevent: *"Do not recreate logos with CSS... Do not distort, redraw, recolor
 or hotlink logos... Obtain brand marks only from the provider's official
 merchant kit / official brand or press resources... If no authorized
@@ -41,27 +45,28 @@ production-quality logo file is available: do not invent one, use a
 text-only payment label temporarily, record the missing asset as a
 blocker."*
 
-**Not fixed this session because:** I have no legitimate way to obtain the
-actual official asset files from an agent session — official brand/press
-kits require visiting the provider's site and downloading real image
-files (not something a text-based fetch can do), and even if I could
-retrieve image bytes, I have no way to confirm licensing/usage-permission
-terms for AI Premium Shop's specific use case without human judgement.
-Generating replacement logos via any AI tool, or hand-redrawing closer
-approximations, would still violate the same rule this is trying to fix.
+**Fixed 2026-08-07:** `PaymentMethodsSection.tsx` no longer draws any
+letter-mark shape. Each card now shows a plain colored accent bar (no
+letterform, not shaped like a logo) plus the existing bold-text
+`<h3>{method.name}</h3>` label — text only, per the master prompt's own
+sanctioned interim fallback. This is a visual downgrade from the old
+(non-compliant) card, not a redesign; it should be swapped for a real
+`<img>` the moment an official asset exists.
 
-**Recommended fix, in order of preference:**
-1. Owner downloads official SVG/PNG assets directly from each provider's
-   brand/merchant kit (bKash: bkash.com/en/business/merchant; Nagad:
-   nagad.com.bd; Rocket: dutchbanglabank.com/rocket) and supplies them to
-   the repo at `public/brands/payments/<provider>/`.
-2. Until then, per the master prompt's own explicit fallback: replace the
-   hand-drawn SVGs with **text-only labels** ("bKash", "Nagad", "Rocket" as
-   plain styled text, no logo mark) — a smaller but honest visual downgrade,
-   safer than continuing to display invented brand marks. Not applied this
-   session because it's a visible design change to a live, working section
-   and deserves an explicit go-ahead rather than being bundled into a
-   compliance-doc pass — flagged in `BACKLOG.md`.
+**Still not obtainable from an agent session:** the actual official asset
+files. Official brand/press kits require visiting the provider's site and
+downloading real image files (not something a text-based fetch can do),
+and even with image bytes, licensing/usage-permission terms for AI Premium
+Shop's specific use case need human confirmation. Generating replacement
+logos via any AI tool, or hand-redrawing closer approximations, would
+still violate the same rule this fix resolves.
+
+**Recommended follow-up:** Owner downloads official SVG/PNG assets
+directly from each provider's brand/merchant kit (bKash:
+bkash.com/en/business/merchant; Nagad: nagad.com.bd; Rocket:
+dutchbanglabank.com/rocket) and supplies them to the repo at
+`public/brands/payments/<provider>/` — see `docs/brand/payment-assets.md`
+for the exact wiring steps once files exist.
 
 ## Merchant/business-account status
 

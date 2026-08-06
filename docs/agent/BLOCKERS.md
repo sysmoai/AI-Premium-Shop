@@ -171,10 +171,26 @@ deleting/unaliasing live infrastructure is a hard-to-reverse action on shared
 state, explicitly one of the "questions that genuinely require owner
 approval" the master prompt itself calls for.
 
-## B13 — GitHub Actions is billing-locked on the `sysmoai` account (MEDIUM, mitigated)
+## B13 — GitHub Actions is billing-locked on the `sysmoai` account (RESOLVED 2026-08-07)
 
-**Status:** open. Owner action required (GitHub billing, not code). Local
-mitigation shipped 2026-08-07 — see below.
+**Status:** resolved. Owner fixed the GitHub billing issue directly.
+Confirmed via `gh run rerun` on a previously-failed run — it now actually
+executes instead of failing before starting.
+
+That first-ever real CI run immediately paid for itself: it caught a
+genuine typecheck build-order bug (`aips-landing` itself failing TS6305
+because `lib/api-client-react` wasn't built first) that every local
+check this session had missed, because local checkouts kept
+accumulating leftover build state that masked it. Fixed in both
+`ci.yml` and `.husky/pre-push` — see `BACKLOG.md`'s corrected #13/#14
+entry for the full story, including where the previous "resolved, cause
+unclear" note in that same file was itself wrong.
+
+The local pre-push hook (below) stays — a local + remote gate is
+strictly safer than either alone, and it just proved its worth by using
+the exact same command CI uses.
+
+**Original text, for the record:**
 
 Every job in every workflow run (`CI`, `SEO quality`) carries the identical
 annotation: *"The job was not started because your account is locked due

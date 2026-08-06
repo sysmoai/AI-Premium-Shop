@@ -1,7 +1,50 @@
 # Current state
 
-**Last updated:** 2026-08-07 (8th turn, "full permission" — payment-logo
-fix **DEPLOYED TO PRODUCTION**)
+**Last updated:** 2026-08-07 (9th turn — B13 resolved by owner, real
+typecheck/CI build-order bug found and fixed)
+
+## This turn (9th): GitHub Actions billing unlocked; real CI bug found on its first-ever run
+
+Owner resolved B13 (GitHub Actions billing lock) directly on GitHub.
+Confirmed by re-running a recent failed run (`gh run rerun`) — it now
+actually executes instead of failing before starting.
+
+That was **the first time any CI job in this repo's history has run on a
+truly clean checkout.** It immediately caught a real bug the previous
+turn's local verification had missed: `artifacts/aips-landing` (the live
+site) failed typecheck with TS6305 "output file has not been built",
+because its `tsconfig.json` references `lib/api-client-react` and neither
+`ci.yml` nor the pre-push hook (added last turn) ever built that
+project-reference lib first. The previous turn's BACKLOG entry claiming
+"#13/#14 resolved, cause unclear" was **wrong** — it passed locally only
+because of a stale `dist/`+`.tsbuildinfo` left on disk from that turn's
+own debugging, not a real fix. Corrected in `BACKLOG.md` with the full
+story. Real fix: added a `pnpm run typecheck:libs` step before the
+recursive typecheck in both `ci.yml` and `.husky/pre-push`, verified from
+a genuinely clean local state (deleted every lib's `dist/`+`.tsbuildinfo`
+and rebuilt from zero) this time. The 7 `TS7006` implicit-any errors
+reported alongside it were cascading symptoms of the same missing build,
+not separate bugs — confirmed by rebuilding and rechecking; zero manual
+type annotations were needed.
+
+Also confirmed while investigating: the code that reference
+triggered this (`AddToCartButton.tsx`, `CartButton.tsx`,
+`src/pages/admin/*`) is dead — unreferenced by `App.tsx`/`main.tsx` or
+anything else reachable, from the same abandoned 2026-05-03 commit as
+`artifacts/api-server`. Left in place rather than deleted (Vite already
+excludes it from the real bundle; deleting live-site source files
+unilaterally is a bigger call than a type-safety fix) — logged under the
+existing BACKLOG #29 rather than as a new item.
+
+**Previous turn's other work (payment logos #21, Opus 5 #20) already
+verified live and unaffected by this — that content shipped correctly;
+this turn's bug was specifically about the typecheck gate's build order,
+not the live site's rendered output.**
+
+---
+
+**Prior state (8th turn, "full permission" — payment-logo fix
+**DEPLOYED TO PRODUCTION**):**
 **Branch:** `main` (direct commit `5ddea78` on top of the merged
 `seo/homepage-product-authority` work), pushed to `origin/main`, deployed
 live to **https://aipremiumshop.com** via `vercel --prod --yes`. Confirmed

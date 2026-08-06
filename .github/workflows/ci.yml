@@ -18,6 +18,16 @@ jobs:
           node-version: 20
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      # Build the TS project-reference libs (lib/db, lib/api-client-react,
+      # lib/api-zod -- see root tsconfig.json's "references") before
+      # typechecking anything that imports their declaration output.
+      # Without this, aips-landing itself (the live site -- it references
+      # lib/api-client-react) fails typecheck on any fresh checkout with
+      # TS6305 "output file has not been built". Found 2026-08-07 on this
+      # workflow's first-ever successful run (see BLOCKERS.md B13) --
+      # every previous run had failed before reaching this step, so the
+      # gap went undetected.
+      - run: pnpm run typecheck:libs
       # aips-website is excluded: it's marked DEPRECATED (see
       # artifacts/aips-website/DEPRECATED.md) -- a parallel Next.js rebuild
       # never promoted to production, not deployed, with its own diverging

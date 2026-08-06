@@ -137,24 +137,45 @@ current standings, not just removing the phrasing on principle.
   validate-higgsfield-offer all clean; diff scoped to the one file plus
   doc updates.
 - **`lib/api-client-react` typecheck (#14) and the root lockfile install
-  (#13) — both verified resolved, cause unclear.** Ran the exact commands
-  documented as failing: `pnpm install --frozen-lockfile` at the repo root
-  (previously reported to fail on an `overrides` mismatch) and
-  `pnpm run typecheck` in `artifacts/aips-landing` (previously 15
-  TS6305/TS7006 errors from the unbuilt `@workspace/api-client-react`
-  reference). Both now complete cleanly — exit 0, zero errors. No lockfile
-  or config file was edited to make this happen (`git status` clean before
-  and after); `@tanstack/react-query` simply wasn't present in
-  `lib/api-client-react/node_modules` in this checkout and a scoped
-  `pnpm install --filter @workspace/api-client-react` populated it, after
-  which the full root install also succeeded without complaint. Recording
-  honestly rather than claiming a fix I can't fully explain: either
-  something earlier this session's dependency/lockfile changes already
-  resolved the root cause and the docs just hadn't caught up, or this was
-  an environment-specific gap in this checkout that a normal `pnpm
-  install` clears. If `pnpm run typecheck` or a root `pnpm install
-  --frozen-lockfile` ever fails again, don't assume this entry means it
-  can't — re-verify fresh.
+  (#13) — actually root-caused and fixed 2026-08-07, correcting an
+  earlier wrong entry in this same file.** An earlier pass this same day
+  ran `pnpm install --filter @workspace/api-client-react` and then saw
+  `pnpm run typecheck` pass, and recorded both as "resolved, cause
+  unclear." That was wrong: it passed locally only because that `install`
+  plus an ad-hoc `npx tsc -b` run inside `lib/api-client-react` left a
+  built `dist/` and a stale `.tsbuildinfo` on disk in this one checkout —
+  it wasn't a real fix, just a locally-lucky state. The real bug surfaced
+  once GitHub Actions ran for the first time ever (2026-08-07, after B13's
+  billing lock cleared) on a truly clean checkout with none of that
+  leftover state: `artifacts/aips-landing` — **the live site itself**,
+  not just the already-excluded dead packages — failed typecheck with
+  TS6305 "output file has not been built", because `aips-landing`'s own
+  `tsconfig.json` references `lib/api-client-react`
+  (`useAddToCart`/`getGetCartQueryKey` etc. in `AddToCartButton.tsx`,
+  `CartButton.tsx`, `src/lib/api-config.ts`, `src/pages/admin/*`), and
+  neither `ci.yml` nor the new pre-push hook (B13) ever built that
+  project-reference lib before typechecking its consumers — both called
+  `pnpm -r typecheck` directly instead of the root's `pnpm run typecheck`
+  (which runs `typecheck:libs` = `tsc --build` first for exactly this
+  reason). The 7 `TS7006` implicit-any errors reported alongside it in the
+  same CI run were cascading symptoms of the same missing build, not
+  separate bugs — verified by rebuilding the libs from a genuinely clean
+  state (deleted `dist/` and `.tsbuildinfo` for `lib/db`,
+  `lib/api-client-react`, `lib/api-zod`, reran `tsc --build`, then
+  `aips-landing`'s typecheck alone) and all 7 disappeared with zero manual
+  type-annotation changes needed. **Real fix:** added a
+  `pnpm run typecheck:libs` step before the recursive typecheck in both
+  `ci.yml` and `.husky/pre-push`. Verified from a truly clean local state
+  this time, not just re-running in the same dirty checkout.
+  Also confirmed while investigating: `AddToCartButton.tsx`, `CartButton.tsx`,
+  and all of `src/pages/admin/*` are unreferenced by `App.tsx`/`main.tsx` or
+  any other reachable file — dead code from the same 2026-05-03
+  "e-commerce + admin" commit that produced the also-dead
+  `artifacts/api-server` (#29). Left in place (Vite tree-shakes unreached
+  code out of the real bundle regardless, so there's no live-site risk
+  either way) rather than deciding to delete live-site source files
+  unilaterally — that's a bigger, less reversible call than a type-safety
+  fix and belongs with #29's owner decision, not bundled into it silently.
 
 **Explicitly not doing:** bulk AI-generated product descriptions; near-duplicate
 pages per keyword variant; fabricated ratings to clear the GSC "Product snippets

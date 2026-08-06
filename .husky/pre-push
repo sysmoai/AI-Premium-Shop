@@ -15,6 +15,15 @@
 set -e
 
 echo "== pre-push: workspace typecheck + lint =="
+# Build the TS project-reference libs first -- aips-landing (the live
+# site) references lib/api-client-react, so without this it fails
+# typecheck on any truly clean checkout (TS6305). This hook's own first
+# real run had a stale local lib/api-client-react/dist + .tsbuildinfo
+# left over from unrelated same-session debugging, which masked the gap
+# by accident; GitHub Actions' first-ever successful run (2026-08-07, see
+# BLOCKERS.md B13) caught it for real on a truly fresh checkout.
+pnpm run typecheck:libs
+
 # aips-website: DEPRECATED Next.js rebuild, never promoted, not deployed.
 # @workspace/api-server: unreferenced by aips-landing (the live site),
 # last touched 2026-05-03 (3+ months before this hook), has its own real

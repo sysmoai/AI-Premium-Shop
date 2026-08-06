@@ -46,14 +46,14 @@ const COMPARISONS: Record<string, CompConfig> = {
   "chatgpt-vs-claude": {
     title: "ChatGPT vs Claude Bangladesh 2026 — Which is Better?",
     h1: "ChatGPT vs Claude — Which One Is Right for You?",
-    aioSnippet: "ChatGPT vs Claude in Bangladesh 2026: ChatGPT Plus Shared starts at BDT 499/mo and excels as an all-rounder (images, web search, code, agents). Claude Pro starts at BDT 599/mo and is ranked #1 for writing quality and long-document reasoning (1M token context). Both available via bKash or Nagad — delivery in 5–30 minutes via WhatsApp.",
+    aioSnippet: "ChatGPT vs Claude in Bangladesh 2026: ChatGPT Plus Shared starts at BDT 499/mo and excels as an all-rounder (images, web search, code, agents). Claude Pro starts at BDT 599/mo and is known for strong writing quality and long-document reasoning (1M token context). Both available via bKash or Nagad — delivery in 5–30 minutes via WhatsApp.",
     metaDescription: "ChatGPT vs Claude in Bangladesh 2026. Features, prices, which is better. AI Premium Shop.",
     canonical: "https://aipremiumshop.com/chatgpt-vs-claude",
     productA: { name: "ChatGPT (OpenAI)", color: "#10a37f", orderText: "Order ChatGPT" },
     productB: { name: "Claude (Anthropic)", color: "#d97706", orderText: "Order Claude" },
     rows: [
       { feature: "Best for", a: "All-rounder: code, images, search, agents", b: "Writing, reasoning, long documents" },
-      { feature: "Top model", a: "GPT-5.4", b: "Opus 4.6 (#1 on Chatbot Arena)" },
+      { feature: "Top model", a: "GPT-5.4", b: "Claude Opus 4.6" },
       { feature: "Image generation", a: true, b: false },
       { feature: "Video generation", a: "Yes (Sora — Pro only)", b: false },
       { feature: "Code assistant", a: "Codex agent in ChatGPT", b: "Claude Code terminal" },
@@ -63,13 +63,13 @@ const COMPARISONS: Record<string, CompConfig> = {
       { feature: "Web search", a: true, b: false },
       { feature: "Savings vs official", a: "~88%", b: "~80%" },
     ],
-    verdict: "Both are world-class AI tools available at Bangladesh prices. Your choice depends on your primary use case.",
+    verdict: "Both are capable AI tools available at Bangladesh prices. Your choice depends on your primary use case.",
     verdictA: "Choose ChatGPT if you want an all-in-one tool that does everything — text, images, web search, code, and agents. It's also the cheapest option at BDT 499.",
-    verdictB: "Choose Claude if you need the best writing quality, the longest document analysis (1M token context), or the most advanced reasoning. Claude is ranked #1 on the independent Chatbot Arena benchmark.",
-    buyBothText: "ChatGPT Plus Shared (BDT 499) + Claude Pro Premium Shared (BDT 1,590) = BDT 2,089/mo total — get the best of both worlds for writing and everything else.",
+    verdictB: "Choose Claude if you need strong writing quality, long document analysis (1M token context), or advanced reasoning.",
+    buyBothText: "ChatGPT Plus Shared (BDT 499) + Claude Pro Premium Shared (BDT 1,590) = BDT 2,089/mo total — cover both writing strength and everything else.",
     whoTable: [
-      { persona: "Students on a tight budget", pick: "ChatGPT Plus Shared — BDT 499", reason: "Cheapest AI in our catalog. Covers writing, coding, and research." },
-      { persona: "Copywriters & content writers", pick: "Claude Pro — from BDT 599", reason: "Ranked #1 for writing quality on independent benchmarks." },
+      { persona: "Students on a tight budget", pick: "ChatGPT Plus Shared — BDT 499", reason: "The cheapest AI in our catalog. Covers writing, coding, and research." },
+      { persona: "Copywriters & content writers", pick: "Claude Pro — from BDT 599", reason: "Known for strong writing quality on independent benchmarks." },
       { persona: "Developers & researchers", pick: "ChatGPT Plus", reason: "Image gen, agents, web search, and code — one comprehensive tool." },
     ],
     relatedGuides: [
@@ -342,10 +342,10 @@ export default function ComparisonPage({ compKey }: ComparisonPageProps) {
               </div>
             </div>
             <div className="px-5 pb-5">
-              <div className="text-xs font-semibold mb-3" style={{ color: "#f4b942" }}>Real-world test results:</div>
+              <div className="text-xs font-semibold mb-3" style={{ color: "#f4b942" }}>Quick comparison:</div>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 {[
-                  { cat: "Writing quality", winner: "Claude wins", desc: "Opus 4.6 = #1 on Chatbot Arena" },
+                  { cat: "Writing quality", winner: "Claude wins", desc: "Strong on independent benchmarks" },
                   { cat: "Coding speed", winner: "ChatGPT wins", desc: "Codex agent builds full features" },
                   { cat: "Image generation", winner: "ChatGPT wins", desc: "DALL-E built in, Claude has none" },
                   { cat: "Research", winner: "Tie", desc: "Both excellent for research" },

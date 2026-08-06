@@ -60,6 +60,24 @@ or a real feature of a specific plan neither post covered), but currently
 already correctly keeps it out of the shipped page — confirmed as the right
 call, not something to relax.
 
+## Chatbot Arena leaderboard — checked 2026-08-07
+
+| Question | Answer | Source | Date checked | Confidence | Recheck by |
+|---|---|---|---|---|---|
+| Which model currently ranks #1 overall on Chatbot Arena (arena.ai)? | Anthropic claude-fable-5 (score 1508±6) | arena.ai/leaderboard | 2026-08-07 | High | 2026-08-21 (this leaderboard moves fast — 2-week recheck, not the usual 3-month) |
+| Which model ranks #1 for Creative Writing specifically? | Anthropic claude-opus-5-high | arena.ai/leaderboard | 2026-08-07 | High | 2026-08-21 |
+
+**Why this matters:** the site's copy (`BrandPage.tsx`, `BestAISubscriptionPage.tsx`,
+`CategoryPage.tsx`, `ComparisonPage.tsx`) cites "Opus 4.6" as the model
+"ranked #1 on Chatbot Arena" — that's not the model currently topping the
+board (Fable 5 / Opus 5 family now leads). Two problems, not one: the rank
+claim is stale, AND the specific model version named is stale (unrelated to
+whether "Claude Pro" the subscription even maps to that version — not
+checked). Treated as unverified-as-stated and fixed same session (see
+`WORKLOG.md`) rather than left open, since the fix (remove the specific
+rank+version claim, keep accurate non-time-sensitive description) doesn't
+need further research to be safe.
+
 ## Also open, not yet checked
 
 | Question | Why it matters | Primary source to check |

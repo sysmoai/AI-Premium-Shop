@@ -41,8 +41,8 @@ const BRAND_COMPETITORS: Record<string, {
   name2: string; slug2: string; strength2: string;
   compPage?: string;
 }> = {
-  "chatgpt-plans-bangladesh": { name1: "Claude", slug1: "/claude-pro-bangladesh", strength1: "#1 for writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
-  "chatgpt-plus-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", strength1: "#1 for writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
+  "chatgpt-plans-bangladesh": { name1: "Claude", slug1: "/claude-pro-bangladesh", strength1: "Strong writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
+  "chatgpt-plus-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", strength1: "Strong writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
   "chatgpt-business-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", strength1: "Best writing quality, long documents", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace integration" },
   "chatgpt-pro-bangladesh": { name1: "Claude Max 5x", slug1: "/claude-pro-bangladesh", strength1: "Extended thinking, 1M context window", name2: "GitHub Copilot Pro", slug2: "/github-copilot-bangladesh", strength2: "Best AI coding tool in VS Code" },
   "claude-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "All-rounder: images, agents, web search", name2: "Perplexity Pro", slug2: "/perplexity-pro-bangladesh", strength2: "AI-powered web research with citations", compPage: "/chatgpt-vs-claude" },
@@ -102,9 +102,9 @@ const BEST_FOR_LABELS: Record<string, string> = {
   "v0-dev-bangladesh":           "AI-powered UI component generation",
   "freepik-premium-bangladesh":    "Millions of premium assets + AI image generation",
   "kling-ai-bangladesh":           "Cinematic AI video with character consistency",
-  "synthesia-bangladesh":          "#1 AI avatar video platform for business",
+  "synthesia-bangladesh":          "AI avatar video platform for business",
   "windsurf-bangladesh":           "AI-native IDE with autonomous cascade agent",
-  "capcut-pro-bangladesh":       "#1 video editor for TikTok, Reels & Shorts",
+  "capcut-pro-bangladesh":       "Video editor with AI effects for TikTok, Reels & Shorts",
   "grammarly-premium-bangladesh":    "Perfect English writing for students & professionals",
   "quillbot-premium-bangladesh":    "AI paraphrasing and academic writing assistant",
   "canva-pro-bangladesh":          "All-in-one AI design for social media & marketing",
@@ -590,7 +590,7 @@ const BRAND_META: Record<string, {
     tagline: "AI paraphrasing and writing for students",
     seoTitle: "QuillBot Premium Bangladesh - Price in BDT | AI Premium Shop",
     seoDescription: "QuillBot Premium price in Bangladesh. AI paraphrasing, summarizing, grammar check, and plagiarism detection. Pay with bKash/Nagad. Fast delivery.",
-    description: "QuillBot Premium is the #1 AI paraphrasing tool for students and researchers. Paraphrase text in multiple modes, summarize articles, check grammar, detect plagiarism, and generate citations. Perfect for Bangladeshi students writing English assignments.",
+    description: "QuillBot Premium is an AI paraphrasing tool for students and researchers. Paraphrase text in multiple modes, summarize articles, check grammar, detect plagiarism, and generate citations. Useful for Bangladeshi students writing English assignments.",
     accentColor: "#f59e0b",
     filterBySlug: true,
     faqs: [
@@ -781,7 +781,7 @@ const BRAND_META: Record<string, {
     accentColor: "#5b5fc7",
     filterBySlug: true,
     faqs: [
-      { q: "What is Synthesia?", a: "Synthesia is the world's #1 AI video generation platform for business. Create professional videos with AI avatars in 120+ languages — no camera, no studio, no actors needed." },
+      { q: "What is Synthesia?", a: "Synthesia is an AI video generation platform for business. Create professional videos with AI avatars in 120+ languages — no camera, no studio, no actors needed." },
       { q: "Is Synthesia better than HeyGen?", a: "Synthesia is stronger for corporate and educational content with 140+ avatars. HeyGen focuses more on social media and personal branding. Choose based on your use case." },
       { q: "Is Synthesia safe to buy through AIPS?", a: "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 10,000+ customers since 2022." },
       { q: "How do I buy without a credit card?", a: "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes." },
@@ -811,7 +811,7 @@ const BRAND_META: Record<string, {
     tagline: "CapCut Pro Bangladesh — from ৳299/month",
     seoTitle: "CapCut Pro Bangladesh — BDT 399/mo | AI Premium Shop",
     seoDescription: "CapCut Pro Bangladesh from BDT 399/mo. AI video editing for TikTok, Reels, Shorts. Auto-captions, keyframe, 4K. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
-    description: "CapCut Pro is the #1 video editing app for TikTok, Instagram Reels, and YouTube Shorts. AI effects, auto-captions, keyframe animation, 4K export, no watermark. The tool powering Bangladesh's creator economy. Shared from ৳299/month, Personal ৳1,195/month. Pay via bKash or Nagad.",
+    description: "CapCut Pro is a video editing app for TikTok, Instagram Reels, and YouTube Shorts. AI effects, auto-captions, keyframe animation, 4K export, no watermark. Widely used across Bangladesh's creator economy. Shared from ৳299/month, Personal ৳1,195/month. Pay via bKash or Nagad.",
     accentColor: "#161823",
     filterBySlug: true,
     faqs: [
@@ -1322,9 +1322,9 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
         {brandSlug === "claude-pro-bangladesh" && (
           <div className="mb-14">
             <div className="text-center mb-8">
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest mb-3" style={{ backgroundColor: "#d9770620", color: "#d97706" }}>The Smartest AI for Writing & Code</span>
-              <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">Claude Opus 4.6 — The World's Best AI for Writing &amp; Code</h2>
-              <p className="text-sm max-w-2xl mx-auto" style={{ color: "#c9ceda" }}>Ranked #1 on Chatbot Arena. SWE-bench leader. 1M token context.</p>
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest mb-3" style={{ backgroundColor: "#d9770620", color: "#d97706" }}>Strong AI for Writing & Code</span>
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">Claude Opus 4.6 — Built for Writing &amp; Code</h2>
+              <p className="text-sm max-w-2xl mx-auto" style={{ color: "#c9ceda" }}>Long-document reasoning, strong coding performance, 1M token context.</p>
             </div>
 
             {/* Document + Code illustration */}
@@ -1361,8 +1361,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
 
             <div className="grid md:grid-cols-3 gap-4">
               {[
-                { Icon: FileText, title: "Writing", desc: "#1 on Chatbot Arena for writing quality. Legal documents, research papers, creative content — Claude writes better than any AI." },
-                { Icon: Terminal, title: "Code", desc: "Claude Code: autonomous coding agent. Writes, reviews, tests, and fixes entire codebases. Used by professional engineers worldwide." },
+                { Icon: FileText, title: "Writing", desc: "Strong writing quality on independent benchmarks. Legal documents, research papers, creative content." },
+                { Icon: Terminal, title: "Code", desc: "Claude Code: an autonomous coding agent that writes, reviews, tests, and helps fix code across a codebase." },
                 { Icon: Brain, title: "Thinking", desc: "1M token context + extended thinking. Feed it your entire thesis, legal case, or codebase — it understands ALL of it." },
               ].map((card) => (
                 <div key={card.title} className="rounded-2xl p-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"

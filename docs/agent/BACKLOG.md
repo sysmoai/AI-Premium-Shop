@@ -19,9 +19,10 @@ Ordered by value / effort. Anything blocked names its blocker from `BLOCKERS.md`
 | 13 | Fix the workspace lockfile `overrides` mismatch | — |
 | 14 | Build `lib/api-client-react` so `pnpm run typecheck` passes | — |
 | 15 | Payment methods have no single source of truth — at least 5 independent hardcoded lists found (`PaymentMethodsSection.tsx`, `PaymentBadges.tsx`, `PageFooter.tsx`, `data/brand.json`, `scripts/generate-llms-txt.mjs`), each requiring its own manual edit when a method is added/removed. Binance had to be removed from all 5 separately on 2026-08-07 — see `docs/homepage/executive-audit.md` | — (real refactor: one data source, every component/script reads it) |
-| 16 | 9 unverified "#1"/superlative third-party claims flagged by `validate:truth`, not touched 2026-08-07: `BestAISubscriptionPage.tsx:30`, `BrandPage.tsx:42,43,103,591,782`, `CategoryPage.tsx:195`, `ComparisonPage.tsx:49,72` | — (needs the same evidence-or-remove treatment as B1) |
 | 17 | Delivery-time claims disagree across surfaces: prerendered homepage body and About page say "5–30 minutes"; `FAQPage.tsx`'s English and Bangla FAQs say "5–15 minutes... max 2-3 hours off-hours" (internally consistent with each other, just not with the other two surfaces) | — (owner: which is actually true) |
 | 18 | `midjourney-bangladesh`'s "Pro Shared" tier is priced ৳4,788 — more than BOTH the "Personal" (৳2,495) and "Pro" personal (৳3,990) tiers of the same product. A shared/split tier costing more than the equivalent (or a cheaper) personal tier defeats the commercial premise of sharing; either a real pricing error or a legitimate reason not evident from the data (e.g. Pro Shared includes something Pro Personal doesn't). Caught by the new `validate-catalog.mjs` shared-vs-personal check (2026-08-07) — see `docs/agent/OWNER-ACTIONS.md`-style evidence in the commit | — (owner: confirm the price or fix it) |
+| 19 | "Savings vs official" percentage claims (`ComparisonPage.tsx`: "~88%", "~80%" and likely elsewhere) aren't covered by any validator — same unsupported-numeric-claim category as the superlatives just fixed (#16, done), just a different regex shape | — (extend `validate-truth.mjs`'s pattern list) |
+| 20 | Is "Claude Opus 4.6" still the model Anthropic's actual Claude Pro consumer subscription currently exposes? Left the model name in place while removing the false "#1 on Chatbot Arena" ranking claim attached to it (2026-08-07) — Chatbot Arena's current leaderboard shows newer Claude models (Opus 5 family) on top, which raises the question of whether "Opus 4.6" itself is stale, but that's a different claim than the one checked and wasn't verified either way | — (owner or a fresh WebFetch check against Anthropic's own current Claude Pro plan page) |
 
 ## Done (2026-08-07 implementation session)
 
@@ -52,6 +53,22 @@ assignments, 50%-faster delivery, zero-copyright-issues music,
 zero-burnout automation, AI-built CVs, every-language-supported coding),
 and three Bangla FAQ answers carrying numbers that conflicted with the rest
 of the site (founding year, tool count, a stale price, a "#১" claim).
+
+**Also done, 2026-08-07 (continuation session):** vendor-compliance matrix
+skeleton (`docs/compliance/vendor-matrix.csv`, 37 vendors, all "Unverified"
+by construction — no research performed, just extraction); flagged (not
+rewritten) generic shared-account-safety language in `Home.tsx`/`FAQPage.tsx`
+per B5; Higgsfield offer verified against the vendor's actual current terms
+and two blog posts (`docs/higgsfield/offer-evidence.md`,
+`unit-economics.md` — found a real unit-economics red flag, the proposed
+BDT 1,199/~1,200-credit price doesn't obviously reconcile with the one
+vendor price found); catalogue shared-vs-personal price check added,
+former item 16 (all 9 "#1"/superlative claims) fixed across
+`BestAISubscriptionPage.tsx`, `BrandPage.tsx` (9 instances, more than the
+validator's narrower regex had originally flagged), `CategoryPage.tsx`,
+`ComparisonPage.tsx` — including verifying against arena.ai's live
+leaderboard that the specific "Opus 4.6 ranked #1" claim no longer matches
+current standings, not just removing the phrasing on principle.
 
 **Explicitly not doing:** bulk AI-generated product descriptions; near-duplicate
 pages per keyword variant; fabricated ratings to clear the GSC "Product snippets

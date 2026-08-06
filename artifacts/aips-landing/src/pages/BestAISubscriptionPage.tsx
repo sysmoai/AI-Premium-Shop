@@ -23,13 +23,13 @@ const TOP_TOOLS = [
   {
     rank: 2, name: "Google AI Pro", price: "BDT 499/mo", badge: "Best Value",
     badgeColor: "#4285f4", slug: "/gemini-advanced-bangladesh",
-    why: "Personal Gmail account, 2TB Drive storage, and AI in every Google app — for just BDT 500/month. Unbeatable value for Google Workspace users.",
+    why: "Personal Gmail account, 2TB Drive storage, and AI in every Google app — for BDT 500/month. Strong value for Google Workspace users.",
     bestFor: ["Professionals", "Students", "Job seekers"],
   },
   {
-    rank: 3, name: "Claude Pro", price: "from BDT 599/mo", badge: "#1 for Writing",
+    rank: 3, name: "Claude Pro", price: "from BDT 599/mo", badge: "Strong for Writing",
     badgeColor: "#d97706", slug: "/claude-pro-bangladesh",
-    why: "Ranked #1 on Chatbot Arena. Best writing quality, 1M token context window, and Claude Code for developers. The top choice for writers, researchers, and analysts.",
+    why: "Strong writing quality on independent benchmarks, a 1M token context window, and Claude Code for developers. A solid choice for writers, researchers, and analysts.",
     bestFor: ["Writers", "Researchers", "Lawyers", "Developers"],
   },
   {

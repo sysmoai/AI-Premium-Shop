@@ -21,7 +21,7 @@ Ordered by value / effort. Anything blocked names its blocker from `BLOCKERS.md`
 | 15 | Payment methods have no single source of truth — at least 5 independent hardcoded lists found (`PaymentMethodsSection.tsx`, `PaymentBadges.tsx`, `PageFooter.tsx`, `data/brand.json`, `scripts/generate-llms-txt.mjs`), each requiring its own manual edit when a method is added/removed. Binance had to be removed from all 5 separately on 2026-08-07 — see `docs/homepage/executive-audit.md` | — (real refactor: one data source, every component/script reads it) |
 | 17 | Delivery-time claims disagree across surfaces: prerendered homepage body and About page say "5–30 minutes"; `FAQPage.tsx`'s English and Bangla FAQs say "5–15 minutes... max 2-3 hours off-hours" (internally consistent with each other, just not with the other two surfaces) | — (owner: which is actually true) |
 | 18 | `midjourney-bangladesh`'s "Pro Shared" tier is priced ৳4,788 — more than BOTH the "Personal" (৳2,495) and "Pro" personal (৳3,990) tiers of the same product. A shared/split tier costing more than the equivalent (or a cheaper) personal tier defeats the commercial premise of sharing; either a real pricing error or a legitimate reason not evident from the data (e.g. Pro Shared includes something Pro Personal doesn't). Caught by the new `validate-catalog.mjs` shared-vs-personal check (2026-08-07) — see `docs/agent/OWNER-ACTIONS.md`-style evidence in the commit | — (owner: confirm the price or fix it) |
-| 20 | Is "Claude Opus 4.6" still the model Anthropic's actual Claude Pro consumer subscription currently exposes? Left the model name in place while removing the false "#1 on Chatbot Arena" ranking claim attached to it (2026-08-07) — Chatbot Arena's current leaderboard shows newer Claude models (Opus 5 family) on top, which raises the question of whether "Opus 4.6" itself is stale, but that's a different claim than the one checked and wasn't verified either way | — (owner or a fresh WebFetch check against Anthropic's own current Claude Pro plan page) |
+| 28 | Sitewide "#1"/superlative-claim sweep was scoped narrowly by regex (BACKLOG #16 done item) and missed at least one instance not matching that pattern — a "scored highest on SWE-bench, GPQA, and Chatbot Arena... objectively the smartest AI" claim survived in `BrandPage.tsx` until caught as a side effect of the 2026-08-07 Opus-5 fix (#20). Also found and removed an adjacent fabricated-stats block ("3x more content", "60% faster delivery", "44% avg income increase", no source) that the earlier testimonial sweep didn't touch since it wasn't phrased as a testimonial. Only found because I happened to be editing the same paragraph — a real full-text read of every brand/blog page (not just guide pages) for this claim class hasn't been done | — (real audit time, not blocked) |
 | 21 | Real bKash/Nagad/Rocket logo asset files still don't exist in the repo — text-only interim fallback applied 2026-08-07 (was: hand-drawn SVG approximations in `PaymentMethodsSection.tsx`; `PaymentBadges.tsx`/`PageFooter.tsx` were already text-only). See `docs/compliance/payment-methods.md` / `docs/brand/payment-assets.md` | — (owner: supply real asset files whenever convenient; not urgent now that the fabricated-mark risk is resolved) |
 | 22 | Playwright smoke tests (B9) — still not started. The one gap every other gate in this repo has a blind spot for: nothing executes the built app in a real browser. Two concrete journeys already specified by the master prompt: Homepage→Find Your Solution→Audience page→Category→Product→Policy→WhatsApp, and Homepage→AI Video→Higgsfield→Credits→Unlimited→Service opportunities→WhatsApp | — (new dependency, real scoping work) |
 | 23 | Individual re-audit of all 6 audience pages against the master prompt's per-page requirement list (unique intent, ethical limitations, Bangladesh context, FAQ, internal links) — partially covered as a side effect of the testimonial-fabrication sweep (2026-08-07), which touched all 5 guide pages, but that was a narrow pass for one issue class, not the full audit | — (large, ~6 pages × full checklist) |
@@ -111,6 +111,22 @@ current standings, not just removing the phrasing on principle.
 
 **Also done, 2026-08-07 (third continuation session, "full permission" turn):**
 
+- **Claude model name corrected, Opus 4.6 → Opus 5 (#20 — was open above, now
+  done).** Verified via Anthropic's own July 24, 2026 announcement
+  (anthropic.com/news/claude-opus-5) plus corroborating coverage: Opus 5 is
+  now the top model on the Claude Pro subscription. Fixed every
+  live-relevant reference (`data/products.json` + regenerated derived
+  files, `BlogPostPage.tsx`, `BrandPage.tsx`, `CategoryPage.tsx`,
+  `ComparisonPage.tsx`); left two confirmed-dead/unreferenced files
+  untouched. While in `BrandPage.tsx`, also removed a benchmark
+  superlative ("scored highest on SWE-bench, GPQA, and Chatbot Arena...
+  objectively the smartest AI") — checked, and Opus 5 is NOT #1 on
+  Chatbot Arena (#3 as of Aug 2026), so the claim would still have been
+  false under the new model name — and a fabricated-stats block ("3x more
+  content", "60% faster delivery", "44% avg income increase", no source
+  anywhere). Deliberately left "GPT-5.4" mentions alone — no verification
+  was done on OpenAI's current naming. See new item #28 for the process
+  gap this surfaced (superlative sweep missed non-regex-matching phrasing).
 - **Payment logos — text-only fallback applied (#21).**
   `PaymentMethodsSection.tsx`'s hand-drawn SVG letter-marks (colored
   rectangle + single bold letter approximating each brand's real logo)

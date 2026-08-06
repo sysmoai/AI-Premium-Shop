@@ -31,9 +31,36 @@ instructed not to attempt a workaround. Exact commands are in
 owner can adjust Bash permission settings to unblock it for a future
 session.
 
-**Next up:** Task #16 (verify "Claude Opus 4.6" is still Anthropic's
-current Claude Pro consumer model — BACKLOG #20) and Task #17 (attempt
-`lib/api-client-react` typecheck fix — BACKLOG #14).
+## This turn (8th, continued): Claude Opus 4.6 -> Opus 5 — BACKLOG #20 done
+
+Verified via Anthropic's own July 24, 2026 announcement
+(anthropic.com/news/claude-opus-5) that Opus 5 now supersedes Opus 4.6 on
+the Claude Pro subscription. Fixed every live-relevant reference:
+`data/products.json` (source), regenerated `catalog-pages.json`/
+`catalog-lite.json`/`llms.txt`/`api/_catalog.json` (only catalog-pages.json
+actually changed content), and hardcoded mentions in `BlogPostPage.tsx`,
+`BrandPage.tsx`, `CategoryPage.tsx`, `ComparisonPage.tsx`. Left two
+confirmed-dead files untouched (`data/products-completed.json`,
+`public/data/featured-products.json` — grepped, neither is referenced
+anywhere). Left "GPT-5.4" mentions untouched — not verified either way.
+
+While editing, found and removed two adjacent fabricated claims in
+`BrandPage.tsx` that the earlier superlative/testimonial sweeps had
+missed (different phrasing, didn't match those sweeps' patterns): a
+"scored highest on SWE-bench, GPQA, and Chatbot Arena... objectively the
+smartest AI" claim (checked — Opus 5 is actually #3 on Chatbot Arena as of
+Aug 2026, so this would have stayed false even with the model name fixed),
+and a "3x more content / 60% faster delivery / 44% avg income increase"
+stats block with no source anywhere in the repo. Logged as BACKLOG #28 —
+the sweep pattern (regex/keyword-based) has a real blind spot for
+differently-phrased fabricated claims.
+
+Deployed live, verified: exact JS bundle content check on
+`/claude-pro-bangladesh` shows `Opus 5`, zero remaining `4.6` occurrences.
+
+**Next up:** Task #17 (attempt `lib/api-client-react` typecheck fix —
+BACKLOG #14). BACKLOG #28 (broader superlative/fabricated-claim sweep
+beyond guide pages) is a good candidate for a future dedicated pass.
 
 ---
 

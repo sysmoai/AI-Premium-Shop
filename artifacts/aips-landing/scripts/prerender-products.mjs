@@ -772,6 +772,68 @@ ${bodyHtml || `<p>${esc(desc)}</p>`}
 console.log(`prerender: blog — wrote ${blogCount} static post pages (${BLOG_UNIQUE.filter((b) => postsMapSrc.includes(`"${b.slug}": {`)).length} with full extracted body)`);
 
 // --- Bangla pages (from BanglaBN.tsx, StudentsBN.tsx, etc.)
+// ---- /bn homepage static body, rendered from data/bn-homepage.json.
+// The Bangla routes previously shipped a ~156-char stub because the SEOHead
+// parser below never matched their template-literal titles. Content now lives in
+// one reviewable JSON file (the native-speaker review in BLOCKERS.md B7 is a job
+// someone can finish against one file, not seven .tsx files), and BOTH this
+// static body and BanglaBN.tsx read it — so they cannot diverge.
+const bnHome = JSON.parse(fs.readFileSync(path.join(APP, "data/bn-homepage.json"), "utf8"));
+function bnHomepageBody() {
+  const d = bnHome;
+  const sub = (t) => String(t)
+    .replace(/\{\{TOTAL_PRODUCTS\}\}/g, bnDigits(distinct.length))
+    .replace(/\{\{MIN_PRICE\}\}/g, bnDigits(Math.min(...products.map((p) => p.price).filter((n) => typeof n === "number"))));
+  const E = (t) => esc(sub(t));
+  const li = (arr, f) => `<ul>${arr.map(f).join("")}</ul>`;
+
+  return `
+<main>
+<h1>${E(d.seo.h1)}</h1>
+<p>${E(d.hero.sub)}</p>
+${li(d.hero.trustItems, (t) => `<li>${E(t)}</li>`)}
+<p><a href="${esc(d.hero.primaryCta.href)}" rel="noopener">${E(d.hero.primaryCta.label)}</a> · <a href="${esc(d.hero.secondaryCta.href)}">${E(d.hero.secondaryCta.label)}</a></p>
+<p>${E(d.disclaimer)}</p>
+
+<section><h2>${E(d.chooser.h2)}</h2>
+<p>${E(d.chooser.intro)}</p>
+${d.chooser.jobs.map((j) => `<h3>${E(j.title)}</h3><p>${E(j.body)}</p><p><a href="${esc(j.category)}">${E(j.title)} — সব টুল দেখুন</a></p>`).join("")}
+<p>${E(d.chooser.creditNote)}</p>
+</section>
+
+<section><h2>${E(d.audiences.h2)}</h2>
+${d.audiences.cards.map((c) => `<h3>${E(c.title)}</h3>
+<p>যেসব সমস্যায় পড়েন:</p>${li(c.problems, (x) => `<li>${E(x)}</li>`)}
+<p>যা করতে পারবেন:</p>${li(c.outcomes, (x) => `<li>${E(x)}</li>`)}
+<p>${E(c.caution)}</p>
+<p><a href="${esc(c.href)}">${E(c.title)}দের জন্য বিস্তারিত</a></p>`).join("")}
+</section>
+
+<section><h2>${E(d.planTypes.h2)}</h2>
+<p>${E(d.planTypes.intro)}</p>
+<table><thead><tr><th>বিষয়</th><th>নিজের নামের অ্যাকাউন্ট</th><th>শেয়ার্ড অ্যাকাউন্ট</th></tr></thead><tbody>
+${d.planTypes.rows.map((r) => `<tr><td>${E(r.feature)}</td><td>${E(r.personal)}</td><td>${E(r.shared)}</td></tr>`).join("")}
+</tbody></table>
+<p>${E(d.planTypes.warning)}</p>
+</section>
+
+<section><h2>${E(d.howItWorks.h2)}</h2>
+<ol>${d.howItWorks.steps.map((st) => `<li><strong>${E(st.title)}</strong> — ${E(st.body)}</li>`).join("")}</ol>
+</section>
+
+<section><h2>${E(d.faq.h2)}</h2>
+${d.faq.items.map((f) => `<h3>${E(f.q)}</h3><p>${E(f.a)}</p>`).join("")}
+</section>
+
+<section><h2>${E(d.finalCta.h2)}</h2>
+<p>${E(d.finalCta.body)}</p>
+<p><a href="${esc(d.finalCta.primary.href)}" rel="noopener">${E(d.finalCta.primary.label)}</a> · <a href="${esc(d.finalCta.secondary.href)}">${E(d.finalCta.secondary.label)}</a></p>
+</section>
+
+<p>${d.footerLinks.map((l) => `<a href="${esc(l.href)}">${E(l.label)}</a>`).join(" · ")}</p>
+</main>`;
+}
+
 const BANGLA_PAGES = {
   "/bn": { file: "BanglaBN.tsx", label: "হোম" },
   "/students-bn": { file: "StudentsBN.tsx", label: "শিক্ষার্থীদের জন্য" },
@@ -808,8 +870,9 @@ for (const [route, { file, label }] of Object.entries(BANGLA_PAGES)) {
   const src = fs.readFileSync(path.join(APP, "src/pages", file), "utf8");
   const m = src.match(/title=\{?[`"]([^`"]+)[`"]\}?[\s\S]{0,400}?description=\{?[`"]([^`"]+)[`"]\}?/);
   if (!m) console.warn(`prerender: ${file} — could not parse SEOHead title/description; using fallback`);
-  const title = m ? resolveTpl(m[1]) : `AI Premium Shop বাংলাদেশ — ${label}`;
-  const desc = m ? resolveTpl(m[2]) : "প্রিমিয়াম AI টুলস বাংলাদেশে BDT মূল্যে। bKash বা Nagad-এ পেমেন্ট করুন।";
+  const isBnHome = route === "/bn";
+  const title = isBnHome ? bnHome.seo.title : (m ? resolveTpl(m[1]) : `AI Premium Shop বাংলাদেশ — ${label}`);
+  const desc = isBnHome ? bnHome.seo.description : (m ? resolveTpl(m[2]) : "প্রিমিয়াম AI টুলস বাংলাদেশে BDT মূল্যে। bKash বা Nagad-এ পেমেন্ট করুন।");
   const body = route === "/bn" && typeof bnHomepageBody === "function"
     ? bnHomepageBody()
     : `<main><h1>${esc(title)}</h1><p>${esc(desc)}</p>

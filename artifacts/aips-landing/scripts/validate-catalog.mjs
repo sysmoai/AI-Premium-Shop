@@ -293,6 +293,27 @@ for (const [slug, recs] of bySlug) {
   }
 }
 
+// ---------- 2d. shared-vs-personal price sanity ----------
+// A shared tier splits one subscription's cost across several customers, so
+// it should cost less than the closest personal tier of the same product —
+// that's the entire commercial premise of "shared". Any shared record priced
+// at or above a personal record's price for the same slug is a data anomaly:
+// either a real pricing/labeling error, or a legitimate case (a shared
+// higher-capability tier vs. a cheaper personal entry tier) that needs a
+// human to confirm, not a script to silently accept. Warning, not a hard
+// failure — this needs business judgement, not an automatic price change.
+for (const [slug, recs] of bySlug) {
+  const shared = recs.filter((r) => r.accessType === "shared" && typeof r.price === "number");
+  const personal = recs.filter((r) => r.accessType === "personal" && typeof r.price === "number");
+  for (const s of shared) {
+    for (const p of personal) {
+      if (s.price >= p.price) {
+        warnings.push(`slug "${slug}": shared tier "${s.tier}" (৳${s.price}) costs the same or more than personal tier "${p.tier}" (৳${p.price}) — confirm this is intentional, not a pricing error`);
+      }
+    }
+  }
+}
+
 // ---------- 3. secret scan ----------
 const SECRET_PATTERNS = [
   [/sk-[A-Za-z0-9_-]{20,}/, "OpenAI-style key"],

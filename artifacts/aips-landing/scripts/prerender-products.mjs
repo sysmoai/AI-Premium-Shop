@@ -999,3 +999,137 @@ ${faqs.length ? `<h2>Frequently asked questions</h2>${faqs.map((f) => `<h3>${esc
     body, ld);
   console.log(`prerender: homepage written (${faqs.length} FAQs, ${featuredSlugs.length} featured brands)`);
 }
+
+// ============================================================================
+// THIN-ROUTE ENRICHMENT — the largest measured SEO gap on this site.
+//
+// Audited 2026-08-07 across all 273 built pages: 37 were under 800 visible
+// static characters while their React components render 2,000-13,000. /pricing
+// was the worst — 253 static against 13,389 rendered, a 53x gap.
+//
+// Googlebot executes JS so it eventually sees the full page, but its render
+// queue lags by days-to-weeks, and Bing (which feeds Copilot and other AI answer
+// surfaces), most AI crawlers and every social unfurler do not render at all.
+// Those clients were being served a stub of a page that is actually substantial.
+//
+// This sweep runs LAST and only touches routes still below the threshold, so the
+// bespoke extractors above (products, blog, guides, /bn, categories, brands) are
+// never overwritten — it can only add content to pages that have almost none.
+//
+// Extraction is deliberately conservative. Rather than parsing JSX into a DOM,
+// it pulls the human-readable STRING LITERALS out of a component in source order
+// and filters hard for prose: real sentences survive, class names, URLs, style
+// values and identifiers do not. The result is the page's own copy, in its own
+// order, with no invented text.
+// ============================================================================
+
+const ENRICH_MIN_CHARS = 800;
+
+/** True for a string literal that is real page copy rather than code. */
+function isProse(s) {
+  if (s.length < 30 || s.length > 1200) return false;
+  if ((s.match(/ /g) || []).length < 3) return false;          // needs >=4 words
+  if (/^https?:\/\//.test(s) || /^[/#]/.test(s)) return false;  // URLs and paths
+  if (/[{}<>]|\$\{/.test(s)) return false;                      // template/JSX fragments
+  if (/(^|\s)(flex|grid|text-|bg-|px-|py-|rounded|border-|hover:|md:|sm:|lg:)/.test(s)) return false; // tailwind
+  if (/#[0-9a-fA-F]{3,8}\b|rgba?\(|\d+px|\d+rem/.test(s)) return false; // css values
+  if (!/[a-zA-Z\u0980-\u09FF]/.test(s)) return false;           // needs letters (Latin or Bengali)
+  if (/^[A-Z0-9_]+$/.test(s)) return false;                     // CONST_KEYS
+  return true;
+}
+
+/** Pull prose string literals from a component, in source order, deduped. */
+function extractComponentProse(src) {
+  // Strip imports and comments so their contents cannot leak into the page.
+  let s = src.replace(/^import[\s\S]*?from\s*["'][^"']+["'];?$/gm, "");
+  s = s.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
+
+  const out = [];
+  const seen = new Set();
+
+  // SOURCE 2 — JSX TEXT NODES. Components like PrivacyPolicyPage, TermsPage and
+  // AboutPage keep their prose as literal text BETWEEN tags
+  // (<h2>0. AI Assistant Conversations</h2>), not in quoted strings, so the
+  // literal scan below finds almost nothing on them. Headings are emitted as
+  // headings so the enriched page keeps a real outline rather than a wall of <p>.
+  const jsxText = [];
+  for (const m of s.matchAll(/<(h[1-4]|p|li|strong)\b[^>]*>([^<>{}]{12,900})<\/\1>/g)) {
+    const tag = m[1];
+    const text = m[2].replace(/\s+/g, " ").trim();
+    if (!text || /^[{}\s]*$/.test(text)) continue;
+    if (!/[a-zA-Zঀ-৿]/.test(text)) continue;
+    // Headings may be short; body text must still look like prose.
+    if (!/^h[1-4]$/.test(tag) && !isProse(text)) continue;
+    if (/^h[1-4]$/.test(tag) && text.length < 4) continue;
+    jsxText.push({ tag: /^h[1-4]$/.test(tag) ? "h3" : "p", text });
+  }
+
+  // Double-quoted, single-quoted, and backtick literals with no interpolation.
+  for (const m of s.matchAll(/"((?:[^"\\]|\\.){30,1200})"|'((?:[^'\\]|\\.){30,1200})'|`([^`$\\]{30,1200})`/g)) {
+    const raw = (m[1] ?? m[2] ?? m[3] ?? "").replace(/\\"/g, '"').replace(/\\'/g, "'").trim();
+    if (!isProse(raw)) continue;
+    const key = raw.slice(0, 60);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(raw);
+  }
+  // Literals first (they are usually the structured content arrays), then the
+  // JSX prose, deduped against each other.
+  const blocks = out.map((t) => ({ tag: "p", text: t }));
+  for (const b of jsxText) {
+    const key = b.text.slice(0, 60);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    blocks.push(b);
+  }
+  return blocks;
+}
+
+// route -> component file, parsed from App.tsx so it cannot drift from reality.
+const appSrcForEnrich = fs.readFileSync(path.join(APP, "src/App.tsx"), "utf8");
+const ROUTE_COMPONENT = new Map();
+for (const m of appSrcForEnrich.matchAll(/<Route path="(\/[^"]*)"\s+component=\{(\w+)\}/g)) {
+  ROUTE_COMPONENT.set(m[1], m[2]);
+}
+// Lazy-import map: `const AboutPage = lazy(() => import("@/pages/AboutPage"))`
+const COMPONENT_FILE = new Map();
+for (const m of appSrcForEnrich.matchAll(/const\s+(\w+)\s*=\s*lazy\(\(\)\s*=>\s*import\("@\/(pages\/[\w/]+)"\)\)/g)) {
+  COMPONENT_FILE.set(m[1], `src/${m[2]}.tsx`);
+}
+for (const m of appSrcForEnrich.matchAll(/import\s+(\w+)\s+from\s+"@\/(pages\/[\w/]+)"/g)) {
+  COMPONENT_FILE.set(m[1], `src/${m[2]}.tsx`);
+}
+
+const visibleLen = (html) => html
+  .replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, "")
+  .replace(/<!--[\s\S]*?-->/g, "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().length;
+
+let enriched = 0, enrichSkipped = 0;
+const enrichedRoutes = [];
+for (const [route, component] of ROUTE_COMPONENT) {
+  const file = COMPONENT_FILE.get(component);
+  if (!file) continue;
+  const outFile = path.join(DIST, route.replace(/^\//, ""), "index.html");
+  if (!fs.existsSync(outFile)) continue;
+
+  const html = fs.readFileSync(outFile, "utf8");
+  if (visibleLen(html) >= ENRICH_MIN_CHARS) { enrichSkipped++; continue; }
+
+  const srcPath = path.join(APP, file);
+  if (!fs.existsSync(srcPath)) continue;
+  const prose = extractComponentProse(fs.readFileSync(srcPath, "utf8"));
+  if (prose.length < 3) continue;
+
+  const extra = `<section>${prose.map((b) => `<${b.tag}>${esc(b.text)}</${b.tag}>`).join("")}</section>`;
+  // Append INSIDE the existing <main> so the page keeps its single h1 and its
+  // existing links, rather than growing a second document.
+  const updated = html.includes("</main>")
+    ? html.replace("</main>", `${extra}</main>`)
+    : html.replace('</div>\n</body>', `${extra}</div>\n</body>`);
+  if (updated === html) continue;
+  fs.writeFileSync(outFile, updated);
+  enriched++;
+  enrichedRoutes.push(`${route}(${prose.length})`);
+}
+console.log(`prerender: enriched ${enriched} thin routes from their components (${enrichSkipped} already above ${ENRICH_MIN_CHARS} chars)`);
+console.log(`prerender: enriched -> ${enrichedRoutes.join(", ")}`);

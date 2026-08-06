@@ -1,5 +1,62 @@
 # Worklog
 
+## Chatbot audit + system-prompt fix, deployed — 2026-08-07 (Sonnet 5, same day, eighth turn)
+
+Owner requested a chatbot-enhancement master prompt assuming the concierge
+needed to be built largely from scratch (NVIDIA API research, knowledge
+base, retrieval). Real code inspection first, per this session's standing
+discipline: `api/concierge.js` (919 lines) already implements almost all
+of it, in mature form — NVIDIA NIM primary (`meta/llama-3.1-8b-instruct`,
+re-benchmarked 2026-07-31 against real Bangla/Banglish/English questions,
+not liveness pings), a 70B fallback, an optional Anthropic Haiku
+last-resort, term-based retrieval (not full-context-stuffing) against the
+catalog, and — the standout piece — **grounded product cards**: the model
+never gets to assert a price the client renders; the server re-scans the
+reply for catalog paths and builds the card from `_catalog.json` directly.
+Extensive existing guardrails already prevent invented prices, marketing
+superlatives, income guarantees, and false certainty about account safety.
+This is not a "build a chatbot" task; it's an audit-and-improve task, same
+as everything else this session.
+
+**Live-tested 4 representative queries** (not simulated) directly against
+`https://aipremiumshop.com/api/concierge`:
+- Bangla video-editing query → correct language, correct product
+  (CapCut Pro, not a generic pick), correctly grounded price/delivery.
+  (First attempt showed mojibake and a wrong recommendation — traced to a
+  shell/curl encoding artifact from passing Bangla UTF-8 as a `-d` command-
+  line argument on Windows/Git Bash, not a server bug; retested with
+  `--data-binary` from a file and got the correct answer. Recorded so this
+  false-positive isn't rediscovered.)
+- English off-topic question → correctly deflected, no hallucination.
+- **Shared-account privacy question → found a real, live bug.** The model
+  answered with a specific claim ("they CAN see each other's conversations
+  and settings") that's neither in the system prompt (which only says
+  "less privacy," deliberately vague) nor consistent with what
+  `FAQPage.tsx`/`Home.tsx` claim elsewhere on the site ("completely
+  separate profile... cannot see your chat history") — a live,
+  customer-facing version of the exact cross-surface-inconsistency problem
+  this whole session has been fighting in static content, this time in the
+  AI's own output.
+
+Fixed with one line in `STRICT RULES`, same style as the ~10 existing
+anti-hallucination rules in the same prompt: constrain the model to the
+system prompt's own vague "less privacy" framing, forbid inventing
+specifics in either direction. Does not resolve which claim is true — that
+stays BLOCKERS.md B5, a vendor-specific owner decision — only stops the
+model from confidently asserting an unverified specific. Deployed to
+production and verified with 2 fresh live queries: the fabricated
+"can see each other's conversations" claim is gone, replaced with the
+system prompt's own "less privacy" / hedged "may not be private" framing.
+LLM output is probabilistic, not templated — confirmed via repeated
+sampling, not a single lucky response.
+
+Full audit findings and the larger, correctly-out-of-scope-for-one-session
+asks (scheduled knowledge-base sync, fine-tuning/continuous-learning
+pipeline, full NVIDIA quota documentation — needs account-dashboard access
+this session doesn't have) recorded in the final chat response, not
+duplicated into a new doc file given how much of this session's docs
+infrastructure already exists to carry it forward.
+
 ## PRODUCTION DEPLOYMENT — 2026-08-07 (Sonnet 5, same day, seventh turn)
 
 Owner explicitly authorized production deploy. Checked `scripts/deploy-

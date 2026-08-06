@@ -20,6 +20,8 @@ export function CookieBanner({ onConsent }: CookieBannerProps) {
     }
   }, []);
 
+  const t = useT();
+
   const accept = () => {
     localStorage.setItem(STORAGE_KEY, "true");
     setVisible(false);
@@ -27,8 +29,6 @@ export function CookieBanner({ onConsent }: CookieBannerProps) {
   };
 
   if (!visible) return null;
-
-  const t = useT();
 
   return (
     <div

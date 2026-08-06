@@ -1,5 +1,54 @@
 # Worklog
 
+## Vendor compliance + Higgsfield verification + superlative cleanup — 2026-08-07 (Sonnet 5, same day, fifth turn)
+
+Continuation of the fourth turn's `NEXT-TASK.md`, doing both Option A and
+Option B rather than choosing one, then a third bonus item found along the
+way:
+
+**Vendor compliance (Option A):** built `docs/compliance/vendor-matrix.csv`
+mechanically from `data/products.json`'s 44 `accessType:"shared"` records —
+37 distinct vendors, every classification "Unverified" by construction, no
+research performed (that's real work, correctly out of scope for a
+mechanical pass). Flagged (did not rewrite) two places asserting a blanket
+shared-account-safety claim across all vendors, since B5 says compliance is
+vendor-specific and no vendor's terms have actually been checked yet.
+
+**Higgsfield verification (Option B):** the first real external web research
+this session — `higgsfield.ai/terms-of-use-agreement` and two blog posts
+(the pricing page itself is a client-rendered app shell, confirmed
+unfetchable after 3 attempts). Found that the existing customer-owned-
+account implementation isn't just cautious — it's what the vendor's actual
+terms require (§2.4 prohibits credential sharing and creating accounts for
+others without authorization). Found "unlimited" now has a defined scope
+(never covers Supercomputer/MCP/CLI, one generation at a time). Found the
+proposed "6 video and 8 image parallel generations" claim has no supporting
+evidence in what was fetchable. Found a real unit-economics red flag: the
+only vendor price found ($49/mo) doesn't obviously reconcile with the
+proposed BDT 1,199 price. Wired the newly-verified facts into
+`data/higgsfield-offer.json`, the live `HiggsfieldPage.tsx` component
+(new "What we have verified" section), AND the separate prerender static-
+body generator in the same commit — the drift-prevention pattern this
+entire session has been enforcing elsewhere, applied here proactively
+rather than after finding a bug.
+
+**Superlative claims (found while checking `NEXT-TASK.md`'s backlog #16):**
+`validate-truth.mjs`'s regex only catches `#1\s+(AI|for|paraphras...)` —
+a direct grep for `#1` across the 4 flagged files found more instances than
+the validator had (9 in `BrandPage.tsx` alone, not 5). Fixed all of them.
+Distinguished two categories: pure marketing puffery with no source
+(rewritten to accurate descriptive language) vs. claims citing a real,
+named benchmark (Chatbot Arena) — for those, actually checked arena.ai's
+live leaderboard rather than assuming either that the claim was fine or
+that it should be stripped. Current #1 is Anthropic's Fable 5 / Opus 5
+family, not the "Opus 4.6" the site cites — removed the stale ranking claim,
+kept the model name itself (no evidence it's wrong as a description of
+what's included, separate question, logged as BACKLOG #20).
+
+Every commit this turn was individually build+seo:check verified, not
+batched and checked once at the end. Branch is now 10 commits, still
+entirely local.
+
 ## Catalogue integrity + owner-actions doc — 2026-08-07 (Sonnet 5, same day, fourth turn)
 
 Reconciled repo/doc state per the fourth master prompt's checklist first:

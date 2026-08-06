@@ -1,70 +1,72 @@
 # Next task — start here
 
-**Written:** 2026-08-07, end of the catalogue-integrity task group (4th
-turn of this same-day session).
+**Written:** 2026-08-07, end of the 5th turn of this same-day session
+(vendor compliance + Higgsfield verification + superlative-claims cleanup).
 
 ## Do this first (2 minutes)
 
 ```bash
-git log --oneline -7                    # confirm seo/homepage-product-authority,
-                                         # 6 commits ahead of main, unpushed
+git log --oneline -11                   # confirm seo/homepage-product-authority,
+                                         # 10 commits ahead of main, unpushed
 cd artifacts/aips-landing
-pnpm run build && pnpm run seo:check && node scripts/validate-catalog.mjs
-# expect: build clean 272/272, seo:check 0 errors, validate-catalog 0 hard
-# failures / 17 warnings (2 new: the Midjourney Pro Shared anomaly)
+pnpm run build && pnpm run seo:check && node scripts/validate-catalog.mjs \
+  && node scripts/validate-higgsfield-offer.mjs
+# expect: all clean/passing, matching CURRENT-STATE.md's "Verified" section
 ```
 
-Then read `CURRENT-STATE.md` in full — it's current as of this write.
+Then read `CURRENT-STATE.md` in full.
 
-## Waiting on you (nothing below is blocked on these — proceed independently)
+## The branch is getting large — recommend a checkpoint before more feature work
 
-1. **OWNER-ACTIONS.md OA1** — stale duplicate Vercel deployment
-   (`aips-website-two.vercel.app`) still live, stale catalog numbers public.
-   Recommended: `vercel alias rm` the three aliases listed there (reversible,
-   one command each).
-2. **OWNER-ACTIONS.md OA2** — `http://www` 2-hop redirect, 5-min dashboard
-   fix, low priority.
-3. **BACKLOG.md #18** — confirm whether Midjourney's "Pro Shared" tier
-   (৳4,788, more than both its Personal tiers) is a pricing error or
-   intentional.
-4. Whether to push the branch / open a PR / deploy to production.
+10 commits, 5 sessions, all local. Before adding more:
 
-## Next P0 task group: your call between two independent options
+1. **Deploy a fresh preview** (the last one was checked several commits ago
+   and predates the Higgsfield page changes) and do one visual/functional
+   pass, especially `/product/higgsfield-ai-bangladesh`'s new "What we have
+   verified" section and the superlative-claim pages
+   (`/chatgpt-vs-claude`, `/claude-pro-bangladesh`, `/best-ai-subscription-2026`).
+2. Consider whether this is a good point to push the branch / open a PR for
+   review, rather than continuing to grow it further first — 10 commits of
+   real fixes is already a substantial, reviewable unit of work.
 
-**Option A — Shared-account and vendor compliance (master-prompt section 8 /
-BLOCKERS.md B5).** Large, but partially unblocked: you don't need to wait for
-per-vendor legal review to do the mechanical part —
-1. Build `docs/compliance/vendor-matrix.csv` skeleton from what's already in
-   `data/products.json` (44 records with `accessType: "shared"`, grouped by
-   vendor/brand) — this is a repo-only task, no research needed.
-2. Flag (don't yet remove) every place `src/pages/GuidePage.tsx`,
-   `FAQPage.tsx`, or product pages describe shared accounts as "similar to
-   family sharing" or unconditionally "safe" — a repo grep, not new writing.
-   Do not rewrite this copy without your sign-off; B5 says explicitly this
-   isn't a decision to make unilaterally per-vendor.
+## Waiting on you (independent of the above — proceed on other things regardless)
 
-**Option B — Higgsfield offer verification (master-prompt sections 10-11 /
-RESEARCH-CACHE.md).** Needs real external web research against
-`higgsfield.ai/pricing`, `/terms-of-use-agreement`, and the two blog posts
-listed in `RESEARCH-CACHE.md`. This is genuinely new work (not re-research —
-nothing has been checked yet), best done as its own focused session since
-it's a different mode of work (external fetch + read + record) than the
-repo-mechanical work this session has been doing. Record findings in
-`RESEARCH-CACHE.md`'s table before touching any code, per the credit-
-efficient operating mode's "record research once" rule.
+1. **OWNER-ACTIONS.md OA1/OA2** — stray deployment, 2-hop redirect.
+2. **BACKLOG #18** — Midjourney Pro Shared pricing anomaly.
+3. **BACKLOG #20** — is "Claude Opus 4.6" still current?
+4. **`docs/higgsfield/unit-economics.md`** — needs your real cost numbers
+   before the Higgsfield offer can move past enquiry-only.
+5. Push / PR / deploy decision.
 
-Recommend **A first** — it's unblocked, mechanical, and directly de-risks
-the largest remaining compliance exposure (44 products); B needs you to
-decide whether the proposed BDT 1,199/1,200-credit offer is still the one to
-verify, since three master prompts in a row have called it "proposed, not
-verified" without changing.
+## Next task groups (your call, all independently safe to start)
 
-## After A or B: remaining P0 order (unchanged from last write)
+**Conflicting business facts — systematic sweep.** This session fixed
+business facts on pages it happened to touch (Bangla FAQ, Higgsfield offer)
+but never did an exhaustive pass. `validate-truth.mjs` already checks
+founding year and customer count canonically sitewide — extend it to scan
+for the OTHER numbers this session found drifting in different sessions
+(delivery time: BACKLOG #17; tool/plan counts — already gated by
+`validate-catalog.mjs`'s "no hand-written catalog numbers" check). Mostly a
+"does the existing gate already cover this" audit, not new gate-writing.
 
-- Conflicting business facts — largely addressed; no systematic full-site
-  sweep has been done, only pages this session happened to touch.
-- Remaining audience pages — job-seekers fixed; students/freelancers/
-  creators/business/developers not individually re-audited.
-- Homepage/AI Video conversion improvements beyond what's done.
-- Remaining technical SEO (hreflang, structured-data audit).
-- Content expansion — explicitly last.
+**Audience pages re-audit.** Job-seekers was fixed for the prerender-
+collision bug (F4) but never re-read end to end for content quality/
+duplication against the master prompt's own required-sections list
+(CV structure, ATS limitations, interview practice, etc. — master-prompt
+section 16). Students/freelancers/creators/business/developers pages
+haven't been individually re-checked this whole session.
+
+**`docs/compliance/payment-methods.md`** — not created. Source URLs already
+in `RESEARCH-CACHE.md` (bKash/Nagad/Rocket merchant pages) — same shape of
+work as the Higgsfield verification just done, smaller scope.
+
+**Extend `validate-truth.mjs`'s claim patterns** — BACKLOG #19 ("savings vs
+official" percentages) is the same class of gap that let the extra "#1"
+instances slip through this session; worth closing generally rather than
+finding one category at a time.
+
+## Explicitly not next
+
+Content expansion / new pages (master-prompt section 21) — the master
+prompt's own instruction: "Do not spend time polishing content while P0
+data or compliance defects remain." Several still do (above).

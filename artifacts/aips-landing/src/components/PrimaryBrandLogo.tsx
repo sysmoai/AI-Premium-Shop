@@ -76,6 +76,8 @@ export function PrimaryBrandLogo({
     <img
       src={logoImage}
       alt={decorative ? "" : "AI Premium Shop"}
+      width={config.icon}
+      height={config.icon}
       style={{ width: config.icon, height: config.icon }}
       className="object-contain flex-shrink-0"
     />
@@ -102,6 +104,8 @@ export function PrimaryBrandLogo({
       <img
         src={logoImage}
         alt={decorative ? "" : "AI Premium Shop"}
+        width={config.icon}
+        height={config.icon}
         style={{ width: config.icon, height: config.icon }}
         className={`object-contain ${className}`}
       />

@@ -31,6 +31,20 @@ if (!fs.existsSync(DIST)) {
 
 const offer = JSON.parse(fs.readFileSync(path.join(APP, "data/higgsfield-offer.json"), "utf8"));
 
+// --- /bn: the component and the static prerender must read the SAME source.
+// Before this, BanglaBN.tsx carried its own hardcoded Bangla while the prerender
+// emitted different content — two versions of the same page, one for crawlers
+// and one for humans, with nothing keeping them honest.
+{
+  const bnPage = path.join(APP, "src/pages/BanglaBN.tsx");
+  if (fs.existsSync(bnPage)) {
+    const src = fs.readFileSync(bnPage, "utf8");
+    if (!src.includes("bn-homepage.json")) {
+      errors.push("src/pages/BanglaBN.tsx no longer reads data/bn-homepage.json — the Bangla page and its prerendered copy will drift apart");
+    }
+  }
+}
+
 // --- The pre-hydration snapshot styling must target the wrapper the prerender
 // actually emits. These two live in different files (src/index.css and
 // scripts/prerender-products.mjs) and nothing else couples them: when the

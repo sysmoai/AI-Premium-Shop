@@ -1,205 +1,252 @@
+// /bn — the Bangla homepage.
+//
+// Every word on this page comes from data/bn-homepage.json, which
+// scripts/prerender-products.mjs ALSO renders into the static HTML. That is the
+// point: before this, the static body and the React render were different
+// content, which is precisely the drift this codebase keeps getting bitten by
+// (CLAUDE.md records the same wrong-price bug recurring six times from typed
+// literals). Catalog figures arrive as {{TOKEN}} placeholders and are
+// substituted here from catalogStats — never typed.
+//
+// The outstanding native-speaker review (docs/agent/BLOCKERS.md B7) is a review
+// of that one JSON file, not of this component.
+
+import { Link } from "wouter";
+import { MessageCircle, ArrowRight, Check, X, AlertTriangle, Info } from "lucide-react";
 import { MIN_PRICE, TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Navbar } from "@/components/Navbar";
+import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { PaymentBadges } from "@/components/PaymentBadges";
 import { ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema } from "@/utils/schemas";
-import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
-import { FAQSection } from "@/components/FAQSection";
-import { motion } from "framer-motion";
+import bn from "../../data/bn-homepage.json";
 
-const BN = "০১২৩৪৫৬৭৮৯";
-/** Renders a number in Bengali digits, so catalog-derived figures match the
- *  hand-written Bengali numerals already used throughout this page. */
-function bnNum(n: number | string) {
-  return String(n).replace(/[0-9]/g, (d) => BN[Number(d)]);
+const BN_DIGITS = "০১২৩৪৫৬৭৮৯";
+const bnNum = (n: number | string) => String(n).replace(/[0-9]/g, (d) => BN_DIGITS[Number(d)]);
+
+/** Substitutes the catalog tokens the JSON leaves for build/render time. */
+const sub = (t: string) =>
+  t.replace(/\{\{TOTAL_PRODUCTS\}\}/g, bnNum(TOTAL_PRODUCTS))
+   .replace(/\{\{MIN_PRICE\}\}/g, bnNum(MIN_PRICE));
+
+const CARD = { backgroundColor: "#151b3d" };
+const MUTED = { color: "#c9ceda" };
+
+function Section({ id, title, lede, children }: {
+  id: string; title: string; lede?: string; children: React.ReactNode;
+}) {
+  return (
+    <section id={id} className="scroll-reveal mb-16 scroll-mt-24">
+      <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{title}</h2>
+      {lede && <p className="mb-8 leading-relaxed max-w-3xl text-base" style={MUTED}>{lede}</p>}
+      {children}
+    </section>
+  );
 }
 
 export default function BanglaBN() {
   useScrollReveal();
 
-  const FAQS_BN = [
-    {
-      question: "শেয়ার্ড অ্যাকাউন্ট নিরাপদ?",
-      answer: "হ্যাঁ। আপনি সম্পূর্ণ প্রিমিয়াম ফিচার পাবেন। তবে ২–৭ জন একটি সাবস্ক্রিপশন শেয়ার করে। সম্পূর্ণ প্রাইভেসির জন্য পার্সোনাল অ্যাকাউন্ট নিন।",
-    },
-    {
-      question: "ডেলিভারি কত দ্রুত?",
-      answer: "শেয়ার্ড: ৫–৩০ মিনিট। পার্সোনাল: ২–৪ ঘন্টা। bKash/Nagad-এ পেমেন্ট নিশ্চিত হওয়ার পর থেকে সময় গণনা শুরু।",
-    },
-    {
-      question: "কী কী পেমেন্ট অপশন আছে?",
-      answer: "bKash, Nagad, Rocket, ব্যাংক ট্রান্সফার, এবং Binance। আন্তর্জাতিক ক্রেডিট কার্ডের দরকার নেই।",
-    },
-    {
-      question: "রিফান্ড পলিসি কী?",
-      answer: "ডেলিভারির ১৫ মিনিটের মধ্যে রিফান্ড পাবেন যদি সেবায় সমস্যা থাকে। টুল এবং সাবস্ক্রিপশন ফি রিফান্ডযোগ্য নয়।",
-    },
-    {
-      question: "এটা সত্যিকার সাবস্ক্রিপশন?",
-      answer: "হ্যাঁ। আমরা বৈধ সাবস্ক্রিপশন দিই (হ্যাক্ড নয়)। শেয়ার্ড প্ল্যান মানে ২–৭ জন ব্যবহারকারী একটি লিজিটিমেট সাবস্ক্রিপশন শেয়ার করে। প্রতিটি অর্ডারে ৩০ দিনের ওয়ারেন্টি।",
-    },
-    {
-      question: "আমি নতুন — কোনটা দিয়ে শুরু করব?",
-      answer: "ChatGPT Plus Starter Shared দিয়ে শুরু করুন (৳499/মাস)। এটা আমাদের সবচেয়ে জনপ্রিয় প্ল্যান — লেখা, কোডিং, গবেষণা সব হয়। সন্দেহ হলে WhatsApp-এ বলুন, ২ মিনিটে সঠিক টুল সাজেস্ট করব।",
-    },
-  ];
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: bn.faq.items.map((f) => ({
+      "@type": "Question",
+      name: sub(f.q),
+      acceptedAnswer: { "@type": "Answer", text: sub(f.a) },
+    })),
+  };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
+    <PageLayout>
       <SEOHead
-        title={`AI প্রিমিয়াম শপ — ${bnNum(TOTAL_PRODUCTS)}টি AI টুল বাংলাদেশে | bKash/Nagad পেমেন্ট`}
-        description={`ChatGPT, Claude, Midjourney, Copilot, DeepSeek সহ সকল AI টুল বাংলাদেশে। bKash/Nagad পেমেন্ট, ৫-৩০ মিনিটে ডেলিভারি। ৳${bnNum(MIN_PRICE)}/মাস থেকে শুরু।`}
-        canonical="https://aipremiumshop.com/bn"
-        lang="bn-BD"
-        hreflang={{ bn: "/bn", en: "/" }}
-        jsonLd={[
-          ORG_SCHEMA,
-          WEBSITE_SCHEMA,
-          breadcrumbSchema([{ name: "বাংলা" }, { name: "হোম" }]),
-        ]}
+        title={sub(bn.seo.title)}
+        description={sub(bn.seo.description)}
+        canonical={bn.canonical}
+        lang={bn.lang}
+        hreflang={{ "bn-BD": "/bn", "en-BD": "/", "x-default": "/" }}
+        jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema([{ name: "বাংলা" }, { name: "হোম" }]), faqJsonLd] as any}
       />
 
-      <Navbar />
+      <div className="max-w-6xl mx-auto px-4 pt-8 pb-24">
+        {/* ---- Hero ---- */}
+        <header className="mb-14">
+          <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-5">{sub(bn.seo.h1)}</h1>
+          <p className="text-lg leading-relaxed max-w-3xl mb-7" style={MUTED}>{sub(bn.hero.sub)}</p>
 
-      <main>
-        {/* HERO */}
-        <section className="min-h-screen flex items-center justify-center py-20" style={{ backgroundColor: "#0a0e27" }}>
-          <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                AI টুলস বাংলাদেশে সবচেয়ে সাশ্রয়ী দামে
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                {bnNum(TOTAL_PRODUCTS)}টি প্রিমিয়াম AI সেবা — ChatGPT, Claude, Midjourney, Copilot এবং আরও অনেক কিছু।<br />
-                bKash/Nagad পেমেন্ট। ৫–৩০ মিনিটে ডেলিভারি।
-              </p>
-              <p className="text-lg text-gray-400 mb-8">
-                মাত্র ৳{bnNum(MIN_PRICE)} থেকে শুরু করুন। কোনো আন্তর্জাতিক কার্ডের দরকার নেই।
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="https://wa.me/8801865385348?text=আমি AI টুল নিতে আগ্রহী। কী কী অপশন আছে?"
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-black transition-all duration-200 hover:scale-105"
-                  style={{ backgroundColor: "#25d366" }}
-                >
-                  WhatsApp-এ অর্ডার করুন
-                </a>
-                <a
-                  href="/products"
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold border-2 transition-all duration-200 hover:scale-105"
-                  style={{ borderColor: "#f4b942", color: "#f4b942" }}
-                >
-                  সব AI টুল দেখুন
-                </a>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="mt-16 grid grid-cols-3 gap-4 max-w-2xl mx-auto"
-            >
-              <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-800">
-                <div className="text-2xl font-bold text-white">{bnNum(TOTAL_PRODUCTS)}</div>
-                <div className="text-sm text-gray-400">প্রিমিয়াম টুলস</div>
-              </div>
-              <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-800">
-                <div className="text-2xl font-bold text-white">৫-৩০</div>
-                <div className="text-sm text-gray-400">মিনিট ডেলিভারি</div>
-              </div>
-              <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-800">
-                <div className="text-2xl font-bold text-white">৳{MIN_PRICE}</div>
-                <div className="text-sm text-gray-400">থেকে শুরু</div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* কীভাবে কাজ করে */}
-        <section className="max-w-5xl mx-auto px-4 md:px-8 py-16">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center">কীভাবে কাজ করে?</h2>
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              // Steps 3 and 4 previously used ३ and ४ — Devanagari, not Bengali.
-              // Next to ১ and ২ that reads as a different alphabet mid-list.
-              // The first description was a plain string containing the text
-              // "{TOTAL_PRODUCTS}", so the Bangla homepage rendered a literal
-              // template placeholder to every visitor.
-              { num: "১", title: "টুল খুঁজুন", desc: `আমাদের ${bnNum(TOTAL_PRODUCTS)}টি AI টুল থেকে আপনার পছন্দের টুল বেছে নিন।` },
-              { num: "২", title: "WhatsApp করুন", desc: "আমাদের WhatsApp নম্বরে মেসেজ করুন আপনার পছন্দের টুল নিয়ে।" },
-              { num: "৩", title: "পেমেন্ট করুন", desc: "bKash, Nagad বা ব্যাংক ট্রান্সফারে পেমেন্ট করুন (কার্ডের দরকার নেই)।" },
-              { num: "৪", title: "পাবেন আইডি", desc: "৫–৩০ মিনিটের মধ্যে আপনার লগইন আইডি পাবেন। সাথে ৩০ দিনের ওয়ারেন্টি।" },
-            ].map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="bg-gray-900/40 rounded-xl p-6 border border-gray-800"
-              >
-                <div className="text-4xl font-bold text-yellow-400 mb-3">{step.num}</div>
-                <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                <p className="text-gray-400 text-sm">{step.desc}</p>
-              </motion.div>
+          <ul className="flex flex-wrap gap-2 mb-7 list-none p-0">
+            {bn.hero.trustItems.map((t) => (
+              <li key={t} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium"
+                style={{ backgroundColor: "rgba(16,185,129,0.12)", color: "#10b981", border: "1px solid rgba(16,185,129,0.25)" }}>
+                <Check className="w-3.5 h-3.5 flex-shrink-0" /> {sub(t)}
+              </li>
             ))}
-          </div>
-        </section>
+          </ul>
 
-        {/* পেমেন্ট মেথড */}
-        <section className="max-w-5xl mx-auto px-4 md:px-8 py-16">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center">পেমেন্ট মেথড — সব স্থানীয় অপশন</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-            {["bKash", "Nagad", "Rocket", "ব্যাংক ট্রান্সফার", "Binance"].map((method, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700 text-center hover:border-yellow-400 transition-all"
-              >
-                <div className="text-2xl mb-2">{"🏦📱💰💳💎"[i]}</div>
-                <div className="font-bold text-white">{method}</div>
-                <div className="text-xs text-gray-400 mt-2">তাৎক্ষণিক</div>
-              </motion.div>
-            ))}
+          <div className="flex flex-col sm:flex-row gap-3 mb-7">
+            <a href={bn.hero.primaryCta.href} target="_blank" rel="noopener noreferrer"
+              data-analytics="bn-hero-primary"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold transition-opacity hover:opacity-90"
+              style={{ backgroundColor: "#008236", color: "#fff", minHeight: "48px" }}>
+              <MessageCircle className="w-5 h-5" /> {bn.hero.primaryCta.label}
+            </a>
+            <Link href={bn.hero.secondaryCta.href}
+              data-analytics="bn-hero-secondary"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold border border-white/15 hover:border-white/30 transition-colors text-white"
+              style={{ minHeight: "48px" }}>
+              {bn.hero.secondaryCta.label} <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
-        </section>
+          <PaymentBadges />
+        </header>
 
-        {/* FAQ */}
-        <div className="scroll-reveal">
-          <FAQSection items={FAQS_BN} title="প্রায়শ জিজ্ঞাসিত প্রশ্ন" />
+        {/* ---- Independent-provider disclaimer, above the fold-ish ---- */}
+        <div className="rounded-2xl border p-5 mb-16 flex items-start gap-3"
+          style={{ backgroundColor: "rgba(244,185,66,0.06)", borderColor: "rgba(244,185,66,0.25)" }}>
+          <Info className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#f4b942" }} />
+          <p className="text-sm leading-relaxed" style={MUTED}>{sub(bn.disclaimer)}</p>
         </div>
 
-        {/* CTA */}
-        <section className="max-w-5xl mx-auto px-4 md:px-8 py-16">
-          <div
-            className="rounded-2xl p-12 text-center border"
-            style={{
-              background: "linear-gradient(135deg, #1f2937 0%, #111827 100%)",
-              borderColor: "rgba(244, 185, 66, 0.2)",
-            }}
-          >
-            <h2 className="text-3xl font-bold text-white mb-4">এখনই শুরু করুন</h2>
-            <p className="text-gray-300 mb-8 text-lg">
-              ৳{MIN_PRICE} থেকে শুরু করুন। কোনো লুকানো খরচ নেই।
-            </p>
-            <a
-              href="https://wa.me/8801865385348?text=আমি AI টুল নিতে আগ্রহী। ৳299 থেকে কোনটা পাওয়া যায়?"
-              className="inline-flex items-center justify-center px-10 py-4 rounded-xl font-bold text-black text-lg transition-all duration-200 hover:scale-105"
-              style={{ backgroundColor: "#25d366" }}
-            >
-              WhatsApp-এ মেসেজ করুন →
-            </a>
+        {/* ---- Which tool for which job ---- */}
+        <Section id="chooser" title={sub(bn.chooser.h2)} lede={sub(bn.chooser.intro)}>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            {bn.chooser.jobs.map((j) => (
+              <Link key={j.title} href={j.category}
+                className="rounded-2xl border border-white/10 p-5 block hover:border-white/25 transition-colors" style={CARD}>
+                <h3 className="font-bold text-white mb-2">{sub(j.title)}</h3>
+                <p className="text-sm leading-relaxed mb-3" style={MUTED}>{sub(j.body)}</p>
+                <span className="text-xs font-semibold inline-flex items-center gap-1" style={{ color: "#f4b942" }}>
+                  সব টুল দেখুন <ArrowRight className="w-3 h-3" />
+                </span>
+              </Link>
+            ))}
           </div>
-        </section>
-      </main>
+          <p className="text-sm leading-relaxed rounded-xl border border-white/10 p-5" style={{ ...CARD, ...MUTED }}>
+            {sub(bn.chooser.creditNote)}
+          </p>
+        </Section>
 
-      <FloatingWhatsApp />
-    </div>
+        {/* ---- Audiences ---- */}
+        <Section id="audiences" title={sub(bn.audiences.h2)}>
+          <div className="grid md:grid-cols-2 gap-4">
+            {bn.audiences.cards.map((c) => (
+              <div key={c.title} className="rounded-2xl border border-white/10 p-6" style={CARD}>
+                <h3 className="font-bold text-white text-lg mb-4">{sub(c.title)}</h3>
+                <p className="text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: "#ef4444" }}>যেসব সমস্যায় পড়েন</p>
+                <ul className="space-y-1.5 mb-4">
+                  {c.problems.map((x) => (
+                    <li key={x} className="flex items-start gap-2 text-sm" style={MUTED}>
+                      <X className="w-3.5 h-3.5 mt-1 flex-shrink-0" style={{ color: "#ef4444" }} /> {sub(x)}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: "#10b981" }}>যা করতে পারবেন</p>
+                <ul className="space-y-1.5 mb-4">
+                  {c.outcomes.map((x) => (
+                    <li key={x} className="flex items-start gap-2 text-sm" style={MUTED}>
+                      <Check className="w-3.5 h-3.5 mt-1 flex-shrink-0" style={{ color: "#10b981" }} /> {sub(x)}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-xs leading-relaxed mb-4 rounded-lg p-3" style={{ backgroundColor: "rgba(239,68,68,0.06)", color: "#c9ceda" }}>
+                  {sub(c.caution)}
+                </p>
+                <Link href={c.href} className="text-sm font-semibold inline-flex items-center gap-1.5 hover:opacity-80" style={{ color: "#f4b942" }}>
+                  {sub(c.title)}দের জন্য বিস্তারিত <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* ---- Plan-type transparency ---- */}
+        <Section id="plan-types" title={sub(bn.planTypes.h2)} lede={sub(bn.planTypes.intro)}>
+          <div className="overflow-x-auto rounded-2xl border border-white/10" style={CARD}>
+            <table className="w-full text-sm border-collapse min-w-[520px]">
+              <thead>
+                <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
+                  <th className="text-left py-3.5 px-4 font-semibold text-white">বিষয়</th>
+                  <th className="text-left py-3.5 px-4 font-semibold" style={{ color: "#10b981" }}>নিজের নামের অ্যাকাউন্ট</th>
+                  <th className="text-left py-3.5 px-4 font-semibold" style={{ color: "#f4b942" }}>শেয়ার্ড অ্যাকাউন্ট</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bn.planTypes.rows.map((r) => (
+                  <tr key={r.feature} style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                    <td className="py-3 px-4 text-white font-medium">{sub(r.feature)}</td>
+                    <td className="py-3 px-4" style={MUTED}>{sub(r.personal)}</td>
+                    <td className="py-3 px-4" style={MUTED}>{sub(r.shared)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-4 rounded-xl border p-5 flex items-start gap-3"
+            style={{ backgroundColor: "rgba(239,68,68,0.06)", borderColor: "rgba(239,68,68,0.25)" }}>
+            <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#ef4444" }} />
+            <p className="text-sm leading-relaxed" style={MUTED}>{sub(bn.planTypes.warning)}</p>
+          </div>
+        </Section>
+
+        {/* ---- How it works ---- */}
+        <Section id="how" title={sub(bn.howItWorks.h2)}>
+          <ol className="space-y-3 list-none p-0">
+            {bn.howItWorks.steps.map((s, i) => (
+              <li key={s.title} className="flex items-start gap-4 rounded-xl border border-white/10 p-5" style={CARD}>
+                <span className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
+                  style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}>{bnNum(i + 1)}</span>
+                <div>
+                  <h3 className="font-semibold text-white mb-1">{sub(s.title)}</h3>
+                  <p className="text-sm leading-relaxed" style={MUTED}>{sub(s.body)}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Section>
+
+        {/* ---- FAQ. Rendered open: these are the objections that block a sale,
+                and hiding them behind an accordion hides them from readers who
+                never click. ---- */}
+        <Section id="faq" title={sub(bn.faq.h2)}>
+          <div className="space-y-3">
+            {bn.faq.items.map((f) => (
+              <details key={f.q} className="rounded-xl border border-white/10 overflow-hidden group" style={CARD} open>
+                <summary className="px-5 py-4 font-medium text-white text-sm cursor-pointer list-none marker:hidden">
+                  {sub(f.q)}
+                </summary>
+                <p className="px-5 pb-4 text-sm leading-relaxed" style={MUTED}>{sub(f.a)}</p>
+              </details>
+            ))}
+          </div>
+        </Section>
+
+        {/* ---- Final CTA ---- */}
+        <section className="scroll-reveal rounded-2xl border p-8 text-center"
+          style={{ ...CARD, borderColor: "rgba(244,185,66,0.3)" }}>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{sub(bn.finalCta.h2)}</h2>
+          <p className="leading-relaxed max-w-2xl mx-auto mb-6" style={MUTED}>{sub(bn.finalCta.body)}</p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href={bn.finalCta.primary.href} target="_blank" rel="noopener noreferrer"
+              data-analytics="bn-final-cta"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold transition-opacity hover:opacity-90"
+              style={{ backgroundColor: "#008236", color: "#fff", minHeight: "48px" }}>
+              <MessageCircle className="w-5 h-5" /> {bn.finalCta.primary.label}
+            </a>
+            <Link href={bn.finalCta.secondary.href}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold border border-white/15 hover:border-white/30 transition-colors text-white"
+              style={{ minHeight: "48px" }}>
+              {bn.finalCta.secondary.label} <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <nav className="mt-8 flex flex-wrap gap-x-4 gap-y-2 justify-center text-sm">
+            {bn.footerLinks.map((l) => (
+              <Link key={l.href} href={l.href} className="hover:text-white transition-colors" style={MUTED}>
+                {sub(l.label)}
+              </Link>
+            ))}
+          </nav>
+        </section>
+      </div>
+    </PageLayout>
   );
 }

@@ -1,9 +1,66 @@
 # Current state
 
-**Last updated:** 2026-08-07 (parallel session — global reduced-motion
-support added. Not yet merged; see PR note below. Two concurrent sessions
-worked this repo the same day — see this entry and the "new session" one
-right below it, which landed on `main` first.)
+**Last updated:** 2026-08-07 (parallel session, continued — real pricing-table
+bug found and fixed while investigating the SEO gap checklist. Not yet
+merged; see PR note below.)
+
+## This turn (parallel session, continued): PricingPage rendered "$undefined/mo" and a blank delivery column for real customers — fixed + regression-tested
+
+Started investigating `docs/seo/GAP-CHECKLIST.md`'s P0 item for `/pricing`
+(static body only 790 chars vs. the full product table React renders) to
+scope a prerender extractor, the same technique already used for comparison
+pages. Before building that, checked what the *live* rendered table actually
+looks like — and found it was already broken independent of any SEO
+concern:
+
+`PricingPage.tsx`'s local `Product` interface declared `deliveryMinutes:
+string` and `officialUSD: number | null`, but `data/products.json` records
+carry `deliverySLA` (not `deliveryMinutes` — that key never existed in the
+data) and frequently omit `officialUSD` entirely rather than setting it to
+`null`. The cast feeding the table
+(`productsData.products as unknown as Product[]`) bypasses TypeScript's
+structural check, so this compiled clean while rendering, live, for real
+site visitors:
+- **"$undefined/mo ≈ BDT 0"** in the Official (USD) column for all 32 of
+  118 priced products missing `officialUSD` (the `=== null` guard only
+  caught the 6 records where it was explicitly `null`, not the 32 where the
+  key was simply absent — `undefined !== null`).
+- **A blank "⚡ min"** (no number, the field lookup silently returned
+  `undefined`) in the Delivery column for all 118 priced products.
+
+Confirmed via a real Playwright render (not just reading the code) before
+and after. Fixed: read `deliverySLA` (already a complete string like
+"5-30 min" — the JSX no longer appends its own " min"), and changed the
+official-price check to `p.officialUSD == null` (loose equality, so it
+catches `undefined` too, not just `null`). Grepped for the same
+type-bypassing double-cast pattern elsewhere — only one other file uses
+`as unknown as`, and it's a standard/safe global-object augmentation in
+`FacebookPixel.tsx`, not a data-shape risk. This was an isolated incident.
+
+Added `tests/e2e/pricing.spec.ts` and verified it the same way B9's smoke
+suite was verified: git-stashed the fix, rebuilt, confirmed the new test
+actually fails against the old broken code (caught both the literal
+"undefined" and the blank "⚡ min"), then restored the fix and confirmed
+green.
+
+Verified: typecheck clean, build clean (275/275 routes), seo:check/
+validate:all only pre-existing warnings (same 17, including the
+pre-existing "153/239 records missing officialUSD" data-completeness
+warning — unrelated to this bug, which was about the RENDER path, not the
+data itself), 13/13 Playwright tests pass (12 existing + the new one),
+zero console errors. Screenshotted the fixed table.
+
+**Not done:** the actual GAP-CHECKLIST P0 item (static prerendered body for
+`/pricing` still only has the intro prose, not the product table itself —
+790 static chars vs. ~13k rendered) is still open. Investigating the render
+bug came first because it was actively showing broken text to real paying
+customers, which outranks a crawler-visibility gap. A dedicated prerender
+extractor for the pricing table (same technique as the `ComparisonPage.tsx`
+one — a hand-written literal reader, not the generic prose extractor, which
+cannot capture a `.map()`-rendered data table) is the well-specified next
+step; see `NEXT-TASK.md`.
+
+---
 
 ## This turn (parallel session): global `MotionConfig(reducedMotion="user")` — closes the gap the Find Your Solution PR found but left site-wide
 

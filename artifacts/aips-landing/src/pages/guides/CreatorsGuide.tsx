@@ -96,8 +96,8 @@ export default function CreatorsGuide() {
       a: "Yes. The Starter Plan includes voice cloning. Record a 1-minute sample of your voice and ElevenLabs will clone it. Your voice will sound natural reading scripts in any language.",
     },
     {
-      q: "How much does my CTR improve with AI thumbnails?",
-      a: "On average, creators report 20-40% CTR improvement when switching to AI-designed thumbnails. A/B test with Midjourney variations to see which designs resonate most with your audience.",
+      q: "Do AI thumbnails improve my CTR?",
+      a: "Many creators find AI-designed thumbnails help. A/B test Midjourney variations to see which designs resonate most with your audience.",
     },
     {
       q: "Can I use Suno AI music on YouTube and TikTok?",
@@ -167,7 +167,7 @@ export default function CreatorsGuide() {
         >
           <div className="inline-flex items-center gap-2 bg-pink-100 text-pink-700 px-4 py-2 rounded-full mb-6">
             <Sparkles className="w-4 h-4" />
-            <span className="text-sm font-medium">3x Faster Production • Updated July 2026</span>
+            <span className="text-sm font-medium">Updated July 2026</span>
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -197,20 +197,6 @@ export default function CreatorsGuide() {
             </a>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 md:gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-pink-600">3x</div>
-              <div className="text-sm text-gray-600">Production speed</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-pink-600">850+</div>
-              <div className="text-sm text-gray-600">Content creators using us</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-pink-600">+40%</div>
-              <div className="text-sm text-gray-600">Average CTR boost</div>
-            </div>
-          </div>
         </motion.section>
 
         {/* Problem */}
@@ -252,8 +238,8 @@ export default function CreatorsGuide() {
               className="bg-gradient-to-br from-pink-500 to-pink-600 text-white rounded-lg p-8"
             >
               <Play className="w-12 h-12 mb-4" />
-              <h3 className="text-xl font-bold mb-3">Publish 3x More Content</h3>
-              <p>AI writes scripts, creates thumbnails, generates voiceovers, composes music. What took 4 days now takes 1 day.</p>
+              <h3 className="text-xl font-bold mb-3">Publish More Content</h3>
+              <p>AI writes scripts, creates thumbnails, generates voiceovers, and composes music — so you spend less time on production and more on strategy.</p>
             </motion.div>
 
             <motion.div
@@ -264,7 +250,7 @@ export default function CreatorsGuide() {
             >
               <BarChart3 className="w-12 h-12 mb-4" />
               <h3 className="text-xl font-bold mb-3">Boost Your CTR</h3>
-              <p>AI-designed thumbnails increase click-through rate by 20-40%. Test variations and see which designs work best.</p>
+              <p>AI-designed thumbnails can help click-through rate. Test variations and see which designs work best.</p>
             </motion.div>
 
             <motion.div

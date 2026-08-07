@@ -1,66 +1,63 @@
 import { motion } from "framer-motion";
-import { MessageCircle, ArrowRight, Star } from "lucide-react";
+import { MessageCircle, ArrowRight } from "lucide-react";
 
+// No testimonials, membership counts, or outcome multipliers here — this
+// file used to carry the same fake-named-testimonial pattern already found
+// and removed from the five guide pages (invented grades/earnings/follower
+// counts attributed to named people), plus unsupported claims like "10x
+// Your Freelance Income" and "Join 500+ students" with no source. Found in
+// a full-repo sweep 2026-08-07 (BACKLOG #28) — this component had escaped
+// that earlier pass because it isn't a guide page, it's the interactive
+// homepage segment-picker result. Rewritten to describe real product
+// capability, not invented outcomes.
 type Segment = "students" | "freelancers" | "creators" | "smbs" | "educators";
 
 const segmentContent: Record<Segment, {
   headline: string;
   subheadline: string;
   benefit: string;
-  testimonial: string;
-  testimonialAuthor: string;
   topProducts: string[];
   cta: string;
   ctaSecondary: string;
 }> = {
   students: {
-    headline: "Save 10+ Hours Per Week on Assignments",
-    subheadline: "Join 500+ Bangladesh university students",
-    benefit: "Get better grades, finish projects faster, understand complex topics instantly",
-    testimonial: "Saved me so much time on assignments and exams!",
-    testimonialAuthor: "Rahim, Dhaka University",
+    headline: "AI Tools Built for University Coursework",
+    subheadline: "For Bangladesh university students",
+    benefit: "Research faster, get writing feedback, and work through complex topics with AI assistance",
     topProducts: ["ChatGPT Plus", "Claude Pro", "GitHub Copilot"],
     cta: "Get Started in 2 Minutes",
     ctaSecondary: "Browse AI Tools for Students",
   },
   freelancers: {
-    headline: "10x Your Freelance Income with AI",
-    subheadline: "Join 800+ Bangladesh freelancers on Upwork/Fiverr",
-    benefit: "Win more projects, deliver faster, charge premium rates",
-    testimonial: "Went from $5/hour to $25/hour in 3 months!",
-    testimonialAuthor: "Fatima, Freelancer",
+    headline: "AI Tools for Freelancers on Upwork & Fiverr",
+    subheadline: "For Bangladesh freelancers",
+    benefit: "Deliver client work faster and take on more with AI assistance",
     topProducts: ["ChatGPT Pro", "Midjourney", "Canva AI"],
-    cta: "Boost My Upwork Rate",
+    cta: "Get Started in 2 Minutes",
     ctaSecondary: "See Freelancer Tools",
   },
   creators: {
-    headline: "Create 10x More Content Daily",
-    subheadline: "Join 400+ Bangladesh content creators",
-    benefit: "Generate ideas, make stunning visuals, edit videos faster",
-    testimonial: "Got 100K subscribers in 6 months with AI!",
-    testimonialAuthor: "Karim, YouTube Creator",
+    headline: "AI Tools for Content Creators",
+    subheadline: "For Bangladesh content creators",
+    benefit: "Generate ideas, create visuals, and edit videos faster with AI",
     topProducts: ["Midjourney", "HeyGen", "Canva AI"],
-    cta: "Go Viral with AI Content",
+    cta: "Get Started in 2 Minutes",
     ctaSecondary: "Explore Creator Tools",
   },
   smbs: {
-    headline: "Run Your Business 24/7 with AI",
-    subheadline: "Join 200+ Bangladesh small business owners",
-    benefit: "Automate tasks, save time, scale without hiring",
-    testimonial: "Saved me ৳50K/month in hiring costs!",
-    testimonialAuthor: "Anir, SMB Owner",
+    headline: "AI Tools to Run Your Business More Efficiently",
+    subheadline: "For Bangladesh small business owners",
+    benefit: "Automate repetitive tasks and save time with AI tools",
     topProducts: ["Notion AI", "Zapier", "ChatGPT Business"],
-    cta: "Automate My Business Today",
+    cta: "Get Started in 2 Minutes",
     ctaSecondary: "View Business Tools",
   },
   educators: {
-    headline: "Teach Better & Grade Faster",
-    subheadline: "Join 150+ Bangladesh educators",
-    benefit: "Create lessons, generate assessments, engage students more",
-    testimonial: "Student engagement increased 40%!",
-    testimonialAuthor: "Mrs. Hasna, Teacher",
+    headline: "AI Tools for Teaching & Grading",
+    subheadline: "For Bangladesh educators",
+    benefit: "Create lesson materials and assessments faster with AI",
     topProducts: ["ChatGPT", "Claude", "Notion AI"],
-    cta: "Transform My Classroom",
+    cta: "Get Started in 2 Minutes",
     ctaSecondary: "Discover Educator Tools",
   },
 };
@@ -145,29 +142,13 @@ export function SegmentHeroContent({ segment }: SegmentHeroContentProps) {
         ))}
       </motion.div>
 
-      {/* Testimonial */}
-      <motion.div
-        className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 max-w-xl mx-auto backdrop-blur"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-      >
-        <div className="flex gap-1 mb-3">
-          {[...Array(5)].map((_, i) => (
-            <Star key={i} className="w-5 h-5 fill-amber-500 text-amber-500" />
-          ))}
-        </div>
-        <p className="text-gray-300 text-lg italic mb-3">"{content.testimonial}"</p>
-        <p className="text-amber-400 font-semibold">— {content.testimonialAuthor}</p>
-      </motion.div>
-
       {/* Secondary CTA */}
       <motion.button
         className="text-gray-300 hover:text-amber-400 transition-colors flex items-center gap-2 mx-auto"
         whileHover={{ gap: 8 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.7 }}
+        transition={{ delay: 0.6 }}
       >
         {content.ctaSecondary}
         <ArrowRight className="w-4 h-4" />
@@ -178,10 +159,10 @@ export function SegmentHeroContent({ segment }: SegmentHeroContentProps) {
         className="flex justify-center gap-8 text-sm text-gray-400 pt-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
+        transition={{ delay: 0.7 }}
       >
         <div>✅ Official Subscriptions</div>
-        <div>💰 30-day Money Back</div>
+        <div>💰 30-Day Replacement Warranty</div>
         <div>🚀 5-30 min Delivery</div>
       </motion.div>
     </motion.div>

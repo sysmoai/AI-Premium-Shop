@@ -90,7 +90,7 @@ const FAQS = [
   },
   {
     q: "What is Claude Pro best for?",
-    a: "Claude Pro excels at coding (ranked #1 on benchmarks), long document analysis (200K token context), academic writing, and nuanced explanations. Preferred by developers and researchers.",
+    a: "Claude Pro is strong at coding, long document analysis (200K token context), academic writing, and nuanced explanations. Popular with developers and researchers.",
   },
   {
     q: "Is Claude better than ChatGPT?",

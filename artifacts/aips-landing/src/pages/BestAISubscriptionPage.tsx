@@ -41,7 +41,7 @@ const TOP_TOOLS = [
   {
     rank: 5, name: "Midjourney", price: "from BDT 1,199/mo", badge: "Best for Images",
     badgeColor: "#8b5cf6", slug: "/midjourney-bangladesh",
-    why: "The gold standard for AI image generation. No other tool matches Midjourney's photorealistic and artistic output quality. Essential for designers and content creators.",
+    why: "Photorealistic and artistic image generation. Popular with designers and content creators.",
     bestFor: ["Designers", "Content creators", "Marketers"],
   },
   {
@@ -53,13 +53,13 @@ const TOP_TOOLS = [
   {
     rank: 7, name: "Cursor Pro", price: "from BDT 2,990/mo", badge: "Best AI IDE",
     badgeColor: "#3b82f6", slug: "/cursor-bangladesh",
-    why: "The most advanced AI coding environment. Agent mode builds entire features from a single prompt. Many professional developers at top tech companies use Cursor as their primary editor.",
+    why: "An AI-native coding environment. Agent mode can build entire features from a single prompt.",
     bestFor: ["Full-stack developers", "Startup founders"],
   },
   {
     rank: 8, name: "ElevenLabs", price: "from BDT 748/mo", badge: "Best for Voice",
     badgeColor: "#f97316", slug: "/elevenlabs-bangladesh",
-    why: "The most realistic AI voice cloning and text-to-speech. Create professional voiceovers, clone your voice, or generate narration in any language. Essential for content creators.",
+    why: "AI voice cloning and text-to-speech. Create voiceovers, clone your voice, or generate narration in any language.",
     bestFor: ["Content creators", "Marketers", "Podcasters"],
   },
   {

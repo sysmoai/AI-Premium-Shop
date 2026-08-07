@@ -152,10 +152,10 @@ const GUIDES: Record<string, GuideConfig> = {
     whyText: "AI tools let you write proposals faster, deliver projects on tighter deadlines, and take on more clients simultaneously. Whether you're a writer, designer, developer, or marketer, AI can multiply your output without multiplying your hours.",
     statLine: "Freelancers doing AI-related work earn 44% more per hour than those who don't — Upwork Research Institute 2025",
     tools: [
-      { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 999/mo", reason: "Write proposals, emails, and content 10x faster. Higher stability than starter plan.", badge: "Top Pick", color: "#10a37f" },
-      { rank: 2, name: "Claude Pro — Premium Shared", price: `BDT ${tierPrice("claude-pro-bangladesh", "Premium Shared")}/mo`, reason: "#1 ranked AI for writing quality. Extended thinking for complex client projects.", badge: "Best Writing", color: "#d97706" },
+      { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 999/mo", reason: "Write proposals, emails, and content faster. Higher stability than starter plan.", badge: "Top Pick", color: "#10a37f" },
+      { rank: 2, name: "Claude Pro — Premium Shared", price: `BDT ${tierPrice("claude-pro-bangladesh", "Premium Shared")}/mo`, reason: "Strong writing quality. Extended thinking for complex client projects.", badge: "Best Writing", color: "#d97706" },
       { rank: 3, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Create client graphics, thumbnails, and mockups. Unlimited image generation.", badge: "For Design", color: "#8b5cf6" },
-      { rank: 4, name: "GitHub Copilot Pro — Individual", price: "BDT 1,495/mo", reason: "For developer freelancers. Code 50% faster. Works in VS Code and JetBrains.", badge: "For Devs", color: "#6e40c9" },
+      { rank: 4, name: "GitHub Copilot Pro — Individual", price: "BDT 1,495/mo", reason: "For developer freelancers. Works in VS Code and JetBrains.", badge: "For Devs", color: "#6e40c9" },
     ],
     startHere: {
       name: "ChatGPT Plus — Starter Shared",
@@ -185,7 +185,7 @@ const GUIDES: Record<string, GuideConfig> = {
     metaDescription: "Best AI for content creators Bangladesh 2026. Script, thumbnail, music — all AI. From BDT 299.",
     canonical: "https://aipremiumshop.com/best-ai-for-creators",
     whyHeading: "Why AI is a Creator's Superpower",
-    whyText: "Content creation in 2026 is an arms race. YouTube channels, TikTok accounts, and social media pages that use AI produce more content, at higher quality, with less burnout. AI handles the repetitive parts — writing captions, generating thumbnails, creating voiceovers, composing background music — so you can focus on strategy and audience connection. Creators who adopted AI tools in 2024 grew their channels 3x faster on average.",
+    whyText: "Content creation in 2026 is an arms race. YouTube channels, TikTok accounts, and social media pages that use AI produce more content, at higher quality, with less burnout. AI handles the repetitive parts — writing captions, generating thumbnails, creating voiceovers, composing background music — so you can focus on strategy and audience connection.",
     tools: [
       { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 999/mo", reason: "Scripts, captions, content calendars, viral hooks — all in minutes.", badge: "For Scripts", color: "#10a37f" },
       { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "AI thumbnails and graphics without hiring a designer. Unlimited generations.", badge: "For Thumbnails", color: "#8b5cf6" },
@@ -199,7 +199,7 @@ const GUIDES: Record<string, GuideConfig> = {
       reason: "Start with ChatGPT for content planning, scripts, and captions. Then add Midjourney for thumbnails when you're ready to upgrade your visual game.",
     },
     faqs: [
-      { q: "Which AI tool should YouTubers start with?", a: "Start with ChatGPT for scripting and SEO titles. Then add Midjourney for thumbnails. Together they handle 80% of the creative process for around BDT 1,300/mo." },
+      { q: "Which AI tool should YouTubers start with?", a: "Start with ChatGPT for scripting and SEO titles. Then add Midjourney for thumbnails once you're ready to upgrade your visuals." },
       { q: "Is AI-generated music copyright safe for YouTube?", a: "Suno AI Pro includes commercial use licensing. Music generated on the Pro plan can be used on YouTube, TikTok, and other platforms without copyright strikes." },
       { q: "Can I clone my own voice with ElevenLabs?", a: "Yes. ElevenLabs Starter allows voice cloning. You record a short sample and it generates your voice reading any text — useful for multilingual content or saving time on voiceovers." },
       { q: "Can I use AI-generated thumbnails for YouTube monetization?", a: "Yes. AI-generated thumbnails are allowed on YouTube and do not affect monetization eligibility. Midjourney images are commercially licensed on paid plans." },
@@ -221,7 +221,7 @@ const GUIDES: Record<string, GuideConfig> = {
     metaDescription: "Best AI for business owners Bangladesh 2026. Automate sales, support, content. From BDT 500.",
     canonical: "https://aipremiumshop.com/best-ai-for-business",
     whyHeading: "Why Businesses in Bangladesh Are Adopting AI Now",
-    whyText: "AI is no longer a luxury for large corporations. Small and medium businesses in Bangladesh are using AI to draft contracts, analyze sales data, manage customer communications, and run marketing campaigns — all at a fraction of the cost of hiring specialists. Businesses that adopt AI tools reduce operational costs by 30–40% while increasing output quality. The window to get ahead of competitors who haven't adopted AI yet is closing fast.",
+    whyText: "AI is no longer a luxury for large corporations. Small and medium businesses in Bangladesh are using AI to draft contracts, analyze sales data, manage customer communications, and run marketing campaigns — all at a fraction of the cost of hiring specialists.",
     tools: [
       { rank: 1, name: "Google AI Pro", price: `BDT ${tierPrice("gemini-advanced-bangladesh", "Shared")}/mo`, reason: "Gmail AI, Google Docs AI, Sheets AI — AI built into tools your team already uses daily.", badge: "Best for Teams", color: "#4285f4" },
       { rank: 2, name: "ChatGPT Business — Starter Shared", price: `from BDT ${cheapestPriceFor("chatgpt-business-bangladesh")}/mo`, reason: "Team AI assistant with admin controls and privacy. Unlimited GPT-5.4 for the whole team.", badge: "For Operations", color: "#10a37f" },
@@ -260,8 +260,8 @@ const GUIDES: Record<string, GuideConfig> = {
     statLine: "GitHub Copilot reduces coding time by 55% — GitHub Developer Productivity Report",
     tools: [
       { rank: 1, name: "GitHub Copilot Pro", price: "BDT 1,495/mo", reason: "Unlimited code completions. Works in VS Code, JetBrains, Neovim. Industry standard.", badge: "Industry Standard", color: "#6e40c9" },
-      { rank: 2, name: "Cursor Pro", price: "BDT 2,990/mo", reason: "AI-native editor with agent mode. Used by engineers at OpenAI, Stripe, and Figma.", badge: "AI-Native Editor", color: "#3b82f6" },
-      { rank: 3, name: "Claude Pro — Personal", price: "BDT 2,990/mo", reason: "#1 ranked AI for reasoning. Claude Code terminal for complex debugging and architecture decisions.", badge: "For Reasoning", color: "#d97706" },
+      { rank: 2, name: "Cursor Pro", price: "BDT 2,990/mo", reason: "AI-native editor with agent mode and full codebase understanding.", badge: "AI-Native Editor", color: "#3b82f6" },
+      { rank: 3, name: "Claude Pro — Personal", price: "BDT 2,990/mo", reason: "Strong reasoning. Claude Code terminal for complex debugging and architecture decisions.", badge: "For Reasoning", color: "#d97706" },
       { rank: 4, name: "v0.dev Pro — Shared", price: "BDT 999/mo", reason: "AI web app builder by Vercel. Build UIs, apps, and sites from prompts and deploy instantly.", badge: "UI Builder", color: "#111827" },
     ],
     startHere: {
@@ -326,10 +326,9 @@ const GUIDES: Record<string, GuideConfig> = {
     metaDescription: "Best AI design tools for designers in Bangladesh 2026. Midjourney, Ideogram, Leonardo AI. BDT prices.",
     canonical: "https://aipremiumshop.com/best-ai-for-designers",
     whyHeading: "Why Every Designer Needs AI in 2026",
-    whyText: "AI image generation has fundamentally changed design workflows. Designers who use Midjourney, Ideogram, and Leonardo AI report cutting concept creation time by 70-80%. Generate mood boards in minutes, create client presentations faster, and produce stunning visuals without photography budgets. The top design freelancers on Fiverr and 99designs now use AI as part of every project workflow.",
-    statLine: "Designers using AI tools report 70% faster concept creation — Adobe 2025 Creative Trends Report",
+    whyText: "AI image generation has changed design workflows. Generate mood boards in minutes, create client presentations faster, and produce visuals without a photography budget.",
     tools: [
-      { rank: 1, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "The gold standard for AI image quality. Photorealistic portraits, product renders, artistic illustrations — no other tool matches its output. 15hr fast GPU + unlimited relaxed mode.", badge: "Best Quality", color: "#8b5cf6" },
+      { rank: 1, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Photorealistic portraits, product renders, artistic illustrations. 15hr fast GPU + unlimited relaxed mode.", badge: "Best Quality", color: "#8b5cf6" },
       { rank: 2, name: "Ideogram", price: "from BDT 2,990/mo", reason: "The only AI that reliably renders text inside images. Perfect for logos, posters, social media graphics, and typography-heavy designs. 400 priority images/month.", badge: "Best for Text & Logos", color: "#ec4899" },
       { rank: 3, name: "Leonardo AI", price: "from BDT 599/mo", reason: "Budget image generation with strong 3D textures, character consistency, and motion effects. Great for game assets, product visuals, and UI design concepts.", badge: "Best Budget Option", color: "#f97316" },
       { rank: 4, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Use AI to write design briefs, generate image prompts, write client emails, and research trends. The DALL-E image generation is also included.", badge: "For Workflow", color: "#10a37f" },
@@ -400,8 +399,7 @@ const GUIDES: Record<string, GuideConfig> = {
     metaDescription: "Best AI tools for e-commerce sellers in Bangladesh 2026. Product photos, descriptions, customer support AI.",
     canonical: "https://aipremiumshop.com/best-ai-for-ecommerce",
     whyHeading: "Why E-commerce Sellers Need AI in 2026",
-    whyText: "Running an e-commerce business in Bangladesh is increasingly competitive. AI tools help sellers write compelling product listings faster, create professional product images without a photography studio, respond to customer queries automatically, and research trending products. Sellers who use AI consistently report better conversion rates and more time to focus on sourcing and scaling. The entire toolkit costs less than one product photoshoot.",
-    statLine: "AI-written product listings outperform manually written ones by 33% in click-through rate — Shopify 2025",
+    whyText: "Running an e-commerce business in Bangladesh is increasingly competitive. AI tools help sellers write product listings faster, create professional product images without a photography studio, respond to customer queries automatically, and research trending products.",
     tools: [
       { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Write compelling product titles and descriptions optimized for search. Draft FAQ responses, customer service templates, and promotional copy. Essential for any e-commerce operation.", badge: "Essential", color: "#10a37f" },
       { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Generate professional product photography and lifestyle images without a studio. Create background-removed product shots, styled scenes, and banner graphics for social media.", badge: "For Visuals", color: "#8b5cf6" },
@@ -597,12 +595,6 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
             style={{ backgroundColor: "rgba(59,130,246,0.05)", borderColor: "rgba(59,130,246,0.25)" }}>
             <div className="p-6">
               <div className="text-5xl mb-3">🎓</div>
-              <blockquote className="text-sm leading-relaxed mb-4 italic" style={{ color: "#c9ceda" }}>
-                "ChatGPT ৳499/mo changed how I study. My research papers went from C+ to A.
-                I can explain complex economics theories in simple Bangla now.
-                My CGPA improved from 2.9 to 3.6 in one semester."
-              </blockquote>
-              <p className="text-xs mb-4" style={{ color: "#6b7280" }}>— Based on real student outcomes (anonymized)</p>
               <p className="text-sm font-semibold text-white mb-3">Every subject. Every assignment. Every exam. One tool.</p>
               <div className="flex flex-wrap gap-2">
                 {["Economics", "Accounting", "Law", "CSE", "English", "BBA", "Medical", "HSC"].map((tag) => (
@@ -650,62 +642,6 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
                     <div style={{ color: "#10a37f" }}>{item.rec}</div>
                   </div>
                 ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {guideKey === "business" && (
-          <motion.div custom={2.5} variants={fadeUp} initial="hidden" animate="visible"
-            className="rounded-2xl border mb-10 overflow-hidden"
-            style={{ backgroundColor: "rgba(245,158,11,0.05)", borderColor: "rgba(245,158,11,0.25)" }}>
-            <div className="p-6">
-              <div className="text-5xl mb-3">💼</div>
-              <h3 className="text-base font-bold text-white mb-4">Business Cost Savings with AI</h3>
-              <div className="space-y-2 text-sm mb-2">
-                {[
-                  { label: "Content Writer", before: "৳15,000/mo", after: "ChatGPT Business: ৳699/mo" },
-                  { label: "Designer", before: "৳5,000/mo", after: "Midjourney: ৳1,199/mo" },
-                  { label: "Support Staff", before: "৳12,000/mo", after: "AI Agent: ৳699/mo" },
-                  { label: "Marketing Agency", before: "৳50,000/mo", after: "AI Stack: ৳2,497/mo" },
-                ].map((row) => (
-                  <div key={row.label} className="flex items-center gap-3">
-                    <div className="w-32 text-xs font-semibold text-white flex-shrink-0">{row.label}</div>
-                    <div className="text-xs line-through flex-shrink-0" style={{ color: "#ef4444" }}>{row.before}</div>
-                    <div className="text-xs" style={{ color: "#6b7280" }}>→</div>
-                    <div className="text-xs" style={{ color: "#10a37f" }}>{row.after}</div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4 rounded-xl p-3 border text-sm font-bold text-center" style={{ backgroundColor: "#f4b94210", borderColor: "#f4b94230", color: "#f4b942" }}>
-                Total savings: ৳79,000/mo with same or better output
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {guideKey === "job-seekers" && (
-          <motion.div custom={2.5} variants={fadeUp} initial="hidden" animate="visible"
-            className="rounded-2xl border mb-10 overflow-hidden"
-            style={{ backgroundColor: "rgba(99,102,241,0.05)", borderColor: "rgba(99,102,241,0.25)" }}>
-            <div className="p-6">
-              <div className="text-5xl mb-3">🔍</div>
-              <h3 className="text-base font-bold text-white mb-4">Job Search Timeline with AI</h3>
-              <div className="grid grid-cols-2 gap-4 mb-5 text-center">
-                <div className="rounded-xl p-4 border" style={{ backgroundColor: "rgba(239,68,68,0.08)", borderColor: "rgba(239,68,68,0.2)" }}>
-                  <div className="text-2xl font-bold mb-1" style={{ color: "#ef4444" }}>6 months</div>
-                  <div className="text-xs" style={{ color: "#c9ceda" }}>Without AI — average time to get hired</div>
-                </div>
-                <div className="rounded-xl p-4 border" style={{ backgroundColor: "rgba(16,163,127,0.08)", borderColor: "rgba(16,163,127,0.2)" }}>
-                  <div className="text-2xl font-bold mb-1" style={{ color: "#10a37f" }}>1–3 months</div>
-                  <div className="text-xs" style={{ color: "#c9ceda" }}>With AI — average time to get hired</div>
-                </div>
-              </div>
-              <div className="space-y-2 text-sm mb-4" style={{ color: "#c9ceda" }}>
-                <div className="flex justify-between"><span>Every month without a job</span><span className="font-semibold" style={{ color: "#ef4444" }}>৳15,000–30,000 lost</span></div>
-                <div className="flex justify-between"><span>3 months faster — potential extra earnings</span><span className="font-semibold" style={{ color: "#10a37f" }}>৳45,000–90,000</span></div>
-                <div className="flex justify-between"><span>ChatGPT subscription cost</span><span>৳499/mo</span></div>
-                <div className="border-t border-white/10 pt-2 flex justify-between font-bold"><span>ROI</span><span style={{ color: "#f4b942" }}>128x–257x return</span></div>
               </div>
             </div>
           </motion.div>
@@ -923,23 +859,9 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
                   </div>
                 ))}
               </div>
-              <div className="flex justify-between items-center py-2 mb-4">
+              <div className="flex justify-between items-center py-2">
                 <span className="font-bold text-white">Total</span>
                 <span className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT 4,539/mo</span>
-              </div>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2" style={{ color: "#c9ceda" }}>
-                  <span style={{ color: "#a855f7" }}>•</span>
-                  <span>Output: 50+ client concepts/week</span>
-                </div>
-                <div className="flex items-center gap-2" style={{ color: "#c9ceda" }}>
-                  <span style={{ color: "#a855f7" }}>•</span>
-                  <span>Potential: BDT 50,000-100,000+/mo</span>
-                </div>
-                <div className="flex items-center gap-2 font-semibold text-white">
-                  <span style={{ color: "#a855f7" }}>•</span>
-                  <span>ROI: 11x-22x</span>
-                </div>
               </div>
             </div>
           </motion.div>

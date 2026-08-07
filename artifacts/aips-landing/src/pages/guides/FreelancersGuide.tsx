@@ -150,8 +150,8 @@ export default function FreelancersGuide() {
   return (
     <PageLayout>
       <SEOHead
-        title="How to 10x Your Freelance Income with AI Tools | Bangladesh"
-        description="Best AI tools for freelancers in Bangladesh 2026. Earn 44% more on Upwork & Fiverr. ChatGPT, Claude, Midjourney, GitHub Copilot. From BDT 499."
+        title="Best AI Tools for Freelancers in Bangladesh | Upwork & Fiverr"
+        description="Best AI tools for freelancers in Bangladesh 2026. ChatGPT, Claude, Midjourney, GitHub Copilot. From BDT 499."
         canonical="https://aipremiumshop.com/guides/freelancers"
         ogImage="https://aipremiumshop.com/og-freelancers.jpg"
         jsonLd={[breadcrumbSchema([{ name: "Home", href: "/" }, { name: "Freelancers Guide" }])]}
@@ -166,15 +166,15 @@ export default function FreelancersGuide() {
         >
           <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full mb-6">
             <TrendingUp className="w-4 h-4" />
-            <span className="text-sm font-medium">Earn 44% More • Updated July 2026</span>
+            <span className="text-sm font-medium">Updated July 2026</span>
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            How to 10x Your Freelance Income with AI Tools
+            AI Tools for Freelancers on Upwork &amp; Fiverr
           </h1>
 
           <p className="text-xl text-gray-600 mb-8">
-            Win more clients. Deliver faster. Charge premium rates. Complete guide for Upwork, Fiverr, and 99designs freelancers.
+            Write proposals faster and deliver work faster. Complete guide for Upwork, Fiverr, and 99designs freelancers.
           </p>
 
           <div className="flex flex-col md:flex-row gap-4 justify-center mb-8">
@@ -196,14 +196,10 @@ export default function FreelancersGuide() {
             </a>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 md:gap-8 text-center">
+          <div className="grid grid-cols-2 gap-4 md:gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-emerald-600">+44%</div>
-              <div className="text-sm text-gray-600">Income increase</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-emerald-600">1,800+</div>
-              <div className="text-sm text-gray-600">Freelancers helped</div>
+              <div className="text-sm text-gray-600">Higher earnings doing AI-related work (Upwork)</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-emerald-600">BDT 499</div>
@@ -263,7 +259,7 @@ export default function FreelancersGuide() {
             >
               <DollarSign className="w-12 h-12 mb-4" />
               <h3 className="text-xl font-bold mb-3">Charge Premium Rates</h3>
-              <p>Deliver projects 50% faster. This means you can either take on more clients or charge higher rates. Most freelancers do both.</p>
+              <p>Deliver projects faster. This means you can either take on more clients or charge higher rates.</p>
             </motion.div>
 
             <motion.div

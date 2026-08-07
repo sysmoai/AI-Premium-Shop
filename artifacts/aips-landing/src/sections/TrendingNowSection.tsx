@@ -13,7 +13,7 @@ const TRENDING = [
   { slug: "chatgpt-plans-comparison-bangladesh", name: "ChatGPT Plans", angle: "Plus vs Business vs Pro — compared", catalogSlug: "chatgpt-plus-bangladesh" },
   { slug: "claude-pro-bangladesh", name: "Claude Team", angle: "For teams and small agencies", catalogSlug: "claude-pro-bangladesh", tier: "Team" },
   { slug: "gemini-advanced-bangladesh", name: "Google AI Pro", angle: "Gemini, 2TB storage, Workspace AI", catalogSlug: "gemini-advanced-bangladesh" },
-  { slug: "github-copilot-bangladesh", name: "GitHub Copilot", angle: "Code 50% faster in your IDE", catalogSlug: "github-copilot-bangladesh" },
+  { slug: "github-copilot-bangladesh", name: "GitHub Copilot", angle: "AI code completions in your IDE", catalogSlug: "github-copilot-bangladesh" },
   { slug: "midjourney-bangladesh", name: "Midjourney", angle: "The image generator everyone asks for", catalogSlug: "midjourney-bangladesh" },
   { slug: "chatgpt-business-bangladesh", name: "ChatGPT Business", angle: "Admin controls, no training on your data", catalogSlug: "chatgpt-business-bangladesh" },
 ];

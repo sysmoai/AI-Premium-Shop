@@ -32,7 +32,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     seoTitle: "AI Assistant & Chat — ChatGPT, Claude, Gemini Bangladesh",
     subtitle: "ChatGPT, Claude, Gemini, Grok & more",
     description:
-      "The world's most powerful AI assistants. Write, code, research, create images, and automate tasks. From ChatGPT and Claude to Gemini and Perplexity — find your perfect AI partner. All plans available with local payment via bKash, Nagad, or Rocket.",
+      "AI assistants for writing, coding, research, image creation, and task automation. From ChatGPT and Claude to Gemini and Perplexity — find your AI partner. All plans available with local payment via bKash, Nagad, or Rocket.",
     metaDescription:
       "ChatGPT, Claude, Gemini, Grok, Perplexity in Bangladesh. From BDT 499. Shared & Personal. bKash/Nagad. Fast delivery.",
     accent: "#10a37f",
@@ -429,7 +429,7 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
                 },
                 {
                   name: "Freelancer Bundle", price: 3999, tier: "Bundle",
-                  context: "Complete freelancer toolkit. Freelancers with AI earn 44% more.",
+                  context: "Complete freelancer toolkit.",
                   contextItalic: false,
                   items: [
                     { tool: "ChatGPT Plus — Personal", value: 2990 },

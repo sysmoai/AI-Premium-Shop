@@ -153,7 +153,7 @@ const BRAND_META: Record<string, {
     tagline: "All ChatGPT Plans — from ৳499/month",
     seoTitle: "ChatGPT Plans Bangladesh 2026 — From BDT 499 | AI Premium Shop",
     seoDescription: "All ChatGPT plans Bangladesh from BDT 499. Plus, Business, Pro. bKash/Nagad. 5-30 min delivery. 30-day warranty. AI Premium Shop.",
-    description: "ChatGPT by OpenAI is the world's most popular AI assistant. From writing and coding to deep research, image generation, and autonomous agents — ChatGPT handles it all. Choose from Plus (personal productivity), Business (team features), or Pro (unlimited power). Available in Bangladesh via bKash and Nagad from ৳499/month.",
+    description: "ChatGPT by OpenAI handles writing, coding, deep research, image generation, and autonomous agents. Choose from Plus (personal productivity), Business (team features), or Pro (unlimited power). Available in Bangladesh via bKash and Nagad from ৳499/month.",
     accentColor: "#10a37f",
     faqs: [
       { q: "What is the difference between ChatGPT Plus, Business, and Pro?", a: "ChatGPT Plus is for personal use — writing, coding, research, and image generation from ৳499. ChatGPT Business adds team admin controls, unlimited usage, and data privacy from ৳699. ChatGPT Pro is for power users — unlimited GPT-5.4 Pro, Sora video, and agents from ৳4,500." },
@@ -253,7 +253,7 @@ const BRAND_META: Record<string, {
     tagline: "Google AI Pro Bangladesh — ৳599/month",
     seoTitle: "Google AI Pro Bangladesh — BDT 499/mo 83% Off | AI Premium Shop",
     seoDescription: "Google AI Pro Bangladesh BDT 499/mo — 83% off. Gemini Pro, 2TB storage, YouTube Premium, Workspace AI. bKash/Nagad. AI Premium Shop.",
-    description: "Google AI Pro (formerly Gemini Advanced) is AIPS's most popular special offer. Get the full Google AI Pro subscription — Gemini 3.1 Pro, Deep Research, AI agents, 2TB Google Drive storage, YouTube Premium, and more — for just ৳599/month. Official price: ৳2,990. Save 83%.",
+    description: "Google AI Pro (formerly Gemini Advanced) — get the full Google AI Pro subscription — Gemini 3.1 Pro, Deep Research, AI agents, 2TB Google Drive storage, YouTube Premium, and more — for just ৳599/month. Official price: ৳2,990. Save 83%.",
     accentColor: "#4285f4",
     faqs: [
       { q: "What is Google AI Pro?", a: "Google AI Pro is Google's premium AI subscription. It includes Gemini 3.1 Pro (Google's most intelligent model), Deep Research, AI agents, Workspace AI features, 2TB Google Drive storage, YouTube Premium, and Google One benefits." },
@@ -301,7 +301,7 @@ const BRAND_META: Record<string, {
     tagline: "Midjourney Bangladesh — from ৳1,199/month",
     seoTitle: "Midjourney Bangladesh — From BDT 1,199/mo | AI Premium Shop",
     seoDescription: "Midjourney Bangladesh from BDT 1,199/mo. AI image generation. 6 plans. bKash/Nagad. Fast delivery. AI Premium Shop.",
-    description: "Midjourney is the world's most acclaimed AI image generator. Artists, designers, and creators worldwide use it for photorealistic images, concept art, product visuals, and stunning illustrations. Available from Standard Shared (৳1,199) to Mega Personal (৳17,940). Pay via bKash.",
+    description: "Midjourney is an AI image generator used by artists, designers, and creators for photorealistic images, concept art, product visuals, and illustrations. Available from Standard Shared (৳1,199) to Mega Personal (৳17,940). Pay via bKash.",
     accentColor: "#6366f1",
     faqs: [
       { q: "What is Midjourney best at?", a: "Midjourney consistently produces the most artistic and photorealistic AI images. It excels at character design, product photography, architectural visualization, concept art, and any visual that needs a professional aesthetic." },
@@ -333,7 +333,7 @@ const BRAND_META: Record<string, {
     tagline: "Runway Bangladesh — from ৳1,794/month",
     seoTitle: "Runway AI Bangladesh — From BDT 1,794/mo | AI Premium Shop",
     seoDescription: "Runway AI Bangladesh from BDT 1,794/mo. Professional AI video generation, Gen-4, 4K. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
-    description: "Runway is the leading professional AI video generator. Used by filmmakers, YouTubers, and marketing teams worldwide. Generate videos from text, animate images with Gen-4, and produce 4K output. Available from Standard (৳1,794) to Unlimited (৳11,362). Pay via bKash.",
+    description: "Runway is an AI video generator used by filmmakers, YouTubers, and marketing teams. Generate videos from text, animate images with Gen-4, and produce 4K output. Available from Standard (৳1,794) to Unlimited (৳11,362). Pay via bKash.",
     accentColor: "#111827",
     faqs: [
       { q: "What is Runway Gen-4?", a: "Gen-4 is Runway's latest AI video model — it produces cinematic quality videos with consistent characters, realistic motion, and stunning visual quality. Used by professional filmmakers and agencies for commercial production." },
@@ -352,7 +352,7 @@ const BRAND_META: Record<string, {
     description: "ElevenLabs produces the most human-like AI voice synthesis available. Clone your own voice or use thousands AI voices for narration, audiobooks, YouTube videos, explainers, and dubbing. Available from Starter (৳748) to Pro (৳14,802). Pay via bKash.",
     accentColor: "#111827",
     faqs: [
-      { q: "What is ElevenLabs best for?", a: "ElevenLabs produces the most realistic AI voices for: YouTube narration, podcast intros, audiobooks, corporate training videos, app voiceovers, explainer videos, and multilingual dubbing. The voices are virtually indistinguishable from human speakers." },
+      { q: "What is ElevenLabs best for?", a: "ElevenLabs produces AI voices for YouTube narration, podcast intros, audiobooks, corporate training videos, app voiceovers, explainer videos, and multilingual dubbing." },
       { q: "Can ElevenLabs clone my voice?", a: "Yes. ElevenLabs Instant Voice Cloning lets you clone your voice from a 1-minute audio sample. Professional Voice Cloning (available in Creator and Pro) produces even higher accuracy using longer recordings." },
       { q: "What is the difference between Starter, Creator, and Pro?", a: "Starter (৳748): 30K characters/month + commercial license — for regular use. Creator (৳3,289): 100K characters/month + professional cloning + 192kbps audio. Pro (৳14,802): 500K characters + highest audio quality." },
       { q: "Can ElevenLabs speak Bangla?", a: "Yes. ElevenLabs supports Bangla and 50+ other languages with high-quality text-to-speech. The Multilingual v2 model handles Bangla naturally." },
@@ -381,7 +381,7 @@ const BRAND_META: Record<string, {
     tagline: "GitHub Copilot Bangladesh — from ৳399/month",
     seoTitle: "GitHub Copilot Bangladesh — BDT 1,495/mo | AI Premium Shop",
     seoDescription: "GitHub Copilot Bangladesh BDT 1,495/mo. AI code completion in VS Code & JetBrains. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
-    description: "GitHub Copilot Pro is the most widely used AI coding assistant. It integrates directly into VS Code, JetBrains, Neovim, and other IDEs — providing real-time code completions, inline chat, and automated PR reviews. Available as Pro (৳1,495) or Pro+ (৳5,831) with 5x usage.",
+    description: "GitHub Copilot Pro integrates directly into VS Code, JetBrains, Neovim, and other IDEs — providing real-time code completions, inline chat, and automated PR reviews. Available as Pro (৳1,495) or Pro+ (৳5,831) with 5x usage.",
     accentColor: "#6e40c9",
     faqs: [
       { q: "What IDEs does GitHub Copilot work with?", a: "GitHub Copilot works with VS Code, IntelliJ IDEA, PyCharm, WebStorm, Neovim, Vim, and Azure Data Studio. It integrates seamlessly — once installed, completions appear as you type." },
@@ -397,7 +397,7 @@ const BRAND_META: Record<string, {
     tagline: "Cursor Pro Bangladesh — from ৳699/month",
     seoTitle: "Cursor Pro Bangladesh — From BDT 2,990/mo | AI Premium Shop",
     seoDescription: "Cursor Pro Bangladesh from BDT 2,990/mo. AI-native IDE, agent mode, full codebase context. bKash/Nagad. 2-4hr delivery. AI Premium Shop.",
-    description: "Cursor is the AI-native code editor trusted by engineering teams at OpenAI, Stripe, Figma, and thousands of startups. Built on VS Code — all your extensions work. Cursor understands your entire codebase and can make multi-file edits, explain complex code, and build features end-to-end. From ৳2,990/month.",
+    description: "Cursor is an AI-native code editor built on VS Code — all your extensions work. Cursor understands your entire codebase and can make multi-file edits, explain complex code, and build features end-to-end. From ৳2,990/month.",
     accentColor: "#111827",
     faqs: [
       { q: "What makes Cursor different from GitHub Copilot?", a: "Cursor is a complete IDE (built on VS Code) with deeper AI integration. It indexes your entire codebase for context-aware completions and can make changes across multiple files at once. Copilot works as a plugin in your existing editor. Cursor is more powerful; Copilot is more convenient." },
@@ -477,7 +477,7 @@ const BRAND_META: Record<string, {
     tagline: "HeyGen Bangladesh — from ৳1,499/month",
     seoTitle: "HeyGen Bangladesh — BDT 1,499/mo | AI Premium Shop",
     seoDescription: "HeyGen Bangladesh BDT 1,499/mo. AI avatar videos, 175+ languages, Bangla support. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
-    description: "HeyGen is the leading AI avatar video platform. Create professional videos with 700+ AI avatars in 175+ languages — no camera or editing experience required. Clone your own avatar for authentic AI-generated presentations, training videos, and marketing content.",
+    description: "HeyGen is an AI avatar video platform. Create videos with 700+ AI avatars in 175+ languages — no camera or editing experience required. Clone your own avatar for AI-generated presentations, training videos, and marketing content.",
     accentColor: "#6366f1",
     faqs: [
       { q: "What can I create with HeyGen?", a: "HeyGen is used for explainer videos, product demos, training content, social media videos, news reports, and marketing campaigns. The AI avatars speak naturally in 175+ languages with lip-sync accuracy." },
@@ -525,11 +525,11 @@ const BRAND_META: Record<string, {
     tagline: "Gamma Bangladesh — from ৳399/month",
     seoTitle: "Gamma Plus Bangladesh — BDT 399/mo | AI Premium Shop",
     seoDescription: "Gamma Plus Bangladesh BDT 399/mo. AI presentations, decks, websites from prompts. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
-    description: "Gamma creates beautiful presentations, documents, and websites from a single text prompt. Replace boring PowerPoint slides with AI-designed decks that look professionally made. Used by teams at Google, Shopify, and thousands of startups. Shared Plus plan from ৳399.",
+    description: "Gamma creates presentations, documents, and websites from a single text prompt — AI-designed decks without manual slide formatting. Shared Plus plan from ৳399.",
     accentColor: "#8b5cf6",
     faqs: [
       { q: "What is Gamma used for?", a: "Gamma is used for pitch decks, investor presentations, product demos, training materials, reports, and personal portfolios. It generates beautiful, shareable presentations from a brief description in under 2 minutes." },
-      { q: "Is Gamma better than PowerPoint?", a: "For speed and design quality, yes. Gamma generates polished presentations without manual formatting. For complex custom designs or presentations that need pixel-perfect control, PowerPoint may be preferable. Most users find Gamma handles 90% of their presentation needs faster." },
+      { q: "Is Gamma better than PowerPoint?", a: "For speed, generally yes — Gamma generates polished presentations without manual formatting. For complex custom designs or presentations that need pixel-perfect control, PowerPoint may be preferable." },
       { q: "Can Gamma create websites?", a: "Yes. Gamma can generate shareable microsite-style websites from prompts. These are great for landing pages, link-in-bio pages, event pages, and portfolios." },
       { q: "Does the Plus plan remove Gamma branding?", a: "Yes. Gamma Plus removes the Gamma watermark from your presentations, making them fully white-labeled." },
       { q: "How fast is delivery?", a: "Shared Gamma Plus accounts are delivered within 5–30 minutes after payment confirmation." },
@@ -541,7 +541,7 @@ const BRAND_META: Record<string, {
     tagline: "v0.dev Bangladesh — from ৳999/month",
     seoTitle: "v0.dev Pro Bangladesh — BDT 999/mo | AI Premium Shop",
     seoDescription: "v0.dev Pro Bangladesh BDT 999/mo. AI UI builder by Vercel, React + Tailwind code. bKash/Nagad. 5-30 min delivery. AI Premium Shop.",
-    description: "v0.dev by Vercel is the leading AI web application builder. Describe what you want to build and v0 generates production-ready React code with Tailwind CSS. Deploy instantly to Vercel. Used by professional developers and non-technical founders to ship products 10x faster.",
+    description: "v0.dev by Vercel is an AI web application builder. Describe what you want to build and v0 generates production-ready React code with Tailwind CSS. Deploy instantly to Vercel.",
     accentColor: "#111827",
     faqs: [
       { q: "What can I build with v0.dev?", a: "v0.dev can build UI components, full web app pages, dashboards, forms, landing pages, and complete web applications. It generates production-ready React + Tailwind code that you can deploy directly." },
@@ -641,7 +641,7 @@ const BRAND_META: Record<string, {
     tagline: "AI copywriter for marketing teams",
     seoTitle: "Jasper AI Bangladesh - Price in BDT | AI Premium Shop",
     seoDescription: "Jasper AI price in Bangladesh. AI marketing copywriter for blogs, ads, and social media. Pay with bKash/Nagad. Fast delivery.",
-    description: "Jasper AI is the leading AI copywriting tool for marketing teams and agencies. Write blog posts, ad copy, email campaigns, and social media content in your brand voice. Built-in SEO optimization and plagiarism checking. Perfect for Bangladeshi digital marketers and content agencies.",
+    description: "Jasper AI is an AI copywriting tool for marketing teams and agencies. Write blog posts, ad copy, email campaigns, and social media content in your brand voice. Built-in SEO optimization and plagiarism checking.",
     accentColor: "#ec4899",
     filterBySlug: true,
     faqs: [
@@ -698,7 +698,7 @@ const BRAND_META: Record<string, {
     faqs: [
       { q: "How does Opus Clip work?", a: "Upload a long video (podcast, interview, webinar). Opus Clip's AI identifies the best moments, creates multiple short clips with auto-captions, and scores each clip's viral potential." },
       { q: "What platforms does Opus Clip support?", a: "Opus Clip creates content optimized for YouTube Shorts, Instagram Reels, TikTok, and LinkedIn. One long video becomes 10-30 short clips." },
-      { q: "Does Opus Clip add captions?", a: "Yes - Opus Clip auto-generates captions with 97%+ accuracy. Captions are customizable with your brand colors and fonts." },
+      { q: "Does Opus Clip add captions?", a: "Yes - Opus Clip auto-generates captions. Captions are customizable with your brand colors and fonts." },
       { q: "Can I edit the clips Opus creates?", a: "Yes. Opus Clip provides an editor where you can trim, adjust captions, change layouts, and refine each clip before publishing." },
       { q: "How do I buy Opus Clip in Bangladesh?", a: "Message AI Premium Shop on WhatsApp. Pay with bKash or Nagad. Shared plans available in 5-30 minutes. Personal plans in 2-4 hours." },
     ],
@@ -730,7 +730,7 @@ const BRAND_META: Record<string, {
     accentColor: "#14b8a6",
     filterBySlug: true,
     faqs: [
-      { q: "How realistic are Murf AI voices?", a: "Murf AI voices are among the most natural-sounding in the industry. Many listeners cannot distinguish Murf voices from human narration. Perfect for YouTube, ads, and e-learning." },
+      { q: "How realistic are Murf AI voices?", a: "Murf AI voices are natural-sounding and used for YouTube, ads, and e-learning narration." },
       { q: "Does Murf support Bengali?", a: "Murf supports English, Hindi, and many other languages. While full Bengali support is limited, English voiceovers with Bangla-accented options are available. Check murf.ai for the latest language list." },
       { q: "Can I clone my own voice?", a: "Yes - Murf Studio plan includes voice cloning. Record a short sample and Murf creates an AI version of your voice for unlimited use." },
       { q: "What audio formats does Murf export?", a: "Murf exports MP3, WAV, and FLAC. All formats are studio-quality and ready for YouTube, podcasts, ads, and professional video production." },
@@ -764,7 +764,7 @@ const BRAND_META: Record<string, {
     accentColor: "#ff6b35",
     filterBySlug: true,
     faqs: [
-      { q: "What is Kling AI?", a: "Kling AI is a leading text-to-video and image-to-video AI platform from China. It creates cinematic-quality videos with character consistency and realistic motion. Popular among content creators in Bangladesh." },
+      { q: "What is Kling AI?", a: "Kling AI is a text-to-video and image-to-video AI platform from China. It creates videos with character consistency and realistic motion." },
       { q: "Is Kling AI better than Runway?", a: "Different strengths. Kling AI excels at cinematic quality and character consistency — great for storytelling. Runway offers more advanced editing and effects. Many creators use both." },
       { q: "Is Kling AI safe to buy through AIPS?", a: "Yes. AIPS provides working access with a 30-day replacement warranty. We have served 10,000+ customers since 2022." },
       { q: "How do I buy without a credit card?", a: "Message AI Premium Shop on WhatsApp (+880 1865-385348). Pay with bKash, Nagad, or Rocket. Receive your login in 5–30 minutes." },
@@ -924,7 +924,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
         {brandSlug === "chatgpt-plans-bangladesh" && (
           <div className="mb-14">
             <h2 className="text-2xl font-bold text-white mb-2">What ChatGPT Can Do For You</h2>
-            <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>The world's most capable AI — writing, coding, research, images, and autonomous agents.</p>
+            <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>Writing, coding, research, images, and autonomous agents in one subscription.</p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {[
                 {
@@ -1047,8 +1047,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   iconBg: "bg-blue-500/10",
                   borderClass: "border-blue-500",
                   pain: "Assignment deadline, English weak, research paper",
-                  solution: "ChatGPT Plus ৳499/mo → A+ grades, research done in 30 min",
-                  outcome: "CGPA 2.8 → 3.5+ possible",
+                  solution: "ChatGPT Plus ৳499/mo → faster research, clearer writing",
+                  outcome: "Understand topics faster, write with more confidence",
                   cta: "Order ৳499/mo",
                   msg: "Hi, I want ChatGPT Plus Starter Shared (৳499/mo) for studies",
                   svgBg: "#0b1a3a",
@@ -1061,8 +1061,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   iconBg: "bg-emerald-500/10",
                   borderClass: "border-emerald-500",
                   pain: "Can't write proposals, delivery slow, clients leaving",
-                  solution: "ChatGPT Plus ৳499–999/mo → Proposals in 2 min, delivery 50% faster",
-                  outcome: "Freelancers with AI earn 44% more — Upwork 2025",
+                  solution: "ChatGPT Plus ৳499–999/mo → faster proposals and delivery",
+                  outcome: "Freelancers doing AI-related work earn 44% more per hour than those who don't — Upwork Research Institute",
                   cta: "Order ৳950/mo",
                   msg: "Hi, I want ChatGPT Plus Premium Shared (৳999/mo) for freelancing",
                   svgBg: "#021a0e",
@@ -1075,8 +1075,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   iconBg: "bg-amber-500/10",
                   borderClass: "border-amber-500",
                   pain: "Marketing expensive, support staff needed, content slow",
-                  solution: "ChatGPT Business ৳699/mo → 1 person does 10 people's work",
-                  outcome: "Save ৳15,000–50,000/mo in staff costs",
+                  solution: "ChatGPT Business ৳699/mo → drafts marketing copy and support replies faster",
+                  outcome: "Lower cost per task than hiring for the same work",
                   cta: "Order ৳699/mo",
                   msg: "Hi, I want ChatGPT Business Starter Shared (৳699/mo)",
                   svgBg: "#160801",
@@ -1089,8 +1089,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   iconBg: "bg-indigo-500/10",
                   borderClass: "border-indigo-500",
                   pain: "CV rejected, interview nervous, no skill roadmap",
-                  solution: "ChatGPT Plus ৳499/mo → Professional CV in 5 min, mock interview",
-                  outcome: "Get hired 2–3 months faster. Starting salary 10–20% higher.",
+                  solution: "ChatGPT Plus ৳499/mo → CV drafting help and mock interview practice",
+                  outcome: "A stronger CV and more interview practice before you apply",
                   cta: "Order ৳499/mo",
                   msg: "Hi, I want ChatGPT Plus Starter Shared (৳499/mo) for job search",
                   svgBg: "#120530",
@@ -1103,8 +1103,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   iconBg: "bg-purple-500/10",
                   borderClass: "border-purple-500",
                   pain: "Debugging for hours, client deadlines slipping",
-                  solution: "ChatGPT Pro ৳4,500/mo → Unlimited GPT-5 Pro mode, Sora video, agents",
-                  outcome: "Code 55% faster. Bug fix in seconds, not hours.",
+                  solution: "ChatGPT Pro ৳4,500/mo → GPT-5 Pro mode, Sora video, agents",
+                  outcome: "Faster debugging and code explanations",
                   cta: "Order ৳4,500/mo",
                   msg: "Hi, I want ChatGPT Pro Premium Shared (৳4,500/mo)",
                   svgBg: "#030e1a",
@@ -1295,7 +1295,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   </p>
                   <ul className="space-y-2 text-sm mb-5" style={{ color: "#c9ceda" }}>
                     {[
-                      "Unlimited GPT-5 Pro mode (smartest AI available)",
+                      "GPT-5 Pro mode",
                       "Sora video generation",
                       "Codex agent (writes code autonomously)",
                       "Deep research agent (researches for hours, delivers report)",
@@ -1307,9 +1307,6 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                       </li>
                     ))}
                   </ul>
-                  <div className="bg-amber-500/10 border-l-4 border-amber-500 rounded-r-lg p-4 mt-6 text-sm" style={{ color: "#f4b942" }}>
-                    📊 "AI agency founders earn $34,000/mo profit with just 5 clients — Medium, March 2026"
-                  </div>
                 </div>
               </div>
             </div>
@@ -1743,15 +1740,14 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 </div>
               ))}
             </div>
-            <h3 className="text-xl font-bold text-white mb-4">Midjourney Freelance Income Potential</h3>
+            <h3 className="text-xl font-bold text-white mb-4">What You Can Offer as a Freelancer</h3>
             <div className="bg-gradient-to-r from-[#1a1a2e] to-gray-900 rounded-xl p-6 border border-gray-800">
-              <ul className="space-y-2 text-sm mb-4" style={{ color: "#c9ceda" }}>
-                <li>• Logo design with AI concepts: $200-500 per project</li>
-                <li>• Social media content pack (30 posts): $300-1,000/month retainer</li>
-                <li>• Product photography for e-commerce: $50-200 per product set</li>
-                <li>• YouTube thumbnail service: $10-50 per thumbnail</li>
+              <ul className="space-y-2 text-sm" style={{ color: "#c9ceda" }}>
+                <li>• Logo design with AI concepts</li>
+                <li>• Social media content packs</li>
+                <li>• Product photography for e-commerce</li>
+                <li>• YouTube thumbnail design</li>
               </ul>
-              <p className="font-bold text-sm" style={{ color: "#f4b942" }}>Investment: BDT 1,199/mo | Potential: $1,000-3,000/mo | ROI: 6x-19x</p>
             </div>
           </div>
         )}
@@ -1789,9 +1785,6 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 {["YouTube Narration", "Podcast Intros", "Ad Voiceover", "Audiobook Creation"].map((pill) => (
                   <span key={pill} className="bg-gray-800 rounded-full px-3 py-1 text-sm" style={{ color: "#c9ceda" }}>{pill}</span>
                 ))}
-              </div>
-              <div className="border-l-4 border-green-500 bg-gray-800 p-4 rounded-r-lg">
-                <p className="text-sm" style={{ color: "#c9ceda" }}>Voiceover freelancers charge $50-300/min. ElevenLabs: BDT 748/mo. Create Fiverr voiceover service → $50/project → deliver in 5 min. 20 projects/month = $1,000/mo.</p>
               </div>
             </div>
           </div>
@@ -1931,14 +1924,6 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
               ))}
             </div>
             <p className="text-xs italic text-gray-500 mb-6">Source: GitHub Research 2025</p>
-            <h3 className="text-xl font-bold text-white mb-3">Income Impact</h3>
-            <div className="border-l-4 bg-gray-900 p-4 rounded-r-lg" style={{ borderColor: "#6e40c9" }}>
-              <p className="text-sm" style={{ color: "#c9ceda" }}>
-                At BDT 1,495/mo, saving 20 hours/month = effective cost BDT 75/hour saved.
-                20 extra hours at $20/hr = $400/mo = BDT 52,000 extra income.{" "}
-                <strong style={{ color: "#f4b942" }}>ROI: 35x return.</strong>
-              </p>
-            </div>
           </div>
         )}
 
@@ -1954,7 +1939,6 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   "Writes full features from a single prompt",
                   "Multi-file refactoring autonomously",
                   "Uses Claude, GPT-5, Gemini — all frontier models",
-                  "Used by developers at OpenAI, Stripe, Shopify",
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-sm text-white">
                     <Code className="w-4 h-4 flex-shrink-0 text-cyan-400" />
@@ -1996,7 +1980,6 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   <span key={pill} className="bg-gray-800 rounded-full px-3 py-1 text-sm" style={{ color: "#c9ceda" }}>{pill}</span>
                 ))}
               </div>
-              <p className="font-bold text-sm" style={{ color: "#f4b942" }}>BDT 500/mo = build a SaaS that earns $1,000+/mo. Best ROI in tech.</p>
             </div>
           </div>
         )}

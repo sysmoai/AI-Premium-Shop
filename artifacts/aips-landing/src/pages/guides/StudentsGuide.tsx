@@ -251,7 +251,7 @@ export default function StudentsGuide() {
             >
               <Book className="w-12 h-12 mb-4" />
               <h3 className="text-xl font-bold mb-3">Faster Assignments</h3>
-              <p>Cut assignment time by 50-70%. ChatGPT and Claude help you brainstorm, draft, and edit essays in half the time.</p>
+              <p>ChatGPT and Claude help you brainstorm, draft, and edit essays faster.</p>
             </motion.div>
 
             <motion.div
@@ -480,7 +480,7 @@ export default function StudentsGuide() {
                 <a className="bg-white rounded-lg p-6 border border-gray-200 hover:shadow-lg transition">
                   <div className="text-3xl mb-3">💼</div>
                   <h3 className="font-bold text-gray-900 mb-2">Freelancers Guide</h3>
-                  <p className="text-gray-600 text-sm">Earn 44% more with AI tools</p>
+                  <p className="text-gray-600 text-sm">AI tools for Upwork &amp; Fiverr</p>
                 </a>
               </Link>
 

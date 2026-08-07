@@ -112,41 +112,6 @@ function CalloutBox({ children }: { children: React.ReactNode }) {
   );
 }
 
-function IncomeCalculator({
-  inputLabel,
-  inputValue,
-  outputLabel,
-  outputValue,
-  roiLabel,
-  roiValue,
-}: {
-  inputLabel: string;
-  inputValue: string;
-  outputLabel: string;
-  outputValue: string;
-  roiLabel: string;
-  roiValue: string;
-}) {
-  return (
-    <div className="bg-gradient-to-br from-green-500/10 to-gray-900 border border-green-500/20 rounded-xl p-6 my-6">
-      <div className="grid grid-cols-3 gap-4 text-center">
-        <div>
-          <div className="text-xs text-gray-500 mb-1">{inputLabel}</div>
-          <div className="text-[#f4b942] font-bold text-lg">{inputValue}</div>
-        </div>
-        <div>
-          <div className="text-xs text-gray-500 mb-1">{outputLabel}</div>
-          <div className="text-green-400 font-bold text-lg">{outputValue}</div>
-        </div>
-        <div>
-          <div className="text-xs text-gray-500 mb-1">{roiLabel}</div>
-          <div className="text-white font-bold text-2xl">{roiValue}</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 const ALL_POSTS_META: Record<string, { title: string; excerpt: string; category: string; gradient: string }> = {
   "ai-voice-music-tools-bangladesh": {
     title: "AI Voice & Music Tools in Bangladesh — ElevenLabs, Suno, Murf & Udio Compared (2026)",
@@ -246,7 +211,7 @@ const ALL_POSTS_META: Record<string, { title: string; excerpt: string; category:
   },
   "ai-tools-for-freelancers-bangladesh": {
     title: "5 AI Tools Every Bangladeshi Freelancer Needs in 2026",
-    excerpt: "Freelancers using AI earn 44% more on average. Here are the 5 tools that pay for themselves fastest.",
+    excerpt: "Freelancers doing AI-related work earn more per hour than those who don't. Here are the 5 tools that pay for themselves fastest.",
     category: "Freelancers",
     gradient: "bg-gradient-to-br from-pink-600 to-rose-900",
   },
@@ -476,8 +441,7 @@ const POSTS: Record<
 
         <StatCards
           items={[
-            { value: "BDT 20K-100K", label: "Potential/month" },
-            { value: "44%", label: "More earnings (Upwork)" },
+            { value: "44%", label: "More earnings doing AI-related work (Upwork)" },
             { value: "BDT 499", label: "To start" },
             { value: "650K+", label: "BD freelancers" },
           ]}
@@ -493,18 +457,9 @@ const POSTS: Record<
             { title: "Get ChatGPT Plus (BDT 499/mo)", desc: "Your core AI writing, research, and coding tool. Available via bKash/Nagad." },
             { title: "Pick one service to offer", desc: "Content writing, design, video editing, data analysis — choose your niche." },
             { title: "Build a profile on Upwork or Fiverr", desc: "Use ChatGPT to write your bio and service descriptions — takes 15 minutes." },
-            { title: "Send 5 proposals per day", desc: "ChatGPT drafts personalized proposals in 2 minutes each. Quality improves reply rates 4x." },
+            { title: "Send 5 proposals per day", desc: "ChatGPT drafts personalized proposals in 2 minutes each." },
             { title: "Deliver and get reviews", desc: "With AI, first project delivery is faster and higher quality. Reviews compound." },
           ]}
-        />
-
-        <IncomeCalculator
-          inputLabel="Tool Investment"
-          inputValue="BDT 499/mo"
-          outputLabel="Extra Projects/mo"
-          outputValue="10 projects"
-          roiLabel="Potential Income"
-          roiValue="BDT 50K+"
         />
 
         <p className="text-gray-300 leading-relaxed">
@@ -522,8 +477,6 @@ const POSTS: Record<
         <StatCards
           items={[
             { value: "BDT 5,586", label: "Full creator stack/mo" },
-            { value: "BDT 30-100K", label: "Potential income/mo" },
-            { value: "5-18x", label: "ROI" },
           ]}
         />
 
@@ -536,17 +489,8 @@ const POSTS: Record<
 
         <h2 className="text-xl font-bold text-white mt-8 mb-4">Method 3 — AI Tutoring & Coaching</h2>
         <p className="text-gray-300 leading-relaxed">
-          AI tutoring is booming. Teach students how to use AI tools, offer AI-powered exam prep, or tutor English using AI conversation partners. With ChatGPT, you can coach 10 students a month working evenings only.
+          AI tutoring is another option. Teach students how to use AI tools, offer AI-powered exam prep, or tutor English using AI conversation partners.
         </p>
-
-        <IncomeCalculator
-          inputLabel="Tool Cost"
-          inputValue="BDT 499/mo"
-          outputLabel="Students × Fee"
-          outputValue="10 × BDT 3,000"
-          roiLabel="Monthly Income"
-          roiValue="BDT 30K"
-        />
 
         <p className="text-gray-300 leading-relaxed">
           See <Link href="/best-ai-for-students" className="text-[#f4b942] hover:underline">best AI tools for students</Link>.
@@ -863,42 +807,17 @@ const POSTS: Record<
           highlightCol={2}
         />
 
-        <h2 className="text-xl font-bold text-white mt-8 mb-4">Real Bangladesh Examples</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
-          <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4">
-            <div className="text-blue-400 font-semibold text-sm mb-2">🎓 Student — BRAC University</div>
-            <div className="text-gray-300 text-sm">"Assignment research: 3 hours → 30 minutes. With Plus and deep research, I find better sources faster than my classmates."</div>
-          </div>
-          <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-4">
-            <div className="text-green-400 font-semibold text-sm mb-2">💻 Freelancer — Upwork</div>
-            <div className="text-gray-300 text-sm">"Proposal reply rate: 1/10 → 4/10. ChatGPT Plus helps me personalize every proposal. That 4x improvement is BDT 40K extra per month."</div>
-          </div>
-          <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
-            <div className="text-amber-400 font-semibold text-sm mb-2">🏢 Business — Dhaka</div>
-            <div className="text-gray-300 text-sm">"1 person doing the work of 10. Customer emails, content, reports, analysis — all handled in half the time."</div>
-          </div>
-        </div>
-
         <h2 className="text-xl font-bold text-white mt-8 mb-4">The Math</h2>
         <p className="text-gray-300 leading-relaxed">
-          BDT 499 per month is about BDT 17 per day — less than a cup of coffee. If Plus saves you 10 hours per month (very conservative estimate), that's about BDT 50/hour in value. But for freelancers earning BDT 5,000 per extra project, the ROI is dramatic.
+          BDT 499 per month is about BDT 17 per day — less than a cup of coffee. If Plus saves you a few hours of research or writing time per month, it pays for itself quickly, especially for freelancers who bill by the project.
         </p>
-
-        <IncomeCalculator
-          inputLabel="Cost Per Day"
-          inputValue="BDT 12"
-          outputLabel="Time Saved/mo"
-          outputValue="10+ hours"
-          roiLabel="ROI (at BDT 5K/project)"
-          roiValue="14x"
-        />
 
         <h2 className="text-xl font-bold text-white mt-8 mb-4">Verdict</h2>
         <div className="bg-green-500/5 border border-green-500/20 rounded-xl p-5 my-4">
           <Lightbulb className="w-5 h-5 text-green-400 mb-2" />
           <div className="text-white font-semibold text-lg mb-1">Yes. It's worth it.</div>
           <div className="text-gray-300 text-sm leading-relaxed">
-            If you use ChatGPT 3+ times per week, Plus pays for itself. The GPT-5 model difference alone is noticeable immediately — smarter responses, better reasoning, less hallucination. At BDT 499, this is the highest-ROI subscription in Bangladesh.
+            If you use ChatGPT 3+ times per week, Plus pays for itself. The GPT-5 model difference alone is noticeable immediately — smarter responses, better reasoning, less hallucination.
           </div>
         </div>
 
@@ -936,15 +855,14 @@ const POSTS: Record<
     content: (
       <div className="blog-body space-y-4">
         <p className="text-gray-300 leading-relaxed">
-          Bangladesh is the #2 freelancing market in the world, with 650,000+ active freelancers on Upwork and Fiverr. Freelancers who use AI tools earn 44% more on average. This guide shows you how to start — and earn your first income within 7 days.
+          Bangladesh is the #2 freelancing market in the world, with 650,000+ active freelancers on Upwork and Fiverr. Freelancers doing AI-related work earn more per hour than those who don't. This guide shows you how to start.
         </p>
 
         <StatCards
           items={[
             { value: "650K+", label: "BD freelancers" },
             { value: "#2", label: "Global market" },
-            { value: "44%", label: "More earnings with AI" },
-            { value: "7 days", label: "To first income" },
+            { value: "44%", label: "More earnings doing AI-related work (Upwork)" },
           ]}
         />
 
@@ -997,29 +915,14 @@ const POSTS: Record<
 
         <h2 className="text-xl font-bold text-white mt-8 mb-4">Services You Can Offer</h2>
         <ComparisonTable
-          headers={["Service", "AI Tool", "Tool Cost", "Charge", "Monthly Income"]}
+          headers={["Service", "AI Tool", "Tool Cost"]}
           rows={[
-            ["Content writing", "ChatGPT", "BDT 499", "$50-200", "$500-2,000"],
-            ["Graphic design", "Midjourney", "BDT 1,199", "$30-100", "$300-1,000"],
-            ["Video creation", "Runway", "BDT 1,794", "$100-500", "$500-2,500"],
-            ["Voice work", "ElevenLabs", "BDT 748", "$10-50", "$200-1,000"],
-            ["Data & research", "Claude", "from BDT 599", "$50-200", "$500-2,000"],
+            ["Content writing", "ChatGPT", "BDT 499"],
+            ["Graphic design", "Midjourney", "BDT 1,199"],
+            ["Video creation", "Runway", "BDT 1,794"],
+            ["Voice work", "ElevenLabs", "BDT 748"],
+            ["Data & research", "Claude", "from BDT 599"],
           ]}
-          highlightCol={4}
-        />
-
-        <h2 className="text-xl font-bold text-white mt-8 mb-4">Real Numbers</h2>
-        <p className="text-gray-300 leading-relaxed">
-          Here's what realistic income looks like with AI tools. Conservative estimates based on actual BD freelancer data.
-        </p>
-
-        <IncomeCalculator
-          inputLabel="Tool Investment"
-          inputValue="BDT 299-4,000"
-          outputLabel="Monthly Income"
-          outputValue="$500-3,000"
-          roiLabel="ROI"
-          roiValue="8-50x"
         />
 
         <p className="text-gray-300 leading-relaxed">
@@ -1065,7 +968,7 @@ const POSTS: Record<
         <h3>3. Google AI Pro — ৳599/month</h3>
         <p>AIPS-exclusive pricing. Full Google AI Pro plan on your own Gmail account. Gemini 3.1 Pro, 2TB storage, AI in Docs, Sheets, Gmail. The best value for professionals who already use Google Workspace.</p>
         <h3>4. <Link href="/midjourney-bangladesh" className="text-[#f4b942] hover:underline">Midjourney</Link> — from ৳1,199/month</h3>
-        <p>The gold standard for AI image generation. Midjourney's v7 model produces photorealistic and artistic images that no other tool matches. The shared Standard plan gives 15 hours of fast GPU time per month.</p>
+        <p>Midjourney's v7 model produces photorealistic and artistic images. The shared Standard plan gives 15 hours of fast GPU time per month.</p>
         <h3>5. GitHub Copilot Pro — ৳1,495/month</h3>
         <p>For developers, Copilot Pro is the most practical AI investment. Unlimited code completions inside VS Code, JetBrains, and Neovim. Access to 300 premium requests with Claude and GPT-5 models.</p>
         <h2>How to Get Started</h2>
@@ -1128,14 +1031,14 @@ const POSTS: Record<
   },
   "ai-tools-for-freelancers-bangladesh": {
     title: "5 AI Tools Every Bangladeshi Freelancer Needs in 2026",
-    description: "Freelancers using AI earn 44% more on average. Here are the 5 tools that pay for themselves fastest — with realistic prices in BDT and use cases for Upwork and Fiverr.",
+    description: "Freelancers doing AI-related work earn more per hour than those who don't. Here are the 5 tools that pay for themselves fastest — with realistic prices in BDT and use cases for Upwork and Fiverr.",
     canonical: "https://aipremiumshop.com/blog/ai-tools-for-freelancers-bangladesh",
     date: "March 2026",
     readTime: "5 min read",
     accentColor: "#ec4899",
     content: (
       <div className="prose-content">
-        <p>Upwork's 2025 Freelancer Report found that freelancers who use AI tools earn 44% more on average. In Bangladesh, where competition on Fiverr and Upwork is intense, AI tools are now a professional necessity, not a luxury.</p>
+        <p>Freelancers doing AI-related work earn 44% more per hour than those who don't, per the Upwork Research Institute. In Bangladesh, where competition on Fiverr and Upwork is intense, AI tools are increasingly a professional expectation.</p>
         <h2>1. <Link href="/chatgpt-plans-bangladesh" className="text-[#f4b942] hover:underline">ChatGPT Plus</Link> Premium Shared — ৳999/month</h2>
         <p>The single most useful AI tool for freelancers. Write client proposals, deliver content faster, answer emails, research topics, and generate code. Pays for itself with your first successful proposal. Used by writers, marketers, virtual assistants, and developers.</p>
         <h2>2. Claude Pro Premium Shared — ৳1,590/month</h2>
@@ -1143,7 +1046,7 @@ const POSTS: Record<
         <h2>3. <Link href="/midjourney-bangladesh" className="text-[#f4b942] hover:underline">Midjourney</Link> Standard Shared — ৳1,199/month</h2>
         <p>For designers, social media managers, and content creators, Midjourney generates professional-quality images in minutes. Create thumbnails, product mockups, brand visuals, and social media graphics — no design skills required. Unlimited slow-queue generations included.</p>
         <h2>4. GitHub Copilot Pro — ৳1,495/month</h2>
-        <p>For developer freelancers, Copilot Pro is the highest-ROI tool available. It handles boilerplate code, suggests entire functions, and speeds up development by 50%+. Works inside VS Code and JetBrains with no workflow changes.</p>
+        <p>For developer freelancers, Copilot Pro handles boilerplate code and suggests entire functions. Works inside VS Code and JetBrains with no workflow changes.</p>
         <h2>5. Perplexity Pro Shared — ৳599/month</h2>
         <p>The best AI research tool. Perplexity answers questions with citations, helping you research client industries quickly and accurately. Invaluable for writers, consultants, and marketers who need reliable information fast.</p>
         <h2>The Freelancer Stack</h2>
@@ -1160,9 +1063,9 @@ const POSTS: Record<
     accentColor: "#8b5cf6",
     content: (
       <div className="prose-content">
-        <p><Link href="/midjourney-bangladesh" className="text-[#f4b942] hover:underline">Midjourney</Link> is the world's leading AI image generator. In 2026, its v7 model produces images that are consistently the most artistic and photorealistic of any AI tool. Here's everything Bangladeshi users need to know.</p>
+        <p><Link href="/midjourney-bangladesh" className="text-[#f4b942] hover:underline">Midjourney</Link> is a widely-used AI image generator. Its v7 model produces artistic and photorealistic images. Here's everything Bangladeshi users need to know.</p>
         <h2>What Can Midjourney Create?</h2>
-        <p>Midjourney can create: photorealistic portraits, product photography, architectural visualizations, logo concepts, social media graphics, book covers, YouTube thumbnails, wallpapers, fashion concepts, and abstract art. The quality in 2026 is indistinguishable from professional photography in many styles.</p>
+        <p>Midjourney can create: photorealistic portraits, product photography, architectural visualizations, logo concepts, social media graphics, book covers, YouTube thumbnails, wallpapers, fashion concepts, and abstract art.</p>
         <h2>Midjourney Plans in Bangladesh (BDT)</h2>
         <ul>
           <li><strong>Standard Shared — ৳1,199/month:</strong> 15 hours fast GPU, unlimited relaxed mode. 2-5 users. Best value for most users.</li>

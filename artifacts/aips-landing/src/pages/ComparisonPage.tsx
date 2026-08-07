@@ -125,7 +125,7 @@ const COMPARISONS: Record<string, CompConfig> = {
       { feature: "Best for", a: "Photorealistic & artistic images", b: "Text in images, logos, typography" },
       { feature: "Image quality", a: "Highest overall quality", b: "Best for text rendering" },
       { feature: "Text in images", a: "Inconsistent — often misspells", b: "Excellent — reliable text rendering" },
-      { feature: "Photorealism", a: "Industry-leading", b: "Good but not Midjourney-level" },
+      { feature: "Photorealism", a: "Strong photorealistic output", b: "Good, more limited than Midjourney" },
       { feature: "Artistic styles", a: "Full range, painterly, cinematic", b: "Limited compared to Midjourney" },
       { feature: "Images/month (shared)", a: "15hr GPU (~900 images) + unlimited slow", b: "400 priority + unlimited slower" },
       { feature: "Price (AIPS shared)", a: "BDT 1,199/mo", b: "from BDT 2,990/mo" },
@@ -134,7 +134,7 @@ const COMPARISONS: Record<string, CompConfig> = {
 
     ],
     verdict: "Both are world-class AI image generators. Your choice should be based on what you create most.",
-    verdictA: "Choose Midjourney if you need the highest quality images overall — photorealistic portraits, artistic illustrations, product renders, or creative visuals. Midjourney's v7 model produces images that often surpass professional photography in artistic quality.",
+    verdictA: "Choose Midjourney if you need strong image quality overall — photorealistic portraits, artistic illustrations, product renders, or creative visuals.",
     verdictB: "Choose Ideogram if you create designs with text — logos, posters, social media graphics, YouTube thumbnails, or marketing materials. Ideogram is the only AI that reliably renders text accurately inside images. For graphic design and brand work, it's the clear winner.",
     buyBothText: "Midjourney Standard Shared (BDT 1,199) + Ideogram (BDT 2,990) = BDT 4,189/mo — use Midjourney for photos and art, Ideogram for designs with text.",
     whoTable: [
@@ -170,7 +170,7 @@ const COMPARISONS: Record<string, CompConfig> = {
     ],
     verdict: "Both tools make you a faster developer. The right choice depends on how much you want to change your workflow.",
     verdictA: "Choose GitHub Copilot if you want AI assistance inside your existing editor without changing anything. It plugs into VS Code or JetBrains and starts helping immediately. Best starting point for most developers.",
-    verdictB: "Choose Cursor if you want the most powerful AI coding experience available. Its agent mode can write entire features autonomously. Many professional developers at top tech companies have switched to Cursor as their primary editor.",
+    verdictB: "Choose Cursor if you want a fully AI-native coding experience. Its agent mode can write entire features autonomously.",
     buyBothText: "GitHub Copilot Pro (from BDT 399) + Cursor Pro (from BDT 699) = from BDT 1,098/mo — use Copilot in your main IDE and Cursor for complex agent tasks.",
     whoTable: [
       { persona: "Developers new to AI tools", pick: "GitHub Copilot Pro — from BDT 399", reason: "No IDE change required — start getting completions in VS Code today." },

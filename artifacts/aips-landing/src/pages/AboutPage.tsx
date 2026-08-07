@@ -40,7 +40,7 @@ export default function AboutPage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">About AI Premium Shop</h1>
           <p className="text-lg max-w-2xl" style={{ color: "#c9ceda" }}>
-            Bangladesh&apos;s most trusted source for premium AI tool subscriptions.
+            A local source for premium AI tool subscriptions, paid via bKash, Nagad, or Rocket.
           </p>
         </motion.div>
 

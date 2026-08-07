@@ -23,7 +23,7 @@ Ordered by value / effort. Anything blocked names its blocker from `BLOCKERS.md`
 | 21 | Real bKash/Nagad/Rocket logo asset files still don't exist in the repo — text-only interim fallback applied 2026-08-07 (was: hand-drawn SVG approximations in `PaymentMethodsSection.tsx`; `PaymentBadges.tsx`/`PageFooter.tsx` were already text-only). See `docs/compliance/payment-methods.md` / `docs/brand/payment-assets.md` | — (owner: supply real asset files whenever convenient; not urgent now that the fabricated-mark risk is resolved) |
 | 22 | Playwright **full click-through user journeys** — the mount-crash-detection scope (B9) is done as of 2026-08-07 (`tests/e2e/smoke.spec.ts`, 8 routes, wired into CI + pre-push, verified to actually catch the real historical bug). What's left is the bigger ask: two full journeys the master prompt specified — Homepage→Find Your Solution→Audience page→Category→Product→Policy→WhatsApp, and Homepage→AI Video→Higgsfield→Credits→Unlimited→Service opportunities→WhatsApp — clicking through real navigation and asserting each step, not just that each page mounts | — (real scoping + maintenance-burden work; lower urgency now that B9's actual risk is covered) |
 | 23 | Individual re-audit of all 6 audience pages against the master prompt's per-page requirement list (unique intent, ethical limitations, Bangladesh context, FAQ, internal links) — partially covered as a side effect of the testimonial-fabrication sweep (2026-08-07), which touched all 5 guide pages, but that was a narrow pass for one issue class, not the full audit | — (large, ~6 pages × full checklist) |
-| 24 | Chatbot: broaden the shared-account-privacy system-prompt fix (2026-08-07) into a fuller pass over `api/concierge.js`'s system prompt — same live-testing method (real queries against production, not simulated) found only one bug this turn because only ~4 queries were tried; a proper pass would sample many more intents | — (real testing time, not blocked) |
+| 30 | Chatbot sweep (#24) found two real gaps, fixed 2026-08-07, but only sampled 14 queries — the same method (live-test against production) would likely find more with a larger sample. Untested areas: multi-turn conversation context, more Bangla dialect variety, questions about specific vendor ToS details, pricing-negotiation attempts | — (real testing time, not blocked) |
 | 25 | Chatbot: scheduled knowledge-base sync — `api/_catalog.json` is generated from `data/products.json` by `scripts/generate-concierge-catalog.mjs` and gated by `validate-catalog.mjs`'s sync check (so it can't silently drift), but nothing runs that generator automatically on a schedule independent of a manual build/deploy. Only matters if content updates without a full deploy become common | — (low priority — the existing gate already prevents silent drift, this is about cadence not correctness) |
 | 26 | Chatbot: NVIDIA API quota/limits documentation — needs the actual NVIDIA account dashboard, which this session has no access to. `api/concierge.js`'s own comments already document real operational learnings (model latency/quality tradeoffs from actual re-benchmarking), which is more useful than generic API docs would be, but quota/rate-limit specifics are still unknown | — (owner: check the NVIDIA NIM dashboard directly) |
 | 27 | Chatbot: fine-tuning / continuous-learning pipeline — not started, and not clearly worth building. The existing retrieval+grounding architecture (server-side price/product grounding, never trusting the model's own numbers) already solves the failure mode fine-tuning would target, with far less operational risk than retraining a model on live chat logs | — (owner call: is this actually wanted given the existing architecture already covers it?) |
@@ -107,6 +107,23 @@ current standings, not just removing the phrasing on principle.
 - **Payment-method compliance documentation** — confirmed the current
   bKash/Nagad/Rocket "logos" are hand-drawn SVG approximations, not real
   assets (#21).
+
+**Also done, 2026-08-07 (4th continuation session, after "Go"):**
+
+- **Chatbot sweep (#24) — done, 2 real bugs found and fixed.** Live-tested
+  14 queries against production across prompt-injection, refund-promise,
+  and account-safety intents. Found: (1) "will my bKash account get
+  banned?" got a confident "No, it won't" — an absolute safety guarantee
+  about the customer's own payment account, not covered by the existing
+  suspension rule (which was scoped to the AI subscription account only),
+  proven inconsistent by the same underlying question with "100%" in it
+  getting correctly hedged; (2) "is this shop legal in Bangladesh?" got
+  an unqualified "yes, legal" — an unbacked compliance claim inconsistent
+  with how the same session correctly hedges the reseller-authorization
+  question. Fixed with two new STRICT RULES in `buildSystem()`, verified
+  by re-testing the exact same queries against the deployed fix (multiple
+  times, to check for stochastic variance) — both now hedge instead of
+  asserting certainty. New item #30 for a larger follow-up sample.
 
 **Also done, 2026-08-07 (third continuation session, "full permission" turn):**
 

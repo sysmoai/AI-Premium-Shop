@@ -65,6 +65,25 @@ jobs:
       - name: SEO check
         run: pnpm run seo:check
 
+      # Executes the built app in a real browser -- everything above only
+      # inspects static HTML text, so a mount-time crash (see BLOCKERS.md
+      # B9 -- a hook-order bug once emptied #root on every page in
+      # production) passes every check above unnoticed. This is the only
+      # gate that would have caught it.
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: E2E smoke test (real browser, catches render-time crashes)
+        run: pnpm run test:e2e
+
+      - name: Upload Playwright report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: artifacts/aips-landing/playwright-report
+          retention-days: 5
+
       - name: Upload built HTML on failure
         if: failure()
         uses: actions/upload-artifact@v4

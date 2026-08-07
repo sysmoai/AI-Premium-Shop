@@ -41,4 +41,8 @@ node scripts/validate-truth.mjs
 pnpm run build
 pnpm run seo:check
 
+echo "== pre-push: e2e smoke test (real browser -- see BLOCKERS.md B9) =="
+npx playwright install chromium
+pnpm run test:e2e
+
 echo "== pre-push: all gates passed =="

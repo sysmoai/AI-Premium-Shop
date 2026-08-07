@@ -78,15 +78,16 @@ Carried from session 15. The Bangla pages exist and are consistent with the
 English facts, but nobody has confirmed they read naturally. Session 16 added
 only two short Bangla link labels, no new Bangla prose.
 
-## B9 — Nothing in CI executes the React app (HIGH, caused a live outage)
+## B9 — Nothing in CI executes the React app (RESOLVED 2026-08-07)
 
-**Status:** open. Real gap, demonstrated 2026-08-06.
+**Status:** resolved. Playwright smoke suite added and verified to actually
+catch the exact bug class that caused the outage.
 
 A hook-order bug (`useT()` placed below an early `return null` in CookieBanner)
 threw React error #310 at the App root. `createRoot` emptied #root and rendered
 nothing: **every page went blank in production**.
 
-It passed every gate we have:
+It passed every gate that existed at the time:
  - `pnpm run build` — Vite bundles, it does not execute the app.
  - `pnpm run seo:check` — inspects static HTML, which is byte-identical whether
    or not the app crashes on mount.
@@ -94,15 +95,37 @@ It passed every gate we have:
  - `live-site-monitor` — greps the SERVED HTML for markers, and the prerendered
    markers are all still present on a crashed page.
 
-Only a screenshot caught it, and only because the failure was total. A subtler
-render bug would still ship today.
+Only a screenshot caught it, and only because the failure was total.
 
-**Fix (not yet done):** one smoke test that loads the built app in a real browser
-and asserts `#root` has children and the console has no errors, on ~3 routes.
-Playwright is already Backlog #4; this raises its priority from "nice" to
-"the only thing standing between a render bug and production".
+**Fix:** `artifacts/aips-landing/tests/e2e/smoke.spec.ts`, a Playwright suite
+that runs the actual built app (`vite preview` serving `dist/public`) in a
+real Chromium instance across 8 structurally distinct routes (home,
+products, pricing, ai-video, the Higgsfield product page, an audience
+guide, the Bangla homepage, and a 404), and for each asserts:
+ - `#root` has at least one child element,
+ - the page body has real visible text (catches an empty-but-truthy
+   wrapper div, not just a fully empty `#root`),
+ - zero `pageerror`/`console.error` events fired during load.
 
-Until then: after any change to a component, LOOK at the rendered page.
+**Verified this would have actually caught the real bug**, not just a
+synthetic one: reproduced the exact CookieBanner hook-order bug locally
+(moved `useT()` below the early return again), rebuilt, ran the suite —
+all 8 routes failed with the exact same "#root has no children" signature
+the real outage would have produced. Reverted immediately after
+confirming (`git diff` on the component came back empty).
+
+Wired into `.github/workflows/seo-quality.yml` (after the build step,
+installs the Chromium binary then runs `pnpm run test:e2e`, uploads the
+HTML report as an artifact on failure) and into `.husky/pre-push` (B13),
+so both the remote and local gate now execute the app, not just inspect
+its static output.
+
+Playwright itself was Backlog #4/#22 (a bigger, full-user-journey
+version) — this is the narrower, B9-scoped version: mount-crash
+detection across representative routes, not full click-through
+journeys. #22's fuller scope (Homepage→Solution→Category→Product→
+Policy→WhatsApp, etc.) is still open if ever wanted, but the thing that
+actually caused a real outage is now covered.
 
 ## B10 — Floating chat buttons click-jack CTAs on mobile (MEDIUM, costs conversions)
 

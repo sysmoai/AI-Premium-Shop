@@ -13,10 +13,12 @@
     "validate:truth": "node scripts/validate-truth.mjs",
     "validate:all": "node scripts/validate-catalog.mjs && node scripts/validate-truth.mjs && node scripts/validate-higgsfield-offer.mjs",
     "validate:offer": "node scripts/validate-higgsfield-offer.mjs",
-    "seo:check": "node scripts/seo-check.mjs"
+    "seo:check": "node scripts/seo-check.mjs",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
     "@hookform/resolvers": "^3.10.0",
+    "@playwright/test": "^1.62.1",
     "@radix-ui/react-accordion": "^1.2.4",
     "@radix-ui/react-alert-dialog": "^1.1.7",
     "@radix-ui/react-aspect-ratio": "^1.1.3",

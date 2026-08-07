@@ -625,13 +625,103 @@ writeRoute("/best-ai-budget-bangladesh", BUDGET_META["ai-under-500"].title, BUDG
   `<main><h1>Best AI Budget Bangladesh</h1><p>Affordable premium AI tools under BDT 500. Pay with bKash or Nagad.</p>
 <p><a href="/ai-under-500">AI Under 500</a> · <a href="/ai-under-1000">AI Under 1000</a> · <a href="/products">All tools</a></p></main>`);
 
-// --- Comparison pages: titles/descriptions sourced from ComparisonPage.tsx
-const COMPARISON_META = {
-  "chatgpt-vs-claude": { title: "ChatGPT vs Claude Bangladesh 2026 — Which is Better?", desc: "ChatGPT vs Claude in Bangladesh 2026. Features, prices, which is better. AI Premium Shop." },
-  "chatgpt-vs-gemini": { title: "ChatGPT vs Gemini Bangladesh 2026 — Full Comparison", desc: "ChatGPT vs Gemini in Bangladesh 2026. Full comparison with BD prices. AI Premium Shop." },
-  "midjourney-vs-ideogram": { title: "Midjourney vs Ideogram 2026 — Best AI Image Tool", desc: "Midjourney vs Ideogram 2026 Bangladesh. Best AI image generator comparison with BDT prices. AI Premium Shop." },
-  "copilot-vs-cursor": { title: "GitHub Copilot vs Cursor 2026 — Best AI Code Tool", desc: "GitHub Copilot vs Cursor 2026. Best AI code editor compared. Prices in BDT." },
-};
+// --- Comparison pages: full static body parsed directly out of ComparisonPage.tsx's
+// COMPARISONS config — not hand-duplicated, so the static body cannot drift from
+// what React renders (the previous version was a 3-line stub while the component
+// itself carries a full aioSnippet, comparison table, verdict, and who-should-buy
+// table that never reached static HTML — measured 16-53x smaller than the real page).
+//
+// Deliberately NOT eval/new Function, which would execute arbitrary code from the
+// source file. This is a small hand-written parser that only understands literal
+// data (strings, numbers, booleans, arrays, objects) — identifiers, template
+// interpolation and function calls all throw rather than silently misparsing.
+function parseJsLiteralAt(text, startIndex) {
+  let i = startIndex;
+  const n = text.length;
+  const err = (msg) => { throw new Error(`parseJsLiteralAt: ${msg} at offset ${i}: ...${text.slice(Math.max(0, i - 20), i + 20)}...`); };
+  const skipWs = () => {
+    for (;;) {
+      while (i < n && /\s/.test(text[i])) i++;
+      if (text.startsWith("//", i)) { while (i < n && text[i] !== "\n") i++; continue; }
+      if (text.startsWith("/*", i)) { const end = text.indexOf("*/", i + 2); i = end === -1 ? n : end + 2; continue; }
+      break;
+    }
+  };
+  const parseString = (quote) => {
+    i++;
+    let out = "";
+    const escMap = { n: "\n", t: "\t", r: "\r", "\\": "\\", "'": "'", '"': '"', "`": "`" };
+    while (i < n && text[i] !== quote) {
+      if (text[i] === "\\") { const next = text[i + 1]; out += escMap[next] !== undefined ? escMap[next] : next; i += 2; }
+      else { out += text[i]; i++; }
+    }
+    if (text[i] !== quote) err("unterminated string");
+    i++;
+    return out;
+  };
+  const parseValue = () => {
+    skipWs();
+    const c = text[i];
+    if (c === '"' || c === "'" || c === "`") return parseString(c);
+    if (c === "{") return parseObject();
+    if (c === "[") return parseArray();
+    if (text.startsWith("true", i) && !/[\w$]/.test(text[i + 4] || "")) { i += 4; return true; }
+    if (text.startsWith("false", i) && !/[\w$]/.test(text[i + 5] || "")) { i += 5; return false; }
+    if (text.startsWith("null", i) && !/[\w$]/.test(text[i + 4] || "")) { i += 4; return null; }
+    if (/[-\d]/.test(c)) {
+      const m = /^-?\d+(\.\d+)?([eE][+-]?\d+)?/.exec(text.slice(i));
+      if (!m) err("bad number");
+      i += m[0].length;
+      return Number(m[0]);
+    }
+    err(`unexpected token '${c}'`);
+  };
+  const parseKey = () => {
+    skipWs();
+    const c = text[i];
+    if (c === '"' || c === "'") return parseString(c);
+    const m = /^[A-Za-z_$][\w$]*/.exec(text.slice(i));
+    if (!m) err("bad object key");
+    i += m[0].length;
+    return m[0];
+  };
+  const parseObject = () => {
+    i++;
+    const obj = {};
+    skipWs();
+    while (text[i] !== "}") {
+      const key = parseKey();
+      skipWs();
+      if (text[i] !== ":") err("expected ':'");
+      i++;
+      obj[key] = parseValue();
+      skipWs();
+      if (text[i] === ",") { i++; skipWs(); }
+      else if (text[i] !== "}") err("expected ',' or '}'");
+    }
+    i++;
+    return obj;
+  };
+  const parseArray = () => {
+    i++;
+    const arr = [];
+    skipWs();
+    while (text[i] !== "]") {
+      arr.push(parseValue());
+      skipWs();
+      if (text[i] === ",") { i++; skipWs(); }
+      else if (text[i] !== "]") err("expected ',' or ']'");
+    }
+    i++;
+    return arr;
+  };
+  return parseValue();
+}
+const comparisonPageSrc = fs.readFileSync(path.join(APP, "src/pages/ComparisonPage.tsx"), "utf8");
+const COMPARISONS_MARKER = "const COMPARISONS: Record<string, CompConfig> = ";
+const comparisonsMarkerIdx = comparisonPageSrc.indexOf(COMPARISONS_MARKER);
+if (comparisonsMarkerIdx === -1) throw new Error("prerender: COMPARISONS marker not found in ComparisonPage.tsx");
+const COMPARISONS = parseJsLiteralAt(comparisonPageSrc, comparisonPageSrc.indexOf("{", comparisonsMarkerIdx));
 const COMP_ROUTES = [
   { route: "/chatgpt-vs-claude", key: "chatgpt-vs-claude" },
   { route: "/chatgpt-vs-claude-bangladesh", key: "chatgpt-vs-claude" },
@@ -640,10 +730,43 @@ const COMP_ROUTES = [
   { route: "/midjourney-vs-ideogram", key: "midjourney-vs-ideogram" },
 ];
 for (const { route, key } of COMP_ROUTES) {
-  const meta = COMPARISON_META[key];
-  writeRoute(route, meta.title, meta.desc,
-    `<main><h1>${esc(meta.title)}</h1><p>${esc(meta.desc)}</p>
-<p><a href="/products">All AI tools</a> · <a href="/pricing">Pricing</a></p></main>`);
+  const comp = COMPARISONS[key];
+  if (!comp) continue;
+  const nameA = comp.productA.name.split(" (")[0];
+  const nameB = comp.productB.name.split(" (")[0];
+  const cell = (v) => (typeof v === "boolean" ? (v ? "Yes" : "No") : String(v));
+  const rowsHtml = comp.rows
+    .map((r) => `<tr><td>${esc(r.feature)}</td><td>${esc(cell(r.a))}</td><td>${esc(cell(r.b))}</td></tr>`)
+    .join("");
+  const whoHtml = comp.whoTable
+    .map((w) => `<tr><td>${esc(w.persona)}</td><td>${esc(w.pick)}</td><td>${esc(w.reason)}</td></tr>`)
+    .join("");
+  const relatedHtml = comp.relatedGuides.map((g) => `<li><a href="${g.href}">${esc(g.label)}</a></li>`).join("");
+  const body = `<main>
+<h1>${esc(comp.h1)}</h1>
+<p>${esc(comp.aioSnippet)}</p>
+<h2>${esc(nameA)} vs ${esc(nameB)} — feature comparison</h2>
+<table><thead><tr><th>Feature</th><th>${esc(nameA)}</th><th>${esc(nameB)}</th></tr></thead>
+<tbody>${rowsHtml}</tbody></table>
+<h2>Our verdict</h2>
+<p>${esc(comp.verdict)}</p>
+<p><strong>Choose ${esc(nameA)}:</strong> ${esc(comp.verdictA)}</p>
+<p><strong>Choose ${esc(nameB)}:</strong> ${esc(comp.verdictB)}</p>
+${comp.buyBothText ? `<p><strong>Buy both:</strong> ${esc(comp.buyBothText)}</p>` : ""}
+<h2>Who should choose what?</h2>
+<table><thead><tr><th>If you are…</th><th>Our pick</th><th>Why</th></tr></thead>
+<tbody>${whoHtml}</tbody></table>
+${relatedHtml ? `<h2>Related guides</h2><ul>${relatedHtml}</ul>` : ""}
+<p><a href="/products">All AI tools</a> · <a href="/pricing">Pricing</a></p>
+</main>`;
+  const ld = [
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+      { "@type": "ListItem", position: 2, name: "Compare", item: `${SITE}/blog` },
+      { "@type": "ListItem", position: 3, name: `${nameA} vs ${nameB}` },
+    ]},
+  ];
+  writeRoute(route, comp.title, comp.metaDescription, body, ld);
 }
 
 // --- Guides index + 5 deep guide pages

@@ -3,7 +3,7 @@
 # Regenerate with: node scripts/generate-llms-txt.mjs
 # Helps LLMs and AI crawlers understand this site for discovery and citation.
 # Format: llms.txt standard (https://llmstxt.org)
-# Generated: 2026-08-06
+# Generated: 2026-08-07
 
 ## Site Info
 name: AI Premium Shop (AIPS)

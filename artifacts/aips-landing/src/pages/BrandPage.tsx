@@ -272,7 +272,7 @@ const BRAND_META: Record<string, {
     accentColor: "#1a1a2e",
     faqs: [
       { q: "What is SuperGrok?", a: "SuperGrok is the premium tier of Grok by xAI. It gives you access to Grok 4.1 — xAI's most powerful model — plus real-time X (Twitter) data, image/video generation, DeepSearch, and AI agents. Available as Lite ($10/mo) or Standard ($30/mo)." },
-      { q: "What makes Grok unique?", a: "Grok has real-time access to X (Twitter) data, which no other AI has. This makes it uniquely valuable for tracking news, trends, market sentiment, and real-time events. It's also uncensored on most topics." },
+      { q: "What makes Grok unique?", a: "Grok has real-time access to X (Twitter) data, which is useful for tracking news, trends, market sentiment, and real-time events. It's also less restricted on most topics than many other assistants." },
       { q: "What is the difference between SuperGrok Lite and Standard?", a: "Lite (৳1,699): Grok 4, image/video generation, 2x longer chat context. Standard (৳4,990): Grok 4.1 unlimited, DeepSearch, HD images, 30-second videos, 4x AI agents, real-time X data." },
       { q: "Can SuperGrok generate videos?", a: "Yes. SuperGrok Lite includes AI video generation. SuperGrok Standard includes HD 30-second video generation from text prompts." },
       { q: "How fast is delivery?", a: "SuperGrok Personal accounts are delivered within 2–4 hours after payment confirmation." },
@@ -606,7 +606,7 @@ const BRAND_META: Record<string, {
     tagline: "All-in-one AI design tool for creators",
     seoTitle: "Canva Pro Bangladesh - Price in BDT | AI Premium Shop",
     seoDescription: "Canva Pro price in Bangladesh. AI Magic Studio, 100M+ stock assets, brand kit, background remover. Pay with bKash/Nagad. Fast delivery. 30-day warranty.",
-    description: "Canva Pro is the world's easiest design tool, now supercharged with AI. Magic Studio creates images, edits photos, writes copy, and animates designs. 100 million+ stock photos, videos, and graphics. Brand kit for consistent visuals. Perfect for Bangladeshi social media managers, marketers, and small businesses.",
+    description: "Canva Pro is a design tool now supercharged with AI. Magic Studio creates images, edits photos, writes copy, and animates designs. 100 million+ stock photos, videos, and graphics. Brand kit for consistent visuals.",
     accentColor: "#7c3aed",
     filterBySlug: true,
     faqs: [
@@ -1508,13 +1508,12 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                 <ul className="space-y-2 text-sm" style={{ color: "#c9ceda" }}>
                   {[
                     "Search query → 10 blue links",
-                    "Open 5 tabs → read for 30 min",
+                    "Open multiple tabs and read through them",
                     "Piece together scattered facts",
                     "Manually write citations",
                     "Maybe find the answer…",
                   ].map((s, i) => <li key={i} className="flex gap-2"><span style={{ color: "#ef4444" }}>✗</span>{s}</li>)}
                 </ul>
-                <div className="mt-4 text-xs font-semibold" style={{ color: "#ef4444" }}>⏱ 30–60 min per research question</div>
               </div>
               <div className="rounded-2xl p-5 border" style={{ backgroundColor: "rgba(32,178,170,0.05)", borderColor: "rgba(32,178,170,0.2)" }}>
                 <div className="font-bold mb-3 text-sm" style={{ color: "#20b2aa" }}>🚀 New Way — Perplexity Pro</div>
@@ -1524,14 +1523,9 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                     "Direct answer with cited sources",
                     "Follow-up questions in the same thread",
                     "Citations formatted automatically",
-                    "Verified facts in 30 seconds",
                   ].map((s, i) => <li key={i} className="flex gap-2"><span style={{ color: "#20b2aa" }}>✓</span>{s}</li>)}
                 </ul>
-                <div className="mt-4 text-xs font-semibold" style={{ color: "#20b2aa" }}>⚡ 30 seconds per research question</div>
               </div>
-            </div>
-            <div className="mt-4 p-4 rounded-xl text-center text-sm" style={{ backgroundColor: "#20b2aa10", color: "#20b2aa" }}>
-              Perplexity saves students <strong>2–3 hours PER research paper</strong>. At ৳599/mo, that's less than <strong>৳12 per hour saved</strong>.
             </div>
           </div>
         )}
@@ -1588,7 +1582,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
               ))}
             </div>
             <div className="p-4 rounded-2xl text-center text-sm font-medium" style={{ backgroundColor: "#4285f415", color: "#4285f4" }}>
-              All of this for <strong>৳500/mo</strong> — on YOUR personal Gmail account. This is the biggest AI deal in Bangladesh.
+              All of this for <strong>৳500/mo</strong> — on YOUR personal Gmail account.
             </div>
           </div>
         )}
@@ -1681,8 +1675,8 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
               {[
                 { Icon: Camera, title: "Product Photography", desc: "AI product shots without a studio", pill: "E-commerce" },
-                { Icon: Youtube, title: "YouTube Thumbnails", desc: "Viral thumbnails in 30 seconds", pill: "Creators" },
-                { Icon: Palette, title: "Logo Concepts", desc: "50 brand concepts in 1 hour", pill: "Designers" },
+                { Icon: Youtube, title: "YouTube Thumbnails", desc: "Eye-catching thumbnails, fast", pill: "Creators" },
+                { Icon: Palette, title: "Logo Concepts", desc: "Multiple brand concepts to choose from", pill: "Designers" },
                 { Icon: Megaphone, title: "Ad Creatives", desc: "Facebook/Instagram ads instantly", pill: "Marketers" },
                 { Icon: BookOpen, title: "Book Covers", desc: "Professional cover art", pill: "Authors" },
                 { Icon: Home, title: "Interior Design", desc: "Room visualization from text", pill: "Architects" },
@@ -1985,7 +1979,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             <h2 className="text-xl font-bold text-white mb-5">Why SuperGrok?</h2>
             <div className="rounded-xl p-6 space-y-5" style={{ backgroundColor: "#111827" }}>
               {[
-                { icon: <Zap className="w-5 h-5 text-blue-400 flex-shrink-0" />, text: "Real-time information from X/Twitter — no other AI has this" },
+                { icon: <Zap className="w-5 h-5 text-blue-400 flex-shrink-0" />, text: "Real-time information from X/Twitter" },
                 { icon: <Brain className="w-5 h-5 text-blue-400 flex-shrink-0" />, text: "Grok 3 model — competitive with GPT-5 and Claude Opus" },
                 { icon: <Globe className="w-5 h-5 text-blue-400 flex-shrink-0" />, text: "Unfiltered AI — fewer restrictions than other models" },
               ].map((item, i) => (
@@ -2004,9 +1998,9 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             <h2 className="text-xl font-bold text-white mb-5">Why Ideogram?</h2>
             <div className="rounded-xl p-6 space-y-5" style={{ backgroundColor: "#111827" }}>
               {[
-                { icon: <Type className="w-5 h-5 flex-shrink-0" style={{ color: "#8b5cf6" }} />, text: "Perfect text in images — logos, posters, ads with readable text" },
+                { icon: <Type className="w-5 h-5 flex-shrink-0" style={{ color: "#8b5cf6" }} />, text: "Readable text in images — logos, posters, ads" },
                 { icon: <Palette className="w-5 h-5 flex-shrink-0" style={{ color: "#8b5cf6" }} />, text: "Photorealistic + artistic styles — from product shots to illustrations" },
-                { icon: <Sparkles className="w-5 h-5 flex-shrink-0" style={{ color: "#8b5cf6" }} />, text: "Best text rendering of any AI image tool — Midjourney can't do this" },
+                { icon: <Sparkles className="w-5 h-5 flex-shrink-0" style={{ color: "#8b5cf6" }} />, text: "Strong text rendering compared to most AI image tools" },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4">
                   {item.icon}
@@ -2043,7 +2037,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
             <div className="rounded-xl p-6 space-y-5" style={{ backgroundColor: "#111827" }}>
               {[
                 { icon: <Music className="w-5 h-5 flex-shrink-0" style={{ color: "#6366f1" }} />, text: "Full songs from text prompts — vocals, instruments, production" },
-                { icon: <Headphones className="w-5 h-5 flex-shrink-0" style={{ color: "#6366f1" }} />, text: "Higher audio quality than Suno — preferred by music producers" },
+                { icon: <Headphones className="w-5 h-5 flex-shrink-0" style={{ color: "#6366f1" }} />, text: "High-fidelity audio output" },
                 { icon: <Copyright className="w-5 h-5 flex-shrink-0" style={{ color: "#6366f1" }} />, text: "Commercial license included — use in YouTube, ads, podcasts" },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4">
@@ -2063,7 +2057,7 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
               {[
                 { icon: <ImageIcon className="w-5 h-5 flex-shrink-0" style={{ color: "#ec4899" }} />, text: "Fine-tuned image generation — train on your own style" },
                 { icon: <Layers className="w-5 h-5 flex-shrink-0" style={{ color: "#ec4899" }} />, text: "Canvas editor — edit, extend, and refine AI images" },
-                { icon: <Zap className="w-5 h-5 flex-shrink-0" style={{ color: "#ec4899" }} />, text: "Fastest generation — 4-second images for rapid iteration" },
+                { icon: <Zap className="w-5 h-5 flex-shrink-0" style={{ color: "#ec4899" }} />, text: "Fast generation for rapid iteration" },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4">
                   {item.icon}

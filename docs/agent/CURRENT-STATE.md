@@ -1,8 +1,56 @@
 # Current state
 
-**Last updated:** 2026-08-07 (new session — comparison-page enrichment +
-concierge analytics/E2E, deployed. Full narrative in `WORKLOG.md`'s top
-entry.)
+**Last updated:** 2026-08-07 (parallel session — global reduced-motion
+support added. Not yet merged; see PR note below. Two concurrent sessions
+worked this repo the same day — see this entry and the "new session" one
+right below it, which landed on `main` first.)
+
+## This turn (parallel session): global `MotionConfig(reducedMotion="user")` — closes the gap the Find Your Solution PR found but left site-wide
+
+A separate same-day turn (`agent/homepage-solution-section-fixes`, PR #5,
+not yet merged) found and fixed a `prefers-reduced-motion` gap scoped to one
+homepage section, and logged the fact that **no global `MotionConfig`
+wraps the app** — so every other Framer Motion animation site-wide still
+ignores the OS setting unless a component checks `matchMedia` by hand (only
+`AnimatedCounter.tsx` did). Fixed here: wrapped `App()`'s render tree in
+`<MotionConfig reducedMotion="user">` (`src/App.tsx`). This makes Framer
+auto-neutralise transform-based transitions (x/y/scale/rotate) app-wide for
+users who prefer reduced motion, while still allowing plain opacity
+changes — Framer's own built-in behavior for this prop, not something
+hand-rolled.
+
+**Does not replace** the explicit `reduced` prop PR #5 threads into the six
+Find Your Solution SVG illustrations — those are raw inline SVG SMIL
+`<animate>` elements, which `MotionConfig` (a React-context mechanism for
+`motion.*` components) cannot reach. Both are needed; they cover different
+animation systems. If PR #5 merges after this one, no conflict is expected —
+they touch different files (`PainPointSection.tsx` +
+`components/illustrations/index.tsx` vs. `App.tsx`).
+
+Verified: `pnpm typecheck` clean, `pnpm build` clean (275/275 sitemap
+routes — the route count grew from the concurrent comparison-pages work
+already on `main`), `seo:check`/`validate:all` show only pre-existing
+warnings, and `pnpm run test:e2e` — now 12 tests including the concierge
+suite the other concurrent session added — all pass, zero console errors.
+Screenshotted the homepage hero at normal and reduced motion: content
+identical, only the floating product-card stack's decorative tilt
+transform is neutralised under reduced motion, exactly the intended
+behavior.
+
+Branch: `agent/reduced-motion-global`, based on latest `origin/main` (not
+on top of the still-open PR #5, to avoid compounding an unmerged diff).
+
+---
+
+## This turn (10th, on a different branch — not yet merged, see PR #5): Find Your Solution — 2 real compliance bugs fixed, reduced-motion gap closed (section-scoped)
+
+See PR #5 (`agent/homepage-solution-section-fixes`) for the full write-up:
+two fabricated claims removed from the Find Your Solution SVG illustrations
+("55% faster", "+12,000 subscribers", fake test count), plus
+`prefers-reduced-motion` support scoped to that one section. That work
+identified the site-wide gap this turn's entry (above) closes.
+
+---
 
 ## This turn (new session): comparison pages fixed+expanded, concierge instrumented+tested
 

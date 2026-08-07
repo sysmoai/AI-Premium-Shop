@@ -6,18 +6,21 @@ this file is the asset-tracking manifest the master prompt asked for
 specifically, kept separate since one is a compliance record and this one
 is meant to be updated every time an asset is actually added.
 
-## Current state (2026-08-07, updated same day)
+## Current state (2026-08-07, revised same day)
 
 `PaymentBadges.tsx` and `PageFooter.tsx` already rendered text-only brand
 pills, not fabricated logos — no change needed. `PaymentMethodsSection.tsx`
-was the one file rendering a hand-drawn logo approximation; switched to the
-text-only interim fallback (plain colored accent bar + existing text name,
-no letterform) — see `docs/compliance/payment-methods.md` for the full
-before/after.
+was the one file rendering a hand-drawn logo approximation; first switched
+to a plain colored accent bar (compliant, but the owner flagged it as
+looking broken/unfinished), then revised to a colored icon badge using a
+generic lucide icon per payment type (Smartphone/MessageCircle/Wallet/
+Landmark — none resemble the real marks) — see
+`docs/compliance/payment-methods.md` for the full before/after, verified
+with real screenshots.
 
 | Brand | Asset filename | Official source | Download date | Guideline/permission | Approved variation | Alt text | Pages using it |
 |---|---|---|---|---|---|---|---|
-| bKash | *(none)* | *(not obtained)* | — | — | — | — | All 3 files now text-only (no fabricated mark anywhere) |
+| bKash | *(none)* | *(not obtained)* | — | — | — | — | All 3 files now text/generic-icon only (no fabricated mark anywhere) |
 | Nagad | *(none)* | *(not obtained)* | — | — | — | — | same |
 | Rocket | *(none)* | *(not obtained)* | — | — | — | — | same |
 | Bank Transfer | N/A | N/A | N/A | N/A | Text label + generic icon (correct per policy — no single trademarked bank) | "Bank Transfer" | same |

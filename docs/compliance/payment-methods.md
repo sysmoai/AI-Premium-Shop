@@ -45,13 +45,20 @@ production-quality logo file is available: do not invent one, use a
 text-only payment label temporarily, record the missing asset as a
 blocker."*
 
-**Fixed 2026-08-07:** `PaymentMethodsSection.tsx` no longer draws any
-letter-mark shape. Each card now shows a plain colored accent bar (no
-letterform, not shaped like a logo) plus the existing bold-text
-`<h3>{method.name}</h3>` label — text only, per the master prompt's own
-sanctioned interim fallback. This is a visual downgrade from the old
-(non-compliant) card, not a redesign; it should be swapped for a real
-`<img>` the moment an official asset exists.
+**Fixed 2026-08-07, revised same day:** `PaymentMethodsSection.tsx` no
+longer draws any letter-mark shape. The first fix replaced it with a
+plain colored accent bar — compliant, but the owner correctly flagged it
+as looking broken/unfinished rather than intentionally minimal, not just
+"not a real logo." Revised to a colored icon badge using a generic
+lucide icon that describes the payment TYPE (Smartphone for bKash,
+MessageCircle for Nagad, Wallet for Rocket, Landmark for Bank Transfer)
+— none of these resemble any of the four real brand marks, and the same
+icon-badge styling is already used elsewhere on the site
+(`WhyUsSection.tsx`) for unrelated concepts, so it isn't a one-off.
+Verified visually via Playwright screenshots (before/after, desktop and
+mobile) before and after deploying, not just by reading the JSX diff.
+Still swap the icon slot for a real `<img>` the moment an official asset
+exists.
 
 **Still not obtainable from an agent session:** the actual official asset
 files. Official brand/press kits require visiting the provider's site and

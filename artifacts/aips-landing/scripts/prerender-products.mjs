@@ -674,6 +674,13 @@ function parseJsLiteralAt(text, startIndex) {
       i += m[0].length;
       return Number(m[0]);
     }
+    // A bare identifier -- e.g. `icon: Users` referencing an imported lucide
+    // component. Not a data literal, so there is nothing meaningful to parse
+    // it INTO; returned as an opaque marker so callers that don't read this
+    // field (icon/color styling, never used for extracted static text) don't
+    // need the whole parse to fail over it.
+    const ident = /^[A-Za-z_$][\w$]*/.exec(text.slice(i));
+    if (ident) { i += ident[0].length; return { __identifier: ident[0] }; }
     err(`unexpected token '${c}'`);
   };
   const parseKey = () => {
@@ -775,18 +782,30 @@ ${relatedHtml ? `<h2>Related guides</h2><ul>${relatedHtml}</ul>` : ""}
 // --- Guides index + 5 deep guide pages
 const guidesIdxSrc = fs.readFileSync(path.join(APP, "src/pages/GuidesIndexPage.tsx"), "utf8");
 const gidxMatch = guidesIdxSrc.match(/title="([^"]+)"[\s\S]{0,200}?description="([^"]+)"/);
+// The previous static body hand-typed 5 links to /guides/students etc. that
+// do not actually exist anywhere in this component's source -- a stale
+// invented list, not derived from the real page. GUIDE_CATEGORIES is the
+// real data driving all ~26 links the hydrated page renders (audience,
+// use-case, budget, and comparison sections), so parse it directly with the
+// same literal parser the comparison pages use -- one parser, two call
+// sites, no hand-duplicated content to drift.
+const guideCategoriesIdx = guidesIdxSrc.indexOf("const GUIDE_CATEGORIES = ");
+const GUIDE_CATEGORIES =
+  guideCategoriesIdx === -1
+    ? []
+    : parseJsLiteralAt(guidesIdxSrc, guidesIdxSrc.indexOf("[", guideCategoriesIdx));
+const guideCategoriesHtml = GUIDE_CATEGORIES.map((cat) => {
+  const items = cat.guides
+    .map((g) => `<li><a href="${g.href}">${esc(g.name)}</a> — ${esc(g.desc)}${g.badge ? ` (${esc(g.badge)})` : ""}</li>`)
+    .join("");
+  return `<h2>${esc(cat.title)}</h2><p>${esc(cat.description)}</p><ul>${items}</ul>`;
+}).join("\n");
 writeRoute("/guides",
   gidxMatch?.[1] ?? "AI Guides for Bangladesh — Students, Freelancers, Creators | AI Premium Shop",
   gidxMatch?.[2] ?? "Free AI guides for students, freelancers, creators, business owners, and educators in Bangladesh. Learn which AI tools to use.",
   `<main><h1>AI Guides for Bangladesh</h1>
 <p>Free guides to help you pick the right AI tools. Written for Bangladesh users — BDT pricing, local payment methods.</p>
-<ul>
-<li><a href="/guides/students">Guide for Students</a> — Study smarter with AI</li>
-<li><a href="/guides/freelancers">Guide for Freelancers</a> — Win more work</li>
-<li><a href="/guides/creators">Guide for Creators</a> — Content that performs</li>
-<li><a href="/guides/smallbusiness">Guide for Small Business</a> — Automate and grow</li>
-<li><a href="/guides/educators">Guide for Educators</a> — Teach with AI</li>
-</ul>
+${guideCategoriesHtml}
 <p><a href="/products">All AI tools</a> · <a href="/best-ai-for-students">Best for students</a></p></main>`);
 
 // Parse guide page SEO from component sources

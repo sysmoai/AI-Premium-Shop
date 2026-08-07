@@ -28,7 +28,7 @@ const GUIDE_CATEGORIES = [
     icon: Zap,
     color: "#f59e0b",
     guides: [
-      { name: "Writing & Content", desc: "Blog, copy, social media", href: "/best-ai-for-writers" },
+      { name: "Writing & Content", desc: "Blog, copy, social media", href: "/ai-writing" },
       { name: "Image & Design", desc: "Midjourney, Ideogram, design", href: "/ai-image" },
       { name: "Video Production", desc: "Runway, Pika, HeyGen", href: "/ai-video" },
       { name: "Code & Development", desc: "GitHub Copilot, Claude, Cursor", href: "/ai-code" },
@@ -56,8 +56,11 @@ const GUIDE_CATEGORIES = [
     guides: [
       { name: "ChatGPT vs Claude", desc: "Most popular comparison", href: "/chatgpt-vs-claude", badge: "Popular" },
       { name: "ChatGPT vs Gemini", desc: "Google's alternative", href: "/chatgpt-vs-gemini" },
+      { name: "ChatGPT vs Perplexity", desc: "General AI vs cited research", href: "/chatgpt-vs-perplexity" },
+      { name: "Claude vs Gemini", desc: "Writing vs Google Workspace", href: "/claude-vs-gemini" },
       { name: "GitHub Copilot vs Cursor", desc: "Developer tools", href: "/copilot-vs-cursor" },
       { name: "Midjourney vs Ideogram", desc: "Image generation", href: "/midjourney-vs-ideogram" },
+      { name: "Canva vs Adobe Express", desc: "AI design tools", href: "/canva-vs-adobe-express" },
     ],
   },
 ];

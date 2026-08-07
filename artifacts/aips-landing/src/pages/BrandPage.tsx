@@ -38,16 +38,17 @@ const WHATSAPP = "https://wa.me/8801865385348";
 const BRAND_COMPETITORS: Record<string, {
   name1: string; slug1: string; strength1: string;
   name2: string; slug2: string; strength2: string;
-  compPage?: string;
+  compPage?: string; // full comparison page for THIS brand vs name1
+  compPage2?: string; // full comparison page for THIS brand vs name2
 }> = {
-  "chatgpt-plans-bangladesh": { name1: "Claude", slug1: "/claude-pro-bangladesh", strength1: "Strong writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
-  "chatgpt-plus-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", strength1: "Strong writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude" },
-  "chatgpt-business-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", strength1: "Best writing quality, long documents", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace integration" },
+  "chatgpt-plans-bangladesh": { name1: "Claude", slug1: "/claude-pro-bangladesh", strength1: "Strong writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude", compPage2: "/chatgpt-vs-gemini" },
+  "chatgpt-plus-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", strength1: "Strong writing quality & reasoning", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace AI + 2TB storage", compPage: "/chatgpt-vs-claude", compPage2: "/chatgpt-vs-gemini" },
+  "chatgpt-business-bangladesh": { name1: "Claude Pro", slug1: "/claude-pro-bangladesh", strength1: "Best writing quality, long documents", name2: "Google AI Pro", slug2: "/gemini-advanced-bangladesh", strength2: "Google Workspace integration", compPage: "/chatgpt-vs-claude", compPage2: "/chatgpt-vs-gemini" },
   "chatgpt-pro-bangladesh": { name1: "Claude Max 5x", slug1: "/claude-pro-bangladesh", strength1: "Extended thinking, 1M context window", name2: "GitHub Copilot Pro", slug2: "/github-copilot-bangladesh", strength2: "Best AI coding tool in VS Code" },
   "claude-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "All-rounder: images, agents, web search", name2: "Perplexity Pro", slug2: "/perplexity-pro-bangladesh", strength2: "AI-powered web research with citations", compPage: "/chatgpt-vs-claude" },
-  "gemini-advanced-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "Image gen, coding agents, widest capabilities", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", strength2: "Writing quality & long document analysis", compPage: "/chatgpt-vs-gemini" },
+  "gemini-advanced-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "Image gen, coding agents, widest capabilities", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", strength2: "Writing quality & long document analysis", compPage: "/chatgpt-vs-gemini", compPage2: "/claude-vs-gemini" },
   "supergrok-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "More affordable, image generation", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", strength2: "Best writing & reasoning quality" },
-  "perplexity-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "Broader AI capabilities, image gen", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", strength2: "Long document analysis, best writing" },
+  "perplexity-pro-bangladesh": { name1: "ChatGPT Plus", slug1: "/chatgpt-plans-bangladesh", strength1: "Broader AI capabilities, image gen", name2: "Claude Pro", slug2: "/claude-pro-bangladesh", strength2: "Long document analysis, best writing", compPage: "/chatgpt-vs-perplexity" },
   "midjourney-bangladesh": { name1: "Ideogram", slug1: "/ideogram-bangladesh", strength1: "Text in images, typography design", name2: "Leonardo AI", slug2: "/leonardo-ai-bangladesh", strength2: "Budget image generation, character consistency" },
   "ideogram-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", strength1: "Highest quality photorealistic & artistic images", name2: "Leonardo AI", slug2: "/leonardo-ai-bangladesh", strength2: "Budget image generation" },
   "leonardo-ai-bangladesh": { name1: "Midjourney", slug1: "/midjourney-bangladesh", strength1: "Best quality images across all styles", name2: "Ideogram", slug2: "/ideogram-bangladesh", strength2: "Text in images & typography" },
@@ -2273,14 +2274,24 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   </div>
                 ))}
               </div>
-              {comp.compPage && (
-                <div className="mt-3">
-                  <a href={comp.compPage} onClick={(e) => { e.preventDefault(); navigate(comp.compPage!); }}
-                    className="inline-flex items-center gap-1.5 text-sm hover:opacity-80 transition-opacity"
-                    style={{ color: "#f4b942" }}>
-                    Full comparison: {meta.displayName} vs {comp.name1} →
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </a>
+              {(comp.compPage || comp.compPage2) && (
+                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+                  {comp.compPage && (
+                    <a href={comp.compPage} onClick={(e) => { e.preventDefault(); navigate(comp.compPage!); }}
+                      className="inline-flex items-center gap-1.5 text-sm hover:opacity-80 transition-opacity"
+                      style={{ color: "#f4b942" }}>
+                      Full comparison: {meta.displayName} vs {comp.name1} →
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                  {comp.compPage2 && (
+                    <a href={comp.compPage2} onClick={(e) => { e.preventDefault(); navigate(comp.compPage2!); }}
+                      className="inline-flex items-center gap-1.5 text-sm hover:opacity-80 transition-opacity"
+                      style={{ color: "#f4b942" }}>
+                      Full comparison: {meta.displayName} vs {comp.name2} →
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
                 </div>
               )}
             </div>

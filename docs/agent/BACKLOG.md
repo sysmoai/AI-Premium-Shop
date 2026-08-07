@@ -17,8 +17,7 @@ Ordered by value / effort. Anything blocked names its blocker from `BLOCKERS.md`
 | 11 | BrandPage 160 KB / BlogPostPage 116 KB chunk reduction | — |
 | 12 | Proper SSG so static bodies come from the components themselves | — (large) |
 | 15 | Payment methods have no single source of truth — at least 5 independent hardcoded lists found (`PaymentMethodsSection.tsx`, `PaymentBadges.tsx`, `PageFooter.tsx`, `data/brand.json`, `scripts/generate-llms-txt.mjs`), each requiring its own manual edit when a method is added/removed. Binance had to be removed from all 5 separately on 2026-08-07 — see `docs/homepage/executive-audit.md` | — (real refactor: one data source, every component/script reads it) |
-| 17 | Delivery-time claims disagree across surfaces: prerendered homepage body and About page say "5–30 minutes"; `FAQPage.tsx`'s English and Bangla FAQs say "5–15 minutes... max 2-3 hours off-hours" (internally consistent with each other, just not with the other two surfaces) | — (owner: which is actually true) |
-| 18 | `midjourney-bangladesh`'s "Pro Shared" tier is priced ৳4,788 — more than BOTH the "Personal" (৳2,495) and "Pro" personal (৳3,990) tiers of the same product. A shared/split tier costing more than the equivalent (or a cheaper) personal tier defeats the commercial premise of sharing; either a real pricing error or a legitimate reason not evident from the data (e.g. Pro Shared includes something Pro Personal doesn't). Caught by the new `validate-catalog.mjs` shared-vs-personal check (2026-08-07) — see `docs/agent/OWNER-ACTIONS.md`-style evidence in the commit | — (owner: confirm the price or fix it) |
+| 17 | Delivery-time claims disagree across surfaces — **scope corrected 2026-08-07**: this is not just "homepage + About page" as originally written. The dominant, ~150-occurrence convention across `BrandPage.tsx` (40 brand entries), `BlogPostPage.tsx`, `Navbar.tsx`, and several sections is "Shared plans: 5-30 minutes. Personal plans: 2-4 hours" (an **access-type** split). `FAQPage.tsx`'s English+Bangla answers say "5-15 minutes typical... max 2-3 hours off-hours" (a **time-of-day** split, no shared/personal distinction). Owner confirmed the FAQ's figure is correct, but these may describe two different, compatible things (access-type vs. time-of-day) rather than a true conflict — needs a clarifying answer before ~150 occurrences get rewritten, not a mechanical find-replace | — (owner: is "5-30 min shared / 2-4h personal" also accurate, just describing a different axis than the FAQ's business-hours/off-hours split? If both are true, the fix is clarifying copy, not replacement) |
 | 33 | The `data/products.json` sweep (#31, done — see below) covered `description`/`descriptionBN`/`useCases`/`whyBuyFromAIPS` fields with high confidence, but the auditing agent flagged that a meaningful chunk of the Bangla `useCases` text (Suno AI, SuperGrok, Cursor, Notion AI, GitHub Copilot Pro+, v0.dev, Replit, Manus AI) reads as garbled/broken machine-translation Bangla — grammatically wrong enough that the agent's own confidence in parsing it for hidden fabricated claims was lower than for the clean English content. No fabrication was found in it, but nobody has confirmed that with real Bangla fluency, and separately the garbled grammar itself is a quality problem worth fixing regardless of the fabrication question | — (needs a native Bangla speaker, same root gap as B7) |
 | 32 | A visual QA pass (2026-08-07, prompted by an owner "are you sure all done?" challenge) screenshotted 18 pages/sections the #28 sweep had touched and found real misses a pure text/grep sweep can't catch: a pre-existing duplicate "FOMO Banner" bug live on every guide page, a second independent copy of the exact fabricated stats already fixed once on `chatgpt-plans-bangladesh` (a different block, same numbers), and two more live, homepage-reachable fabrication instances (`AIAgentsSection.tsx`'s stats block, `TestimonialsSection.tsx`'s fake customers) that the original grep-based sweep never surfaced because their structure didn't match the search patterns used. All fixed 2026-08-07 (see Done). The pages NOT re-screenshotted after that first sweep (most of BrandPage.tsx's ~40 per-brand sections beyond the ones checked, most blog posts beyond the 4 sampled) haven't had the same visual-pass scrutiny — the text-level fix could theoretically have the same class of miss elsewhere | — (real time: screenshot + read every remaining page systematically) |
 | 21 | Real bKash/Nagad/Rocket logo asset files still don't exist in the repo — interim fallback (generic icon + brand color, no logo mark) applied 2026-08-07, revised same day after the owner flagged the first version (a bare colored bar) as looking broken/unfinished, not just "not a real logo." See `docs/compliance/payment-methods.md` / `docs/brand/payment-assets.md` | — (owner: supply real asset files whenever convenient; not urgent, current version reads as a finished design) |
@@ -30,6 +29,36 @@ Ordered by value / effort. Anything blocked names its blocker from `BLOCKERS.md`
 | 27 | Chatbot: fine-tuning / continuous-learning pipeline — not started, and not clearly worth building. The existing retrieval+grounding architecture (server-side price/product grounding, never trusting the model's own numbers) already solves the failure mode fine-tuning would target, with far less operational risk than retraining a model on live chat logs | — (owner call: is this actually wanted given the existing architecture already covers it?) |
 | 29 | `artifacts/api-server` (Express + Drizzle backend) is dead code — unreferenced anywhere by the live site, untouched since 2026-05-03, has its own real typecheck errors. Currently excluded from CI and the local pre-push hook (B13), same treatment as the already-`DEPRECATED.md`-marked `aips-website`. Nobody has decided whether to actually delete it, formally deprecate it with a marker file (for consistency/clarity), or revive and fix it | — (owner: pick one; low urgency since it's already excluded from every gate) |
 | 34 | `BrandPage.tsx`'s "How X Compares" section (competitor table + `compPage`/`compPage2` full-comparison links, extended 2026-08-07) renders real content in the hydrated DOM but that page type's static prerendered body doesn't extract it at all — confirmed via grep, zero product/comparison links reach `dist/public/<brand>/index.html`, only the generic category/how-to-order/products nav. Same P0 category as the comparison-page fix (`docs/seo/GAP-CHECKLIST.md`): content exists, crawler can't see it. 40 brand pages affected | — (real work: build a static extractor for the whole comparison-table section, same technique as `ComparisonPage.tsx`'s fix, just a bigger render tree — table rows, price lookups via `altPrice()`, both compPage links) |
+
+## Done (2026-08-07, owner-decision batch)
+
+Owner reviewed a batch of open BLOCKERS/BACKLOG items directly (via
+AskUserQuestion) and gave explicit go-aheads on several:
+
+- **B10** (floating chat FABs click-jacking mobile CTAs) — owner picked
+  "hide on mobile, rely on the sticky bar." Done — see `BLOCKERS.md` B10.
+- **#18** (Midjourney "Pro Shared" priced above both Personal tiers) —
+  owner confirmed it was a data-entry error. Fixed: `data/products.json`
+  ৳4,788 → ৳1,990, derived from the Standard tier's own real Shared/Personal
+  ratio (~48%) applied to the Pro tier's Personal price (৳3,990), since no
+  other basis for "the correct number" exists — this is a reasoned estimate
+  within the owner's explicit "fix it" authorization, not a verified vendor
+  figure. Regenerated all 4 derived catalog files
+  (`catalog-lite.json`, `catalog-pages.json`, `llms.txt`, `api/_catalog.json`)
+  and fixed the one other hardcoded reference (`BlogPostPage.tsx`).
+  `validate-catalog.mjs` warning count: 17 → 15.
+- **#17** (delivery-time inconsistency) — turned out to be much larger in
+  scope than originally written (~150 occurrences across 20+ files, not 2).
+  Not touched yet — see the open-items table above for why a mechanical
+  fix would be premature.
+- **B1** (10,000+ customers) / **B2** (30-day warranty) — owner said both
+  are real and offered to provide specifics; not yet received, so both
+  claims are unchanged pending the actual number/date and actual policy
+  terms.
+- **B11** (stray Vercel deployment) — owner approved removing the 3 stray
+  aliases; see this same day's `WORKLOG.md`/`OWNER-ACTIONS.md` entry for
+  the outcome (may have required the owner to run it directly if blocked
+  by Claude Code's own safety classifier, as a prior attempt was).
 
 ## Done (2026-08-07 implementation session)
 

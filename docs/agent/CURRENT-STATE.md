@@ -1,8 +1,65 @@
 # Current state
 
-**Last updated:** 2026-08-07 (new session — comparison-page enrichment +
-concierge analytics/E2E, deployed. Full narrative in `WORKLOG.md`'s top
-entry.)
+**Last updated:** 2026-08-07 (parallel session — owner reviewed a batch of
+open BLOCKERS/BACKLOG items directly via AskUserQuestion; this turn executes
+the ones with unambiguous go-aheads. Not yet merged; see PR note below.)
+
+## This turn (parallel session): owner-decision batch — 2 fixed, 1 attempted, 2 correctly held for more info
+
+Surfaced ~10 pending owner-decision items across two rounds of questions
+rather than guessing at any of them (a direct instruction this turn). Full
+answers recorded inline in each fix below and in `BLOCKERS.md`/`BACKLOG.md`.
+Executed the two with clear, actionable go-aheads immediately:
+
+**B10 (mobile FAB click-jacking) — done.** `FloatingWhatsApp.tsx` and
+`ConciergeWidget.tsx`'s launcher+panel now carry `hidden md:flex` instead of
+unconditional `flex`. Verified via Playwright viewport checks at 390px
+(both `visible=false`) and 1440px (both `visible=true`), plus screenshots
+at both sizes — desktop unaffected, mobile has zero floating overlap,
+`StickyMobileBar.tsx` already covers WhatsApp ordering on mobile so this is
+non-lossy for conversion (the AI concierge itself becomes desktop-only,
+an accepted tradeoff of the chosen option).
+
+**BACKLOG #18 (Midjourney Pro Shared pricing) — done.** Owner confirmed
+data-entry error, authorized a ratio-based fix. ৳4,788 → ৳1,990 (derived
+from the Standard tier's real Shared/Personal ratio applied to Pro's
+Personal price — a reasoned estimate, not a verified vendor number, said
+plainly rather than implied as authoritative). Regenerated all 4 derived
+catalog files, fixed the one other hardcoded reference. `validate-catalog`
+warnings: 17 → 15.
+
+**BACKLOG #17 (delivery-time inconsistency) — correctly NOT touched.**
+The owner's answer ("5-15 min typical, up to 2-3h off-hours is correct")
+was given assuming BACKLOG #17's original framing ("homepage + About page"
+disagree with the FAQ). Actually checking the scope before touching
+anything found ~150 occurrences of "5-30 min shared / 2-4h personal" across
+20+ files — the DOMINANT convention, not a two-page exception — and that it
+may describe a different axis (shared-vs-personal) than the FAQ's
+business-hours-vs-off-hours split, meaning these could be two compatible
+true facts rather than a real conflict. Went back to the owner with the
+corrected scope rather than either guessing or mechanically rewriting ~150
+occurrences on a possibly-wrong premise. See `BACKLOG.md` #17 for the exact
+question now pending.
+
+**B1 (10,000+ customers) / B2 (30-day warranty) — correctly NOT touched.**
+Owner said both are real and offered specifics; the actual number/date and
+actual policy terms haven't arrived yet. Nothing changed pending that —
+these are exactly the kind of business facts this project has repeatedly
+gotten burned by guessing at.
+
+**B11 (stray Vercel deployment) — done, infrastructure not a code change.**
+Ran all three `vercel alias rm ... --yes` commands directly. Unlike a prior
+session's attempt at this exact action, nothing blocked it this time —
+possibly because this session had a direct, explicit, freshly-recorded
+owner approval to point to. All three now 404/unreachable; confirmed
+`aipremiumshop.com` unaffected (still 200). See `BLOCKERS.md` B11 and
+`OWNER-ACTIONS.md` OA1.
+
+Verified (this branch): typecheck/build/seo:check/validate:all clean
+(15 warnings, down from 17, zero new), 12/12 Playwright tests, screenshots
+at mobile and desktop confirming the FAB fix.
+
+Branch: `agent/owner-approved-fixes`, based on latest `origin/main`.
 
 ## This turn (new session): comparison pages fixed+expanded, concierge instrumented+tested
 

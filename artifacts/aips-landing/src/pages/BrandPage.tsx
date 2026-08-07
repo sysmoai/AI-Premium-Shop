@@ -29,7 +29,6 @@ import {
   BusinessStorySVG,
   JobSeekerStorySVG,
   DeveloperStorySVG,
-  FOMOSplitSVG,
   AgenticRobotSVG,
   OrderFlowSVG,
 } from "@/components/illustrations";
@@ -1229,50 +1228,6 @@ export default function BrandPage({ brandSlug }: BrandPageProps) {
                   </motion.div>
                 );
               })}
-            </div>
-          </div>
-        )}
-
-        {/* 1C: FOMO Section */}
-        {brandSlug === "chatgpt-plans-bangladesh" && (
-          <div className="mb-14">
-            <div className="mb-6 rounded-2xl overflow-hidden">
-              <FOMOSplitSVG />
-            </div>
-            <h2 className="text-2xl font-bold text-white mb-2">The Cost of NOT Using AI in 2026</h2>
-            <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>Every month without AI, you're falling behind.</p>
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <div className="bg-red-500/5 border-l-4 border-red-500 rounded-lg p-6">
-                <div className="text-red-400 font-bold text-lg mb-4">❌ Without AI</div>
-                <ul className="space-y-3 text-sm" style={{ color: "#c9ceda" }}>
-                  <li><span className="font-semibold text-white">Students:</span> Assignment takes 3 days. CGPA stuck at 2.8. English writing weak.</li>
-                  <li><span className="font-semibold text-white">Freelancers:</span> 10 proposals → 1 reply. Delivery takes 3–5 days. Earning $200–500/mo.</li>
-                  <li><span className="font-semibold text-white">Business:</span> Hiring 3 staff for content + support + marketing = ৳45,000+/mo cost.</li>
-                  <li><span className="font-semibold text-white">Job Seekers:</span> Generic CV. 50 applications → 2 calls. 6+ months to get hired.</li>
-                </ul>
-              </div>
-              <div className="bg-emerald-500/5 border-l-4 border-emerald-500 rounded-lg p-6">
-                <div className="text-emerald-400 font-bold text-lg mb-4">✅ With ChatGPT (৳499/mo)</div>
-                <ul className="space-y-3 text-sm" style={{ color: "#c9ceda" }}>
-                  <li><span className="font-semibold text-white">Students:</span> Assignment in 2 hours. CGPA 3.5+. Professional English writing.</li>
-                  <li><span className="font-semibold text-white">Freelancers:</span> 10 proposals → 3–4 replies. Delivery 1–2 days. Earning $500–1,500+/mo.</li>
-                  <li><span className="font-semibold text-white">Business:</span> ChatGPT Business ৳699 = 1 person doing 10 people's work.</li>
-                  <li><span className="font-semibold text-white">Job Seekers:</span> ATS-optimized CV. 20 apps → 5–8 calls. Hired in 1–3 months.</li>
-                </ul>
-              </div>
-            </div>
-            <div className="rounded-2xl p-5 border text-center" style={{ backgroundColor: "#10a37f12", borderColor: "#10a37f35" }}>
-              <p className="text-sm font-semibold mb-4 text-white">Start for just <span style={{ color: "#f4b942" }}>৳599/mo</span>.</p>
-              <a
-                href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want to order ChatGPT Plus Starter Shared (৳499/mo)")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: "#008236", color: "#fff" }}
-              >
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M5.418 21.917l.97-3.533A9.91 9.91 0 012 12.01C2 6.477 6.477 2 12.01 2 14.673 2 17.17 3.029 19.065 4.93a9.944 9.944 0 012.926 7.08c-.003 5.533-4.48 10.008-10.01 10.008a10.04 10.04 0 01-4.791-1.217l-3.772.016z" fillRule="evenodd" clipRule="evenodd" opacity=".3"/></svg>
-                Order on WhatsApp
-              </a>
             </div>
           </div>
         )}

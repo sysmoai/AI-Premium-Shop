@@ -163,7 +163,7 @@ const ALL_POSTS_META: Record<string, { title: string; excerpt: string; category:
   },
   "earn-money-with-ai-bangladesh": {
     title: "How to Earn Money with AI in Bangladesh — 5 Proven Methods (2026)",
-    excerpt: "5 proven ways to earn BDT 20,000-100,000/month. Freelancing, content, tutoring, automation. Start from BDT 299.",
+    excerpt: "5 ways to earn income with AI: freelancing, content, tutoring, automation, and CV services. Start from BDT 299.",
     category: "💰 Income",
     gradient: "bg-gradient-to-br from-green-600 to-emerald-900",
   },
@@ -425,7 +425,7 @@ const POSTS: Record<
   },
   "earn-money-with-ai-bangladesh": {
     title: "How to Earn Money with AI in Bangladesh — 5 Proven Methods (2026)",
-    description: "5 proven ways to earn BDT 20,000-100,000/mo with AI tools in Bangladesh. Freelancing, content, tutoring, automation. Start from BDT 299.",
+    description: "5 ways to earn income with AI tools in Bangladesh: freelancing, content, tutoring, automation, and CV services. Start from BDT 299.",
     canonical: "https://aipremiumshop.com/blog/earn-money-with-ai-bangladesh",
     date: "April 12, 2026",
     readTime: "5 min read",
@@ -436,7 +436,7 @@ const POSTS: Record<
     content: (
       <div className="blog-body space-y-4">
         <p className="text-gray-300 leading-relaxed">
-          AI is not just a tool — it's an income source. In Bangladesh, thousands are earning BDT 20,000–100,000+ per month with AI. Whether you're a student, freelancer, or business owner, this guide shows exactly how to do it — starting from BDT 299.
+          AI is not just a tool — it can be an income source too. Whether you're a student, freelancer, or business owner, this guide covers five ways people use AI tools to earn — starting from BDT 299.
         </p>
 
         <StatCards
@@ -502,14 +502,13 @@ const POSTS: Record<
         </p>
 
         <ComparisonTable
-          headers={["Service", "AI Tool", "Monthly Charge"]}
+          headers={["Service", "AI Tool"]}
           rows={[
-            ["Customer chatbot", "ChatGPT API", "BDT 5,000-15,000"],
-            ["Email automation", "Claude + Zapier", "BDT 3,000-8,000"],
-            ["Data extraction", "Claude Pro", "BDT 4,000-10,000"],
-            ["Content automation", "ChatGPT + Make", "BDT 5,000-12,000"],
+            ["Customer chatbot", "ChatGPT API"],
+            ["Email automation", "Claude + Zapier"],
+            ["Data extraction", "Claude Pro"],
+            ["Content automation", "ChatGPT + Make"],
           ]}
-          highlightCol={2}
         />
 
         <p className="text-gray-300 leading-relaxed">
@@ -521,7 +520,7 @@ const POSTS: Record<
 
         <h2 className="text-xl font-bold text-white mt-8 mb-4">Method 5 — CV & Job Application Services</h2>
         <p className="text-gray-300 leading-relaxed">
-          With AI, a well-crafted CV takes 15 minutes instead of 3 hours. Offer CV writing services at BDT 500–2,000 per CV. With 10 clients a week, that's BDT 20,000-80,000 per month. Pair with LinkedIn profile writing and cover letters for premium packages.
+          With AI, a well-crafted CV takes minutes instead of hours. Offer CV writing services, and pair them with LinkedIn profile writing and cover letters for premium packages.
         </p>
 
         <p className="text-gray-300 leading-relaxed">

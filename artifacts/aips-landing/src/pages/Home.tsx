@@ -22,10 +22,8 @@ import { OffersSection } from "@/sections/OffersSection";
 import { CategorySection } from "@/sections/CategorySection";
 import { WhyUsSection } from "@/sections/WhyUsSection";
 import { HowItWorksSection } from "@/sections/HowItWorksSection";
-import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { FinalCTASection } from "@/sections/FinalCTASection";
 import { CommunitySocialCards } from "@/components/CommunitySocialCards";
-import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { NeuralDivider } from "@/components/NeuralDivider";
 
 type Segment = "students" | "freelancers" | "creators" | "smbs" | "educators" | null;
@@ -151,44 +149,6 @@ export default function Home() {
 
         <div className="scroll-reveal"><AIAgentsSection /></div>
 
-        {/* 3B. AI AGENT ECONOMY */}
-        <div className="scroll-reveal">
-          <div className="max-w-5xl mx-auto px-4 md:px-8 py-12">
-            <div
-              className="rounded-xl p-8 border"
-              style={{
-                background: "linear-gradient(135deg, #111827 0%, #0a0e27 100%)",
-                borderColor: "rgba(168,85,247,0.2)",
-                backgroundImage: "linear-gradient(135deg, #111827 0%, #0a0e27 100%), repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px)",
-              }}
-            >
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center">The AI Agent Economy</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                {[
-                  { value: 34, prefix: "$", suffix: "K", unit: "/mo profit", label: "Solo AI agency", color: "#f4b942" },
-                  { value: 45, suffix: "%", unit: "higher rates", label: "AI freelancers", color: "#22c55e" },
-                  { value: 18000, suffix: "%", unit: "growth", label: "AI services on Fiverr", color: "#a855f7" },
-                  { value: 8, suffix: "M", unit: "SMEs", label: "BD needs AI automation", color: "#3b82f6" },
-                ].map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="bg-gray-800/50 rounded-xl p-6 text-center transition-all duration-300 hover:scale-[1.05] cursor-default"
-                  >
-                    <div className="text-4xl md:text-5xl font-black mb-1" style={{ color: stat.color }}>
-                      <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
-                    </div>
-                    <div className="text-sm text-gray-400 mb-0.5">{stat.unit}</div>
-                    <div className="text-xs text-gray-500">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-              <p className="text-center text-sm" style={{ color: "#c9ceda" }}>
-                Start with ChatGPT Pro (BDT 4,500) or Manus AI (BDT 5,990) and build AI agent services.
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* 4. SPECIAL OFFERS + BEST SELLERS */}
         <div className="scroll-reveal"><OffersSection /></div>
 
@@ -202,9 +162,6 @@ export default function Home() {
 
         {/* 7. HOW IT WORKS */}
         <div className="scroll-reveal"><HowItWorksSection /></div>
-
-        {/* 8. TESTIMONIALS */}
-        <div className="scroll-reveal"><TestimonialsSection /></div>
 
         {/* 9. FAQ — 8 questions */}
         <div className="scroll-reveal"><FAQSection items={FAQS} title="Frequently Asked Questions" /></div>

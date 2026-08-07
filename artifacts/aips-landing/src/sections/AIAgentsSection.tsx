@@ -208,11 +208,11 @@ export function AIAgentsSection() {
         >
           <TrendingUp className="w-8 h-8 flex-shrink-0" style={{ color: "#8b5cf6" }} />
           <p className="text-lg font-semibold text-white">
-            Freelancers who use AI earn{" "}
+            Freelancers doing AI-related work earn{" "}
             <span className="text-4xl font-bold" style={{ color: "#f4b942" }}>44%</span>{" "}
-            more on average.
+            more per hour than those who don't.
           </p>
-          <span className="text-xs text-gray-500 italic sm:ml-2 self-end sm:self-center">— Upwork 2025</span>
+          <span className="text-xs text-gray-500 italic sm:ml-2 self-end sm:self-center">— Upwork Research Institute 2025</span>
         </motion.div>
 
         {/* CTAs */}

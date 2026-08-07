@@ -84,7 +84,7 @@ export function BrandShowcaseSection() {
           transition={{ delay: 0.1, duration: 0.5 }}
           className="text-gray-400 text-lg max-w-2xl mx-auto"
         >
-          Access the world's leading AI tools at Bangladesh-friendly prices. All brands, all features, all working.
+          Access popular AI tools at Bangladesh-friendly prices. All brands, all features, all working.
         </motion.p>
       </div>
 

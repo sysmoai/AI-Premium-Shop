@@ -764,27 +764,6 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
           </motion.div>
         )}
 
-        {/* FOMO Banner */}
-        <motion.div custom={guide.tools.length + 6.5} variants={fadeUp} initial="hidden" animate="visible">
-          <div className="bg-[#151b3d] border border-red-500/20 rounded-xl p-6 my-12">
-            <h3 className="text-white font-bold text-lg mb-3">⚠️ The Cost of Waiting</h3>
-            <ul className="text-gray-400 text-sm space-y-2">
-              {/* Fixed after checking each citation live: "Freelancers with AI
-                  earn 44% more" misapplied an Upwork finding about freelancers
-                  who DO AI-related work vs. unrelated work, as if any freelancer
-                  using an AI tool earns 44% more — the source does not say
-                  that. "Businesses save 60-80% (McKinsey)" had no primary
-                  McKinsey source behind it; only third-party marketing blogs
-                  used that framing. "Students outperform in every metric" was
-                  an unsourced absolute claim. Kept only what a source check
-                  actually confirmed, worded to match what the source says. */}
-              <li>• Freelancers doing AI-related work earn 44% more per hour than those who don't — Upwork Research Institute 2025</li>
-              <li>• 92% of developers use AI coding tools — GitHub Developer Survey 2023</li>
-            </ul>
-            <p className="text-white font-semibold mt-4">The question is not "should I use AI?" — it's "how long can I afford not to?"</p>
-          </div>
-        </motion.div>
-
         {/* Developer Career Path */}
         {guideKey === "developers" && (
           <motion.div custom={guide.tools.length + 6.8} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
@@ -867,7 +846,20 @@ export default function GuidePage({ guideKey }: GuidePageProps) {
           </motion.div>
         )}
 
-        {/* FOMO Banner — all guide pages */}
+        {/* FOMO Banner — all guide pages. This used to render twice (a
+            near-identical "The Cost of Waiting" block also existed earlier
+            in this file) — found and deduplicated 2026-08-07 via a visual
+            screenshot pass, not caught by any text-based gate since neither
+            copy was individually wrong. Kept this one (has the CTA button,
+            sits right before the page's final conversion block).
+            Citations verified live, not assumed: "Freelancers with AI earn
+            44% more" misapplied an Upwork finding about freelancers who DO
+            AI-related work vs. unrelated work, as if any freelancer using
+            an AI tool earns 44% more — the source does not say that.
+            "Businesses save 60-80% (McKinsey)" had no primary McKinsey
+            source, only third-party marketing blogs. "Students outperform
+            in every metric" was an unsourced absolute claim. Kept only what
+            a source check actually confirmed, worded to match the source. */}
         <motion.div custom={guide.tools.length + 6.9} variants={fadeUp} initial="hidden" animate="visible" className="mb-8">
           <div className="rounded-xl p-6" style={{ backgroundColor: "#151b3d", border: "1px solid rgba(239,68,68,0.1)" }}>
             <h3 className="text-lg font-bold text-white mb-3">AI Is No Longer Optional</h3>

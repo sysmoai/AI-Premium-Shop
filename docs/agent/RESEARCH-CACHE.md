@@ -78,6 +78,76 @@ checked). Treated as unverified-as-stated and fixed same session (see
 rank+version claim, keep accurate non-time-sensitive description) doesn't
 need further research to be safe.
 
+## Bangladesh AI-subscription market, customer pain points, and SEO gaps — checked 2026-08-07
+
+Three parallel research passes (owner asked for a broad "understand the
+business, customers, and market" pass; this is the read-only research half —
+none of it was published to the live site automatically, it's an input to
+future content/copy decisions). None of this contradicts or duplicates the
+existing Higgsfield/Chatbot-Arena entries above.
+
+### Competitor landscape
+
+| Competitor / model | Notable pattern | Source |
+|---|---|---|
+| Subscriptions Mart BD | Claude Pro ৳2,849/mo; stacks trust badges (DBID registration, "Google Business Verified," Trustpilot) but only 4 visible reviews behind a 4.75/5 rating; refund terms quietly exclude "usage limit/account restriction" | subscriptionsmartbd.com |
+| BD Subscription | ChatGPT Plus shared ৳399, personal ৳2,200; claims "government-registered... established 2023" and "25,000+ customers" (unverifiable, same pattern as AIPS's own flagged B1 claim); a blog post carries a forward-dated publish date, a templated-content tell | bdsubscription.com |
+| FanFlix BD | ChatGPT Plus shared ৳500, personal ৳2,750; one of several "OTT + AI" combo shops (same model as Netflix-reseller sites pivoting into AI resale) | fanflixbd.com |
+| Tech Haat | Claims "trusted provider since 2017"; Claude Pro from ৳2,300 | tech-haat.com |
+| EnterTool (India, adjacent market) | Explicit "group buy" framing, ₹549/mo advertised as "73% off official ₹1,999," WhatsApp delivery in 2-5 min — more transparent about the shared-seat model than most BD sellers | entertool.com |
+| SubsPk (Pakistan, adjacent market) | WhatsApp-order → JazzCash/EasyPaisa → screenshot proof → manual activation — the same no-payment-gateway flow AIPS likely runs informally | subspk.com (via search) |
+| Daraz.com.bd marketplace listings | Same subscriptions sold as generic listings with minimal seller-specific trust signals | daraz.com.bd |
+| Telegram/marketplace resellers (Z2U, FunPay, G2G) | The clear "don't look like this" reference — $5 shared-seat accounts, no business identity, search results explicitly flag ties to stolen-card fraud | — |
+
+**Direct SERP competitor worth flagging to the owner:** OneBrain.app runs
+content-marketing posts with near-duplicate titles to AIPS's own ("Claude
+Pro Price in BD: bKash Guide 2026," "ChatGPT Price in BD 2026: bKash, No
+Card") and pitches a cheaper multi-model aggregator (৳199/mo). Direct
+competition for AIPS's exact target queries.
+
+**Positioning ideas, none requiring an unverifiable claim:**
+- Specific, checkable operational details (support hours, response-time
+  commitment) beat another unverifiable trust badge — every competitor
+  above leans on badges, not specifics.
+- State refund/replacement scope plainly (closes B2) rather than a vague
+  guarantee — Subscriptions Mart BD's fine-print exclusion is exactly the
+  kind of thing that erodes trust when discovered after purchase, not
+  before.
+- Keep the shared-vs-personal distinction explicit in every listing
+  (already this project's direction per B5) — several competitors blur it.
+
+### Customer pain points — why a reseller exists, and what buyers actually distrust
+
+**Real, cited friction points with buying AI subscriptions directly from Bangladesh** (general market facts, not AIPS-specific claims — safe to reference in explanatory copy):
+
+| Friction point | Detail | Source |
+|---|---|---|
+| Credit-card ownership | ~2.9M Bangladeshis hold a credit card (~1.6-1.7% of the population) — most people simply have no instrument the vendor's checkout accepts | Bangladesh Bank, Nov 2025 monthly credit-card report (bb.org.bd) |
+| PayPal unavailable | No local PayPal account can be opened or funded from Bangladesh as of 2026 — a full access block, not a fee issue | nsave.com/bangladesh/paypal |
+| Vendor/processor country-support gap | OpenAI officially supports paid ChatGPT in ~89 countries while its processor (Stripe) covers 164 — Bangladesh can fall in that gap, producing "payment method not available" errors even with a working card | weam.ai guide (secondary source, not OpenAI directly — treat as directional) |
+| Bank-side forex restrictions | Bangladesh Bank regulates international-card forex release; banks have separately cut foreign-currency credit limits, and recurring USD subscription charges are exactly the pattern issuing banks flag | bb.org.bd forex guideline vol.1 ch.19; TBS News reporting on banks cutting FX limits |
+| No direct bKash/Nagad/Rocket support from vendors | Confirmed by multiple independent third-party guides — this is the entire reason local resellers exist | Cross-referenced across several BD guide sites |
+
+**Top 5 trust objections a first-time buyer has, and an honest (non-fabricated) way to address each:**
+1. *"My shared account will get banned and I lose my money"* — real risk, not hypothetical (reseller/marketplace ChatGPT accounts are routinely suspended under vendor ToS with no vendor recourse). Honest fix: a specific written replacement/reissue policy (closes B2), not a vague "guarantee."
+2. *"Is this seller actually authorized by the AI company?"* — honest fix: state plainly what AIPS is (purchase-assistance/reseller) and isn't (not an official partner), matching the existing B4/B5 stance rather than implying authorization.
+3. *"They'll take my bKash payment and vanish"* — general BD e-commerce research finds prepayment fraud is the dominant reason local buyers still prefer cash-on-delivery. Honest fix: a visible, verifiable delivery-time commitment and a real, responsive support channel.
+4. *"The reviews are probably fake"* — honest fix: never publish unverifiable aggregate testimonial/review counts (matches the existing `validate-catalog.mjs` rule already flagging "9 records carry unverified trust.reviewCount/rating").
+5. *"Is there an actual written policy, or just a promise?"* — directly maps to B2; link a real policy page instead of a headline claim.
+
+### SEO / content-gap opportunities (distinct from `docs/seo/GAP-CHECKLIST.md`, which is about crawler-visibility, not search-intent)
+
+All items below map to an **existing** page needing a section/FAQ addition — none require a new route, consistent with this project's "don't create hundreds of SEO pages" rule:
+
+1. Google AI Pro's Bangladesh student free offer ended 2026-03-11, but old news coverage still ranks for "Google Gemini Pro free Bangladesh student" — add an explicit "the free offer ended, here's the current alternative" section to the existing Google AI Pro page.
+2. Reseller ban-risk/legality is a real, distinct search cluster (independently confirmed via search) — the chatbot already answers this (BACKLOG #24, done) but it isn't in static crawlable HTML yet. Add an explicit ban-risk/legality Q&A to `FAQPage.tsx`.
+3. Wide reseller price dispersion across the market (Midjourney BD found ranging ৳199-16,500/mo elsewhere) signals real buyer confusion — a short "why prices vary so much elsewhere" trust note on `/midjourney-bangladesh` could help.
+4. SSC/HSC-level students (a younger, free-tool-focused intent) are distinct from the university-student framing the existing student guide uses — add a subsection rather than a new page.
+5. bKash payment troubleshooting ("payment failed," "screenshot not received") is its own search intent — add a troubleshooting FAQ block to the existing bKash guide post.
+6. Bangla-script title targeting: at least one competitor uses literal "বিকাশ" (not just transliterated "bKash") in titles/H1s — worth checking `/bn` titles use Bangla script consistently (ties into the already-tracked B7 Bangla-quality gap).
+
+None of this was implemented as new page content this turn — it's queued in `BACKLOG.md` for a dedicated content pass, since copy changes (especially bilingual ones) deserve their own careful review rather than being rushed alongside code changes.
+
 ## Also open, not yet checked
 
 | Question | Why it matters | Primary source to check |

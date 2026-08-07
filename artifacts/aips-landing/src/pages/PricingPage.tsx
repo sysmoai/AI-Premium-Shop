@@ -29,11 +29,11 @@ interface Product {
   brandColor: string;
   category: string;
   price: number;
-  officialUSD: number | null;
+  officialUSD?: number | null;
   tier: string;
   accessType: string;
   badge: string | null;
-  deliveryMinutes: string;
+  deliverySLA: string;
   warrantyDays: number;
 }
 
@@ -201,7 +201,7 @@ export default function PricingPage() {
                         )}
                       </td>
                       <td className="px-4 py-4 hidden md:table-cell text-xs" style={{ color: "#c9ceda" }}>
-                        {p.officialUSD === null ? (
+                        {p.officialUSD == null ? (
                           "—"
                         ) : p.id === "notion-business-6m" ? (
                           <>{`$${p.officialUSD} total (6 months)`}<br /><span style={{ color: "#c9ceda" }}>{"≈ BDT 800/mo × 6"}</span></>
@@ -209,7 +209,7 @@ export default function PricingPage() {
                           <>{`$${p.officialUSD}/mo`}<br /><span style={{ color: "#c9ceda" }}>{`≈ BDT ${officialBDT.toLocaleString()}`}</span></>
                         )}
                       </td>
-                      <td className="px-4 py-4 hidden lg:table-cell text-xs" style={{ color: "#c9ceda" }}>⚡ {p.deliveryMinutes} min</td>
+                      <td className="px-4 py-4 hidden lg:table-cell text-xs" style={{ color: "#c9ceda" }}>⚡ {p.deliverySLA}</td>
                       <td className="px-4 py-4">
                         <a href={waLink} target="_blank" rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity whitespace-nowrap"

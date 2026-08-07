@@ -1461,3 +1461,56 @@ for (const [route, component] of ROUTE_COMPONENT) {
 }
 console.log(`prerender: enriched ${enriched} thin routes from their components (${enrichSkipped} already above ${ENRICH_MIN_CHARS} chars)`);
 console.log(`prerender: enriched -> ${enrichedRoutes.join(", ")}`);
+
+// --- /pricing: the product price table is entirely absent from static HTML.
+// The generic enrichment loop above only pulls quoted string literals and
+// JSX text nodes, which by design finds nothing for a table built by
+// `.map()`-ing imported JSON -- that's why /pricing kept tripping the
+// GAP-CHECKLIST.md P0 item (790 static chars vs. ~13k rendered) even after
+// enrichment ran. This runs AFTER that loop on purpose: /pricing's own
+// prose enrichment must land first, before this table pushes the page well
+// past the 800-char skip threshold.
+//
+// Mirrors PricingPage.tsx's DEFAULT view exactly -- no category/access
+// filter, sorted price-ascending -- the same rows a first visit (or a
+// non-JS crawler) actually gets, not a hypothetical "everything" dump.
+{
+  const pricingOutFile = path.join(DIST, "pricing", "index.html");
+  if (fs.existsSync(pricingOutFile)) {
+    const pricingPageSrc = fs.readFileSync(path.join(APP, "src/pages/PricingPage.tsx"), "utf8");
+    const catLabelsIdx = pricingPageSrc.indexOf("const CATEGORY_LABELS: Record<string, string> = ");
+    const CATEGORY_LABELS =
+      catLabelsIdx === -1 ? {} : parseJsLiteralAt(pricingPageSrc, pricingPageSrc.indexOf("{", catLabelsIdx));
+    const rateMatch = pricingPageSrc.match(/const RATE = ([\d.]+);/);
+    const RATE = rateMatch ? Number(rateMatch[1]) : 149.5;
+
+    const priced = products.filter((p) => p.price != null).slice().sort((a, b) => a.price - b.price);
+
+    const rowsHtml = priced
+      .map((p) => {
+        const officialBDT = p.officialUSD ? Math.round(p.officialUSD * RATE) : 0;
+        const savings = officialBDT > 0 ? officialBDT - p.price : -1;
+        const official = p.officialUSD == null ? "—" : `$${p.officialUSD}/mo (≈ ${fmtBDT(officialBDT)})`;
+        const access = p.accessType === "shared" ? "Shared" : "Personal";
+        const category = CATEGORY_LABELS[p.category] || p.category;
+        const waLink = `https://wa.me/8801865385348?text=${encodeURIComponent(`Hi, I want to order ${p.name} (BDT ${p.price})`)}`;
+        return `<tr><td>${esc(p.name)}${p.badge ? ` — ${esc(p.badge)}` : ""}</td><td>${esc(p.brand)}</td><td>${esc(category)}</td><td>${esc(access)}</td><td>${fmtBDT(p.price)}${savings > 0 ? ` (save ${fmtBDT(savings)})` : ""}</td><td>${esc(official)}</td><td>${esc(p.deliverySLA || "—")}</td><td><a href="${waLink}">Order on WhatsApp</a></td></tr>`;
+      })
+      .join("");
+
+    const tableHtml = `<section><h2>All ${priced.length} AI subscription plans, sorted by price (low to high)</h2><table><thead><tr><th>Product</th><th>Brand</th><th>Category</th><th>Access</th><th>Our Price</th><th>Official (USD)</th><th>Delivery</th><th></th></tr></thead><tbody>${rowsHtml}</tbody></table></section>`;
+
+    const html = fs.readFileSync(pricingOutFile, "utf8");
+    const updated = html.includes("</main>")
+      ? html.replace("</main>", `${tableHtml}</main>`)
+      : html.replace("</div>\n</body>", `${tableHtml}</div>\n</body>`);
+    if (updated !== html) {
+      fs.writeFileSync(pricingOutFile, updated);
+      console.log(`prerender: /pricing static table added (${priced.length} rows)`);
+    } else {
+      console.error("prerender: /pricing table insertion found no </main> or </div>\\n</body> to anchor on -- page structure changed, check manually.");
+    }
+  } else {
+    console.error("prerender: dist/public/pricing/index.html not found -- /pricing table skipped.");
+  }
+}

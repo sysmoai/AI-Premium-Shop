@@ -1,6 +1,42 @@
 # Next task — start here
 
-**Written:** 2026-08-07, end of the 6th turn of this same-day session.
+**Written:** 2026-08-07. This file is stale below this point (last real
+rewrite was turn 6) — trust `CURRENT-STATE.md`'s top entries and `git log`
+over the rest of this file.
+
+## Three open draft PRs from the same day, none merged yet
+
+- **PR #5** `agent/homepage-solution-section-fixes` — Find Your Solution:
+  2 fabricated claims removed from the SVG illustrations, section-scoped
+  reduced-motion support.
+- **PR #6** `agent/reduced-motion-global` — site-wide
+  `MotionConfig(reducedMotion="user")`, plus (added after #6 was opened,
+  same branch) a real bug fix: `/pricing`'s product table was rendering
+  `"$undefined/mo"` and a blank delivery column for real customers (wrong
+  field names — `deliveryMinutes` vs. the real `deliverySLA`, and a
+  `=== null` check that missed `undefined`). Regression-tested in
+  `tests/e2e/pricing.spec.ts`, verified against the real bug the same way
+  B9's smoke suite was (stash the fix, confirm the test fails, restore).
+  None of these three touch the same files, so no merge conflicts expected
+  between them — the only doc-file overlap is in `CURRENT-STATE.md`/
+  `BACKLOG.md`, resolvable by keeping both sides' entries.
+
+## Well-specified next step: the actual `/pricing` SEO gap
+
+`docs/seo/GAP-CHECKLIST.md`'s P0 item for `/pricing` is still open: the
+static prerendered body has the intro prose (790 chars) but not the product
+table itself (~13k chars rendered by React). Needs a dedicated prerender
+extractor in `scripts/prerender-products.mjs`, same technique as the
+`ComparisonPage.tsx` one added this same day (a hand-written literal
+reader) — NOT the generic prose extractor already running on this route,
+which by design can't capture a `.map()`-rendered data table. Read
+`data/products.json` directly (it's already loaded as `products` near the
+top of the script), replicate `PricingPage.tsx`'s default filter/sort
+(`price != null`, sorted ascending, no category/access filter), emit a real
+`<table>`, and append it into `/pricing`'s existing `<main>` — same
+insertion pattern the generic enrichment loop already uses, but run AFTER
+that loop so the existing prose enrichment isn't skipped by an early
+800-char threshold trip.
 
 ## Do this first (2 minutes)
 

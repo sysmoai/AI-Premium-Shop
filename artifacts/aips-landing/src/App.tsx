@@ -1,6 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MotionConfig } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -202,26 +203,34 @@ function App() {
   const [cookieConsent, setCookieConsent] = useState(false);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <ScrollToTop />
-          {/* Lazy routes need a Suspense boundary. The fallback is deliberately a
-              plain sized spacer, not a spinner or "Loading…" text — a visible
-              placeholder on every navigation reads as slower than it is, and an
-              unsized one would cause layout shift (current CLS is 0). */}
-          <Suspense fallback={<div style={{ minHeight: "60vh" }} aria-busy="true" />}>
-            <Router />
-          </Suspense>
-          <MobileOrderBar />
-          <ConciergeWidget />
-          <CookieBanner onConsent={() => setCookieConsent(true)} />
-        </WouterRouter>
-        <GoogleAnalytics enabled={cookieConsent} />
-        <FacebookPixel enabled={cookieConsent} />
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
+    // reducedMotion="user" makes every motion.* component in the tree respect
+    // the OS prefers-reduced-motion setting automatically (Framer neutralises
+    // transform-based transitions — x/y/scale/rotate — while still allowing a
+    // plain opacity change, so content stays legible without the motion that
+    // can trigger vestibular issues). Previously nothing in the app read this
+    // setting except a couple of components that checked matchMedia by hand.
+    <MotionConfig reducedMotion="user">
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <ScrollToTop />
+            {/* Lazy routes need a Suspense boundary. The fallback is deliberately a
+                plain sized spacer, not a spinner or "Loading…" text — a visible
+                placeholder on every navigation reads as slower than it is, and an
+                unsized one would cause layout shift (current CLS is 0). */}
+            <Suspense fallback={<div style={{ minHeight: "60vh" }} aria-busy="true" />}>
+              <Router />
+            </Suspense>
+            <MobileOrderBar />
+            <ConciergeWidget />
+            <CookieBanner onConsent={() => setCookieConsent(true)} />
+          </WouterRouter>
+          <GoogleAnalytics enabled={cookieConsent} />
+          <FacebookPixel enabled={cookieConsent} />
+          <Toaster />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </MotionConfig>
   );
 }
 

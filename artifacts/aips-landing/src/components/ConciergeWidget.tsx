@@ -6,6 +6,15 @@ const WHATSAPP_FALLBACK = "https://wa.me/8801865385348?text=Hi%2C%20I%20need%20h
 const STORE_KEY = "aips.concierge.v2";
 const SESSION_KEY = "aips.concierge.sid";
 
+// Same guarded window.gtag pattern as WhatsAppLink.tsx. Never sends message
+// content, question text, or anything the customer typed — only counts,
+// booleans and the current path, matching the concierge's own no-PII rule.
+function track(event: string, params: Record<string, unknown> = {}) {
+  if (typeof window.gtag === "function") {
+    window.gtag("event", event, { page_path: window.location.pathname, ...params });
+  }
+}
+
 // Identifies a browser tab so multi-turn conversations stay stitched together
 // in the log. Deliberately random and per-session: it is not tied to a person,
 // survives no longer than the tab, and nothing about the customer is derived
@@ -219,6 +228,7 @@ export function ConciergeWidget() {
   // steal focus from the page on first render (open starts false).
   useEffect(() => {
     if (open) {
+      track("chatbot_open");
       hasOpenedRef.current = true;
       inputRef.current?.focus();
     } else if (hasOpenedRef.current) {
@@ -308,6 +318,8 @@ export function ConciergeWidget() {
       setLastFailedText(null);
       setSuggestions([]);
       setStreaming("");
+      // turn_number, not message content — the concierge's own no-PII rule.
+      track("chatbot_message_sent", { turn_number: next.filter((m) => m.role === "user").length });
 
       const ctrl = new AbortController();
       abortRef.current = ctrl;
@@ -371,6 +383,8 @@ export function ConciergeWidget() {
         setMsgs([...next, { role: "assistant", content: full.trim(), products, turnId }]);
       } catch (e) {
         if ((e as Error).name === "AbortError") return;
+        // reason is our own description, never the raw error/message text.
+        track("chatbot_error", { reason: (e as Error).message === "Too many messages — please continue on WhatsApp" ? "rate_limited" : "no_reply" });
         setErrorMsg(describeError(e));
         setLastFailedText(content);
       } finally {
@@ -394,6 +408,7 @@ export function ConciergeWidget() {
   const rate = useCallback((turnId: string, value: 1 | -1) => {
     if (feedbackLock.current.has(turnId)) return;
     feedbackLock.current.add(turnId);
+    track("chatbot_feedback", { value });
     setMsgs((prev) => prev.map((m) => (m.turnId === turnId ? { ...m, feedback: value } : m)));
     fetch("/api/feedback", {
       method: "POST",
@@ -579,7 +594,7 @@ export function ConciergeWidget() {
             {errorMsg && (
               <div className="text-sm rounded-xl px-3 py-2" style={{ backgroundColor: "rgba(239,68,68,0.12)", color: "#fca5a5" }}>
                 {errorMsg} —{" "}
-                <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="underline font-semibold" style={{ color: "#25d366" }}>
+                <a href={whatsapp} target="_blank" rel="noopener noreferrer" onClick={() => track("chatbot_whatsapp_click", { location: "error_fallback" })} className="underline font-semibold" style={{ color: "#25d366" }}>
                   WhatsApp-এ মেসেজ করুন
                 </a>
                 , সাথে সাথে রিপ্লাই পাবেন।
@@ -602,6 +617,7 @@ export function ConciergeWidget() {
                 href={whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => track("chatbot_whatsapp_click", { location: "order_cta" })}
                 className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-bold transition-transform hover:scale-[1.02]"
                 style={{ backgroundColor: "#008236", color: "#fff" }}
               >
@@ -658,6 +674,7 @@ export function ConciergeWidget() {
                 href={whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => track("chatbot_whatsapp_click", { location: "footer_human" })}
                 className="text-[11px] font-semibold flex items-center gap-1 flex-shrink-0"
                 style={{ color: "#25d366" }}
               >

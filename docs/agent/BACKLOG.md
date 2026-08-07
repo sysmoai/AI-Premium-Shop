@@ -19,7 +19,7 @@ Ordered by value / effort. Anything blocked names its blocker from `BLOCKERS.md`
 | 15 | Payment methods have no single source of truth — at least 5 independent hardcoded lists found (`PaymentMethodsSection.tsx`, `PaymentBadges.tsx`, `PageFooter.tsx`, `data/brand.json`, `scripts/generate-llms-txt.mjs`), each requiring its own manual edit when a method is added/removed. Binance had to be removed from all 5 separately on 2026-08-07 — see `docs/homepage/executive-audit.md` | — (real refactor: one data source, every component/script reads it) |
 | 17 | Delivery-time claims disagree across surfaces: prerendered homepage body and About page say "5–30 minutes"; `FAQPage.tsx`'s English and Bangla FAQs say "5–15 minutes... max 2-3 hours off-hours" (internally consistent with each other, just not with the other two surfaces) | — (owner: which is actually true) |
 | 18 | `midjourney-bangladesh`'s "Pro Shared" tier is priced ৳4,788 — more than BOTH the "Personal" (৳2,495) and "Pro" personal (৳3,990) tiers of the same product. A shared/split tier costing more than the equivalent (or a cheaper) personal tier defeats the commercial premise of sharing; either a real pricing error or a legitimate reason not evident from the data (e.g. Pro Shared includes something Pro Personal doesn't). Caught by the new `validate-catalog.mjs` shared-vs-personal check (2026-08-07) — see `docs/agent/OWNER-ACTIONS.md`-style evidence in the commit | — (owner: confirm the price or fix it) |
-| 28 | Sitewide "#1"/superlative-claim sweep was scoped narrowly by regex (BACKLOG #16 done item) and missed at least one instance not matching that pattern — a "scored highest on SWE-bench, GPQA, and Chatbot Arena... objectively the smartest AI" claim survived in `BrandPage.tsx` until caught as a side effect of the 2026-08-07 Opus-5 fix (#20). Also found and removed an adjacent fabricated-stats block ("3x more content", "60% faster delivery", "44% avg income increase", no source) that the earlier testimonial sweep didn't touch since it wasn't phrased as a testimonial. Only found because I happened to be editing the same paragraph — a real full-text read of every brand/blog page (not just guide pages) for this claim class hasn't been done | — (real audit time, not blocked) |
+| 31 | The #28 sweep (2026-08-07, full repo) covered `src/pages` and `src/sections` but not `data/products.json`'s own prose fields (descriptions, useCases, whyBuyFromAIPS) at the same depth — those get lighter automated coverage from `validate-catalog.mjs`'s keyword scan, not a full read. Also not covered: Bangla-language prose (only English-language superlatives/stats were checked; Bangla equivalents may carry the same issues untranslated-and-unaudited) | — (real audit time, not blocked) |
 | 21 | Real bKash/Nagad/Rocket logo asset files still don't exist in the repo — text-only interim fallback applied 2026-08-07 (was: hand-drawn SVG approximations in `PaymentMethodsSection.tsx`; `PaymentBadges.tsx`/`PageFooter.tsx` were already text-only). See `docs/compliance/payment-methods.md` / `docs/brand/payment-assets.md` | — (owner: supply real asset files whenever convenient; not urgent now that the fabricated-mark risk is resolved) |
 | 22 | Playwright **full click-through user journeys** — the mount-crash-detection scope (B9) is done as of 2026-08-07 (`tests/e2e/smoke.spec.ts`, 8 routes, wired into CI + pre-push, verified to actually catch the real historical bug). What's left is the bigger ask: two full journeys the master prompt specified — Homepage→Find Your Solution→Audience page→Category→Product→Policy→WhatsApp, and Homepage→AI Video→Higgsfield→Credits→Unlimited→Service opportunities→WhatsApp — clicking through real navigation and asserting each step, not just that each page mounts | — (real scoping + maintenance-burden work; lower urgency now that B9's actual risk is covered) |
 | 23 | Individual re-audit of all 6 audience pages against the master prompt's per-page requirement list (unique intent, ethical limitations, Bangladesh context, FAQ, internal links) — partially covered as a side effect of the testimonial-fabrication sweep (2026-08-07), which touched all 5 guide pages, but that was a narrow pass for one issue class, not the full audit | — (large, ~6 pages × full checklist) |
@@ -124,6 +124,27 @@ current standings, not just removing the phrasing on principle.
   by re-testing the exact same queries against the deployed fix (multiple
   times, to check for stochastic variance) — both now hedge instead of
   asserting certainty. New item #30 for a larger follow-up sample.
+- **Fabricated-claims sweep (#28) — done, repo-wide.** Full read of every
+  page/section file flagged by grep for superlative and stat-shaped
+  patterns (~28 files). Most severe: `SegmentHeroContent.tsx` — the
+  homepage's interactive segment-picker result — had the exact same fake
+  named-testimonial pattern already removed from the 5 guide pages
+  ("Went from $5/hour to $25/hour! — Fatima, Freelancer", "Got 100K
+  subscribers in 6 months! — Karim, YouTube Creator", etc.), untouched by
+  that earlier sweep because it isn't a guide page. Also found: a second
+  fake testimonial in `GuidePage.tsx` (invented CGPA numbers dressed as
+  "anonymized real outcomes"), a whole fake-testimonial grid in
+  `BlogPostPage.tsx` attributed to real institutions (BRAC University,
+  Upwork, a Dhaka business), two fabricated report citations that
+  misattribute real-sounding sources to numbers those sources don't say
+  (a fake "Adobe 2025 Creative Trends Report" stat, a fake "Shopify 2025"
+  stat), fabricated named-company claims with real reputational risk
+  ("trusted by engineering teams at OpenAI, Stripe, Figma" — Cursor,
+  "used by teams at Google, Shopify" — Gamma), a fake "$34,000/mo profit
+  — Medium, March 2026" citation, and roughly a dozen chained
+  income/ROI-projection blocks presenting invented numbers as computed
+  facts. Fixed across 13 files. New item #31 for what this pass didn't
+  cover (data/products.json's own prose, Bangla-language content).
 
 **Also done, 2026-08-07 (third continuation session, "full permission" turn):**
 

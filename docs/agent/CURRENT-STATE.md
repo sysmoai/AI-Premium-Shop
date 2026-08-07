@@ -1,9 +1,20 @@
 # Current state
 
-**Last updated:** 2026-08-07 (9th turn — B13 resolved by owner, real CI
-build-order bug fixed, B9 (render-crash blind spot) closed with a
-verified Playwright suite. All 3 GitHub Actions workflows confirmed
-green on real runs: CI, SEO quality, Live site monitor.)
+**Last updated:** 2026-08-07 (9th turn, "Go" — repo-wide fabricated-claims
+sweep done, chatbot sweep done, CI fully green and verified.)
+
+## This turn (9th, part 3): repo-wide fabricated-claims sweep — BACKLOG #28 done
+
+Full read of ~28 files flagged by pattern search for superlatives/stats.
+Worst finding: `src/sections/SegmentHeroContent.tsx` (homepage's
+interactive segment-picker result) had the exact same fake named-person
+testimonial pattern already removed from the 5 guide pages, untouched
+because it isn't a guide page. Fixed across 13 files total — full detail
+in `BACKLOG.md`'s #28 done-entry and the commit message
+(`88d11fb`). Verified live: fetched the deployed JS bundle, confirmed
+zero matches for the removed fabricated strings. Full gate chain clean
+(typecheck, build, seo:check, validate-catalog, validate-truth,
+Playwright) both before and after deploy.
 
 ## This turn (9th, part 2): B9 closed — Playwright smoke suite, verified against the real historical bug
 

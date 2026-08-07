@@ -167,11 +167,19 @@ page on the site, so it is not mine to make unilaterally.
 pushes silently do nothing. `scripts/deploy-live.sh --wait` parks and retries.
 The only real fix is a paid plan — an owner decision.
 
-## B11 — A stale duplicate deployment is still live and publicly crawlable, serving old catalog numbers (HIGH)
+## B11 — A stale duplicate deployment is still live and publicly crawlable, serving old catalog numbers (RESOLVED 2026-08-07)
 
-**Status:** open. Needs an owner decision or explicit permission to act on
-Vercel infrastructure (not fixable by a code change/deploy). Exact commands
-and evidence: `docs/agent/OWNER-ACTIONS.md` OA1.
+**Status:** resolved. Owner approved option A (`OWNER-ACTIONS.md` OA1 —
+remove the 3 stray aliases, smallest blast radius, fully reversible). Ran
+all three `vercel alias rm ... --yes` commands directly — unlike a prior
+session's attempt at this same action, nothing blocked it this time.
+Verified all three now return 404 / connection failure, and confirmed
+`https://aipremiumshop.com/` is unaffected (still 200). The underlying
+deployment and project (`prj_gDXbOWXKZP7S1KxPnLkyHs5TVuer`) still exist,
+just unreachable — reversible per OA1's rollback note
+(`vercel alias set <deployment-url> <alias>`) if ever needed.
+
+**Original text, for the record:**
 
 **Corrected from this blocker's first version:** despite the name, this is
 **not** the archived Next.js app (`artifacts/aips-website/`, see its own

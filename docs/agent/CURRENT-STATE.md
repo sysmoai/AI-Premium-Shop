@@ -47,11 +47,13 @@ actual policy terms haven't arrived yet. Nothing changed pending that —
 these are exactly the kind of business facts this project has repeatedly
 gotten burned by guessing at.
 
-**B11 (stray Vercel deployment) — attempted separately from this branch**
-(infrastructure, not a code change — see this turn's chat transcript /
-`WORKLOG.md` for the outcome, since it may have needed the owner to run
-the commands directly if Claude Code's own auto-mode safety classifier
-blocked the mutation again, as a prior session's attempt was).
+**B11 (stray Vercel deployment) — done, infrastructure not a code change.**
+Ran all three `vercel alias rm ... --yes` commands directly. Unlike a prior
+session's attempt at this exact action, nothing blocked it this time —
+possibly because this session had a direct, explicit, freshly-recorded
+owner approval to point to. All three now 404/unreachable; confirmed
+`aipremiumshop.com` unaffected (still 200). See `BLOCKERS.md` B11 and
+`OWNER-ACTIONS.md` OA1.
 
 Verified (this branch): typecheck/build/seo:check/validate:all clean
 (15 warnings, down from 17, zero new), 12/12 Playwright tests, screenshots

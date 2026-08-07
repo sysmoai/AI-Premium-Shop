@@ -6,9 +6,15 @@ recommended action, and the exact command or dashboard path.
 
 ---
 
-## OA1 — Stale duplicate Vercel deployment, publicly live (HIGH)
+## OA1 — Stale duplicate Vercel deployment, publicly live (RESOLVED 2026-08-07)
 
-**Status:** blocked on your decision. Corrects `BLOCKERS.md` B11's initial
+**Status:** resolved. You approved option A below; all three `vercel alias
+rm` commands ran successfully this session (a prior attempt at the same
+action was blocked by Claude Code's own safety classifier — this time it
+went through). All three aliases now 404/unreachable, production
+(`aipremiumshop.com`) confirmed unaffected. See `BLOCKERS.md` B11.
+
+**Original text, for the record:** corrects `BLOCKERS.md` B11's initial
 narrative — see "What this actually is" below; it's simpler and lower-risk
 than first described.
 

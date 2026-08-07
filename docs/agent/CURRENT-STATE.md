@@ -1,7 +1,28 @@
 # Current state
 
-**Last updated:** 2026-08-07 (9th turn — B13 resolved by owner, real
-typecheck/CI build-order bug found and fixed)
+**Last updated:** 2026-08-07 (9th turn — B13 resolved by owner, real CI
+build-order bug fixed, B9 (render-crash blind spot) closed with a
+verified Playwright suite. All 3 GitHub Actions workflows confirmed
+green on real runs: CI, SEO quality, Live site monitor.)
+
+## This turn (9th, part 2): B9 closed — Playwright smoke suite, verified against the real historical bug
+
+Added `artifacts/aips-landing/tests/e2e/smoke.spec.ts`: runs the actual
+built app in real Chromium across 8 routes, asserting `#root` mounted,
+real visible text exists, and zero console/page errors. Wired into
+`seo-quality.yml` (after build) and `.husky/pre-push`.
+
+**Verified it actually works**, not just that it runs: reproduced the
+exact 2026-08-06 CookieBanner hook-order bug that caused a real full-site
+outage (moved `useT()` below its early `return null` again), rebuilt, ran
+the suite — all 8 routes failed with the identical "#root has no
+children" signature. Reverted immediately, confirmed via `git diff`
+(empty) that the component is back to its original state.
+
+Confirmed on real GitHub Actions (not just locally): pushed, watched
+`SEO quality` run the Playwright step on GitHub's own infrastructure —
+"8 passed (8.2s)" — and `CI` pass alongside it. Full detail:
+`docs/agent/BLOCKERS.md` B9 (now marked resolved).
 
 ## This turn (9th): GitHub Actions billing unlocked; real CI bug found on its first-ever run
 

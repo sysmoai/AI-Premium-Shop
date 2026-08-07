@@ -127,9 +127,19 @@ journeys. #22's fuller scope (Homepage→Solution→Category→Product→
 Policy→WhatsApp, etc.) is still open if ever wanted, but the thing that
 actually caused a real outage is now covered.
 
-## B10 — Floating chat buttons click-jack CTAs on mobile (MEDIUM, costs conversions)
+## B10 — Floating chat buttons click-jack CTAs on mobile (RESOLVED 2026-08-07)
 
-**Status:** open. Needs a product decision, not a code decision.
+**Status:** resolved. Owner picked option 1 below. Both `FloatingWhatsApp.tsx`
+and `ConciergeWidget.tsx`'s launcher (+ its panel) now carry `hidden md:flex`
+instead of an unconditional `flex` — hidden below the `md` breakpoint,
+unchanged on desktop. `StickyMobileBar.tsx` already gave mobile users a
+persistent WhatsApp "Order Now" path, so this is non-lossy for ordering;
+the AI concierge itself is not reachable on mobile after this change,
+which is an accepted tradeoff of the chosen option, not an oversight.
+Verified via Playwright viewport checks (390px: both FABs `visible=false`;
+1440px: both `visible=true`) and screenshots at both sizes.
+
+**Original text, for the record:**
 
 Measured on live /bn at 375x812: the fixed chat FAB covers a **52x51px** region of
 the "সব প্ল্যান ও দাম দেখুন" CTA (CTA at 20,609 335x64). Tapping that corner opens

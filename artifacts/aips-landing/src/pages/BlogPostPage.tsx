@@ -1070,7 +1070,7 @@ const POSTS: Record<
           <li><strong>Standard Shared — ৳1,199/month:</strong> 15 hours fast GPU, unlimited relaxed mode. 2-5 users. Best value for most users.</li>
           <li><strong>Standard Premium Shared — ৳2,399/month:</strong> Same features, fewer users (2-3 max), higher availability.</li>
           <li><strong>Standard Personal — ৳2,495/month:</strong> Your own Midjourney account. Full commercial rights, 15hr fast GPU.</li>
-          <li><strong>Pro Shared — ৳4,788/month:</strong> 30hr fast GPU, stealth mode, 12 concurrent jobs.</li>
+          <li><strong>Pro Shared — ৳1,990/month:</strong> 30hr fast GPU, stealth mode, 12 concurrent jobs.</li>
         </ul>
         <h2>How Shared Accounts Work</h2>
         <p>A shared Midjourney account means 2-5 users access the same subscription — but your generated images are private (Midjourney's stealth mode is not required for privacy between shared users through AIPS). Each user has their own Discord thread for image generation. The monthly GPU hours are shared, which is why the price is significantly lower.</p>

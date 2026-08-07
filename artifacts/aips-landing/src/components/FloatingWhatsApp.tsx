@@ -14,7 +14,11 @@ export function FloatingWhatsApp() {
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
       data-testid="floating-whatsapp"
-      className="fixed z-50 flex items-center gap-3"
+      // Hidden below md: on mobile this duplicated StickyMobileBar.tsx's own
+      // WhatsApp "Order Now" link while overlapping real page CTAs at some
+      // scroll positions (BLOCKERS.md B10, measured click-jacking). Desktop
+      // has no sticky bar, so it stays there.
+      className="fixed z-50 hidden md:flex items-center gap-3"
       style={{ bottom: 84, right: 24 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

@@ -462,14 +462,19 @@ export function ConciergeWidget() {
 
   return (
     <>
-      {/* Launcher — stacked above FloatingWhatsApp with safe-area awareness */}
+      {/* Launcher — stacked above FloatingWhatsApp with safe-area awareness.
+          Hidden below md: on mobile this and FloatingWhatsApp together
+          overlapped real page CTAs at some scroll positions (BLOCKERS.md
+          B10, a measured click-jacking bug), and StickyMobileBar.tsx already
+          gives mobile users a persistent WhatsApp ordering path. Desktop has
+          no sticky bar, so the assistant stays reachable there. */}
       <button
         ref={launcherRef}
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close AI assistant" : "Open AI assistant — press / to open"}
         aria-expanded={open}
         aria-controls="concierge-panel"
-        className="fixed z-50 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27] focus-visible:ring-[#f4b942]"
+        className="fixed z-50 rounded-full hidden md:flex items-center justify-center shadow-lg hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27] focus-visible:ring-[#f4b942]"
         style={launcherStyle}
       >
         {open ? <X className="w-6 h-6" style={{ color: "#0a0e27" }} /> : <Bot className="w-6 h-6" style={{ color: "#0a0e27" }} />}
@@ -482,7 +487,11 @@ export function ConciergeWidget() {
           role="dialog"
           aria-modal="true"
           aria-label="AIPS AI Assistant chat"
-          className="fixed z-50 w-[min(calc(100vw-2rem),384px)] rounded-2xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
+          // hidden md:flex mirrors the launcher above -- the "/" shortcut
+          // below is keyboard-only and can't normally fire on a touch
+          // device, but keeping this in sync means a Bluetooth-keyboard
+          // edge case can't open a panel with no visible way to reach it.
+          className="fixed z-50 w-[min(calc(100vw-2rem),384px)] rounded-2xl border border-white/10 shadow-2xl hidden md:flex flex-col overflow-hidden"
           style={panelStyle}
         >
           <div className="px-4 py-3 border-b border-white/10 flex items-center gap-2" style={{ backgroundColor: "#151b3d" }}>

@@ -1,7 +1,25 @@
 # Current state
 
-**Last updated:** 2026-08-07 (9th turn, "Go" — repo-wide fabricated-claims
-sweep done, chatbot sweep done, CI fully green and verified.)
+**Last updated:** 2026-08-07 (9th turn, part 4 — visual QA pass after
+owner asked "are you sure all done?", found and fixed real misses.)
+
+## This turn (9th, part 4): visual QA pass — found what the text sweep couldn't
+
+Owner correctly caught that the payment-badge "fix" needed an actual look,
+not just a diff read. Applied that lesson broadly: screenshotted 18
+pages/sections the earlier fabricated-claims sweep had touched. Found:
+a genuine pre-existing duplicate-content bug (two identical "FOMO Banner"
+blocks on every guide page), a second independent copy of already-fixed
+fabricated stats on `chatgpt-plans-bangladesh`, and two more live,
+homepage-reachable fabrication instances (`AIAgentsSection.tsx`,
+`TestimonialsSection.tsx`) the grep-based sweep's patterns never matched.
+Also discovered, as a side note worth recording honestly: the
+`SegmentHeroContent.tsx` fake-testimonial fix from earlier today turned
+out to be for genuinely unreachable dead code (`showSegmentSelector` is
+never set `true` anywhere) — still correctly fixed, just not previously
+live-facing. Full writeup: `BACKLOG.md` #32. Deployed, verified live via
+bundle-content check (zero matches for every removed string) and the
+standard `deploy-live.sh --verify` pass.
 
 ## This turn (9th, part 3): repo-wide fabricated-claims sweep — BACKLOG #28 done
 

@@ -20,6 +20,7 @@ Ordered by value / effort. Anything blocked names its blocker from `BLOCKERS.md`
 | 17 | Delivery-time claims disagree across surfaces: prerendered homepage body and About page say "5–30 minutes"; `FAQPage.tsx`'s English and Bangla FAQs say "5–15 minutes... max 2-3 hours off-hours" (internally consistent with each other, just not with the other two surfaces) | — (owner: which is actually true) |
 | 18 | `midjourney-bangladesh`'s "Pro Shared" tier is priced ৳4,788 — more than BOTH the "Personal" (৳2,495) and "Pro" personal (৳3,990) tiers of the same product. A shared/split tier costing more than the equivalent (or a cheaper) personal tier defeats the commercial premise of sharing; either a real pricing error or a legitimate reason not evident from the data (e.g. Pro Shared includes something Pro Personal doesn't). Caught by the new `validate-catalog.mjs` shared-vs-personal check (2026-08-07) — see `docs/agent/OWNER-ACTIONS.md`-style evidence in the commit | — (owner: confirm the price or fix it) |
 | 31 | The #28 sweep (2026-08-07, full repo) covered `src/pages` and `src/sections` but not `data/products.json`'s own prose fields (descriptions, useCases, whyBuyFromAIPS) at the same depth — those get lighter automated coverage from `validate-catalog.mjs`'s keyword scan, not a full read. Also not covered: Bangla-language prose (only English-language superlatives/stats were checked; Bangla equivalents may carry the same issues untranslated-and-unaudited) | — (real audit time, not blocked) |
+| 32 | A visual QA pass (2026-08-07, prompted by an owner "are you sure all done?" challenge) screenshotted 18 pages/sections the #28 sweep had touched and found real misses a pure text/grep sweep can't catch: a pre-existing duplicate "FOMO Banner" bug live on every guide page, a second independent copy of the exact fabricated stats already fixed once on `chatgpt-plans-bangladesh` (a different block, same numbers), and two more live, homepage-reachable fabrication instances (`AIAgentsSection.tsx`'s stats block, `TestimonialsSection.tsx`'s fake customers) that the original grep-based sweep never surfaced because their structure didn't match the search patterns used. All fixed 2026-08-07 (see Done). The pages NOT re-screenshotted after that first sweep (most of BrandPage.tsx's ~40 per-brand sections beyond the ones checked, most blog posts beyond the 4 sampled) haven't had the same visual-pass scrutiny — the text-level fix could theoretically have the same class of miss elsewhere | — (real time: screenshot + read every remaining page systematically) |
 | 21 | Real bKash/Nagad/Rocket logo asset files still don't exist in the repo — interim fallback (generic icon + brand color, no logo mark) applied 2026-08-07, revised same day after the owner flagged the first version (a bare colored bar) as looking broken/unfinished, not just "not a real logo." See `docs/compliance/payment-methods.md` / `docs/brand/payment-assets.md` | — (owner: supply real asset files whenever convenient; not urgent, current version reads as a finished design) |
 | 22 | Playwright **full click-through user journeys** — the mount-crash-detection scope (B9) is done as of 2026-08-07 (`tests/e2e/smoke.spec.ts`, 8 routes, wired into CI + pre-push, verified to actually catch the real historical bug). What's left is the bigger ask: two full journeys the master prompt specified — Homepage→Find Your Solution→Audience page→Category→Product→Policy→WhatsApp, and Homepage→AI Video→Higgsfield→Credits→Unlimited→Service opportunities→WhatsApp — clicking through real navigation and asserting each step, not just that each page mounts | — (real scoping + maintenance-burden work; lower urgency now that B9's actual risk is covered) |
 | 23 | Individual re-audit of all 6 audience pages against the master prompt's per-page requirement list (unique intent, ethical limitations, Bangladesh context, FAQ, internal links) — partially covered as a side effect of the testimonial-fabrication sweep (2026-08-07), which touched all 5 guide pages, but that was a narrow pass for one issue class, not the full audit | — (large, ~6 pages × full checklist) |
@@ -145,6 +146,38 @@ current standings, not just removing the phrasing on principle.
   income/ROI-projection blocks presenting invented numbers as computed
   facts. Fixed across 13 files. New item #31 for what this pass didn't
   cover (data/products.json's own prose, Bangla-language content).
+- **Visual QA pass (#32) — done, found real misses a text sweep can't
+  catch.** Prompted directly by the owner asking "are you sure all
+  done?" after flagging the payment-badge visual miss. Took real
+  Playwright screenshots of 18 pages/sections the #28 sweep had touched,
+  instead of trusting that passing typecheck/build/seo-check meant they
+  actually looked right (the same lesson B9 already taught, applied
+  here). Found: (1) a genuine pre-existing bug, not fabrication — two
+  near-identical "FOMO Banner" blocks rendering back-to-back on every
+  single guide page, live since before this session; deduplicated. (2)
+  `BrandPage.tsx` had a SECOND, independent "Cost of NOT Using AI"
+  comparison block carrying the exact same fabricated CGPA/income/
+  job-application numbers the #28 sweep had already fixed in a
+  DIFFERENT block on the same page — missed because it was a separate
+  copy, not the one already caught. (3) `Home.tsx`'s "AI Agent Economy"
+  section: four fabricated homepage stats behind an animated counter,
+  including a duplicate of the exact fake "$34K/mo profit" citation
+  already removed elsewhere — live and reachable by every visitor. (4)
+  `Home.tsx`'s `TestimonialsSection.tsx`: a third fake-testimonial
+  component the #28 sweep's grep patterns never matched — fake named
+  customers, a fabricated outcome claim, and two directly contradictory
+  disclaimers on the same section. (5) Also found, as a side effect: the
+  `SegmentHeroContent.tsx` fake testimonials fixed earlier today were
+  never actually reachable by a real visitor — `showSegmentSelector` is
+  never set to `true` anywhere in the codebase, so that modal never
+  opens. Still correctly fixed (dead code can become live again), but
+  recorded honestly rather than overstating its live impact. (6) An
+  `AIAgentsSection.tsx` "44% more" stat and a `BrandShowcaseSection.tsx`
+  "world's leading" superlative, both live on the homepage. Verified
+  every fix by screenshotting the local build before deploy and the live
+  bundle after, plus confirming zero matches for the removed strings in
+  the deployed JS. New item #32 (self-referential — this pass didn't
+  cover everything either) for the pages not yet re-screenshotted.
 
 **Also done, 2026-08-07 (third continuation session, "full permission" turn):**
 

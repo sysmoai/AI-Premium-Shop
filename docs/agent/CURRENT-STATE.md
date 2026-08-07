@@ -1,8 +1,33 @@
 # Current state
 
-**Last updated:** 2026-08-07 (9th turn, part 5 — full fabrication sweep
-finished: all of BrandPage.tsx re-read, all of data/products.json's
-prose fields read including Bangla, real data bug found and fixed.)
+**Last updated:** 2026-08-07 (new session — comparison-page enrichment +
+concierge analytics/E2E, deployed. Full narrative in `WORKLOG.md`'s top
+entry.)
+
+## This turn (new session): comparison pages fixed+expanded, concierge instrumented+tested
+
+- Fixed the 4 comparison pages' static HTML (was a 3-line stub, 16-53x
+  smaller than what React renders) with a dependency-free JS-literal
+  parser reading `ComparisonPage.tsx`'s `COMPARISONS` config directly —
+  no hand-duplicated content to drift.
+- Added 3 new comparison pages from a real competitor-search gap check:
+  `/chatgpt-vs-perplexity`, `/claude-vs-gemini`, `/canva-vs-adobe-express`.
+  Skipped `chatgpt-vs-deepseek` — DeepSeek is only a dev API setup
+  service in the catalog, not a consumer subscription; forcing the
+  template would misrepresent both products.
+- Concierge (`api/concierge.js` / `ConciergeWidget.tsx`) had zero
+  analytics events and zero E2E coverage despite being otherwise mature
+  (see eighth-turn entry below). Added 5 gtag events (no PII/message
+  content) and `tests/e2e/concierge.spec.ts` (dialog a11y, focus
+  management, graceful degradation on backend failure — costs zero
+  NVIDIA/Anthropic quota since `vite preview` serves no `/api/*` routes).
+- Nearly duplicated/clobbered 40 commits of prior work from a stale local
+  checkout before catching it via `git fetch`. See `WORKLOG.md` for the
+  full story and the generalized lesson.
+- `docs/seo/GAP-CHECKLIST.md` exists locally, untracked — a prior
+  session's real P0-P6 audit. Worth `git add`ing or reconciling into
+  `BACKLOG.md` next session rather than leaving it invisible to `git
+  status` forever.
 
 ## This turn (9th, part 5): sweep finished, found a real price-contradiction bug
 

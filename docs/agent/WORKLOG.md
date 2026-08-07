@@ -1,5 +1,76 @@
 # Worklog
 
+## Comparison-page enrichment/expansion + concierge analytics/E2E, deployed — 2026-08-07 (Sonnet 5, new session)
+
+Started from a stale local checkout (`1e147bb`, 40 commits behind
+`origin/main`) and nearly duplicated/clobbered the whole
+`seo/homepage-product-authority` merge before catching it via `git fetch` +
+`git log HEAD..origin/main` — discarded the stale edits and fast-forwarded
+instead of pushing. Recorded so the lesson generalizes: **check
+`git fetch && git log HEAD..origin/main` before trusting a local checkout's
+"current state" docs, every session, not just when something looks off.**
+
+Two independently-scoped, real pieces of work followed, each fully gated
+(build, seo:check, validate-catalog, validate-truth, typecheck, lint, all
+Playwright, via the actual `.husky/pre-push` hook) before pushing:
+
+**1. Comparison pages.** `/chatgpt-vs-claude`, `/chatgpt-vs-gemini`,
+`/copilot-vs-cursor`, `/midjourney-vs-ideogram` were still a 3-line stub in
+static HTML (198-229 chars) despite `ComparisonPage.tsx`'s `COMPARISONS`
+config carrying a full `aioSnippet`, feature table, verdict, and
+who-should-buy table — 16-53x smaller than what React actually renders,
+per `docs/seo/GAP-CHECKLIST.md` P0/P1 (this doc is still untracked/local
+only, session's own scratch file — worth `git add`ing or deleting).
+Fixed with a hand-written, dependency-free JS-literal parser reading
+`COMPARISONS` straight out of the `.tsx` source (a `PostToolUse` security
+hook correctly flagged an earlier `new Function()` draft — replaced it
+rather than justifying it away, since a same-repo trust argument doesn't
+need `eval` semantics when a ~70-line recursive-descent parser does the
+same job safely). Then added 3 new comparisons filling real gaps a live
+competitor search confirmed (`chatgpt-vs-perplexity`, `claude-vs-gemini`,
+`canva-vs-adobe-express`) — explicitly skipped `chatgpt-vs-deepseek`
+because DeepSeek is only catalogued as a developer API setup service, not
+a consumer chat subscription, and forcing it into the same template would
+misrepresent both products. All prices trace to `data/products.json`;
+Adobe Express (no fixed catalog price) says "Confirmed on WhatsApp"
+rather than inventing a number, and its feature claims are sourced from
+`helpx.adobe.com`, not assumed.
+
+**2. Concierge (chatbot) analytics + first E2E coverage.** Recon-first
+again: `api/concierge.js` and `ConciergeWidget.tsx` already implement
+nearly the entire P0 safety/compliance surface an owner master-prompt
+assumed needed building (see this file's eighth-turn entry, and
+`BACKLOG.md` #24/#30). Two real, unduplicated gaps: zero analytics events
+fired from the widget despite the `window.gtag` convention already
+existing site-wide (`WhatsAppLink.tsx`) — added `chatbot_open`,
+`chatbot_message_sent` (turn count only), `chatbot_error` (category only),
+`chatbot_whatsapp_click` (per CTA location), `chatbot_feedback` (thumbs
+value), no message content/PII ever sent. And zero E2E coverage of the
+widget — `smoke.spec.ts` (B9) never opens it. Added
+`tests/e2e/concierge.spec.ts`: dialog a11y, focus management, the PIN/OTP
+notice, and graceful degradation on a failed backend call — deliberately
+not exercising real model replies, since `vite preview` (what Playwright
+runs against locally) serves no `/api/*` functions, so a POST 404s, which
+is exactly the "backend unreachable" path being tested, at zero NVIDIA/
+Anthropic quota cost. The test itself caught two real bugs before landing:
+the launcher's accessible name changes on open (a name-based Playwright
+locator broke on click — fixed with an `aria-controls`-based locator), and
+Chrome's own `Failed to load resource: 404` console line for the
+intentional failed request needed excluding from the zero-errors
+assertion (browser network logging, not an app bug).
+
+Also: the pre-push hook's `typecheck:libs` step failed on unrelated
+`lib/db`/`lib/api-client-react` packages with zero `node_modules` — turned
+out to be an artifact of the documented `pnpm install --filter
+./artifacts/aips-landing` workaround only hydrating that one workspace.
+Full unscoped `pnpm install --no-frozen-lockfile` at the repo root fixed
+it for real (878 packages). `.gitignore` was also missing `test-results/`
+and `playwright-report/`, left over since `smoke.spec.ts` was added —
+fixed alongside.
+
+Deployed and verified live: all 3 new comparison routes 200, the analytics
+event names byte-confirmed present in the shipped JS bundle.
+
 ## Chatbot audit + system-prompt fix, deployed — 2026-08-07 (Sonnet 5, same day, eighth turn)
 
 Owner requested a chatbot-enhancement master prompt assuming the concierge

@@ -23,6 +23,21 @@ const FAQS = [
     q: "Which AI tools are available at AI Premium Shop?",
     a: `ChatGPT Plus, Claude Pro, Midjourney, Gemini Advanced, Perplexity Pro, GitHub Copilot Pro, Cursor Pro, ElevenLabs, Grammarly Premium, Canva Pro, Notion Business, ChatGPT Business, ChatGPT Pro, CapCut Pro, Freepik, Kling AI, Synthesia, Windsurf, and more. Total ${TOTAL_PRODUCTS}+ AI subscriptions across 9 categories.`,
   },
+  // === Why a reseller at all? (added 2026-08-07, grounded in cited market
+  // research — docs/agent/RESEARCH-CACHE.md — general facts about
+  // Bangladesh's payment landscape, not AIPS-specific claims) ===
+  {
+    q: "Why can't I just buy ChatGPT Plus or Claude Pro directly?",
+    a: "You can try — but most Bangladeshi banks don't issue cards AI companies fully accept for recurring USD billing, and PayPal accounts can't currently be opened or funded from Bangladesh. Even a working international card can get declined if the AI company's payment processor doesn't cover Bangladesh the way it covers other markets. AIPS exists to solve that: you pay locally in BDT via bKash, Nagad, or Rocket, and we handle the USD side.",
+  },
+  {
+    q: "Is a shared AI subscription safe? Could my access get suspended?",
+    a: "Shared access is less private than a personal account, and — like any resold or shared subscription, from any provider — there's a small risk the AI company could restrict access if their terms are enforced strictly. That's true of shared subscriptions generally, not something specific to AIPS. If that happens within your coverage window, our replacement policy applies (see \"What is the 30-day warranty?\" above). If you want zero shared-access risk, choose a Personal account instead: your own login, full privacy, nobody else on the plan.",
+  },
+  {
+    q: "Is AI Premium Shop directly affiliated with OpenAI, Anthropic, or other AI companies?",
+    a: "No. AIPS is an independent reseller that helps customers access these subscriptions locally — we don't claim any direct affiliation with the AI companies themselves. If that distinction matters for your use case (for example, an enterprise procurement requirement), please ask us on WhatsApp before ordering.",
+  },
   // === Pricing and Payment (from Notion SEO FAQ) ===
   {
     q: "What is the cheapest AI subscription in Bangladesh?",

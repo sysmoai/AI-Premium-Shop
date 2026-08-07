@@ -148,6 +148,9 @@ function Router() {
       <Route path="/chatgpt-vs-claude">{() => <ComparisonPage compKey="chatgpt-vs-claude" />}</Route>
       <Route path="/chatgpt-vs-claude-bangladesh">{() => <ComparisonPage compKey="chatgpt-vs-claude" />}</Route>
       <Route path="/chatgpt-vs-gemini">{() => <ComparisonPage compKey="chatgpt-vs-gemini" />}</Route>
+      <Route path="/chatgpt-vs-perplexity">{() => <ComparisonPage compKey="chatgpt-vs-perplexity" />}</Route>
+      <Route path="/claude-vs-gemini">{() => <ComparisonPage compKey="claude-vs-gemini" />}</Route>
+      <Route path="/canva-vs-adobe-express">{() => <ComparisonPage compKey="canva-vs-adobe-express" />}</Route>
       <Route path="/copilot-vs-cursor">{() => <ComparisonPage compKey="copilot-vs-cursor" />}</Route>
       <Route path="/midjourney-vs-ideogram">{() => <ComparisonPage compKey="midjourney-vs-ideogram" />}</Route>
       <Route path="/chatgpt-plans-comparison-bangladesh">{() => <BrandPage brandSlug="chatgpt-plans-bangladesh" />}</Route>

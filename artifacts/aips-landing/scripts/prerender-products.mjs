@@ -726,6 +726,9 @@ const COMP_ROUTES = [
   { route: "/chatgpt-vs-claude", key: "chatgpt-vs-claude" },
   { route: "/chatgpt-vs-claude-bangladesh", key: "chatgpt-vs-claude" },
   { route: "/chatgpt-vs-gemini", key: "chatgpt-vs-gemini" },
+  { route: "/chatgpt-vs-perplexity", key: "chatgpt-vs-perplexity" },
+  { route: "/claude-vs-gemini", key: "claude-vs-gemini" },
+  { route: "/canva-vs-adobe-express", key: "canva-vs-adobe-express" },
   { route: "/copilot-vs-cursor", key: "copilot-vs-cursor" },
   { route: "/midjourney-vs-ideogram", key: "midjourney-vs-ideogram" },
 ];

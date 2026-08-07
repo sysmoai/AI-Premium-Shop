@@ -1,6 +1,33 @@
 # Next task — start here
 
-**Written:** 2026-08-07, end of the 6th turn of this same-day session.
+**Written:** 2026-08-07, end of the 10th turn.
+
+## Immediate: review/merge the open PR
+
+`agent/homepage-solution-section-fixes` — 2 fabricated-claim fixes in the
+Find Your Solution SVG illustrations (a fake "55% faster" speed claim, a
+fake "+12,000 subscribers" count, a fake "All 24 tests passing" result — all
+inside inline SVG `<text>`, which is why no earlier prose-based sweep caught
+them) + reduced-motion support for that section (was completely absent).
+Verified: typecheck/build/seo:check/validate:all/Playwright smoke all clean,
+plus a runtime DOM assertion (34 SMIL animations → 0 under
+`prefers-reduced-motion: reduce`) and before/after screenshots at
+desktop+mobile. Full detail in `CURRENT-STATE.md`'s 10th-turn entry.
+
+## The "Find Your Solution 2.0" master prompt — large, not started beyond the above
+
+A large new owner instruction (38 sections, not saved as a file anywhere —
+paraphrase it back if picking this up cold) asks for: a 3-state
+problem→AI→outcome narrative rebuild of each illustration, proportion/
+typography rework, mobile carousel redesign, a full homepage
+section-by-section audit, structured-data audit, full Playwright
+click-through journeys, and actual production deployment. Each is real
+design/browser-iteration work, not a quick pass — recommend scoping one
+piece at a time (illustration narrative rebuild is probably the highest-value
+next slice, but it needs real visual iteration in a browser, not blind SVG
+edits). The pricing-page metadata bug the prompt describes as P0 turned out
+to already be fixed (checked this turn) — don't re-fix it, just add a
+regression test if picking up SEO work.
 
 ## Do this first (2 minutes)
 

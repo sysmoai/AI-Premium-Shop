@@ -1,5 +1,5 @@
 
-export function StudentStorySVG({ small = false }: { small?: boolean }) {
+export function StudentStorySVG({ small = false, reduced = false }: { small?: boolean; reduced?: boolean }) {
   const w = small ? 80 : 200;
   const h = small ? 60 : 150;
   return (
@@ -56,7 +56,7 @@ export function StudentStorySVG({ small = false }: { small?: boolean }) {
 
       {/* A+ paper — floating */}
       <g>
-        <animateTransform attributeName="transform" type="translate" values="0,0;0,-5;0,0" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" />
+        {!reduced && <animateTransform attributeName="transform" type="translate" values="0,0;0,-5;0,0" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" />}
         <rect x="112" y="46" width="26" height="32" rx="3" fill="white" fillOpacity="0.95" transform="rotate(-10,125,62)" />
         <rect x="114" y="48" width="22" height="2" rx="1" fill="#e5e7eb" transform="rotate(-10,125,62)" />
         <rect x="114" y="52" width="16" height="1.5" rx="0.75" fill="#e5e7eb" transform="rotate(-10,125,62)" />
@@ -78,24 +78,24 @@ export function StudentStorySVG({ small = false }: { small?: boolean }) {
 
       {/* Sparkle 1 */}
       <g>
-        <animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" repeatCount="indefinite" />
+        {!reduced && <animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" repeatCount="indefinite" />}
         <path d="M148,55 L150,50 L152,55 L157,57 L152,59 L150,64 L148,59 L143,57 Z" fill="#f4b942" />
       </g>
       {/* Sparkle 2 */}
       <g>
-        <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.7s" repeatCount="indefinite" />
+        {!reduced && <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.7s" repeatCount="indefinite" />}
         <path d="M96,60 L97.5,56 L99,60 L103,61.5 L99,63 L97.5,67 L96,63 L92,61.5 Z" fill="#f4b942" fillOpacity="0.7" />
       </g>
       {/* Sparkle 3 */}
       <g>
-        <animate attributeName="opacity" values="0.4;0.9;0.4" dur="1.9s" repeatCount="indefinite" />
+        {!reduced && <animate attributeName="opacity" values="0.4;0.9;0.4" dur="1.9s" repeatCount="indefinite" />}
         <path d="M133,78 L134,75 L135,78 L138,79 L135,80 L134,83 L133,80 L130,79 Z" fill="#f4b942" fillOpacity="0.6" />
       </g>
     </svg>
   );
 }
 
-export function FreelancerStorySVG({ small = false }: { small?: boolean }) {
+export function FreelancerStorySVG({ small = false, reduced = false }: { small?: boolean; reduced?: boolean }) {
   const w = small ? 80 : 200;
   const h = small ? 60 : 150;
   return (
@@ -130,7 +130,7 @@ export function FreelancerStorySVG({ small = false }: { small?: boolean }) {
       <rect x="106" y="101" width="35" height="7" rx="3.5" fill="#10a37f" fillOpacity="0.5" />
       {/* Pulsing dot */}
       <circle cx="164" cy="103" r="3" fill="#10a37f">
-        <animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite" />
+        {!reduced && <animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite" />}
       </circle>
       {/* Monitor stand */}
       <rect x="132" y="117" width="8" height="4" rx="1" fill="#065f46" />
@@ -154,33 +154,33 @@ export function FreelancerStorySVG({ small = false }: { small?: boolean }) {
       <rect x="82" y="106" width="16" height="4" rx="2" fill="#92400e" />
       {/* Steam */}
       <path d="M87 104 Q88 100 87 97" stroke="#6b7280" strokeWidth="1.5" strokeLinecap="round" fill="none">
-        <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.5s" repeatCount="indefinite" />
+        {!reduced && <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.5s" repeatCount="indefinite" />}
       </path>
       <path d="M91 104 Q92 100 91 97" stroke="#6b7280" strokeWidth="1.5" strokeLinecap="round" fill="none">
-        <animate attributeName="opacity" values="0.4;0.9;0.4" dur="1.8s" repeatCount="indefinite" />
+        {!reduced && <animate attributeName="opacity" values="0.4;0.9;0.4" dur="1.8s" repeatCount="indefinite" />}
       </path>
 
       {/* Dollar signs floating up */}
       <g>
-        <animateTransform attributeName="transform" type="translate" values="0,0;0,-20;0,-20" dur="3s" repeatCount="indefinite" begin="0s" />
-        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="0s" />
+        {!reduced && <animateTransform attributeName="transform" type="translate" values="0,0;0,-20;0,-20" dur="3s" repeatCount="indefinite" begin="0s" />}
+        {!reduced && <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="0s" />}
         <text x="172" y="105" fontSize="14" fill="#10a37f" fontWeight="bold">$</text>
       </g>
       <g>
-        <animateTransform attributeName="transform" type="translate" values="0,0;0,-18;0,-18" dur="3s" repeatCount="indefinite" begin="1s" />
-        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="1s" />
+        {!reduced && <animateTransform attributeName="transform" type="translate" values="0,0;0,-18;0,-18" dur="3s" repeatCount="indefinite" begin="1s" />}
+        {!reduced && <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="1s" />}
         <text x="182" y="100" fontSize="11" fill="#10a37f" fontWeight="bold">$</text>
       </g>
       <g>
-        <animateTransform attributeName="transform" type="translate" values="0,0;0,-16;0,-16" dur="3s" repeatCount="indefinite" begin="2s" />
-        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="2s" />
+        {!reduced && <animateTransform attributeName="transform" type="translate" values="0,0;0,-16;0,-16" dur="3s" repeatCount="indefinite" begin="2s" />}
+        {!reduced && <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="2s" />}
         <text x="176" y="95" fontSize="12" fill="#f4b942" fontWeight="bold">$</text>
       </g>
     </svg>
   );
 }
 
-export function BusinessStorySVG({ small = false }: { small?: boolean }) {
+export function BusinessStorySVG({ small = false, reduced = false }: { small?: boolean; reduced?: boolean }) {
   const w = small ? 80 : 200;
   const h = small ? 60 : 150;
   return (
@@ -198,7 +198,7 @@ export function BusinessStorySVG({ small = false }: { small?: boolean }) {
       <line x1="100" y1="96" x2="188" y2="96" stroke="#f59e0b" strokeWidth="0.5" strokeOpacity="0.15" />
       {/* Chart line — animated draw */}
       <polyline points="108,110 124,98 140,84 156,68 172,56 188,44" stroke="#10a37f" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
-        <animate attributeName="stroke-dasharray" values="0 200;200 0" dur="2s" repeatCount="indefinite" />
+        {!reduced && <animate attributeName="stroke-dasharray" values="0 200;200 0" dur="2s" repeatCount="indefinite" />}
       </polyline>
       {/* Chart area fill */}
       <polyline points="108,110 124,98 140,84 156,68 172,56 188,44 188,116 108,116" fill="#10a37f" fillOpacity="0.08" />
@@ -232,13 +232,13 @@ export function BusinessStorySVG({ small = false }: { small?: boolean }) {
       <path d="M16 52 Q16 48 20 46 Q24 44 26 48 Q28 52 25 54 L26 58 L22 56 Q18 56 16 52 Z" fill="white" fillOpacity="0.9" />
       {/* Message bubbles appearing */}
       <rect x="30" y="44" width="22" height="5" rx="2.5" fill="#25d366" fillOpacity="0.7">
-        <animate attributeName="opacity" values="0;1;1" dur="2s" repeatCount="indefinite" begin="0s" />
+        {!reduced && <animate attributeName="opacity" values="0;1;1" dur="2s" repeatCount="indefinite" begin="0s" />}
       </rect>
       <rect x="30" y="51" width="16" height="5" rx="2.5" fill="#25d366" fillOpacity="0.6">
-        <animate attributeName="opacity" values="0;0;1;1" dur="2s" repeatCount="indefinite" begin="0.5s" />
+        {!reduced && <animate attributeName="opacity" values="0;0;1;1" dur="2s" repeatCount="indefinite" begin="0.5s" />}
       </rect>
       <rect x="30" y="58" width="24" height="5" rx="2.5" fill="#25d366" fillOpacity="0.5">
-        <animate attributeName="opacity" values="0;0;0;1;1" dur="2s" repeatCount="indefinite" begin="1s" />
+        {!reduced && <animate attributeName="opacity" values="0;0;0;1;1" dur="2s" repeatCount="indefinite" begin="1s" />}
       </rect>
       {/* Robot auto-reply icon */}
       <circle cx="52" cy="73" r="8" fill="#8b5cf6" />
@@ -250,7 +250,7 @@ export function BusinessStorySVG({ small = false }: { small?: boolean }) {
   );
 }
 
-export function JobSeekerStorySVG({ small = false }: { small?: boolean }) {
+export function JobSeekerStorySVG({ small = false, reduced = false }: { small?: boolean; reduced?: boolean }) {
   const w = small ? 80 : 200;
   const h = small ? 60 : 150;
   return (
@@ -316,14 +316,14 @@ export function JobSeekerStorySVG({ small = false }: { small?: boolean }) {
 
       {/* Center arrow — pulsing */}
       <g>
-        <animateTransform attributeName="transform" type="scale" values="1,1;1.15,1;1,1" additive="sum" dur="2s" repeatCount="indefinite" />
+        {!reduced && <animateTransform attributeName="transform" type="scale" values="1,1;1.15,1;1,1" additive="sum" dur="2s" repeatCount="indefinite" />}
         <polygon points="88,80 112,74 112,78 120,80 112,82 112,86" fill="#f4b942" />
       </g>
     </svg>
   );
 }
 
-export function DeveloperStorySVG({ small = false }: { small?: boolean }) {
+export function DeveloperStorySVG({ small = false, reduced = false }: { small?: boolean; reduced?: boolean }) {
   const w = small ? 80 : 200;
   const h = small ? 60 : 150;
   return (
@@ -343,19 +343,19 @@ export function DeveloperStorySVG({ small = false }: { small?: boolean }) {
       <circle cx="34" cy="38" r="3" fill="#10b981" />
       {/* Code lines — appearing one by one */}
       <rect x="14" y="50" width="70" height="3" rx="1.5" fill="#06b6d4" fillOpacity="0.8">
-        <animate attributeName="opacity" values="0;1;1;1" dur="3s" repeatCount="indefinite" begin="0s" />
+        {!reduced && <animate attributeName="opacity" values="0;1;1;1" dur="3s" repeatCount="indefinite" begin="0s" />}
       </rect>
       <rect x="14" y="57" width="50" height="3" rx="1.5" fill="#10b981" fillOpacity="0.7">
-        <animate attributeName="opacity" values="0;0;1;1" dur="3s" repeatCount="indefinite" begin="0.3s" />
+        {!reduced && <animate attributeName="opacity" values="0;0;1;1" dur="3s" repeatCount="indefinite" begin="0.3s" />}
       </rect>
       <rect x="14" y="64" width="84" height="3" rx="1.5" fill="#a78bfa" fillOpacity="0.6">
-        <animate attributeName="opacity" values="0;0;0;1" dur="3s" repeatCount="indefinite" begin="0.6s" />
+        {!reduced && <animate attributeName="opacity" values="0;0;0;1" dur="3s" repeatCount="indefinite" begin="0.6s" />}
       </rect>
       <rect x="14" y="71" width="60" height="3" rx="1.5" fill="#10b981" fillOpacity="0.7">
-        <animate attributeName="opacity" values="0;0;0;0;1" dur="3s" repeatCount="indefinite" begin="0.9s" />
+        {!reduced && <animate attributeName="opacity" values="0;0;0;0;1" dur="3s" repeatCount="indefinite" begin="0.9s" />}
       </rect>
       <rect x="14" y="78" width="40" height="3" rx="1.5" fill="#06b6d4" fillOpacity="0.5">
-        <animate attributeName="opacity" values="0;0;0;0;0;1" dur="3s" repeatCount="indefinite" begin="1.2s" />
+        {!reduced && <animate attributeName="opacity" values="0;0;0;0;0;1" dur="3s" repeatCount="indefinite" begin="1.2s" />}
       </rect>
       {/* Line numbers */}
       <text x="10" y="53" fontSize="5" fill="#374151">1</text>
@@ -366,8 +366,8 @@ export function DeveloperStorySVG({ small = false }: { small?: boolean }) {
       {/* Terminal below editor */}
       <rect x="8" y="98" width="115" height="18" rx="0" fill="#000" />
       <rect x="8" y="114" width="115" height="2" rx="0" fill="#000" />
-      <text x="12" y="108" fontSize="6" fill="#10b981">✓ All 24 tests passing</text>
-      <text x="12" y="115" fontSize="5" fill="#4b5563">$ npm test — done in 1.2s</text>
+      <text x="12" y="108" fontSize="6" fill="#10b981">✓ Tests passing</text>
+      <text x="12" y="115" fontSize="5" fill="#4b5563">$ npm test</text>
 
       {/* Developer figure */}
       <circle cx="160" cy="76" r="14" fill="#d4a574" />
@@ -394,32 +394,32 @@ export function DeveloperStorySVG({ small = false }: { small?: boolean }) {
       <line x1="153" y1="53" x2="157" y2="53" stroke="#7f1d1d" strokeWidth="1.5" />
       {/* Big X over bug */}
       <line x1="141" y1="45" x2="155" y2="59" stroke="#ef4444" strokeWidth="3" strokeLinecap="round">
-        <animate attributeName="stroke-dasharray" values="0 20;20 0" dur="0.5s" repeatCount="1" fill="freeze" />
+        {!reduced && <animate attributeName="stroke-dasharray" values="0 20;20 0" dur="0.5s" repeatCount="1" fill="freeze" />}
       </line>
       <line x1="155" y1="45" x2="141" y2="59" stroke="#ef4444" strokeWidth="3" strokeLinecap="round">
-        <animate attributeName="stroke-dasharray" values="0 20;20 0" dur="0.5s" begin="0.3s" repeatCount="1" fill="freeze" />
+        {!reduced && <animate attributeName="stroke-dasharray" values="0 20;20 0" dur="0.5s" begin="0.3s" repeatCount="1" fill="freeze" />}
       </line>
 
       {/* Rocket */}
       <g>
-        <animateTransform attributeName="transform" type="translate" values="0,0;0,-8;0,0" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" />
+        {!reduced && <animateTransform attributeName="transform" type="translate" values="0,0;0,-8;0,0" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" />}
         <polygon points="178,108 184,88 190,108" fill="#06b6d4" />
         <ellipse cx="184" cy="86" rx="6" ry="8" fill="#06b6d4" />
         <circle cx="184" cy="90" r="3" fill="#0a0e27" />
         <path d="M178 108 Q184 114 190 108" fill="#ef4444" fillOpacity="0.7" />
         {/* Rocket exhaust */}
         <ellipse cx="184" cy="114" rx="4" ry="6" fill="#f59e0b" fillOpacity="0.5">
-          <animate attributeName="ry" values="4;8;4" dur="0.5s" repeatCount="indefinite" />
+          {!reduced && <animate attributeName="ry" values="4;8;4" dur="0.5s" repeatCount="indefinite" />}
         </ellipse>
-        {/* 55% label */}
-        <text x="174" y="84" fontSize="9" fill="#f4b942" fontWeight="bold">55%</text>
-        <text x="172" y="93" fontSize="5" fill="#f4b942">faster</text>
+        {/* Shipped label — no speed claim; the rocket carries the "improved workflow"
+            beat on its own without asserting a number nobody has measured */}
+        <text x="171" y="90" fontSize="7" fill="#f4b942" fontWeight="bold">Shipped</text>
       </g>
     </svg>
   );
 }
 
-export function CreatorStorySVG({ small = false }: { small?: boolean }) {
+export function CreatorStorySVG({ small = false, reduced = false }: { small?: boolean; reduced?: boolean }) {
   const w = small ? 80 : 200;
   const h = small ? 60 : 150;
   return (
@@ -440,7 +440,7 @@ export function CreatorStorySVG({ small = false }: { small?: boolean }) {
       {/* Record button */}
       <circle cx="63" cy="53" r="4" fill="#ec4899" />
       <circle cx="63" cy="53" r="2.5" fill="#f9a8d4">
-        <animate attributeName="opacity" values="1;0.4;1" dur="1s" repeatCount="indefinite" />
+        {!reduced && <animate attributeName="opacity" values="1;0.4;1" dur="1s" repeatCount="indefinite" />}
       </circle>
       {/* Viewfinder */}
       <rect x="67" y="48" width="2" height="8" rx="1" fill="#374151" />
@@ -473,24 +473,24 @@ export function CreatorStorySVG({ small = false }: { small?: boolean }) {
 
       {/* Music notes floating */}
       <g>
-        <animateTransform attributeName="transform" type="translate" values="0,0;-5,-15;-5,-15" dur="3s" repeatCount="indefinite" begin="0s" />
-        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="0s" />
+        {!reduced && <animateTransform attributeName="transform" type="translate" values="0,0;-5,-15;-5,-15" dur="3s" repeatCount="indefinite" begin="0s" />}
+        {!reduced && <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="0s" />}
         <text x="86" y="65" fontSize="14" fill="#ec4899">♪</text>
       </g>
       <g>
-        <animateTransform attributeName="transform" type="translate" values="0,0;3,-12;3,-12" dur="3s" repeatCount="indefinite" begin="1s" />
-        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="1s" />
+        {!reduced && <animateTransform attributeName="transform" type="translate" values="0,0;3,-12;3,-12" dur="3s" repeatCount="indefinite" begin="1s" />}
+        {!reduced && <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="1s" />}
         <text x="92" y="75" fontSize="11" fill="#f97316">♫</text>
       </g>
       <g>
-        <animateTransform attributeName="transform" type="translate" values="0,0;-3,-10;-3,-10" dur="3s" repeatCount="indefinite" begin="2s" />
-        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="2s" />
+        {!reduced && <animateTransform attributeName="transform" type="translate" values="0,0;-3,-10;-3,-10" dur="3s" repeatCount="indefinite" begin="2s" />}
+        {!reduced && <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="2s" />}
         <text x="80" y="80" fontSize="9" fill="#ec4899">♪</text>
       </g>
 
       {/* Subscriber count */}
       <rect x="102" y="98" width="84" height="18" rx="4" fill="#0a0e27" />
-      <text x="112" y="108" fontSize="7" fill="#f4b942" fontWeight="bold">+12,000 subscribers</text>
+      <text x="118" y="108" fontSize="7" fill="#f4b942" fontWeight="bold">Ready to publish</text>
       <text x="114" y="115" fontSize="5" fill="#10a37f">AI content strategy ✓</text>
     </svg>
   );

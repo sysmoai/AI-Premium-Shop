@@ -1,8 +1,89 @@
 # Current state
 
-**Last updated:** 2026-08-07 (9th turn, part 5 — full fabrication sweep
-finished: all of BrandPage.tsx re-read, all of data/products.json's
-prose fields read including Bangla, real data bug found and fixed.)
+**Last updated:** 2026-08-07 (10th turn — a large new "Find Your Solution 2.0"
+master prompt arrived asking for a full homepage/animation/SEO rebuild across
+38 sections; scoped this turn to real, verifiable findings in the existing
+component rather than attempting the whole prompt at once.)
+
+## This turn (10th): Find Your Solution — 2 real compliance bugs fixed, reduced-motion gap closed
+
+**Not the full "Find Your Solution 2.0" master prompt.** That prompt (saved
+nowhere yet — it arrived as this turn's owner instruction, not a file) asks
+for a ground-up narrative-animation rebuild (3-state problem→AI→outcome
+story per card), illustration proportion/typography rework, a full homepage
+section-by-section audit, the pricing-page metadata bug repro, structured-data
+audit, and full deployment gates — each individually a multi-session effort
+requiring real browser-based visual iteration this turn didn't have time to
+do responsibly. Per its own section 38 ("don't return another audit before
+touching code"), read `PainPointSection.tsx` and
+`components/illustrations/index.tsx` (the actual current "Find Your Solution"
+implementation) directly instead, and found concrete, scoped, high-confidence
+issues worth fixing now:
+
+**Two more fabricated/compliance-violating claims, same pattern as #28/#32
+(this session's recurring finding: things a text-only grep sweep can't see
+because they're not in prose).** Both live inside inline SVG `<text>`
+elements in the story illustrations, not in any `.json`/`.tsx` prose field,
+so no earlier sweep (which searched prose strings) ever had a chance to catch
+them:
+- Developer card: rocket illustration asserted `"55% faster"` — a fabricated,
+  unsourced speed claim. Removed, replaced with a non-quantified "Shipped"
+  label; the terminal panel's `"✓ All 24 tests passing" / "$ npm test —
+  done in 1.2s"` (fake specific test count + fake timing) simplified to
+  `"✓ Tests passing" / "$ npm test"`.
+- Creator card: `"+12,000 subscribers"` — a fabricated subscriber count with
+  no basis anywhere in the repo. Replaced with `"Ready to publish"`.
+
+**Reduced-motion gap, sitewide but fixed locally in this section.** Grepped
+the codebase's own established pattern
+(`window.matchMedia("(prefers-reduced-motion: reduce)")`, used in
+`AnimatedCounter.tsx`/`useScrollReveal.ts`/`index.css`) — confirmed **zero**
+of it reaches the six story SVGs' native SMIL `<animate>`/`<animateTransform>`
+elements (34 of them), which loop `repeatCount="indefinite"` forever
+regardless of the OS setting, and confirmed **no `MotionConfig
+reducedMotion="user"`** exists anywhere, so Framer Motion's own animations in
+this section (entrance stagger, hover lift) don't respect it either — a real,
+site-wide gap, not unique to this section. Fixed scoped to
+`PainPointSection.tsx` + the 6 SVGs it renders: `useReducedMotion()` from
+framer-motion gates the stagger/entrance/hover motion, and a new `reduced`
+prop threaded into each SVG component conditionally omits every
+`<animate>`/`<animateTransform>` tag (not just pauses them — pausing mid-fade
+via `pauseAnimations()` would freeze several elements at a low-opacity/
+mid-draw frame, which fails the "preserve all information" reduced-motion
+requirement; omitting the tag entirely leaves each element at its verified-
+visible default state instead). Tailwind's built-in `motion-safe:` variant
+gates the CSS hover scale/shadow. **The sitewide gap (no global
+`MotionConfig`) is not fixed** — logged as a new backlog item below.
+
+Verified, not just written: `pnpm typecheck` clean, `pnpm build` clean
+(272/272 sitemap routes), `seo:check`/`validate:all` show the same
+pre-existing warnings only (zero new), the 8-route Playwright smoke suite
+passes with zero console errors, and a Playwright script counted the actual
+rendered `<animate>`/`<animateTransform>` elements in the live DOM: **34
+under normal motion, 0 under `prefers-reduced-motion: reduce`** — not just a
+visual before/after, an actual runtime assertion. Screenshotted desktop
+(1440) and mobile (390) at both motion settings — no regression, all six
+cards intact, illustrations render correctly with the corrected text.
+
+Branch: `agent/homepage-solution-section-fixes` (not `main` — this was an
+unattended background-job turn; policy is to open a PR for owner review
+rather than push straight to `main`, unlike this session's earlier turns
+which committed directly).
+
+**Not done this turn, and why** — the master prompt's other ~35 sections
+need real design/browser-iteration time this turn didn't spend on:
+narrative-animation rebuild (3-state problem→AI→outcome per card),
+illustration proportion rework (55-75% stage occupancy), typography pass,
+mobile carousel/scroll-snap redesign, full homepage section-by-section audit,
+pricing-page metadata bug the master prompt describes (checked this turn —
+already fixed: the built `/pricing` page's meta description correctly reads
+"197 tools from BDT 299..." with real computed values, not the broken "tools
+from BDT ." pattern the prompt describes; no regression test exists for it
+specifically, which would be worth adding), structured-data audit, full Playwright
+click-through journeys (#22, already a known open item), and the actual
+production deployment gates. See `NEXT-TASK.md` for what's genuinely next.
+
+---
 
 ## This turn (9th, part 5): sweep finished, found a real price-contradiction bug
 

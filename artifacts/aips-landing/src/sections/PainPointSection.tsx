@@ -1,4 +1,4 @@
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { MIN_PRICE } from "@/lib/catalogStats";
 import {
   GraduationCap,
@@ -136,18 +136,25 @@ const CARDS = [
   },
 ];
 
-const containerVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.07 } },
-};
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0, 0, 0.2, 1] } },
-};
-
 export function PainPointSection() {
   const [, navigate] = useLocation();
+  // No global MotionConfig(reducedMotion="user") exists in this app yet, so each
+  // section that wants to honour the OS setting checks it itself. This also
+  // gates the six story SVGs' native SMIL animations below, which CSS/Framer
+  // settings can't reach.
+  const reduced = useReducedMotion();
+
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: reduced ? 0 : 0.07 } },
+  };
+
+  const cardVariants: Variants = reduced
+    ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
+    : {
+        hidden: { opacity: 0, y: 28 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0, 0, 0.2, 1] } },
+      };
 
   return (
     <section
@@ -197,9 +204,9 @@ export function PainPointSection() {
             <motion.div
               key={card.id}
               variants={cardVariants}
-              whileHover={{ y: -5, boxShadow: `0 0 32px ${card.color}22` }}
-              transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="group relative rounded-2xl flex flex-col border border-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl overflow-hidden"
+              whileHover={reduced ? undefined : { y: -5, boxShadow: `0 0 32px ${card.color}22` }}
+              transition={reduced ? undefined : { type: "spring", stiffness: 280, damping: 22 }}
+              className="group relative rounded-2xl flex flex-col border border-white/10 motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:scale-[1.02] motion-safe:hover:shadow-xl overflow-hidden"
               style={{ backgroundColor: "#151b3d" }}
               data-testid={`pain-card-${card.id}`}
             >
@@ -208,7 +215,7 @@ export function PainPointSection() {
 
               {/* Illustration strip */}
               <div className="w-full flex items-center justify-center py-3" style={{ backgroundColor: "#0a0e27" }}>
-                <card.SvgComp />
+                <card.SvgComp reduced={!!reduced} />
               </div>
 
               <div className="p-6 flex flex-col flex-1">

@@ -1,8 +1,85 @@
 # Current state
 
-**Last updated:** 2026-08-07 (new session — comparison-page enrichment +
-concierge analytics/E2E, deployed. Full narrative in `WORKLOG.md`'s top
-entry.)
+**Last updated:** 2026-08-07 (parallel session — owner asked for a CEO-level
+pass: multi-agent market/customer/SEO research, plus the `/pricing` static
+extractor and a cherry-picked copy of the pricing render-bug fix from
+PR #6. Not yet merged; see PR note below.)
+
+## This turn (parallel session): market/customer/SEO research (3 parallel agents) + `/pricing` static extractor + carried-over bug fix
+
+**What this was NOT**, to be explicit: the owner's request was framed as
+"make sure all done" for the full "Find Your Solution 2.0" master prompt
+(38 sections — homepage rebuild, full audience-page audits, structured-data
+audit, deployment). That is not something one session can honestly claim
+complete — it needs real design iteration, several owner decisions (B1-B13
+all still open), and production-deployment approval this session doesn't
+have. What follows is real, verified, scoped progress toward it, not a
+claim that it's finished.
+
+**Research (3 parallel background agents, read-only, nothing published
+automatically):** competitor landscape, customer pain-points/trust
+barriers, and SEO search-intent gaps. Full findings with sources:
+`RESEARCH-CACHE.md`'s new "Bangladesh AI-subscription market..." section.
+Highlights: real, cited friction points for why a reseller is needed at all
+(Bangladesh Bank: ~2.9M credit-card holders nationwide; PayPal cannot be
+opened from Bangladesh; OpenAI's ~89-country support vs. Stripe's
+164-country coverage can decline a working card) — general market facts,
+safe to reference in copy, distinct from AIPS-specific claims like the
+already-flagged-unverified "10,000+ customers" (B1). 8 competitor/seller
+models profiled with real trust-signal and red-flag patterns. 6 concrete
+SEO content-gap opportunities, all scoped as additions to *existing* pages
+(FAQ entries, guide subsections) — none need a new route, per this
+project's own "don't create hundreds of SEO pages" rule. Logged as
+`BACKLOG.md` #35-#37 rather than acted on immediately — copy changes,
+especially bilingual ones, deserve their own careful pass, not a rush
+alongside code changes in the same turn.
+
+**`/pricing` static content gap closed (the actual GAP-CHECKLIST.md P0 item
+queued from last turn).** The product-price table React renders was
+entirely absent from static HTML (790 chars static vs. ~13k rendered) —
+the generic prose-enrichment pass can't capture it because it's `.map()`-ed
+from imported JSON, not string literals. Added a dedicated extractor to
+`scripts/prerender-products.mjs` (same technique as the `ComparisonPage.tsx`
+one from earlier the same day): reads `products.json` directly (already
+loaded at the top of the script), mirrors `PricingPage.tsx`'s *default*
+view exactly (no filters, sorted price-ascending — what a real first visit
+or non-JS crawler actually sees), and appends a real `<table>` into the
+existing `<main>`. Runs after the generic enrichment loop on purpose, so
+that loop's own prose append for this route isn't skipped by an early
+800-char threshold trip. Result: 790 → 14,750 static chars, all 118 priced
+products with real names/prices/categories/delivery times, verified via a
+real DOM read (not just a byte-count).
+
+**Carried over from PR #6 (cherry-picked onto this branch, not duplicated
+work):** while building the extractor, needed the exact real field names
+`PricingPage.tsx` uses — which is how the render bug from last turn
+(`deliveryMinutes` vs. the real `deliverySLA`, `officialUSD === null`
+missing `undefined`) was originally found. That fix already lives on PR #6;
+cherry-picked here too (`git cherry-pick`, one docs-only conflict resolved)
+so *this* branch's own live rendering is also correct and the static table
+this turn added doesn't visually contradict what real visitors see once
+both PRs land — no functional overlap, since PR #6 never touches
+`prerender-products.mjs`.
+
+Verified: typecheck clean, build clean (275/275 routes), seo:check (0
+errors — one new pre-existing-severity "unlimited" warning on `/pricing`,
+which is a vendor's own real plan name — "Runway Unlimited" — newly
+surfaced in one more location, not a new claim; the catalog-wide count
+didn't change), validate:all (same 17 warnings as before, zero new),
+13/13 Playwright tests pass. Screenshotted both the real (JS-on) visitor
+view and the no-JS crawler view of `/pricing` — confirmed the fix is
+visible in both, and that the prerendered table stays correctly hidden
+from JS-executing browsers (`#prerender-shell`'s existing
+`html.js #prerender-shell { display: none }` rule, unchanged).
+
+Branch: `agent/pricing-static-extractor`, based on latest `origin/main`
+(separate from PR #5 and PR #6 — this is the third same-day parallel
+branch; no file overlap with either of the other two except the
+already-resolved docs conflict from the cherry-pick).
+
+**Owner-facing summary of what's actually shippable vs. still open** is in
+this turn's chat response, not duplicated here — see it for the honest
+"done / queued / needs your decision" breakdown.
 
 ## This turn (new session): comparison pages fixed+expanded, concierge instrumented+tested
 

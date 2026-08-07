@@ -1,7 +1,30 @@
 # Current state
 
-**Last updated:** 2026-08-07 (9th turn, part 4 — visual QA pass after
-owner asked "are you sure all done?", found and fixed real misses.)
+**Last updated:** 2026-08-07 (9th turn, part 5 — full fabrication sweep
+finished: all of BrandPage.tsx re-read, all of data/products.json's
+prose fields read including Bangla, real data bug found and fixed.)
+
+## This turn (9th, part 5): sweep finished, found a real price-contradiction bug
+
+Owner said "make sure you did all... find all and complete all" —
+delegated full re-reads of `BrandPage.tsx` (2320 lines) and
+`data/products.json` (239 records' prose) to agents instead of assuming
+the earlier sweeps were exhaustive. Real finding: the "Google AI Pro —
+Personal" catalog record had the Shared tier's promo copy copy-pasted
+onto it, asserting three different prices (৳599 / ৳499 / its own real
+2990) in three fields of the same record — fixed to correctly describe
+a full-price dedicated account. Also found a second, independently-
+spread fabricated customer-count claim ("3,000+ since 2024", ~40
+records) and 6 Claude Pro records still quoting the exact stale "৳350"
+price this session's own live-check script asserts should never appear
+anywhere (it wasn't on the homepage, but was live in per-product SEO
+meta descriptions). Plus a dozen more superlative/unverified claims
+across both files, and one more chatbot gap (claimed "no negative
+reviews" as fact). All fixed, all edits to the JSON done via literal
+string replacement (not parse-reserialize) to protect the file's CRLF
+line endings — verified 100% CRLF before and after. Full writeup:
+`BACKLOG.md` #31 done-entry, new #33 for the one remaining known gap
+(Bangla `useCases` prose quality — needs a native speaker).
 
 ## This turn (9th, part 4): visual QA pass — found what the text sweep couldn't
 

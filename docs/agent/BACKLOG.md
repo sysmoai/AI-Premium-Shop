@@ -19,7 +19,7 @@ Ordered by value / effort. Anything blocked names its blocker from `BLOCKERS.md`
 | 15 | Payment methods have no single source of truth — at least 5 independent hardcoded lists found (`PaymentMethodsSection.tsx`, `PaymentBadges.tsx`, `PageFooter.tsx`, `data/brand.json`, `scripts/generate-llms-txt.mjs`), each requiring its own manual edit when a method is added/removed. Binance had to be removed from all 5 separately on 2026-08-07 — see `docs/homepage/executive-audit.md` | — (real refactor: one data source, every component/script reads it) |
 | 17 | Delivery-time claims disagree across surfaces: prerendered homepage body and About page say "5–30 minutes"; `FAQPage.tsx`'s English and Bangla FAQs say "5–15 minutes... max 2-3 hours off-hours" (internally consistent with each other, just not with the other two surfaces) | — (owner: which is actually true) |
 | 18 | `midjourney-bangladesh`'s "Pro Shared" tier is priced ৳4,788 — more than BOTH the "Personal" (৳2,495) and "Pro" personal (৳3,990) tiers of the same product. A shared/split tier costing more than the equivalent (or a cheaper) personal tier defeats the commercial premise of sharing; either a real pricing error or a legitimate reason not evident from the data (e.g. Pro Shared includes something Pro Personal doesn't). Caught by the new `validate-catalog.mjs` shared-vs-personal check (2026-08-07) — see `docs/agent/OWNER-ACTIONS.md`-style evidence in the commit | — (owner: confirm the price or fix it) |
-| 31 | The #28 sweep (2026-08-07, full repo) covered `src/pages` and `src/sections` but not `data/products.json`'s own prose fields (descriptions, useCases, whyBuyFromAIPS) at the same depth — those get lighter automated coverage from `validate-catalog.mjs`'s keyword scan, not a full read. Also not covered: Bangla-language prose (only English-language superlatives/stats were checked; Bangla equivalents may carry the same issues untranslated-and-unaudited) | — (real audit time, not blocked) |
+| 33 | The `data/products.json` sweep (#31, done — see below) covered `description`/`descriptionBN`/`useCases`/`whyBuyFromAIPS` fields with high confidence, but the auditing agent flagged that a meaningful chunk of the Bangla `useCases` text (Suno AI, SuperGrok, Cursor, Notion AI, GitHub Copilot Pro+, v0.dev, Replit, Manus AI) reads as garbled/broken machine-translation Bangla — grammatically wrong enough that the agent's own confidence in parsing it for hidden fabricated claims was lower than for the clean English content. No fabrication was found in it, but nobody has confirmed that with real Bangla fluency, and separately the garbled grammar itself is a quality problem worth fixing regardless of the fabrication question | — (needs a native Bangla speaker, same root gap as B7) |
 | 32 | A visual QA pass (2026-08-07, prompted by an owner "are you sure all done?" challenge) screenshotted 18 pages/sections the #28 sweep had touched and found real misses a pure text/grep sweep can't catch: a pre-existing duplicate "FOMO Banner" bug live on every guide page, a second independent copy of the exact fabricated stats already fixed once on `chatgpt-plans-bangladesh` (a different block, same numbers), and two more live, homepage-reachable fabrication instances (`AIAgentsSection.tsx`'s stats block, `TestimonialsSection.tsx`'s fake customers) that the original grep-based sweep never surfaced because their structure didn't match the search patterns used. All fixed 2026-08-07 (see Done). The pages NOT re-screenshotted after that first sweep (most of BrandPage.tsx's ~40 per-brand sections beyond the ones checked, most blog posts beyond the 4 sampled) haven't had the same visual-pass scrutiny — the text-level fix could theoretically have the same class of miss elsewhere | — (real time: screenshot + read every remaining page systematically) |
 | 21 | Real bKash/Nagad/Rocket logo asset files still don't exist in the repo — interim fallback (generic icon + brand color, no logo mark) applied 2026-08-07, revised same day after the owner flagged the first version (a bare colored bar) as looking broken/unfinished, not just "not a real logo." See `docs/compliance/payment-methods.md` / `docs/brand/payment-assets.md` | — (owner: supply real asset files whenever convenient; not urgent, current version reads as a finished design) |
 | 22 | Playwright **full click-through user journeys** — the mount-crash-detection scope (B9) is done as of 2026-08-07 (`tests/e2e/smoke.spec.ts`, 8 routes, wired into CI + pre-push, verified to actually catch the real historical bug). What's left is the bigger ask: two full journeys the master prompt specified — Homepage→Find Your Solution→Audience page→Category→Product→Policy→WhatsApp, and Homepage→AI Video→Higgsfield→Credits→Unlimited→Service opportunities→WhatsApp — clicking through real navigation and asserting each step, not just that each page mounts | — (real scoping + maintenance-burden work; lower urgency now that B9's actual risk is covered) |
@@ -178,6 +178,36 @@ current standings, not just removing the phrasing on principle.
   bundle after, plus confirming zero matches for the removed strings in
   the deployed JS. New item #32 (self-referential — this pass didn't
   cover everything either) for the pages not yet re-screenshotted.
+- **Fabrication sweep finished (#31) — full re-read of `BrandPage.tsx`
+  (all 2320 lines, all ~40 brand sections) and `data/products.json`
+  (all 239 records' prose fields, including Bangla).** Delegated both
+  reads to agents, fixed everything real that came back myself. Real
+  data bug found, not just tone: the "Google AI Pro — Personal" record
+  had the Shared tier's promotional copy (৳599, "83% Off" badge)
+  copy-pasted onto it, asserting three different prices (599 / 499 /
+  its own real 2990) across three fields in the same record — rewritten
+  to correctly describe a full-price dedicated account. A separate
+  fabricated "3,000+ trusted customers since 2024" claim (distinct from
+  the tracked "10,000+ since 2022") had spread to ~40 records via
+  copy-paste — removed from all 33 occurrences. Also caught, while in
+  the same fields: 6 Claude Pro records still quoted the exact stale
+  "BDT 350/month" price this session's own live-verification script
+  checks is never supposed to appear anywhere — it wasn't on the
+  homepage (where that check looks) but was still live in per-product
+  SEO meta descriptions. Corrected to the real BDT 599. Plus a dozen
+  more superlative/unverified-claim instances (CapCut "#1", Canva "#1"
+  ×6 records EN+BN, Synthesia "world's #1", Midjourney BN "world's
+  best" ×6 records, Kling "leading"/"best" ×3 separate copies including
+  one inside a BrandPage.tsx FAQ carrying the identical sentence to an
+  already-fixed one, Mistral "leading European AI lab", four BrandPage
+  "Why X?" feature-list superlatives, an invented Perplexity time-cost
+  comparison table, two invented Midjourney throughput numbers). Chatbot:
+  10 more live queries, found the bot claiming "we have no negative
+  reviews" as flat fact when asked directly — added a STRICT RULE
+  against unverifiable reputation claims (review counts, years in
+  business). New item #33 for what's still not covered (Bangla
+  `useCases` prose quality, flagged by the auditing agent as too
+  garbled to fully trust its own read of).
 
 **Also done, 2026-08-07 (third continuation session, "full permission" turn):**
 

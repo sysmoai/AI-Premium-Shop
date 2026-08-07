@@ -1,16 +1,23 @@
 import { motion } from "framer-motion";
+import { Smartphone, MessageCircle, Wallet, Landmark } from "lucide-react";
 
-// Text-only labels, not logo marks — see docs/brand/payment-assets.md.
-// These SVGs used to be hand-drawn imitations of the real bKash/Nagad/Rocket
-// marks (a colored rectangle with a single bold letter approximating each
-// brand's actual logo). No official asset file exists in this repo, and
-// obtaining one needs a human downloading from each provider's own brand/
-// merchant kit — an agent session can't legitimately source or approximate
-// one. Per the master prompt's own explicit fallback: "If no authorized
-// production-quality logo file is available: do not invent one, use a
-// text-only payment label temporarily." This card's brand-colored badge is
-// now plain text, not a redrawn mark — swap in a real <img> per
-// docs/brand/payment-assets.md's instructions once one exists.
+// Text-only labels + a generic (non-brand) icon, not logo marks — see
+// docs/brand/payment-assets.md. This used to be hand-drawn imitations of
+// the real bKash/Nagad/Rocket marks (a colored rectangle with a single
+// bold letter approximating each brand's actual logo). No official asset
+// file exists in this repo, and obtaining one needs a human downloading
+// from each provider's own brand/merchant kit — an agent session can't
+// legitimately source or approximate one. Per the master prompt's own
+// explicit fallback: "If no authorized production-quality logo file is
+// available: do not invent one, use a text-only payment label
+// temporarily." A first pass (2026-08-07) replaced the fake letter-mark
+// with just a thin colored bar, which read as a broken/missing element
+// rather than an intentional design — this revision (still 2026-08-07)
+// pairs the brand color with a plain, unrelated-to-any-logo lucide icon
+// (phone / message / wallet / bank — describing the payment TYPE, not
+// imitating the brand's mark) so each card reads as complete. Swap the
+// icon slot for a real <img> per docs/brand/payment-assets.md's
+// instructions once an official asset exists.
 const paymentMethods = [
   {
     name: "bKash",
@@ -18,6 +25,7 @@ const paymentMethods = [
     description: "Mobile money",
     speed: "5-30 min delivery",
     gradient: "from-pink-500 to-pink-600",
+    Icon: Smartphone,
   },
   {
     name: "Nagad",
@@ -25,6 +33,7 @@ const paymentMethods = [
     description: "SMS-based payment",
     speed: "5-30 min delivery",
     gradient: "from-orange-500 to-orange-600",
+    Icon: MessageCircle,
   },
   {
     name: "Rocket",
@@ -32,6 +41,7 @@ const paymentMethods = [
     description: "Digital wallet",
     speed: "5-30 min delivery",
     gradient: "from-purple-500 to-purple-600",
+    Icon: Wallet,
   },
   {
     name: "Bank Transfer",
@@ -39,6 +49,7 @@ const paymentMethods = [
     description: "Direct deposit",
     speed: "Verified within 2 hours",
     gradient: "from-blue-600 to-blue-700",
+    Icon: Landmark,
   },
   // Binance (crypto) removed pending written Bangladesh legal/compliance
   // review of the exact transaction flow — Bangladesh Bank's 2022 circular
@@ -80,11 +91,12 @@ export function PaymentMethodsSection() {
             >
               <div className="bg-gradient-to-b from-slate-900 to-slate-950 rounded-[10px] p-6 text-center space-y-3 border border-slate-800">
                 <div className="flex justify-center">
-                  <span
-                    aria-hidden="true"
-                    className="block w-10 h-1.5 rounded-full"
-                    style={{ backgroundColor: method.badgeColor }}
-                  />
+                  <div
+                    className="w-14 h-14 rounded-xl flex items-center justify-center"
+                    style={{ backgroundColor: method.badgeColor + "1a" }}
+                  >
+                    <method.Icon className="w-7 h-7" style={{ color: method.badgeColor }} />
+                  </div>
                 </div>
                 <h3 className="text-white font-bold text-lg">{method.name}</h3>
                 <p className="text-gray-400 text-sm">{method.description}</p>

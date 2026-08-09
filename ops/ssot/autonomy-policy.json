@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T02:26:00+06:00",
+  "operator": "ChatGPT",
+  "release_model": {
+    "green": [
+      "technical SEO",
+      "accessibility",
+      "performance",
+      "responsive visual media",
+      "non-commercial informational content",
+      "internal linking",
+      "tests and monitoring",
+      "reversible implementation fixes"
+    ],
+    "protected": [
+      "price",
+      "product availability",
+      "access model",
+      "provider authorization",
+      "refund or warranty terms",
+      "payment or delivery facts",
+      "customer counts or social proof",
+      "legal or compliance claims"
+    ],
+    "prohibited": [
+      "collecting passwords or OTPs",
+      "shared-seat or family-splitting delivery without explicit compliant approval",
+      "invented commercial facts",
+      "fabricated testimonials, reviews, statistics, rankings or badges"
+    ]
+  },
+  "deployment_gates": [
+    "read ops/ssot and current production state",
+    "make changes on a branch",
+    "run SSOT, truth, catalog, type and SEO checks that apply",
+    "run browser tests",
+    "verify Vercel preview",
+    "merge only when required checks pass",
+    "verify exact production deployment",
+    "verify representative live routes",
+    "record evidence and unresolved gaps"
+  ],
+  "failure_behavior": "fail_closed",
+  "protected_fact_behavior": "do_not_guess_or_publish_when_unknown"
+}

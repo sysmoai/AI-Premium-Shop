@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T02:26:00+06:00",
+  "identity": {
+    "name": "AI Premium Shop",
+    "domain": "aipremiumshop.com",
+    "market": "Bangladesh",
+    "canonical_repository": "sysmoai/AI-Premium-Shop",
+    "production_platform": "Vercel",
+    "production_project_id": "prj_aP4bi30UW8mcHgBvU7E72yyFOPQd",
+    "production_team_id": "team_WCN7gRRsLzPy8C0EdOFtDYrJ",
+    "application_root": "artifacts/aips-landing"
+  },
+  "authority": {
+    "business_ssot": "git",
+    "ssot_root": "ops/ssot",
+    "notion_is_authority": false,
+    "live_site_is_projection": true,
+    "chatgpt_is_operator": true
+  },
+  "current_publication_state": {
+    "commerce_quarantine": true,
+    "public_indexing": "noindex,nofollow",
+    "commerce_publish_allowed": false,
+    "reason": "Commercial catalog/access/pricing facts require reconciliation before public projection is restored."
+  },
+  "growth_goal": {
+    "organic_visits_monthly_target": 50000,
+    "target_horizon_weeks": 12,
+    "guaranteed": false
+  }
+}

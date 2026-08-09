@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T02:04:00+06:00",
+  "gaps": [
+    {
+      "gap_id": "AIPS-P0-20260810-COMMERCE-COMPLIANCE-DRIFT",
+      "timestamp": "2026-08-10T02:04:00+06:00",
+      "domain": "compliance-commerce-catalog-projection",
+      "severity": "P0",
+      "description": "Production exposed shared-access commercial offers and order paths while current A1 controls require fail-closed customer-owned/provider-compliant or otherwise specifically approved delivery.",
+      "source_urls": [
+        "https://aipremiumshop.com/",
+        "https://aipremiumshop.com/products",
+        "https://aipremiumshop.com/api/concierge"
+      ],
+      "affected_files": [
+        "artifacts/aips-landing/data/products.json",
+        "artifacts/aips-landing/api/concierge.js",
+        "artifacts/aips-landing/scripts/apply-commerce-quarantine.mjs",
+        "artifacts/aips-landing/scripts/seo-check-or-quarantine.mjs",
+        "artifacts/aips-landing/scripts/test-e2e-or-quarantine.mjs",
+        "artifacts/aips-landing/tests/e2e/quarantine.spec.ts",
+        "artifacts/aips-landing/package.json"
+      ],
+      "authority": ["A1", "A2"],
+      "current_state": "Temporary fail-closed commerce quarantine verified live.",
+      "desired_state": "Only current approved compliant commercial projections are public and indexable.",
+      "owner": "AIPS governance / commercial authority",
+      "dependencies": [
+        "current SKU compliance classifications",
+        "approved catalog/commercial statuses",
+        "approved prices where applicable",
+        "approved policy/payment facts where surfaced"
+      ],
+      "release_lane": "GREEN emergency mitigation; restoration may require YELLOW decisions",
+      "action": "PR #9 quarantined generated HTML and disabled the public concierge without inventing replacement commercial facts.",
+      "acceptance_criteria": [
+        "CI passes",
+        "catalog validators pass",
+        "build and prerender audit pass",
+        "quarantine SEO validator passes",
+        "real-browser quarantine suite passes",
+        "production SHA matches intended merge",
+        "live representative routes show only verification notice",
+        "concierge returns 503 no-store"
+      ],
+      "test_evidence": {
+        "candidate_sha": "e39ad87a8987c3da1b056025afaea8ae7771f1b5",
+        "ci": "success",
+        "seo_browser_quality": "success",
+        "generated_html_quarantined": 278,
+        "prerender_sitemap_urls_audited": 275
+      },
+      "deployed_sha": "78b4a0b431cc5781caa65feb5559bb88052d514e",
+      "deployment_id": "dpl_2paGQhGEc2yYsxuNdknwmEfYt8su",
+      "live_verification": {
+        "verified_at": "2026-08-10T02:04:00+06:00",
+        "root": "HTTP 200 verification notice, noindex/nofollow",
+        "products": "HTTP 200 verification notice, noindex/nofollow",
+        "concierge": "HTTP 503 availability_under_verification, Cache-Control no-store"
+      },
+      "index_status": "LIVE_FIXED_SEARCH_RECRAWL_UNVERIFIED",
+      "status": "VERIFIED_LIVE",
+      "next_action": "Reconcile each commercial/shared SKU against current A1/A2 authority and restore only approved customer-owned/provider-compliant projections through test, preview and production verification."
+    }
+  ]
+}

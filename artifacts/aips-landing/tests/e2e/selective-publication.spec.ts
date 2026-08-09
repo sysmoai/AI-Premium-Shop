@@ -47,7 +47,7 @@ test("legacy commercial routes fail closed into review state instead of stale st
   await page.goto("/product/higgsfield-ai-bangladesh", { waitUntil: "networkidle" });
 
   await expect(page.getByRole("heading", { level: 1 })).toContainText(/rebuilt from verified information/i);
-  await expect(page.getByText(/historical commercial content is not being projected as current/i)).toBeVisible();
+  await expect(page.getByText(/commercial or factual content is not being projected as current/i)).toBeVisible();
   await expect(page.getByRole("link", { name: /browse live catalog/i })).toBeVisible();
   expect(errors).toEqual([]);
 });

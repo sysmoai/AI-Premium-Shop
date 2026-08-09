@@ -17,6 +17,8 @@ Protected facts must never be guessed: prices, product availability, access mode
 
 When a protected fact is unknown or unapproved, fail closed instead of projecting old content.
 
+Provider-specific restrictions and compliance blocks are recorded in `ops/ssot/provider-compliance.json` when present and must be checked before restoring or creating an offer.
+
 ## Autonomous release model
 GREEN work may be executed autonomously: technical SEO, accessibility, performance, responsive visual media, non-commercial informational content, internal links, tests, monitoring and reversible implementation fixes.
 
@@ -36,4 +38,6 @@ Prohibited: passwords/OTPs, unapproved shared-seat or family-splitting delivery,
 A merge is not proof of a live fix. Search indexing is not considered recovered until external crawl/index evidence exists.
 
 ## Current publication state
-The public site is intentionally under commerce quarantine until `ops/ssot/commercial.json` permits publication. Do not remove quarantine or re-enable old commerce output by inference.
+The public site is under **commerce quarantine**, not a mandatory sitewide shutdown. Truth-safe informational routes may remain public and indexable when `ops/ssot/site.json` explicitly allows them. Historical or unapproved commercial routes must default to `noindex` and a review-gated public state while `ops/ssot/commercial.json` has quarantine enabled.
+
+Do not remove commerce quarantine, republish historical prices/access models, or re-enable old commercial output by inference. Quarantine must never be bypassed by stale catalog data, prerender output, cached HTML, posters, or generated media.

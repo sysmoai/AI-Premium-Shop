@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-10T02:26:00+06:00",
+  "updated_at": "2026-08-10T04:38:00+06:00",
   "identity": {
     "name": "AI Premium Shop",
     "domain": "aipremiumshop.com",
@@ -19,10 +19,22 @@
     "chatgpt_is_operator": true
   },
   "current_publication_state": {
+    "informational_site_live": true,
     "commerce_quarantine": true,
-    "public_indexing": "noindex,nofollow",
+    "public_indexing": "selective",
+    "indexable_routes": [
+      "/",
+      "/products",
+      "/about",
+      "/faq",
+      "/support",
+      "/contact",
+      "/privacy-policy",
+      "/terms"
+    ],
+    "commercial_routes_default": "noindex,review-gated",
     "commerce_publish_allowed": false,
-    "reason": "Commercial catalog/access/pricing facts require reconciliation before public projection is restored."
+    "reason": "Truth-safe informational routes may publish while historical commercial prices, access models, availability and delivery claims remain quarantined until individually approved."
   },
   "growth_goal": {
     "organic_visits_monthly_target": 50000,

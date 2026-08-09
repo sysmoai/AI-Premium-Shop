@@ -14,7 +14,7 @@
     "validate:all": "node scripts/validate-catalog.mjs && node scripts/validate-truth.mjs && node scripts/validate-higgsfield-offer.mjs",
     "validate:offer": "node scripts/validate-higgsfield-offer.mjs",
     "seo:check": "node scripts/seo-check-or-quarantine.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "node scripts/test-e2e-or-quarantine.mjs"
   },
   "devDependencies": {
     "@hookform/resolvers": "^3.10.0",

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T02:26:00+06:00",
+  "publication_allowed": false,
+  "quarantine": true,
+  "commercial_facts": {
+    "approved_public_skus": [],
+    "approved_public_prices": [],
+    "approved_access_models": [],
+    "approved_payment_facts": [],
+    "approved_delivery_facts": [],
+    "approved_warranty_refund_facts": [],
+    "approved_social_proof": []
+  },
+  "rule": "Empty means unknown or not approved for public projection. Agents must not infer or backfill protected commercial facts from old pages, stale pull requests, historical docs, or live-cache remnants."
+}

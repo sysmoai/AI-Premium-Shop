@@ -1,97 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color: #0a0e27">
+<html lang="en" style="background-color: #070b1d">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Anti-flash critical CSS. Must stay the FIRST style, above every
-         stylesheet link, and must not move into index.css — see
-         docs/performance/page-load-flash.md for why both break it. -->
     <style>
       :root { color-scheme: dark; }
-      html, body {
-        background-color: #0a0e27;
-        color: #ffffff;
-        margin: 0;
-      }
+      html, body { background-color: #070b1d; color: #ffffff; margin: 0; }
       #root { min-height: 100vh; }
-
-      /* The prerendered SEO shell must never be PAINTED to a browser that is
-         going to run React. prerender-products.mjs writes a class-free HTML copy
-         of each page into #root for crawlers that do not execute JS; main.tsx
-         then calls createRoot(), which does not hydrate — it empties the
-         container and renders fresh. So the shell painted for ~300-400ms as a
-         wall of unstyled text and was then replaced wholesale. That is the
-         "blink". Not cloaking: Googlebot runs JS, gets .js, and sees the React
-         render exactly as a user does. Full write-up:
-         docs/performance/page-load-flash.md */
       html.js #prerender-shell { display: none !important; }
     </style>
-    <script>
-      // Synchronous and in <head>: the class is set before <body> is parsed, so
-      // #prerender-shell is hidden on the FIRST paint rather than being shown
-      // and then removed (which would be the same flash by another route).
-      document.documentElement.className += " js";
-    </script>
-    <noscript>
-      <style>
-        /* Without JS the IntersectionObserver that adds .visible never runs, so
-           every .scroll-reveal block would sit at opacity 0 forever — a blank
-           page with full scroll height. Fail open. */
-        .scroll-reveal { opacity: 1 !important; transform: none !important; }
-      </style>
-    </noscript>
+    <script>document.documentElement.className += " js";</script>
+    <noscript><style>#prerender-shell { display: block !important; }</style></noscript>
 
-    <!-- Primary SEO -->
-    <title>AI Premium Shop — 197 Premium AI Tools Bangladesh | From BDT 299</title>
-    <meta name="description" content="197 premium AI tools (239 plans) in Bangladesh from BDT 299 to BDT 29,900. ChatGPT, Claude, Midjourney, Notion &amp; more. 5 Payment Methods: bKash, Nagad, Rocket, Bank, Binance. 5-30 min delivery. 10,000+ customers." />
+    <title>AI Premium Shop Bangladesh | AI Tools, Guides & Verified Offers</title>
+    <meta name="description" content="Explore AI tools and buying guidance for Bangladesh. AI Premium Shop publishes commercial offers only after pricing, access and provider-compliance checks." />
+    <meta name="theme-color" content="#070b1d" />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="AI Premium Shop" />
     <meta property="og:locale" content="en_BD" />
+    <meta property="og:title" content="AI Premium Shop Bangladesh" />
+    <meta property="og:description" content="AI tools, buying guidance and verified commercial offers for Bangladesh." />
     <meta property="og:image" content="https://aipremiumshop.com/images/og/default-og.png" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://aipremiumshop.com/images/og/default-og.png" />
 
-    <!-- Hreflang for this file specifically (the homepage — its real Bangla
-         equivalent is /bn). This is ALSO the template scripts/prerender-
-         products.mjs's writeRoute() starts every one of the 272 built pages
-         from: it strips these 3 tags and injects the route-correct set (or
-         none, if the route has no Bangla counterpart) via its own
-         HREFLANG_PAIRS map — see that file's comment for the full history.
-         These only matter as-written if this raw file is ever served
-         un-prerendered (e.g. a local dev server before `pnpm run build`). -->
     <link rel="alternate" hreflang="en-BD" href="https://aipremiumshop.com/" />
-    <link rel="alternate" hreflang="bn-BD" href="https://aipremiumshop.com/bn" />
     <link rel="alternate" hreflang="x-default" href="https://aipremiumshop.com/" />
 
-    <!-- JSON-LD: Organization + LocalBusiness + WebSite with SearchAction -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": ["Organization", "LocalBusiness"],
+      "@type": "Organization",
       "name": "AI Premium Shop",
       "url": "https://aipremiumshop.com",
       "logo": "https://aipremiumshop.com/favicon.svg",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "BD",
-        "addressLocality": "Dhaka"
-      },
+      "address": { "@type": "PostalAddress", "addressCountry": "BD" },
       "areaServed": "BD",
-      "currenciesAccepted": "BDT",
-      "priceRange": "BDT299-BDT29900",
-      "sameAs": [
-        "https://www.facebook.com/aipremiumshopfb",
-        "https://www.instagram.com/aipremiumshop/",
-        "https://www.linkedin.com/company/aipremiumshop/"
-      ],
       "contactPoint": {
         "@type": "ContactPoint",
-        "contactType": "sales",
+        "contactType": "customer support",
         "telephone": "+8801865385348",
         "availableLanguage": ["English", "Bangla"]
       }
@@ -102,38 +51,20 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "url": "https://aipremiumshop.com",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://aipremiumshop.com/products?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+      "name": "AI Premium Shop"
     }
     </script>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#0a0e27" />
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://wa.me" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- Bangla. Inter has NO Bengali glyphs, so every Bangla character on /bn and
-         the -bn routes was falling back to whatever the OS happened to pick —
-         Vrinda on Windows, Kohinoor on iOS, Noto on Android. Three devices, three
-         different-looking pages, none of them designed.
-
-         Anek Bangla is a VARIABLE font by Ek Type, drawn for Bengali rather than
-         adapted from a Latin face: one file covers weight 100-800, which matters
-         on Bangladeshi mobile data where a second static family would be another
-         ~150KB. Scoped in index.css to html[lang^="bn"], so English routes keep
-         Inter and pay nothing for this. -->
-    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300..800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>

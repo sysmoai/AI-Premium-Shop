@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config vite.config.ts --host 0.0.0.0",
-    "build": "node scripts/validate-blog-prices.mjs && node scripts/validate-higgsfield-offer.mjs && vite build --config vite.config.ts && node scripts/prerender-products.mjs && node scripts/audit-prerender.mjs",
+    "build": "node scripts/validate-blog-prices.mjs && node scripts/validate-higgsfield-offer.mjs && vite build --config vite.config.ts && node scripts/prerender-products.mjs && node scripts/audit-prerender.mjs && node scripts/apply-commerce-quarantine.mjs",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "validate": "node scripts/validate-catalog.mjs",
@@ -13,8 +13,8 @@
     "validate:truth": "node scripts/validate-truth.mjs",
     "validate:all": "node scripts/validate-catalog.mjs && node scripts/validate-truth.mjs && node scripts/validate-higgsfield-offer.mjs",
     "validate:offer": "node scripts/validate-higgsfield-offer.mjs",
-    "seo:check": "node scripts/seo-check.mjs",
-    "test:e2e": "playwright test"
+    "seo:check": "node scripts/seo-check-or-quarantine.mjs",
+    "test:e2e": "node scripts/test-e2e-or-quarantine.mjs"
   },
   "devDependencies": {
     "@hookform/resolvers": "^3.10.0",

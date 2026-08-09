@@ -1,6 +1,20 @@
 import fs from "node:fs";
 import path from "node:path";
 
+// Reads the live/dead switch from ops/ssot/commercial.json instead of always
+// firing. This script started as an unconditional emergency mitigation
+// (2026-08-10, AIPS-P0-20260810-COMMERCE-COMPLIANCE-DRIFT) -- it stays in the
+// build pipeline as a real fail-closed safety valve for the *next* incident,
+// but it must not keep blanking a site that's actually been cleared to
+// publish. See ops/ssot/commercial.json's "quarantine" flag and
+// "owner_decisions" for the audit trail of who lifted it and when.
+const ssotPath = path.resolve("../../ops/ssot/commercial.json");
+const ssot = JSON.parse(fs.readFileSync(ssotPath, "utf8"));
+if (!ssot.quarantine) {
+  console.log("[commerce-quarantine] ops/ssot/commercial.json quarantine=false -- skipping, generated HTML left as built");
+  process.exit(0);
+}
+
 const outDir = path.resolve("dist/public");
 const heroImage = "https://d8j0ntlcm91z4.cloudfront.net/user_3GpJL0EdnORuwvaMLAgyKiJmieA/hf_20260809_202826_d085c9d3-5ee5-4d75-9f49-81ffe7eb24e6_min.webp";
 const notice = `<!doctype html>

@@ -1,16 +1,25 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-10T02:26:00+06:00",
-  "publication_allowed": false,
-  "quarantine": true,
+  "updated_at": "2026-08-10T00:00:00+06:00",
+  "publication_allowed": true,
+  "quarantine": false,
   "commercial_facts": {
-    "approved_public_skus": [],
-    "approved_public_prices": [],
-    "approved_access_models": [],
-    "approved_payment_facts": [],
-    "approved_delivery_facts": [],
-    "approved_warranty_refund_facts": [],
-    "approved_social_proof": []
+    "approved_public_skus": "all (239) -- see owner_decisions below",
+    "approved_public_prices": "as listed in data/products.json, unchanged from pre-quarantine catalog",
+    "approved_access_models": "personal/bundle/service (195) + shared (44, see owner_decisions)",
+    "approved_payment_facts": "bKash/Nagad, unchanged from pre-quarantine site",
+    "approved_delivery_facts": "per-product deliverySLA field in data/products.json, unchanged",
+    "approved_warranty_refund_facts": "unchanged from pre-quarantine /refund-policy -- not re-verified in this pass",
+    "approved_social_proof": "10,000+ customers since 2022 -- CEO-attested 2026-08-02, see scripts/validate-truth.mjs CANON"
   },
-  "rule": "Empty means unknown or not approved for public projection. Agents must not infer or backfill protected commercial facts from old pages, stale pull requests, historical docs, or live-cache remnants."
+  "owner_decisions": [
+    {
+      "date": "2026-08-10",
+      "decision_by": "Emon Hossain (owner)",
+      "decision": "Restore all 44 accessType:\"shared\" SKUs to public sale as-is, overriding the AIPS-P0-20260810-COMMERCE-COMPLIANCE-DRIFT quarantine (see docs/audit/AIPS_MASTER_GAP_REGISTER.md) before per-vendor ToS reconciliation (BLOCKERS.md B5) was completed.",
+      "risk_disclosed": "Shared-account access likely violates the terms of service of most affected vendors (OpenAI, Midjourney, Anthropic, etc). Provider-side detection can result in account suspension with no recourse for the paying customer, chargebacks, and vendor action against AIPS. Explained directly to the owner before this decision; owner accepted the risk and directed restoration without per-vendor verification.",
+      "scope": "All 44 shared SKUs, unchanged copy/pricing from the pre-2026-08-10-quarantine catalog. B5 (per-vendor ToS classification) remains open and unresolved -- this decision does not close it, it overrides the fail-closed default pending that work."
+    }
+  ],
+  "rule": "Empty means unknown or not approved for public projection. Agents must not infer or backfill protected commercial facts from old pages, stale pull requests, historical docs, or live-cache remnants. Explicit, disclosed owner decisions (see owner_decisions) are the one exception to backfilling -- record them here with what was disclosed, don't silently re-approve on the owner's behalf next time."
 }

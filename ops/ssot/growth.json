@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T02:34:00+06:00",
+  "objective": {
+    "organic_sessions_per_month_target": 50000,
+    "planning_horizon_weeks": 12,
+    "guaranteed": false
+  },
+  "current_constraints": {
+    "sitewide_noindex": true,
+    "commerce_quarantine": true,
+    "commercial_truth_complete": false
+  },
+  "measurement": {
+    "vercel": "connected",
+    "live_http_probes": "connected",
+    "google_search_console": "not_connected",
+    "ga4": "not_connected"
+  },
+  "priorities": [
+    "restore indexability only for truth-safe audited routes",
+    "remove unsupported claims before storefront restoration",
+    "build an owned or explicitly licensed visual media library",
+    "add crawlable responsive images and reviewed video assets to indexable pages",
+    "establish Search Console and analytics ingestion",
+    "publish intent-matched educational and category content from verified facts",
+    "improve internal linking, structured data, Core Web Vitals and conversion UX",
+    "measure impressions, clicks, rankings, organic sessions and conversion outcomes"
+  ]
+}

@@ -1,67 +1,71 @@
 {
-  "schema_version": 1,
-  "updated_at": "2026-08-10T02:04:00+06:00",
+  "schema_version": 2,
+  "updated_at": "2026-08-10T02:35:00+06:00",
+  "authority_note": "Current durable authority is ops/ssot in GitHub. Historical A1/A2 references below describe the authority that triggered the original quarantine and are retained as incident evidence only.",
   "gaps": [
     {
       "gap_id": "AIPS-P0-20260810-COMMERCE-COMPLIANCE-DRIFT",
-      "timestamp": "2026-08-10T02:04:00+06:00",
-      "domain": "compliance-commerce-catalog-projection",
       "severity": "P0",
-      "description": "Production exposed shared-access commercial offers and order paths while current A1 controls require fail-closed customer-owned/provider-compliant or otherwise specifically approved delivery.",
-      "source_urls": [
-        "https://aipremiumshop.com/",
-        "https://aipremiumshop.com/products",
-        "https://aipremiumshop.com/api/concierge"
-      ],
-      "affected_files": [
-        "artifacts/aips-landing/data/products.json",
-        "artifacts/aips-landing/api/concierge.js",
-        "artifacts/aips-landing/scripts/apply-commerce-quarantine.mjs",
-        "artifacts/aips-landing/scripts/seo-check-or-quarantine.mjs",
-        "artifacts/aips-landing/scripts/test-e2e-or-quarantine.mjs",
-        "artifacts/aips-landing/tests/e2e/quarantine.spec.ts",
-        "artifacts/aips-landing/package.json"
-      ],
-      "authority": ["A1", "A2"],
-      "current_state": "Temporary fail-closed commerce quarantine verified live.",
-      "desired_state": "Only current approved compliant commercial projections are public and indexable.",
-      "owner": "AIPS governance / commercial authority",
-      "dependencies": [
-        "current SKU compliance classifications",
-        "approved catalog/commercial statuses",
-        "approved prices where applicable",
-        "approved policy/payment facts where surfaced"
-      ],
-      "release_lane": "GREEN emergency mitigation; restoration may require YELLOW decisions",
-      "action": "PR #9 quarantined generated HTML and disabled the public concierge without inventing replacement commercial facts.",
-      "acceptance_criteria": [
-        "CI passes",
-        "catalog validators pass",
-        "build and prerender audit pass",
-        "quarantine SEO validator passes",
-        "real-browser quarantine suite passes",
-        "production SHA matches intended merge",
-        "live representative routes show only verification notice",
-        "concierge returns 503 no-store"
-      ],
-      "test_evidence": {
-        "candidate_sha": "e39ad87a8987c3da1b056025afaea8ae7771f1b5",
-        "ci": "success",
-        "seo_browser_quality": "success",
-        "generated_html_quarantined": 278,
-        "prerender_sitemap_urls_audited": 275
-      },
+      "domain": "compliance-commerce-catalog-projection",
+      "current_state": "Temporary fail-closed commerce quarantine verified live; protected commercial truth is not yet approved in the new GitHub SSOT.",
+      "status": "MITIGATED_RESTORATION_BLOCKED",
       "deployed_sha": "78b4a0b431cc5781caa65feb5559bb88052d514e",
       "deployment_id": "dpl_2paGQhGEc2yYsxuNdknwmEfYt8su",
-      "live_verification": {
-        "verified_at": "2026-08-10T02:04:00+06:00",
-        "root": "HTTP 200 verification notice, noindex/nofollow",
-        "products": "HTTP 200 verification notice, noindex/nofollow",
-        "concierge": "HTTP 503 availability_under_verification, Cache-Control no-store"
-      },
       "index_status": "LIVE_FIXED_SEARCH_RECRAWL_UNVERIFIED",
-      "status": "VERIFIED_LIVE",
-      "next_action": "Reconcile each commercial/shared SKU against current A1/A2 authority and restore only approved customer-owned/provider-compliant projections through test, preview and production verification."
+      "next_action": "Approve verified SKU, access, policy and other protected commercial facts in ops/ssot, then restore only those projections through CI, preview and production verification."
+    },
+    {
+      "gap_id": "AIPS-P0-20260810-SITEWIDE-NOINDEX-GROWTH-BLOCKER",
+      "severity": "P0",
+      "domain": "technical-seo-indexability",
+      "description": "The emergency quarantine intentionally emits noindex,nofollow on every generated HTML route, which prevents the current website from participating normally in organic search while active.",
+      "status": "OPEN",
+      "safe_now": false,
+      "dependency": "truth-safe route inventory and removal of unsupported commercial claims before selective or full indexability is restored",
+      "next_action": "Audit and classify routes, then restore indexability only to pages whose public facts are supported by GitHub SSOT and automated claim checks."
+    },
+    {
+      "gap_id": "AIPS-P1-20260810-GITHUB-SSOT-MIGRATION",
+      "severity": "P1",
+      "domain": "agent-governance",
+      "description": "Repository guidance and CI still referenced Notion and obsolete deployment architecture after the owner moved authority to ChatGPT plus GitHub.",
+      "status": "IMPLEMENTED_PENDING_LIVE_VERIFICATION",
+      "changes": ["ops/ssot/site.json", "ops/ssot/autonomy-policy.json", "ops/ssot/media.json", "ops/ssot/growth.json", "ops/ssot/README.md", "scripts/validate-ssot.mjs", "AGENTS.md", ".github/workflows/ci.yml"],
+      "next_action": "Pass CI/preview, merge and verify production/main parity."
+    },
+    {
+      "gap_id": "AIPS-P1-20260810-VISUAL-MEDIA-INTEGRATION",
+      "severity": "P1",
+      "domain": "media-ux-brand-seo",
+      "description": "The live quarantine experience had no meaningful visual media even though the repository and creative workspace contain media assets.",
+      "status": "PARTIALLY_IMPLEMENTED_PENDING_LIVE_VERIFICATION",
+      "implemented": "Added a claim-neutral photorealistic editorial workspace visual to the fail-closed quarantine experience with explicit dimensions, alt text and no executable client script.",
+      "remaining": "Build an owned/licensed real-photography library and visually review/optimize video assets before publishing them on indexable pages. AI-generated imagery must not be represented as documentary photography.",
+      "next_action": "After commercial/claim cleanup, integrate reviewed responsive photography and video with stable URLs, posters, captions/metadata where appropriate, performance budgets and accessibility checks."
+    },
+    {
+      "gap_id": "AIPS-P1-20260810-LEGACY-CLAIM-INTEGRITY",
+      "severity": "P1",
+      "domain": "content-trust-commerce",
+      "description": "The hidden pre-quarantine storefront contains unsupported social proof and stale commercial statements that must not return when quarantine is relaxed.",
+      "status": "OPEN",
+      "next_action": "Run a route/content claim inventory, remove or substantiate every protected or quantitative claim, and add a machine claim allowlist tied to ops/ssot."
+    },
+    {
+      "gap_id": "AIPS-P1-20260810-SEO-MEASUREMENT-BLIND-SPOT",
+      "severity": "P1",
+      "domain": "growth-measurement",
+      "description": "Vercel and live HTTP evidence are connected, but Google Search Console and GA4 are not connected to the current autonomous operating loop.",
+      "status": "OPEN",
+      "next_action": "Establish read-only Search Console/analytics ingestion or an approved export/API pipeline so autonomous decisions can optimize from impressions, queries, clicks, sessions and conversions instead of proxy signals."
+    },
+    {
+      "gap_id": "AIPS-P1-20260810-STALE-PR-MERGE-RISK",
+      "severity": "P1",
+      "domain": "repo-hygiene-autonomy",
+      "description": "Older draft PRs contained pre-quarantine commercial assumptions and could be merged accidentally by an autonomous agent.",
+      "status": "RESOLVED",
+      "evidence": "Stale open PRs containing old catalog/pricing assumptions were closed or marked superseded before the new autonomous branch is merged."
     }
   ]
 }

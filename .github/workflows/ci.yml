@@ -6,6 +6,16 @@ on:
   pull_request:
 
 jobs:
+  ssot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate canonical GitHub SSOT
+        run: node scripts/validate-ssot.mjs
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -18,55 +28,6 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      # Build the TS project-reference libs (lib/db, lib/api-client-react,
-      # lib/api-zod -- see root tsconfig.json's "references") before
-      # typechecking anything that imports their declaration output.
-      # Without this, aips-landing itself (the live site -- it references
-      # lib/api-client-react) fails typecheck on any fresh checkout with
-      # TS6305 "output file has not been built". Found 2026-08-07 on this
-      # workflow's first-ever successful run (see BLOCKERS.md B13) --
-      # every previous run had failed before reaching this step, so the
-      # gap went undetected.
       - run: pnpm run typecheck:libs
-      # aips-website is excluded: it's marked DEPRECATED (see
-      # artifacts/aips-website/DEPRECATED.md) -- a parallel Next.js rebuild
-      # never promoted to production, not deployed, with its own diverging
-      # catalog. It carries a real pre-existing lint error (a genuine
-      # temporal-dead-zone bug in hero-section-enhanced.tsx) that has no
-      # bearing on the live site (artifacts/aips-landing) and isn't worth
-      # fixing in abandoned code -- gating CI on it only blocks unrelated
-      # changes to the app that's actually shipped.
-      #
-      # @workspace/api-server is excluded for the same reason, discovered
-      # 2026-08-07: unreferenced anywhere by aips-landing, last touched
-      # 2026-05-03 (an abandoned early Express/Drizzle backend from before
-      # the current static-data + Vercel-serverless-function architecture),
-      # and it has its own real pre-existing typecheck errors (unbuilt
-      # lib/db project reference, several implicit-anys). It just never had
-      # a DEPRECATED.md marker like aips-website does. See BACKLOG.md.
       - run: pnpm --filter='!aips-website' --filter='!@workspace/api-server' -r --if-present typecheck
       - run: pnpm --filter='!aips-website' --filter='!@workspace/api-server' -r --if-present lint
-
-  notion-drift:
-    # Fails when the site catalog no longer matches the Notion SSOT (R11).
-    # Requires the NOTION_API_KEY repository secret; skips when absent
-    # (e.g. on forks) so external PRs still get CI.
-    runs-on: ubuntu-latest
-    env:
-      NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - name: Check catalog drift against Notion
-        if: env.NOTION_API_KEY != ''
-        env:
-          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-        run: pnpm tsx scripts/src/import-from-notion.ts --check
-        continue-on-error: true # advisory until the generated format is reviewed & adopted

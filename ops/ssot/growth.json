@@ -1,13 +1,15 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-10T02:34:00+06:00",
+  "updated_at": "2026-08-10T04:39:00+06:00",
   "objective": {
     "organic_sessions_per_month_target": 50000,
     "planning_horizon_weeks": 12,
     "guaranteed": false
   },
   "current_constraints": {
-    "sitewide_noindex": true,
+    "sitewide_noindex": false,
+    "selective_indexing": true,
+    "commerce_routes_noindex_by_default": true,
     "commerce_quarantine": true,
     "commercial_truth_complete": false
   },
@@ -18,8 +20,8 @@
     "ga4": "not_connected"
   },
   "priorities": [
-    "restore indexability only for truth-safe audited routes",
-    "remove unsupported claims before storefront restoration",
+    "keep truth-safe informational routes indexable while commercial routes remain review-gated",
+    "remove unsupported claims before each commercial route is restored",
     "build an owned or explicitly licensed visual media library",
     "add crawlable responsive images and reviewed video assets to indexable pages",
     "establish Search Console and analytics ingestion",

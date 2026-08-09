@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T04:24:00+06:00",
+  "authority": "GitHub SSOT",
+  "generation": {
+    "primary_provider": "Higgsfield",
+    "provider_must_not_receive_cloudflare_credentials": true
+  },
+  "storage": {
+    "current": "external_provider_urls_may_exist",
+    "target": "Cloudflare R2 with first-party custom asset domain",
+    "cloudflare_connection_required_before_migration": true
+  },
+  "target_asset_domain": "assets.aipremiumshop.com",
+  "path_convention": {
+    "home": "home/<section>/<asset-name>",
+    "products": "products/<slug>/<asset-name>",
+    "blog": "blog/<article-slug>/<asset-name>",
+    "brand": "brand/<asset-name>"
+  },
+  "filename_rules": [
+    "lowercase kebab-case",
+    "descriptive semantic names",
+    "include version only when multiple approved variants must coexist",
+    "do not preserve random generator filenames as public canonical names"
+  ],
+  "optimization_rules": [
+    "Serve modern image formats where supported and materially smaller.",
+    "Generate responsive dimensions appropriate to actual rendered breakpoints.",
+    "Declare intrinsic width and height to reduce layout shift.",
+    "Prioritize only the true LCP asset; lazy-load below-the-fold media.",
+    "Avoid autoplaying heavyweight video on constrained mobile connections unless justified by UX and performance budgets.",
+    "Maintain meaningful alt text for informative imagery and empty alt text for purely decorative imagery.",
+    "Keep originals or high-quality masters outside the hot delivery path when practical."
+  ],
+  "release_rules": [
+    "Generated media is not production-approved merely because generation succeeded.",
+    "Media must not encode or imply unapproved prices, availability, provider authorization, customer counts, rankings, testimonials or legal/compliance claims.",
+    "All implementation changes go through the release gates in autonomy-policy.json.",
+    "Commercial quarantine remains authoritative until commercial.json permits publication."
+  ]
+}

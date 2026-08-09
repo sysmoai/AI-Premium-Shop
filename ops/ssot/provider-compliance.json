@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T04:40:00+06:00",
+  "providers": {
+    "openai_chatgpt": {
+      "provider": "OpenAI",
+      "product_family": "ChatGPT",
+      "verified_on": "2026-08-10",
+      "account_sharing_allowed_for_individual_accounts": false,
+      "shared_credential_resale_publishable": false,
+      "sources": [
+        {
+          "title": "OpenAI Terms of Use",
+          "url": "https://openai.com/policies/row-terms-of-use/"
+        },
+        {
+          "title": "OpenAI Account Sharing Policy",
+          "url": "https://help.openai.com/en/articles/10471989"
+        }
+      ],
+      "publication_effect": {
+        "blocked_historical_offer": "ChatGPT Plus Shared",
+        "blocked_historical_price_bdt": 499,
+        "rule": "Do not publish or sell a shared-credential ChatGPT Plus offer. A replacement commercial offer requires a delivery model compatible with current provider terms plus separate approval of price, availability and delivery facts in commercial.json."
+      }
+    }
+  }
+}

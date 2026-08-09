@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T04:23:00+06:00",
+  "operator": "ChatGPT",
+  "integrations": {
+    "github": {
+      "status": "connected",
+      "repository": "sysmoai/AI-Premium-Shop",
+      "default_branch": "main",
+      "verified_permissions": ["admin", "maintain", "push", "pull", "triage"],
+      "role": "canonical_code_and_ssot"
+    },
+    "vercel": {
+      "status": "connected",
+      "team": "sysmoaigits-projects",
+      "project_id": "prj_aP4bi30UW8mcHgBvU7E72yyFOPQd",
+      "project_name": "ai-premium-shopai-premium-shop-aipai-premium-shops-landing",
+      "production_domains": ["aipremiumshop.com", "www.aipremiumshop.com"],
+      "source_repository": "sysmoai/AI-Premium-Shop",
+      "source_branch": "main",
+      "role": "preview_and_production_deployment"
+    },
+    "higgsfield": {
+      "status": "connected",
+      "workspace_type": "private",
+      "verified_role": "owner",
+      "role": "image_and_video_generation",
+      "cloudflare_access_required": false
+    },
+    "cloudflare": {
+      "status": "not_connected_to_chatgpt",
+      "role": "planned_media_storage_delivery_and_edge_controls",
+      "required_scope": "least_privilege",
+      "planned_r2_scope": "dedicated_ai_premium_shop_media_bucket",
+      "direct_higgsfield_access": false
+    }
+  },
+  "security_rules": [
+    "Do not give Higgsfield Cloudflare account credentials or broad Cloudflare API access.",
+    "Use a ChatGPT-controlled or project-controlled transfer path for approved Higgsfield assets.",
+    "Prefer bucket-scoped R2 object read/write access for media operations and separate DNS/cache permissions only when needed.",
+    "Never store secrets, API tokens, passwords or OTPs in GitHub SSOT files."
+  ],
+  "deployment_chain": [
+    "Higgsfield generation",
+    "asset review or explicit approval when required",
+    "asset normalization and optimization",
+    "Cloudflare media storage/CDN when connected",
+    "GitHub implementation on branch",
+    "Vercel preview",
+    "automated and browser checks",
+    "merge to main",
+    "Vercel production deployment",
+    "live route verification"
+  ]
+}

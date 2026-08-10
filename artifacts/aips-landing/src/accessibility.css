@@ -1,0 +1,23 @@
+/* Cross-app accessibility guardrails. Keep this file small and load it after
+   index.css so route/component styles cannot accidentally remove these safety
+   defaults. */
+
+:focus-visible {
+  outline: 3px solid #f4b942;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@aips/catalog-domain",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared product, plan, media and publication policy types for AI Premium Shop.",
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.2"
+  }
+}

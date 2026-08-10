@@ -2,7 +2,7 @@
 // This committed seed exists only so typecheck/dev can start before generation.
 import type { PublicHomepageView } from "@/lib/homepageV2";
 
-export const HOMEPAGE_V2 = {
+export const HOMEPAGE_V2: PublicHomepageView = {
   schemaVersion: 1,
   generatedAt: "2026-08-10T00:00:00.000Z",
   publication: {
@@ -28,4 +28,4 @@ export const HOMEPAGE_V2 = {
     hero: null,
     demos: [],
   },
-} as const satisfies PublicHomepageView;
+};

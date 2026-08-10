@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-10T02:26:00+06:00",
+  "updated_at": "2026-08-10T06:28:00+06:00",
   "identity": {
     "name": "AI Premium Shop",
     "domain": "aipremiumshop.com",
@@ -19,10 +19,10 @@
     "chatgpt_is_operator": true
   },
   "current_publication_state": {
-    "commerce_quarantine": true,
-    "public_indexing": "noindex,nofollow",
-    "commerce_publish_allowed": false,
-    "reason": "Commercial catalog/access/pricing facts require reconciliation before public projection is restored."
+    "commerce_quarantine": false,
+    "public_indexing": "index,follow",
+    "commerce_publish_allowed": true,
+    "reason": "Commerce publication was explicitly restored by the owner decision recorded in ops/ssot/commercial.json. Product-level verification and unresolved provider-policy work remain tracked separately and must not be inferred away."
   },
   "growth_goal": {
     "organic_visits_monthly_target": 50000,

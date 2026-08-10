@@ -1,8 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, MessageCircle, Search, Sparkles } from "lucide-react";
+import { CookieBanner } from "@/components/CookieBanner";
+import { FacebookPixel } from "@/components/FacebookPixel";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
 import { SEOHead } from "@/components/SEOHead";
 import { HomepageAccessAndEvidence } from "@/components/homepage/HomepageAccessAndEvidence";
+import { HomepageAnalyticsBridge } from "@/components/homepage/HomepageAnalyticsBridge";
 import { HomepageDecisionSupport } from "@/components/homepage/HomepageDecisionSupport";
 import { HomepageDiscovery } from "@/components/homepage/HomepageDiscovery";
 import { HomepageEditorial } from "@/components/homepage/HomepageEditorial";
@@ -29,6 +33,7 @@ export default function HomeV2() {
   const data = HOMEPAGE_V2;
   const commerceEnabled = data.publication.publicationAllowed && !data.publication.quarantine;
   const minPrice = commerceEnabled ? formatBDT(data.catalog.minPrice) : null;
+  const [cookieConsent, setCookieConsent] = useState(false);
 
   useEffect(() => {
     trackHomepageEvent({
@@ -179,6 +184,11 @@ export default function HomeV2() {
           </nav>
         </div>
       </footer>
+
+      <CookieBanner onConsent={() => setCookieConsent(true)} />
+      <GoogleAnalytics enabled={cookieConsent} />
+      <FacebookPixel enabled={cookieConsent} />
+      <HomepageAnalyticsBridge enabled={cookieConsent} />
     </div>
   );
 }

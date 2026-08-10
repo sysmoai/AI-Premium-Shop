@@ -1,21 +1,10 @@
 #!/usr/bin/env node
 // Generates the two trimmed catalogs the UI actually reads.
 //
-// WHY. data/products.json is 227 KB. src/lib/catalogStats.ts and
-// src/components/Navbar.tsx both imported it and both live in the MAIN chunk,
-// so every visitor downloaded the whole catalog on every page — to read eight
-// fields. The weight is in plans (43 KB), faq (29 KB), useCases (16 KB),
-// descriptionBN (14 KB) and whyBuyFromAIPS (9 KB), which only ProductPage
-// renders.
-//
-//   catalog-lite.json   ~23 KB — main bundle (catalogStats, Navbar)
-//   catalog-pages.json  ~75 KB — lazy page chunks (BrandPage, ProductsPage)
-//
-// Two files rather than one on purpose: folding description/whatsappMsg into
-// the lite file would push them straight back into the main bundle.
-//
-// Run after editing data/products.json:
-//   node scripts/generate-catalog-lite.mjs
+// Public pages must be derived from data/public-products.json, which is built
+// from data/products.json only after the Git-backed site/commercial SSOT agrees
+// on publication state. This keeps list/category/brand surfaces on the same
+// commercial projection as product detail and prerender output.
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
@@ -58,12 +47,11 @@ export const buildPages = (products) =>
     capabilities: p.capabilities ?? [],
   }));
 
-export const readProducts = () => JSON.parse(readFileSync(join(ROOT, "data/products.json"), "utf8")).products;
+export const readProducts = () => {
+  const projected = JSON.parse(readFileSync(join(ROOT, "data/public-products.json"), "utf8"));
+  return projected.products ?? [];
+};
 
-// Only write when run as a script. validate-catalog.mjs imports buildPages() to
-// check the committed file, and an import that regenerated it would overwrite
-// the very drift the check exists to catch — which is exactly what the first
-// version of this guard did, and why it silently never failed.
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const products = readProducts();
   const lite = buildLite(products);
@@ -74,5 +62,5 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   const kb = (o) => (JSON.stringify({ products: o }).length / 1024).toFixed(1);
   console.log(`data/catalog-lite.json:  ${lite.length} records, ${kb(lite)} KB`);
   console.log(`data/catalog-pages.json: ${pages.length} records, ${kb(pages)} KB`);
-  console.log(`(from ${kb(products)} KB products.json)`);
+  console.log(`(from ${kb(products)} KB public projection)`);
 }

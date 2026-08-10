@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-08-10T08:58:00+06:00",
+  "purpose": "Persist the Cloudflare/R2 execution-access diagnosis without storing or exposing any credential value.",
+  "canonical_media_contract": {
+    "bucket": "aips-media",
+    "public_origin": "https://media.aipremiumshop.com",
+    "uploader": "artifacts/aips-landing/scripts/upload-r2-media.mjs",
+    "runbook": "docs/media/CLOUDFLARE-R2-MEDIA-CONTRACT.md"
+  },
+  "current_execution_context": {
+    "cloudflare_connector_available": false,
+    "installable_cloudflare_plugin_found": false,
+    "direct_r2_environment_available": false,
+    "github_actions_probe_completed": true
+  },
+  "github_actions_secret_presence": {
+    "CLOUDFLARE_ACCOUNT_ID": true,
+    "R2_ACCOUNT_ID": false,
+    "R2_ACCESS_KEY_ID": false,
+    "R2_SECRET_ACCESS_KEY": false,
+    "R2_BUCKET_NAME": false,
+    "R2_PUBLIC_URL": false,
+    "CLOUDFLARE_API_TOKEN": false,
+    "CLOUDFLARE_API_KEY": false,
+    "CLOUDFLARE_GLOBAL_API_KEY": false,
+    "CLOUDFLARE_EMAIL": false,
+    "CLOUDFLARE_TOKEN": false,
+    "CLOUDFLARE_ZONE_ID": false,
+    "CLOUDFLARE_ZONE_API_TOKEN": false,
+    "CLOUDFLARE_R2_API_TOKEN": false,
+    "CLOUDFLARE_R2_TOKEN": false,
+    "CLOUDFLARE_ACCESS_KEY_ID": false,
+    "CLOUDFLARE_SECRET_ACCESS_KEY": false,
+    "CF_API_KEY": false,
+    "CF_EMAIL": false,
+    "CF_ACCOUNT_ID": false,
+    "CF_API_TOKEN": false,
+    "AWS_ACCESS_KEY_ID": false,
+    "AWS_SECRET_ACCESS_KEY": false,
+    "CLOUDFLARE_R2_ACCESS_KEY_ID": false,
+    "CLOUDFLARE_R2_SECRET_ACCESS_KEY": false,
+    "R2_API_TOKEN": false,
+    "R2_TOKEN": false
+  },
+  "conclusion": "The prior Cloudflare setup is partially represented by a Cloudflare account ID in GitHub Actions, but no authentication material required for Cloudflare management or R2 object upload is exposed to the current runtime or GitHub Actions under the expected/common aliases.",
+  "security_rule": "Never request, print, commit, or transmit Cloudflare/R2 secret values in chat. Re-expose or reconnect the existing authorized integration through a supported connector or secret-backed execution environment.",
+  "temporary_probe_workflow": {
+    "created_for_boolean_presence_only": true,
+    "removed_after_diagnosis": true,
+    "secret_values_logged": false
+  },
+  "media_blocker": {
+    "hp_hero_01": "Candidate 3 is selected, but its source bytes are not recoverable from connected files and R2 authentication is not exposed. Both are required before upload/verification/manifest approval."
+  },
+  "routing_blocker": "Cloudflare management authentication is also required to identify the authoritative DNS/proxy/Worker target currently serving aipremiumshop.com, because no connected Vercel project owns that custom domain."
+}

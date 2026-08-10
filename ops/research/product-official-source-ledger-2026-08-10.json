@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-08-10T10:08:00+06:00",
+  "business_unit": "AIPS",
+  "authority": "provider-fact research only; does not approve an AIPS SKU, AIPS price, access model, payment method, delivery SLA, warranty, customer metric, or resale arrangement",
+  "freshness_rule_days": 30,
+  "publication_rule": "Provider facts may inform customer education only after route-specific review. AIPS commercial facts remain fail-closed unless separately approved in canonical SSOT.",
+  "records": [
+    {
+      "provider": "OpenAI",
+      "product": "ChatGPT Plus",
+      "official_sources": [
+        "https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus",
+        "https://openai.com/chatgpt/pricing/",
+        "https://help.openai.com/en/articles/10471989"
+      ],
+      "provider_price": {"currency": "USD", "amount": 20, "period": "month", "region_note": "provider checkout/local taxes may vary"},
+      "verified_facts": [
+        "Plus is an individual subscription with enhanced ChatGPT access and higher usage limits.",
+        "Current official benefits include advanced reasoning access, voice, image generation, file analysis, deep research where available, and custom GPT creation/use.",
+        "OpenAI states an individual account is for the person who created it and account sharing is not allowed."
+      ],
+      "customer_problem": "A customer needs one general-purpose AI workspace for writing, research, analysis, files, coding support, images and voice without switching tools for every task.",
+      "solution_summary": "Position Plus around individual productivity and multimodal work on the customer's own account, not shared credentials.",
+      "best_fit": ["students", "freelancers", "professionals", "research-heavy users", "general AI power users"],
+      "limitations": ["usage limits can vary", "API billing is separate", "individual account credentials must not be shared"],
+      "existing_content_risks": [
+        "Current products.json contains ChatGPT shared-access variants and seat pools that conflict with OpenAI's account-sharing policy.",
+        "Current copy contains fixed AIPS delivery/warranty/commercial claims that require separate AIPS evidence.",
+        "Model/feature names must be generated from a fresh official fact layer rather than frozen copy."
+      ],
+      "recommended_public_action": "Keep provider education current; quarantine shared-login commercial variants unless an explicitly provider-authorized model exists."
+    },
+    {
+      "provider": "Anthropic",
+      "product": "Claude Pro",
+      "official_sources": [
+        "https://www.anthropic.com/pricing?subjects=claude&type=product",
+        "https://support.anthropic.com/en/articles/11049762-choosing-a-claude-ai-plan"
+      ],
+      "provider_price": {"currency": "USD", "amount": 20, "period": "month", "annual_equivalent_usd_per_month": 17, "region_note": "local pricing/taxes can vary"},
+      "verified_facts": ["Pro targets everyday productivity and provides more usage than Free.", "Official current plan material includes Claude Code, Projects, Research, extended thinking and additional model access."],
+      "customer_problem": "A customer needs strong long-form reasoning, writing, research and coding assistance with more capacity than a free tier.",
+      "solution_summary": "Explain Claude Pro as a productivity/reasoning subscription and compare it by workflow, not unsupported superlatives.",
+      "best_fit": ["writers", "developers", "analysts", "researchers", "knowledge workers"],
+      "limitations": ["usage capacity is not unlimited", "regional price/tax handling varies"],
+      "recommended_public_action": "Refresh feature copy from Anthropic source and keep access/account model customer-owned unless separately authorized."
+    },
+    {
+      "provider": "Perplexity",
+      "product": "Perplexity Pro",
+      "official_sources": [
+        "https://www.perplexity.ai/help-center/en/articles/9385876-what-is-perplexity-pro",
+        "https://www.perplexity.ai/hub"
+      ],
+      "provider_price": {"currency": "USD", "amount": 20, "period": "month", "annual_total_usd": 200},
+      "verified_facts": ["Pro is designed for advanced search/research workflows.", "Official materials emphasize cited answers, Pro Search, file analysis/uploads, image generation, Spaces and advanced model access/higher limits."],
+      "customer_problem": "A customer wants faster web research with citations and the ability to investigate documents without manually opening many sources.",
+      "solution_summary": "Lead with cited research, source checking and file analysis instead of calling it a generic chatbot replacement.",
+      "best_fit": ["researchers", "students", "marketers", "analysts", "founders"],
+      "limitations": ["AI answers can still be inaccurate and sources should be checked", "feature/usage limits vary by plan"],
+      "recommended_public_action": "Build problem-led research pages around source-backed discovery and verification workflows."
+    },
+    {
+      "provider": "Google",
+      "product": "Google AI Pro",
+      "official_sources": ["https://one.google.com/intl/en/about/"],
+      "provider_price": null,
+      "verified_facts": ["Google AI Pro includes 5 TB storage and expanded Gemini usage.", "Official current material highlights Gemini in Google apps, Deep Research/file upload capabilities, creative generation and developer benefits, with some features/regions varying."],
+      "customer_problem": "A customer already works in Gmail, Docs, Drive and Google services and wants AI embedded into that ecosystem.",
+      "solution_summary": "Explain ecosystem value, storage and workflow integration rather than using a stale 'Gemini Advanced' feature list.",
+      "best_fit": ["Google Workspace-heavy users", "students", "creators", "developers", "professionals"],
+      "limitations": ["feature availability varies by country, language and age", "price should be read from the customer's regional checkout when not reliably exposed in public page data"],
+      "recommended_public_action": "Do not publish a universal provider price unless the regional/current checkout is evidenced."
+    },
+    {
+      "provider": "Midjourney",
+      "product": "Midjourney",
+      "official_sources": ["https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans"],
+      "provider_price": {"currency": "USD", "monthly_tiers": {"Basic": 10, "Standard": 30, "Pro": 60, "Mega": 120}},
+      "verified_facts": ["Four current subscription tiers are Basic, Standard, Pro and Mega.", "Standard/Pro/Mega include Relax Mode for unlimited image generations; Pro/Mega add Stealth Mode and broader relaxed video use."],
+      "customer_problem": "A visual creator needs high-quality concept art, marketing visuals or creative ideation with a predictable generation workflow.",
+      "solution_summary": "Help customers choose by generation volume, privacy/Stealth requirement and workflow intensity.",
+      "best_fit": ["designers", "marketers", "creators", "agencies", "concept artists"],
+      "limitations": ["plan features and availability can change", "company revenue can affect required plan under Midjourney terms"],
+      "recommended_public_action": "Avoid estimated shared-plan economics; publish only provider-compliant access arrangements."
+    },
+    {
+      "provider": "Runway",
+      "product": "Runway",
+      "official_sources": ["https://runwayml.com/pricing", "https://help.runwayml.com/hc/en-us/articles/21664961171475-Which-plan-is-right-for-me"],
+      "provider_price": {"currency": "USD", "annual_billing_equivalent_monthly": {"Standard": 12, "Pro": 28, "Max": 76}},
+      "verified_facts": ["Runway is a credit-based image/video/audio creation platform.", "Current plans include Free, Standard, Pro, Max and Enterprise; Max is replacing Unlimited for high-generation creators."],
+      "customer_problem": "A creator or agency needs controllable AI video generation plus image/audio tooling without assembling multiple editing pipelines.",
+      "solution_summary": "Explain the credit cost of actual generation workloads and choose a plan based on expected seconds/images, not just tier names.",
+      "best_fit": ["video creators", "agencies", "social teams", "creative studios"],
+      "limitations": ["credits differ by model, duration and resolution", "Standard/Pro monthly credits do not roll over"],
+      "recommended_public_action": "Add a Bangladesh-friendly 'how many videos can this plan realistically produce?' explainer using provider credit math."
+    },
+    {
+      "provider": "HeyGen",
+      "product": "HeyGen",
+      "official_sources": ["https://www.heygen.com/pricing", "https://www.heygen.com/faq"],
+      "provider_price": {"currency": "USD", "monthly_tiers": {"Creator": 29, "Pro_starting": 49, "Business": 149}},
+      "verified_facts": ["HeyGen focuses on AI video, digital twins/avatars, voice and translation workflows.", "Current public pricing uses credits across paid features and differentiates Creator, Pro and Business plans."],
+      "customer_problem": "A business or creator needs presenter/marketing/localized videos without cameras, actors or repeated studio production.",
+      "solution_summary": "Sell the workflow outcome: script-to-avatar video, translation/localization and reusable brand presenter assets.",
+      "best_fit": ["marketers", "trainers", "sales teams", "content creators", "localization teams"],
+      "limitations": ["credit use depends on feature", "plan details have changed recently, so refresh before publication"],
+      "recommended_public_action": "Replace static feature-count claims with checked-date plan facts and outcome-based examples."
+    },
+    {
+      "provider": "ElevenLabs",
+      "product": "ElevenLabs",
+      "official_sources": ["https://elevenlabs.io/pricing", "https://help.elevenlabs.io/hc/en-us/articles/14129203098513-Where-can-I-find-out-more-about-the-pricing-plans"],
+      "provider_price": {"currency": "USD", "monthly_tiers": {"Starter": 6, "Creator": 22, "Pro": 99, "Scale": 299, "Business": 990}},
+      "verified_facts": ["Current platform covers text-to-speech, speech-to-text, sound effects, voice design, music, dubbing and related creative/API workflows.", "Plan credits and included capabilities differ materially by tier."],
+      "customer_problem": "A customer needs natural voiceovers, dubbing, cloned voices or speech APIs without recording every line manually.",
+      "solution_summary": "Map the plan to minutes/characters, commercial licensing and voice-cloning needs.",
+      "best_fit": ["YouTubers", "course creators", "agencies", "podcasters", "developers"],
+      "limitations": ["credit economics vary by model/product", "taxes excluded from listed provider prices"],
+      "recommended_public_action": "Create usage calculators/examples and keep commercial-license wording exactly aligned to provider terms."
+    },
+    {
+      "provider": "Suno",
+      "product": "Suno",
+      "official_sources": ["https://suno.com/pricing", "https://help.suno.com/en/articles/9601665"],
+      "provider_price": {"currency": "USD", "annual_billing_equivalent_monthly": {"Pro": 8, "Premier": 24}},
+      "verified_facts": ["Free, Pro and Premier are the current plan types shown publicly.", "Paid plans include commercial-use rights for newly created songs made while subscribed, subject to Suno terms; free-plan creations are not automatically granted those rights."],
+      "customer_problem": "A creator wants to produce original music concepts, vocals or background tracks quickly without a traditional production setup.",
+      "solution_summary": "Explain generation credits plus the commercial-rights timing because that is a real buying decision, not a footnote.",
+      "best_fit": ["content creators", "musicians", "video editors", "marketers"],
+      "limitations": ["commercial-use rights are not the same as guaranteed copyright protection", "paid credits reset monthly"],
+      "recommended_public_action": "Add a clear rights/monetization explainer and do not imply retroactive rights for free creations."
+    },
+    {
+      "provider": "GitHub",
+      "product": "GitHub Copilot",
+      "official_sources": ["https://github.com/features/copilot/plans", "https://docs.github.com/en/copilot/get-started/plans"],
+      "provider_price": {"currency": "USD", "monthly_tiers": {"Pro": 10, "ProPlus": 39, "Max": 100, "Business": 19, "Enterprise": 39}},
+      "verified_facts": ["Current Copilot plans include Free, Student, Pro, Pro+, Max, Business and Enterprise.", "Paid individual plans include unlimited code completion/next-edit suggestions while AI-credit allowances govern many agent/chat features."],
+      "customer_problem": "A developer wants less boilerplate, faster debugging/review and agent-assisted coding across the IDE, terminal and GitHub workflow.",
+      "solution_summary": "Choose by coding-agent intensity and team governance needs, not only autocomplete.",
+      "best_fit": ["developers", "students", "software teams", "agencies"],
+      "limitations": ["agent/model usage consumes AI credits", "organizational governance differs from individual plans"],
+      "recommended_public_action": "Refresh any old premium-request language to the current AI-credit model."
+    },
+    {
+      "provider": "Anysphere",
+      "product": "Cursor",
+      "official_sources": ["https://cursor.com/pricing", "https://docs.cursor.com/account/pricing"],
+      "provider_price": {"currency": "USD", "monthly_tiers": {"Pro": 20, "Teams": 40}},
+      "verified_facts": ["Cursor offers Hobby plus paid individual and team plans.", "Current paid positioning centers on extended Agent usage, frontier models, MCP/skills/hooks, cloud agents and team controls."],
+      "customer_problem": "A developer wants an AI-native editor that can understand and change a codebase rather than only autocomplete lines.",
+      "solution_summary": "Explain Cursor around agentic codebase work, model usage and team privacy/governance.",
+      "best_fit": ["full-stack developers", "AI engineers", "startup teams", "freelancers"],
+      "limitations": ["model choice affects included usage consumption", "usage terms can evolve"],
+      "recommended_public_action": "Use a workflow comparison against Copilot/Replit/v0 instead of generic 'best coding AI' claims."
+    },
+    {
+      "provider": "Replit",
+      "product": "Replit",
+      "official_sources": ["https://replit.com/pricing"],
+      "provider_price": {"currency": "USD", "annual_billing_equivalent_monthly": {"Core": 20, "Pro": 95}},
+      "verified_facts": ["Current Replit plans include Starter, Core, Pro and Enterprise.", "Core and Pro include monthly usage credits and autonomous/agentic app-building capabilities; Pro adds higher credits/collaboration and professional support."],
+      "customer_problem": "A non-specialist or developer wants to build, run and publish an application in one environment without managing a local toolchain and deployment stack separately.",
+      "solution_summary": "Explain the end-to-end build-and-deploy workflow and usage-credit economics.",
+      "best_fit": ["founders", "developers", "students", "prototype teams"],
+      "limitations": ["agent behavior is probabilistic", "additional usage can be pay-as-you-go"],
+      "recommended_public_action": "Build guides around 'idea to deployed app' and when Core versus Pro economics make sense."
+    },
+    {
+      "provider": "Vercel",
+      "product": "v0",
+      "official_sources": ["https://v0.app/pricing"],
+      "provider_price": {"currency": "USD", "monthly_tiers": {"Team_per_user": 30, "Business_per_user": 100}},
+      "verified_facts": ["v0 offers a free credit tier plus Team, Business and Enterprise plans.", "Current product can build full-stack apps, sync with GitHub and deploy to Vercel, with model/credit usage as part of pricing."],
+      "customer_problem": "A product/design/development user wants to turn UI or product requirements into working web application code rapidly.",
+      "solution_summary": "Frame v0 around prototype-to-production UI/app workflows and Vercel/GitHub integration.",
+      "best_fit": ["frontend developers", "designers", "founders", "product teams"],
+      "limitations": ["usage is credit/token based", "generated applications still require QA/security/review"],
+      "recommended_public_action": "Create a decision guide for v0 vs Replit vs Cursor based on the customer's starting point and deployment needs."
+    },
+    {
+      "provider": "Writesonic",
+      "product": "Writesonic",
+      "official_sources": ["https://writesonic.com/pricing"],
+      "provider_price": {"currency": "USD", "annual_billing_equivalent_monthly": {"Starter": 79, "Basic": 199, "Growth": 399}},
+      "verified_facts": ["Current Writesonic positioning is AI search visibility/GEO plus SEO/content workflows, not only an AI writer.", "Plans combine AI-platform visibility tracking, content/SEO audits and agentic workflows."],
+      "customer_problem": "A brand needs to understand and improve how it appears in Google and AI answer engines while maintaining an SEO/content program.",
+      "solution_summary": "Update old 'AI writer' copy to current GEO/AI-search visibility and SEO use cases.",
+      "best_fit": ["SEO teams", "brands", "agencies", "content marketers"],
+      "limitations": ["plan capabilities and tracked platforms differ by tier", "results are not a ranking guarantee"],
+      "recommended_public_action": "Rewrite product page around AI visibility + SEO workflow and explicitly avoid guaranteed ranking language."
+    },
+    {
+      "provider": "Notion",
+      "product": "Notion Business",
+      "official_sources": ["https://www.notion.com/pricing", "https://www.notion.com/product/ai"],
+      "provider_price": {"currency": "USD", "amount": 20, "period": "member/month"},
+      "verified_facts": ["Notion Business is priced per member and includes Notion AI capabilities such as Agent, AI Meeting Notes and Enterprise Search features.", "Guests are distinct from members; team/workspace billing should not be described as a generic transferable subscription."],
+      "customer_problem": "A team needs docs, knowledge, projects, meetings and AI assistance in one governed workspace.",
+      "solution_summary": "Explain seat/member economics, workspace ownership and AI workflow value clearly.",
+      "best_fit": ["teams", "agencies", "startups", "operations", "knowledge workers"],
+      "limitations": ["billing is workspace/member based", "some features are beta or use additional Notion credits"],
+      "recommended_public_action": "Remove any stale fixed AIPS Notion price/discount claim until exact seat/workspace procurement and margin are approved."
+    },
+    {
+      "provider": "Gamma",
+      "product": "Gamma",
+      "official_sources": ["https://gamma.app/pricing"],
+      "provider_price": null,
+      "verified_facts": ["Current individual plans include Free, Plus, Pro and Ultra; Gamma also supports team/business plans.", "Gamma creates presentations, docs, sites/social content and supports PPT/PDF import/export; higher tiers increase slide-per-prompt limits and advanced model/customization access."],
+      "customer_problem": "A customer needs to turn rough notes or a brief into a polished presentation/document/site quickly without manually designing every slide.",
+      "solution_summary": "Lead with time-to-first-draft, brand control and export workflow, not only 'AI presentation'.",
+      "best_fit": ["students", "sales teams", "consultants", "founders", "marketers"],
+      "limitations": ["public pricing values were not reliably exposed in this verification pass", "advanced AI usage may depend on credits/fair-use"],
+      "recommended_public_action": "Verify checkout-visible current price before publishing provider-price comparisons."
+    },
+    {
+      "provider": "ByteDance/CapCut",
+      "product": "CapCut Pro",
+      "official_sources": ["https://www.capcut.com/help/how-much-does-capcut-pro-cost", "https://www.capcut.com/help/new-capcut-subscription-pricing"],
+      "provider_price": null,
+      "verified_facts": ["CapCut explicitly states Pro pricing varies by region, device/platform and promotions.", "The provider advises users to check the logged-in upgrade/checkout surface for the current price; the new membership structure includes updated Pro/Standard positioning."],
+      "customer_problem": "A creator wants fast social/video editing, templates and AI-assisted production without a traditional desktop editing learning curve.",
+      "solution_summary": "Explain CapCut by creator workflow and make price inquiry/checkout verification explicit instead of hard-coding one global official price.",
+      "best_fit": ["short-form creators", "social marketers", "small businesses", "video editors"],
+      "limitations": ["no single universal provider price", "plan availability and promotions can differ by account/platform/region"],
+      "recommended_public_action": "Remove stale universal official-price claims; display 'provider price varies—check current checkout' until exact regional evidence is attached."
+    },
+    {
+      "provider": "Ideogram",
+      "product": "Ideogram",
+      "official_sources": ["https://docs.ideogram.ai/plans-and-pricing/available-plans"],
+      "provider_price": {"currency": "USD", "monthly_tiers": {"Plus": 20, "Pro": 60, "Team_per_member": 30}},
+      "verified_facts": ["The Basic plan is legacy and no longer available for new purchase.", "Current plans use priority/slow credits and paid tiers add private generation, image upload/editing and higher concurrency."],
+      "customer_problem": "A designer/marketer needs controllable AI image generation, especially text-in-image/creative asset production and private workflows.",
+      "solution_summary": "Explain generation-credit volume, private generation and design workflow differences by tier.",
+      "best_fit": ["graphic designers", "marketers", "social creators", "brand teams"],
+      "limitations": ["legacy Basic must not be marketed as currently purchasable", "credit costs vary by model/rendering"],
+      "recommended_public_action": "Audit any Basic-plan or old-credit references and replace them with current plan structure."
+    },
+    {
+      "provider": "Manus",
+      "product": "Manus",
+      "official_sources": ["https://help.manus.im/en/articles/11711111-what-is-the-current-membership-pricing-for-manus", "https://manus.im/pricing"],
+      "provider_price": {"currency": "USD", "pro_starting_monthly": 20},
+      "verified_facts": ["Manus currently documents Free, Pro and Team plan families.", "Pro is credit-based and includes higher-capability Agent modes, research, website deployment, slides and multiple concurrent/scheduled tasks depending on tier."],
+      "customer_problem": "A user needs an agent to execute multi-step research and creation tasks rather than only answer individual prompts.",
+      "solution_summary": "Position around delegated multi-step work and credit economics, with clear boundaries on what the agent can reliably complete.",
+      "best_fit": ["researchers", "founders", "operators", "consultants", "power users"],
+      "limitations": ["credit use depends on task complexity", "plan details can change rapidly"],
+      "recommended_public_action": "Use checked-date plan descriptions and avoid treating older model/version labels as evergreen facts."
+    }
+  ]
+}

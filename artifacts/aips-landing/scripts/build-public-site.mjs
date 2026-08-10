@@ -43,6 +43,7 @@ try {
 
   const viteBin = join(APP, "node_modules/vite/bin/vite.js");
   run(process.execPath, [viteBin, "build", "--config", "vite.config.ts"]);
+  run(process.execPath, ["scripts/audit-bundle-budgets.mjs"]);
   run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);

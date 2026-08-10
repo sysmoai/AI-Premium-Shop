@@ -24,6 +24,8 @@ export const HOMEPAGE_V2: PublicHomepageView = {
   recommendations: [],
   accessModels: [],
   trustFacts: [],
+  editorialSpotlight: null,
+  campaigns: [],
   media: {
     hero: null,
     demos: [],

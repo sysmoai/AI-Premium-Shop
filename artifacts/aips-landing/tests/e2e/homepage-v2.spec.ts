@@ -46,6 +46,17 @@ test("Homepage V2 renders the full decision-support path", async ({ page }) => {
   await expect(page.getByTestId("homepage-v2-faq")).toContainText("Nagad");
 });
 
+test("Homepage V2 renders only in-window governed editorial and no unapproved campaign", async ({ page }) => {
+  await page.goto(PREVIEW, { waitUntil: "networkidle" });
+
+  const editorial = page.getByTestId("homepage-v2-editorial-spotlight");
+  await expect(editorial).toBeVisible();
+  await expect(editorial).toContainText("AI agents are not one buying category");
+  await expect(editorial).toContainText("As of Aug 10, 2026");
+  await expect(editorial).toContainText("Revision 2026-08-10-r1");
+  await expect(page.getByTestId("homepage-v2-campaigns")).toHaveCount(0);
+});
+
 test("Homepage V2 does not reintroduce banned universal marketing claims", async ({ page }) => {
   await page.goto(PREVIEW, { waitUntil: "networkidle" });
   const bodyText = (await page.locator("body").innerText()).toLowerCase();

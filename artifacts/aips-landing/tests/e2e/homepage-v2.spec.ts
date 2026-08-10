@@ -29,6 +29,41 @@ test("Homepage V2 finder fails closed when no governed plan matches filters", as
   await expect(page.locator('[data-testid^="finder-result-"]')).toHaveCount(0);
 });
 
+test("Homepage V2 renders the full decision-support path", async ({ page }) => {
+  await page.goto(PREVIEW, { waitUntil: "networkidle" });
+
+  await expect(page.getByTestId("homepage-v2-access-models")).toBeVisible();
+  await expect(page.getByTestId("homepage-v2-browse-universe")).toBeVisible();
+  await expect(page.getByTestId("homepage-v2-buying-flow")).toBeVisible();
+  await expect(page.getByTestId("homepage-v2-why-aips")).toBeVisible();
+  await expect(page.getByTestId("homepage-v2-learning-hub")).toBeVisible();
+  await expect(page.getByTestId("homepage-v2-faq")).toBeVisible();
+  await expect(page.getByTestId("homepage-v2-final-cta")).toBeVisible();
+
+  const paymentQuestion = page.getByText("Which local payment methods are currently shown by AIPS?", { exact: true });
+  await paymentQuestion.click();
+  await expect(page.getByTestId("homepage-v2-faq")).toContainText("bKash");
+  await expect(page.getByTestId("homepage-v2-faq")).toContainText("Nagad");
+});
+
+test("Homepage V2 does not reintroduce banned universal marketing claims", async ({ page }) => {
+  await page.goto(PREVIEW, { waitUntil: "networkidle" });
+  const bodyText = (await page.locator("body").innerText()).toLowerCase();
+
+  for (const prohibited of [
+    "30-day warranty",
+    "30 day warranty",
+    "5–30 min delivery",
+    "5-30 min delivery",
+    "under 5 min response",
+    "official subscription",
+    "limited time offer",
+    "top rated",
+  ]) {
+    expect(bodyText).not.toContain(prohibited);
+  }
+});
+
 test("Homepage V2 guided finder remains usable on a 390px mobile viewport", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(PREVIEW, { waitUntil: "networkidle" });

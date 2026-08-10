@@ -42,6 +42,7 @@ try {
   run(process.execPath, [viteBin, "build", "--config", "vite.config.ts"]);
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
+  run(process.execPath, ["scripts/audit-plan-pages.mjs"]);
   run(process.execPath, ["scripts/audit-prerender.mjs"]);
   run(process.execPath, ["scripts/apply-commerce-quarantine.mjs"]);
   run(process.execPath, ["scripts/write-build-identity.mjs"]);

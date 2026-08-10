@@ -49,6 +49,10 @@ jobs:
         working-directory: artifacts/aips-landing
         run: pnpm run validate:all
 
+      - name: Prove public projection fails closed
+        working-directory: artifacts/aips-landing
+        run: node scripts/test-public-projection.mjs
+
       - name: Build public site
         working-directory: artifacts/aips-landing
         env:

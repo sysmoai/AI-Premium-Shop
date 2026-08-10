@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { ArrowRight, CheckCircle2, MessageCircle, Search, ShieldCheck, Sparkles } from "lucide-react";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
 import { SEOHead } from "@/components/SEOHead";
+import { HomepageHeroMedia } from "@/components/homepage/HomepageHeroMedia";
+import { HomepageMediaRail } from "@/components/homepage/HomepageMediaRail";
 import { HOMEPAGE_V2 } from "@/generated/homepageV2";
 import type { HomepageRecommendation, HomepageRecommendationVariant } from "@/lib/homepageV2";
 
@@ -175,31 +177,7 @@ export default function HomeV2() {
             </div>
 
             <div className="rounded-[28px] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20 sm:p-7">
-              {data.media.hero ? (
-                <img
-                  src={data.media.hero.publicUri}
-                  alt={data.media.hero.alt}
-                  width={data.media.hero.width ?? undefined}
-                  height={data.media.hero.height ?? undefined}
-                  className="h-auto w-full rounded-2xl object-cover"
-                />
-              ) : (
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0d1930] p-6 sm:p-8">
-                  <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-[#f4b942]/10 blur-3xl" aria-hidden="true" />
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#f4b942]">HP-HERO-01</p>
-                  <h2 className="mt-3 text-2xl font-semibold">Hero media slot is ready</h2>
-                  <p className="mt-3 text-sm leading-6 text-slate-300">
-                    This canary is already wired for the governed hero asset. The final visual will be registered, approved and optimized before it can appear here.
-                  </p>
-                  <div className="mt-7 grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
-                    {["Research", "Coding", "Images", "Video", "Automation", "Local buying"].map((label) => (
-                      <div key={label} className="rounded-xl border border-white/10 bg-white/[0.035] px-3 py-4 text-center text-slate-200">
-                        {label}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+              <HomepageHeroMedia asset={data.media.hero} />
             </div>
           </div>
         </section>
@@ -419,6 +397,8 @@ export default function HomeV2() {
           </div>
         </section>
 
+        <HomepageMediaRail assets={data.media.demos} />
+
         <section className="border-y border-white/10 bg-[#0a1427]">
           <div className="mx-auto max-w-7xl px-4 py-16 md:px-8">
             <div className="grid gap-4 md:grid-cols-3">
@@ -435,9 +415,9 @@ export default function HomeV2() {
 
         <section className="mx-auto max-w-4xl px-4 py-20 text-center md:px-8">
           <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#f4b942]">Canary status</p>
-          <h2 className="mt-3 text-3xl font-semibold">The structure and guided finder are now live in preview.</h2>
+          <h2 className="mt-3 text-3xl font-semibold">The guided finder and governed media slots are now live in preview.</h2>
           <p className="mx-auto mt-4 max-w-2xl leading-7 text-slate-300">
-            This route remains deliberately noindex and isolated from the production homepage. The next visual milestone is the governed HP-HERO-01 asset and the first real media demonstration rail.
+            This route remains deliberately noindex and isolated from the production homepage. Approved hero and demonstration assets can now be added through the media registry without changing the page component.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <a href="#finder" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#f4b942] px-6 py-3 font-bold text-[#07101f]">

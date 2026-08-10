@@ -10,17 +10,27 @@ const sitePath = join(REPO, "ops/ssot/site.json");
 const commercialPath = join(REPO, "ops/ssot/commercial.json");
 const rawPath = join(APP, "data/products.json");
 const projectedPath = join(APP, "data/public-products.json");
+const publicationStatePath = join(APP, "src/generated/publicationState.ts");
 
 const originalSite = readFileSync(sitePath, "utf8");
 const originalCommercial = readFileSync(commercialPath, "utf8");
 
-function runProjection() {
-  const result = spawnSync(process.execPath, ["scripts/generate-public-projection.mjs"], {
+function runScript(script) {
+  const result = spawnSync(process.execPath, [script], {
     cwd: APP,
     stdio: "inherit",
   });
-  if (result.status !== 0) throw new Error(`projection generator failed with ${result.status}`);
+  if (result.status !== 0) throw new Error(`${script} failed with ${result.status}`);
+}
+
+function runProjection() {
+  runScript("scripts/generate-public-projection.mjs");
   return JSON.parse(readFileSync(projectedPath, "utf8"));
+}
+
+function runPublicationState() {
+  runScript("scripts/generate-publication-state.mjs");
+  return readFileSync(publicationStatePath, "utf8");
 }
 
 function assert(condition, message) {
@@ -31,12 +41,15 @@ try {
   const raw = JSON.parse(readFileSync(rawPath, "utf8"));
   const rawProducts = Array.isArray(raw) ? raw : raw.products ?? [];
   const current = runProjection();
+  const currentState = runPublicationState();
 
   assert(current.products.length === rawProducts.length, "current projection changed catalog record count");
   assert(
     current.projection.mode === "approved-commerce",
     `expected approved-commerce current mode, got ${current.projection.mode}`,
   );
+  assert(currentState.includes('"publicationAllowed": true'), "current compile-time gate did not allow approved commerce");
+  assert(currentState.includes('"quarantine": false'), "current compile-time gate unexpectedly enabled quarantine");
 
   const site = JSON.parse(originalSite);
   const commercial = JSON.parse(originalCommercial);
@@ -50,8 +63,12 @@ try {
   writeFileSync(commercialPath, `${JSON.stringify(commercial, null, 2)}\n`, "utf8");
 
   const quarantined = runProjection();
+  const quarantinedState = runPublicationState();
   assert(quarantined.projection.mode === "informational-fail-closed", "quarantine did not switch projection mode");
   assert(quarantined.products.length === rawProducts.length, "quarantine changed identity record count");
+  assert(quarantinedState.includes('"publicationAllowed": false'), "compile-time gate remained publishable under quarantine");
+  assert(quarantinedState.includes('"quarantine": true'), "compile-time gate did not enable quarantine");
+  assert(quarantinedState.includes('"mode": "informational-fail-closed"'), "compile-time gate did not record fail-closed mode");
 
   for (const product of quarantined.products) {
     assert(product.price == null, `${product.slug}: numeric/public price survived quarantine`);
@@ -64,9 +81,10 @@ try {
     assert(product.trust == null, `${product.slug}: trust/warranty block survived quarantine`);
   }
 
-  console.log(`[public-projection-test] PASS: ${quarantined.products.length} records fail closed under simulated quarantine`);
+  console.log(`[public-projection-test] PASS: ${quarantined.products.length} records and compile-time app gate fail closed under simulated quarantine`);
 } finally {
   writeFileSync(sitePath, originalSite, "utf8");
   writeFileSync(commercialPath, originalCommercial, "utf8");
   runProjection();
+  runPublicationState();
 }

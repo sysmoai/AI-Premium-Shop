@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "storage": {
+    "mode": "registry-first",
+    "notes": "Media files may remain in existing static/CDN storage. Product and plan pages must reference approved assets through this registry rather than infer commerce state from filenames."
+  },
+  "assets": [],
+  "links": []
+}

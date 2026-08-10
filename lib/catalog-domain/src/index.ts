@@ -1,6 +1,4 @@
-import { z } from "zod";
-
-export const CommercialStatusSchema = z.enum([
+export const COMMERCIAL_STATUSES = [
   "RESEARCH_ONLY",
   "DRAFT",
   "VERIFYING",
@@ -10,17 +8,17 @@ export const CommercialStatusSchema = z.enum([
   "PUBLIC_SELLABLE",
   "SUSPENDED",
   "RETIRED",
-]);
-export type CommercialStatus = z.infer<typeof CommercialStatusSchema>;
+] as const;
+export type CommercialStatus = (typeof COMMERCIAL_STATUSES)[number];
 
-export const IndexPolicySchema = z.enum([
+export const INDEX_POLICIES = [
   "INDEX_SELF",
   "CANONICAL_PARENT",
   "NOINDEX_REVIEW",
-]);
-export type IndexPolicy = z.infer<typeof IndexPolicySchema>;
+] as const;
+export type IndexPolicy = (typeof INDEX_POLICIES)[number];
 
-export const MediaKindSchema = z.enum([
+export const MEDIA_KINDS = [
   "LOGO",
   "PRODUCT_HERO",
   "PLAN_HERO",
@@ -36,110 +34,103 @@ export const MediaKindSchema = z.enum([
   "OG_IMAGE",
   "CATEGORY_HERO",
   "BRAND_ASSET",
-]);
-export type MediaKind = z.infer<typeof MediaKindSchema>;
+] as const;
+export type MediaKind = (typeof MEDIA_KINDS)[number];
 
-export const PublicationStatusSchema = z.enum([
+export const PUBLICATION_STATUSES = [
   "DRAFT",
   "APPROVED",
   "SUSPENDED",
   "RETIRED",
-]);
-export type PublicationStatus = z.infer<typeof PublicationStatusSchema>;
+] as const;
+export type PublicationStatus = (typeof PUBLICATION_STATUSES)[number];
 
-export const ProductIdentitySchema = z.object({
-  id: z.string().min(1),
-  externalId: z.string().min(1).optional(),
-  canonicalName: z.string().min(1),
-  slug: z.string().min(1),
-  brand: z.string().min(1),
-  brandSlug: z.string().min(1),
-  provider: z.string().min(1).nullable().optional(),
-  category: z.string().min(1),
-  canonicalPath: z.string().startsWith("/"),
-});
-export type ProductIdentity = z.infer<typeof ProductIdentitySchema>;
+export interface ProductIdentity {
+  id: string;
+  externalId?: string;
+  canonicalName: string;
+  slug: string;
+  brand: string;
+  brandSlug: string;
+  provider?: string | null;
+  category: string;
+  canonicalPath: `/${string}`;
+}
 
-export const PlanSchema = z.object({
-  id: z.string().min(1),
-  productId: z.string().min(1),
-  planKey: z.string().min(1),
-  planName: z.string().min(1),
-  billingCycle: z.string().nullable().optional(),
-  status: PublicationStatusSchema.default("DRAFT"),
-  indexPolicy: IndexPolicySchema.default("CANONICAL_PARENT"),
-  canonicalPath: z.string().startsWith("/"),
-});
-export type Plan = z.infer<typeof PlanSchema>;
+export interface Plan {
+  id: string;
+  productId: string;
+  planKey: string;
+  planName: string;
+  billingCycle?: string | null;
+  status: PublicationStatus;
+  indexPolicy: IndexPolicy;
+  canonicalPath: `/${string}`;
+}
 
-export const VerificationRefSchema = z.object({
-  source: z.string().min(1),
-  verifiedAt: z.string().datetime({ offset: true }),
-  verifiedBy: z.string().min(1),
-  approvalReference: z.string().min(1).optional(),
-  reviewDueAt: z.string().datetime({ offset: true }).nullable().optional(),
-});
-export type VerificationRef = z.infer<typeof VerificationRefSchema>;
+export interface VerificationRef {
+  source: string;
+  verifiedAt: string;
+  verifiedBy: string;
+  approvalReference?: string;
+  reviewDueAt?: string | null;
+}
 
-export const CommercialOfferSchema = z.object({
-  id: z.string().min(1),
-  productId: z.string().min(1),
-  planId: z.string().min(1).nullable().optional(),
-  sku: z.string().min(1),
-  commercialStatus: CommercialStatusSchema,
-  priceBdt: z.number().int().nonnegative().nullable().optional(),
-  currency: z.literal("BDT").default("BDT"),
-  accessModel: z.string().min(1).nullable().optional(),
-  availability: z.string().min(1).nullable().optional(),
-  activationMethod: z.string().min(1).nullable().optional(),
-  deliveryWindow: z.string().min(1).nullable().optional(),
-  approved: z.boolean().default(false),
-  verification: VerificationRefSchema.nullable().optional(),
-});
-export type CommercialOffer = z.infer<typeof CommercialOfferSchema>;
+export interface CommercialOffer {
+  id: string;
+  productId: string;
+  planId?: string | null;
+  sku: string;
+  commercialStatus: CommercialStatus;
+  priceBdt?: number | null;
+  currency?: "BDT";
+  accessModel?: string | null;
+  availability?: string | null;
+  activationMethod?: string | null;
+  deliveryWindow?: string | null;
+  approved: boolean;
+  verification?: VerificationRef | null;
+}
 
-export const MediaAssetSchema = z.object({
-  id: z.string().min(1),
-  mediaKey: z.string().min(1),
-  kind: MediaKindSchema,
-  publicUri: z.string().min(1),
-  mimeType: z.string().min(1),
-  width: z.number().int().positive().nullable().optional(),
-  height: z.number().int().positive().nullable().optional(),
-  durationMs: z.number().int().nonnegative().nullable().optional(),
-  posterMediaId: z.string().min(1).nullable().optional(),
-  altEn: z.string().nullable().optional(),
-  altBn: z.string().nullable().optional(),
-  captionEn: z.string().nullable().optional(),
-  captionBn: z.string().nullable().optional(),
-  publicationStatus: PublicationStatusSchema,
-  offerId: z.string().min(1).nullable().optional(),
-});
-export type MediaAsset = z.infer<typeof MediaAssetSchema>;
+export interface MediaAsset {
+  id: string;
+  mediaKey: string;
+  kind: MediaKind;
+  publicUri: string;
+  mimeType: string;
+  width?: number | null;
+  height?: number | null;
+  durationMs?: number | null;
+  posterMediaId?: string | null;
+  altEn?: string | null;
+  altBn?: string | null;
+  captionEn?: string | null;
+  captionBn?: string | null;
+  publicationStatus: PublicationStatus;
+  offerId?: string | null;
+}
 
-export const PublicOfferSchema = z.object({
-  id: z.string(),
-  sku: z.string(),
-  mode: z.enum(["REQUEST_PRICE", "SELLABLE"]),
-  priceBdt: z.number().int().nonnegative().nullable(),
-  currency: z.literal("BDT"),
-  accessModel: z.string().nullable(),
-  availability: z.string().nullable(),
-  activationMethod: z.string().nullable(),
-  deliveryWindow: z.string().nullable(),
-});
-export type PublicOffer = z.infer<typeof PublicOfferSchema>;
+export interface PublicOffer {
+  id: string;
+  sku: string;
+  mode: "REQUEST_PRICE" | "SELLABLE";
+  priceBdt: number | null;
+  currency: "BDT";
+  accessModel: string | null;
+  availability: string | null;
+  activationMethod: string | null;
+  deliveryWindow: string | null;
+}
 
-export const PublicProductViewSchema = z.object({
-  identity: ProductIdentitySchema,
-  plans: z.array(PlanSchema),
-  media: z.array(MediaAssetSchema),
-  offer: PublicOfferSchema.nullable(),
-  canRenderPrice: z.boolean(),
-  canRenderPurchaseCta: z.boolean(),
-  canRenderOfferSchema: z.boolean(),
-});
-export type PublicProductView = z.infer<typeof PublicProductViewSchema>;
+export interface PublicProductView {
+  identity: ProductIdentity;
+  plans: Plan[];
+  media: MediaAsset[];
+  offer: PublicOffer | null;
+  canRenderPrice: boolean;
+  canRenderPurchaseCta: boolean;
+  canRenderOfferSchema: boolean;
+}
 
 export interface PublicationContext {
   publicationAllowed: boolean;
@@ -153,8 +144,63 @@ export interface BuildPublicProductInput {
   offer?: CommercialOffer | null;
 }
 
+const isNonEmpty = (value: string | null | undefined): value is string =>
+  typeof value === "string" && value.trim().length > 0;
+
+const isValidNonNegativeInteger = (value: number | null | undefined): value is number =>
+  typeof value === "number" && Number.isInteger(value) && value >= 0;
+
+const hasValidPath = (value: string): value is `/${string}` => value.startsWith("/");
+
+export function assertProductIdentity(identity: ProductIdentity): void {
+  if (!isNonEmpty(identity.id)) throw new Error("product identity requires id");
+  if (!isNonEmpty(identity.canonicalName)) throw new Error("product identity requires canonicalName");
+  if (!isNonEmpty(identity.slug)) throw new Error("product identity requires slug");
+  if (!isNonEmpty(identity.brand)) throw new Error("product identity requires brand");
+  if (!isNonEmpty(identity.brandSlug)) throw new Error("product identity requires brandSlug");
+  if (!isNonEmpty(identity.category)) throw new Error("product identity requires category");
+  if (!hasValidPath(identity.canonicalPath)) throw new Error("product canonicalPath must start with /");
+}
+
+export function assertPlan(plan: Plan): void {
+  if (!isNonEmpty(plan.id) || !isNonEmpty(plan.productId)) throw new Error("plan requires id and productId");
+  if (!isNonEmpty(plan.planKey) || !isNonEmpty(plan.planName)) throw new Error("plan requires planKey and planName");
+  if (!PUBLICATION_STATUSES.includes(plan.status)) throw new Error(`invalid plan publication status: ${plan.status}`);
+  if (!INDEX_POLICIES.includes(plan.indexPolicy)) throw new Error(`invalid plan index policy: ${plan.indexPolicy}`);
+  if (!hasValidPath(plan.canonicalPath)) throw new Error("plan canonicalPath must start with /");
+}
+
+export function assertCommercialOffer(offer: CommercialOffer): void {
+  if (!isNonEmpty(offer.id) || !isNonEmpty(offer.productId) || !isNonEmpty(offer.sku)) {
+    throw new Error("commercial offer requires id, productId and sku");
+  }
+  if (!COMMERCIAL_STATUSES.includes(offer.commercialStatus)) {
+    throw new Error(`invalid commercial status: ${offer.commercialStatus}`);
+  }
+  if (offer.priceBdt != null && !isValidNonNegativeInteger(offer.priceBdt)) {
+    throw new Error("priceBdt must be a non-negative integer when present");
+  }
+}
+
+export function assertMediaAsset(asset: MediaAsset): void {
+  if (!isNonEmpty(asset.id) || !isNonEmpty(asset.mediaKey) || !isNonEmpty(asset.publicUri)) {
+    throw new Error("media asset requires id, mediaKey and publicUri");
+  }
+  if (!isNonEmpty(asset.mimeType)) throw new Error("media asset requires mimeType");
+  if (!MEDIA_KINDS.includes(asset.kind)) throw new Error(`invalid media kind: ${asset.kind}`);
+  if (!PUBLICATION_STATUSES.includes(asset.publicationStatus)) {
+    throw new Error(`invalid media publication status: ${asset.publicationStatus}`);
+  }
+}
+
 function offerIsVerified(offer: CommercialOffer): boolean {
-  return Boolean(offer.approved && offer.verification);
+  return Boolean(
+    offer.approved &&
+      offer.verification &&
+      isNonEmpty(offer.verification.source) &&
+      isNonEmpty(offer.verification.verifiedAt) &&
+      isNonEmpty(offer.verification.verifiedBy),
+  );
 }
 
 export function canRenderPrice(
@@ -165,7 +211,7 @@ export function canRenderPrice(
   return (
     offer.commercialStatus === "PUBLIC_SELLABLE" &&
     offerIsVerified(offer) &&
-    typeof offer.priceBdt === "number"
+    isValidNonNegativeInteger(offer.priceBdt)
   );
 }
 
@@ -174,8 +220,7 @@ export function canRenderPurchaseCta(
   offer?: CommercialOffer | null,
 ): boolean {
   if (!context.publicationAllowed || context.quarantine || !offer) return false;
-  if (!offerIsVerified(offer)) return false;
-  return offer.commercialStatus === "PUBLIC_SELLABLE";
+  return offerIsVerified(offer) && offer.commercialStatus === "PUBLIC_SELLABLE";
 }
 
 export function canRenderRequestPriceCta(
@@ -183,8 +228,7 @@ export function canRenderRequestPriceCta(
   offer?: CommercialOffer | null,
 ): boolean {
   if (!context.publicationAllowed || context.quarantine || !offer) return false;
-  if (!offerIsVerified(offer)) return false;
-  return offer.commercialStatus === "PUBLIC_REQUEST_PRICE";
+  return offerIsVerified(offer) && offer.commercialStatus === "PUBLIC_REQUEST_PRICE";
 }
 
 export function canRenderOfferSchema(
@@ -200,6 +244,7 @@ export function filterPublicMedia(
   offer?: CommercialOffer | null,
 ): MediaAsset[] {
   return media.filter((asset) => {
+    assertMediaAsset(asset);
     if (asset.publicationStatus !== "APPROVED") return false;
     if (!asset.offerId) return true;
     if (!offer || asset.offerId !== offer.id) return false;
@@ -212,6 +257,7 @@ export function buildPublicOffer(
   offer?: CommercialOffer | null,
 ): PublicOffer | null {
   if (!offer || !context.publicationAllowed || context.quarantine) return null;
+  assertCommercialOffer(offer);
   if (!offerIsVerified(offer)) return null;
 
   if (offer.commercialStatus === "PUBLIC_REQUEST_PRICE") {
@@ -229,7 +275,7 @@ export function buildPublicOffer(
   }
 
   if (offer.commercialStatus !== "PUBLIC_SELLABLE") return null;
-  if (typeof offer.priceBdt !== "number") return null;
+  if (!isValidNonNegativeInteger(offer.priceBdt)) return null;
 
   return {
     id: offer.id,
@@ -248,20 +294,21 @@ export function buildPublicProductView(
   context: PublicationContext,
   input: BuildPublicProductInput,
 ): PublicProductView {
-  const identity = ProductIdentitySchema.parse(input.identity);
-  const plans = (input.plans ?? [])
-    .map((plan) => PlanSchema.parse(plan))
-    .filter((plan) => plan.status === "APPROVED");
-  const offer = input.offer ? CommercialOfferSchema.parse(input.offer) : null;
-  const media = (input.media ?? []).map((asset) => MediaAssetSchema.parse(asset));
+  assertProductIdentity(input.identity);
+  const plans = (input.plans ?? []).filter((plan) => {
+    assertPlan(plan);
+    return plan.status === "APPROVED";
+  });
+  const offer = input.offer ?? null;
+  if (offer) assertCommercialOffer(offer);
 
-  return PublicProductViewSchema.parse({
-    identity,
+  return {
+    identity: input.identity,
     plans,
-    media: filterPublicMedia(context, media, offer),
+    media: filterPublicMedia(context, input.media ?? [], offer),
     offer: buildPublicOffer(context, offer),
     canRenderPrice: canRenderPrice(context, offer),
     canRenderPurchaseCta: canRenderPurchaseCta(context, offer),
     canRenderOfferSchema: canRenderOfferSchema(context, offer),
-  });
+  };
 }

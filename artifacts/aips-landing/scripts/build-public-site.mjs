@@ -39,11 +39,14 @@ try {
   run(process.execPath, ["scripts/generate-route-registry.mjs"]);
   run(process.execPath, ["scripts/generate-plan-catalog.mjs"]);
   run(process.execPath, ["scripts/generate-media-catalog.mjs"]);
+  run(process.execPath, ["scripts/generate-homepage-v2-view.mjs"]);
 
   const viteBin = join(APP, "node_modules/vite/bin/vite.js");
   run(process.execPath, [viteBin, "build", "--config", "vite.config.ts"]);
+  run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
+  run(process.execPath, ["scripts/audit-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/audit-plan-pages.mjs"]);
   run(process.execPath, ["scripts/audit-prerender.mjs"]);
   run(process.execPath, ["scripts/apply-commerce-quarantine.mjs"]);

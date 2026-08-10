@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowRight, MessageCircle, Search, Sparkles } from "lucide-react";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
 import { SEOHead } from "@/components/SEOHead";
@@ -7,6 +8,7 @@ import { HomepageDiscovery } from "@/components/homepage/HomepageDiscovery";
 import { HomepageEditorial } from "@/components/homepage/HomepageEditorial";
 import { HomepageHeroMedia } from "@/components/homepage/HomepageHeroMedia";
 import { HOMEPAGE_V2 } from "@/generated/homepageV2";
+import { trackHomepageEvent } from "@/lib/homepageAnalytics";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
@@ -27,6 +29,14 @@ export default function HomeV2() {
   const data = HOMEPAGE_V2;
   const commerceEnabled = data.publication.publicationAllowed && !data.publication.quarantine;
   const minPrice = commerceEnabled ? formatBDT(data.catalog.minPrice) : null;
+
+  useEffect(() => {
+    trackHomepageEvent({
+      name: "homepage_view",
+      publication_mode: data.publication.mode,
+      commerce_enabled: commerceEnabled,
+    });
+  }, [commerceEnabled, data.publication.mode]);
 
   return (
     <div className="min-h-screen bg-[#07101f] text-white" data-testid="homepage-v2-canary">
@@ -70,6 +80,7 @@ export default function HomeV2() {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackHomepageEvent({ name: "homepage_whatsapp_click", placement: "header" })}
                 className="inline-flex items-center gap-2 rounded-lg bg-[#19a55a] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#148c4c]"
               >
                 <MessageCircle className="h-4 w-4" />

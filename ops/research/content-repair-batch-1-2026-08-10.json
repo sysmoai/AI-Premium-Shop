@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-08-10T10:32:00+06:00",
+  "business_unit": "AIPS",
+  "rule": "These are rewrite-ready educational/content corrections only. They do not approve AIPS prices, access models, delivery times, warranties, payment methods, rankings, earnings outcomes, product counts, customer counts or resale rights.",
+  "blog_metadata_repairs": [
+    {
+      "slug": "ai-voice

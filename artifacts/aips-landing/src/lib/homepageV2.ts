@@ -55,6 +55,33 @@ export interface HomepageTrustFact {
   source: string;
 }
 
+export interface HomepageEditorialSpotlight {
+  id: string;
+  revision: string;
+  asOf: string;
+  reviewAfter: string;
+  eyebrow: string;
+  title: string;
+  summary: string;
+  ctaLabel: string;
+  href: string;
+  sourceKind: "AIPS_EDITORIAL" | "PROVIDER_SOURCE" | "FIRST_PARTY_DATA";
+  sourceRefs: string[];
+}
+
+export interface HomepageCampaign {
+  id: string;
+  revision: string;
+  startsAt: string;
+  endsAt: string;
+  eyebrow: string;
+  headline: string;
+  body: string;
+  ctaLabel: string;
+  href: string;
+  offerIds: string[];
+}
+
 export interface HomepageMediaAsset {
   id: string;
   kind: string;
@@ -87,5 +114,7 @@ export interface PublicHomepageView {
   recommendations: HomepageRecommendation[];
   accessModels: HomepageAccessModel[];
   trustFacts: HomepageTrustFact[];
+  editorialSpotlight: HomepageEditorialSpotlight | null;
+  campaigns: HomepageCampaign[];
   media: HomepageMediaView;
 }

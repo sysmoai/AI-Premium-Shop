@@ -40,6 +40,7 @@ try {
 
   const viteBin = join(APP, "node_modules/vite/bin/vite.js");
   run(process.execPath, [viteBin, "build", "--config", "vite.config.ts"]);
+  run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
   run(process.execPath, ["scripts/audit-prerender.mjs"]);
   run(process.execPath, ["scripts/apply-commerce-quarantine.mjs"]);

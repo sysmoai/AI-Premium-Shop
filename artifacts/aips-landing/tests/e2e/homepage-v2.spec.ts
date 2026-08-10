@@ -57,6 +57,49 @@ test("Homepage V2 renders only in-window governed editorial and no unapproved ca
   await expect(page.getByTestId("homepage-v2-campaigns")).toHaveCount(0);
 });
 
+test("Homepage V2 emits only controlled non-PII analytics payloads for guided discovery", async ({ page }) => {
+  await page.addInitScript(() => {
+    const events: unknown[] = [];
+    Object.defineProperty(window, "__aipsHomepageEvents", {
+      value: events,
+      configurable: false,
+      writable: false,
+    });
+    window.addEventListener("aips:homepage-analytics", (event) => {
+      events.push((event as CustomEvent).detail);
+    });
+  });
+
+  await page.goto(PREVIEW, { waitUntil: "networkidle" });
+  await page.getByTestId("finder-intent-content-video").click();
+  await page.getByTestId("finder-access-personal").click();
+  await page.getByTestId("finder-budget-1001-3000").click();
+
+  const events = await page.evaluate(() => (window as typeof window & { __aipsHomepageEvents: Array<Record<string, unknown>> }).__aipsHomepageEvents);
+  expect(events.map((event) => event.name)).toEqual([
+    "homepage_view",
+    "homepage_finder_start",
+    "homepage_finder_select_intent",
+    "homepage_finder_filter",
+    "homepage_finder_filter",
+  ]);
+  expect(events[0]).toMatchObject({ publication_mode: "approved-commerce", commerce_enabled: true });
+  expect(events[2]).toMatchObject({ intent_id: "content-video" });
+  expect(events[3]).toMatchObject({ filter_type: "access", filter_id: "personal" });
+  expect(events[4]).toMatchObject({ filter_type: "budget", filter_id: "1001-3000" });
+
+  const serialized = JSON.stringify(events);
+  for (const forbiddenFreeFormValue of [
+    "Content & video",
+    "Monthly budget preference",
+    "What do you want AI to help you do?",
+    "wa.me",
+    "@",
+  ]) {
+    expect(serialized).not.toContain(forbiddenFreeFormValue);
+  }
+});
+
 test("Homepage V2 does not reintroduce banned universal marketing claims", async ({ page }) => {
   await page.goto(PREVIEW, { waitUntil: "networkidle" });
   const bodyText = (await page.locator("body").innerText()).toLowerCase();

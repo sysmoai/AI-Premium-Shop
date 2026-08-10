@@ -1,4 +1,5 @@
 import type { HomepageMediaAsset } from "@/lib/homepageV2";
+import { trackHomepageEvent } from "@/lib/homepageAnalytics";
 
 const PLANNED_SLOTS = [
   { id: "HP-DEMO-01", label: "Research assistant" },
@@ -37,6 +38,7 @@ export function HomepageMediaRail({ assets }: HomepageMediaRailProps) {
                     controls
                     playsInline
                     preload="none"
+                    onPlay={() => trackHomepageEvent({ name: "homepage_demo_play", media_id: asset.id })}
                     aria-label={asset.alt || asset.caption || "AI workflow demonstration"}
                     className="aspect-video w-full bg-black object-cover"
                   />

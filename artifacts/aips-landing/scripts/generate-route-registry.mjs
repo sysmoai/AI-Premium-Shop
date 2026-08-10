@@ -24,7 +24,6 @@ for (const product of products) {
 
 const routes = [];
 for (const [slug, records] of groups) {
-  const first = records[0];
   const canonicalPath = brandSlugs.has(slug) ? `/${slug}` : `/product/${slug}`;
   routes.push({
     entityType: "product",
@@ -48,7 +47,7 @@ for (const [slug, records] of groups) {
   const seenPlanKeys = new Set();
   for (const candidate of planCandidates) {
     if (!candidate.name) continue;
-    let planKey = slugify(candidate.name);
+    const planKey = slugify(candidate.name);
     if (seenPlanKeys.has(planKey)) continue;
     seenPlanKeys.add(planKey);
     routes.push({
@@ -60,8 +59,7 @@ for (const [slug, records] of groups) {
       canonicalPath: `/product/${slug}/plans/${planKey}`,
       routeType: "product-plan",
       indexPolicy: "CANONICAL_PARENT",
-      active: false,
-      preparedOnly: true,
+      active: true,
       source: candidate.source,
     });
   }
@@ -98,9 +96,10 @@ const output = {
   generated_at: new Date().toISOString(),
   source: "public-products.json + productRoutes.ts + vercel.json",
   active_product_routes: routes.filter((route) => route.entityType === "product" && route.active).length,
-  prepared_plan_routes: routes.filter((route) => route.entityType === "plan").length,
+  active_plan_routes: routes.filter((route) => route.entityType === "plan" && route.active).length,
+  independently_indexable_plan_routes: routes.filter((route) => route.entityType === "plan" && route.indexPolicy === "INDEX_SELF").length,
   routes,
   redirects,
 };
 writeFileSync(join(outDir, "route-registry.json"), `${JSON.stringify(output, null, 2)}\n`, "utf8");
-console.log(`[route-registry] ${output.active_product_routes} active products, ${output.prepared_plan_routes} prepared plan routes, ${redirects.length} redirects`);
+console.log(`[route-registry] ${output.active_product_routes} active products, ${output.active_plan_routes} active plan views, ${output.independently_indexable_plan_routes} independently indexable plans, ${redirects.length} redirects`);

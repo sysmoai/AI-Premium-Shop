@@ -17,16 +17,20 @@ export interface HomepagePaymentMethod {
   label: string;
 }
 
-export interface HomepageRecommendation {
-  slug: string;
-  href: string;
+export interface HomepageRecommendationVariant {
   name: string;
-  brand: string;
-  category: string;
   tier: string | null;
   accessType: string | null;
   price: number | null;
   requestPrice: boolean;
+}
+
+export interface HomepageRecommendation {
+  slug: string;
+  href: string;
+  brand: string;
+  category: string;
+  variants: HomepageRecommendationVariant[];
 }
 
 export interface HomepageIntent {

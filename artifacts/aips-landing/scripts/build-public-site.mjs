@@ -24,23 +24,18 @@ function run(command, args) {
 }
 
 try {
-  // Validate raw source data first. Research/catalog truth stays independently
-  // auditable; only renderers consume the public projection.
   run(process.execPath, ["scripts/validate-blog-prices.mjs"]);
   run(process.execPath, ["scripts/validate-higgsfield-offer.mjs"]);
+  run(process.execPath, ["scripts/validate-media-registry.mjs"]);
 
-  // Generate a projection only when site.json and commercial.json agree.
   run(process.execPath, ["scripts/generate-public-projection.mjs"]);
   const projected = JSON.parse(readFileSync(publicProductsPath, "utf8"));
 
-  // Existing React pages and prerender scripts historically import products.json
-  // directly. During the build only, provide them the governed projection. The
-  // canonical raw file is restored in finally even when a later step fails.
   writeFileSync(productsPath, `${JSON.stringify({ products: projected.products })}\n`, "utf8");
   console.log(`[public-build] activated ${projected.projection.mode} projection for all renderers`);
 
-  // Regenerate trimmed list/category/brand catalogs from the same projection.
   run(process.execPath, ["scripts/generate-catalog-lite.mjs"]);
+  run(process.execPath, ["scripts/generate-route-registry.mjs"]);
 
   const viteBin = join(APP, "node_modules/vite/bin/vite.js");
   run(process.execPath, [viteBin, "build", "--config", "vite.config.ts"]);

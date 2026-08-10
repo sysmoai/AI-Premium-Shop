@@ -63,6 +63,7 @@ export interface HomepageMediaAsset {
   width: number | null;
   height: number | null;
   durationMs: number | null;
+  posterUri: string | null;
   alt: string;
   caption: string;
 }

@@ -100,6 +100,40 @@ test("Homepage V2 emits only controlled non-PII analytics payloads for guided di
   }
 });
 
+test("Homepage V2 forwards controlled analytics only after cookie consent", async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.removeItem("cookie_consent");
+    const calls: unknown[] = [];
+    Object.defineProperty(window, "__aipsGtagCalls", {
+      value: calls,
+      configurable: false,
+      writable: false,
+    });
+    (window as typeof window & { gtag: (...args: unknown[]) => void }).gtag = (...args: unknown[]) => calls.push(args);
+  });
+
+  await page.goto(PREVIEW, { waitUntil: "networkidle" });
+  await page.getByTestId("finder-intent-study-research").click();
+
+  let calls = await page.evaluate(() => (window as typeof window & { __aipsGtagCalls: unknown[] }).__aipsGtagCalls);
+  expect(calls).toEqual([]);
+
+  await page.getByRole("button", { name: "Accept" }).click();
+  await expect(page.getByRole("button", { name: "Accept" })).toHaveCount(0);
+
+  await page.getByTestId("finder-intent-content-video").click();
+  calls = await page.evaluate(() => (window as typeof window & { __aipsGtagCalls: unknown[] }).__aipsGtagCalls);
+  expect(calls).toContainEqual([
+    "event",
+    "homepage_finder_select_intent",
+    { intent_id: "content-video" },
+  ]);
+
+  const serialized = JSON.stringify(calls);
+  expect(serialized).not.toContain("Study & research");
+  expect(serialized).not.toContain("Content & video");
+});
+
 test("Homepage V2 does not reintroduce banned universal marketing claims", async ({ page }) => {
   await page.goto(PREVIEW, { waitUntil: "networkidle" });
   const bodyText = (await page.locator("body").innerText()).toLowerCase();

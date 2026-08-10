@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T07:03:00+06:00",
+  "status": "active-planning-and-implementation",
+  "target": {
+    "application_root": "artifacts/aips-landing",
+    "production_route": "/",
+    "implementation_branch": "upgrade/ecommerce-media-foundation-2026-08-10",
+    "production_lineage_branch": "infra/r2-asset-storage",
+    "production_baseline_sha": "2ff9f7df7339f9130b1d2dfb165af90e3e736f2b"
+  },
+  "mission": "Help a Bangladesh visitor understand AIPS, choose an AI tool by job-to-be-done, understand access type and current offer state, verify why the information is trustworthy, and move to the safest next action with minimal friction.",
+  "positioning": [
+    "AI-only expertise",
+    "Bangladesh buying guidance",
+    "local payment usability",
+    "explicit access-model labeling",
+    "verifiable and fresh product facts",
+    "practical decision support"
+  ],
+  "p0_gaps": [
+    "root/catalog publication-state mismatch",
+    "hardcoded protected commercial/trust claims in homepage presentation",
+    "outcome/autonomy language in hero and AI-agent modules",
+    "policy-sensitive shared-access framing"
+  ],
+  "p1_gaps": [
+    "duplicate discovery systems",
+    "brand tiles route generically instead of to correct destinations",
+    "artificial standalone price bands",
+    "featured/best-seller/trending/offer overlap",
+    "dead segment-selector architecture",
+    "decorative rather than demonstrative hero media",
+    "too many above-fold ideas and CTAs",
+    "stale trending semantics",
+    "offers without complete campaign lifecycle",
+    "community claims without evidence",
+    "repeated trust slogans instead of evidence",
+    "competitor assertions",
+    "ungoverned FAQ claims",
+    "no review provenance system",
+    "no governed homepage media narrative"
+  ],
+  "section_order": [
+    "header_navigation",
+    "hero",
+    "guided_finder",
+    "recommendations",
+    "access_model_explainer",
+    "media_demo_rail",
+    "category_brand_exploration",
+    "dated_editorial_spotlight",
+    "buying_process",
+    "evidence_backed_trust",
+    "learning_comparison_hub",
+    "conditional_real_customer_proof",
+    "governed_faq",
+    "community_final_cta_footer"
+  ],
+  "consolidations": {
+    "remove_or_replace": [
+      "SegmentSelector dead modal path",
+      "standalone PricingTiersSection",
+      "oversized generic BrandShowcaseSection",
+      "permanent simultaneous AIVideoFeatureSection and AIAgentsSection"
+    ],
+    "merge": [
+      "FeaturedProductsSection + best-seller content into recommendations",
+      "Special Offers into campaign-driven optional module",
+      "TrendingNow into dated editorial/search-demand module",
+      "PaymentMethods into access/buying/trust journey",
+      "WhyUs into evidence-backed trust"
+    ]
+  },
+  "media_slots": [
+    {"id":"HP-HERO-01","kind":"PRODUCT_HERO","purpose":"hero workflow visual","owner_help":"final custom generation/selection if desired"},
+    {"id":"HP-JOB-01..06","kind":"GALLERY_IMAGE","purpose":"job-to-be-done visual family","owner_help":"generation iteration only"},
+    {"id":"HP-DEMO-01..05","kind":"VIDEO_DEMO","purpose":"real workflow demonstrations","owner_help":"source capture if real account credentials are needed"},
+    {"id":"HP-TRUST-01..03","kind":"GALLERY_IMAGE","purpose":"real AIPS business/operations proof","owner_help":"real source assets required"},
+    {"id":"HP-EDITORIAL-01..N","kind":"POSTER","purpose":"dated editorial spotlights","owner_help":"optional generation iteration"}
+  ],
+  "implementation_phases": [
+    {"id":0,"name":"baseline-gap-lock","status":"substantially-complete"},
+    {"id":1,"name":"public-homepage-data-contract","status":"next"},
+    {"id":2,"name":"isolated-homepage-v2-canary","status":"queued"},
+    {"id":3,"name":"navigation-and-hero","status":"queued"},
+    {"id":4,"name":"guided-finder","status":"queued"},
+    {"id":5,"name":"recommendations-and-campaigns","status":"queued"},
+    {"id":6,"name":"access-buying-trust","status":"queued"},
+    {"id":7,"name":"media-rail-and-assets","status":"queued"},
+    {"id":8,"name":"editorial-learning-faq-community","status":"queued"},
+    {"id":9,"name":"seo-static-schema","status":"queued"},
+    {"id":10,"name":"quality-engineering","status":"queued"},
+    {"id":11,"name":"preview-comparison","status":"queued"},
+    {"id":12,"name":"controlled-production-rollout","status":"queued"}
+  ],
+  "release_gates": [
+    "production publication state reconciled",
+    "PublicHomepageView is the only protected homepage commercial/trust input",
+    "SSOT and public projection validation",
+    "fail-closed simulation",
+    "TypeScript",
+    "full build and prerender",
+    "SEO/schema/static audit",
+    "desktop and mobile Playwright",
+    "keyboard/focus/accessibility checks",
+    "reduced-motion checks",
+    "media/license/alt/dimension validation",
+    "performance/page-weight/Core Web Vitals budgets",
+    "Vercel preview visual QA",
+    "production build identity check",
+    "post-deploy route/schema/runtime-error verification"
+  ],
+  "owner_help_only_when": [
+    "real business evidence or policy decision is missing",
+    "real customer review/case-study consent or source is required",
+    "real AIPS team/office/operations media is desired",
+    "real provider UI capture requires owner credentials",
+    "authorized provider/payment brand asset must be obtained",
+    "external analytics/Search Console access is required and unavailable",
+    "an irreversible business or production decision is required"
+  ],
+  "next_action": "Implement the PublicHomepageView generator/validator and create an isolated noindex Homepage V2 canary without changing production root behavior."
+}

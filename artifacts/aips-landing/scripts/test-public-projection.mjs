@@ -35,6 +35,7 @@ function runPublicationState() {
 }
 
 function runHomepageV2() {
+  runScript("scripts/generate-media-catalog.mjs");
   runScript("scripts/generate-homepage-v2-view.mjs");
   const source = readFileSync(homepageV2Path, "utf8");
   const marker = "export const HOMEPAGE_V2: PublicHomepageView = ";
@@ -108,7 +109,7 @@ try {
     }
   }
 
-  console.log(`[public-projection-test] PASS: ${quarantined.products.length} records, Homepage V2 variants and compile-time app gate fail closed under simulated quarantine`);
+  console.log(`[public-projection-test] PASS: ${quarantined.products.length} records, Homepage V2 variants/media and compile-time app gate fail closed under simulated quarantine`);
 } finally {
   writeFileSync(sitePath, originalSite, "utf8");
   writeFileSync(commercialPath, originalCommercial, "utf8");

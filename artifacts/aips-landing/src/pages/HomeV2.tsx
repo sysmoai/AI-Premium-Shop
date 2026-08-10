@@ -4,6 +4,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { HomepageAccessAndEvidence } from "@/components/homepage/HomepageAccessAndEvidence";
 import { HomepageDecisionSupport } from "@/components/homepage/HomepageDecisionSupport";
 import { HomepageDiscovery } from "@/components/homepage/HomepageDiscovery";
+import { HomepageEditorial } from "@/components/homepage/HomepageEditorial";
 import { HomepageHeroMedia } from "@/components/homepage/HomepageHeroMedia";
 import { HOMEPAGE_V2 } from "@/generated/homepageV2";
 
@@ -152,6 +153,7 @@ export default function HomeV2() {
 
         <HomepageDiscovery data={data} commerceEnabled={commerceEnabled} />
         <HomepageAccessAndEvidence data={data} />
+        <HomepageEditorial spotlight={data.editorialSpotlight} campaigns={data.campaigns} />
         <HomepageDecisionSupport data={data} commerceEnabled={commerceEnabled} whatsappHref={WHATSAPP_LINK} />
       </main>
 

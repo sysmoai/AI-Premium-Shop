@@ -36,6 +36,13 @@ export default function HomeV2() {
         noindex
       />
 
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-[#f4b942] focus:px-4 focus:py-3 focus:font-bold focus:text-[#07101f]"
+      >
+        Skip to main content
+      </a>
+
       <header className="sticky top-0 z-40 border-b border-white/10 bg-[#07101f]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-8">
           <a href="/" aria-label="AI Premium Shop home" className="shrink-0">
@@ -76,7 +83,7 @@ export default function HomeV2() {
         </div>
       </header>
 
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <section className="relative overflow-hidden border-b border-white/10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(244,185,66,0.12),transparent_32%),radial-gradient(circle_at_25%_80%,rgba(99,102,241,0.11),transparent_34%)]" aria-hidden="true" />
           <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">

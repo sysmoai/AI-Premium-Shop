@@ -53,6 +53,10 @@ jobs:
         working-directory: artifacts/aips-landing
         run: node scripts/test-public-projection.mjs
 
+      - name: Validate Cloudflare R2 media uploader contract
+        working-directory: artifacts/aips-landing
+        run: node scripts/test-r2-media-uploader.mjs
+
       - name: Build public site
         working-directory: artifacts/aips-landing
         env:

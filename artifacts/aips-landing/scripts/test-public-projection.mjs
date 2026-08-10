@@ -37,9 +37,11 @@ function runPublicationState() {
 function runHomepageV2() {
   runScript("scripts/generate-homepage-v2-view.mjs");
   const source = readFileSync(homepageV2Path, "utf8");
-  const match = source.match(/export const HOMEPAGE_V2 = ([\s\S]*?) as const satisfies PublicHomepageView;/);
-  if (!match) throw new Error("could not parse generated Homepage V2 view");
-  return JSON.parse(match[1]);
+  const marker = "export const HOMEPAGE_V2: PublicHomepageView = ";
+  const start = source.indexOf(marker);
+  if (start < 0) throw new Error("could not parse generated Homepage V2 view");
+  const jsonText = source.slice(start + marker.length).trim().replace(/;$/, "");
+  return JSON.parse(jsonText);
 }
 
 function assert(condition, message) {
@@ -98,12 +100,15 @@ try {
   }
 
   for (const recommendation of quarantinedHomepage.recommendations) {
-    assert(recommendation.price == null, `${recommendation.slug}: Homepage V2 numeric price survived quarantine`);
-    assert(recommendation.requestPrice === true, `${recommendation.slug}: Homepage V2 request-price fallback not enforced`);
-    assert(recommendation.accessType == null, `${recommendation.slug}: Homepage V2 access type survived quarantine`);
+    assert(Array.isArray(recommendation.variants) && recommendation.variants.length > 0, `${recommendation.slug}: Homepage V2 recommendation variants missing`);
+    for (const variant of recommendation.variants) {
+      assert(variant.price == null, `${recommendation.slug}: Homepage V2 variant numeric price survived quarantine`);
+      assert(variant.requestPrice === true, `${recommendation.slug}: Homepage V2 variant request-price fallback not enforced`);
+      assert(variant.accessType == null, `${recommendation.slug}: Homepage V2 variant access type survived quarantine`);
+    }
   }
 
-  console.log(`[public-projection-test] PASS: ${quarantined.products.length} records, Homepage V2 and compile-time app gate fail closed under simulated quarantine`);
+  console.log(`[public-projection-test] PASS: ${quarantined.products.length} records, Homepage V2 variants and compile-time app gate fail closed under simulated quarantine`);
 } finally {
   writeFileSync(sitePath, originalSite, "utf8");
   writeFileSync(commercialPath, originalCommercial, "utf8");

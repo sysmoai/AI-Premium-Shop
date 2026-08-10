@@ -36,6 +36,7 @@ try {
 
   run(process.execPath, ["scripts/generate-catalog-lite.mjs"]);
   run(process.execPath, ["scripts/generate-route-registry.mjs"]);
+  run(process.execPath, ["scripts/generate-plan-catalog.mjs"]);
 
   const viteBin = join(APP, "node_modules/vite/bin/vite.js");
   run(process.execPath, [viteBin, "build", "--config", "vite.config.ts"]);

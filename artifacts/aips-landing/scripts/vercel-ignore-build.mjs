@@ -5,6 +5,7 @@ const SAFE_SKIP_PREFIXES = [
   ".github/",
   "docs/",
   "ops/harness/",
+  "ops/research/",
 ];
 
 function changedFilesFromEnvironment() {

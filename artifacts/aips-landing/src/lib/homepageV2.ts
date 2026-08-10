@@ -19,6 +19,7 @@ export interface HomepagePaymentMethod {
 
 export interface HomepageRecommendation {
   slug: string;
+  href: string;
   name: string;
   brand: string;
   category: string;

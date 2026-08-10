@@ -16,6 +16,15 @@ function changedFilesFromEnvironment() {
     .filter(Boolean);
 }
 
+function repositoryRoot() {
+  const result = spawnSync("git", ["rev-parse", "--show-toplevel"], {
+    encoding: "utf8",
+    shell: false,
+  });
+  if (result.error || result.status !== 0) return null;
+  return result.stdout.trim() || null;
+}
+
 function changedFilesFromGit() {
   const base = String(process.env.VERCEL_GIT_PREVIOUS_SHA ?? "").trim();
   const head = String(process.env.VERCEL_GIT_COMMIT_SHA ?? "HEAD").trim() || "HEAD";
@@ -24,12 +33,19 @@ function changedFilesFromGit() {
     return null;
   }
 
-  const result = spawnSync("git", ["diff", "--name-only", "--diff-filter=ACDMRTUXB", base, head], {
+  const repoRoot = repositoryRoot();
+  if (!repoRoot) {
+    console.log("[vercel-ignore] Could not resolve repository root; build is required.");
+    return null;
+  }
+
+  const result = spawnSync("git", ["diff", "--name-only", "--diff-filter=ACDMRTUXB", base, head, "--"], {
+    cwd: repoRoot,
     encoding: "utf8",
     shell: false,
   });
   if (result.error || result.status !== 0) {
-    console.log(`[vercel-ignore] Could not compute Git diff safely; build is required.${result.error ? ` ${result.error.message}` : ""}`);
+    console.log(`[vercel-ignore] Could not compute repository-wide Git diff safely; build is required.${result.error ? ` ${result.error.message}` : ""}`);
     return null;
   }
 

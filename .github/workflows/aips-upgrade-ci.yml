@@ -25,8 +25,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Enable Corepack
-        run: corepack enable
+      - name: Use pnpm 9
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Use Node 24
         uses: actions/setup-node@v4
@@ -39,6 +41,9 @@ jobs:
 
       - name: Typecheck shared libraries and apps
         run: pnpm run typecheck
+
+      - name: Validate canonical GitHub SSOT
+        run: node scripts/validate-ssot.mjs
 
       - name: Validate catalog and truth rules
         working-directory: artifacts/aips-landing

@@ -1,5 +1,6 @@
 import { ArrowRight, CalendarDays, Megaphone } from "lucide-react";
 import type { HomepageCampaign, HomepageEditorialSpotlight } from "@/lib/homepageV2";
+import { trackHomepageEvent } from "@/lib/homepageAnalytics";
 
 function formatDate(value: string) {
   const parsed = new Date(`${value}T00:00:00Z`);
@@ -62,7 +63,11 @@ export function HomepageEditorial({ spotlight, campaigns }: HomepageEditorialPro
                 <span>Revision {spotlight.revision}</span>
                 <span>{spotlight.sourceKind.replaceAll("_", " ").toLowerCase()}</span>
               </div>
-              <a href={spotlight.href} className="mt-7 inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-[#f4b942]/40 hover:text-[#f4b942]">
+              <a
+                href={spotlight.href}
+                onClick={() => trackHomepageEvent({ name: "homepage_guide_click", placement: "editorial", guide_id: spotlight.id })}
+                className="mt-7 inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-[#f4b942]/40 hover:text-[#f4b942]"
+              >
                 {spotlight.ctaLabel} <ArrowRight className="h-4 w-4" />
               </a>
             </article>

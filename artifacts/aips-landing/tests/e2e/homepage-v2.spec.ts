@@ -64,6 +64,52 @@ test("Homepage V2 does not reintroduce banned universal marketing claims", async
   }
 });
 
+test("Homepage V2 exposes a visible keyboard skip link with a governed focus ring", async ({ page }) => {
+  await page.goto(PREVIEW, { waitUntil: "networkidle" });
+
+  const skipLink = page.getByRole("link", { name: "Skip to main content" });
+  await page.keyboard.press("Tab");
+  await expect(skipLink).toBeFocused();
+  await expect(skipLink).toBeVisible();
+
+  const focusStyle = await skipLink.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return { outlineStyle: style.outlineStyle, outlineWidth: style.outlineWidth };
+  });
+  expect(focusStyle.outlineStyle).not.toBe("none");
+  expect(Number.parseFloat(focusStyle.outlineWidth)).toBeGreaterThanOrEqual(2);
+
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/#main-content$/);
+  await expect(page.locator("#main-content")).toBeVisible();
+});
+
+test("Homepage V2 honors reduced-motion preference systemically", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto(PREVIEW, { waitUntil: "networkidle" });
+
+  const motionState = await page.getByTestId("finder-intent-study-research").evaluate((element) => {
+    const elementStyle = getComputedStyle(element);
+    const htmlStyle = getComputedStyle(document.documentElement);
+    const maxDurationSeconds = (value: string) => Math.max(
+      ...value.split(",").map((part) => {
+        const token = part.trim();
+        if (token.endsWith("ms")) return Number.parseFloat(token) / 1000;
+        return Number.parseFloat(token) || 0;
+      }),
+    );
+    return {
+      transitionSeconds: maxDurationSeconds(elementStyle.transitionDuration),
+      animationSeconds: maxDurationSeconds(elementStyle.animationDuration),
+      scrollBehavior: htmlStyle.scrollBehavior,
+    };
+  });
+
+  expect(motionState.transitionSeconds).toBeLessThanOrEqual(0.001);
+  expect(motionState.animationSeconds).toBeLessThanOrEqual(0.001);
+  expect(motionState.scrollBehavior).toBe("auto");
+});
+
 test("Homepage V2 guided finder remains usable on a 390px mobile viewport", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(PREVIEW, { waitUntil: "networkidle" });

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-10T07:29:00+06:00",
-  "status": "active-implementation-canary",
+  "updated_at": "2026-08-10T08:28:00+06:00",
+  "status": "active-implementation-media-and-preview-gates-pending",
   "target": {
     "application_root": "artifacts/aips-landing",
     "production_route": "/",
@@ -20,60 +20,90 @@
     "practical decision support"
   ],
   "validated_milestone": {
-    "code_sha": "61493128c5593c07cedeab3f06c66a76576cfa87",
-    "branch_head_after_asset_brief": "f4d0e70adfc73f39958f62d31e02e19b7b5e8ac1",
+    "branch_code_sha": "c3a678e2107eeaa51e84cf0c29c460f3ec5719cb",
+    "pull_request_merge_test_sha": "942ee2edd234f981022d755b3d7f6bb0d109b577",
     "validation": {
-      "aips_upgrade_validation": {"run_id": 31347103233, "conclusion": "success"},
-      "ci": {"run_id": 31347103240, "conclusion": "success"},
-      "seo_quality_and_playwright": {"run_id": 31347103244, "conclusion": "success"}
+      "aips_upgrade_validation": {"run_id": 31349796509, "conclusion": "success"},
+      "ci": {"run_id": 31349796516, "conclusion": "success"},
+      "seo_quality_and_playwright": {"run_id": 31349796518, "job_id": 93338361794, "conclusion": "success"}
     },
     "proved": [
       "strict TypeScript passes",
       "canonical SSOT/catalog/truth validation passes",
       "Homepage V2 fail-closed simulation passes",
-      "homepage media projection is regenerated under simulated quarantine",
-      "full public build/prerender passes",
-      "SEO/static audit passes",
-      "real-browser smoke passes",
+      "Cloudflare R2 uploader dry-run/signature/key-safety/no-secret-leakage contract passes",
+      "approved media registry is locked to https://media.aipremiumshop.com",
+      "full public build and prerender pass",
+      "SEO/static audits pass with no errors",
+      "20 real-browser E2E tests pass",
       "guided finder variant-aware Personal/budget matching passes",
       "guided finder no-valid-match fail-closed behavior passes",
-      "390px mobile finder path passes without horizontal overflow"
-    ]
+      "Homepage V2 decision-support sections render",
+      "banned universal marketing claims are absent from Homepage V2 browser output",
+      "keyboard skip-navigation and visible focus-ring behavior pass",
+      "systemic reduced-motion behavior passes",
+      "390px mobile finder path passes without horizontal overflow",
+      "route-level lazy loading isolates Homepage V2 from the legacy application bundle"
+    ],
+    "performance": {
+      "before_route_split": {
+        "entry_raw_kb": 575.34,
+        "entry_gzip_kb": 158.92
+      },
+      "after_route_split": {
+        "entry_raw_kb": 176.47,
+        "entry_gzip_kb": 56.23,
+        "homepage_v2_raw_kb": 44.32,
+        "homepage_v2_gzip_kb": 10.23,
+        "legacy_app_raw_kb": 341.46,
+        "legacy_app_gzip_kb": 89.89
+      },
+      "remaining_warning": "The generated products data chunk remains 537.18 kB raw / 65.50 kB gzip and should be reviewed separately from Homepage V2 route isolation."
+    }
   },
   "current_canary_capabilities": [
     "typed PublicHomepageView",
-    "public-product/SSOT derived homepage projection",
+    "public-product/SSOT-derived homepage projection",
     "retired-platform suppression in homepage recommendations",
-    "variant-aware recommendation families",
+    "production-style compact navigation",
+    "governed Homepage V2 hero and media placement",
     "job-to-be-done guided finder",
+    "variant-aware recommendation families",
     "Personal/Shared and budget filters",
     "no-invented-recommendation fallback",
-    "governed Personal/Shared/Bundle/Service explanation",
+    "popular starting points from governed recommendation families",
+    "Personal/Shared/Bundle/Service access-model explanation",
+    "poster-first demo media rail",
+    "compact category exploration",
+    "Bangladesh buying-flow explanation",
+    "evidence-oriented Why AIPS section",
+    "learning/comparison hub",
+    "governed FAQ",
+    "publication-state-aware final CTA and policy footer",
     "physical noindex Vercel-compatible canary route",
-    "governed homepage hero media placement",
-    "governed homepage demo media placements",
-    "poster-first video support",
-    "homepage media link/primary/poster validation",
-    "five reserved workflow demo slots"
+    "Cloudflare R2 dependency-free uploader",
+    "Cloudflare R2 uploader CI contract test",
+    "approved-media provenance/license/hash/dimension governance",
+    "route-level lazy loading",
+    "global focus-visible and reduced-motion guardrails",
+    "keyboard skip navigation"
   ],
   "p0_gaps": [
     "root/catalog publication-state mismatch must be rechecked before production rollout",
-    "legacy homepage still contains hardcoded protected commercial/trust claims",
+    "legacy homepage still contains hardcoded protected commercial/trust claims and remains production until controlled V2 promotion",
     "legacy outcome/autonomy language remains until Homepage V2 replaces it",
     "policy-sensitive shared-access framing remains a broader catalog/provider-policy concern"
   ],
   "p1_gaps": [
-    "category/brand exploration V2 not yet implemented",
-    "campaign-driven offers not yet implemented",
-    "dated editorial spotlight not yet implemented",
-    "buying-process V2 not yet implemented",
-    "evidence-backed trust V2 is only partially implemented",
-    "learning/comparison hub not yet implemented",
-    "real review provenance system not yet implemented",
-    "governed FAQ/community/footer V2 not yet implemented",
-    "homepage media assets are not yet supplied/approved",
-    "performance budgets and visual QA remain pending",
-    "matching current-head Vercel preview remains pending"
+    "HP-HERO-01 Candidate 3 bytes are not currently recoverable from connected uploads/File Library",
+    "Cloudflare R2 credentials are not exposed to the current execution runtime even though the canonical R2 contract is recovered",
+    "homepage demo media assets are not yet supplied/approved",
+    "authorized compact brand media/navigation remains pending",
+    "campaign-driven offers remain pending and must render only from active governed campaign data",
+    "dated editorial spotlight remains pending",
+    "real review/customer-proof provenance system remains pending",
+    "performance budget should be formalized beyond the current route-split improvement",
+    "exact-head Vercel visual QA remains pending because Vercel is currently blocking current-head builds with a build-rate-limit state"
   ],
   "section_order": [
     "header_navigation",
@@ -106,33 +136,59 @@
       "WhyUs into evidence-backed trust"
     ]
   },
+  "cloudflare_r2": {
+    "status": "canonical-contract-and-uploader-complete-credentials-not-exposed-to-current-runtime",
+    "bucket": "aips-media",
+    "public_origin": "https://media.aipremiumshop.com",
+    "runbook": "docs/media/CLOUDFLARE-R2-MEDIA-CONTRACT.md",
+    "uploader": "artifacts/aips-landing/scripts/upload-r2-media.mjs",
+    "contract_test": "artifacts/aips-landing/scripts/test-r2-media-uploader.mjs",
+    "credential_environment": [
+      "R2_ACCOUNT_ID",
+      "R2_ACCESS_KEY_ID",
+      "R2_SECRET_ACCESS_KEY",
+      "R2_BUCKET_NAME",
+      "R2_PUBLIC_URL"
+    ],
+    "security_rule": "Never pass credentials as CLI arguments, commit them, print them, or copy them into chat/log artifacts.",
+    "legacy_media_path": "Historical Supabase upload scripts/docs are superseded for new media work and contain credential-rotation/sanitization debt."
+  },
   "media_slots": [
-    {"id":"HP-HERO-01","kind":"PRODUCT_HERO","purpose":"hero workflow visual","status":"brief-ready-generation-pending","brief":"docs/homepage/HP-HERO-01-ASSET-BRIEF.md","owner_help":"generate four candidates and provide them for QA"},
-    {"id":"HP-JOB-01..06","kind":"GALLERY_IMAGE","purpose":"job-to-be-done visual family","status":"planned","owner_help":"generation iteration only"},
-    {"id":"HP-DEMO-01..05","kind":"VIDEO_DEMO","purpose":"real workflow demonstrations","status":"rendering-slots-ready-assets-pending","owner_help":"source capture if real account credentials are needed"},
-    {"id":"HP-TRUST-01..03","kind":"GALLERY_IMAGE","purpose":"real AIPS business/operations proof","status":"planned","owner_help":"real source assets required"},
-    {"id":"HP-EDITORIAL-01..N","kind":"POSTER","purpose":"dated editorial spotlights","status":"planned","owner_help":"optional generation iteration"}
+    {
+      "id": "HP-HERO-01",
+      "kind": "PRODUCT_HERO",
+      "purpose": "hero workflow visual",
+      "status": "candidate-3-selected-bytes-and-r2-upload-pending",
+      "brief": "docs/homepage/HP-HERO-01-ASSET-BRIEF.md",
+      "delivery_derivative": "1000x800 WebP, metadata stripped and performance optimized",
+      "r2_object_key": "homepage/2026-08/hp-hero-01-v1.webp",
+      "owner_help": "Only if the previously selected Candidate 3 bytes cannot be recovered from any connected source: re-upload that already-selected candidate; do not regenerate four new candidates. If R2 remains unavailable, expose/reconnect the existing Cloudflare/R2 access to this execution context without sending secrets in chat."
+    },
+    {"id":"HP-JOB-01..06","kind":"GALLERY_IMAGE","purpose":"job-to-be-done visual family","status":"planned","owner_help":"generation/capture only when the section needs custom final media"},
+    {"id":"HP-DEMO-01..05","kind":"VIDEO_DEMO","purpose":"real workflow demonstrations","status":"rendering-slots-ready-assets-pending","owner_help":"source capture only when real account credentials are required"},
+    {"id":"HP-TRUST-01..03","kind":"GALLERY_IMAGE","purpose":"real AIPS business/operations proof","status":"planned","owner_help":"real source assets and provenance required"},
+    {"id":"HP-EDITORIAL-01..N","kind":"POSTER","purpose":"dated editorial spotlights","status":"planned","owner_help":"optional generation/capture when final editorial topic is selected"}
   ],
   "implementation_phases": [
     {"id":0,"name":"baseline-gap-lock","status":"complete"},
     {"id":1,"name":"public-homepage-data-contract","status":"complete-canary"},
     {"id":2,"name":"isolated-homepage-v2-canary","status":"complete"},
-    {"id":3,"name":"navigation-and-hero","status":"in-progress-hero-asset-pending"},
+    {"id":3,"name":"navigation-and-hero","status":"layout-complete-final-hero-media-pending"},
     {"id":4,"name":"guided-finder","status":"complete-canary"},
-    {"id":5,"name":"recommendations-and-campaigns","status":"partial-recommendations-complete-campaigns-pending"},
-    {"id":6,"name":"access-buying-trust","status":"partial-access-complete-buying-trust-pending"},
-    {"id":7,"name":"media-rail-and-assets","status":"plumbing-complete-assets-pending"},
-    {"id":8,"name":"editorial-learning-faq-community","status":"queued"},
-    {"id":9,"name":"seo-static-schema","status":"partial-canary-static-noindex-complete"},
-    {"id":10,"name":"quality-engineering","status":"partial-core-ci-browser-green-performance-visual-a11y-pending"},
-    {"id":11,"name":"preview-comparison","status":"blocked-until-current-head-vercel-preview"},
-    {"id":12,"name":"controlled-production-rollout","status":"queued"}
+    {"id":5,"name":"recommendations-and-campaigns","status":"recommendations-complete-campaigns-pending"},
+    {"id":6,"name":"access-buying-trust","status":"core-v2-complete-real-proof-conditional"},
+    {"id":7,"name":"media-rail-and-assets","status":"plumbing-and-cloudflare-contract-complete-assets-pending"},
+    {"id":8,"name":"editorial-learning-faq-community","status":"learning-faq-final-cta-complete-editorial-and-conditional-proof-pending"},
+    {"id":9,"name":"seo-static-schema","status":"canary-static-noindex-and-audits-complete-production-root-schema-pending"},
+    {"id":10,"name":"quality-engineering","status":"ci-browser-mobile-a11y-route-split-green-deeper-cwv-and-visual-qa-pending"},
+    {"id":11,"name":"preview-comparison","status":"blocked-by-vercel-build-rate-limit-until-exact-head-preview"},
+    {"id":12,"name":"controlled-production-rollout","status":"queued-after-publication-reconciliation-and-release-gates"}
   ],
   "vercel_preview_state": {
     "current_head_preview_ready": false,
-    "latest_ready_branch_preview_deployment": "dpl_5cvZbCTXhw9Ex4vf3bygrtkXGpXi",
-    "latest_ready_branch_preview_sha": "0ec37d91ec0276ea3b140eb6c4fd04ae1802f63a",
-    "note": "The latest READY Vercel preview for this branch is stale relative to the validated Homepage V2 code. Do not use it for current-head visual acceptance."
+    "latest_observed_ready_branch_preview_sha": "c01303cc75b6dc6934694c742461102d93c56dfb",
+    "blocker": "Vercel combined status reports a build-rate-limit failure for newer branch heads; this is a platform/capacity gate, not a GitHub build/test failure.",
+    "acceptance_rule": "Do not use a stale preview for visual acceptance. Require a READY preview whose source SHA is the current code head being accepted."
   },
   "release_gates": [
     "production publication state reconciled",
@@ -145,9 +201,9 @@
     "desktop and mobile Playwright",
     "keyboard/focus/accessibility checks",
     "reduced-motion checks",
-    "media/license/alt/dimension validation",
+    "media/license/alt/dimension/hash/provenance validation",
     "performance/page-weight/Core Web Vitals budgets",
-    "Vercel preview visual QA",
+    "exact-head Vercel preview visual QA",
     "production build identity check",
     "post-deploy route/schema/runtime-error verification"
   ],
@@ -159,7 +215,15 @@
     "authorized provider/payment brand asset must be obtained",
     "external analytics/Search Console access is required and unavailable",
     "an irreversible business or production decision is required",
-    "a custom generated visual reaches a ready-for-generation media slot"
+    "the already-selected HP-HERO-01 Candidate 3 bytes must be re-uploaded because no connected source contains them",
+    "existing Cloudflare/R2 access must be re-exposed to the execution runtime without transmitting credentials in chat"
   ],
-  "next_action": "Owner generates four HP-HERO-01 still-image candidates using docs/homepage/HP-HERO-01-ASSET-BRIEF.md and provides them for assistant QA. Assistant then selects/iterates, optimizes/registers the approved asset, verifies desktop/mobile performance, and continues the remaining Homepage V2 sections."
+  "next_actions": [
+    "Keep monitoring Vercel until an exact-current-head preview can build; do not accept the stale c01303cc preview.",
+    "Implement the dated editorial spotlight/campaign lifecycle only from governed, date/revision-aware data.",
+    "Formalize Homepage V2 performance budgets and continue reducing non-route-specific large data chunks where safe.",
+    "Recover HP-HERO-01 Candidate 3 bytes and upload through the canonical R2 uploader when Cloudflare credentials are available in the runtime; then register the verified asset in the media manifest.",
+    "Add real/approved HP-DEMO media through the same objective -> QA -> optimize -> R2 -> registry -> preview workflow.",
+    "Before any root switch, reconcile the live production publication mismatch and verify exact build identity/routes/robots/sitemap/schema/policies."
+  ]
 }

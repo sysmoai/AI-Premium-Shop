@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-08-10T10:18:00+06:00",
+  "business_unit": "AIPS",
+  "authority": "provider-fact research only; does not approve AIPS pricing, resale, shared access, delivery, warranty, customer metrics, revenue or any public commercial claim",
+  "records": [
+    {
+      "provider": "Udio",
+      "product": "Udio Standard / Pro",
+      "official_sources": [
+        "https://help.udio.com/en/articles/10739199-changing-or-canceling-your-subscription",
+        "https://help.udio.com/en/articles/10739134-credits-and-credit-limits",
+        "https://help.udio.com/en/articles/12683565-changes-associated-with-the-universal-music-group-umg-partnership"
+      ],
+      "provider_price": {"currency": "USD", "monthly": {"Standard": 10, "Pro": 30}},
+      "verified_facts": [
+        "Current paid plan families are Standard and Pro.",
+        "Official 2026 help material states Standard has up to 2400 subscription credits/month and Pro up to 6000 credits/month.",
+        "Downloads of audio, video and stems are currently disabled following Udio's UMG-related service changes."
+      ],
+      "customer_problem": "A creator wants to generate and iteratively edit music without a traditional composition/production workflow.",
+      "solution_summary": "Explain Udio around song generation/editing and current credit limits, while clearly disclosing that downloads are presently disabled.",
+      "best_fit": ["music ideation", "songwriters", "creative experimentation", "audio concept development"],
+      "limitations": ["subscription credits do not roll over", "download functionality is currently disabled", "feature/policy state is evolving"],
+      "existing_content_risks": ["Catalog contains a shared Udio SKU that is not provider-authorized by this research.", "Any page promising downloadable deliverables is stale under current provider state."],
+      "recommended_public_action": "Rewrite Udio content before publication; do not market shared access or downloads as currently available."
+    },
+    {
+      "provider": "Otter.ai",
+      "product": "Otter Pro",
+      "official_sources": ["https://otter.ai/pricing", "https://help.otter.ai/hc/en-us/articles/360035266494-What-is-Otter"],
+      "provider_price": {"currency": "USD", "monthly_per_user": 16.99, "annual_equivalent_per_user_month": 8.49},
+      "verified_facts": [
+        "Otter Pro is positioned for individuals and small teams and is billed per user.",
+        "Current official pricing shows 1200 in-app recording minutes, up to 90 minutes per meeting, advanced AI workflows and integrations on Pro.",
+        "Otter Business is a separate per-user team plan; team billing is not evidence for a transferable shared-login SKU."
+      ],
+      "customer_problem": "A professional needs searchable meeting transcription, summaries, action items and meeting memory without manually taking notes.",
+      "solution_summary": "Position Otter around meeting capture and searchable knowledge, with per-user/workspace billing explained clearly.",
+      "best_fit": ["consultants", "sales teams", "students", "researchers", "meeting-heavy professionals"],
+      "limitations": ["per-user billing", "meeting/import limits vary by plan", "language/support coverage should be checked for the exact use case"],
+      "existing_content_risks": ["Catalog lists Otter Pro as shared; current provider pricing is per-user and this research does not authorize shared credentials."],
+      "recommended_public_action": "Quarantine shared-login framing and write a meeting-workflow decision guide."
+    },
+    {
+      "provider": "Canva",
+      "product": "Canva Pro",
+      "official_sources": ["https://www.canva.com/pricing/", "https://www.canva.com/pro/"],
+      "provider_price": {"currency": "USD", "annual_per_person": 144},
+      "verified_facts": [
+        "Canva Pro is currently priced as an individual plan for one person on the US pricing surface.",
+        "Current Pro includes premium design assets, brand tools, social scheduling, 100GB storage and a substantially larger AI allowance than Free.",
+        "Canva Business is a distinct per-person team/business plan."
+      ],
+      "customer_problem": "A creator or small business needs professional design, brand consistency, social publishing and AI-assisted creative work without a full design stack.",
+      "solution_summary": "Explain Canva Pro through repeatable design/brand workflows, not a generic 'premium templates' pitch.",
+      "best_fit": ["social media managers", "small businesses", "students", "marketers", "non-designers"],
+      "limitations": ["regional pricing/tax may differ", "AI allowance is finite and varies by AI tier/tool", "provider plan terms should be checked before team use"],
+      "existing_content_risks": ["Catalog contains 'Starter Shared' Canva Pro. Current official individual pricing does not by itself authorize shared credentials."],
+      "recommended_public_action": "Use personal/customer-owned access unless an exact authorized team-seat procurement model is documented."
+    },
+    {
+      "provider": "QuillBot",
+      "product": "QuillBot Premium",
+      "official_sources": ["https://quillbot.com/premium", "https://help.quillbot.com/hc/en-us/articles/36491424881943-What-is-the-price-of-QuillBot-Premium"],
+      "provider_price": {"currency": "USD", "annual_equivalent_monthly": 8.33, "regional_note": "price may adjust by location and billing plan"},
+      "verified_facts": [
+        "QuillBot Premium currently includes unlimited paraphrasing, advanced grammar guidance, Humanizer, custom summaries, AI Detector access and plagiarism-related features.",
+        "QuillBot states current price depends on region and selected subscription period, and checkout may localize currency/pricing.",
+        "Premium can be used across a user's devices, with anti-abuse limits; this is not evidence for multi-customer shared credentials."
+      ],
+      "customer_problem": "A student or professional needs to rewrite, clarify, summarize and proofread text faster while keeping control over tone and originality checks.",
+      "solution_summary": "Position QuillBot as a writing-revision toolkit, especially for rewriting, grammar, summaries and citation/academic workflow support.",
+      "best_fit": ["students", "writers", "researchers", "professionals", "non-native English writers"],
+      "limitations": ["regional price varies", "AI rewriting still requires human review", "academic use must respect institutional rules"],
+      "existing_content_risks": ["Catalog hard-codes $9.95 and shared tiers; current official material shows a different annual-equivalent figure and regional variability."],
+      "recommended_public_action": "Replace stale provider-price assumptions and quarantine shared-login variants."
+    },
+    {
+      "provider": "Jasper",
+      "product": "Jasper Pro",
+      "official_sources": ["https://www.jasper.ai/pricing", "https://help.jasper.ai/hc/en-us/articles/18618709412123-Annual-Plans"],
+      "provider_price": {"currency": "USD", "monthly_per_seat": 69, "annual_equivalent_per_seat_month": 59},
+      "verified_facts": [
+        "Jasper currently offers Pro and Business plan families; older Creator-plan copy is not current on the primary pricing page.",
+        "Pro is aimed at on-brand marketing content and includes brand/audience/knowledge customization and marketing agents.",
+        "Business uses custom pricing with broader governance and complex marketing workflows."
+      ],
+      "customer_problem": "A marketing team needs repeatable on-brand content creation and campaign workflows rather than one-off generic AI text generation.",
+      "solution_summary": "Position Jasper around brand governance, marketing workflows and campaign execution—not as a generic writing assistant.",
+      "best_fit": ["marketing teams", "agencies", "brand teams", "content operations"],
+      "limitations": ["per-seat pricing", "Business pricing is custom", "results do not imply guaranteed marketing performance"],
+      "existing_content_risks": ["Catalog still lists 'Jasper AI Creator' with an outdated $39 price; this is stale versus the current primary pricing page."],
+      "recommended_public_action": "Retire Creator-plan references and rebuild the page around current Pro/Business plan structure."
+    },
+    {
+      "provider": "Grammarly / Superhuman",
+      "product": "Grammarly Pro",
+      "official_sources": ["https://support.grammarly.com/hc/en-us/articles/25043801131149-About-Grammarly-Pro", "https://www.grammarly.com/plans"],
+      "provider_price": null,
+      "verified_facts": [
+        "The current paid product is Grammarly Pro; Grammarly is now part of the Superhuman suite.",
+        "Pro includes advanced writing rewrites, tone adjustments and team/brand-compliance features.",
+        "Official support states Pro is offered monthly, quarterly and annually, and plans can be billed for seats."
+      ],
+      "customer_problem": "A user needs clearer, more professional writing across email, documents and web apps with less manual editing.",
+      "solution_summary": "Lead with clarity, tone, rewriting and organization-wide writing consistency instead of an outdated 'Premium' feature list.",
+      "best_fit": ["professionals", "students", "teams", "customer support", "sales"],
+      "limitations": ["pricing should be verified on current checkout", "team features do not authorize credential sharing", "AI suggestions require review"],
+      "existing_content_risks": ["Catalog uses the legacy name 'Grammarly Premium' and a fixed $12 figure plus shared tiers."],
+      "recommended_public_action": "Rename/research current Pro offering and remove legacy fixed-price/shared assumptions before publication."
+    },
+    {
+      "provider": "Leonardo.Ai",
+      "product": "Leonardo.Ai",
+      "official_sources": ["https://leonardo.ai/team-plans"],
+      "provider_price": {"currency": "USD", "team_monthly": {"Starter": 72, "Growth": 144}, "team_seats": 3},
+      "verified_facts": [
+        "Current team plans expose explicit shared team tokens and per-seat economics, including Starter and Growth tiers.",
+        "Team plans support private team generations and selected relaxed image/video generation subject to plan/model availability."
+      ],
+      "customer_problem": "A creative team needs shared generation capacity, private team output and consistent access to image/video creation tools.",
+      "solution_summary": "For teams, use provider-supported seat/token structure rather than pooling a personal account.",
+      "best_fit": ["design teams", "creative agencies", "marketing teams"],
+      "limitations": ["team plan minimum/seat structure", "selected-model restrictions", "individual-plan pricing still requires separate verification"],
+      "existing_content_risks": ["Catalog lists 'Leonardo AI — Shared' at a fixed low price with no evidence that it corresponds to an authorized seat/token model."],
+      "recommended_public_action": "If AIPS offers team access, model it explicitly on provider-authorized seats/tokens and document procurement economics; otherwise quarantine shared SKU."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T08:31:00+06:00",
+  "editorial_spotlights": [
+    {
+      "id": "agent-buying-checklist-2026-08",
+      "status": "APPROVED",
+      "revision": "2026-08-10-r1",
+      "as_of": "2026-08-10",
+      "review_after": "2026-09-10",
+      "eyebrow": "AIPS editorial · August 10, 2026",
+      "title": "AI agents are not one buying category",
+      "summary": "Before paying for an agent-style tool, check what it can actually access, which actions still require human review, how credentials and data are handled, and whether the exact plan you are buying includes the capability you need.",
+      "cta_label": "Explore business & automation",
+      "href": "/best-ai-for-business",
+      "source_kind": "AIPS_EDITORIAL",
+      "source_refs": [
+        "docs/homepage/HOMEPAGE-V2-MASTER-PLAN-2026-08-10.md"
+      ]
+    }
+  ],
+  "campaigns": []
+}

@@ -1,0 +1,56 @@
+name: AIPS Upgrade Validation
+
+on:
+  push:
+    branches:
+      - upgrade/ecommerce-media-foundation-2026-08-10
+  pull_request:
+    paths:
+      - "artifacts/aips-landing/**"
+      - "lib/**"
+      - "ops/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "tsconfig*.json"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Use Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - name: Install workspace
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck shared libraries and apps
+        run: pnpm run typecheck
+
+      - name: Validate catalog and truth rules
+        working-directory: artifacts/aips-landing
+        run: pnpm run validate:all
+
+      - name: Build public site
+        working-directory: artifacts/aips-landing
+        env:
+          PORT: "3000"
+          BASE_PATH: "/"
+        run: pnpm run build
+
+      - name: SEO/static projection audit
+        working-directory: artifacts/aips-landing
+        run: pnpm run seo:check

@@ -29,6 +29,7 @@ try {
   run(process.execPath, ["scripts/validate-media-registry.mjs"]);
 
   run(process.execPath, ["scripts/generate-public-projection.mjs"]);
+  run(process.execPath, ["scripts/generate-publication-state.mjs"]);
   const projected = JSON.parse(readFileSync(publicProductsPath, "utf8"));
 
   writeFileSync(productsPath, `${JSON.stringify({ products: projected.products })}\n`, "utf8");

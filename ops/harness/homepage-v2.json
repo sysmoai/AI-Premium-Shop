@@ -1,10 +1,11 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-10T07:03:00+06:00",
-  "status": "active-planning-and-implementation",
+  "updated_at": "2026-08-10T07:29:00+06:00",
+  "status": "active-implementation-canary",
   "target": {
     "application_root": "artifacts/aips-landing",
     "production_route": "/",
+    "canary_route": "/__preview/homepage-v2",
     "implementation_branch": "upgrade/ecommerce-media-foundation-2026-08-10",
     "production_lineage_branch": "infra/r2-asset-storage",
     "production_baseline_sha": "2ff9f7df7339f9130b1d2dfb165af90e3e736f2b"
@@ -18,28 +19,61 @@
     "verifiable and fresh product facts",
     "practical decision support"
   ],
+  "validated_milestone": {
+    "code_sha": "61493128c5593c07cedeab3f06c66a76576cfa87",
+    "branch_head_after_asset_brief": "f4d0e70adfc73f39958f62d31e02e19b7b5e8ac1",
+    "validation": {
+      "aips_upgrade_validation": {"run_id": 31347103233, "conclusion": "success"},
+      "ci": {"run_id": 31347103240, "conclusion": "success"},
+      "seo_quality_and_playwright": {"run_id": 31347103244, "conclusion": "success"}
+    },
+    "proved": [
+      "strict TypeScript passes",
+      "canonical SSOT/catalog/truth validation passes",
+      "Homepage V2 fail-closed simulation passes",
+      "homepage media projection is regenerated under simulated quarantine",
+      "full public build/prerender passes",
+      "SEO/static audit passes",
+      "real-browser smoke passes",
+      "guided finder variant-aware Personal/budget matching passes",
+      "guided finder no-valid-match fail-closed behavior passes",
+      "390px mobile finder path passes without horizontal overflow"
+    ]
+  },
+  "current_canary_capabilities": [
+    "typed PublicHomepageView",
+    "public-product/SSOT derived homepage projection",
+    "retired-platform suppression in homepage recommendations",
+    "variant-aware recommendation families",
+    "job-to-be-done guided finder",
+    "Personal/Shared and budget filters",
+    "no-invented-recommendation fallback",
+    "governed Personal/Shared/Bundle/Service explanation",
+    "physical noindex Vercel-compatible canary route",
+    "governed homepage hero media placement",
+    "governed homepage demo media placements",
+    "poster-first video support",
+    "homepage media link/primary/poster validation",
+    "five reserved workflow demo slots"
+  ],
   "p0_gaps": [
-    "root/catalog publication-state mismatch",
-    "hardcoded protected commercial/trust claims in homepage presentation",
-    "outcome/autonomy language in hero and AI-agent modules",
-    "policy-sensitive shared-access framing"
+    "root/catalog publication-state mismatch must be rechecked before production rollout",
+    "legacy homepage still contains hardcoded protected commercial/trust claims",
+    "legacy outcome/autonomy language remains until Homepage V2 replaces it",
+    "policy-sensitive shared-access framing remains a broader catalog/provider-policy concern"
   ],
   "p1_gaps": [
-    "duplicate discovery systems",
-    "brand tiles route generically instead of to correct destinations",
-    "artificial standalone price bands",
-    "featured/best-seller/trending/offer overlap",
-    "dead segment-selector architecture",
-    "decorative rather than demonstrative hero media",
-    "too many above-fold ideas and CTAs",
-    "stale trending semantics",
-    "offers without complete campaign lifecycle",
-    "community claims without evidence",
-    "repeated trust slogans instead of evidence",
-    "competitor assertions",
-    "ungoverned FAQ claims",
-    "no review provenance system",
-    "no governed homepage media narrative"
+    "category/brand exploration V2 not yet implemented",
+    "campaign-driven offers not yet implemented",
+    "dated editorial spotlight not yet implemented",
+    "buying-process V2 not yet implemented",
+    "evidence-backed trust V2 is only partially implemented",
+    "learning/comparison hub not yet implemented",
+    "real review provenance system not yet implemented",
+    "governed FAQ/community/footer V2 not yet implemented",
+    "homepage media assets are not yet supplied/approved",
+    "performance budgets and visual QA remain pending",
+    "matching current-head Vercel preview remains pending"
   ],
   "section_order": [
     "header_navigation",
@@ -73,27 +107,33 @@
     ]
   },
   "media_slots": [
-    {"id":"HP-HERO-01","kind":"PRODUCT_HERO","purpose":"hero workflow visual","owner_help":"final custom generation/selection if desired"},
-    {"id":"HP-JOB-01..06","kind":"GALLERY_IMAGE","purpose":"job-to-be-done visual family","owner_help":"generation iteration only"},
-    {"id":"HP-DEMO-01..05","kind":"VIDEO_DEMO","purpose":"real workflow demonstrations","owner_help":"source capture if real account credentials are needed"},
-    {"id":"HP-TRUST-01..03","kind":"GALLERY_IMAGE","purpose":"real AIPS business/operations proof","owner_help":"real source assets required"},
-    {"id":"HP-EDITORIAL-01..N","kind":"POSTER","purpose":"dated editorial spotlights","owner_help":"optional generation iteration"}
+    {"id":"HP-HERO-01","kind":"PRODUCT_HERO","purpose":"hero workflow visual","status":"brief-ready-generation-pending","brief":"docs/homepage/HP-HERO-01-ASSET-BRIEF.md","owner_help":"generate four candidates and provide them for QA"},
+    {"id":"HP-JOB-01..06","kind":"GALLERY_IMAGE","purpose":"job-to-be-done visual family","status":"planned","owner_help":"generation iteration only"},
+    {"id":"HP-DEMO-01..05","kind":"VIDEO_DEMO","purpose":"real workflow demonstrations","status":"rendering-slots-ready-assets-pending","owner_help":"source capture if real account credentials are needed"},
+    {"id":"HP-TRUST-01..03","kind":"GALLERY_IMAGE","purpose":"real AIPS business/operations proof","status":"planned","owner_help":"real source assets required"},
+    {"id":"HP-EDITORIAL-01..N","kind":"POSTER","purpose":"dated editorial spotlights","status":"planned","owner_help":"optional generation iteration"}
   ],
   "implementation_phases": [
-    {"id":0,"name":"baseline-gap-lock","status":"substantially-complete"},
-    {"id":1,"name":"public-homepage-data-contract","status":"next"},
-    {"id":2,"name":"isolated-homepage-v2-canary","status":"queued"},
-    {"id":3,"name":"navigation-and-hero","status":"queued"},
-    {"id":4,"name":"guided-finder","status":"queued"},
-    {"id":5,"name":"recommendations-and-campaigns","status":"queued"},
-    {"id":6,"name":"access-buying-trust","status":"queued"},
-    {"id":7,"name":"media-rail-and-assets","status":"queued"},
+    {"id":0,"name":"baseline-gap-lock","status":"complete"},
+    {"id":1,"name":"public-homepage-data-contract","status":"complete-canary"},
+    {"id":2,"name":"isolated-homepage-v2-canary","status":"complete"},
+    {"id":3,"name":"navigation-and-hero","status":"in-progress-hero-asset-pending"},
+    {"id":4,"name":"guided-finder","status":"complete-canary"},
+    {"id":5,"name":"recommendations-and-campaigns","status":"partial-recommendations-complete-campaigns-pending"},
+    {"id":6,"name":"access-buying-trust","status":"partial-access-complete-buying-trust-pending"},
+    {"id":7,"name":"media-rail-and-assets","status":"plumbing-complete-assets-pending"},
     {"id":8,"name":"editorial-learning-faq-community","status":"queued"},
-    {"id":9,"name":"seo-static-schema","status":"queued"},
-    {"id":10,"name":"quality-engineering","status":"queued"},
-    {"id":11,"name":"preview-comparison","status":"queued"},
+    {"id":9,"name":"seo-static-schema","status":"partial-canary-static-noindex-complete"},
+    {"id":10,"name":"quality-engineering","status":"partial-core-ci-browser-green-performance-visual-a11y-pending"},
+    {"id":11,"name":"preview-comparison","status":"blocked-until-current-head-vercel-preview"},
     {"id":12,"name":"controlled-production-rollout","status":"queued"}
   ],
+  "vercel_preview_state": {
+    "current_head_preview_ready": false,
+    "latest_ready_branch_preview_deployment": "dpl_5cvZbCTXhw9Ex4vf3bygrtkXGpXi",
+    "latest_ready_branch_preview_sha": "0ec37d91ec0276ea3b140eb6c4fd04ae1802f63a",
+    "note": "The latest READY Vercel preview for this branch is stale relative to the validated Homepage V2 code. Do not use it for current-head visual acceptance."
+  },
   "release_gates": [
     "production publication state reconciled",
     "PublicHomepageView is the only protected homepage commercial/trust input",
@@ -118,7 +158,8 @@
     "real provider UI capture requires owner credentials",
     "authorized provider/payment brand asset must be obtained",
     "external analytics/Search Console access is required and unavailable",
-    "an irreversible business or production decision is required"
+    "an irreversible business or production decision is required",
+    "a custom generated visual reaches a ready-for-generation media slot"
   ],
-  "next_action": "Implement the PublicHomepageView generator/validator and create an isolated noindex Homepage V2 canary without changing production root behavior."
+  "next_action": "Owner generates four HP-HERO-01 still-image candidates using docs/homepage/HP-HERO-01-ASSET-BRIEF.md and provides them for assistant QA. Assistant then selects/iterates, optimizes/registers the approved asset, verifies desktop/mobile performance, and continues the remaining Homepage V2 sections."
 }

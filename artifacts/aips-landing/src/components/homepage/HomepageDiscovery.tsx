@@ -5,6 +5,7 @@ import type {
   HomepageRecommendationVariant,
   PublicHomepageView,
 } from "@/lib/homepageV2";
+import { trackHomepageEvent } from "@/lib/homepageAnalytics";
 
 type AccessPreference = "any" | "personal" | "shared";
 type BudgetPreference = "any" | "under-1000" | "1001-3000" | "3001-plus";
@@ -103,7 +104,11 @@ export function HomepageDiscovery({ data, commerceEnabled }: HomepageDiscoveryPr
                 type="button"
                 data-testid={`finder-intent-${intent.id}`}
                 aria-pressed={selected}
-                onClick={() => setSelectedIntentId(intent.id)}
+                onClick={() => {
+                  if (!selectedIntentId) trackHomepageEvent({ name: "homepage_finder_start" });
+                  trackHomepageEvent({ name: "homepage_finder_select_intent", intent_id: intent.id });
+                  setSelectedIntentId(intent.id);
+                }}
                 className={`group rounded-2xl border p-6 text-left transition hover:-translate-y-0.5 ${
                   selected
                     ? "border-[#f4b942]/55 bg-[#f4b942]/10 shadow-lg shadow-[#f4b942]/5"
@@ -128,7 +133,11 @@ export function HomepageDiscovery({ data, commerceEnabled }: HomepageDiscoveryPr
                 <h3 className="mt-2 text-2xl font-semibold">{selectedIntent.label}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-300">Now narrow by the commercial facts that materially change which plan fits.</p>
               </div>
-              <a href={selectedIntent.href} className="inline-flex items-center gap-2 text-sm font-semibold text-[#f4b942]">
+              <a
+                href={selectedIntent.href}
+                onClick={() => trackHomepageEvent({ name: "homepage_guide_click", placement: "finder", guide_id: selectedIntent.id })}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#f4b942]"
+              >
                 Open full guide <ArrowRight className="h-4 w-4" />
               </a>
             </div>
@@ -144,7 +153,10 @@ export function HomepageDiscovery({ data, commerceEnabled }: HomepageDiscoveryPr
                         type="button"
                         data-testid={`finder-access-${option.id}`}
                         aria-pressed={accessPreference === option.id}
-                        onClick={() => setAccessPreference(option.id)}
+                        onClick={() => {
+                          trackHomepageEvent({ name: "homepage_finder_filter", filter_type: "access", filter_id: option.id });
+                          setAccessPreference(option.id);
+                        }}
                         className={`rounded-full border px-3.5 py-2 text-sm font-medium transition ${
                           accessPreference === option.id
                             ? "border-[#f4b942]/60 bg-[#f4b942]/10 text-[#f4b942]"
@@ -166,7 +178,10 @@ export function HomepageDiscovery({ data, commerceEnabled }: HomepageDiscoveryPr
                         type="button"
                         data-testid={`finder-budget-${option.id}`}
                         aria-pressed={budgetPreference === option.id}
-                        onClick={() => setBudgetPreference(option.id)}
+                        onClick={() => {
+                          trackHomepageEvent({ name: "homepage_finder_filter", filter_type: "budget", filter_id: option.id });
+                          setBudgetPreference(option.id);
+                        }}
                         className={`rounded-full border px-3.5 py-2 text-sm font-medium transition ${
                           budgetPreference === option.id
                             ? "border-[#f4b942]/60 bg-[#f4b942]/10 text-[#f4b942]"
@@ -200,7 +215,11 @@ export function HomepageDiscovery({ data, commerceEnabled }: HomepageDiscoveryPr
                       <p className="mt-1 text-lg font-bold text-[#f4b942]">
                         {variant.requestPrice ? "Check current price" : formatBDT(variant.price)}
                       </p>
-                      <a href={product.href} className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-[#f4b942]">
+                      <a
+                        href={product.href}
+                        onClick={() => trackHomepageEvent({ name: "homepage_recommendation_click", placement: "finder", product_slug: product.slug })}
+                        className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-[#f4b942]"
+                      >
                         Compare plans <ArrowRight className="h-4 w-4" />
                       </a>
                     </article>
@@ -214,6 +233,8 @@ export function HomepageDiscovery({ data, commerceEnabled }: HomepageDiscoveryPr
                     <button
                       type="button"
                       onClick={() => {
+                        trackHomepageEvent({ name: "homepage_finder_filter", filter_type: "access", filter_id: "any" });
+                        trackHomepageEvent({ name: "homepage_finder_filter", filter_type: "budget", filter_id: "any" });
                         setAccessPreference("any");
                         setBudgetPreference("any");
                       }}
@@ -221,7 +242,11 @@ export function HomepageDiscovery({ data, commerceEnabled }: HomepageDiscoveryPr
                     >
                       Clear filters
                     </button>
-                    <a href={selectedIntent.href} className="inline-flex items-center gap-1.5 rounded-lg bg-[#f4b942] px-4 py-2 text-sm font-bold text-[#07101f]">
+                    <a
+                      href={selectedIntent.href}
+                      onClick={() => trackHomepageEvent({ name: "homepage_guide_click", placement: "finder", guide_id: selectedIntent.id })}
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-[#f4b942] px-4 py-2 text-sm font-bold text-[#07101f]"
+                    >
                       Open guide <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
@@ -267,7 +292,11 @@ export function HomepageDiscovery({ data, commerceEnabled }: HomepageDiscoveryPr
                         {variant.requestPrice ? "Check current price" : formatBDT(variant.price)}
                       </p>
                     </div>
-                    <a href={product.href} className="inline-flex items-center gap-1 text-sm font-semibold text-white hover:text-[#f4b942]">
+                    <a
+                      href={product.href}
+                      onClick={() => trackHomepageEvent({ name: "homepage_recommendation_click", placement: "popular", product_slug: product.slug })}
+                      className="inline-flex items-center gap-1 text-sm font-semibold text-white hover:text-[#f4b942]"
+                    >
                       Details <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>

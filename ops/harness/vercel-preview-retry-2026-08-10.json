@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-08-10T11:10:00+06:00",
+  "purpose": "Create a harness-only branch checkpoint to safely retrigger the Vercel Git integration after evidence that the earlier team build-rate limit is no longer preventing all builds.",
+  "accepted_application_sha": "98035e5f791a3c11d2316bf3f6fa16228d102c94",
+  "prior_branch_head": "186f1e256d5ed80698241101079e61a0a12e4e14",
+  "application_code_changed": false,
+  "production_change": false,
+  "evidence": {
+    "previous_homepage_preview_blocker": "build-rate-limit",
+    "latest_same_team_observation": "A newer Vercel deployment entered pnpm install and failed with ERR_PNPM_LOCKFILE_CONFIG_MISMATCH, demonstrating that the prior account-wide build-rate limiter is not currently blocking every build.",
+    "homepage_branch_latest_ready_preview_sha_before_retry": "8b8b1becdbbc8dcc5a0ff26782823537925e2c28"
+  },
+  "acceptance": [
+    "A new Vercel preview must identify this retry commit as githubCommitSha, or a later verified no-application-drift checkpoint.",
+    "Compare the retry commit against accepted_application_sha and confirm all differences are outside artifacts/aips-landing application code before using the preview for visual acceptance.",
+    "GitHub validation for the exact retry head must be green before release acceptance.",
+    "The preview must remain non-production and the Homepage V2 canary must remain noindex.",
+    "Do not promote / until Cloudflare routing and split publication state are reconciled."
+  ]
+}

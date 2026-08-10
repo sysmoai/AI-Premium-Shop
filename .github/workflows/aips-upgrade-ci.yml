@@ -57,6 +57,10 @@ jobs:
         working-directory: artifacts/aips-landing
         run: node scripts/test-r2-media-uploader.mjs
 
+      - name: Validate Vercel ignored-build safety contract
+        working-directory: artifacts/aips-landing
+        run: node scripts/test-vercel-ignore-build.mjs
+
       - name: Build public site
         working-directory: artifacts/aips-landing
         env:

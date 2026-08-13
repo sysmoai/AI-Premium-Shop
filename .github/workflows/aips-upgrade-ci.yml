@@ -25,10 +25,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use pnpm 9
+      - name: Use pnpm from packageManager
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - name: Use Node 24
         uses: actions/setup-node@v4

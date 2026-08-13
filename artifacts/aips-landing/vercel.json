@@ -5,67 +5,23 @@
   },
   "buildCommand": "PORT=3000 BASE_PATH=/ pnpm run build",
   "outputDirectory": "dist/public",
-  "installCommand": "cd ../.. && corepack enable && corepack prepare pnpm@9.15.9 --activate && pnpm install --frozen-lockfile",
+  "installCommand": "pnpm install --frozen-lockfile",
   "env": {
     "PORT": "3000",
     "BASE_PATH": "/"
   },
   "redirects": [
-    {
-      "source": "/chatgpt",
-      "destination": "/chatgpt-plans-bangladesh",
-      "permanent": true
-    },
-    {
-      "source": "/claude",
-      "destination": "/claude-pro-bangladesh",
-      "permanent": true
-    },
-    {
-      "source": "/claude-team-bangladesh",
-      "destination": "/claude-pro-bangladesh",
-      "permanent": true
-    },
-    {
-      "source": "/midjourney",
-      "destination": "/midjourney-bangladesh",
-      "permanent": true
-    },
-    {
-      "source": "/canva",
-      "destination": "/canva-pro-bangladesh",
-      "permanent": true
-    },
-    {
-      "source": "/netflix",
-      "destination": "/products",
-      "permanent": false
-    },
-    {
-      "source": "/youtube-premium",
-      "destination": "/products",
-      "permanent": false
-    },
-    {
-      "source": "/b2b-implementation-bangladesh",
-      "destination": "/product/b2b-implementation-bangladesh",
-      "permanent": true
-    },
-    {
-      "source": "/business-package-bangladesh",
-      "destination": "/product/business-package-bangladesh",
-      "permanent": true
-    },
-    {
-      "source": "/freelancer-bundle-bangladesh",
-      "destination": "/product/freelancer-bundle-bangladesh",
-      "permanent": true
-    },
-    {
-      "source": "/student-package-bangladesh",
-      "destination": "/product/student-package-bangladesh",
-      "permanent": true
-    }
+    { "source": "/chatgpt", "destination": "/chatgpt-plans-bangladesh", "permanent": true },
+    { "source": "/claude", "destination": "/claude-pro-bangladesh", "permanent": true },
+    { "source": "/claude-team-bangladesh", "destination": "/claude-pro-bangladesh", "permanent": true },
+    { "source": "/midjourney", "destination": "/midjourney-bangladesh", "permanent": true },
+    { "source": "/canva", "destination": "/canva-pro-bangladesh", "permanent": true },
+    { "source": "/netflix", "destination": "/products", "permanent": false },
+    { "source": "/youtube-premium", "destination": "/products", "permanent": false },
+    { "source": "/b2b-implementation-bangladesh", "destination": "/product/b2b-implementation-bangladesh", "permanent": true },
+    { "source": "/business-package-bangladesh", "destination": "/product/business-package-bangladesh", "permanent": true },
+    { "source": "/freelancer-bundle-bangladesh", "destination": "/product/freelancer-bundle-bangladesh", "permanent": true },
+    { "source": "/student-package-bangladesh", "destination": "/product/student-package-bangladesh", "permanent": true }
   ],
   "headers": [
     {
@@ -87,38 +43,14 @@
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; media-src 'self' https://media.aipremiumshop.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; frame-ancestors 'none';"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "geolocation=(), microphone=(), camera=()"
-        },
-        {
-          "key": "Strict-Transport-Security",
-          "value": "max-age=31536000; includeSubDomains; preload"
-        }
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; media-src 'self' https://media.aipremiumshop.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; frame-ancestors 'none';" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" },
+        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains; preload" }
       ]
     }
   ]

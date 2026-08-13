@@ -57,6 +57,63 @@ const CATEGORY_DEFS = [
 
 type CategoryId = (typeof CATEGORY_DEFS)[number]["id"];
 
+const CATEGORY_SUBCATEGORIES: Record<CategoryId, readonly { label: string; href: string }[]> = {
+  "ai-assistant": [
+    { label: "Research & reasoning", href: "/products?category=ai-assistant&q=research" },
+    { label: "PDF & document chat", href: "/products?category=ai-assistant&q=pdf-chat" },
+    { label: "Citations", href: "/products?category=ai-assistant&q=citations" },
+    { label: "Math & learning", href: "/products?category=ai-assistant&q=math" },
+  ],
+  "ai-image": [
+    { label: "Image generation", href: "/products?category=ai-image&q=image-gen" },
+    { label: "Image editing", href: "/products?category=ai-image&q=image-edit" },
+    { label: "Logo creation", href: "/products?category=ai-image&q=logo" },
+    { label: "Templates", href: "/products?category=ai-image&q=templates" },
+  ],
+  "ai-video": [
+    { label: "Video generation", href: "/products?category=ai-video&q=video-gen" },
+    { label: "AI avatars", href: "/products?category=ai-video&q=avatar" },
+    { label: "Video editing", href: "/products?category=ai-video&q=video-edit" },
+    { label: "Image-to-video", href: "/products?category=ai-video&q=image-to-video" },
+  ],
+  "ai-voice-music": [
+    { label: "Text to speech", href: "/products?category=ai-voice-music&q=tts" },
+    { label: "Music generation", href: "/products?category=ai-voice-music&q=music-gen" },
+    { label: "Voice workflows", href: "/products?category=ai-voice-music&q=voice" },
+    { label: "Subtitles", href: "/products?category=ai-voice-music&q=subtitles" },
+  ],
+  "ai-code": [
+    { label: "Coding copilots", href: "/products?category=ai-code&q=code" },
+    { label: "AI agents", href: "/products?category=ai-code&q=agents" },
+    { label: "Automation", href: "/products?category=ai-code&q=automation" },
+    { label: "No-code builders", href: "/products?category=ai-code&q=no-code" },
+  ],
+  "ai-workspace": [
+    { label: "Meetings", href: "/products?category=ai-workspace&q=meetings" },
+    { label: "Email", href: "/products?category=ai-workspace&q=email" },
+    { label: "Automation", href: "/products?category=ai-workspace&q=automation" },
+    { label: "Support", href: "/products?category=ai-workspace&q=support" },
+  ],
+  "ai-writing": [
+    { label: "SEO", href: "/products?category=ai-writing&q=seo" },
+    { label: "Keyword research", href: "/products?category=ai-writing&q=keywords" },
+    { label: "Academic writing", href: "/products?category=ai-writing&q=academic-writing" },
+    { label: "Writing", href: "/products?category=ai-writing&q=writing" },
+  ],
+  "ai-design": [
+    { label: "Design", href: "/products?category=ai-design&q=design" },
+    { label: "Templates", href: "/products?category=ai-design&q=templates" },
+    { label: "Web design", href: "/products?category=ai-design&q=web-design" },
+    { label: "Logo creation", href: "/products?category=ai-design&q=logo" },
+  ],
+  bundles: [
+    { label: "Business bundles", href: "/products?category=bundles&for=business" },
+    { label: "Automation bundles", href: "/products?category=bundles&q=automation" },
+    { label: "Setup & services", href: "/bundles" },
+    { label: "All bundle plans", href: "/products?category=bundles" },
+  ],
+};
+
 const SOLUTIONS = [
   { label: "Students", href: "/best-ai-for-students", icon: GraduationCap, note: "Study, research and exam workflows" },
   { label: "Freelancers", href: "/best-ai-for-freelancers", icon: Users, note: "Proposals, client delivery and productivity" },
@@ -172,6 +229,7 @@ function ProductMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
   const current = CATEGORY_DEFS.find((category) => category.id === activeCategory) ?? CATEGORY_DEFS[0];
   const products = useMemo(() => uniqueCheapestProducts(activeCategory, 8), [activeCategory]);
   const stats = activeCategoryStats(activeCategory);
+  const subcategories = CATEGORY_SUBCATEGORIES[activeCategory];
 
   return (
     <div data-testid="mega-products" onMouseEnter={onKeepOpen} className="mx-auto grid max-w-7xl grid-cols-[280px_minmax(0,1fr)_260px] gap-6 px-6 py-6">
@@ -213,6 +271,20 @@ function ProductMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
           <a href={current.href} className="inline-flex shrink-0 items-center gap-1.5 rounded-xl border border-white/10 px-3 py-2 text-xs font-bold text-white transition hover:border-[#f4b942]/40 hover:text-[#ffd26f]">
             View category <ArrowRight className="h-3.5 w-3.5" />
           </a>
+        </div>
+
+        <div className="mt-3 flex flex-wrap items-center gap-2" aria-label={`${current.label} subcategories`}>
+          <span className="mr-1 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-600">Explore tasks</span>
+          {subcategories.map((subcategory) => (
+            <a
+              key={subcategory.href}
+              data-testid="mega-subcategory-link"
+              href={subcategory.href}
+              className="rounded-full border border-white/10 bg-white/[0.025] px-2.5 py-1.5 text-[11px] font-semibold text-slate-300 transition hover:border-[#f4b942]/35 hover:bg-[#f4b942]/[0.06] hover:text-white"
+            >
+              {subcategory.label}
+            </a>
+          ))}
         </div>
 
         <div className="mt-4 grid grid-cols-2 gap-2 xl:grid-cols-4">

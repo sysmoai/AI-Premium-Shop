@@ -29,7 +29,7 @@ import {
 } from "lucide-react";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
 import { BLOG_CATEGORIES } from "@/lib/blogTaxonomy";
-import { categoryStats, taka } from "@/lib/catalogStats";
+import { taka } from "@/lib/catalogStats";
 import { computeTopBrands } from "@/lib/topBrands";
 import { productPath } from "@/lib/productRoutes";
 import productsData from "../../../data/catalog-lite.json";
@@ -54,6 +54,8 @@ const CATEGORY_DEFS = [
   { id: "ai-design", label: "AI Design & Creative", href: "/ai-design", icon: Palette, note: "Design systems, graphics and creative production" },
   { id: "bundles", label: "Bundles & Services", href: "/bundles", icon: Package, note: "Multi-tool packages, setup and implementation" },
 ] as const;
+
+type CategoryId = (typeof CATEGORY_DEFS)[number]["id"];
 
 const SOLUTIONS = [
   { label: "Students", href: "/best-ai-for-students", icon: GraduationCap, note: "Study, research and exam workflows" },
@@ -95,7 +97,18 @@ function isActiveProduct(product: LiteProduct) {
   return !RETIRED_PRODUCT_SLUGS.has(product.slug);
 }
 
-function uniqueCheapestProducts(categoryId: string, limit = 8): LiteProduct[] {
+function activeCategoryStats(categoryId: CategoryId) {
+  const records = productsData.products.filter((product) => isActiveProduct(product) && product.category === categoryId);
+  const publicPrices = records
+    .filter((product) => !product.requestPrice && product.price != null)
+    .map((product) => product.price as number);
+  return {
+    productCount: new Set(records.map((product) => product.slug)).size,
+    fromPrice: publicPrices.length ? Math.min(...publicPrices) : null,
+  };
+}
+
+function uniqueCheapestProducts(categoryId: CategoryId, limit = 8): LiteProduct[] {
   const cheapest = new Map<string, LiteProduct>();
   for (const product of productsData.products) {
     if (!isActiveProduct(product) || product.category !== categoryId) continue;
@@ -155,10 +168,10 @@ function NavButton({ id, label, openMenu, setOpenMenu }: {
 }
 
 function ProductMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
-  const [activeCategory, setActiveCategory] = useState(CATEGORY_DEFS[0].id);
+  const [activeCategory, setActiveCategory] = useState<CategoryId>(CATEGORY_DEFS[0].id);
   const current = CATEGORY_DEFS.find((category) => category.id === activeCategory) ?? CATEGORY_DEFS[0];
   const products = useMemo(() => uniqueCheapestProducts(activeCategory, 8), [activeCategory]);
-  const stats = categoryStats(activeCategory);
+  const stats = activeCategoryStats(activeCategory);
 
   return (
     <div data-testid="mega-products" onMouseEnter={onKeepOpen} className="mx-auto grid max-w-7xl grid-cols-[280px_minmax(0,1fr)_260px] gap-6 px-6 py-6">
@@ -166,7 +179,7 @@ function ProductMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
         <div className="px-3 pb-2 pt-2 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-500">Browse categories</div>
         {CATEGORY_DEFS.map((category) => {
           const Icon = category.icon;
-          const categoryInfo = categoryStats(category.id);
+          const categoryInfo = activeCategoryStats(category.id);
           const active = category.id === activeCategory;
           return (
             <a
@@ -221,7 +234,7 @@ function ProductMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
         </div>
 
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-white/8 bg-white/[0.02] px-4 py-3 text-xs text-slate-400">
-          <span>{stats.productCount} product records in this category</span>
+          <span>{stats.productCount} active tool families in this category</span>
           {stats.fromPrice != null && <span>Public plans from {taka(stats.fromPrice)}</span>}
           <a href="/products" className="ml-auto font-bold text-[#f4b942] hover:text-[#ffd26f]">Browse the full catalog</a>
         </div>
@@ -388,7 +401,7 @@ function MobileMenu({ close }: { close: () => void }) {
                 <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                   <div className="grid gap-1 pb-3 sm:grid-cols-2">
                     {item.id === "products" && CATEGORY_DEFS.map((category) => (
-                      <a key={category.href} href={category.href} onClick={close} className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-300 hover:bg-white/[0.05] hover:text-white">{category.label}<span className="text-xs text-slate-600">{categoryStats(category.id).productCount}</span></a>
+                      <a key={category.href} href={category.href} onClick={close} className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-300 hover:bg-white/[0.05] hover:text-white">{category.label}<span className="text-xs text-slate-600">{activeCategoryStats(category.id).productCount}</span></a>
                     ))}
                     {item.id === "solutions" && SOLUTIONS.map((solution) => (
                       <a key={solution.href} href={solution.href} onClick={close} className="rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-300 hover:bg-white/[0.05] hover:text-white">{solution.label}</a>
@@ -494,13 +507,13 @@ function CategoryArchitecture() {
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {CATEGORY_DEFS.map((category, index) => {
               const Icon = category.icon;
-              const stats = categoryStats(category.id);
+              const stats = activeCategoryStats(category.id);
               const preview = uniqueCheapestProducts(category.id, 3);
               return (
                 <motion.a key={category.id} href={category.href} initial={reduced ? false : { opacity: 0, y: 18 }} whileInView={reduced ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, margin: "-70px" }} transition={{ duration: 0.45, delay: Math.min(index * 0.035, 0.2) }} whileHover={reduced ? undefined : { y: -4 }} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-5">
                   <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#f4b942]/0 blur-3xl transition duration-500 group-hover:bg-[#f4b942]/10" />
                   <div className="relative flex items-start gap-4"><div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400 transition group-hover:border-[#f4b942]/30 group-hover:text-[#f4b942]"><Icon className="h-5 w-5" /></div><div className="min-w-0"><h3 className="font-bold text-white">{category.label}</h3><p className="mt-1 text-xs leading-5 text-slate-500">{category.note}</p></div><ChevronRight className="ml-auto h-4 w-4 shrink-0 text-slate-700 transition group-hover:translate-x-0.5 group-hover:text-[#f4b942]" /></div>
-                  <div className="relative mt-4 flex flex-wrap gap-2 text-[11px] text-slate-500"><span className="rounded-full border border-white/8 px-2.5 py-1">{stats.productCount} records</span>{stats.fromPrice != null && <span className="rounded-full border border-white/8 px-2.5 py-1">from {taka(stats.fromPrice)}</span>}</div>
+                  <div className="relative mt-4 flex flex-wrap gap-2 text-[11px] text-slate-500"><span className="rounded-full border border-white/8 px-2.5 py-1">{stats.productCount} tools</span>{stats.fromPrice != null && <span className="rounded-full border border-white/8 px-2.5 py-1">from {taka(stats.fromPrice)}</span>}</div>
                   <div className="relative mt-4 border-t border-white/8 pt-3 text-xs text-slate-500">{preview.map((item) => item.brand).filter((brand, i, arr) => arr.indexOf(brand) === i).join(" · ")}</div>
                 </motion.a>
               );

@@ -5,7 +5,7 @@
   },
   "buildCommand": "PORT=3000 BASE_PATH=/ pnpm run build",
   "outputDirectory": "dist/public",
-  "installCommand": "corepack enable && corepack prepare pnpm@9.15.9 --activate && pnpm install --frozen-lockfile",
+  "installCommand": "pnpm install --frozen-lockfile",
   "env": {
     "PORT": "3000",
     "BASE_PATH": "/"

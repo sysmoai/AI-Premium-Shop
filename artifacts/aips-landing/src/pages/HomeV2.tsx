@@ -235,7 +235,7 @@ export default function HomeV2() {
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <a
                     href="#finder"
-                    onClick={() => trackHomepageEvent({ name: "homepage_finder_start", placement: "finder" })}
+                    onClick={() => trackHomepageEvent({ name: "homepage_finder_start" })}
                     className="group inline-flex min-h-13 items-center justify-center gap-2 rounded-2xl bg-[#f4b942] px-6 py-3.5 font-extrabold text-[#07101f] shadow-[0_16px_55px_rgba(244,185,66,.2)] transition hover:-translate-y-0.5 hover:bg-[#ffd167]"
                   >
                     Find my AI tool

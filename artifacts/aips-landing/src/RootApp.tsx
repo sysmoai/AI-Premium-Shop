@@ -1,4 +1,6 @@
 import { lazy, Suspense } from "react";
+import { Router as WouterRouter } from "wouter";
+import { ConciergeWidget } from "./components/ConciergeWidget";
 import SafeQuarantineApp from "./SafeQuarantineApp";
 import { PUBLICATION_STATE } from "./generated/publicationState";
 
@@ -32,9 +34,12 @@ export default function RootApp() {
 
   if (isHomepage) {
     return (
-      <Suspense fallback={<RouteLoadingFallback />}>
-        <HomeV2 />
-      </Suspense>
+      <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+        <Suspense fallback={<RouteLoadingFallback />}>
+          <HomeV2 />
+        </Suspense>
+        <ConciergeWidget />
+      </WouterRouter>
     );
   }
 

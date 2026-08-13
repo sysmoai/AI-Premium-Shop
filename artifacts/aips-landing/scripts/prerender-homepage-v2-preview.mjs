@@ -1,13 +1,18 @@
 #!/usr/bin/env node
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const APP = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(APP, "dist/public");
 const rootPath = join(dist, "index.html");
+const productsPath = join(dist, "products/index.html");
 const previewDir = join(dist, "__preview/homepage-v2");
 const previewPath = join(previewDir, "index.html");
+const catalogLite = JSON.parse(readFileSync(join(APP, "data/catalog-lite.json"), "utf8"));
+const RETIRED_PRODUCT_SLUGS = new Set(["replit-bangladesh"]);
+const activeCatalogRecords = catalogLite.products.filter((product) => !RETIRED_PRODUCT_SLUGS.has(product.slug));
+const activeFamilyCount = new Set(activeCatalogRecords.map((product) => product.slug)).size;
 
 const shell = `
       <div id="prerender-shell">
@@ -124,6 +129,33 @@ function removeJsonLdType(html, targetType) {
   });
 }
 
+function sanitizeProductsStatic() {
+  if (!existsSync(productsPath)) throw new Error("Products prerender is missing before truth sanitization");
+  let html = readFileSync(productsPath, "utf8");
+  const title = `AI Tools in Bangladesh — ${activeFamilyCount} Active Tool Families | AI Premium Shop`;
+  const description = `Browse ${activeFamilyCount} active AI tool families by category and compare public BDT prices. Check each product page for current access, availability and delivery details.`;
+
+  html = removeJsonLdType(html, "FAQPage");
+  html = setTitle(html, title);
+  html = setDescription(html, description);
+  html = setOg(html, "og:title", title);
+  html = setOg(html, "og:description", description);
+  html = setOg(html, "og:url", "https://aipremiumshop.com/products");
+  html = html.replace(/All \d+ AI Tools/g, `All ${activeFamilyCount} AI Tools`);
+  html = html.replace(
+    /<p>\d+ premium subscriptions with BDT prices\.[^<]*<\/p>/i,
+    `<p>${activeCatalogRecords.length} current public plan records with BDT prices where available. Check each product page for current access, availability and delivery details before purchase.</p>`,
+  );
+  html = html.replace(/<li><a href=["']\/replit-bangladesh["'][^>]*>[\s\S]*?<\/li>/gi, "");
+
+  if (/fast delivery/i.test(html)) throw new Error("Products prerender truth guard failed: stale fast-delivery claim remains");
+  if (/replit-bangladesh/i.test(html)) throw new Error("Products prerender truth guard failed: retired Replit route remains");
+  if (/30[- ]day (replacement )?warranty/i.test(html)) throw new Error("Products prerender truth guard failed: stale universal warranty remains");
+
+  writeFileSync(productsPath, html, "utf8");
+  console.log(`[products-truth] sanitized static /products for ${activeFamilyCount} active tool families`);
+}
+
 function productionDocument(source) {
   let html = replaceRoot(source);
   html = removeRobots(html);
@@ -152,6 +184,8 @@ function previewDocument(productionHtml) {
   html = setDescription(html, "Private noindex preview of the next AI Premium Shop homepage: guided AI-tool discovery, access-model clarity and Bangladesh buying guidance.");
   return html;
 }
+
+sanitizeProductsStatic();
 
 const source = readFileSync(rootPath, "utf8");
 const productionHtml = productionDocument(source);

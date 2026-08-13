@@ -29,8 +29,126 @@ if (commercialQuarantine && publicationAllowed) {
   throw new Error("Public projection refused: commerce cannot be publishable while quarantine is active");
 }
 
-const stripCommercialFields = (product) => {
+const HARD_UNVERIFIED = [
+  /\bwarranty\b/i,
+  /\b(?:full\s+)?replacement\s+guarantee\b/i,
+  /\binstant\s+(?:delivery|access|activation)\b/i,
+  /\b5\s*[–-]\s*(?:15|30)\s*(?:min|minutes)\b/i,
+  /\btrusted\s+by\b/i,
+  /\bbest[ -]?seller\b/i,
+  /\blimited\s+(?:time|offer)\b/i,
+  /\bmoney[ -]?back\b/i,
+  /\bguaranteed\s+(?:income|permanent)\b/i,
+  /\b\d{1,3}%\s*off\b/i,
+];
+const NEGATION = /\b(no|not|never|without|cannot)\b/i;
+const UNLIMITED_SCOPE = /\b(fair[ -]?use|provider\s+limit|subject\s+to|credit|relaxed|slow|scope|usage\s+limit|rate\s+limit|limit applies|limits apply)\b/i;
+
+function isUnsafeClaim(value) {
+  const text = String(value ?? "").trim();
+  if (!text) return false;
+  if (!NEGATION.test(text) && HARD_UNVERIFIED.some((pattern) => pattern.test(text))) return true;
+  if (/\bunlimited\b/i.test(text) && !NEGATION.test(text) && !UNLIMITED_SCOPE.test(text)) return true;
+  return false;
+}
+
+function sanitizeText(value, fallback = "") {
+  if (typeof value !== "string" || !value.trim()) return fallback;
+  const sentences = value
+    .split(/(?<=[.!?।])\s+/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean)
+    .filter((sentence) => !isUnsafeClaim(sentence));
+  return sentences.length ? sentences.join(" ") : fallback;
+}
+
+function safeList(values) {
+  return Array.isArray(values)
+    ? values.map((value) => String(value ?? "").trim()).filter((value) => value && !isUnsafeClaim(value))
+    : [];
+}
+
+function fitTitle(value) {
+  if (value.length <= 68) return value;
+  const suffix = " | AI Premium Shop";
+  const room = Math.max(24, 68 - suffix.length);
+  return `${value.slice(0, room - 1).trimEnd()}…${suffix}`;
+}
+
+function fitDescription(value) {
+  return value.length <= 158 ? value : `${value.slice(0, 157).trimEnd()}…`;
+}
+
+function safeSeo(product) {
+  const displayName = String(product.name ?? "AI tool").split(/—\s*/)[0].split(/\s+-\s+/)[0].trim();
+  const title = fitTitle(`${displayName} Price in Bangladesh | AI Premium Shop`);
+  const metaDescription = fitDescription(
+    `Compare current AIPS plan records for ${displayName} in Bangladesh. Confirm the access model, availability, provider limits, delivery ETA and terms before paying in BDT.`,
+  );
+  return {
+    ...(product.seo ?? {}),
+    title,
+    metaDescription,
+    description: metaDescription,
+  };
+}
+
+function sanitizePlan(plan, verified) {
+  if (!plan || typeof plan !== "object") return plan;
+  const safe = { ...plan };
+  safe.whatsIncluded = safeList(plan.whatsIncluded);
+  safe.features = safeList(plan.features);
+  safe.limitations = safeList(plan.limitations);
+  if (plan.badge && isUnsafeClaim(plan.badge)) delete safe.badge;
+  if (!verified) {
+    delete safe.deliverySLA;
+    delete safe.officialUSD;
+    delete safe.inStock;
+  }
+  return safe;
+}
+
+function sanitizeApprovedProduct(product) {
   const safe = { ...product };
+  const verified = Boolean(product?.verificationDate && product?.sourceUrl);
+  const displayName = String(product?.name ?? "AI tool").split(/—\s*/)[0].split(/\s+-\s+/)[0].trim();
+
+  safe.description = sanitizeText(
+    product.description,
+    `${displayName} is listed in the current AI Premium Shop catalog. Confirm current product and plan details before purchase.`,
+  );
+  if (product.tagline && isUnsafeClaim(product.tagline)) delete safe.tagline;
+  safe.capabilities = safeList(product.capabilities);
+  safe.uniqueSellingPoints = safeList(product.uniqueSellingPoints);
+  safe.useCasesBD = safeList(product.useCasesBD);
+  safe.badges = safeList(product.badges);
+  safe.seo = safeSeo(product);
+  safe.plans = Array.isArray(product.plans) ? product.plans.map((plan) => sanitizePlan(plan, verified)) : product.plans;
+
+  safe.trust = verified && product.trust
+    ? Object.fromEntries(Object.entries(product.trust).filter(([key]) => !["reviewCount", "rating"].includes(key)))
+    : null;
+
+  if (!verified) {
+    delete safe.deliverySLA;
+    delete safe.estimatedDeliveryTime;
+    delete safe.deliveryMethod;
+    delete safe.officialUSD;
+    delete safe.stock;
+    delete safe.competitorCompare;
+    delete safe.higherPlanUpsell;
+    safe.faq = [];
+    safe.howItWorksSteps = [];
+  } else {
+    safe.faq = Array.isArray(product.faq) ? product.faq : [];
+    safe.howItWorksSteps = Array.isArray(product.howItWorksSteps) ? product.howItWorksSteps : [];
+  }
+
+  return safe;
+}
+
+const stripCommercialFields = (product) => {
+  const safe = sanitizeApprovedProduct(product);
 
   safe.price = null;
   safe.requestPrice = true;
@@ -58,19 +176,20 @@ const stripCommercialFields = (product) => {
 
 const sourceProducts = Array.isArray(raw) ? raw : raw.products ?? [];
 const publicProducts = publicationAllowed && !commercialQuarantine
-  ? sourceProducts
+  ? sourceProducts.map(sanitizeApprovedProduct)
   : sourceProducts.map(stripCommercialFields);
 
 const output = {
   projection: {
-    schema_version: 1,
+    schema_version: 2,
     generated_from: "data/products.json + ops/ssot/site.json + ops/ssot/commercial.json",
     publication_allowed: publicationAllowed,
     quarantine: commercialQuarantine,
     mode: publicationAllowed && !commercialQuarantine ? "approved-commerce" : "informational-fail-closed",
+    truth_policy: "unverified marketing, delivery, warranty, review, stock and comparison claims are stripped from the public projection",
   },
   products: publicProducts,
 };
 
 writeFileSync(outPath, `${JSON.stringify(output)}\n`, "utf8");
-console.log(`[public-projection] ${publicProducts.length} records -> ${output.projection.mode}`);
+console.log(`[public-projection] ${publicProducts.length} records -> ${output.projection.mode} (truth-sanitized v${output.projection.schema_version})`);

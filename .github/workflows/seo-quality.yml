@@ -19,7 +19,6 @@ on:
     paths:
       - "artifacts/aips-landing/**"
   schedule:
-    # 01:00 UTC Monday = 07:00 Asia/Dhaka. Catches time-based expiry.
     - cron: "0 1 * * 1"
   workflow_dispatch:
 
@@ -38,8 +37,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - uses: actions/setup-node@v4
         with:
@@ -50,14 +47,12 @@ jobs:
         working-directory: .
         run: pnpm install --filter ./artifacts/aips-landing --no-frozen-lockfile
 
-      # Claim gates run before the build so a compliance violation fails fast
-      # and cheaply rather than after a full vite build.
       - name: Higgsfield offer compliance gate
         run: node scripts/validate-higgsfield-offer.mjs
 
       - name: Catalog validators
         run: node scripts/validate-catalog.mjs && node scripts/validate-truth.mjs
-        continue-on-error: true # pre-existing warnings; tracked in docs/agent/BLOCKERS.md
+        continue-on-error: true
 
       - name: Build (includes blog-price gate, prerender, prerender audit)
         run: pnpm run build
@@ -65,11 +60,6 @@ jobs:
       - name: SEO check
         run: pnpm run seo:check
 
-      # Executes the built app in a real browser -- everything above only
-      # inspects static HTML text, so a mount-time crash (see BLOCKERS.md
-      # B9 -- a hook-order bug once emptied #root on every page in
-      # production) passes every check above unnoticed. This is the only
-      # gate that would have caught it.
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 

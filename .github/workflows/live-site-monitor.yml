@@ -1,10 +1,8 @@
 # Live production monitor (spec section 22).
 #
 # Checks the deployed site, which is the only thing that proves a deploy worked.
-# CLAUDE.md's working rule #3 exists because "HTTP 200" alone has repeatedly
-# hidden real breakage on this SPA: every unmatched path returns 200 and renders
-# client-side, so a blank page and a working page are indistinguishable by status
-# code. Every assertion here therefore checks CONTENT, not just the status.
+# HTTP 200 alone is insufficient on this SPA because unmatched or degraded routes
+# can still return 200. Assertions therefore check served content as well as status.
 #
 # Opens a GitHub issue on failure rather than emailing — the repo is the paging
 # channel the owner already watches.
@@ -70,12 +68,45 @@ jobs:
             [ "$code" = "200" ] || FAILURES="$FAILURES\n- \`$f\` returned HTTP $code"
           done
 
+          # Publication state is all-or-nothing in the intended build path. A root
+          # verification page beside commercial /products or /pricing is therefore
+          # a P0 routing/publication inconsistency even if every route returns 200.
+          PUBLICATION_ALLOWED=$(node -e "const c=require('./ops/ssot/commercial.json'); process.stdout.write(String(c.publication_allowed === true))")
+          QUARANTINE=$(node -e "const c=require('./ops/ssot/commercial.json'); process.stdout.write(String(c.quarantine === true))")
+          VERIFICATION_MARKER="Product availability is under verification"
+          EXPECTED_STATE="verification"
+          if [ "$PUBLICATION_ALLOWED" = "true" ] && [ "$QUARANTINE" = "false" ]; then
+            EXPECTED_STATE="published"
+          fi
+
+          PUBLICATION_STATES=""
+          for route in / /products /pricing; do
+            html=$(curl -sS --max-time 30 "$SITE$route" || true)
+            state="published"
+            if echo "$html" | grep -qF "$VERIFICATION_MARKER"; then
+              state="verification"
+            fi
+            PUBLICATION_STATES="$PUBLICATION_STATES $route=$state"
+            if [ "$state" != "$EXPECTED_STATE" ]; then
+              FAILURES="$FAILURES\n- \`$route\` publication state is \`$state\`, but canonical SSOT requires \`$EXPECTED_STATE\` (publication_allowed=$PUBLICATION_ALLOWED, quarantine=$QUARANTINE)"
+            fi
+          done
+          echo "Publication states:$PUBLICATION_STATES; expected=$EXPECTED_STATE"
+
+          # Explicit split-state guard for diagnostics. This catches contradictory
+          # route states even if a future SSOT schema mistake makes EXPECTED_STATE
+          # ambiguous.
+          UNIQUE_STATES=$(printf '%s\n' $PUBLICATION_STATES | sed 's/.*=//' | sort -u | wc -l | tr -d ' ')
+          if [ "$UNIQUE_STATES" != "1" ]; then
+            FAILURES="$FAILURES\n- split publication state detected across root/products/pricing:$PUBLICATION_STATES"
+          fi
+
           # The anti-flash critical CSS must survive future edits to index.html.
           if ! curl -sS --max-time 30 "$SITE/" | tr -d '\n' | grep -q 'background-color: *#0a0e27'; then
             FAILURES="$FAILURES\n- homepage is missing the inline anti-flash background (see docs/performance/page-load-flash.md)"
           fi
 
-          # The WhatsApp CTA is the only conversion path on the site.
+          # The WhatsApp CTA is the only conversion path on the Higgsfield enquiry page.
           if ! curl -sS --max-time 30 "$SITE/product/higgsfield-ai-bangladesh" | grep -q 'wa.me/8801865385348'; then
             FAILURES="$FAILURES\n- Higgsfield page is missing its WhatsApp CTA"
           fi
@@ -103,8 +134,9 @@ jobs:
 
             ${{ steps.check.outputs.failures || '(see the workflow log)' }}
 
-            Rollback: \`git revert\` the last commit on \`main\` and push — Vercel redeploys on push.
-            Runbook: \`docs/agent/NEXT-SESSION.md\`.`;
+            Safety rule: do not assume the failing public route is served by Vercel or that reverting \`main\` is a valid production rollback. First identify the account-authoritative Cloudflare/origin route, verify the deployed build identity, and use the rollback candidate for that actual origin.
+            Harness: \`ops/harness/homepage-v2.json\`.
+            Protocol: \`docs/agent/HARNESS-PROTOCOL.md\`.`;
             const existing = await github.rest.issues.listForRepo({
               owner: context.repo.owner, repo: context.repo.repo,
               state: 'open', labels: 'live-monitor',

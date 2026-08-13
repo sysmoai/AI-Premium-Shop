@@ -2,7 +2,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 // PORT only affects the dev server, and BASE_PATH is "/" for every deploy target we
 // use. Hard-failing the config when they are absent broke `vite build` in any context
@@ -23,24 +22,7 @@ if (!basePath.startsWith("/")) {
 
 export default defineConfig({
   base: basePath,
-  plugins: [
-    react(),
-    tailwindcss(),
-    runtimeErrorOverlay(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer({
-              root: path.resolve(import.meta.dirname, ".."),
-            }),
-          ),
-          await import("@replit/vite-plugin-dev-banner").then((m) =>
-            m.devBanner(),
-          ),
-        ]
-      : []),
-  ],
+  plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "src"),
@@ -54,18 +36,15 @@ export default defineConfig({
     emptyOutDir: true,
     // Split long-lived dependencies out of the app chunk so a content change does
     // not invalidate the whole download, and so the entry chunk stays small.
-    // Route-level splitting is handled by React.lazy in src/App.tsx.
+    // Route-level splitting is handled by React.lazy boundaries in RootApp/App.
     rollupOptions: {
       output: {
         manualChunks: {
           react: ["react", "react-dom", "wouter"],
           query: ["@tanstack/react-query"],
           icons: ["lucide-react"],
-          // framer-motion was being inlined into every route chunk that used
-          // it (BrandPage, CategoryPage, products, ComparisonPage…), so the
-          // same ~40 KB of animation runtime downloaded again on each
-          // navigation. Hoisting it to one long-lived chunk means it is
-          // fetched once and cached across the whole site.
+          // Hoist framer-motion to one long-lived chunk instead of duplicating the
+          // animation runtime across route chunks.
           motion: ["framer-motion"],
         },
       },

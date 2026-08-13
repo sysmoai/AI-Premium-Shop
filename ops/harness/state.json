@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T06:51:00+06:00",
+  "project": "AI Premium Shop",
+  "production_domain": "aipremiumshop.com",
+  "repository": "sysmoai/AI-Premium-Shop",
+  "operational_platforms": {
+    "source_control": "GitHub",
+    "hosting": "Vercel",
+    "replit": "RETIRED_DO_NOT_USE_OR_REQUEST"
+  },
+  "production": {
+    "vercel_team_id": "team_WCN7gRRsLzPy8C0EdOFtDYrJ",
+    "vercel_project_id": "prj_aP4bi30UW8mcHgBvU7E72yyFOPQd",
+    "vercel_project_name": "ai-premium-shopai-premium-shop-aipai-premium-shops-landing",
+    "root_directory": "artifacts/aips-landing",
+    "git_branch": "infra/r2-asset-storage",
+    "git_sha": "2ff9f7df7339f9130b1d2dfb165af90e3e736f2b",
+    "deployment_id": "dpl_37aYM6oQ3NpX73vEejn1p2Y3pzhf",
+    "runtime_error_baseline": "no grouped runtime errors observed in last checked 24h"
+  },
+  "active_upgrade": {
+    "branch": "upgrade/ecommerce-media-foundation-2026-08-10",
+    "pull_request": 14,
+    "base_branch": "infra/r2-asset-storage",
+    "base_sha": "2ff9f7df7339f9130b1d2dfb165af90e3e736f2b",
+    "last_verified_head": "39e81e7bcccaf0a34e0775bbba82a2e092e0fa83",
+    "status": "IN_PROGRESS_NOT_PRODUCTION",
+    "production_merge_allowed": false
+  },
+  "completed_foundation": [
+    "production ownership manifest",
+    "Replit retirement policy",
+    "shared catalog/publication domain",
+    "governed public catalog projection",
+    "compile-time publication gate",
+    "fail-closed quarantine simulation",
+    "build identity output",
+    "route registry",
+    "media registry and public media projection",
+    "dedicated product plan route layer",
+    "plan catalog and plan prerendering",
+    "plan static audits",
+    "normalized additive database schema",
+    "forward migration artifact",
+    "rollback migration artifact",
+    "GitHub Actions upgrade validation gate"
+  ],
+  "required_release_gates": [
+    "production lineage verified before branching or rebasing",
+    "canonical SSOT validation passes",
+    "TypeScript/typecheck passes",
+    "catalog and truth validation passes",
+    "fail-closed quarantine simulation passes",
+    "route registry validation passes",
+    "media registry validation passes",
+    "Vite/public build passes",
+    "product and plan prerender audits pass",
+    "SEO/static audit passes",
+    "Playwright/browser smoke passes for changed journeys",
+    "Vercel preview succeeds and is visually checked on desktop/mobile",
+    "no new production runtime errors",
+    "rollback path recorded before production promotion"
+  ],
+  "hard_invariants": [
+    "Never rebuild the site from scratch when the existing architecture can be extended safely.",
+    "Never treat main as production without verifying the actual live deployment SHA first.",
+    "Never invent or infer price, availability, payment, delivery, warranty, social proof, access model, or provider terms.",
+    "Every public renderer must consume the governed public projection or an approved derivative.",
+    "Existing canonical product URLs are preserved unless an explicit migration is approved and validated.",
+    "Plan pages may exist for UX while remaining CANONICAL_PARENT/noindex until separately approved for indexing.",
+    "Media is registry-controlled; price-bearing media is a commercial claim and must be offer/revision governed.",
+    "Database changes are additive first; no destructive migration without backup, compatibility plan, and rollback.",
+    "No production deployment until preview and browser validation pass.",
+    "Replit is permanently out of scope."
+  ],
+  "current_blockers": [
+    {
+      "id": "VERCEL_PREVIEW_RATE_LIMIT",
+      "severity": "P0_RELEASE",
+      "description": "Recent upgrade preview deployments were canceled/rejected by Vercel build-rate limiting. GitHub CI is green but preview/browser promotion gate is not yet satisfied.",
+      "owner_action_required_now": false
+    },
+    {
+      "id": "DB_MIGRATION_ACCESS_BACKUP",
+      "severity": "P0_BEFORE_DB_WRITE",
+      "description": "Normalized schema and rollback SQL are prepared but production database migration must not run until secure connection and backup/restore verification are available.",
+      "owner_action_required_now": false
+    }
+  ],
+  "next_steps": [
+    {
+      "order": 1,
+      "id": "HARNESS_CONTEXT_REFRESH",
+      "action": "Make repository harness state the required starting point for every future development turn."
+    },
+    {
+      "order": 2,
+      "id": "MEDIA_RENDERING_CANARY",
+      "action": "Connect approved media projection to one product/plan canary using the existing media subsystem, with image/video performance and accessibility gates."
+    },
+    {
+      "order": 3,
+      "id": "PRODUCT_PAGE_V2_CANARY",
+      "action": "Introduce ProductPage V2 for a tightly scoped canary without changing existing canonicals or global storefront behavior."
+    },
+    {
+      "order": 4,
+      "id": "ADMIN_PUBLISHING_CONSOLE",
+      "action": "Extend existing admin for Product Family, Plan, Provider Facts, AIPS Offer, Media, Route/SEO, Preview, Publish Checklist, and History."
+    },
+    {
+      "order": 5,
+      "id": "API_PUBLICATION_CONTRACT",
+      "action": "Expose read-only governed public product/plan/media views first; enable writes only after database migration is safely applied."
+    },
+    {
+      "order": 6,
+      "id": "PREVIEW_VISUAL_E2E",
+      "action": "Run Vercel preview, desktop/mobile visual checks, Playwright changed-journey tests, canonical/schema/static checks, and performance budget checks."
+    },
+    {
+      "order": 7,
+      "id": "DATABASE_MIGRATION",
+      "action": "After backup/restore validation, apply additive catalog schema and verify legacy compatibility before enabling admin writes."
+    },
+    {
+      "order": 8,
+      "id": "CONTROLLED_PRODUCTION_PROMOTION",
+      "action": "Promote only after all gates are green; verify build identity, critical routes, runtime errors, SEO output, and rollback readiness immediately after deployment."
+    }
+  ]
+}

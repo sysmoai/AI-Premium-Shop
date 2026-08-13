@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T09:20:00+06:00",
+  "status": "implementation-green-external-routing-media-preview-gates-pending",
+  "target": {
+    "application_root": "artifacts/aips-landing",
+    "production_route": "/",
+    "canary_route": "/__preview/homepage-v2",
+    "implementation_branch": "upgrade/ecommerce-media-foundation-2026-08-10",
+    "production_lineage_branch": "infra/r2-asset-storage",
+    "production_baseline_sha": "2ff9f7df7339f9130b1d2dfb165af90e3e736f2b"
+  },
+  "mission": "Help a Bangladesh visitor understand AIPS, choose an AI tool by job-to-be-done, understand the access arrangement and current offer state, verify the basis for trust, and take the safest next action with minimal friction.",
+  "validated_code_checkpoint": {
+    "branch_code_sha": "98035e5f791a3c11d2316bf3f6fa16228d102c94",
+    "pull_request_merge_test_sha": "d0d1c460051e306096a198e24492cfea947579d6",
+    "validation": {
+      "aips_upgrade_validation": {"run_id": 31351553811, "conclusion": "success"},
+      "ci": {"run_id": 31351553853, "conclusion": "success"},
+      "seo_quality_and_playwright": {"run_id": 31351553800, "job_id": 93343279469, "conclusion": "success"}
+    },
+    "proved": [
+      "strict TypeScript, canonical SSOT/catalog/truth validation and fail-closed simulation pass",
+      "Cloudflare R2 uploader dry-run/signature/key-safety/no-secret-leakage contract passes",
+      "approved media registry is locked to https://media.aipremiumshop.com",
+      "Vercel media/security configuration contract passes",
+      "full public build/prerender and SEO/static audits pass with zero errors",
+      "23/23 real-browser tests pass",
+      "guided finder variant matching and no-match fail-closed behavior pass",
+      "dated editorial renders only inside its governed review window and no unapproved campaign renders",
+      "banned universal Homepage V2 marketing claims remain absent",
+      "keyboard skip navigation, focus ring, reduced motion and 390px mobile no-overflow pass",
+      "provider-neutral Homepage V2 analytics payloads are controlled/non-PII",
+      "pre-consent interactions are not forwarded to Google Analytics and future controlled events forward only after cookie consent",
+      "route-level lazy loading keeps Homepage V2 isolated from the legacy app"
+    ],
+    "performance_budgets_kb": {
+      "entry_gzip_max": 70,
+      "homepage_v2_gzip_max": 15,
+      "css_gzip_max": 35,
+      "products_gzip_max": 80,
+      "any_js_raw_max": 600
+    },
+    "latest_measured_kb": {
+      "entry": {"raw": 172.34, "gzip": 54.79},
+      "homepage_v2": {"raw": 48.98, "gzip": 11.66},
+      "css": {"raw": 187.64, "gzip": 28.15},
+      "products": {"raw": 524.59, "gzip": 63.79}
+    }
+  },
+  "current_canary_capabilities": [
+    "typed PublicHomepageView derived from public product/SSOT projections",
+    "production-style navigation and governed hero shell",
+    "job-to-be-done finder with access and budget filters",
+    "variant-aware governed recommendations",
+    "Personal/Shared/Bundle/Service explanation",
+    "poster-first governed media rail",
+    "compact category exploration",
+    "Bangladesh buying-flow and evidence-oriented trust sections",
+    "dated editorial spotlight with revision/as-of/review-after governance",
+    "campaign module that renders only approved in-window campaigns and suppresses them when commerce is disabled",
+    "learning/comparison hub, governed FAQ, final CTA and policy footer",
+    "physical noindex Vercel-compatible canary route",
+    "Cloudflare R2 uploader and approved-media provenance/hash/license/dimension governance",
+    "route-level lazy loading and formal bundle budgets",
+    "global focus-visible/reduced-motion safeguards and keyboard skip navigation",
+    "provider-neutral non-PII analytics event contract",
+    "existing CookieBanner/GoogleAnalytics/FacebookPixel consent shell restored inside isolated Homepage V2",
+    "post-consent-only HomepageAnalyticsBridge with no replay of pre-consent interactions",
+    "active production Vite config no longer loads retired Replit plugins"
+  ],
+  "publication_routing": {
+    "status": "p0-cloudflare-authoritative-dns-origin-and-rules-unresolved",
+    "live_observation_2026_08_10": {
+      "root": "verification-only Availability Under Verification page",
+      "products": "active catalog commerce with BDT prices",
+      "pricing": "active BDT commercial pricing",
+      "robots": "previously observed crawl allowed; not independently re-fetched in the 09:20 checkpoint",
+      "sitemap_urls": 275
+    },
+    "production_script_finding": "At production baseline 2ff9f7..., apply-commerce-quarantine.mjs is all-or-nothing across generated HTML. The observed split live state cannot be produced by that intended build script alone.",
+    "vercel_domain_sweep": {
+      "team_id": "team_WCN7gRRsLzPy8C0EdOFtDYrJ",
+      "projects_checked": 10,
+      "aipremiumshop_domain_owner_found": false,
+      "assumed_aips_project": "prj_aP4bi30UW8mcHgBvU7E72yyFOPQd",
+      "assumed_aips_project_has_custom_domain": false,
+      "assumed_aips_project_domain_state": "only Vercel hostname exposed",
+      "conclusion": "No Vercel project in the connected team reports aipremiumshop.com as an attached custom domain."
+    },
+    "public_dns_evidence": {
+      "checked_on": "2026-08-10",
+      "evidence_class": "independent public DNS/hosting evidence, not account-authoritative Cloudflare configuration",
+      "nameservers": ["augustus.ns.cloudflare.com", "laura.ns.cloudflare.com"],
+      "provider_interpretation": "Cloudflare documents standard *.ns.cloudflare.com nameservers as authoritative when delegated. Public evidence therefore identifies Cloudflare as the DNS authority/proxy layer for aipremiumshop.com, while the actual apex/www records, proxy status, Workers/Pages routes, redirect/transform/origin rules and ultimate origin remain unknown.",
+      "account_authoritative_access_required": true
+    },
+    "release_rule": "Do not promote Homepage V2 to / until account-authoritative Cloudflare routing is inspected, the actual origin/route is identified, and publication state is unified across root, products, pricing and static routes."
+  },
+  "cloudflare_r2": {
+    "status": "canonical-contract-and-uploader-complete-access-not-exposed-to-current-runtime",
+    "bucket": "aips-media",
+    "public_origin": "https://media.aipremiumshop.com",
+    "runbook": "docs/media/CLOUDFLARE-R2-MEDIA-CONTRACT.md",
+    "uploader": "artifacts/aips-landing/scripts/upload-r2-media.mjs",
+    "contract_test": "artifacts/aips-landing/scripts/test-r2-media-uploader.mjs",
+    "credential_environment": ["R2_ACCOUNT_ID", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY", "R2_BUCKET_NAME", "R2_PUBLIC_URL"],
+    "runtime_state": "No Cloudflare connector or R2 credential environment is exposed in this execution context. Never request credentials in chat; reconnect/expose the existing authorized integration instead.",
+    "legacy_media_path": "Historical Supabase upload tooling is superseded for new media work and contains security-rotation/sanitization debt."
+  },
+  "media_slots": [
+    {
+      "id": "HP-HERO-01",
+      "kind": "PRODUCT_HERO",
+      "status": "candidate-3-selected-bytes-and-r2-upload-pending",
+      "brief": "docs/homepage/HP-HERO-01-ASSET-BRIEF.md",
+      "delivery_derivative": "1000x800 WebP, metadata stripped and optimized",
+      "r2_object_key": "homepage/2026-08/hp-hero-01-v1.webp",
+      "blockers": [
+        "selected Candidate 3 bytes are not recoverable from connected uploads/File Library or prior Actions artifacts",
+        "R2 access is not exposed to the current runtime"
+      ]
+    },
+    {"id": "HP-DEMO-01..05", "kind": "VIDEO_DEMO", "status": "rendering-slots-ready-assets-pending"},
+    {"id": "HP-TRUST-01..03", "kind": "GALLERY_IMAGE", "status": "real-proof-assets-conditional"},
+    {"id": "HP-EDITORIAL-01..N", "kind": "POSTER", "status": "editorial-data-layer-complete-final-media-optional"}
+  ],
+  "vercel_preview_state": {
+    "accepted_code_sha": "98035e5f791a3c11d2316bf3f6fa16228d102c94",
+    "current_head_preview_ready": false,
+    "latest_observed_ready_branch_preview_sha": "8b8b1becdbbc8dcc5a0ff26782823537925e2c28",
+    "latest_observed_ready_deployment_id": "dpl_43C9UnZp3HQfAcsXrx9FrMQDxfw8",
+    "accepted_code_vercel_status": "failure",
+    "accepted_code_vercel_failure_reason": "build-rate-limit",
+    "accepted_code_vercel_status_target": "https://vercel.com/sysmoaigits-projects?upgradeToPro=build-rate-limit",
+    "blocker": "Vercel did not create an exact-accepted-code preview because the Git integration hit the account build-rate limit. GitHub application validation is green; this is an external preview-capacity blocker, not an application validation failure.",
+    "acceptance_rule": "Never use the stale 8b8b1bec preview for visual acceptance. Require READY preview metadata whose githubCommitSha exactly equals the accepted code SHA."
+  },
+  "p0_gaps": [
+    "inspect account-authoritative Cloudflare routing and identify the actual aipremiumshop.com origin/route",
+    "unify root/catalog/pricing/static publication state before production promotion",
+    "legacy public homepage remains active until controlled V2 promotion",
+    "policy-sensitive shared-access framing remains broader catalog/provider-policy debt"
+  ],
+  "p1_gaps": [
+    "HP-HERO-01 Candidate 3 bytes and real R2 upload are pending external media/access inputs",
+    "Homepage demo media assets are not yet supplied/approved",
+    "authorized compact brand media/navigation remains pending",
+    "real customer/review proof requires provenance and consent",
+    "exact-accepted-code Vercel visual QA is blocked by build-rate-limit",
+    "broader legacy site still has SEO/truth warnings outside Homepage V2"
+  ],
+  "implementation_phases": [
+    {"id": 0, "name": "baseline-gap-lock", "status": "complete"},
+    {"id": 1, "name": "public-homepage-data-contract", "status": "complete-canary"},
+    {"id": 2, "name": "isolated-homepage-v2-canary", "status": "complete"},
+    {"id": 3, "name": "navigation-and-hero", "status": "layout-complete-final-hero-media-pending"},
+    {"id": 4, "name": "guided-finder", "status": "complete-canary"},
+    {"id": 5, "name": "recommendations-and-campaigns", "status": "governance-complete-no-active-campaign"},
+    {"id": 6, "name": "access-buying-trust", "status": "core-v2-complete-real-proof-conditional"},
+    {"id": 7, "name": "media-rail-and-assets", "status": "plumbing-cloudflare-governance-complete-assets-pending"},
+    {"id": 8, "name": "editorial-learning-faq-community", "status": "editorial-learning-faq-final-cta-complete"},
+    {"id": 9, "name": "seo-static-schema", "status": "canary-static-noindex-audits-complete-production-root-pending"},
+    {"id": 10, "name": "quality-engineering", "status": "23-e2e-a11y-consent-analytics-budgets-green-visual-cwv-pending"},
+    {"id": 11, "name": "preview-comparison", "status": "blocked-by-vercel-build-rate-limit"},
+    {"id": 12, "name": "controlled-production-rollout", "status": "blocked-until-cloudflare-routing-and-publication-reconciled"}
+  ],
+  "release_gates": [
+    "account-authoritative Cloudflare DNS/proxy/Worker/Pages/rules inspected and actual aipremiumshop.com routing target identified",
+    "production publication state unified across root/catalog/pricing/static routes",
+    "PublicHomepageView remains sole protected Homepage V2 commercial/trust input",
+    "SSOT/public projection/fail-closed/TypeScript/build/prerender/SEO audits green",
+    "desktop/mobile Playwright, accessibility, reduced-motion and consent-boundary tests green",
+    "media license/alt/dimension/hash/provenance validation green",
+    "bundle and Core Web Vitals budgets green",
+    "exact-accepted-code Vercel preview visual QA after preview capacity is available",
+    "production build identity and post-deploy route/robots/sitemap/schema/runtime verification",
+    "rollback candidate retained"
+  ],
+  "owner_help_only_when": [
+    "account-authoritative Cloudflare routing cannot be accessed from any connected tool and the existing integration must be re-exposed/reconnected",
+    "the already-selected HP-HERO-01 Candidate 3 bytes must be re-uploaded because no connected source contains them",
+    "existing Cloudflare/R2 access must be re-exposed to the execution runtime without transmitting credentials in chat",
+    "Vercel preview capacity requires an owner-side plan/capacity action rather than a repository change",
+    "real business/review/team/provider-account evidence or an irreversible production/business decision is required"
+  ],
+  "next_actions": [
+    "Preserve accepted code SHA 98035e5f... as the green implementation checkpoint; distinguish later harness-only context commits from code validation.",
+    "Obtain account-authoritative Cloudflare zone access and inspect apex/www DNS, proxy status, Workers routes, Pages custom domains, redirect/transform/origin rules and origin target.",
+    "Wait for or resolve Vercel preview build capacity, then require an exact-98035e5f READY preview; reject stale previews.",
+    "Recover Candidate 3 bytes, optimize to 1000x800 WebP, upload through the canonical R2 uploader, verify public object, then approve in the media manifest.",
+    "Complete final visual/CWV QA with real media on an exact-accepted-code preview.",
+    "Only after routing/publication reconciliation, perform controlled root promotion with exact build identity and post-deploy verification."
+  ]
+}

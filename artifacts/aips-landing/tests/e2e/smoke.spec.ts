@@ -5,14 +5,15 @@ import { test, expect, type Page } from "@playwright/test";
 // while build, seo:check, audit-prerender, and the live-site monitor all
 // stayed green, because none of them execute the app. This suite does.
 //
-// Routes are chosen to cover distinct render paths (home, catalog, product,
-// audience guide, Bangla, the enquiry-only Higgsfield page, a 404), not to
-// be exhaustive -- a global mount-crash breaks every route identically, so
-// a handful of structurally different pages is enough to catch it. Full
-// click-through user journeys are a separate, larger effort (BACKLOG #22).
+// Routes are chosen to cover distinct render paths (home, Homepage V2 canary,
+// catalog, product, audience guide, Bangla, the enquiry-only Higgsfield page,
+// a 404), not to be exhaustive -- a global mount-crash breaks every route
+// identically, so a handful of structurally different pages is enough to catch
+// it. Full click-through user journeys are a separate, larger effort.
 
 const ROUTES = [
   "/",
+  "/__preview/homepage-v2",
   "/products",
   "/pricing",
   "/ai-video",

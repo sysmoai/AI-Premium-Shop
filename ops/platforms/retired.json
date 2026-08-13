@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-10T06:22:00+06:00",
+  "retired_platforms": [
+    {
+      "platform": "replit",
+      "status": "retired",
+      "effective_date": "2026-08-10",
+      "operational_rule": "Do not use Replit for development, deployment, hosting, inspection, or access requests for AI Premium Shop.",
+      "replacement_path": ["GitHub", "Vercel", "existing repository stack"],
+      "cleanup_policy": "Legacy Replit-specific packages or comments may be removed only after verifying they are not required by the current Vercel build or developer workflow. Cleanup must not be bundled with unrelated production behavior changes."
+    }
+  ]
+}

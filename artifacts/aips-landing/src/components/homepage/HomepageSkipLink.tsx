@@ -1,22 +1,35 @@
 import { useLayoutEffect } from "react";
 
+const LEGACY_SKIP_SELECTOR = '[data-testid="homepage-v2"] > a[href="#main-content"]';
+
 export default function HomepageSkipLink() {
   useLayoutEffect(() => {
-    const nested = document.querySelector<HTMLAnchorElement>(
-      '[data-testid="homepage-v2"] > a[href="#main-content"]',
-    );
-    if (!nested) return;
+    const guarded = new Map<HTMLAnchorElement, { tabIndex: string | null; ariaHidden: string | null }>();
 
-    const previousTabIndex = nested.getAttribute("tabindex");
-    const previousAriaHidden = nested.getAttribute("aria-hidden");
-    nested.setAttribute("tabindex", "-1");
-    nested.setAttribute("aria-hidden", "true");
+    const guardNestedSkip = () => {
+      const nested = document.querySelector<HTMLAnchorElement>(LEGACY_SKIP_SELECTOR);
+      if (!nested || guarded.has(nested)) return;
+
+      guarded.set(nested, {
+        tabIndex: nested.getAttribute("tabindex"),
+        ariaHidden: nested.getAttribute("aria-hidden"),
+      });
+      nested.setAttribute("tabindex", "-1");
+      nested.setAttribute("aria-hidden", "true");
+    };
+
+    guardNestedSkip();
+    const observer = new MutationObserver(guardNestedSkip);
+    observer.observe(document.body, { childList: true, subtree: true });
 
     return () => {
-      if (previousTabIndex === null) nested.removeAttribute("tabindex");
-      else nested.setAttribute("tabindex", previousTabIndex);
-      if (previousAriaHidden === null) nested.removeAttribute("aria-hidden");
-      else nested.setAttribute("aria-hidden", previousAriaHidden);
+      observer.disconnect();
+      for (const [nested, previous] of guarded) {
+        if (previous.tabIndex === null) nested.removeAttribute("tabindex");
+        else nested.setAttribute("tabindex", previous.tabIndex);
+        if (previous.ariaHidden === null) nested.removeAttribute("aria-hidden");
+        else nested.setAttribute("aria-hidden", previous.ariaHidden);
+      }
     };
   }, []);
 

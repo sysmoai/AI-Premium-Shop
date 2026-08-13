@@ -79,9 +79,28 @@ function removeRobots(html) {
   return html.replace(/\s*<meta\s+name=["']robots["'][^>]*>/gi, "");
 }
 
+function removeJsonLdType(html, targetType) {
+  return html.replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi, (block) => {
+    const match = block.match(/<script\b[^>]*>([\s\S]*?)<\/script>/i);
+    if (!match) return block;
+    try {
+      const parsed = JSON.parse(match[1]);
+      const nodes = Array.isArray(parsed) ? parsed : [parsed];
+      const containsTarget = nodes.some((node) => {
+        const type = node && typeof node === "object" ? node["@type"] : null;
+        return Array.isArray(type) ? type.includes(targetType) : type === targetType;
+      });
+      return containsTarget ? "" : block;
+    } catch {
+      return block;
+    }
+  });
+}
+
 function productionDocument(source) {
   let html = replaceRoot(source);
   html = removeRobots(html);
+  html = removeJsonLdType(html, "FAQPage");
   html = html.replace(/\sdata-aips-preview=["']homepage-v2["']/gi, "");
   html = setCanonical(html);
   html = setTitle(html, "AI Premium Shop — Find the Right AI Tool in Bangladesh");
@@ -91,6 +110,7 @@ function productionDocument(source) {
   html = setOg(html, "og:url", "https://aipremiumshop.com/");
   const head = html.match(/<head[\s\S]*?<\/head>/i)?.[0] ?? "";
   if (/noindex/i.test(head)) throw new Error("Homepage V2 production prerender refused: root head contains noindex");
+  if (/"@type"\s*:\s*"FAQPage"/i.test(head)) throw new Error("Homepage V2 production prerender refused: stale FAQPage schema remains");
   if (!html.includes("Find the right AI tool. Pay locally. Know exactly what access you get.")) {
     throw new Error("Homepage V2 production prerender refused: V2 H1 missing");
   }

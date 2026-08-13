@@ -46,6 +46,11 @@ try {
   run(process.execPath, ["scripts/audit-bundle-budgets.mjs"]);
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
+  // Generic product prerendering historically invented freshness/stock metadata
+  // and could carry legacy FAQ/warranty copy even when the hydrated page had
+  // already been corrected. Enforce the public truth projection on the static
+  // crawler surface before any broader SEO audit runs.
+  run(process.execPath, ["scripts/sanitize-product-prerender-truth.mjs"]);
   // Homepage V2 is the production runtime route. Rewrite the root static shell
   // only after the legacy/general prerender pass so crawlers and no-JS clients
   // receive the same decision architecture as the hydrated application. The

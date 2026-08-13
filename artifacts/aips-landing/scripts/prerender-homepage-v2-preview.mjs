@@ -1,13 +1,18 @@
 #!/usr/bin/env node
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const APP = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(APP, "dist/public");
 const rootPath = join(dist, "index.html");
+const productsPath = join(dist, "products/index.html");
 const previewDir = join(dist, "__preview/homepage-v2");
 const previewPath = join(previewDir, "index.html");
+const catalogLite = JSON.parse(readFileSync(join(APP, "data/catalog-lite.json"), "utf8"));
+const RETIRED_PRODUCT_SLUGS = new Set(["replit-bangladesh"]);
+const activeCatalogRecords = catalogLite.products.filter((product) => !RETIRED_PRODUCT_SLUGS.has(product.slug));
+const activeFamilyCount = new Set(activeCatalogRecords.map((product) => product.slug)).size;
 
 const shell = `
       <div id="prerender-shell">
@@ -16,7 +21,21 @@ const shell = `
             <p>AI Premium Shop for Bangladesh</p>
             <h1>Find the right AI tool. Pay locally. Know exactly what access you get.</h1>
             <p>Compare AI tools by the work you need to do, understand the access model before paying, and move from research to the right product without sorting through the entire catalog yourself.</p>
-            <p><a href="/products">Browse all AI tools</a></p>
+            <p><a href="/products">Browse all AI tools</a> · <a href="/pricing">Compare AI tool pricing</a></p>
+          </section>
+          <section>
+            <h2>Browse AI tools by category</h2>
+            <ul>
+              <li><a href="/ai-assistant">AI chat and assistants</a></li>
+              <li><a href="/ai-image">AI image and design tools</a></li>
+              <li><a href="/ai-video">AI video tools</a></li>
+              <li><a href="/ai-voice-music">AI voice and music tools</a></li>
+              <li><a href="/ai-code">AI coding and development tools</a></li>
+              <li><a href="/ai-workspace">AI workspace and productivity tools</a></li>
+              <li><a href="/ai-writing">AI writing and SEO tools</a></li>
+              <li><a href="/ai-design">AI design and creative tools</a></li>
+              <li><a href="/bundles">AI bundles and setup services</a></li>
+            </ul>
           </section>
           <section>
             <h2>What do you want AI to help you do?</h2>
@@ -26,7 +45,20 @@ const shell = `
               <li><a href="/best-ai-for-creators">Content and video creation</a></li>
               <li><a href="/best-ai-for-developers">Coding and app development</a></li>
               <li><a href="/best-ai-for-business">Business and automation</a></li>
-              <li><a href="/products">Writing, marketing and SEO</a></li>
+              <li><a href="/best-ai-for-job-seekers">CV, interview and job-search workflows</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>Compare by budget and use case</h2>
+            <ul>
+              <li><a href="/ai-under-500">AI tools under BDT 500</a></li>
+              <li><a href="/ai-under-1000">AI tools under BDT 1,000</a></li>
+              <li><a href="/ai-under-3000">AI tools under BDT 3,000</a></li>
+              <li><a href="/chatgpt-vs-claude-bangladesh">ChatGPT vs Claude</a></li>
+              <li><a href="/chatgpt-vs-gemini">ChatGPT vs Gemini</a></li>
+              <li><a href="/copilot-vs-cursor">GitHub Copilot vs Cursor</a></li>
+              <li><a href="/midjourney-vs-ideogram">Midjourney vs Ideogram</a></li>
+              <li><a href="/best-ai-subscription-2026">Best AI subscription guide</a></li>
             </ul>
           </section>
           <section>
@@ -97,6 +129,33 @@ function removeJsonLdType(html, targetType) {
   });
 }
 
+function sanitizeProductsStatic() {
+  if (!existsSync(productsPath)) throw new Error("Products prerender is missing before truth sanitization");
+  let html = readFileSync(productsPath, "utf8");
+  const title = `AI Tools in Bangladesh — ${activeFamilyCount} Active Tool Families | AI Premium Shop`;
+  const description = `Browse ${activeFamilyCount} active AI tool families by category and compare public BDT prices. Check each product page for current access, availability and delivery details.`;
+
+  html = removeJsonLdType(html, "FAQPage");
+  html = setTitle(html, title);
+  html = setDescription(html, description);
+  html = setOg(html, "og:title", title);
+  html = setOg(html, "og:description", description);
+  html = setOg(html, "og:url", "https://aipremiumshop.com/products");
+  html = html.replace(/All \d+ AI Tools/g, `All ${activeFamilyCount} AI Tools`);
+  html = html.replace(
+    /<p>\d+ premium subscriptions with BDT prices\.[^<]*<\/p>/i,
+    `<p>${activeCatalogRecords.length} current public plan records with BDT prices where available. Check each product page for current access, availability and delivery details before purchase.</p>`,
+  );
+  html = html.replace(/<li><a href=["']\/replit-bangladesh["'][^>]*>[\s\S]*?<\/li>/gi, "");
+
+  if (/fast delivery/i.test(html)) throw new Error("Products prerender truth guard failed: stale fast-delivery claim remains");
+  if (/replit-bangladesh/i.test(html)) throw new Error("Products prerender truth guard failed: retired Replit route remains");
+  if (/30[- ]day (replacement )?warranty/i.test(html)) throw new Error("Products prerender truth guard failed: stale universal warranty remains");
+
+  writeFileSync(productsPath, html, "utf8");
+  console.log(`[products-truth] sanitized static /products for ${activeFamilyCount} active tool families`);
+}
+
 function productionDocument(source) {
   let html = replaceRoot(source);
   html = removeRobots(html);
@@ -125,6 +184,8 @@ function previewDocument(productionHtml) {
   html = setDescription(html, "Private noindex preview of the next AI Premium Shop homepage: guided AI-tool discovery, access-model clarity and Bangladesh buying guidance.");
   return html;
 }
+
+sanitizeProductsStatic();
 
 const source = readFileSync(rootPath, "utf8");
 const productionHtml = productionDocument(source);

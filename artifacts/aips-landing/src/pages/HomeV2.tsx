@@ -97,10 +97,11 @@ export default function HomeV2() {
   const tickerItems = useMemo(() => [
     `${data.catalog.productFamilies} AI tool families`,
     `${data.catalog.publicPlans} public plan records`,
+    ...(minPrice ? [`Public prices from ${minPrice}`] : []),
     ...data.payments.map((payment) => `${payment.label} payment`),
     "Personal · Shared · Bundle · Setup access models",
     "Bangladesh-first buying guidance",
-  ], [data.catalog.productFamilies, data.catalog.publicPlans, data.payments]);
+  ], [data.catalog.productFamilies, data.catalog.publicPlans, data.payments, minPrice]);
 
   useEffect(() => {
     trackHomepageEvent({
@@ -234,7 +235,7 @@ export default function HomeV2() {
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <a
                     href="#finder"
-                    onClick={() => trackHomepageEvent({ name: "homepage_finder_click", placement: "hero" })}
+                    onClick={() => trackHomepageEvent({ name: "homepage_finder_start", placement: "finder" })}
                     className="group inline-flex min-h-13 items-center justify-center gap-2 rounded-2xl bg-[#f4b942] px-6 py-3.5 font-extrabold text-[#07101f] shadow-[0_16px_55px_rgba(244,185,66,.2)] transition hover:-translate-y-0.5 hover:bg-[#ffd167]"
                   >
                     Find my AI tool

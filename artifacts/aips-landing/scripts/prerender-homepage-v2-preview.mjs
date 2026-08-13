@@ -16,7 +16,21 @@ const shell = `
             <p>AI Premium Shop for Bangladesh</p>
             <h1>Find the right AI tool. Pay locally. Know exactly what access you get.</h1>
             <p>Compare AI tools by the work you need to do, understand the access model before paying, and move from research to the right product without sorting through the entire catalog yourself.</p>
-            <p><a href="/products">Browse all AI tools</a></p>
+            <p><a href="/products">Browse all AI tools</a> · <a href="/pricing">Compare AI tool pricing</a></p>
+          </section>
+          <section>
+            <h2>Browse AI tools by category</h2>
+            <ul>
+              <li><a href="/ai-assistant">AI chat and assistants</a></li>
+              <li><a href="/ai-image">AI image and design tools</a></li>
+              <li><a href="/ai-video">AI video tools</a></li>
+              <li><a href="/ai-voice-music">AI voice and music tools</a></li>
+              <li><a href="/ai-code">AI coding and development tools</a></li>
+              <li><a href="/ai-workspace">AI workspace and productivity tools</a></li>
+              <li><a href="/ai-writing">AI writing and SEO tools</a></li>
+              <li><a href="/ai-design">AI design and creative tools</a></li>
+              <li><a href="/bundles">AI bundles and setup services</a></li>
+            </ul>
           </section>
           <section>
             <h2>What do you want AI to help you do?</h2>
@@ -26,7 +40,20 @@ const shell = `
               <li><a href="/best-ai-for-creators">Content and video creation</a></li>
               <li><a href="/best-ai-for-developers">Coding and app development</a></li>
               <li><a href="/best-ai-for-business">Business and automation</a></li>
-              <li><a href="/products">Writing, marketing and SEO</a></li>
+              <li><a href="/best-ai-for-job-seekers">CV, interview and job-search workflows</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>Compare by budget and use case</h2>
+            <ul>
+              <li><a href="/ai-under-500">AI tools under BDT 500</a></li>
+              <li><a href="/ai-under-1000">AI tools under BDT 1,000</a></li>
+              <li><a href="/ai-under-3000">AI tools under BDT 3,000</a></li>
+              <li><a href="/chatgpt-vs-claude-bangladesh">ChatGPT vs Claude</a></li>
+              <li><a href="/chatgpt-vs-gemini">ChatGPT vs Gemini</a></li>
+              <li><a href="/copilot-vs-cursor">GitHub Copilot vs Cursor</a></li>
+              <li><a href="/midjourney-vs-ideogram">Midjourney vs Ideogram</a></li>
+              <li><a href="/best-ai-subscription-2026">Best AI subscription guide</a></li>
             </ul>
           </section>
           <section>

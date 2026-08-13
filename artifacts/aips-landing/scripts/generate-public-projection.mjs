@@ -9,6 +9,7 @@ const rawPath = join(APP, "data/products.json");
 const outPath = join(APP, "data/public-products.json");
 const commercialPath = join(REPO, "ops/ssot/commercial.json");
 const sitePath = join(REPO, "ops/ssot/site.json");
+const RETIRED_PRODUCT_SLUGS = new Set(["replit-bangladesh"]);
 
 const raw = JSON.parse(readFileSync(rawPath, "utf8"));
 const commercial = JSON.parse(readFileSync(commercialPath, "utf8"));
@@ -40,6 +41,8 @@ const HARD_UNVERIFIED = [
   /\bmoney[ -]?back\b/i,
   /\bguaranteed\s+(?:income|permanent)\b/i,
   /\b\d{1,3}%\s*off\b/i,
+  /\bauthorized\s+(?:reseller|partner|to offer)\b/i,
+  /\bexclusive\s+(?:promotional\s+)?rate\b/i,
 ];
 const NEGATION = /\b(no|not|never|without|cannot)\b/i;
 const UNLIMITED_SCOPE = /\b(fair[ -]?use|provider\s+limit|subject\s+to|credit|relaxed|slow|scope|usage\s+limit|rate\s+limit|limit applies|limits apply)\b/i;
@@ -104,6 +107,7 @@ function sanitizePlan(plan, verified) {
     delete safe.deliverySLA;
     delete safe.officialUSD;
     delete safe.inStock;
+    delete safe.warrantyDays;
   }
   return safe;
 }
@@ -118,6 +122,7 @@ function sanitizeApprovedProduct(product) {
     `${displayName} is listed in the current AI Premium Shop catalog. Confirm current product and plan details before purchase.`,
   );
   if (product.tagline && isUnsafeClaim(product.tagline)) delete safe.tagline;
+  if (product.badge && isUnsafeClaim(product.badge)) delete safe.badge;
   safe.capabilities = safeList(product.capabilities);
   safe.uniqueSellingPoints = safeList(product.uniqueSellingPoints);
   safe.useCasesBD = safeList(product.useCasesBD);
@@ -135,6 +140,9 @@ function sanitizeApprovedProduct(product) {
     delete safe.deliveryMethod;
     delete safe.officialUSD;
     delete safe.stock;
+    delete safe.warrantyDays;
+    delete safe.discountPercent;
+    delete safe.discountLabel;
     delete safe.competitorCompare;
     delete safe.higherPlanUpsell;
     safe.faq = [];
@@ -162,6 +170,10 @@ const stripCommercialFields = (product) => {
   safe.stock = null;
   safe.trust = null;
   safe.badges = [];
+  delete safe.badge;
+  delete safe.warrantyDays;
+  delete safe.discountPercent;
+  delete safe.discountLabel;
   safe.competitorCompare = [];
   safe.bundleSuggestions = [];
   safe.higherPlanUpsell = null;
@@ -174,19 +186,21 @@ const stripCommercialFields = (product) => {
   return safe;
 };
 
-const sourceProducts = Array.isArray(raw) ? raw : raw.products ?? [];
+const sourceProducts = (Array.isArray(raw) ? raw : raw.products ?? []).filter(
+  (product) => !RETIRED_PRODUCT_SLUGS.has(product.slug),
+);
 const publicProducts = publicationAllowed && !commercialQuarantine
   ? sourceProducts.map(sanitizeApprovedProduct)
   : sourceProducts.map(stripCommercialFields);
 
 const output = {
   projection: {
-    schema_version: 2,
+    schema_version: 3,
     generated_from: "data/products.json + ops/ssot/site.json + ops/ssot/commercial.json",
     publication_allowed: publicationAllowed,
     quarantine: commercialQuarantine,
     mode: publicationAllowed && !commercialQuarantine ? "approved-commerce" : "informational-fail-closed",
-    truth_policy: "unverified marketing, delivery, warranty, review, stock and comparison claims are stripped from the public projection",
+    truth_policy: "unverified marketing, delivery, warranty, review, stock, discount and comparison claims are stripped; retired product slugs are excluded from the public projection",
   },
   products: publicProducts,
 };

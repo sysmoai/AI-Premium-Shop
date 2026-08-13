@@ -15,6 +15,7 @@ import { HOMEPAGE_V2 } from "@/generated/homepageV2";
 import { trackHomepageEvent } from "@/lib/homepageAnalytics";
 
 const WHATSAPP_LINK = "https://wa.me/8801865385348";
+const HOMEPAGE_V2_PREVIEW_PATH = "/__preview/homepage-v2";
 
 const NAV_LINKS = [
   { href: "/products", label: "Products" },
@@ -34,6 +35,8 @@ export default function HomeV2() {
   const commerceEnabled = data.publication.publicationAllowed && !data.publication.quarantine;
   const minPrice = commerceEnabled ? formatBDT(data.catalog.minPrice) : null;
   const [cookieConsent, setCookieConsent] = useState(false);
+  const pathname = typeof window === "undefined" ? "/" : window.location.pathname;
+  const isPreview = pathname === HOMEPAGE_V2_PREVIEW_PATH || pathname === `${HOMEPAGE_V2_PREVIEW_PATH}/`;
 
   useEffect(() => {
     trackHomepageEvent({
@@ -44,12 +47,14 @@ export default function HomeV2() {
   }, [commerceEnabled, data.publication.mode]);
 
   return (
-    <div className="min-h-screen bg-[#07101f] text-white" data-testid="homepage-v2-canary">
+    <div className="min-h-screen bg-[#07101f] text-white" data-testid="homepage-v2">
       <SEOHead
-        title="Homepage V2 Preview — AI Premium Shop"
-        description="Private noindex preview of the next AI Premium Shop homepage experience."
+        title={isPreview ? "Homepage V2 Preview — AI Premium Shop" : "AI Premium Shop — Find the Right AI Tool in Bangladesh"}
+        description={isPreview
+          ? "Private noindex preview of the next AI Premium Shop homepage experience."
+          : "Find and compare AI tools for study, freelancing, coding, content and business. Understand access models, pay locally in Bangladesh and choose from the current public AIPS catalog."}
         canonical="https://aipremiumshop.com/"
-        noindex
+        noindex={isPreview}
       />
 
       <a

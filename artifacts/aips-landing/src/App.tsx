@@ -30,7 +30,7 @@ const ComparisonPage = lazy(() => import("@/pages/ComparisonPage"));
 const BudgetPage = lazy(() => import("@/pages/BudgetPage"));
 const BlogPage = lazy(() => import("@/pages/BlogPage"));
 const BlogPostPage = lazy(() => import("@/pages/BlogPostPage"));
-const BrandPage = lazy(() => import("@/pages/BrandPage"));
+const BrandPage = lazy(() => import("@/pages/BrandPageTruthSafe"));
 const SupportPage = lazy(() => import("@/pages/SupportPage"));
 const HowToOrderPage = lazy(() => import("@/pages/HowToOrderPage"));
 const BestAISubscriptionPage = lazy(() => import("@/pages/BestAISubscriptionPage"));
@@ -72,8 +72,8 @@ function MobileOrderBar() {
     >
       <div className="flex items-center justify-between px-4 h-14 gap-3">
         <div>
-          <div className="text-xs" style={{ color: "#c9ceda" }}>From</div>
-          <div className="text-base font-bold" style={{ color: "#f4b942" }}>BDT 299+</div>
+          <div className="text-xs" style={{ color: "#c9ceda" }}>Current catalog</div>
+          <div className="text-sm font-bold" style={{ color: "#f4b942" }}>Confirm before payment</div>
         </div>
         <a
           href={WHATSAPP}
@@ -83,7 +83,7 @@ function MobileOrderBar() {
           style={{ backgroundColor: "#008236", color: "#fff", minHeight: "44px" }}
         >
           <MessageCircle className="w-4 h-4" />
-          Order Now
+          Ask on WhatsApp
         </a>
       </div>
     </div>
@@ -111,9 +111,7 @@ function Router() {
       <Route path="/ai-design">{() => <CategoryPage categoryId="ai-design" />}</Route>
       <Route path="/bundles">{() => <CategoryPage categoryId="bundles" />}</Route>
 
-      {/* Brand pages — one route per slug in BRAND_PAGE_SLUGS, which is also
-          what productPath() uses for product links and canonical URLs, so the
-          route table and canonicals stay in sync by construction. */}
+      {/* Brand pages */}
       {BRAND_PAGE_SLUGS.map((slug) => (
         <Route key={slug} path={`/${slug}`}>{() => <BrandPage brandSlug={slug} />}</Route>
       ))}
@@ -137,7 +135,7 @@ function Router() {
       {/* Guides Index */}
       <Route path="/guides" component={GuidesIndexPage} />
 
-      {/* New Segment Guide Pages */}
+      {/* Segment Guide Pages */}
       <Route path="/guides/students" component={StudentsGuide} />
       <Route path="/guides/freelancers" component={FreelancersGuide} />
       <Route path="/guides/creators" component={CreatorsGuide} />
@@ -162,11 +160,7 @@ function Router() {
       <Route path="/ai-under-1000">{() => <BudgetPage budgetKey="ai-under-1000" />}</Route>
       <Route path="/ai-under-3000">{() => <BudgetPage budgetKey="ai-under-3000" />}</Route>
 
-      {/* Product detail pages.
-          Higgsfield gets a dedicated component and MUST stay above the generic
-          /product/:slug route — wouter matches in order, so the catch-all would
-          otherwise win and render the template whose hardcoded trust claims this
-          page exists to avoid. See docs/compliance/higgsfield-offer-review.md. */}
+      {/* Product detail pages. Higgsfield keeps its dedicated compliance page. */}
       <Route path="/product/higgsfield-ai-bangladesh" component={HiggsfieldPage} />
       <Route path="/product/:slug">{(params) => <ProductPage productSlug={params.slug} />}</Route>
 
@@ -180,8 +174,6 @@ function Router() {
       <Route path="/refund-policy" component={RefundPolicyPage} />
       <Route path="/terms" component={TermsPage} />
       <Route path="/privacy-policy" component={PrivacyPolicyPage} />
-      {/* /privacy is a URL people and crawlers commonly try; it previously fell
-          through to NotFound while still returning HTTP 200 via the SPA rewrite. */}
       <Route path="/privacy" component={PrivacyPolicyPage} />
 
       {/* Bangla pages */}
@@ -206,10 +198,6 @@ function App() {
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <ScrollToTop />
-          {/* Lazy routes need a Suspense boundary. The fallback is deliberately a
-              plain sized spacer, not a spinner or "Loading…" text — a visible
-              placeholder on every navigation reads as slower than it is, and an
-              unsized one would cause layout shift (current CLS is 0). */}
           <Suspense fallback={<div style={{ minHeight: "60vh" }} aria-busy="true" />}>
             <Router />
           </Suspense>

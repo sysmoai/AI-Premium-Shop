@@ -44,9 +44,13 @@ try {
   const viteBin = join(APP, "node_modules/vite/bin/vite.js");
   run(process.execPath, [viteBin, "build", "--config", "vite.config.ts"]);
   run(process.execPath, ["scripts/audit-bundle-budgets.mjs"]);
-  run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
+  // Homepage V2 is the production runtime route. Rewrite the root static shell
+  // only after the legacy/general prerender pass so crawlers and no-JS clients
+  // receive the same decision architecture as the hydrated application. The
+  // same script also emits the private noindex canary route.
+  run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/audit-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/audit-plan-pages.mjs"]);
   run(process.execPath, ["scripts/audit-prerender.mjs"]);

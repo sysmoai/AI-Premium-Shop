@@ -5,47 +5,15 @@ import { fileURLToPath } from "node:url";
 
 const APP = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(APP, "dist/public");
-const sourcePath = join(dist, "index.html");
-const outDir = join(dist, "__preview/homepage-v2");
-const outPath = join(outDir, "index.html");
+const rootPath = join(dist, "index.html");
+const previewDir = join(dist, "__preview/homepage-v2");
+const previewPath = join(previewDir, "index.html");
 
-let html = readFileSync(sourcePath, "utf8");
-
-const robots = '<meta name="robots" content="noindex, nofollow">';
-if (/<meta\s+name=["']robots["'][^>]*>/i.test(html)) {
-  html = html.replace(/<meta\s+name=["']robots["'][^>]*>/i, robots);
-} else {
-  html = html.replace(/<head([^>]*)>/i, `<head$1>\n    ${robots}`);
-}
-
-const canonical = '<link rel="canonical" href="https://aipremiumshop.com/">';
-if (/<link\s+rel=["']canonical["'][^>]*>/i.test(html)) {
-  html = html.replace(/<link\s+rel=["']canonical["'][^>]*>/i, canonical);
-} else {
-  html = html.replace(/<head([^>]*)>/i, `<head$1>\n    ${canonical}`);
-}
-
-const description = '<meta name="description" content="Private noindex preview of the next AI Premium Shop homepage: guided AI-tool discovery, access-model clarity and Bangladesh buying guidance.">';
-if (/<meta\s+name=["']description["'][^>]*>/i.test(html)) {
-  html = html.replace(/<meta\s+name=["']description["'][^>]*>/i, description);
-} else {
-  html = html.replace(/<head([^>]*)>/i, `<head$1>\n    ${description}`);
-}
-
-html = html.replace(/<title>[^<]*<\/title>/i, "<title>Homepage V2 Preview — AI Premium Shop</title>");
-html = html.replace(/<html([^>]*)>/i, '<html$1 data-aips-preview="homepage-v2">');
-
-// Keep this body intentionally free of prices, delivery times, warranties,
-// rankings and other protected commercial claims. It is a noindex canary shell
-// whose job is to describe the same decision architecture as HomeV2.tsx before
-// React mounts. The existing head-level anti-flash contract hides
-// #prerender-shell from JS-capable browsers on the first paint, while non-JS
-// inspection still gets meaningful content instead of an empty root.
 const shell = `
       <div id="prerender-shell">
         <main>
           <section>
-            <p>AI Premium Shop Homepage V2 preview for Bangladesh</p>
+            <p>AI Premium Shop for Bangladesh</p>
             <h1>Find the right AI tool. Pay locally. Know exactly what access you get.</h1>
             <p>Compare AI tools by the work you need to do, understand the access model before paying, and move from research to the right product without sorting through the entire catalog yourself.</p>
             <p><a href="/products">Browse all AI tools</a></p>
@@ -63,17 +31,87 @@ const shell = `
           </section>
           <section>
             <h2>Understand the access model before you pay</h2>
-            <p>Homepage V2 makes Personal, Shared, Bundle and Setup or Service arrangements explicit buying information rather than hiding them behind a price card.</p>
-            <p>Product-specific pages remain the source for current availability, access details and any approved commercial terms.</p>
+            <p>Personal, Shared, Bundle and Setup or Service arrangements are explicit buying information rather than details hidden behind a price card.</p>
+            <p>Product-specific pages remain the source for current availability, access details and approved commercial terms.</p>
           </section>
         </main>
       </div>`;
 
-if (!/<div\s+id=["']root["']>\s*<\/div>/i.test(html)) {
-  throw new Error("Homepage V2 preview refused: built Vite shell no longer has an empty #root");
+function replaceRoot(html) {
+  const match = /<div\s+id=["']root["'][^>]*>/i.exec(html);
+  const bodyEnd = html.search(/<\/body>/i);
+  if (!match || bodyEnd < 0 || match.index >= bodyEnd) {
+    throw new Error("Homepage V2 prerender refused: built document has no replaceable #root before </body>");
+  }
+  return `${html.slice(0, match.index)}<div id="root">${shell}\n    </div>\n  ${html.slice(bodyEnd)}`;
 }
-html = html.replace(/<div\s+id=["']root["']>\s*<\/div>/i, `<div id="root">${shell}\n    </div>`);
 
-mkdirSync(outDir, { recursive: true });
-writeFileSync(outPath, html, "utf8");
-console.log(`[homepage-v2-preview] wrote ${outPath} with static noindex decision shell`);
+function setTitle(html, title) {
+  if (/<title>[^<]*<\/title>/i.test(html)) return html.replace(/<title>[^<]*<\/title>/i, `<title>${title}</title>`);
+  return html.replace(/<head([^>]*)>/i, `<head$1>\n    <title>${title}</title>`);
+}
+
+function setDescription(html, description) {
+  const tag = `<meta name="description" content="${description}">`;
+  if (/<meta\s+name=["']description["'][^>]*>/i.test(html)) {
+    return html.replace(/<meta\s+name=["']description["'][^>]*>/i, tag);
+  }
+  return html.replace(/<head([^>]*)>/i, `<head$1>\n    ${tag}`);
+}
+
+function setCanonical(html) {
+  const canonical = '<link rel="canonical" href="https://aipremiumshop.com/">';
+  if (/<link\s+rel=["']canonical["'][^>]*>/i.test(html)) {
+    return html.replace(/<link\s+rel=["']canonical["'][^>]*>/i, canonical);
+  }
+  return html.replace(/<head([^>]*)>/i, `<head$1>\n    ${canonical}`);
+}
+
+function setOg(html, property, value) {
+  const escaped = property.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const re = new RegExp(`<meta\\s+property=["']${escaped}["'][^>]*>`, "i");
+  const tag = `<meta property="${property}" content="${value}">`;
+  if (re.test(html)) return html.replace(re, tag);
+  return html.replace(/<head([^>]*)>/i, `<head$1>\n    ${tag}`);
+}
+
+function removeRobots(html) {
+  return html.replace(/\s*<meta\s+name=["']robots["'][^>]*>/gi, "");
+}
+
+function productionDocument(source) {
+  let html = replaceRoot(source);
+  html = removeRobots(html);
+  html = html.replace(/\sdata-aips-preview=["']homepage-v2["']/gi, "");
+  html = setCanonical(html);
+  html = setTitle(html, "AI Premium Shop — Find the Right AI Tool in Bangladesh");
+  html = setDescription(html, "Find and compare AI tools for study, freelancing, coding, content and business. Understand access models, pay locally in Bangladesh and choose from the current public AIPS catalog.");
+  html = setOg(html, "og:title", "AI Premium Shop — Find the Right AI Tool in Bangladesh");
+  html = setOg(html, "og:description", "Find and compare AI tools for study, freelancing, coding, content and business. Understand access models and pay locally in Bangladesh.");
+  html = setOg(html, "og:url", "https://aipremiumshop.com/");
+  const head = html.match(/<head[\s\S]*?<\/head>/i)?.[0] ?? "";
+  if (/noindex/i.test(head)) throw new Error("Homepage V2 production prerender refused: root head contains noindex");
+  if (!html.includes("Find the right AI tool. Pay locally. Know exactly what access you get.")) {
+    throw new Error("Homepage V2 production prerender refused: V2 H1 missing");
+  }
+  return html;
+}
+
+function previewDocument(productionHtml) {
+  let html = productionHtml.replace(/<html([^>]*)>/i, '<html$1 data-aips-preview="homepage-v2">');
+  const robots = '<meta name="robots" content="noindex, nofollow">';
+  html = html.replace(/<head([^>]*)>/i, `<head$1>\n    ${robots}`);
+  html = setTitle(html, "Homepage V2 Preview — AI Premium Shop");
+  html = setDescription(html, "Private noindex preview of the next AI Premium Shop homepage: guided AI-tool discovery, access-model clarity and Bangladesh buying guidance.");
+  return html;
+}
+
+const source = readFileSync(rootPath, "utf8");
+const productionHtml = productionDocument(source);
+writeFileSync(rootPath, productionHtml, "utf8");
+console.log(`[homepage-v2] wrote production static shell to ${rootPath}`);
+
+const previewHtml = previewDocument(productionHtml);
+mkdirSync(previewDir, { recursive: true });
+writeFileSync(previewPath, previewHtml, "utf8");
+console.log(`[homepage-v2-preview] wrote ${previewPath} with static noindex decision shell`);

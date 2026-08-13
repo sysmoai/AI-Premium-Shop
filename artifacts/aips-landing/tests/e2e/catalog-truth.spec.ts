@@ -11,13 +11,15 @@ const STALE_UNIVERSAL_CLAIMS = [
 
 test("products catalog avoids stale universal commerce claims and retired product routes", async ({ page }) => {
   await page.goto("/products", { waitUntil: "networkidle" });
-  const mainText = (await page.locator("main").innerText()).toLowerCase();
+  const heading = page.getByRole("heading", { name: "Find the AI tool that fits your work" });
+  await expect(heading).toBeVisible();
+  const catalogSurface = heading.locator("xpath=ancestor::main[1]");
+  const catalogText = (await catalogSurface.innerText()).toLowerCase();
 
   for (const claim of STALE_UNIVERSAL_CLAIMS) {
-    expect(mainText).not.toContain(claim);
+    expect(catalogText).not.toContain(claim);
   }
-  await expect(page.locator('main a[href*="replit-bangladesh"]')).toHaveCount(0);
-  await expect(page.getByRole("heading", { name: "Find the AI tool that fits your work" })).toBeVisible();
+  await expect(catalogSurface.locator('a[href*="replit-bangladesh"]')).toHaveCount(0);
 });
 
 test("personal access filter uses the catalog's real personal value and persists in the URL", async ({ page }) => {

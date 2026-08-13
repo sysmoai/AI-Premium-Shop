@@ -6,6 +6,7 @@ import { PUBLICATION_STATE } from "./generated/publicationState";
 
 const App = lazy(() => import("./App"));
 const HomeV2 = lazy(() => import("./pages/HomeV2"));
+const HomepagePremiumShell = lazy(() => import("./components/homepage/HomepagePremiumShell"));
 const PlanPage = lazy(() => import("./pages/PlanPage"));
 
 const HOMEPAGE_V2_PREVIEW_PATH = "/__preview/homepage-v2";
@@ -36,7 +37,9 @@ export default function RootApp() {
     return (
       <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
         <Suspense fallback={<RouteLoadingFallback />}>
-          <HomeV2 />
+          <HomepagePremiumShell>
+            <HomeV2 />
+          </HomepagePremiumShell>
         </Suspense>
         <ConciergeWidget />
       </WouterRouter>

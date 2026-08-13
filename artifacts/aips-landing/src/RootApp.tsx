@@ -28,8 +28,9 @@ export default function RootApp() {
   }
 
   const pathname = typeof window === "undefined" ? "/" : window.location.pathname;
+  const isHomepage = pathname === "/" || pathname === HOMEPAGE_V2_PREVIEW_PATH || pathname === `${HOMEPAGE_V2_PREVIEW_PATH}/`;
 
-  if (pathname === HOMEPAGE_V2_PREVIEW_PATH || pathname === `${HOMEPAGE_V2_PREVIEW_PATH}/`) {
+  if (isHomepage) {
     return (
       <Suspense fallback={<RouteLoadingFallback />}>
         <HomeV2 />

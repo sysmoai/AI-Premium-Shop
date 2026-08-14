@@ -50,43 +50,55 @@ const CreatorsBN = lazy(() => import("@/pages/CreatorsBN"));
 const SMBBangla = lazy(() => import("@/pages/SMBBangla"));
 const EducatorsBangla = lazy(() => import("@/pages/EducatorsBangla"));
 
-const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20order%20an%20AI%20subscription";
+const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20need%20help%20confirming%20a%20current%20AI%20plan%20before%20payment.";
+const MOBILE_BAR_EXCLUDED_ROUTES = new Set([
+  "/contact",
+  "/support",
+  "/how-to-order",
+  "/faq",
+  "/privacy",
+  "/privacy-policy",
+  "/refund-policy",
+  "/terms",
+]);
 
 function MobileOrderBar() {
   const [visible, setVisible] = useState(false);
   const [location] = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 200);
+    const onScroll = () => setVisible(window.scrollY > 280);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (location === "/contact") return null;
+  if (MOBILE_BAR_EXCLUDED_ROUTES.has(location)) return null;
 
   return (
-    <div
+    <aside
+      aria-label="Plan help"
       className={`md:hidden fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300 border-t border-white/10 ${visible ? "translate-y-0" : "translate-y-full"}`}
-      style={{ backgroundColor: "#0a0e27" }}
+      style={{ backgroundColor: "#0a0e27", paddingBottom: "env(safe-area-inset-bottom)" }}
+      data-testid="mobile-plan-help"
     >
-      <div className="flex items-center justify-between px-4 h-14 gap-3">
-        <div>
-          <div className="text-xs" style={{ color: "#c9ceda" }}>From</div>
-          <div className="text-base font-bold" style={{ color: "#f4b942" }}>BDT 299+</div>
+      <div className="flex min-h-14 items-center justify-between gap-3 px-4 py-2">
+        <div className="min-w-0">
+          <div className="text-xs font-semibold text-white">Need help choosing?</div>
+          <div className="mt-0.5 truncate text-[11px]" style={{ color: "#c9ceda" }}>Confirm the exact plan before payment</div>
         </div>
         <a
           href={WHATSAPP}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity flex-shrink-0"
-          style={{ backgroundColor: "#008236", color: "#fff", minHeight: "44px" }}
+          className="flex min-h-11 flex-shrink-0 items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition-opacity hover:opacity-90"
+          style={{ backgroundColor: "#008236", color: "#fff" }}
         >
-          <MessageCircle className="w-4 h-4" />
-          Order Now
+          <MessageCircle className="h-4 w-4" />
+          Ask AIPS
         </a>
       </div>
-    </div>
+    </aside>
   );
 }
 

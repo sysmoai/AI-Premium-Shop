@@ -24,6 +24,7 @@ const nameOf = (value) => String(value ?? "AI tool").split(/—\s*/)[0].split(/\
 const money = (value) => `BDT ${Number(value).toLocaleString("en-BD")}`;
 const access = (value) => value === "shared" ? "Shared access" : value === "team" ? "Team access" : value === "bundle" ? "Bundle" : ["setup-service", "setup", "service"].includes(value) ? "Setup / service" : "Personal access";
 const fit = (value, max) => value.length <= max ? value : `${value.slice(0, max - 1).trimEnd()}…`;
+const scopedTier = (value) => /\bunlimited\b/i.test(String(value ?? "")) ? `${value} (provider limit applies)` : value;
 
 function recordsFor(slug) {
   const direct = products.filter((product) => product.slug === slug);
@@ -84,7 +85,7 @@ for (const slug of brandSlugs) {
   const title = fit(`${displayName} Price in Bangladesh | AI Premium Shop`, 68);
   const description = fit(`${min ? `${displayName} AIPS plans currently start from ${money(min)}.` : `Check the current AIPS price for ${displayName}.`} Compare access and confirm availability, provider limits, delivery ETA and terms before payment.`, 158);
   const canonical = `https://aipremiumshop.com/${slug}`;
-  const rows = records.map((record) => `<li><strong>${esc(record.tier ?? nameOf(record.name))}</strong> — ${record.requestPrice || typeof record.price !== "number" ? "Price on request" : money(record.price)} · ${esc(access(record.accessType))}</li>`).join("");
+  const rows = records.map((record) => `<li><strong>${esc(scopedTier(record.tier ?? nameOf(record.name)))}</strong> — ${record.requestPrice || typeof record.price !== "number" ? "Price on request" : money(record.price)} · ${esc(access(record.accessType))}</li>`).join("");
   const body = `<main><nav aria-label="breadcrumb"><a href="/">Home</a> › <a href="/${esc(first.category)}">${esc(first.category)}</a> › ${esc(displayName)}</nav><h1>${esc(displayName)} in Bangladesh</h1><p>Compare current public AIPS catalog records for ${esc(displayName)}. Published AIPS price and access information can be compared here; provider-controlled models, quotas, credits, storage and feature limits should be verified for the exact plan.</p><h2>Current public plans</h2><ul>${rows}</ul><h2>Before payment</h2><ul><li>Confirm the exact access model.</li><li>Confirm current availability and delivery ETA.</li><li>Check provider-controlled limits for the exact plan.</li><li>Confirm applicable order and support terms.</li></ul><p><a href="/products">Browse all AI tools</a> · <a href="/pricing">Compare current pricing</a></p></main>`;
 
   let html = fs.readFileSync(file, "utf8");

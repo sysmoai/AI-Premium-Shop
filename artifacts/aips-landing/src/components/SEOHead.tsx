@@ -41,7 +41,7 @@ interface SEOHeadProps {
 
 const SITE_NAME = "AI Premium Shop";
 const DEFAULT_DESC =
-  "Bangladesh's AI subscription shop. ChatGPT Plus from BDT 499, Google AI Pro from BDT 599. Pay with bKash or Nagad. Delivered in minutes.";
+  "AI subscription and tool discovery for Bangladesh. Confirm the exact product, current price, access model, availability, payment instructions and order terms before purchase.";
 
 export function SEOHead({
   title,
@@ -55,7 +55,10 @@ export function SEOHead({
   lang,
   noindex = false,
 }: SEOHeadProps) {
-  const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+  // Bangla prerendered titles already use their reviewed source title. Do not
+  // append an English brand suffix after hydration, which creates crawler/runtime
+  // divergence and can push otherwise compliant titles past the SERP budget.
+  const fullTitle = title.includes(SITE_NAME) || lang === "bn-BD" ? title : `${title} | ${SITE_NAME}`;
   const canonicalUrl = canonical ?? (ogUrl ?? SITE_URL);
 
   useEffect(() => {
@@ -77,7 +80,6 @@ export function SEOHead({
       (el as HTMLMetaElement).setAttribute("content", content);
     };
 
-
     const setLink = (rel: string, href: string) => {
       let el = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
       if (!el) {
@@ -87,7 +89,6 @@ export function SEOHead({
       }
       el.setAttribute("href", href);
     };
-
 
     // Basic meta
     setMeta('meta[name="description"]', description);
@@ -102,7 +103,7 @@ export function SEOHead({
     setMeta('meta[property="og:url"]', canonicalUrl);
     setMeta('meta[property="og:site_name"]', SITE_NAME);
     setMeta('meta[property="og:type"]', "website");
-    setMeta('meta[property="og:locale"]', "en_BD");
+    setMeta('meta[property="og:locale"]', lang === "bn-BD" ? "bn_BD" : "en_BD");
     setMeta('meta[property="og:image"]', ogImage);
     setMeta('meta[property="og:image:width"]', "1200");
     setMeta('meta[property="og:image:height"]', "630");

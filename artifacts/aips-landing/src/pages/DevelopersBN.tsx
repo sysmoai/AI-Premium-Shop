@@ -10,9 +10,10 @@ export default function DevelopersBN() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
-        title="ডেভেলপারদের জন্য AI — কোড জেনারেশন, ডিবাগিং, ডকুমেন্টেশন"
-        description="GitHub Copilot, Claude Pro, Cursor দিয়ে কোডিং দ্রুত করুন। বাংলাদেশে সাশ্রয়ী দামে। ৳399 থেকে শুরু।"
+        title="ডেভেলপারদের জন্য AI টুলস — কোড, ডিবাগিং ও ডকুমেন্টেশন"
+        description="GitHub Copilot, Claude ও Cursorসহ ডেভেলপার AI টুল বাছাই করুন। বর্তমান AIPS দাম, অ্যাক্সেস মডেল, availability ও অর্ডার-নির্দিষ্ট terms আগে নিশ্চিত করুন।"
         canonical="https://aipremiumshop.com/developers-bn"
+        lang="bn-BD"
         jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA]}
         hreflang={{ "bn-BD": "/developers-bn", "en-BD": "/best-ai-for-developers" }}
       />
@@ -29,49 +30,31 @@ export default function DevelopersBN() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              ডেভেলপারদের জন্য AI — কোড দ্রুত লেখুন
+              ডেভেলপারদের জন্য AI — কোডিং workflow-এ সহায়তা নিন
             </h1>
             <p className="text-xl text-gray-300 mb-8">
-              GitHub Copilot, Claude Pro, Cursor দিয়ে কোড জেনারেশন, ডিবাগিং, ডকুমেন্টেশন। সপ্তাহে ঘন্টা বাঁচান।
+              GitHub Copilot, Claude ও Cursor দিয়ে কোডের খসড়া, ডিবাগিং, রিফ্যাক্টরিং ও ডকুমেন্টেশনে সহায়তা নিন। উৎপাদনে ব্যবহারের আগে AI output test ও review করুন।
             </p>
             <a
-              href="https://wa.me/8801865385348?text=আমি ডেভেলপার। GitHub Copilot বা Claude Pro চাই। কোনটা রেকমেন্ড করবেন?"
+              href="https://wa.me/8801865385348?text=আমি ডেভেলপার। GitHub Copilot বা Claude Pro-এর বর্তমান দাম, access model ও availability জানতে চাই।"
               className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-black transition-all duration-200 hover:scale-105"
               style={{ backgroundColor: "#25d366" }}
             >
-              WhatsApp করুন
+              WhatsApp-এ বর্তমান অপশন জিজ্ঞেস করুন
             </a>
           </motion.div>
         </section>
 
         <section className="max-w-5xl mx-auto px-4 py-16">
-          <h2 className="text-3xl font-bold text-center mb-12">কোডিংয়ে AI ব্যবহারের সুবিধা</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">কোডিংয়ে AI কোথায় কাজে লাগতে পারে</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {[
-              {
-                title: "বয়লারপ্লেট কোড",
-                desc: "API স্টাবস, ডেটাবেস স্কিমা, ডিফল্ট কনফিগ সব AI তৈরি করুন। ম্যানুয়াল টাইপিং কমুন।",
-              },
-              {
-                title: "দ্রুত ডিবাগিং",
-                desc: "Claude-কে এরর ম্যাসেজ দিলে সাথে সাথে সমাধান পাবেন। স্ট্যাক ওভারফ্লো খোঁজার সময় বাঁচবে।",
-              },
-              {
-                title: "রিফ্যাক্টর করুন",
-                desc: "পুরনো কোড Claude-কে দিন। আধুনিক ভার্সন, বেটার পারফরম্যান্স, ক্লিনার ফরম্যাট পাবেন।",
-              },
-              {
-                title: "ডকুমেন্টেশন",
-                desc: "কোড লিখুন, Claude দিয়ে বাংলা/ইংরেজি ডকুমেন্ট তৈরি করুন। README, API ডক সব।",
-              },
-              {
-                title: "টেস্ট কেস",
-                desc: "প্রতিটি ফাংশনের জন্য ইউনিট টেস্ট AI লেখায়। কভারেজ বেড়ায়, বাগ কমে।",
-              },
-              {
-                title: "কোড রিভিউ",
-                desc: "নিজের কোড Claude দিয়ে রিভিউ করান। সিকিউরিটি, পারফরম্যান্স, বেস্ট প্র্যাক্টিস টিপস পাবেন।",
-              },
+              { title: "বয়লারপ্লেট কোড", desc: "API stub, database schema ও default config-এর খসড়া তৈরি করে manual typing কমাতে পারেন।" },
+              { title: "ডিবাগিং সহায়তা", desc: "Error message ও relevant code context দিয়ে সম্ভাব্য কারণ ও fix-এর ধারণা নিন। প্রস্তাবিত পরিবর্তন test করুন।" },
+              { title: "রিফ্যাক্টরিং", desc: "পুরনো কোডের বিকল্প structure, readability ও performance improvement-এর প্রস্তাব নিন; আচরণ না বদলেছে তা test করুন।" },
+              { title: "ডকুমেন্টেশন", desc: "README, API note ও code explanation-এর খসড়া তৈরি করুন এবং বাস্তব implementation-এর সঙ্গে মিলিয়ে নিন।" },
+              { title: "টেস্ট কেস", desc: "Unit বা integration test-এর খসড়া নিন; edge case ও expected behavior নিজে নির্ধারণ করুন।" },
+              { title: "কোড রিভিউ", desc: "Security, maintainability ও performance নিয়ে দ্বিতীয় মতামত নিন। AI review মানব review ও security testing-এর বিকল্প নয়।" },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -88,30 +71,15 @@ export default function DevelopersBN() {
         </section>
 
         <section className="max-w-5xl mx-auto px-4 py-16">
-          <h2 className="text-3xl font-bold text-center mb-12">ডেভেলপারদের জন্য সেরা টুলস</h2>
+          <h2 className="text-3xl font-bold text-center mb-4">ডেভেলপারদের জন্য কিছু বর্তমান টুল</h2>
+          <p className="text-center text-gray-400 max-w-3xl mx-auto mb-12">
+            দাম ক্যাটালগ থেকে নেওয়া হয়। Provider-controlled feature, limit ও licensing বদলাতে পারে; পেমেন্টের আগে exact plan, access model, availability, delivery ETA ও terms নিশ্চিত করুন।
+          </p>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              // Prices come from the catalog. Typed by hand these read ৳1,495,
-              // ৳1,590 and ৳2,088 against real entry tiers of ৳399, ৳599 and
-              // ৳699 — every one of them wrong, and each with an order button.
-              {
-                name: "GitHub Copilot Pro",
-                slug: "github-copilot-bangladesh",
-                desc: "VSCode, GitHub এ কোড অটোকমপ্লিশন",
-                best: "সবার জন্য",
-              },
-              {
-                name: "Claude Pro",
-                slug: "claude-pro-bangladesh",
-                desc: "দীর্ঘ কোড ব্লক, জটিল রিফ্যাক্টিং",
-                best: "যারা ডিপ রিফ্যাক্টিং করেন",
-              },
-              {
-                name: "Cursor Pro",
-                slug: "cursor-bangladesh",
-                desc: "AI-প্রথম কোড এডিটর",
-                best: "প্রফেশনাল ডেভেলপার",
-              },
+              { name: "GitHub Copilot Pro", slug: "github-copilot-bangladesh", desc: "কোড completion ও developer workflow", fit: "IDE-কেন্দ্রিক coding সহায়তা" },
+              { name: "Claude Pro", slug: "claude-pro-bangladesh", desc: "দীর্ঘ code context ও analysis", fit: "ব্যাখ্যা, review ও refactoring" },
+              { name: "Cursor Pro", slug: "cursor-bangladesh", desc: "AI-কেন্দ্রিক code editor workflow", fit: "Editor-এর ভেতরে AI workflow" },
             ].map((t) => ({ ...t, price: bnFrom(t.slug) })).map((tool, i) => (
               <motion.div
                 key={i}
@@ -122,16 +90,16 @@ export default function DevelopersBN() {
               >
                 <h3 className="text-lg font-bold text-white mb-2">{tool.name}</h3>
                 <div className="text-2xl font-bold text-yellow-400 mb-2">
-                  {tool.price ? `${tool.price} থেকে` : "WhatsApp-এ দাম জানুন"}
+                  {tool.price ? `${tool.price} থেকে` : "WhatsApp-এ বর্তমান দাম জানুন"}
                 </div>
                 <p className="text-gray-300 mb-4">{tool.desc}</p>
-                <div className="text-sm text-gray-400 mb-4">সেরা: {tool.best}</div>
+                <div className="text-sm text-gray-400 mb-4">উপযোগী workflow: {tool.fit}</div>
                 <a
-                  href={`https://wa.me/8801865385348?text=${encodeURIComponent(`আমি ডেভেলপার। ${tool.name} চাই${tool.price ? ` (${tool.price} থেকে)` : ""}।`)}`}
+                  href={`https://wa.me/8801865385348?text=${encodeURIComponent(`আমি ডেভেলপার। ${tool.name}-এর বর্তমান দাম, access model, availability ও terms জানতে চাই${tool.price ? `। ক্যাটালগে ${tool.price} থেকে দেখাচ্ছে` : ""}।`)}`}
                   className="w-full py-2 rounded-lg font-bold text-center text-black transition-all hover:scale-105"
                   style={{ backgroundColor: "#f4b942" }}
                 >
-                  অর্ডার করুন
+                  অর্ডারের তথ্য নিশ্চিত করুন
                 </a>
               </motion.div>
             ))}
@@ -139,20 +107,15 @@ export default function DevelopersBN() {
         </section>
 
         <section className="max-w-5xl mx-auto px-4 md:px-8 py-16">
-          <div
-            className="rounded-2xl p-12 text-center border"
-            style={{
-              background: "linear-gradient(135deg, #1f2937 0%, #111827 100%)",
-              borderColor: "rgba(244, 185, 66, 0.2)",
-            }}
-          >
-            <h2 className="text-3xl font-bold text-white mb-4">বয়লারপ্লেট, ডিবাগিং ও ডকুমেন্টেশন AI-কে দিন</h2>
+          <div className="rounded-2xl p-12 text-center border" style={{ background: "linear-gradient(135deg, #1f2937 0%, #111827 100%)", borderColor: "rgba(244, 185, 66, 0.2)" }}>
+            <h2 className="text-3xl font-bold text-white mb-4">আপনার stack ও workflow অনুযায়ী AI টুল বাছাই করুন</h2>
+            <p className="text-gray-300 mb-8">কেনার আগে exact plan, current AIPS price, access model, availability এবং provider-controlled limits যাচাই করুন।</p>
             <a
-              href="https://wa.me/8801865385348?text=আমি ডেভেলপার। AI টুল নিতে চাই। কোনটা পাওয়া যায়?"
+              href="https://wa.me/8801865385348?text=আমি ডেভেলপার। আমার stack অনুযায়ী বর্তমান AI টুল অপশন জানতে চাই।"
               className="inline-flex items-center justify-center px-10 py-4 rounded-xl font-bold text-black text-lg transition-all duration-200 hover:scale-105"
               style={{ backgroundColor: "#25d366" }}
             >
-              WhatsApp করুন →
+              WhatsApp-এ অপশন যাচাই করুন →
             </a>
           </div>
         </section>

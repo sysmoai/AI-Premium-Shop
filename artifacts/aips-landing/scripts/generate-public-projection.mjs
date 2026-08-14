@@ -28,26 +28,40 @@ if (publicationAllowed !== sitePublishAllowed) {
 if (commercialQuarantine && publicationAllowed) {
   throw new Error("Public projection refused: commerce cannot be publishable while quarantine is active");
 }
+if (commercial?.schema_version !== 2 || commercial?.public_projection_policy?.approved_mode !== "governed-approved-commerce-v2") {
+  throw new Error("Public projection refused: commercial truth v2 policy is missing");
+}
 
-const stripCommercialFields = (product) => {
+const neutralizeLegacyApprovedFields = (product) => {
   const safe = { ...product };
 
-  safe.price = null;
-  safe.requestPrice = true;
+  // Provider MSRP is not an AIPS-owned fact. It stays hidden until the exact
+  // record has a current evidence path and is approved for public comparison.
   safe.officialUSD = null;
-  safe.accessType = null;
+
   safe.deliverySLA = null;
-  safe.whatsappMsg = null;
-  safe.activationType = null;
   safe.estimatedDeliveryTime = null;
   safe.deliveryMethod = null;
   safe.stock = null;
   safe.trust = null;
+  safe.badge = null;
   safe.badges = [];
   safe.competitorCompare = [];
+  safe.whatsappMsg = null;
+  safe.activationType = null;
   safe.bundleSuggestions = [];
   safe.higherPlanUpsell = null;
   safe.howItWorksSteps = [];
+
+  return safe;
+};
+
+const stripCommercialFields = (product) => {
+  const safe = neutralizeLegacyApprovedFields(product);
+
+  safe.price = null;
+  safe.requestPrice = true;
+  safe.accessType = null;
   safe.plans = [];
   safe.relatedProducts = Array.isArray(safe.relatedProducts)
     ? safe.relatedProducts.map(({ priceBDT: _priceBDT, ...related }) => related)
@@ -58,19 +72,23 @@ const stripCommercialFields = (product) => {
 
 const sourceProducts = Array.isArray(raw) ? raw : raw.products ?? [];
 const publicProducts = publicationAllowed && !commercialQuarantine
-  ? sourceProducts
+  ? sourceProducts.map(neutralizeLegacyApprovedFields)
   : sourceProducts.map(stripCommercialFields);
 
 const output = {
   projection: {
-    schema_version: 1,
+    schema_version: 2,
     generated_from: "data/products.json + ops/ssot/site.json + ops/ssot/commercial.json",
+    commercial_policy_revision: commercial.policy_revision,
     publication_allowed: publicationAllowed,
     quarantine: commercialQuarantine,
     mode: publicationAllowed && !commercialQuarantine ? "approved-commerce" : "informational-fail-closed",
+    approved_mode_policy: commercial.public_projection_policy.approved_mode,
+    legacy_commercial_fields_neutralized: true,
+    unverified_provider_pricing_neutralized: true,
   },
   products: publicProducts,
 };
 
 writeFileSync(outPath, `${JSON.stringify(output)}\n`, "utf8");
-console.log(`[public-projection] ${publicProducts.length} records -> ${output.projection.mode}`);
+console.log(`[public-projection] ${publicProducts.length} records -> ${output.projection.mode}; policy=${output.projection.approved_mode_policy}`);

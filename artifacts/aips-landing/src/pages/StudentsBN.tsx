@@ -12,9 +12,10 @@ export default function StudentsBN() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <SEOHead
-        title="ছাত্রছাত্রীদের জন্য সেরা AI টুলস — অ্যাসাইনমেন্ট, রিসার্চ, প্রজেক্ট"
-        description="ঢাবি, বুয়েট ছাত্রছাত্রীদের জন্য ChatGPT Plus, Claude Pro, Perplexity সাবস্ক্রিপশন। বাংলাদেশে সবচেয়ে সাশ্রয়ী দামে। ৳499 থেকে শুরু।"
+        title="শিক্ষার্থীদের জন্য AI টুলস — অ্যাসাইনমেন্ট, রিসার্চ ও প্রজেক্ট"
+        description="শিক্ষার্থীদের জন্য ChatGPT, Claude ও Perplexityসহ AI টুল বাছাইয়ের গাইড। বর্তমান AIPS দাম, অ্যাক্সেস মডেল ও অর্ডার-নির্দিষ্ট শর্ত পেমেন্টের আগে নিশ্চিত করুন।"
         canonical="https://aipremiumshop.com/students-bn"
+        lang="bn-BD"
         jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA]}
         hreflang={{ "bn-BD": "/students-bn", "en-BD": "/best-ai-for-students" }}
       />
@@ -32,55 +33,55 @@ export default function StudentsBN() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              শিক্ষার্থীদের জন্য AI — অ্যাসাইনমেন্ট ও গবেষণা দ্রুত করুন
+              শিক্ষার্থীদের জন্য AI — অ্যাসাইনমেন্ট ও গবেষণায় সহায়তা নিন
             </h1>
             <p className="text-xl text-gray-300 mb-8">
-              ChatGPT, Claude, Perplexity দিয়ে অ্যাসাইনমেন্ট, থিসিস রিসার্চ, কোডিং প্রজেক্ট করুন। বাংলাদেশে সবচেয়ে সাশ্রয়ী দামে।
+              ChatGPT, Claude ও Perplexity দিয়ে ধারণা বোঝা, গবেষণা সাজানো এবং কোডিং প্রজেক্টে সহায়তা নিন। কোন প্ল্যান আপনার জন্য উপযুক্ত, তা বর্তমান দাম ও অ্যাক্সেস মডেল দেখে ঠিক করুন।
             </p>
             <a
               href="https://wa.me/8801865385348?text=আমি একজন ছাত্র। এআই টুল নিতে চাই অ্যাসাইনমেন্টের জন্য। কোনটা সাজেস্ট করবেন?"
               className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-black transition-all duration-200 hover:scale-105"
               style={{ backgroundColor: "#25d366" }}
             >
-              WhatsApp করুন — ২ মিনিটে উত্তর পাবেন
+              WhatsApp-এ বর্তমান অপশন জিজ্ঞেস করুন
             </a>
           </motion.div>
         </section>
 
         {/* কীভাবে সাহায্য করে */}
         <section className="max-w-5xl mx-auto px-4 py-16">
-          <h2 className="text-3xl font-bold text-center mb-12">AI কীভাবে আপনার পড়াশোনা সহজ করে?</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">AI কীভাবে আপনার পড়াশোনায় সহায়তা করতে পারে?</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                task: "অ্যাসাইনমেন্ট লেখা",
+                task: "অ্যাসাইনমেন্টের খসড়া",
                 tools: "ChatGPT Plus, Claude Pro",
-                help: "থিসিস, ইস্যু এনালাইসিস, রিসার্চ পেপার লেখার স্ট্রাকচার পান। প্রতিটি আইডিয়া বিস্তারিত করুন।",
+                help: "থিসিস, ইস্যু এনালাইসিস ও রিসার্চ পেপারের স্ট্রাকচার তৈরি করুন। জমা দেওয়ার আগে তথ্য, সোর্স ও ভাষা নিজে যাচাই করুন।",
               },
               {
                 task: "ইংরেজি উন্নত করুন",
                 tools: "Grammarly, QuillBot",
-                help: "আপনার ইংরেজি ইমেইল, থিসিস, সিভি সঠিক করুন। ব্যাকরণ এবং স্টাইল উন্নত করুন।",
+                help: "ইমেইল, থিসিস ও সিভির ব্যাকরণ এবং স্টাইল পর্যালোচনায় সহায়তা নিন। চূড়ান্ত লেখা নিজে পড়ে নিন।",
               },
               {
                 task: "কোডিং প্রজেক্ট",
                 tools: "GitHub Copilot, Claude Pro",
-                help: "কোড লেখা, ডিবাগিং, অ্যালগরিদম ডিজাইন সব সহজ করুন। ইন্টারভিউ প্রস্তুতিও পাবেন।",
+                help: "কোডের খসড়া, ডিবাগিং, অ্যালগরিদম ব্যাখ্যা ও রিভিউতে সহায়তা নিন। উৎপাদনে ব্যবহারের আগে কোড টেস্ট করুন।",
               },
               {
-                task: "গবেষণা দ্রুত করুন",
+                task: "গবেষণা সাজান",
                 tools: "Perplexity Pro, Claude Pro",
-                help: "গুগলের বদলে Perplexity দিয়ে সোর্স সহ তথ্য পান। রিসার্চ অনেক দ্রুত শেষ হয়।",
+                help: "সোর্স খোঁজা, সারাংশ তৈরি ও গবেষণার প্রশ্ন সাজাতে AI ব্যবহার করুন। মূল সোর্স খুলে দাবিগুলো যাচাই করুন।",
               },
               {
                 task: "এক্সাম প্রস্তুতি",
                 tools: "ChatGPT Plus, Perplexity",
-                help: "কোচিং ছাড়াই কনসেপ্ট বুঝুন। প্রতিটি বিষয়ে সিম্পল ব্যাখ্যা পান।",
+                help: "কঠিন কনসেপ্ট ধাপে ধাপে ব্যাখ্যা, অনুশীলনী প্রশ্ন ও রিভিশন প্ল্যান তৈরিতে সহায়তা নিন।",
               },
               {
                 task: "প্রজেক্ট আইডিয়া",
                 tools: "Claude Pro, Midjourney",
-                help: "ইউনিক প্রজেক্ট আইডিয়া পান। ভিজ্যুয়ালাইজেশনের জন্য ছবিও তৈরি করুন।",
+                help: "আইডিয়া ব্রেইনস্টর্ম, কাঠামো ও ভিজ্যুয়াল কনসেপ্ট তৈরি করুন। মৌলিকতা ও কোর্সের নিয়ম নিজে নিশ্চিত করুন।",
               },
             ].map((item, i) => (
               <motion.div
@@ -98,29 +99,32 @@ export default function StudentsBN() {
           </div>
         </section>
 
-        {/* সেরা প্যাকেজ */}
+        {/* প্যাকেজ */}
         <section className="max-w-5xl mx-auto px-4 py-16">
-          <h2 className="text-3xl font-bold text-center mb-12">ছাত্রছাত্রীদের জন্য সেরা প্যাকেজ</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">কিছু বর্তমান স্টুডেন্ট অপশন</h2>
+          <p className="text-center text-gray-400 max-w-3xl mx-auto -mt-7 mb-10">
+            নিচের দাম ক্যাটালগ থেকে আসে। পেমেন্টের আগে সঠিক প্ল্যান, সময়কাল, অ্যাক্সেস মডেল, বর্তমান availability, delivery ETA এবং প্রযোজ্য resolution terms নিশ্চিত করুন।
+          </p>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                name: "বাজেট প্যাকেজ",
+                name: "বাজেট অপশন",
                 price: bnFrom("chatgpt-plus-bangladesh"),
                 desc: "ChatGPT Plus Starter",
-                features: ["অ্যাসাইনমেন্ট লেখা", "গবেষণা সহায়তা", "কোড ডিবাগিং", "৫-৩০ মিনিট ডেলিভারি"],
+                features: ["অ্যাসাইনমেন্টের খসড়া", "গবেষণা সহায়তা", "কোড ডিবাগিং", "অর্ডার-নির্দিষ্ট ETA আগে নিশ্চিত করুন"],
               },
               {
-                name: "স্টুডেন্ট বেস্ট",
+                name: "রিসার্চ অপশন",
                 price: bnTaka(tierPrice("claude-pro-bangladesh", "Premium Shared") ?? 0),
                 desc: "Claude Pro Premium",
-                features: ["দীর্ঘ রিসার্চ পেপার", "জটিল সমস্যা সমাধান", "থিসিস গাইডেন্স", "30 দিনের ওয়ারেন্টি"],
+                features: ["দীর্ঘ ডকুমেন্ট বিশ্লেষণ", "জটিল সমস্যা ব্যাখ্যা", "থিসিসের কাঠামো", "অ্যাক্সেস ও resolution terms আগে নিশ্চিত করুন"],
                 recommended: true,
               },
               {
-                name: "অল-ইন-ওয়ান",
+                name: "রিসার্চ কম্বো",
                 price: bnTaka((tierPrice("claude-pro-bangladesh", "Premium Shared") ?? 0) + (priceOf("perplexity-pro-bangladesh") ?? 0)),
                 desc: "Claude Pro + Perplexity",
-                features: ["সব সাবজেক্ট কভার", "সোর্স ভেরিফিকেশন", "দ্রুত রিসার্চ", "৩টি মাস ওয়ারেন্টি"],
+                features: ["একাধিক workflow", "সোর্স যাচাইয়ে সহায়তা", "রিসার্চ সংগঠন", "দুই প্ল্যানের availability আগে নিশ্চিত করুন"],
               },
             ].map((pkg, i) => (
               <motion.div
@@ -135,7 +139,7 @@ export default function StudentsBN() {
                 }`}
               >
                 {pkg.recommended && (
-                  <div className="text-xs font-bold text-yellow-400 mb-2">সেরা বেছা ⭐</div>
+                  <div className="text-xs font-bold text-yellow-400 mb-2">রিসার্চ-কেন্দ্রিক অপশন</div>
                 )}
                 <h3 className="text-lg font-bold text-white mb-2">{pkg.name}</h3>
                 <div className="text-3xl font-bold text-yellow-400 mb-1">{pkg.price}</div>
@@ -149,14 +153,14 @@ export default function StudentsBN() {
                   ))}
                 </ul>
                 <a
-                  href={`https://wa.me/8801865385348?text=আমি ছাত্র। ${pkg.name} (${pkg.price}) নিতে আগ্রহী।`}
+                  href={`https://wa.me/8801865385348?text=আমি ছাত্র। ${pkg.name} (${pkg.price}) সম্পর্কে বর্তমান availability, access model ও terms জানতে চাই।`}
                   className="w-full py-2 rounded-lg font-bold text-center transition-all hover:scale-105"
                   style={{
                     backgroundColor: pkg.recommended ? "#f4b942" : "#374151",
                     color: pkg.recommended ? "#000" : "#fff",
                   }}
                 >
-                  এখনই অর্ডার করুন
+                  অর্ডারের তথ্য নিশ্চিত করুন
                 </a>
               </motion.div>
             ))}
@@ -165,14 +169,14 @@ export default function StudentsBN() {
 
         {/* Tips */}
         <section className="max-w-5xl mx-auto px-4 py-16">
-          <h2 className="text-3xl font-bold text-center mb-12">ছাত্রছাত্রীদের জন্য টিপস</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">ছাত্রছাত্রীদের জন্য ব্যবহারিক টিপস</h2>
           <div className="space-y-4">
             {[
-              "ChatGPT-কে কাস্টম ইন্সট্রাকশন দিন: আপনার বিষয়, স্তর (স্কুল/কলেজ/বিশ্ববিদ্যালয়) বলে দিন। এটা তার উত্তর সবসময় সেই লেভেলে দেবে।",
-              "Perplexity-তে 'Focus' সেট করুন: শুধু একাডেমিক পেপার, তাহলে ভাল রেফারেন্স পাবেন।",
-              "Claude Pro দিয়ে আপনার কাজ রিভিউ করান: প্রথম ড্রাফট শেষ করলে Claude-কে চেক করতে দিন। উন্নতির সাজেশন পাবেন।",
-              "GitHub Copilot আপনার কোডিং সাথী: নিজে প্রথম লাইন লিখুন, Copilot বাকিটা সাজেস্ট করবে। শেখাও হবে, কাজও দ্রুত হবে।",
-              "রাত ১টায় অ্যাসাইনমেন্ট জমা? Grammarly দিয়ে দ্রুত ইংরেজি ফিক্স করুন।",
+              "AI-কে আপনার বিষয় ও স্তর বলে দিন, কিন্তু গুরুত্বপূর্ণ তথ্য ও উদ্ধৃতি মূল সোর্সে যাচাই করুন।",
+              "রিসার্চে AI যে সোর্স দেখায়, জমা দেওয়ার আগে মূল পেপার বা প্রকাশনা খুলে মিলিয়ে নিন।",
+              "প্রথম ড্রাফট শেষ হলে AI দিয়ে রিভিউ করাতে পারেন; চূড়ান্ত সিদ্ধান্ত ও সম্পাদনা নিজের রাখুন।",
+              "কোডিং সহায়কের সাজেশন সরাসরি জমা বা deploy না করে test, lint ও review করুন।",
+              "আপনার স্কুল, কলেজ বা বিশ্ববিদ্যালয়ের academic-integrity এবং AI-use policy মেনে চলুন।",
             ].map((tip, i) => (
               <motion.div
                 key={i}
@@ -196,16 +200,16 @@ export default function StudentsBN() {
               borderColor: "rgba(244, 185, 66, 0.2)",
             }}
           >
-            <h2 className="text-3xl font-bold text-white mb-4">আজই শুরু করুন — ৳499 থেকে</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">আপনার বাজেট ও কাজ অনুযায়ী বর্তমান অপশন দেখুন</h2>
             <p className="text-gray-300 mb-8">
-              কোনো লুকানো চার্জ নেই। ৩০ দিনের গ্যারান্টি।
+              পেমেন্টের আগে সঠিক দাম, অ্যাক্সেস মডেল, availability, delivery ETA এবং প্রযোজ্য terms নিশ্চিত করুন।
             </p>
             <a
-              href="https://wa.me/8801865385348?text=আমি ছাত্র। AI টুল চাই অ্যাসাইনমেন্টের জন্য। ৳499-এ কোনটা পাওয়া যায়?"
+              href="https://wa.me/8801865385348?text=আমি ছাত্র। আমার কাজ ও বাজেট অনুযায়ী বর্তমান AI টুল অপশন জানতে চাই।"
               className="inline-flex items-center justify-center px-10 py-4 rounded-xl font-bold text-black text-lg transition-all duration-200 hover:scale-105"
               style={{ backgroundColor: "#25d366" }}
             >
-              WhatsApp করুন →
+              WhatsApp-এ অপশন যাচাই করুন →
             </a>
           </div>
         </section>

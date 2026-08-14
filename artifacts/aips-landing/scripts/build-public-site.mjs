@@ -48,6 +48,10 @@ try {
   // from the active public projection so old rankings, earnings, model-version,
   // SLA and unlimited-use claims cannot survive in generated HTML.
   run(process.execPath, ["scripts/sanitize-guide-prerender.mjs"]);
+  // The broad subscription guide used to maintain a separate Top-10 ranking,
+  // provider-feature matrix, ROI claims and universal fulfillment/payment copy.
+  // Replace its crawler shell with transparent workflow/category evidence.
+  run(process.execPath, ["scripts/sanitize-best-subscription-prerender.mjs"]);
   run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
   run(process.execPath, ["scripts/audit-homepage-v2-preview.mjs"]);

@@ -98,7 +98,7 @@
   "faq": {
     "h2": "প্রায়ই যে প্রশ্নগুলো আসে",
     "items": [
-      { "q": "AI Premium Shop কি এই ব্র্যান্ডগুলোর authorized partner?", "a": "না। আমাদের কাছে কোনো AI provider-এর লিখিত reseller বা partnership authorization নেই। AIPS একটি independent subscription assistance ও commerce service। লিখিত authorization না থাকলে আমরা official partner claim করি না।" },
+      { "q": "AI Premium Shop কি এই ব্র্যান্ডগুলোর authorized partner?", "a": "AIPS-এর কাছে কোনো AI provider-এর লিখিত reseller বা partnership authorization নেই। AIPS একটি independent subscription assistance ও commerce service; কোনো provider-এর অনুমোদিত অংশীদার হিসেবে নিজেকে উপস্থাপন করে না।" },
       { "q": "আমার data কি অন্য কেউ দেখতে পারবে?", "a": "এটা provider settings, account ownership এবং exact access arrangement-এর উপর নির্ভর করে। Shared access-এ অন্য user/operator access risk থাকতে পারে। Personal label-ও universal privacy guarantee নয়। Sensitive data দেওয়ার আগে arrangement যাচাই করুন।" },
       { "q": "গোপনীয় কাজের জন্য কোন access ভালো?", "a": "Shared access এড়িয়ে এমন account/seat ব্যবহার করুন যার control ও provider privacy settings আপনি যাচাই করতে পারেন। Client, financial, legal, health বা confidential business data-এর ক্ষেত্রে organization policy-ও মানুন।" },
       { "q": "Usage limit কীভাবে বুঝব?", "a": "Provider model, credits, rate limits ও feature availability বদলাতে পারে। Exact plan-এর current provider limits এবং আপনার AIPS order-এ কী access দেওয়া হচ্ছে—দুটিই কেনার আগে যাচাই করুন।" },
@@ -111,7 +111,7 @@
     ]
   },
 
-  "disclaimer": "AI Premium Shop একটি independent subscription assistance ও commerce service। Provider facts, AIPS commercial terms এবং customer-specific fulfillment details আলাদা বিষয়। Written authorization না থাকলে কোনো AI brand-এর official partner claim করা হয় না; brand name ও trademark নিজ নিজ মালিকের।",
+  "disclaimer": "AI Premium Shop একটি independent subscription assistance ও commerce service। Provider facts, AIPS commercial terms এবং customer-specific fulfillment details আলাদা বিষয়। কোনো provider affiliation কেবল লিখিত authorization দিয়ে যাচাই করা থাকলেই উল্লেখ করা হবে; brand name ও trademark নিজ নিজ মালিকের।",
 
   "finalCta": {
     "h2": "পেমেন্টের আগে plan, access আর terms পরিষ্কার করুন",

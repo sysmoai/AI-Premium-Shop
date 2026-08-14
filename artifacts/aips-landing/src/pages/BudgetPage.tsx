@@ -83,7 +83,7 @@ export default function BudgetPage({ budgetKey }: { budgetKey: string }) {
         <motion.header initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-10 max-w-4xl">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Current budget filter</div>
           <h1 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-5xl">AI Tools Under {definition.label}</h1>
-          <p className="text-base leading-relaxed text-slate-300 md:text-lg">This page filters the current fixed-price public AIPS catalog by one rule: published price at or below {definition.label}. It does not calculate unofficial discounts, provider savings, “best value” rankings, or universal delivery/warranty promises. Confirm current availability, provider limits, delivery ETA and applicable terms before payment.</p>
+          <p className="text-base leading-relaxed text-slate-300 md:text-lg">This page filters the current fixed-price public AIPS catalog by one rule: published price at or below {definition.label}. It uses no inferred savings or rankings and makes no universal delivery or warranty promise. Confirm current availability, provider limits, delivery ETA and applicable terms before payment.</p>
         </motion.header>
 
         <section className="mb-9 grid gap-4 sm:grid-cols-3" aria-label="Budget catalog summary">

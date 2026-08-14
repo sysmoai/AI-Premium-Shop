@@ -27,7 +27,11 @@
     { "source": "/google-ai-pro-bangladesh", "destination": "/gemini-advanced-bangladesh", "permanent": true },
     { "source": "/best-ai-budget-bangladesh", "destination": "/ai-under-500", "permanent": true },
     { "source": "/replit-bangladesh", "destination": "/products", "permanent": true },
-    { "source": "/product/replit-bangladesh", "destination": "/products", "permanent": true }
+    { "source": "/product/replit-bangladesh", "destination": "/products", "permanent": true },
+    { "source": "/guides/students", "destination": "/best-ai-for-students", "permanent": true },
+    { "source": "/guides/freelancers", "destination": "/best-ai-for-freelancers", "permanent": true },
+    { "source": "/guides/creators", "destination": "/best-ai-for-creators", "permanent": true },
+    { "source": "/guides/smallbusiness", "destination": "/best-ai-for-business", "permanent": true }
   ],
   "headers": [
     {

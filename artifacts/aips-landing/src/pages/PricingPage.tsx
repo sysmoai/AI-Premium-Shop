@@ -71,14 +71,13 @@ export default function PricingPage() {
     return list;
   }, [catFilter, accessFilter, sort]);
 
-  const distinctProducts = useMemo(() => new Set(sourceProducts.map((product) => product.slug)).size, []);
   const minPrice = useMemo(() => Math.min(...sourceProducts.map((product) => Number(product.price))), []);
 
   return (
     <PageLayout>
       <SEOHead
         title="AI Tool Pricing in Bangladesh | AI Premium Shop"
-        description={`Compare ${sourceProducts.length} current fixed-price plan records across ${distinctProducts} AI tool families. Review BDT price and access model, then confirm availability, delivery ETA and terms before payment.`}
+        description="Compare current fixed-price AI plans in Bangladesh by published BDT price and access model. Confirm availability, provider limits, delivery ETA and terms before payment."
         canonical="https://aipremiumshop.com/pricing"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Pricing" }]} />
@@ -123,23 +122,11 @@ export default function PricingPage() {
 
         <section aria-label="Pricing filters" className="flex flex-wrap items-center gap-3 mb-6 p-4 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
           <Filter aria-hidden="true" className="w-4 h-4" style={{ color: "#f4b942" }} />
-          <select
-            aria-label="Filter by category"
-            className="rounded-lg px-3 py-2 text-sm border border-white/10"
-            style={{ backgroundColor: "#0a0e27", color: "#fff" }}
-            value={catFilter}
-            onChange={(event) => setCatFilter(event.target.value)}
-          >
+          <select aria-label="Filter by category" className="rounded-lg px-3 py-2 text-sm border border-white/10" style={{ backgroundColor: "#0a0e27", color: "#fff" }} value={catFilter} onChange={(event) => setCatFilter(event.target.value)}>
             <option value="all">All Categories</option>
             {Object.entries(CATEGORY_LABELS).map(([key, value]) => <option key={key} value={key}>{value}</option>)}
           </select>
-          <select
-            aria-label="Filter by access type"
-            className="rounded-lg px-3 py-2 text-sm border border-white/10"
-            style={{ backgroundColor: "#0a0e27", color: "#fff" }}
-            value={accessFilter}
-            onChange={(event) => setAccessFilter(event.target.value)}
-          >
+          <select aria-label="Filter by access type" className="rounded-lg px-3 py-2 text-sm border border-white/10" style={{ backgroundColor: "#0a0e27", color: "#fff" }} value={accessFilter} onChange={(event) => setAccessFilter(event.target.value)}>
             <option value="all">All Access Types</option>
             <option value="shared">Shared</option>
             <option value="personal">Personal</option>
@@ -149,13 +136,7 @@ export default function PricingPage() {
           </select>
           <div className="flex items-center gap-2 sm:ml-auto">
             <ArrowUpDown aria-hidden="true" className="w-4 h-4" style={{ color: "#c9ceda" }} />
-            <select
-              aria-label="Sort products"
-              className="rounded-lg px-3 py-2 text-sm border border-white/10"
-              style={{ backgroundColor: "#0a0e27", color: "#fff" }}
-              value={sort}
-              onChange={(event) => setSort(event.target.value as SortKey)}
-            >
+            <select aria-label="Sort products" className="rounded-lg px-3 py-2 text-sm border border-white/10" style={{ backgroundColor: "#0a0e27", color: "#fff" }} value={sort} onChange={(event) => setSort(event.target.value as SortKey)}>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
               <option value="name">Name: A to Z</option>
@@ -182,29 +163,13 @@ export default function PricingPage() {
                   const waLink = `${WHATSAPP}?text=${encodeURIComponent(`Hi, I want ${product.name}. Published AIPS price: ${formatBDT(Number(product.price))}. Please confirm the current access model, availability, provider limits, delivery ETA and applicable terms before payment.`)}`;
                   return (
                     <tr key={product.id} className="border-b border-white/5 hover:bg-white/3 transition-colors" style={{ backgroundColor: index % 2 === 0 ? "transparent" : "rgba(255,255,255,0.02)" }}>
-                      <td className="px-5 py-4">
-                        <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-8 rounded-full flex-shrink-0" style={{ backgroundColor: product.brandColor || "#f4b942" }} />
-                          <div>
-                            <div className="font-medium text-white text-xs leading-tight">{product.name}</div>
-                            {product.tier && <div className="text-[11px] mt-1" style={{ color: "#9ca3af" }}>{product.tier}</div>}
-                          </div>
-                        </div>
-                      </td>
+                      <td className="px-5 py-4"><div className="flex items-center gap-2"><div className="w-1.5 h-8 rounded-full flex-shrink-0" style={{ backgroundColor: product.brandColor || "#f4b942" }} /><div><div className="font-medium text-white text-xs leading-tight">{product.name}</div>{product.tier && <div className="text-[11px] mt-1" style={{ color: "#9ca3af" }}>{product.tier}</div>}</div></div></td>
                       <td className="px-4 py-4 hidden sm:table-cell text-xs" style={{ color: "#c9ceda" }}>{product.brand || "—"}</td>
                       <td className="px-4 py-4 hidden md:table-cell text-xs" style={{ color: "#c9ceda" }}>{CATEGORY_LABELS[product.category] ?? product.category}</td>
-                      <td className="px-4 py-4 hidden lg:table-cell">
-                        <span className="text-xs px-2 py-0.5 rounded-full border border-white/15" style={{ color: product.accessType === "personal" ? "#f4b942" : "#c9ceda" }}>
-                          {accessLabel(product.accessType)}
-                        </span>
-                      </td>
+                      <td className="px-4 py-4 hidden lg:table-cell"><span className="text-xs px-2 py-0.5 rounded-full border border-white/15" style={{ color: product.accessType === "personal" ? "#f4b942" : "#c9ceda" }}>{accessLabel(product.accessType)}</span></td>
                       <td className="px-4 py-4"><div className="font-bold" style={{ color: "#f4b942" }}>{formatBDT(Number(product.price))}</div></td>
                       <td className="px-4 py-4 hidden lg:table-cell text-xs" style={{ color: "#c9ceda" }}>{product.deliverySLA?.trim() || "Confirm before payment"}</td>
-                      <td className="px-4 py-4">
-                        <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity whitespace-nowrap" style={{ backgroundColor: "#008236", color: "#fff" }}>
-                          <MessageCircle className="w-3 h-3" /> Confirm
-                        </a>
-                      </td>
+                      <td className="px-4 py-4"><a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity whitespace-nowrap" style={{ backgroundColor: "#008236", color: "#fff" }}><MessageCircle className="w-3 h-3" /> Confirm</a></td>
                     </tr>
                   );
                 })}
@@ -216,12 +181,8 @@ export default function PricingPage() {
 
         <section className="p-8 rounded-2xl text-center border border-white/10" style={{ backgroundColor: "#151b3d" }}>
           <p className="font-semibold text-white text-lg mb-2">Need help choosing?</p>
-          <p className="text-sm mb-6 max-w-2xl mx-auto" style={{ color: "#c9ceda" }}>
-            Send the tool or workflow you need. Confirm the exact plan, access model, availability, delivery ETA and applicable terms before making payment.
-          </p>
-          <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want help choosing a current AI plan. Please confirm price, access model, availability, provider limits, delivery ETA and applicable terms before payment.")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity" style={{ backgroundColor: "#008236", color: "#fff" }}>
-            <MessageCircle className="w-5 h-5" /> Ask on WhatsApp
-          </a>
+          <p className="text-sm mb-6 max-w-2xl mx-auto" style={{ color: "#c9ceda" }}>Send the tool or workflow you need. Confirm the exact plan, access model, availability, delivery ETA and applicable terms before making payment.</p>
+          <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want help choosing a current AI plan. Please confirm price, access model, availability, provider limits, delivery ETA and applicable terms before payment.")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity" style={{ backgroundColor: "#008236", color: "#fff" }}><MessageCircle className="w-5 h-5" /> Ask on WhatsApp</a>
         </section>
       </main>
     </PageLayout>

@@ -18,9 +18,7 @@ function run(command, args) {
     shell: false,
   });
   if (result.error) throw result.error;
-  if (result.status !== 0) {
-    throw new Error(`${command} ${args.join(" ")} failed with exit code ${result.status}`);
-  }
+  if (result.status !== 0) throw new Error(`${command} ${args.join(" ")} failed with exit code ${result.status}`);
 }
 
 try {
@@ -46,20 +44,20 @@ try {
   run(process.execPath, ["scripts/audit-bundle-budgets.mjs"]);
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
-  // The legacy general prerender still owns many route shells. Budget routes
-  // are immediately rewritten from the active public projection so typed old
-  // rankings, warranty/delivery promises and retired products cannot survive
-  // into crawler HTML.
+  // Generic /product pages used to inherit universal warranty, stock, delivery,
+  // FAQ and social-proof defaults from the legacy prerenderer. Rewrite those
+  // artifacts from the active public projection before any SEO/static audit.
+  // Higgsfield remains on its dedicated compliance renderer.
+  run(process.execPath, ["scripts/sanitize-product-prerender.mjs"]);
+  // Budget routes are also rewritten from the active public projection so typed
+  // old rankings, warranty/delivery promises and retired products cannot survive.
   run(process.execPath, ["scripts/sanitize-budget-prerender.mjs"]);
   // Homepage V2 is the production runtime route. Rewrite the root static shell
   // only after the legacy/general prerender pass so crawlers and no-JS clients
-  // receive the same decision architecture as the hydrated application. The
-  // same script also emits the private noindex canary route.
+  // receive the same decision architecture as the hydrated application.
   run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
-  // The source sitemap is intentionally broad because older generators still
-  // use it as a route inventory. The deployed sitemap must be narrower: only
-  // canonical, indexable URLs, never redirects, retired products or pages whose
-  // generated canonical points somewhere else.
+  // Keep the deployed sitemap canonical-only while retaining the broad source
+  // route inventory that older generators still consume.
   run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
   run(process.execPath, ["scripts/audit-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/audit-plan-pages.mjs"]);

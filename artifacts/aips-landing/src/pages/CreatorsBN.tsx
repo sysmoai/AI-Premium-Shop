@@ -52,7 +52,7 @@ export default function CreatorsBN() {
           <h2 className="text-3xl font-bold text-center mb-4">কন্টেন্ট workflow-এ AI কোথায় ব্যবহার করতে পারেন</h2>
           <p className="text-center text-gray-400 max-w-3xl mx-auto mb-12">Feature, model, credit, export, licensing ও availability provider-controlled। Exact plan কেনার আগে current provider terms ও AIPS order details নিশ্চিত করুন।</p>
           <div className="grid md:grid-cols-2 gap-8">
-            {creatorUses.map((item, i) => (
+            {creatorUses.map((item) => (
               <motion.div key={item.task} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
                 <h3 className="text-lg font-bold text-white mb-2">{item.task}</h3>
                 <div className="text-sm text-yellow-400 mb-3">উদাহরণ টুল: {item.tools}</div>
@@ -66,7 +66,7 @@ export default function CreatorsBN() {
           <h2 className="text-3xl font-bold text-center mb-4">কিছু বর্তমান creator option</h2>
           <p className="text-center text-gray-400 max-w-3xl mx-auto mb-12">দাম catalog-derived। Bundle যোগফল মানেই discount বা savings নয়। প্রতিটি plan-এর availability, access model, delivery ETA ও resolution terms order-এর আগে নিশ্চিত করুন।</p>
           <div className="grid md:grid-cols-3 gap-6">
-            {packages.map((pkg, i) => (
+            {packages.map((pkg) => (
               <motion.div key={pkg.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className={`rounded-xl p-6 border ${pkg.featured ? "bg-gradient-to-br from-yellow-900/40 to-gray-900 border-yellow-400" : "bg-gray-900/50 border-gray-800"}`}>
                 {pkg.featured && <div className="text-xs font-bold text-yellow-400 mb-2">টেক্সট + ইমেজ workflow</div>}
                 <h3 className="text-lg font-bold text-white mb-2">{pkg.name}</h3>

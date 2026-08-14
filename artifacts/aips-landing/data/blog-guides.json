@@ -69,7 +69,7 @@
       "categoryKey": "assistant",
       "categoryLabel": "AI Assistants",
       "intro": "Provider packaging and included features can change. Use the current AIPS catalog price and access model as commercial evidence, then verify Google-controlled entitlements for the exact plan before ordering.",
-      "checks": ["Confirm the exact AIPS plan and access model.", "Verify current provider features and limits on Google's official plan information.", "Confirm availability, delivery ETA and applicable order terms before payment."],
+      "checks": ["Confirm the exact AIPS plan and access model.", "Verify current provider features and limits on Google's current plan information.", "Confirm availability, delivery ETA and applicable order terms before payment."],
       "categories": ["ai-assistant", "ai-workspace"],
       "focusSlugs": ["gemini-advanced-bangladesh", "google-ai-ultra-bangladesh", "notebooklm-bangladesh"]
     },
@@ -93,7 +93,7 @@
       "categoryKey": "assistant",
       "categoryLabel": "AI Assistants",
       "intro": "Use the public AIPS catalog to compare current price and access type. Model availability, usage limits and other provider-controlled entitlements should be verified for the exact Claude plan before payment.",
-      "checks": ["Choose an access model appropriate for your data and workflow.", "Verify current model and usage limits on the provider's official plan information.", "Confirm AIPS availability, delivery ETA and order terms before payment."],
+      "checks": ["Choose an access model appropriate for your data and workflow.", "Verify current model and usage limits on the provider's current plan information.", "Confirm AIPS availability, delivery ETA and order terms before payment."],
       "categories": ["ai-assistant"],
       "focusSlugs": ["claude-pro-bangladesh"]
     },
@@ -177,7 +177,7 @@
       "categoryKey": "strategy",
       "categoryLabel": "Strategy & Comparisons",
       "intro": "A comparison is only useful if it reflects the exact plans you can access now. Use current AIPS commercial data for price and access, and check provider documentation for model availability, quotas and feature changes.",
-      "checks": ["Compare the exact paid plans rather than the provider brands in general.", "Verify current model access and limits on each provider's official plan information.", "Choose an access model appropriate for any private or client data you will process."],
+      "checks": ["Compare the exact paid plans rather than the provider brands in general.", "Verify current model access and limits on each provider's current plan information.", "Choose an access model appropriate for any private or client data you will process."],
       "categories": ["ai-assistant"],
       "focusSlugs": ["chatgpt-plus-bangladesh", "claude-pro-bangladesh"]
     },
@@ -189,7 +189,7 @@
       "categoryKey": "payments",
       "categoryLabel": "Payments & Access",
       "intro": "If you are considering ChatGPT Plus through AIPS, use the current catalog record for price and access type and verify provider-controlled features for the exact plan before you order.",
-      "checks": ["Confirm the current published AIPS price and access model.", "Verify current OpenAI plan features and limits on official provider information.", "Confirm AIPS availability, delivery ETA and order terms before payment."],
+      "checks": ["Confirm the current published AIPS price and access model.", "Verify current OpenAI plan features and limits on the provider's current plan information.", "Confirm AIPS availability, delivery ETA and order terms before payment."],
       "categories": ["ai-assistant"],
       "focusSlugs": ["chatgpt-plus-bangladesh"]
     },
@@ -225,7 +225,7 @@
       "categoryKey": "coding",
       "categoryLabel": "AI for Developers",
       "intro": "Coding-agent products change quickly, so a dated feature matrix becomes misleading fast. Compare the workflow you need and current AIPS related catalog options, then verify provider packaging and limits directly before committing.",
-      "checks": ["Decide whether you need editor assistance, terminal workflows, asynchronous tasks or another development pattern.", "Verify current provider packaging, model access, quotas and repository/privacy behavior from official documentation.", "Treat AIPS price and access records as commercial data, not proof that a specific provider feature is included."],
+      "checks": ["Decide whether you need editor assistance, terminal workflows, asynchronous tasks or another development pattern.", "Verify current provider packaging, model access, quotas and repository/privacy behavior from the provider's current documentation.", "Treat AIPS price and access records as commercial data, not proof that a specific provider feature is included."],
       "categories": ["ai-code", "ai-assistant"],
       "focusSlugs": ["chatgpt-pro-bangladesh", "claude-pro-bangladesh", "cursor-bangladesh", "github-copilot-bangladesh"]
     }

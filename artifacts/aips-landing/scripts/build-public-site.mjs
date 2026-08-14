@@ -44,9 +44,10 @@ try {
   run(process.execPath, ["scripts/sanitize-guide-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-best-subscription-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-blog-prerender.mjs"]);
-  // Keep the two editorial index shells aligned with their governed runtimes.
-  // The legacy generic prerender still starts these pages with older sales copy.
   run(process.execPath, ["scripts/sanitize-editorial-index-prerender.mjs"]);
+  // Info, support and policy routes must never inherit legacy fixed SLA,
+  // blanket warranty/payment or privacy claims from generic prerender extraction.
+  run(process.execPath, ["scripts/sanitize-info-prerender.mjs"]);
   run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
   run(process.execPath, ["scripts/audit-homepage-v2-preview.mjs"]);

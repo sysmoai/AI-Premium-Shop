@@ -1,118 +1,46 @@
-import { motion } from "framer-motion";
-import { MessageCircle, Shield, Clock, AlertCircle, Star } from "lucide-react";
+import { AlertCircle, CheckCircle2, MessageCircle, ShieldCheck } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
 
-const WHATSAPP = "https://wa.me/8801865385348";
-
-const SECTIONS = [
-  {
-    icon: Shield,
-    color: "#22c55e",
-    title: "30-Day Replacement Warranty",
-    content:
-      "All accounts come with a 30-day replacement warranty from the date of delivery. If your account experiences any issues during the subscription period — access lost, plan changed, or service interrupted — we replace it at no extra cost. No questions asked.",
-  },
-  {
-    icon: Clock,
-    color: "#f4b942",
-    title: "Refund Eligibility",
-    content:
-      "Refunds are available within 15 minutes of delivery if the service does not match what was ordered (e.g., wrong plan, wrong access type). After this window, our 30-day replacement warranty covers all issues at no cost to you.",
-  },
-  {
-    icon: AlertCircle,
-    color: "#ef4444",
-    title: "Non-Refundable Cases",
-    content:
-      "The following are not eligible for refunds: (1) Subscription fees for accounts that have already been activated and are working as described. (2) Cases where the customer provided incorrect information during ordering. (3) Dissatisfaction with the AI tool itself — this is outside our control as we provide access to third-party platforms. (4) No-shows for scheduled onboarding sessions.",
-  },
-  {
-    icon: MessageCircle,
-    color: "#25d366",
-    title: "How to Request a Refund or Replacement",
-    content:
-      "Message us on WhatsApp at +880 1865-385348 within the eligible timeframe. Include your order details (which tool, when you ordered, payment amount) and describe the issue you're experiencing. We'll review your request and respond within 5 minutes.",
-  },
-  {
-    icon: Star,
-    color: "#8b5cf6",
-    title: "High-Value Refund Review",
-    content:
-      "Refund requests above BDT 5,000 are reviewed directly by the founder to ensure fairness and accuracy. These are processed within 24 hours of the request.",
-  },
-];
+const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20need%20an%20order%20issue%20review.%20I%20will%20send%20the%20product%2Fplan%2C%20approximate%20order%20time%2C%20payment%20reference%20if%20relevant%2C%20and%20the%20issue%20without%20sharing%20passwords%2C%20PINs%20or%20OTPs.";
 
 export default function RefundPolicyPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="Refund & 30-Day Warranty Policy | AI Premium Shop"
-        description="AI Premium Shop refund & replacement policy. 30-day warranty. How to request a refund or replacement."
+        title="Refund & Resolution Policy | AI Premium Shop"
+        description="How AI Premium Shop reviews order mismatches, access issues and resolution requests. Order-specific coverage and exclusions are confirmed before payment."
         canonical="https://aipremiumshop.com/refund-policy"
       />
-      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Refund Policy" }]} />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Refund & Resolution Policy" }]} />
 
-      <section className="max-w-3xl mx-auto px-4 md:px-8 py-14">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-10"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 text-xs font-medium"
-            style={{ backgroundColor: "rgba(34,197,94,0.15)", color: "#22c55e" }}>
-            <Shield className="w-3.5 h-3.5" /> Customer Protection
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">Refund &amp; Replacement Policy</h1>
-          <p style={{ color: "#c9ceda" }}>Last updated: April 2026</p>
-        </motion.div>
+      <div id="main-content" className="mx-auto max-w-4xl px-4 py-12 md:px-8 md:py-16">
+        <header className="max-w-3xl">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Order-specific resolution</div>
+          <h1 className="text-3xl font-bold text-white md:text-5xl">Refund &amp; Resolution Policy</h1>
+          <p className="mt-3 text-sm text-slate-500">Last updated: 14 August 2026</p>
+          <p className="mt-4 text-base leading-7 text-slate-300">AIPS does not publish a blanket coverage period that should be assumed for every product. Resolution eligibility depends on the exact order, access arrangement, issue and terms confirmed before payment.</p>
+        </header>
 
-        <div className="space-y-4 mb-12">
-          {SECTIONS.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-              className="p-6 rounded-2xl border border-white/10"
-              style={{ backgroundColor: "#151b3d" }}
-            >
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: s.color + "20" }}>
-                  <s.icon className="w-5 h-5" style={{ color: s.color }} />
-                </div>
-                <div>
-                  <h2 className="font-bold text-white mb-2">{s.title}</h2>
-                  <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{s.content}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <section className="mt-10 space-y-4">
+          {[
+            ["1. Confirm the terms before payment", "Before paying, confirm the exact product, plan, duration, access model, current price, availability, delivery ETA and any order-specific resolution terms. Save the order confirmation for reference."],
+            ["2. Report a mismatch or access problem", "If what you receive materially differs from the confirmed order, or an access issue appears, contact support with the order context and evidence. Do not send passwords, PINs, OTPs or unrelated financial credentials."],
+            ["3. How AIPS reviews a request", "AIPS reviews what was confirmed, what was delivered, the current state of the access, any provider-side change, and whether customer actions or third-party restrictions affected the issue."],
+            ["4. Possible resolutions", "Depending on the facts and the terms that applied to the order, a resolution may include correcting the access, providing a replacement where available, account/order credit, or a refund. No single outcome is guaranteed for every case."],
+            ["5. Provider changes", "Third-party providers control their own models, features, quotas, pricing and terms. A provider change does not automatically create a particular refund outcome; AIPS will review the exact order and the material impact."],
+            ["6. Misuse and prohibited activity", "AIPS cannot promise a refund or replacement for access affected by misuse, credential sharing contrary to the confirmed arrangement, prohibited automation, abuse, or actions that violate applicable provider rules."],
+          ].map(([title, body]) => <article key={title} className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="font-bold text-white">{title}</h2><p className="mt-2 text-sm leading-6 text-slate-300">{body}</p></article>)}
+        </section>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="p-8 rounded-2xl text-center border border-white/10"
-          style={{ backgroundColor: "#151b3d" }}
-        >
-          <p className="font-semibold text-white text-lg mb-2">Have an issue with your order?</p>
-          <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>
-            Message us on WhatsApp right away. We respond within 5 minutes and resolve all genuine issues without hassle.
-          </p>
-          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#008236", color: "#fff" }}>
-            <MessageCircle className="w-5 h-5" />
-            Contact Support on WhatsApp
-          </a>
-        </motion.div>
-      </section>
+        <section className="mt-10 grid gap-5 md:grid-cols-2">
+          <div className="rounded-2xl border border-white/10 bg-[#151b3d]/70 p-6"><AlertCircle className="h-5 w-5 text-[#f4b942]" /><h2 className="mt-3 font-bold text-white">Keep evidence</h2><p className="mt-2 text-sm leading-6 text-slate-300">Keep the order confirmation, relevant payment reference and screenshots showing the issue. Mask credentials before sharing evidence.</p></div>
+          <div className="rounded-2xl border border-white/10 bg-[#151b3d]/70 p-6"><CheckCircle2 className="h-5 w-5 text-emerald-400" /><h2 className="mt-3 font-bold text-white">Use the exact order as the reference</h2><p className="mt-2 text-sm leading-6 text-slate-300">Product-category marketing, an old message or another customer's arrangement does not override the terms confirmed for your order.</p></div>
+        </section>
+
+        <aside className="mt-10 rounded-2xl border border-white/10 bg-[#151b3d] p-6 text-center"><h2 className="text-lg font-bold text-white">Request an order review</h2><p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-slate-300">Send the exact order context and a clear description of the issue. Response and resolution time depend on the case and current support load.</p><a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#008236] px-5 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Contact support</a></aside>
+      </div>
     </PageLayout>
   );
 }

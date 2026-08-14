@@ -1,296 +1,57 @@
-import { motion } from "framer-motion";
-import { MessageCircle, Clock, Users, HelpCircle, ChevronRight, Star, GraduationCap, Laptop, Building, Code } from "lucide-react";
+import { AlertTriangle, CheckCircle2, KeyRound, MessageCircle, ReceiptText, ShieldCheck } from "lucide-react";
+import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumb } from "@/components/Breadcrumb";
 
-const WHATSAPP = "https://wa.me/8801865385348";
-const WHATSAPP_ORDER = "https://wa.me/8801865385348?text=Hi%2C%20I%20need%20support%20with%20my%20AI%20subscription";
-const COMMUNITY = "https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc";
+const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20need%20support%20with%20an%20AIPS%20order.%20I%20will%20send%20the%20product%2Fplan%2C%20approximate%20order%20time%2C%20payment%20reference%20if%20relevant%2C%20and%20the%20issue.%20I%20will%20not%20send%20passwords%2C%20PINs%20or%20OTPs.";
 
-const FAQS = [
-  {
-    q: "I ordered but haven't received my account yet. What should I do?",
-    a: "Message us on WhatsApp with your order details (which product, payment amount, and transaction screenshot). Shared accounts are delivered within 5–30 minutes; personal accounts within 2–4 hours. If you're past these windows, message us immediately.",
-  },
-  {
-    q: "My account stopped working. What's the warranty?",
-    a: "All orders include a 30-day warranty. If your account stops working within 30 days, message us on WhatsApp and we'll replace it at no extra charge within the delivery timeframe.",
-  },
-  {
-    q: "Can I upgrade from Shared to Personal?",
-    a: "Yes. Pay the price difference and we'll set up your personal account. Message us on WhatsApp with your current plan details.",
-  },
-  {
-    q: "What is 1:1 AI Coaching?",
-    a: "1:1 AI Coaching is a personalised session where an AIPS expert shows you exactly how to use AI tools for your specific work — writing, coding, image generation, or automation. Sessions are 1 hour at ৳799. Message us to book.",
-  },
-  {
-    q: "Do you have a WhatsApp Community?",
-    a: "Yes! Join our WhatsApp Community to get AI tips, product updates, exclusive discount codes, and connect with thousands AI users in Bangladesh.",
-  },
-  {
-    q: "What payment methods do you support?",
-    a: "bKash, Nagad, Rocket, and Bank Transfer. No international credit card needed.",
-  },
+const CASES = [
+  { icon: ReceiptText, title: "Order or payment question", body: "Send the exact product/plan, approximate order time and payment reference if relevant. We will compare the issue with the order details that were confirmed." },
+  { icon: KeyRound, title: "Access issue", body: "Describe what changed and include a screenshot if useful. Do not send your password, PIN, OTP or unrelated private credentials." },
+  { icon: AlertTriangle, title: "Provider feature changed", body: "Provider-controlled models, credits, quotas and features can change. Tell us which capability matters so the exact plan can be re-checked." },
+  { icon: ShieldCheck, title: "Privacy or account-handling question", body: "Tell us the access model and data sensitivity. Do not assume a shared or team arrangement is suitable for confidential information without confirming the exact setup." },
 ];
 
 export default function SupportPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="AI Setup Support &amp; 1:1 Coaching — BDT 799/hr | AI Premium Shop"
-        description="Get support for your AI subscriptions. WhatsApp: +880 1865-385348. 10 AM to Midnight BST, 7 days a week. 30-day warranty on all orders."
+        title="AI Premium Shop Support | Order & Access Help"
+        description="Get help with AIPS orders, access issues, provider changes and order terms. Send the exact plan context without sharing passwords, PINs or OTPs."
         canonical="https://aipremiumshop.com/support"
       />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Support" }]} />
 
-      <section className="max-w-4xl mx-auto px-4 md:px-8 py-14">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-10"
-        >
-          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#f4b942" }}>Help Center</p>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">Support</h1>
-          <p className="text-lg max-w-xl" style={{ color: "#c9ceda" }}>
-            We're here 10 AM to Midnight BST, 7 days a week. WhatsApp is the fastest way to reach us.
-          </p>
-        </motion.div>
+      <div id="main-content" className="mx-auto max-w-5xl px-4 py-12 md:px-8 md:py-16">
+        <header className="max-w-3xl">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Order-specific support</div>
+          <h1 className="text-3xl font-bold text-white md:text-5xl">Support for Your AIPS Order</h1>
+          <p className="mt-4 text-base leading-7 text-slate-300">Support starts with the exact order, plan and access model. Availability, delivery ETA, replacement/refund coverage and provider-controlled limits are reviewed against the terms that applied to that order—not a universal promise.</p>
+        </header>
 
-        {/* Primary CTA */}
-        <motion.a
-          href={WHATSAPP_ORDER}
-          target="_blank"
-          rel="noopener noreferrer"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl text-lg font-bold hover:opacity-90 transition-opacity mb-8"
-          style={{ backgroundColor: "#008236", color: "#fff" }}
-        >
-          <MessageCircle className="w-6 h-6" />
-          Message Support on WhatsApp — +880 1865-385348
-        </motion.a>
+        <section className="mt-10 grid gap-4 md:grid-cols-2">
+          {CASES.map((item) => <article key={item.title} className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><item.icon className="h-5 w-5 text-[#f4b942]" /><h2 className="mt-4 font-bold text-white">{item.title}</h2><p className="mt-2 text-sm leading-6 text-slate-300">{item.body}</p></article>)}
+        </section>
 
-        {/* Info cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.15 }}
-            className="p-5 rounded-2xl border border-white/10"
-            style={{ backgroundColor: "#151b3d" }}
-          >
-            <Clock className="w-5 h-5 mb-3" style={{ color: "#f4b942" }} />
-            <div className="font-bold text-white mb-1 text-sm">Service Hours</div>
-            <div className="text-xs" style={{ color: "#c9ceda" }}>10 AM – Midnight BST</div>
-            <div className="text-xs" style={{ color: "#c9ceda" }}>7 days a week</div>
-            <div className="text-xs mt-2 font-medium" style={{ color: "#25d366" }}>WhatsApp: under 5 min</div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="p-5 rounded-2xl border border-white/10"
-            style={{ backgroundColor: "#151b3d" }}
-          >
-            <div className="text-lg mb-3">🛡</div>
-            <div className="font-bold text-white mb-1 text-sm">30-Day Warranty</div>
-            <div className="text-xs" style={{ color: "#c9ceda" }}>All orders covered</div>
-            <div className="text-xs" style={{ color: "#c9ceda" }}>Free replacement if needed</div>
-            <div className="text-xs mt-2 font-medium" style={{ color: "#f4b942" }}>No questions asked</div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.25 }}
-            className="p-5 rounded-2xl border border-white/10"
-            style={{ backgroundColor: "#151b3d" }}
-          >
-            <Users className="w-5 h-5 mb-3" style={{ color: "#3b82f6" }} />
-            <div className="font-bold text-white mb-1 text-sm">Community</div>
-            <div className="text-xs" style={{ color: "#c9ceda" }}>thousands members</div>
-            <div className="text-xs" style={{ color: "#c9ceda" }}>AI tips & discount codes</div>
-            <a
-              href={COMMUNITY}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs mt-2 font-medium flex items-center gap-1 hover:opacity-80 transition-opacity"
-              style={{ color: "#3b82f6" }}
-            >
-              Join WhatsApp Community
-              <ChevronRight className="w-3 h-3" />
-            </a>
-          </motion.div>
-        </div>
-
-        {/* 1:1 AI Coaching */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12 p-6 md:p-8 rounded-2xl border border-yellow-400/30"
-          style={{ backgroundColor: "#151b3d" }}
-        >
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
-              style={{ backgroundColor: "rgba(244,185,66,0.15)" }}>
-              <Star className="w-6 h-6" style={{ color: "#f4b942" }} />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-2 flex-wrap">
-                <h2 className="text-xl font-bold text-white">1:1 AI Coaching</h2>
-              </div>
-              <p className="text-sm mb-5 leading-relaxed" style={{ color: "#c9ceda" }}>
-                Get a personalised session with an AIPS AI expert. We show you exactly how to use ChatGPT, Midjourney, Claude, or any AI tool for your specific work. Pick the package that fits your needs.
-              </p>
-
-              {/* Coaching Packages Table */}
-              <div className="rounded-xl border border-white/10 overflow-hidden mb-5">
-                <div className="grid grid-cols-[1fr_auto_auto] text-xs font-semibold uppercase tracking-wider border-b border-white/10 px-4 py-2.5"
-                  style={{ color: "#c9ceda" }}>
-                  <div>Package</div>
-                  <div className="text-right pr-4">Price</div>
-                  <div className="w-20 text-center">Duration</div>
-                </div>
-                {[
-                  { name: "Quick Start", price: "৳799", duration: "1 hour", desc: "One focused session on any tool" },
-                  { name: "Deep Dive", price: "৳1,499", duration: "2 hours", desc: "Full workflow setup + hands-on practice" },
-                  { name: "Team Training", price: "৳2,999", duration: "3 hours", desc: "For teams of 2–6 — group session" },
-                  { name: "AI Workflow Setup", price: "৳4,999", duration: "Custom", desc: "Full AI stack setup for your business" },
-                ].map((pkg, i) => (
-                  <div key={i} className={`grid grid-cols-[1fr_auto_auto] items-center px-4 py-3 ${i > 0 ? "border-t border-white/5" : ""}`}>
-                    <div>
-                      <div className="text-sm font-semibold text-white">{pkg.name}</div>
-                      <div className="text-xs" style={{ color: "#c9ceda" }}>{pkg.desc}</div>
-                    </div>
-                    <div className="text-sm font-bold text-right pr-4" style={{ color: "#f4b942" }}>{pkg.price}</div>
-                    <div className="w-20 text-center text-xs" style={{ color: "#c9ceda" }}>{pkg.duration}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-2 mb-5">
-                {["ChatGPT for writing", "Midjourney for design", "Cursor for coding", "AI workflow automation", "Prompt engineering"].map((t) => (
-                  <span key={t} className="text-xs px-2 py-1 rounded-lg"
-                    style={{ backgroundColor: "rgba(244,185,66,0.08)", color: "#c9ceda", border: "1px solid rgba(244,185,66,0.15)" }}>
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <a
-                href={`${WHATSAPP}?text=Hi%2C%20I%27d%20like%20to%20book%20a%201%3A1%20AI%20Coaching%20session`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
-                style={{ background: "linear-gradient(135deg, #ec4899, #f97316)", color: "#fff" }}
-              >
-                <MessageCircle className="w-4 h-4" />
-                Book a Coaching Session
-              </a>
-            </div>
+        <section className="mt-10 grid gap-6 lg:grid-cols-[1fr_340px]">
+          <div className="rounded-2xl border border-white/10 bg-[#151b3d]/70 p-6 md:p-8">
+            <h2 className="text-xl font-bold text-white">What to include in a support message</h2>
+            <div className="mt-4 space-y-3">{[
+              "Product or plan name and the stated access model.",
+              "Approximate order time and payment reference when relevant to the issue.",
+              "A clear description of what you expected and what you are seeing now.",
+              "A screenshot that does not expose passwords, PINs, OTPs, full card details or unrelated private data.",
+            ].map((point) => <div key={point} className="flex gap-2.5"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-400" /><p className="text-sm leading-6 text-slate-300">{point}</p></div>)}</div>
           </div>
-        </motion.div>
-
-        {/* 1:1 AI Coaching Results */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
-        >
-          <h2 className="text-2xl font-bold text-white mb-6">1:1 AI Coaching Results</h2>
-          <div className="grid grid-cols-2 gap-3 mb-5">
-            {[
-              { Icon: GraduationCap, color: "text-blue-400", label: "Students", desc: "CGPA improvement path + study AI system" },
-              { Icon: Laptop, color: "text-purple-400", label: "Freelancers", desc: "AI workflow saving 8+ hrs/week" },
-              { Icon: Building, color: "text-amber-400", label: "Business", desc: "3 processes automated in 1 session" },
-              { Icon: Code, color: "text-green-400", label: "Developers", desc: "Copilot/Cursor mastered in 1 hour" },
-            ].map((card) => (
-              <div key={card.label} className="bg-gray-900 rounded-lg p-4">
-                <card.Icon className={`w-5 h-5 mb-2 ${card.color}`} />
-                <div className="font-bold text-white text-sm mb-1">{card.label}</div>
-                <div className="text-xs" style={{ color: "#c9ceda" }}>{card.desc}</div>
-              </div>
-            ))}
-          </div>
-          <p className="text-lg font-bold text-white">One 1-hour session can change how you work forever. BDT 799.</p>
-        </motion.div>
-
-        {/* FAQ */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="flex items-center gap-2 mb-6">
-            <HelpCircle className="w-5 h-5" style={{ color: "#f4b942" }} />
-            <h2 className="text-xl font-bold text-white">Frequently Asked Questions</h2>
-          </div>
-          <div className="space-y-3">
-            {FAQS.map((faq, i) => (
-              <details key={i} className="group rounded-xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
-                <summary className="flex items-center justify-between p-5 cursor-pointer font-semibold text-white text-sm">
-                  {faq.q}
-                  <ChevronRight className="w-4 h-4 flex-shrink-0 transition-transform group-open:rotate-90" style={{ color: "#f4b942" }} />
-                </summary>
-                <div className="px-5 pb-5 text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{faq.a}</div>
-              </details>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Stay Connected */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-10 bg-gray-900 rounded-xl p-6 border border-gray-800"
-        >
-          <h3 className="text-white font-semibold">Stay Connected</h3>
-          <p className="text-gray-400 text-sm mt-2">
-            Join our WhatsApp community for renewal reminders, exclusive deals, and AI tips from fellow users.
-          </p>
-          <div className="flex flex-wrap gap-3 mt-4">
-            <a
-              href="https://chat.whatsapp.com/LKHNCYz05MrA0j6uX272Zc"
-              target="_blank"
-              rel="noopener noreferrer"
-              // #25D366 (the brand green) against white text measures 1.98:1
-              // — badly fails WCAG AA's 4.5:1 for normal text, and the old
-              // hover color was 2.47:1, i.e. still failing. #008236 clears AA
-              // at 4.95:1; the hover state darkens further rather than
-              // lightening toward the brand color, so it can't regress below
-              // the resting state the way the old pair did.
-              className="bg-[#008236] text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-[#016630] transition-colors"
-            >
-              Join Community
-            </a>
-            <a
-              href="https://whatsapp.com/channel/0029VatCUtC72WTpSObAQF3O"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-gray-700 transition-colors"
-            >
-              Follow Updates
-            </a>
-            <a
-              href="https://www.facebook.com/aipremiumshopfb"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#1877F2] text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-[#1565D8] transition-colors"
-            >
-              Facebook Page
-            </a>
-          </div>
-        </motion.div>
-      </section>
+          <aside className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
+            <h2 className="text-lg font-bold text-white">Contact support</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-300">WhatsApp is the direct support channel shown on this site. Response time depends on current support load; do not rely on a fixed response-time promise.</p>
+            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="mt-5 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Open support chat</a>
+            <Link href="/refund-policy" className="mt-3 flex min-h-11 items-center justify-center rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-white">Refund & resolution policy</Link>
+          </aside>
+        </section>
+      </div>
     </PageLayout>
   );
 }

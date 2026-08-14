@@ -1,17 +1,20 @@
-import { motion, type Variants } from "framer-motion";
-import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
-import { MessageCircle, ArrowRight, Check, X } from "lucide-react";
+import { useMemo } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, CheckCircle2, Info, MessageCircle, ShieldCheck, WalletCards } from "lucide-react";
 import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { BrandIcon } from "@/components/BrandIcon";
+import { formatBDT } from "@/lib/format";
+import { productPath } from "@/lib/productRoutes";
+import productsData from "../../data/catalog-pages.json";
 
+const SITE = "https://aipremiumshop.com";
 const WHATSAPP = "https://wa.me/8801865385348";
+const RETIRED_PRODUCT_SLUGS = new Set(["replit-bangladesh"]);
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.4, delay: i * 0.07, ease: [0, 0, 0.2, 1] } }),
-};
+type ProductRecord = (typeof productsData.products)[number];
 
 interface CompRow {
   feature: string;
@@ -31,8 +34,8 @@ interface CompConfig {
   aioSnippet: string;
   metaDescription: string;
   canonical: string;
-  productA: { name: string; color: string; orderText: string };
-  productB: { name: string; color: string; orderText: string };
+  productA: { name: string; color: string; orderText: string; slug: string };
+  productB: { name: string; color: string; orderText: string; slug: string };
   rows: CompRow[];
   verdict: string;
   verdictA: string;
@@ -42,513 +45,323 @@ interface CompConfig {
   relatedGuides: { label: string; href: string }[];
 }
 
+// Keep this literal data-only object: prerender-products.mjs parses it without
+// executing application code. The strings are intentionally nonvolatile so a
+// crawler never receives hand-entered model versions, quotas, delivery SLAs,
+// discounts or provider capability claims. Runtime price/access evidence below
+// comes from the generated public catalog instead.
 const COMPARISONS: Record<string, CompConfig> = {
   "chatgpt-vs-claude": {
-    title: "ChatGPT vs Claude Bangladesh 2026 — Which is Better?",
-    h1: "ChatGPT vs Claude — Which One Is Right for You?",
-    aioSnippet: "ChatGPT vs Claude in Bangladesh 2026: ChatGPT Plus Shared starts at BDT 499/mo and excels as an all-rounder (images, web search, code, agents). Claude Pro starts at BDT 599/mo and is known for strong writing quality and long-document reasoning (1M token context). Both available via bKash or Nagad — delivery in 5–30 minutes via WhatsApp.",
-    metaDescription: "ChatGPT vs Claude in Bangladesh 2026. Features, prices, which is better. AI Premium Shop.",
+    title: "ChatGPT Plus vs Claude in Bangladesh | AI Premium Shop",
+    h1: "ChatGPT Plus vs Claude — Compare Current AIPS Options",
+    aioSnippet: "Compare current AI Premium Shop catalog records for ChatGPT Plus and Claude. Use published BDT price and access model as AIPS evidence, then verify current provider features, limits and plan terms before purchase.",
+    metaDescription: "Compare current AIPS ChatGPT Plus and Claude options by published BDT price and access model. Verify provider features, limits and terms before purchase.",
     canonical: "https://aipremiumshop.com/chatgpt-vs-claude",
-    productA: { name: "ChatGPT (OpenAI)", color: "#10a37f", orderText: "Order ChatGPT" },
-    productB: { name: "Claude (Anthropic)", color: "#d97706", orderText: "Order Claude" },
+    productA: { name: "ChatGPT Plus", color: "#10a37f", orderText: "View ChatGPT", slug: "chatgpt-plus-bangladesh" },
+    productB: { name: "Claude", color: "#d97706", orderText: "View Claude", slug: "claude-pro-bangladesh" },
     rows: [
-      { feature: "Best for", a: "All-rounder: code, images, search, agents", b: "Writing, reasoning, long documents" },
-      { feature: "Top model", a: "GPT-5.4", b: "Claude Opus 5" },
-      { feature: "Image generation", a: true, b: false },
-      { feature: "Video generation", a: "Yes (Sora — Pro only)", b: false },
-      { feature: "Code assistant", a: "Codex agent in ChatGPT", b: "Claude Code terminal" },
-      { feature: "Context window", a: "128K tokens", b: "200K–1M tokens" },
-      { feature: "Shared price (AIPS)", a: "From BDT 499/mo", b: "From BDT 599/mo" },
-      { feature: "Personal price (AIPS)", a: "BDT 2,990/mo", b: "BDT 2,990/mo" },
-      { feature: "Web search", a: true, b: false },
-
+      { feature: "AIPS public pricing", a: "See current product page", b: "See current product page" },
+      { feature: "Access model", a: "Compare current published plans", b: "Compare current published plans" },
+      { feature: "Provider features and limits", a: "Verify current provider terms", b: "Verify current provider terms" },
+      { feature: "Availability and delivery", a: "Confirm before payment", b: "Confirm before payment" }
     ],
-    verdict: "Both are capable AI tools available at Bangladesh prices. Your choice depends on your primary use case.",
-    verdictA: "Choose ChatGPT if you want an all-in-one tool that does everything — text, images, web search, code, and agents. It's also the cheapest option at BDT 499.",
-    verdictB: "Choose Claude if you need strong writing quality, long document analysis (1M token context), or advanced reasoning.",
-    buyBothText: "ChatGPT Plus Shared (BDT 499) + Claude Pro Premium Shared (BDT 1,590) = BDT 2,089/mo total — cover both writing strength and everything else.",
+    verdict: "Choose from current catalog evidence first: price, access model and the exact plan. Provider-controlled features and limits can change and should be checked against current provider terms.",
+    verdictA: "Choose a ChatGPT plan only when its current access model, price and provider terms fit your workflow.",
+    verdictB: "Choose a Claude plan only when its current access model, price and provider terms fit your workflow.",
     whoTable: [
-      { persona: "Students on a tight budget", pick: "ChatGPT Plus Shared — BDT 499", reason: "The cheapest AI in our catalog. Covers writing, coding, and research." },
-      { persona: "Copywriters & content writers", pick: "Claude Pro — from BDT 599", reason: "Known for strong writing quality on independent benchmarks." },
-      { persona: "Developers & researchers", pick: "ChatGPT Plus", reason: "Image gen, agents, web search, and code — one comprehensive tool." },
+      { persona: "You need personal access", pick: "Compare personal plans", reason: "Use the current product pages to see which personal access options are actually published." },
+      { persona: "You can use shared access", pick: "Compare shared plans", reason: "Confirm the exact shared-access arrangement and current provider rules before payment." },
+      { persona: "A provider feature is essential", pick: "Check provider terms", reason: "Do not rely on a static comparison for model names, quotas, credits or changing feature limits." }
     ],
     relatedGuides: [
-      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
-      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
-      { label: "Best AI for Business", href: "/best-ai-for-business" },
-    ],
+      { label: "Best AI for freelancers", href: "/best-ai-for-freelancers" },
+      { label: "Best AI for students", href: "/best-ai-for-students" }
+    ]
   },
   "chatgpt-vs-gemini": {
-    title: "ChatGPT vs Gemini Bangladesh 2026 — Full Comparison",
-    h1: "ChatGPT vs Google AI Pro — Which Should You Choose?",
-    aioSnippet: "ChatGPT vs Google AI Pro in Bangladesh 2026: ChatGPT Plus Shared is BDT 499/mo (shared account, cheapest AI tool available). Google AI Pro starts at BDT 599/mo shared, or BDT 2,990/mo for a personal account with your own Gmail, 2TB Google Drive storage, and AI built into Docs, Sheets, and Slides. Both available via bKash — no international card needed.",
-    metaDescription: "ChatGPT vs Gemini in Bangladesh 2026. Full comparison with BD prices. AI Premium Shop.",
+    title: "ChatGPT Plus vs Google AI Pro | AI Premium Shop",
+    h1: "ChatGPT Plus vs Google AI Pro — Compare Current AIPS Options",
+    aioSnippet: "Compare current AI Premium Shop catalog records for ChatGPT Plus and Google AI Pro. Use published BDT price and access model as AIPS evidence, then verify current provider features, limits and plan terms before purchase.",
+    metaDescription: "Compare current AIPS ChatGPT Plus and Google AI Pro options by published BDT price and access model. Verify provider terms before purchase.",
     canonical: "https://aipremiumshop.com/chatgpt-vs-gemini",
-    productA: { name: "ChatGPT Plus", color: "#10a37f", orderText: "Order ChatGPT" },
-    productB: { name: "Google AI Pro", color: "#4285f4", orderText: "Order Google AI Pro" },
+    productA: { name: "ChatGPT Plus", color: "#10a37f", orderText: "View ChatGPT", slug: "chatgpt-plus-bangladesh" },
+    productB: { name: "Google AI Pro", color: "#4285f4", orderText: "View Google AI Pro", slug: "gemini-advanced-bangladesh" },
     rows: [
-      { feature: "AIPS price", a: "BDT 499/mo (shared)", b: "BDT 500/mo (personal)" },
-      { feature: "Account type", a: "Shared access", b: "Your own Gmail account" },
-      { feature: "AI Model", a: "GPT-5.4", b: "Gemini 2.5 Pro" },
-      { feature: "Storage", a: "None", b: "2TB Google Drive" },
-      { feature: "Gmail AI", a: false, b: true },
-      { feature: "Google Docs AI", a: false, b: true },
-      { feature: "Google Sheets AI", a: false, b: true },
-      { feature: "Image generation", a: true, b: true },
-      { feature: "Web search", a: true, b: true },
-
+      { feature: "AIPS public pricing", a: "See current product page", b: "See current product page" },
+      { feature: "Access model", a: "Compare current published plans", b: "Compare current published plans" },
+      { feature: "Provider features and limits", a: "Verify current provider terms", b: "Verify current provider terms" },
+      { feature: "Availability and delivery", a: "Confirm before payment", b: "Confirm before payment" }
     ],
-    verdict: "Both are excellent — the right choice depends on your existing tools and workflow.",
-    verdictA: "Choose ChatGPT if you want the cheapest AI option (BDT 499) and primarily need AI for writing, coding, and chatting. Best for students on a tight budget.",
-    verdictB: "Google AI Pro starts at BDT 599/mo shared. For a personal account (not shared) with 2TB storage and AI built into Gmail, Docs, Sheets, and Slides, the Personal tier is BDT 2,990/mo. For anyone who uses Google Workspace daily, this is a strong value.",
-    buyBothText: "ChatGPT Plus Shared (BDT 499) + Google AI Pro Shared (BDT 599) = BDT 1,098/mo — one for AI chat, one for your Google Workspace.",
+    verdict: "Use the current catalog to compare AIPS price and access. Verify provider-controlled features, storage, model availability and usage limits directly against current provider terms.",
+    verdictA: "Choose a ChatGPT plan only when the current plan details fit your workflow.",
+    verdictB: "Choose a Google AI Pro plan only when the current plan details fit your workflow.",
     whoTable: [
-      { persona: "Students on a tight budget", pick: "ChatGPT Plus Shared — BDT 499", reason: "Cheapest AI tool in our catalog." },
-      { persona: "Google Workspace users", pick: "Google AI Pro Personal — BDT 2,990", reason: "AI in Gmail, Docs, Sheets + 2TB storage + personal account." },
-      { persona: "Job seekers & writers", pick: "Google AI Pro", reason: "Personal Gmail account is more professional for job applications." },
+      { persona: "You need personal access", pick: "Compare personal plans", reason: "Use the current product pages rather than an old feature matrix." },
+      { persona: "You can use shared access", pick: "Compare shared plans", reason: "Confirm the exact access arrangement before payment." },
+      { persona: "Storage or ecosystem features matter", pick: "Check provider terms", reason: "Provider-controlled entitlements can change independently of AIPS pricing." }
     ],
     relatedGuides: [
-      { label: "Best AI for Students", href: "/best-ai-for-students" },
-      { label: "Best AI for Business", href: "/best-ai-for-business" },
-      { label: "Best AI for Job Seekers", href: "/best-ai-for-job-seekers" },
-    ],
-  },
-  "midjourney-vs-ideogram": {
-    title: "Midjourney vs Ideogram 2026 — Best AI Image Tool",
-    h1: "Midjourney vs Ideogram — Which AI Image Generator Should You Choose?",
-    aioSnippet: "Midjourney vs Ideogram in Bangladesh 2026: Midjourney Standard Shared starts at BDT 1,199/mo and produces the highest quality photorealistic and artistic images. Ideogram starts at BDT 2,990/mo and is the best AI for rendering text inside images — perfect for logos, posters, and typography. Both available via bKash — order on WhatsApp for delivery in 5–30 minutes.",
-    metaDescription: "Midjourney vs Ideogram 2026 Bangladesh. Best AI image generator comparison with BDT prices. AI Premium Shop.",
-    canonical: "https://aipremiumshop.com/midjourney-vs-ideogram",
-    productA: { name: "Midjourney", color: "#8b5cf6", orderText: "Order Midjourney" },
-    productB: { name: "Ideogram", color: "#ec4899", orderText: "Order Ideogram" },
-    rows: [
-      { feature: "Best for", a: "Photorealistic & artistic images", b: "Text in images, logos, typography" },
-      { feature: "Image quality", a: "Highest overall quality", b: "Best for text rendering" },
-      { feature: "Text in images", a: "Inconsistent — often misspells", b: "Excellent — reliable text rendering" },
-      { feature: "Photorealism", a: "Strong photorealistic output", b: "Good, more limited than Midjourney" },
-      { feature: "Artistic styles", a: "Full range, painterly, cinematic", b: "Limited compared to Midjourney" },
-      { feature: "Images/month (shared)", a: "15hr GPU (~900 images) + unlimited slow", b: "400 priority + unlimited slower" },
-      { feature: "Price (AIPS shared)", a: "BDT 1,199/mo", b: "from BDT 2,990/mo" },
-      { feature: "Commercial use", a: "Yes (Standard+)", b: "Yes (Pro plan)" },
-      { feature: "Learning curve", a: "Medium (prompt craft matters)", b: "Easy — simple prompts work well" },
-
-    ],
-    verdict: "Both are world-class AI image generators. Your choice should be based on what you create most.",
-    verdictA: "Choose Midjourney if you need strong image quality overall — photorealistic portraits, artistic illustrations, product renders, or creative visuals.",
-    verdictB: "Choose Ideogram if you create designs with text — logos, posters, social media graphics, YouTube thumbnails, or marketing materials. Ideogram is the only AI that reliably renders text accurately inside images. For graphic design and brand work, it's the clear winner.",
-    buyBothText: "Midjourney Standard Shared (BDT 1,199) + Ideogram (BDT 2,990) = BDT 4,189/mo — use Midjourney for photos and art, Ideogram for designs with text.",
-    whoTable: [
-      { persona: "Photographers & digital artists", pick: "Midjourney — BDT 1,199/mo", reason: "Best photorealistic and artistic image quality of any AI tool." },
-      { persona: "Graphic designers & brand designers", pick: "Ideogram — from BDT 2,990/mo", reason: "Reliable text rendering inside images — essential for logo and poster design." },
-      { persona: "Social media managers", pick: "Ideogram", reason: "Creates graphics with readable captions, CTAs, and branded text." },
-    ],
-    relatedGuides: [
-      { label: "Best AI for Designers", href: "/best-ai-for-designers" },
-      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
-      { label: "Best AI for Marketers", href: "/best-ai-for-marketers" },
-    ],
+      { label: "Best AI for business", href: "/best-ai-for-business" },
+      { label: "Best AI for students", href: "/best-ai-for-students" }
+    ]
   },
   "chatgpt-vs-perplexity": {
-    title: "ChatGPT vs Perplexity Bangladesh 2026 — Which is Better?",
-    h1: "ChatGPT vs Perplexity — Which One Is Right for You?",
-    aioSnippet: "ChatGPT vs Perplexity in Bangladesh 2026: ChatGPT Plus Shared starts at BDT 499/mo and is a general-purpose AI for writing, coding, and images. Perplexity Pro starts at BDT 599/mo and specializes in real-time research — every answer comes with cited sources. Both available via bKash or Nagad — delivery in 5–30 minutes via WhatsApp.",
-    metaDescription: "ChatGPT vs Perplexity in Bangladesh 2026. Features, prices, which is better for research vs general use. AI Premium Shop.",
+    title: "ChatGPT Plus vs Perplexity Pro | AI Premium Shop",
+    h1: "ChatGPT Plus vs Perplexity Pro — Compare Current AIPS Options",
+    aioSnippet: "Compare current AI Premium Shop catalog records for ChatGPT Plus and Perplexity Pro by published BDT price and access model. Verify current provider capabilities and limits before purchase.",
+    metaDescription: "Compare current AIPS ChatGPT Plus and Perplexity Pro options by published BDT price and access model. Confirm provider terms before purchase.",
     canonical: "https://aipremiumshop.com/chatgpt-vs-perplexity",
-    productA: { name: "ChatGPT (OpenAI)", color: "#10a37f", orderText: "Order ChatGPT" },
-    productB: { name: "Perplexity", color: "#20808d", orderText: "Order Perplexity" },
+    productA: { name: "ChatGPT Plus", color: "#10a37f", orderText: "View ChatGPT", slug: "chatgpt-plus-bangladesh" },
+    productB: { name: "Perplexity Pro", color: "#20808d", orderText: "View Perplexity", slug: "perplexity-pro-bangladesh" },
     rows: [
-      { feature: "Best for", a: "All-rounder: writing, coding, images, agents", b: "Real-time research with cited sources" },
-      { feature: "Core strength", a: "General-purpose assistant", b: "Search-first \"answer engine\"" },
-      { feature: "Image generation", a: true, b: false },
-      { feature: "Web search", a: true, b: true },
-      { feature: "Cited sources on every answer", a: "Not by default", b: true },
-      { feature: "Choose underlying AI model (Personal)", a: false, b: "Yes, on the Personal tier" },
-      { feature: "Shared price (AIPS)", a: "From BDT 499/mo", b: "From BDT 599/mo" },
-      { feature: "Personal price (AIPS)", a: "BDT 2,990/mo", b: "BDT 2,950/mo" },
-      { feature: "Shared delivery", a: "5–30 min", b: "5–15 min" },
+      { feature: "AIPS public pricing", a: "See current product page", b: "See current product page" },
+      { feature: "Access model", a: "Compare current published plans", b: "Compare current published plans" },
+      { feature: "Provider features and limits", a: "Verify current provider terms", b: "Verify current provider terms" },
+      { feature: "Availability and delivery", a: "Confirm before payment", b: "Confirm before payment" }
     ],
-    verdict: "Both are capable AI assistants at Bangladesh prices. The right choice depends on whether you need a general-purpose tool or a research-first tool built around citations.",
-    verdictA: "Choose ChatGPT if you want one tool for everything — writing, coding, image generation, and agents. It's also the cheaper starting price at BDT 499.",
-    verdictB: "Choose Perplexity if your work depends on finding current, verifiable information fast. Every answer ships with cited sources, which matters for research, coursework, and fact-checking.",
-    buyBothText: "ChatGPT Plus Shared (BDT 499) + Perplexity Pro Shared (BDT 599) = BDT 1,098/mo — one for general AI work, one for cited research.",
+    verdict: "Compare the exact AIPS plans first, then verify any provider capability that your workflow depends on.",
+    verdictA: "Choose ChatGPT only after checking the current plan and provider terms.",
+    verdictB: "Choose Perplexity only after checking the current plan and provider terms.",
     whoTable: [
-      { persona: "Students & researchers who need citations", pick: "Perplexity Pro Shared — BDT 599", reason: "Every answer is sourced, useful for assignments and coursework." },
-      { persona: "All-rounder users on a budget", pick: "ChatGPT Plus Shared — BDT 499", reason: "The cheapest AI in our catalog. Covers writing, coding, and images." },
-      { persona: "Journalists & fact-checkers", pick: "Perplexity Pro", reason: "Built specifically around verifiable, sourced answers." },
+      { persona: "Price is your main constraint", pick: "Compare current BDT plans", reason: "Use live catalog pricing rather than an old comparison snapshot." },
+      { persona: "Access privacy matters", pick: "Compare access modes", reason: "Check whether the current plan is shared or personal before payment." },
+      { persona: "A research feature is essential", pick: "Check provider terms", reason: "Verify the exact current provider capability and limits." }
     ],
     relatedGuides: [
-      { label: "Best AI for Students", href: "/best-ai-for-students" },
-      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
-      { label: "Best AI for Business", href: "/best-ai-for-business" },
-    ],
-  },
-  "copilot-vs-cursor": {
-    title: "GitHub Copilot vs Cursor 2026 — Best AI Code Tool",
-    h1: "GitHub Copilot vs Cursor — Which AI Code Tool Should You Use?",
-    aioSnippet: "GitHub Copilot vs Cursor in Bangladesh 2026: Copilot Pro (from BDT 399/mo) plugs into your existing VS Code or JetBrains with zero workflow change. Cursor Pro (from BDT 699/mo) offers a full AI-native coding environment with autonomous agent mode that can write entire features from a single prompt. Both available via bKash — order on WhatsApp and receive access in under 2 hours.",
-    metaDescription: "GitHub Copilot vs Cursor 2026. Best AI code editor compared. Prices in BDT.",
-    canonical: "https://aipremiumshop.com/copilot-vs-cursor",
-    productA: { name: "GitHub Copilot Pro", color: "#6e40c9", orderText: "Order Copilot" },
-    productB: { name: "Cursor Pro", color: "#3b82f6", orderText: "Order Cursor" },
-    rows: [
-      { feature: "AIPS price", a: "From BDT 399/mo", b: "From BDT 699/mo" },
-      { feature: "Works in", a: "VS Code, JetBrains, Neovim, Visual Studio", b: "Cursor editor (VS Code fork)" },
-      { feature: "Agent mode", a: "Cloud agents (limited)", b: "Full autonomous agent mode" },
-      { feature: "AI models", a: "GPT-5.4, Claude Opus 5, Gemini", b: "All frontier models" },
-      { feature: "Codebase indexing", a: "Partial", b: "Full codebase understanding" },
-      { feature: "Chat with code", a: true, b: true },
-      { feature: "Code completion", a: true, b: true },
-      { feature: "Change existing IDE", a: false, b: true },
-      { feature: "Multi-file editing", a: "Limited", b: "Full agent-driven" },
-      { feature: "Best for", a: "IDE integration with existing workflow", b: "Full AI-native coding experience" },
-    ],
-    verdict: "Both tools make you a faster developer. The right choice depends on how much you want to change your workflow.",
-    verdictA: "Choose GitHub Copilot if you want AI assistance inside your existing editor without changing anything. It plugs into VS Code or JetBrains and starts helping immediately. Best starting point for most developers.",
-    verdictB: "Choose Cursor if you want a fully AI-native coding experience. Its agent mode can write entire features autonomously.",
-    buyBothText: "GitHub Copilot Pro (from BDT 399) + Cursor Pro (from BDT 699) = from BDT 1,098/mo — use Copilot in your main IDE and Cursor for complex agent tasks.",
-    whoTable: [
-      { persona: "Developers new to AI tools", pick: "GitHub Copilot Pro — from BDT 399", reason: "No IDE change required — start getting completions in VS Code today." },
-      { persona: "Full-stack / startup developers", pick: "Cursor Pro — BDT 2,990", reason: "Agent mode builds entire features from a single prompt." },
-      { persona: "Budget-conscious developers", pick: "GitHub Copilot Pro", reason: "Half the price of Cursor with proven productivity gains." },
-    ],
-    relatedGuides: [
-      { label: "Best AI for Developers", href: "/best-ai-for-developers" },
-      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
-    ],
+      { label: "Best AI for students", href: "/best-ai-for-students" },
+      { label: "AI Assistant category", href: "/ai-assistant" }
+    ]
   },
   "claude-vs-gemini": {
-    title: "Claude vs Google AI Pro Bangladesh 2026 — Which is Better?",
-    h1: "Claude vs Google AI Pro (Gemini) — Which One Is Right for You?",
-    aioSnippet: "Claude vs Google AI Pro (Gemini) in Bangladesh 2026: Claude Pro Shared starts at BDT 599/mo and is known for strong writing quality and long-document reasoning. Google AI Pro also starts at BDT 599/mo shared and adds image generation, video generation, and AI built into Gmail, Docs and Sheets, plus 2TB storage on the Personal tier. Both available via bKash — delivery in 5–30 minutes via WhatsApp.",
-    metaDescription: "Claude vs Google AI Pro (Gemini) in Bangladesh 2026. Features, prices, which is better. AI Premium Shop.",
+    title: "Claude vs Google AI Pro in Bangladesh | AI Premium Shop",
+    h1: "Claude vs Google AI Pro — Compare Current AIPS Options",
+    aioSnippet: "Compare current AI Premium Shop catalog records for Claude and Google AI Pro by published BDT price and access model. Verify current provider features, limits and terms before purchase.",
+    metaDescription: "Compare current AIPS Claude and Google AI Pro options by published BDT price and access model. Verify provider features and terms before purchase.",
     canonical: "https://aipremiumshop.com/claude-vs-gemini",
-    productA: { name: "Claude (Anthropic)", color: "#d97706", orderText: "Order Claude" },
-    productB: { name: "Google AI Pro (Gemini)", color: "#4285f4", orderText: "Order Google AI Pro" },
+    productA: { name: "Claude", color: "#d97706", orderText: "View Claude", slug: "claude-pro-bangladesh" },
+    productB: { name: "Google AI Pro", color: "#4285f4", orderText: "View Google AI Pro", slug: "gemini-advanced-bangladesh" },
     rows: [
-      { feature: "Best for", a: "Writing, reasoning, long documents", b: "All-rounder: search, images, video, Workspace" },
-      { feature: "Top model", a: "Claude Opus 5", b: "Gemini 2.5 Pro" },
-      { feature: "Image generation", a: false, b: true },
-      { feature: "Video generation", a: false, b: true },
-      { feature: "Google Workspace AI (Gmail/Docs/Sheets)", a: false, b: true },
-      { feature: "Storage included (Personal)", a: "None", b: "2TB Google Drive" },
-      { feature: "Context window", a: "200K–1M tokens", b: "Not verified — ask us before assuming" },
-      { feature: "Shared price (AIPS)", a: "From BDT 599/mo", b: "From BDT 599/mo" },
-      { feature: "Personal price (AIPS)", a: "BDT 2,990/mo", b: "BDT 2,990/mo" },
-      { feature: "Shared delivery", a: "5–15 min", b: "5–15 min" },
+      { feature: "AIPS public pricing", a: "See current product page", b: "See current product page" },
+      { feature: "Access model", a: "Compare current published plans", b: "Compare current published plans" },
+      { feature: "Provider features and limits", a: "Verify current provider terms", b: "Verify current provider terms" },
+      { feature: "Availability and delivery", a: "Confirm before payment", b: "Confirm before payment" }
     ],
-    verdict: "Both start at the same price. The right choice depends on whether you value writing and reasoning depth, or a broader multimodal toolkit tied to Google's ecosystem.",
-    verdictA: "Choose Claude if you need strong writing quality, long-document analysis, or careful reasoning — it's consistently rated highly for writing tasks.",
-    verdictB: "Choose Google AI Pro if you want image and video generation plus AI built directly into Gmail, Docs and Sheets — the Personal tier also includes 2TB of Google Drive storage.",
-    buyBothText: "Claude Pro Shared (BDT 599) + Google AI Pro Shared (BDT 599) = BDT 1,198/mo — one for writing and reasoning, one for Workspace and multimedia.",
+    verdict: "Use the current AIPS catalog for price/access evidence and current provider documentation for changing feature entitlements.",
+    verdictA: "Choose Claude only after checking the current plan and provider terms.",
+    verdictB: "Choose Google AI Pro only after checking the current plan and provider terms.",
     whoTable: [
-      { persona: "Writers & researchers", pick: "Claude Pro Shared — BDT 599", reason: "Strong writing quality and long-document reasoning." },
-      { persona: "Google Workspace users", pick: "Google AI Pro Personal — BDT 2,990", reason: "AI in Gmail, Docs, Sheets, plus 2TB storage on a personal account." },
-      { persona: "Creators needing image or video generation", pick: "Google AI Pro", reason: "The only one of the two with image and video generation built in." },
+      { persona: "You need personal access", pick: "Compare personal plans", reason: "Use the current product pages for the real access options." },
+      { persona: "You can use shared access", pick: "Compare shared plans", reason: "Confirm the current arrangement and provider rules." },
+      { persona: "An ecosystem feature matters", pick: "Check provider terms", reason: "Do not rely on static feature entitlements." }
     ],
     relatedGuides: [
-      { label: "Best AI for Business", href: "/best-ai-for-business" },
-      { label: "Best AI for Creators", href: "/best-ai-for-creators" },
-      { label: "Best AI for Students", href: "/best-ai-for-students" },
+      { label: "Best AI for developers", href: "/best-ai-for-developers" },
+      { label: "AI Assistant category", href: "/ai-assistant" }
+    ]
+  },
+  "midjourney-vs-ideogram": {
+    title: "Midjourney vs Ideogram in Bangladesh | AI Premium Shop",
+    h1: "Midjourney vs Ideogram — Compare Current AIPS Options",
+    aioSnippet: "Compare current AI Premium Shop catalog records for Midjourney and Ideogram by published BDT price and access model. Verify current provider features, credits, usage limits and commercial terms before purchase.",
+    metaDescription: "Compare current AIPS Midjourney and Ideogram options by published BDT price and access model. Verify provider limits and terms before purchase.",
+    canonical: "https://aipremiumshop.com/midjourney-vs-ideogram",
+    productA: { name: "Midjourney", color: "#8b5cf6", orderText: "View Midjourney", slug: "midjourney-bangladesh" },
+    productB: { name: "Ideogram", color: "#ec4899", orderText: "View Ideogram", slug: "ideogram-bangladesh" },
+    rows: [
+      { feature: "AIPS public pricing", a: "See current product page", b: "See current product page" },
+      { feature: "Access model", a: "Compare current published plans", b: "Compare current published plans" },
+      { feature: "Provider credits and limits", a: "Verify current provider terms", b: "Verify current provider terms" },
+      { feature: "Availability and delivery", a: "Confirm before payment", b: "Confirm before payment" }
     ],
+    verdict: "Compare current AIPS price/access first. Image-model capabilities, credits and commercial-use terms are provider-controlled and should be verified for the exact plan.",
+    verdictA: "Choose Midjourney only after checking current AIPS and provider plan details.",
+    verdictB: "Choose Ideogram only after checking current AIPS and provider plan details.",
+    whoTable: [
+      { persona: "Budget is your main constraint", pick: "Compare current BDT plans", reason: "Use live catalog pricing rather than old typed amounts." },
+      { persona: "Credits or usage limits matter", pick: "Check provider terms", reason: "These limits can change by provider plan." },
+      { persona: "Commercial use matters", pick: "Verify exact plan terms", reason: "Confirm current provider licensing for your intended use." }
+    ],
+    relatedGuides: [
+      { label: "Best AI for designers", href: "/best-ai-for-designers" },
+      { label: "AI Image category", href: "/ai-image" }
+    ]
   },
   "canva-vs-adobe-express": {
-    title: "Canva vs Adobe Express Bangladesh 2026 — Best AI Design Tool",
-    h1: "Canva vs Adobe Express — Which AI Design Tool Should You Choose?",
-    aioSnippet: "Canva vs Adobe Express in Bangladesh 2026: Canva Pro Shared starts at BDT 399/mo with Magic Studio AI tools, a brand kit, and a large stock/template library. Adobe Express Premium brings Adobe Firefly generative AI (250 credits/month), background removal, and 200M+ Adobe Stock assets, with its Bangladesh price confirmed on WhatsApp since it isn't a fixed catalog price. Both available via bKash — order on WhatsApp.",
-    metaDescription: "Canva vs Adobe Express in Bangladesh 2026. AI design tools compared — features, brand kits, pricing. AI Premium Shop.",
+    title: "Canva Pro vs Adobe Express | AI Premium Shop",
+    h1: "Canva Pro vs Adobe Express — Compare Current AIPS Options",
+    aioSnippet: "Compare current AI Premium Shop catalog records for Canva Pro and Adobe Express Premium by published BDT price and access model. Verify current provider features, asset entitlements and limits before purchase.",
+    metaDescription: "Compare current AIPS Canva Pro and Adobe Express options by published BDT price and access model. Verify provider terms before purchase.",
     canonical: "https://aipremiumshop.com/canva-vs-adobe-express",
-    productA: { name: "Canva Pro", color: "#00c4cc", orderText: "Order Canva" },
-    productB: { name: "Adobe Express Premium", color: "#ff0000", orderText: "Order Adobe Express" },
+    productA: { name: "Canva Pro", color: "#00c4cc", orderText: "View Canva", slug: "canva-pro-bangladesh" },
+    productB: { name: "Adobe Express Premium", color: "#ff0000", orderText: "View Adobe Express", slug: "adobe-express-premium-bangladesh" },
     rows: [
-      { feature: "Best for", a: "Fast social & marketing designs, huge template library", b: "Adobe-ecosystem design work with Firefly generative AI" },
-      { feature: "AI design assistant", a: "Magic Studio", b: "Adobe Firefly (generative fill, text-to-image, background removal)" },
-      { feature: "Brand kit included", a: true, b: "Advanced brand kits need Creative Cloud — not included in Express Premium alone" },
-      { feature: "Background remover", a: true, b: true },
-      { feature: "Stock assets", a: "Large built-in library", b: "200M+ Adobe Stock photos, videos & elements" },
-      { feature: "Shared price (AIPS)", a: "From BDT 399/mo", b: "Confirmed on WhatsApp" },
-      { feature: "Personal price (AIPS)", a: "BDT 2,299/mo", b: "Confirmed on WhatsApp" },
-      { feature: "Delivery", a: "5–30 min (shared)", b: "Confirmed on WhatsApp" },
+      { feature: "AIPS public pricing", a: "See current product page", b: "See current product page" },
+      { feature: "Access model", a: "Compare current published plans", b: "Compare current published plans" },
+      { feature: "Provider features and assets", a: "Verify current provider terms", b: "Verify current provider terms" },
+      { feature: "Availability and delivery", a: "Confirm before payment", b: "Confirm before payment" }
     ],
-    verdict: "Both are capable AI design tools. Canva has a fixed, published Bangladesh price and a broad all-in-one template library; Adobe Express suits people already working inside the Adobe ecosystem who want Firefly's generative AI.",
-    verdictA: "Choose Canva if you want a fixed, affordable starting price (from BDT 399), a huge ready-made template library, and brand kit tools included on the Pro plan.",
-    verdictB: "Choose Adobe Express if you're already using Adobe tools like Photoshop or Illustrator and want Firefly-based generative AI and background removal in the same workflow. Message us on WhatsApp to confirm the current Bangladesh price.",
+    verdict: "Use the current catalog for AIPS price/access evidence and verify changing provider feature/asset entitlements for the exact plan.",
+    verdictA: "Choose Canva only after checking the current plan and provider terms.",
+    verdictB: "Choose Adobe Express only after checking the current plan and provider terms.",
     whoTable: [
-      { persona: "Social media managers & marketers", pick: "Canva Pro Shared — BDT 399", reason: "Cheapest option, with a huge template and stock library." },
-      { persona: "Adobe Creative Cloud users", pick: "Adobe Express Premium", reason: "Firefly generative AI fits directly into an existing Adobe workflow." },
-      { persona: "Small teams needing brand kits on a budget", pick: "Canva Pro", reason: "Brand kit tools are included on Pro; Express needs Creative Cloud for that." },
+      { persona: "You need a fixed published price", pick: "Compare current product pages", reason: "Request-price offers should not be treated as fixed-price offers." },
+      { persona: "Access type matters", pick: "Compare current access modes", reason: "Check the exact arrangement before payment." },
+      { persona: "Assets or AI credits matter", pick: "Check provider terms", reason: "Verify current provider entitlements rather than an old static matrix." }
     ],
     relatedGuides: [
-      { label: "Best AI for Designers", href: "/best-ai-for-designers" },
-      { label: "Best AI for Marketers", href: "/best-ai-for-marketers" },
-      { label: "Best AI for Creators", href: "/best-ai-for-creators" },
-    ],
+      { label: "Best AI for designers", href: "/best-ai-for-designers" },
+      { label: "AI Design category", href: "/ai-design" }
+    ]
   },
+  "copilot-vs-cursor": {
+    title: "GitHub Copilot vs Cursor in Bangladesh | AI Premium Shop",
+    h1: "GitHub Copilot vs Cursor — Compare Current AIPS Options",
+    aioSnippet: "Compare current AI Premium Shop catalog records for GitHub Copilot and Cursor by published BDT price and access model. Verify current provider models, quotas and feature limits before purchase.",
+    metaDescription: "Compare current AIPS GitHub Copilot and Cursor options by published BDT price and access model. Verify provider limits and terms before purchase.",
+    canonical: "https://aipremiumshop.com/copilot-vs-cursor",
+    productA: { name: "GitHub Copilot", color: "#6e40c9", orderText: "View GitHub Copilot", slug: "github-copilot-bangladesh" },
+    productB: { name: "Cursor", color: "#60a5fa", orderText: "View Cursor", slug: "cursor-bangladesh" },
+    rows: [
+      { feature: "AIPS public pricing", a: "See current product page", b: "See current product page" },
+      { feature: "Access model", a: "Compare current published plans", b: "Compare current published plans" },
+      { feature: "Provider models and quotas", a: "Verify current provider terms", b: "Verify current provider terms" },
+      { feature: "Availability and delivery", a: "Confirm before payment", b: "Confirm before payment" }
+    ],
+    verdict: "Developer-tool capabilities and quotas move quickly. Use AIPS for current published price/access, then verify provider-controlled features for the exact plan.",
+    verdictA: "Choose GitHub Copilot only after checking the current plan and provider terms.",
+    verdictB: "Choose Cursor only after checking the current plan and provider terms.",
+    whoTable: [
+      { persona: "Price is your main constraint", pick: "Compare current BDT plans", reason: "Use live AIPS catalog values." },
+      { persona: "Model quotas matter", pick: "Check provider terms", reason: "Quota and model availability can change quickly." },
+      { persona: "Access privacy matters", pick: "Compare access modes", reason: "Confirm the exact AIPS access arrangement before payment." }
+    ],
+    relatedGuides: [
+      { label: "Best AI for developers", href: "/best-ai-for-developers" },
+      { label: "AI Code category", href: "/ai-code" }
+    ]
+  }
 };
 
-function Cell({ value }: { value: string | boolean }) {
-  if (typeof value === "boolean") {
-    return value
-      ? <span className="inline-flex items-center justify-center text-emerald-400 font-semibold"><Check className="w-5 h-5" /></span>
-      : <X className="w-5 h-5 mx-auto" style={{ color: "#ef4444" }} />;
-  }
-  return <span className="text-sm" style={{ color: "#c9ceda" }}>{value}</span>;
+const records = (productsData.products as ProductRecord[]).filter((product) => !RETIRED_PRODUCT_SLUGS.has(product.slug));
+
+function displayAccessMode(mode: string | null | undefined) {
+  if (mode === "shared") return "Shared";
+  if (mode === "personal") return "Personal";
+  if (mode === "team") return "Team";
+  if (mode === "bundle") return "Bundle";
+  if (mode === "setup-service" || mode === "setup" || mode === "service") return "Setup / service";
+  return "Confirm";
 }
 
-interface ComparisonPageProps {
-  compKey: string;
+function minimumPrice(items: ProductRecord[], mode?: string) {
+  const values = items
+    .filter((item) => !item.requestPrice && (!mode || item.accessType === mode))
+    .map((item) => item.price)
+    .filter((value): value is number => typeof value === "number" && value > 0);
+  return values.length ? Math.min(...values) : null;
 }
 
-export default function ComparisonPage({ compKey }: ComparisonPageProps) {
+function ProductColumn({ config, items }: { config: CompConfig["productA"]; items: ProductRecord[] }) {
+  const first = items[0];
+  const lowest = minimumPrice(items);
+  const shared = minimumPrice(items, "shared");
+  const personal = minimumPrice(items, "personal");
+  const modes = [...new Set(items.map((item) => item.accessType).filter(Boolean))].map(displayAccessMode);
+  const tags = [...new Set(items.flatMap((item) => item.capabilities ?? []))].slice(0, 6);
+
+  return (
+    <article className="rounded-2xl border border-white/10 p-5 md:p-6" style={{ backgroundColor: "#151b3d" }}>
+      <div className="flex items-center gap-3 mb-5">
+        <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10" style={{ backgroundColor: `${config.color}16` }}>
+          <BrandIcon brand={first?.brand ?? config.name} color={config.color} size={30} />
+        </div>
+        <div>
+          <h2 className="text-xl font-bold text-white">{config.name}</h2>
+          <p className="mt-1 text-xs text-slate-400">{items.length} current public plan record{items.length === 1 ? "" : "s"}</p>
+        </div>
+      </div>
+
+      <dl className="space-y-4 text-sm">
+        <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-3"><dt className="text-slate-400">Lowest published price</dt><dd className="font-semibold text-right text-[#f4b942]">{lowest ? `${formatBDT(lowest)}/mo` : "On request"}</dd></div>
+        <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-3"><dt className="text-slate-400">Shared access</dt><dd className="font-medium text-right text-white">{shared ? `From ${formatBDT(shared)}/mo` : "Not currently published"}</dd></div>
+        <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-3"><dt className="text-slate-400">Personal access</dt><dd className="font-medium text-right text-white">{personal ? `From ${formatBDT(personal)}/mo` : "Not currently published"}</dd></div>
+        <div className="flex items-start justify-between gap-4"><dt className="text-slate-400">Published access modes</dt><dd className="font-medium text-right text-white">{modes.length ? modes.join(", ") : "Confirm before payment"}</dd></div>
+      </dl>
+
+      {tags.length > 0 && (
+        <div className="mt-5 border-t border-white/10 pt-5">
+          <p className="mb-2 text-xs font-semibold text-white">Catalog discovery tags</p>
+          <div className="flex flex-wrap gap-1.5">{tags.map((tag) => <span key={tag} className="rounded-full border border-white/10 px-2 py-1 text-xs capitalize text-slate-300">{String(tag).replaceAll("-", " ")}</span>)}</div>
+          <p className="mt-3 text-[11px] leading-5 text-slate-500">Discovery tags help narrow the catalog; they are not a promise that every plan includes every provider feature.</p>
+        </div>
+      )}
+
+      <Link href={productPath(config.slug)} className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: config.color }}>
+        View current product details <ArrowRight className="h-4 w-4" />
+      </Link>
+    </article>
+  );
+}
+
+export default function ComparisonPage({ compKey }: { compKey: string }) {
+  const reducedMotion = useReducedMotion();
   const comp = COMPARISONS[compKey];
-  if (!comp) return null;
+  const aItems = useMemo(() => records.filter((item) => item.slug === comp?.productA.slug), [comp?.productA.slug]);
+  const bItems = useMemo(() => records.filter((item) => item.slug === comp?.productB.slug), [comp?.productB.slug]);
 
-  const orderAUrl = `${WHATSAPP}?text=${encodeURIComponent(`Hi, I want to order ${comp.productA.name}`)}`;
-  const orderBUrl = `${WHATSAPP}?text=${encodeURIComponent(`Hi, I want to order ${comp.productB.name}`)}`;
+  if (!comp || !aItems.length || !bItems.length) {
+    return (
+      <PageLayout>
+        <SEOHead title="Comparison Not Available | AI Premium Shop" description="This comparison is not available in the current public catalog." noindex />
+        <div id="main-content" className="mx-auto max-w-4xl px-4 py-24 text-center">
+          <h1 className="mb-4 text-3xl font-bold text-white">Comparison not available</h1>
+          <Link href="/products" className="inline-flex items-center gap-2 rounded-xl bg-[#f4b942] px-5 py-3 font-semibold text-[#0a0e27]">Browse current tools <ArrowRight className="h-4 w-4" /></Link>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  const schema = { "@context": "https://schema.org", "@type": "WebPage", name: comp.title, url: comp.canonical, description: comp.metaDescription, about: [comp.productA.name, comp.productB.name] };
+  const askUrl = `${WHATSAPP}?text=${encodeURIComponent(`Hi, please compare ${comp.productA.name} vs ${comp.productB.name} for my use case. Please confirm current AIPS price, access model, availability, delivery ETA and applicable provider limits before payment.`)}`;
 
   return (
     <PageLayout>
       <SEOHead title={comp.title} description={comp.metaDescription} canonical={comp.canonical} />
-      <Breadcrumb items={[
-        { name: "Home", href: "/" },
-        { name: "Compare", href: "/blog" },
-        { name: `${comp.productA.name.split(" ")[0]} vs ${comp.productB.name.split(" ")[0]}` },
-      ]} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Products", href: "/products" }, { name: `${comp.productA.name} vs ${comp.productB.name}` }]} />
 
-      <div className="max-w-4xl mx-auto px-4 md:px-8 py-14">
+      <div id="main-content" className="mx-auto max-w-6xl px-4 py-10 md:px-8 md:py-14">
+        <motion.header initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} className="mx-auto mb-10 max-w-4xl text-center">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Current public-catalog comparison</div>
+          <h1 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-5xl">{comp.productA.name} vs {comp.productB.name}</h1>
+          <p className="text-base leading-7 text-slate-300 md:text-lg">Compare what AIPS can currently publish from its catalog: BDT price and access model. Provider models, quotas, credits, storage and feature limits can change independently, so verify those against current provider terms before purchase.</p>
+        </motion.header>
 
-        {/* Hero */}
-        <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-white/20" style={{ color: "#c9ceda" }}>
-            ⚡ Head-to-Head Comparison — Bangladesh 2026
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">{comp.h1}</h1>
-        </motion.div>
+        <div className="mb-8 grid gap-5 lg:grid-cols-2">
+          <ProductColumn config={comp.productA} items={aItems} />
+          <ProductColumn config={comp.productB} items={bItems} />
+        </div>
 
-        {/* AIO Snippet */}
-        <motion.div custom={0.5} variants={fadeUp} initial="hidden" animate="visible"
-          className="p-5 rounded-2xl border mb-8"
-          style={{ backgroundColor: "rgba(244,185,66,0.06)", borderColor: "rgba(244,185,66,0.25)" }}>
-          <p className="text-sm leading-relaxed" style={{ color: "#e8d5a3" }}>{comp.aioSnippet}</p>
-        </motion.div>
-
-        {/* VS Visual */}
-        <motion.div custom={0.8} variants={fadeUp} initial="hidden" animate="visible">
-          <div className="flex items-center justify-center gap-4 my-8">
-            <div className="w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold"
-              style={{ backgroundColor: comp.productA.color + "33", color: comp.productA.color }}>
-              {comp.productA.name.charAt(0)}
-            </div>
-            <span className="text-gray-500 text-2xl font-bold">VS</span>
-            <div className="w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold"
-              style={{ backgroundColor: comp.productB.color + "33", color: comp.productB.color }}>
-              {comp.productB.name.charAt(0)}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Product Labels */}
-        <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible"
-          className="grid grid-cols-2 gap-4 mb-6">
-          <div className="p-4 rounded-2xl border text-center"
-            style={{ backgroundColor: comp.productA.color + "15", borderColor: comp.productA.color + "40" }}>
-            <div className="font-bold text-base" style={{ color: comp.productA.color }}>{comp.productA.name}</div>
-          </div>
-          <div className="p-4 rounded-2xl border text-center"
-            style={{ backgroundColor: comp.productB.color + "15", borderColor: comp.productB.color + "40" }}>
-            <div className="font-bold text-base" style={{ color: comp.productB.color }}>{comp.productB.name}</div>
-          </div>
-        </motion.div>
-
-        {/* Comparison Table */}
-        <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible"
-          className="rounded-2xl border border-white/10 overflow-hidden mb-10"
-          style={{ backgroundColor: "#151b3d" }}>
-          <div className="grid grid-cols-[1fr_1fr_1fr] text-xs font-semibold uppercase tracking-wider border-b border-white/10 bg-white/[0.03]"
-            style={{ color: "#c9ceda" }}>
-            <div className="p-4">Feature</div>
-            <div className="p-4 border-l border-white/10 text-center" style={{ color: comp.productA.color }}>{comp.productA.name.split(" ")[0]}</div>
-            <div className="p-4 border-l border-white/10 text-center" style={{ color: comp.productB.color }}>{comp.productB.name.split(" ")[0]}</div>
-          </div>
-          {comp.rows.map((row, i) => (
-            <div key={i} className={`grid grid-cols-[1fr_1fr_1fr] border-b border-white/5 ${i % 2 === 0 ? "" : "bg-white/2"}`}>
-              <div className="p-4 text-sm font-medium text-white">{row.feature}</div>
-              <div className="p-4 border-l border-white/10 text-center flex items-center justify-center">
-                <Cell value={row.a} />
-              </div>
-              <div className="p-4 border-l border-white/10 text-center flex items-center justify-center">
-                <Cell value={row.b} />
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Verdict */}
-        <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
-          <h2 className="text-2xl font-bold text-white mb-4">Our Verdict</h2>
-          <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>{comp.verdict}</p>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="rounded-lg p-6 border-l-4"
-              style={{ backgroundColor: comp.productA.color + "0d", borderLeftColor: comp.productA.color }}>
-              <div className="font-bold mb-2" style={{ color: comp.productA.color }}>Choose {comp.productA.name.split(" (")[0]}</div>
-              <p className="text-sm" style={{ color: "#c9ceda" }}>{comp.verdictA}</p>
-            </div>
-            <div className="rounded-lg p-6 border-l-4"
-              style={{ backgroundColor: comp.productB.color + "0d", borderLeftColor: comp.productB.color }}>
-              <div className="font-bold mb-2" style={{ color: comp.productB.color }}>Choose {comp.productB.name.split(" (")[0]}</div>
-              <p className="text-sm" style={{ color: "#c9ceda" }}>{comp.verdictB}</p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Who Should Choose */}
-        <motion.div custom={3.5} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
-          <h2 className="text-2xl font-bold text-white mb-4">Who Should Choose What?</h2>
-          <div className="rounded-2xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
-            <div className="grid grid-cols-[1fr_1fr_1fr] text-xs font-semibold uppercase tracking-wider border-b border-white/10 bg-white/[0.03]"
-              style={{ color: "#c9ceda" }}>
-              <div className="p-4">If you are…</div>
-              <div className="p-4 border-l border-white/10">Our pick</div>
-              <div className="p-4 border-l border-white/10">Why</div>
-            </div>
-            {comp.whoTable.map((row, i) => (
-              <div key={i} className={`grid grid-cols-[1fr_1fr_1fr] border-b border-white/5 ${i % 2 !== 0 ? "bg-white/2" : ""}`}>
-                <div className="p-4 text-sm font-medium text-white">{row.persona}</div>
-                <div className="p-4 border-l border-white/10 text-sm font-semibold" style={{ color: "#f4b942" }}>{row.pick}</div>
-                <div className="p-4 border-l border-white/10 text-sm" style={{ color: "#c9ceda" }}>{row.reason}</div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Decision Matrix — ChatGPT vs Claude */}
-        {compKey === "chatgpt-vs-claude" && (
-          <motion.div custom={3.8} variants={fadeUp} initial="hidden" animate="visible"
-            className="mb-10 rounded-2xl border overflow-hidden"
-            style={{ backgroundColor: "#0e1535", borderColor: "rgba(16,163,127,0.3)" }}>
-            <div className="p-5 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-              <h2 className="text-xl font-bold text-white">Quick Decision</h2>
-            </div>
-            <div className="p-5 space-y-4 text-sm">
-              <div className="flex items-start gap-3">
-                <span className="text-lg flex-shrink-0">✔</span>
-                <div><span className="font-bold text-white">Choose ChatGPT if:</span> <span style={{ color: "#c9ceda" }}>You want one tool for everything — writing, coding, images, agents, research</span></div>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="text-lg flex-shrink-0">✔</span>
-                <div><span className="font-bold text-white">Choose Claude if:</span> <span style={{ color: "#c9ceda" }}>You write long documents, legal content, or do complex code review</span></div>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="text-lg flex-shrink-0">✔</span>
-                <div><span className="font-bold text-white">Choose BOTH if:</span> <span style={{ color: "#c9ceda" }}>You're a professional who needs the best of both worlds (৳1,845/mo)</span></div>
-              </div>
-            </div>
-            <div className="px-5 pb-5">
-              <div className="text-xs font-semibold mb-3" style={{ color: "#f4b942" }}>Quick comparison:</div>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                {[
-                  { cat: "Writing quality", winner: "Claude wins", desc: "Strong on independent benchmarks" },
-                  { cat: "Coding speed", winner: "ChatGPT wins", desc: "Codex agent builds full features" },
-                  { cat: "Image generation", winner: "ChatGPT wins", desc: "DALL-E built in, Claude has none" },
-                  { cat: "Research", winner: "Tie", desc: "Both excellent for research" },
-                  { cat: "Agents", winner: "ChatGPT wins", desc: "Custom GPTs, deep research, Codex" },
-                  { cat: "Price", winner: "ChatGPT wins", desc: "৳499 vs Claude ৳1,590" },
-                ].map((row) => (
-                  <div key={row.cat} className="rounded-lg p-2.5 border border-white/10" style={{ backgroundColor: "#151b3d" }}>
-                    <div style={{ color: "#c9ceda" }}>{row.cat}</div>
-                    <div className="font-semibold" style={{ color: "#f4b942" }}>{row.winner}</div>
-                    <div style={{ color: "#6b7280" }}>{row.desc}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Decision Matrix — ChatGPT vs Gemini */}
-        {compKey === "chatgpt-vs-gemini" && (
-          <motion.div custom={3.8} variants={fadeUp} initial="hidden" animate="visible"
-            className="mb-10 rounded-2xl border overflow-hidden"
-            style={{ backgroundColor: "#0e1535", borderColor: "rgba(16,163,127,0.3)" }}>
-            <div className="p-5 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-              <h2 className="text-xl font-bold text-white">Quick Decision</h2>
-            </div>
-            <div className="p-5 space-y-4 text-sm">
-              <div className="flex items-start gap-3">
-                <span className="text-lg flex-shrink-0">✔</span>
-                <div><span className="font-bold text-white">Choose ChatGPT if:</span> <span style={{ color: "#c9ceda" }}>You want the most versatile AI with agents + coding + images</span></div>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="text-lg flex-shrink-0">✔</span>
-                <div><span className="font-bold text-white">Choose Google AI if:</span> <span style={{ color: "#c9ceda" }}>You live in Google ecosystem (Gmail, Docs, Drive) and want 2TB storage</span></div>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="text-lg flex-shrink-0">✔</span>
-                <div><span className="font-bold text-white">Choose BOTH if:</span> <span style={{ color: "#c9ceda" }}>ChatGPT for work + Google AI for email/docs (৳850/mo total)</span></div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Order CTAs */}
-        <motion.div custom={4} variants={fadeUp} initial="hidden" animate="visible"
-          className="p-8 rounded-2xl border border-white/10 text-center"
-          style={{ backgroundColor: "#151b3d" }}>
-          <h2 className="text-xl font-bold text-white mb-2">Ready to order?</h2>
-          <p className="text-sm mb-2" style={{ color: "#c9ceda" }}>
-            Both delivered in 5–30 minutes. Pay with bKash, Nagad, or Rocket. 30-day warranty.
-          </p>
-          {comp.buyBothText && (
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium border mb-6"
-              style={{ backgroundColor: "#f4b94210", borderColor: "#f4b94230", color: "#f4b942" }}>
-              💡 {comp.buyBothText}
-            </div>
-          )}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href={orderAUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity border"
-              style={{ backgroundColor: comp.productA.color + "20", borderColor: comp.productA.color + "50", color: comp.productA.color }}>
-              <MessageCircle className="w-4 h-4" />
-              {comp.productA.orderText}
-            </a>
-            <a href={orderBUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity border"
-              style={{ backgroundColor: comp.productB.color + "20", borderColor: comp.productB.color + "50", color: comp.productB.color }}>
-              <MessageCircle className="w-4 h-4" />
-              {comp.productB.orderText}
-            </a>
-            <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want to order BOTH " + comp.productA.name.split(" ")[0] + " and " + comp.productB.name.split(" ")[0])}`} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-3 rounded-xl font-bold hover:opacity-90 transition-opacity">
-              Buy Both
-            </a>
-          </div>
-          <div className="mt-6 pt-6 border-t border-white/10 flex flex-wrap items-center gap-4 justify-center">
-            <Link href="/products"
-              className="inline-flex items-center gap-1 text-sm hover:opacity-80 transition-opacity"
-              style={{ color: "#c9ceda" }}>
-              Browse all {TOTAL_PRODUCTS} AI tools
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-        </motion.div>
-
-        {comp.relatedGuides.length > 0 && (
-          <motion.div custom={5} variants={fadeUp} initial="hidden" animate="visible"
-            className="mt-8 p-6 rounded-2xl border border-white/10"
-            style={{ backgroundColor: "#151b3d" }}>
-            <h3 className="font-semibold text-white mb-1">Role-specific guides</h3>
-            <p className="text-sm mb-4" style={{ color: "#c9ceda" }}>See which tool our experts recommend for your use case.</p>
-            <div className="flex flex-wrap gap-3">
-              {comp.relatedGuides.map((g) => (
-                <Link key={g.href} href={g.href}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border hover:opacity-80 transition-opacity"
-                  style={{ backgroundColor: "#f4b94212", borderColor: "#f4b94230", color: "#f4b942", minHeight: "44px" }}>
-                  {g.label}
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+        <section className="mb-10 grid gap-5 lg:grid-cols-[1fr_340px]">
+          <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
+            <h2 className="mb-4 text-xl font-bold text-white">How to make the comparison safely</h2>
+            <div className="space-y-4">
+              {[
+                ["Start with access", "Decide whether your work requires personal access, can tolerate shared access, or needs a team/service arrangement."],
+                ["Verify the provider today", "Check the exact current model lineup, credits, usage limits, storage and other provider-controlled entitlements."],
+                ["Confirm the exact order", "Ask AIPS for current availability, delivery ETA and applicable terms for the exact plan before paying."]
+              ].map(([heading, body]) => (
+                <div key={heading} className="flex gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" /><div><h3 className="text-sm font-semibold text-white">{heading}</h3><p className="mt-1 text-sm leading-6 text-slate-300">{body}</p></div></div>
               ))}
             </div>
-          </motion.div>
-        )}
+          </div>
+          <aside className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><WalletCards className="mb-3 h-6 w-6 text-[#f4b942]" /><h2 className="mb-2 text-lg font-bold text-white">Need a current recommendation?</h2><p className="mb-4 text-sm leading-6 text-slate-300">Tell us your workflow, privacy requirement and budget. We can confirm the currently published AIPS options before payment.</p><a href={askUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-semibold text-white"><MessageCircle className="h-4 w-4" /> Ask for current comparison</a></aside>
+        </section>
+
+        <section className="rounded-2xl border border-white/10 bg-[#151b3d]/70 p-6">
+          <div className="mb-5 flex items-start gap-3"><Info className="mt-0.5 h-5 w-5 text-[#f4b942]" /><div><h2 className="font-bold text-white">Related decision guides</h2><p className="mt-1 text-sm text-slate-300">Use-case guides can narrow the category before you compare exact plans.</p></div></div>
+          <div className="flex flex-wrap gap-2">{comp.relatedGuides.map((item) => <Link key={item.href} href={item.href} className="rounded-xl border border-white/10 px-3 py-2 text-sm font-medium text-slate-200 hover:border-white/20">{item.label}</Link>)}<Link href="/pricing" className="rounded-xl border border-white/10 px-3 py-2 text-sm font-medium text-slate-200 hover:border-white/20">Compare current pricing</Link></div>
+        </section>
       </div>
     </PageLayout>
   );

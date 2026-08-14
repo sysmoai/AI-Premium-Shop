@@ -49,6 +49,21 @@ function assert(condition, message) {
   if (!condition) throw new Error(`[public-projection-test] ${message}`);
 }
 
+function assertNeutralizedLegacyFields(product, label) {
+  assert(product.deliverySLA == null, `${label}: deliverySLA survived governed projection`);
+  assert(product.estimatedDeliveryTime == null, `${label}: estimatedDeliveryTime survived governed projection`);
+  assert(product.deliveryMethod == null, `${label}: deliveryMethod survived governed projection`);
+  assert(product.stock == null, `${label}: stock survived governed projection`);
+  assert(product.trust == null, `${label}: trust/rating block survived governed projection`);
+  assert(!Array.isArray(product.badges) || product.badges.length === 0, `${label}: badges survived governed projection`);
+  assert(!Array.isArray(product.competitorCompare) || product.competitorCompare.length === 0, `${label}: competitorCompare survived governed projection`);
+  assert(product.whatsappMsg == null, `${label}: stale product-specific WhatsApp message survived governed projection`);
+  assert(product.activationType == null, `${label}: activationType survived governed projection`);
+  assert(!Array.isArray(product.bundleSuggestions) || product.bundleSuggestions.length === 0, `${label}: bundleSuggestions survived governed projection`);
+  assert(product.higherPlanUpsell == null, `${label}: higherPlanUpsell survived governed projection`);
+  assert(!Array.isArray(product.howItWorksSteps) || product.howItWorksSteps.length === 0, `${label}: howItWorksSteps survived governed projection`);
+}
+
 try {
   const raw = JSON.parse(readFileSync(rawPath, "utf8"));
   const rawProducts = Array.isArray(raw) ? raw : raw.products ?? [];
@@ -57,6 +72,9 @@ try {
   const currentHomepage = runHomepageV2();
 
   assert(current.products.length === rawProducts.length, "current projection changed catalog record count");
+  assert(current.projection.schema_version === 2, "current projection is not schema v2");
+  assert(current.projection.approved_mode_policy === "governed-approved-commerce-v2", "approved projection policy revision is missing");
+  assert(current.projection.legacy_commercial_fields_neutralized === true, "approved projection did not record legacy-field neutralization");
   assert(
     current.projection.mode === "approved-commerce",
     `expected approved-commerce current mode, got ${current.projection.mode}`,
@@ -65,6 +83,24 @@ try {
   assert(currentState.includes('"quarantine": false'), "current compile-time gate unexpectedly enabled quarantine");
   assert(currentHomepage.publication.mode === "approved-commerce", "Homepage V2 did not inherit approved publication mode");
   assert(!currentHomepage.recommendations.some((p) => p.slug === "replit-bangladesh"), "retired platform leaked into Homepage V2 recommendations");
+
+  let preservedPriceCount = 0;
+  let preservedAccessCount = 0;
+  for (let index = 0; index < current.products.length; index += 1) {
+    const projected = current.products[index];
+    const source = rawProducts[index];
+    assertNeutralizedLegacyFields(projected, projected.slug ?? `record-${index}`);
+    if (typeof source.price === "number" && Number.isFinite(source.price)) {
+      assert(projected.price === source.price, `${projected.slug}: approved AIPS price changed during governance projection`);
+      preservedPriceCount += 1;
+    }
+    if (source.accessType != null) {
+      assert(projected.accessType === source.accessType, `${projected.slug}: approved catalog access label changed during governance projection`);
+      preservedAccessCount += 1;
+    }
+  }
+  assert(preservedPriceCount > 0, "approved projection preserved no numeric AIPS prices");
+  assert(preservedAccessCount > 0, "approved projection preserved no access labels");
 
   const site = JSON.parse(originalSite);
   const commercial = JSON.parse(originalCommercial);
@@ -90,14 +126,12 @@ try {
   assert(quarantinedHomepage.catalog.publicPlans === 0, "Homepage V2 retained public sellable plan count under quarantine");
 
   for (const product of quarantined.products) {
+    assertNeutralizedLegacyFields(product, product.slug);
     assert(product.price == null, `${product.slug}: numeric/public price survived quarantine`);
     assert(product.requestPrice === true, `${product.slug}: request-price fallback not enforced`);
     assert(product.officialUSD == null, `${product.slug}: officialUSD survived quarantine`);
     assert(product.accessType == null, `${product.slug}: accessType survived quarantine`);
-    assert(product.deliverySLA == null, `${product.slug}: deliverySLA survived quarantine`);
-    assert(product.whatsappMsg == null, `${product.slug}: product-specific order message survived quarantine`);
     assert(!Array.isArray(product.plans) || product.plans.length === 0, `${product.slug}: plans survived quarantine`);
-    assert(product.trust == null, `${product.slug}: trust/warranty block survived quarantine`);
   }
 
   for (const recommendation of quarantinedHomepage.recommendations) {
@@ -109,7 +143,7 @@ try {
     }
   }
 
-  console.log(`[public-projection-test] PASS: ${quarantined.products.length} records, Homepage V2 variants/media and compile-time app gate fail closed under simulated quarantine`);
+  console.log(`[public-projection-test] PASS: ${current.products.length} governed approved records preserve catalog price/access while blocking legacy commercial claims; quarantine still fails closed`);
 } finally {
   writeFileSync(sitePath, originalSite, "utf8");
   writeFileSync(commercialPath, originalCommercial, "utf8");

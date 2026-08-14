@@ -42,9 +42,9 @@
       </style>
     </noscript>
 
-    <!-- Primary SEO -->
-    <title>AI Premium Shop — 197 Premium AI Tools Bangladesh | From BDT 299</title>
-    <meta name="description" content="197 premium AI tools (239 plans) in Bangladesh from BDT 299 to BDT 29,900. ChatGPT, Claude, Midjourney, Notion &amp; more. 5 Payment Methods: bKash, Nagad, Rocket, Bank, Binance. 5-30 min delivery. 10,000+ customers." />
+    <!-- Fail-safe defaults only. Route prerenderers replace these for public pages. -->
+    <title>AI Premium Shop — AI Tool Discovery in Bangladesh</title>
+    <meta name="description" content="Discover and compare AI tools in Bangladesh. Check current product pages for published BDT prices, access models, availability and applicable terms." />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -58,17 +58,15 @@
 
     <!-- Hreflang for this file specifically (the homepage — its real Bangla
          equivalent is /bn). This is ALSO the template scripts/prerender-
-         products.mjs's writeRoute() starts every one of the 272 built pages
-         from: it strips these 3 tags and injects the route-correct set (or
-         none, if the route has no Bangla counterpart) via its own
-         HREFLANG_PAIRS map — see that file's comment for the full history.
-         These only matter as-written if this raw file is ever served
-         un-prerendered (e.g. a local dev server before `pnpm run build`). -->
+         products.mjs's writeRoute() starts every one of the built pages from:
+         it strips these 3 tags and injects the route-correct set (or none, if
+         the route has no Bangla counterpart) via its own HREFLANG_PAIRS map. -->
     <link rel="alternate" hreflang="en-BD" href="https://aipremiumshop.com/" />
     <link rel="alternate" hreflang="bn-BD" href="https://aipremiumshop.com/bn" />
     <link rel="alternate" hreflang="x-default" href="https://aipremiumshop.com/" />
 
-    <!-- JSON-LD: Organization + LocalBusiness + WebSite with SearchAction -->
+    <!-- JSON-LD: stable business identity only. Volatile catalog price ranges
+         belong in governed route/product data, not this shared template. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -83,7 +81,6 @@
       },
       "areaServed": "BD",
       "currenciesAccepted": "BDT",
-      "priceRange": "BDT299-BDT29900",
       "sameAs": [
         "https://www.facebook.com/aipremiumshopfb",
         "https://www.instagram.com/aipremiumshop/",
@@ -124,15 +121,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <!-- Bangla. Inter has NO Bengali glyphs, so every Bangla character on /bn and
-         the -bn routes was falling back to whatever the OS happened to pick —
-         Vrinda on Windows, Kohinoor on iOS, Noto on Android. Three devices, three
-         different-looking pages, none of them designed.
-
-         Anek Bangla is a VARIABLE font by Ek Type, drawn for Bengali rather than
-         adapted from a Latin face: one file covers weight 100-800, which matters
-         on Bangladeshi mobile data where a second static family would be another
-         ~150KB. Scoped in index.css to html[lang^="bn"], so English routes keep
-         Inter and pay nothing for this. -->
+         the -bn routes was falling back to whatever the OS happened to pick.
+         Anek Bangla is scoped in index.css to html[lang^="bn"]. -->
     <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300..800&display=swap" rel="stylesheet" />
   </head>
   <body>

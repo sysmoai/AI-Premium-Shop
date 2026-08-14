@@ -9,6 +9,17 @@ const STALE_UNIVERSAL_CLAIMS = [
   "fast delivery",
 ];
 
+const STALE_PRICING_CLAIMS = [
+  "$20/mo",
+  "approximately bdt 2,990",
+  "you pay bdt 499 for shared access",
+  "no bank fees",
+  "international card required",
+  "biggest savings",
+  "all 239 plans",
+  "197 tools from bdt 299",
+];
+
 test("products catalog avoids stale universal commerce claims and retired product routes", async ({ page }) => {
   await page.goto("/products", { waitUntil: "networkidle" });
   const heading = page.getByRole("heading", { name: "Find the AI tool that fits your work" });
@@ -45,4 +56,40 @@ test("products raw HTML does not emit stale universal FAQ commerce claims", asyn
   }
   expect(html).not.toContain('"@type":"faqpage"');
   expect(html).not.toContain("replit-bangladesh");
+});
+
+test("pricing runtime compares only published AIPS facts and requires confirmation", async ({ page }) => {
+  await page.goto("/pricing", { waitUntil: "networkidle" });
+  await expect(page.getByRole("heading", { name: "AI Tool Pricing in Bangladesh" })).toBeVisible();
+
+  const main = page.getByRole("main");
+  await expect(main).toHaveCount(1);
+  const text = (await main.innerText()).toLowerCase();
+  for (const claim of [...STALE_UNIVERSAL_CLAIMS, ...STALE_PRICING_CLAIMS]) {
+    expect(text).not.toContain(claim);
+  }
+
+  const accessFilter = page.getByRole("combobox", { name: "Filter by access type" });
+  await expect(accessFilter.locator('option[value="personal"]')).toHaveCount(1);
+  await expect(accessFilter.locator('option[value="private"]')).toHaveCount(0);
+  await accessFilter.selectOption("personal");
+
+  const rows = page.getByRole("row").filter({ has: page.getByRole("link", { name: "Confirm" }) });
+  expect(await rows.count()).toBeGreaterThan(0);
+  await expect(rows.first()).toContainText("Confirm before payment");
+  await expect(page.locator('a[href*="replit-bangladesh"]')).toHaveCount(0);
+});
+
+test("pricing raw HTML is truth-safe for crawlers", async ({ request }) => {
+  const response = await request.get("/pricing");
+  expect(response.ok()).toBeTruthy();
+  const html = (await response.text()).toLowerCase();
+
+  expect(html).toContain("ai tool pricing in bangladesh");
+  expect(html).toContain("confirm current availability");
+  for (const claim of [...STALE_UNIVERSAL_CLAIMS, ...STALE_PRICING_CLAIMS]) {
+    expect(html).not.toContain(claim);
+  }
+  expect(html).not.toContain("replit-bangladesh");
+  expect(html).not.toContain('"pricerange"');
 });

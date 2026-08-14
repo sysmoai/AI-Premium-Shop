@@ -10,7 +10,6 @@ import { formatBDT } from "@/lib/format";
 import { productPath } from "@/lib/productRoutes";
 import productsData from "../../data/catalog-pages.json";
 
-const SITE = "https://aipremiumshop.com";
 const WHATSAPP = "https://wa.me/8801865385348";
 const RETIRED_PRODUCT_SLUGS = new Set(["replit-bangladesh"]);
 

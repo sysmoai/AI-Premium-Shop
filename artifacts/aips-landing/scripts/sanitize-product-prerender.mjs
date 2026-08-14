@@ -126,6 +126,8 @@ for (const entry of fs.readdirSync(PRODUCT_DIR, { withFileTypes: true })) {
 <p>${esc(safeDescription)}</p>
 <p>${fromPrice ? `Published AIPS plan prices start from <strong>${fmtBDT(fromPrice)}</strong>.` : "This listing does not publish a fixed price."}</p>
 ${planRows ? `<h2>Current public plans</h2><ul>${planRows}</ul>` : `<h2>Current plan details</h2><p>Confirm the current price and plan details before payment.</p>`}
+<h2>Provider-controlled details</h2>
+<p>Models, credits, quotas, storage, export quality, integrations, licensing and other provider-controlled entitlements can change by plan or account. Verify the exact current entitlements for the plan you intend to use instead of inferring them from the product name or price.</p>
 <h2>Before payment</h2>
 <ul><li>Confirm the exact access model.</li><li>Confirm current availability and delivery ETA.</li><li>Check provider-controlled credits, quotas, storage and usage limits for the exact plan.</li><li>Confirm applicable order, refund and replacement terms.</li></ul>
 <p><a href="/products">Browse all AI tools</a> · <a href="/pricing">Compare current pricing</a> · <a href="/how-to-order">How to order</a></p>

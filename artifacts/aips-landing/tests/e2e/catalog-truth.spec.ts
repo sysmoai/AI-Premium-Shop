@@ -46,11 +46,15 @@ test("personal access filter uses the catalog's real personal value and persists
   await expect(sampled).not.toContainText(/shared/i);
 });
 
-test("products raw HTML does not emit stale universal FAQ commerce claims", async ({ request }) => {
-  const response = await request.get("/products");
+test("products generated HTML does not emit stale universal FAQ commerce claims", async ({ request }) => {
+  // Vite preview is an SPA server and intentionally falls back to root index.html
+  // for a no-JS clean-URL request. Inspect the physical prerender artifact here;
+  // exact clean-URL routing is independently verified on the Vercel preview.
+  const response = await request.get("/products/index.html");
   expect(response.ok()).toBeTruthy();
   const html = (await response.text()).toLowerCase();
 
+  expect(html).toContain("all 196 ai tools");
   for (const claim of STALE_UNIVERSAL_CLAIMS) {
     expect(html).not.toContain(claim);
   }
@@ -80,13 +84,16 @@ test("pricing runtime compares only published AIPS facts and requires confirmati
   await expect(page.locator('a[href*="replit-bangladesh"]')).toHaveCount(0);
 });
 
-test("pricing raw HTML is truth-safe for crawlers", async ({ request }) => {
-  const response = await request.get("/pricing");
+test("pricing generated HTML is truth-safe for crawlers", async ({ request }) => {
+  // Inspect the physical route artifact; Vercel preview/live clean-URL behavior
+  // is checked separately before release because Vite preview uses SPA fallback.
+  const response = await request.get("/pricing/index.html");
   expect(response.ok()).toBeTruthy();
   const html = (await response.text()).toLowerCase();
 
   expect(html).toContain("ai tool pricing in bangladesh");
   expect(html).toContain("confirm current availability");
+  expect(html).toContain('rel="canonical" href="https://aipremiumshop.com/pricing"');
   for (const claim of [...STALE_UNIVERSAL_CLAIMS, ...STALE_PRICING_CLAIMS]) {
     expect(html).not.toContain(claim);
   }

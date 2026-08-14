@@ -51,6 +51,11 @@ try {
   // receive the same decision architecture as the hydrated application. The
   // same script also emits the private noindex canary route.
   run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
+  // The source sitemap is intentionally broad because older generators still
+  // use it as a route inventory. The deployed sitemap must be narrower: only
+  // canonical, indexable URLs, never redirects, retired products or pages whose
+  // generated canonical points somewhere else.
+  run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
   run(process.execPath, ["scripts/audit-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/audit-plan-pages.mjs"]);
   run(process.execPath, ["scripts/audit-prerender.mjs"]);

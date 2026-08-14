@@ -43,6 +43,18 @@ const fmtBDT = (value) => `BDT ${Number(value).toLocaleString("en-BD")}`;
 const cleanName = (value) => String(value ?? "AI tool").split(/—\s*/)[0].split(/\s+-\s+/)[0].trim();
 const accessLabel = (value) => value === "shared" ? "Shared access" : value === "team" ? "Team access" : value === "bundle" ? "Bundle" : value === "setup-service" ? "Setup / service" : "Personal access";
 
+function fitTitle(value) {
+  if (value.length <= 70) return value;
+  const suffix = " | AI Premium Shop";
+  const stem = value.endsWith(suffix) ? value.slice(0, -suffix.length) : value;
+  const available = 69 - suffix.length;
+  return `${stem.slice(0, Math.max(24, available)).trimEnd()}…${suffix}`;
+}
+
+function fitDescription(value) {
+  return value.length <= 158 ? value : `${value.slice(0, 157).trimEnd()}…`;
+}
+
 function unsafe(value) {
   const text = String(value ?? "").trim();
   if (!text) return false;
@@ -101,8 +113,10 @@ for (const entry of fs.readdirSync(PRODUCT_DIR, { withFileTypes: true })) {
     .sort((a, b) => a.price - b.price || String(a.tier ?? a.name).localeCompare(String(b.tier ?? b.name)));
   const fromPrice = fixed[0]?.price ?? null;
   const canonical = `${SITE}/product/${slug}`;
-  const title = `${name} Price in Bangladesh | AI Premium Shop`;
-  const description = `${fromPrice ? `Published AIPS plans start from ${fmtBDT(fromPrice)}.` : "Current AIPS price is confirmed on request."} Compare access and confirm availability, provider limits, delivery ETA and terms before payment.`;
+  const title = fitTitle(`${name} Price in Bangladesh | AI Premium Shop`);
+  const description = fitDescription(fromPrice
+    ? `${name} AIPS plans start from ${fmtBDT(fromPrice)}. Compare access and confirm availability, provider limits, delivery ETA and terms before payment.`
+    : `${name} current AIPS price is confirmed on request. Compare access and confirm availability, provider limits, delivery ETA and terms before payment.`);
   const safeDescription = sanitizeProse(main.description, `${name} is listed in the current AI Premium Shop catalog. Review current plan and access details before purchase.`);
 
   const planRows = fixed.map((record) => `<li><strong>${esc(record.tier ?? record.name ?? "Plan")}</strong> — ${fmtBDT(record.price)} · ${esc(accessLabel(record.accessType))}</li>`).join("");
@@ -112,6 +126,8 @@ for (const entry of fs.readdirSync(PRODUCT_DIR, { withFileTypes: true })) {
 <p>${esc(safeDescription)}</p>
 <p>${fromPrice ? `Published AIPS plan prices start from <strong>${fmtBDT(fromPrice)}</strong>.` : "This listing does not publish a fixed price."}</p>
 ${planRows ? `<h2>Current public plans</h2><ul>${planRows}</ul>` : `<h2>Current plan details</h2><p>Confirm the current price and plan details before payment.</p>`}
+<h2>Provider-controlled details</h2>
+<p>Models, credits, quotas, storage, export quality, integrations, licensing and other provider-controlled entitlements can change by plan or account. Verify the exact current entitlements for the plan you intend to use instead of inferring them from the product name or price.</p>
 <h2>Before payment</h2>
 <ul><li>Confirm the exact access model.</li><li>Confirm current availability and delivery ETA.</li><li>Check provider-controlled credits, quotas, storage and usage limits for the exact plan.</li><li>Confirm applicable order, refund and replacement terms.</li></ul>
 <p><a href="/products">Browse all AI tools</a> · <a href="/pricing">Compare current pricing</a> · <a href="/how-to-order">How to order</a></p>
@@ -129,6 +145,8 @@ ${planRows ? `<h2>Current public plans</h2><ul>${planRows}</ul>` : `<h2>Current 
   if (unsafeUnlimited.test(html) && !unlimitedScope.test(html)) throw new Error(`[product-truth] ${slug} still contains unscoped unlimited`);
   if (/"availability"\s*:\s*"https:\/\/schema\.org\/instock"/i.test(html)) throw new Error(`[product-truth] ${slug} still contains synthetic InStock schema`);
   if (/"@type"\s*:\s*"FAQPage"/i.test(html)) throw new Error(`[product-truth] ${slug} still contains FAQPage schema`);
+  if (title.length > 70) throw new Error(`[product-truth] ${slug} title exceeds 70 chars`);
+  if (description.length > 158) throw new Error(`[product-truth] ${slug} description exceeds 158 chars`);
 
   fs.writeFileSync(file, html, "utf8");
   rewritten += 1;

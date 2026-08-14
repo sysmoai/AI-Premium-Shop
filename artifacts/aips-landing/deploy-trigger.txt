@@ -1,6 +1,5 @@
 Purpose: ensure Vercel classifies release-control changes for AIPS as affected so exact-head previews and production deployments are observable and verifiable.
-Current release: GitHub Actions Node 24 runtime migration and workflow self-test coverage.
-Qualification retry: setup-node v5 implicit package-manager caching disabled only for the pnpm-free SSOT job.
+Current release: align monorepo CI and AIPS SEO validation with Node 24, matching the declared AIPS workspace engine and Vercel build runtime.
 Runtime impact: none; this file is not imported, served, or used by the application build.
-Previous production baseline: 6d3771fa28f097c8b855cb59e3c8dc6fcb906eb5
+Previous production baseline: 8bcf55f37a8832a222853583ccf380f37177709e
 Date: 2026-08-14

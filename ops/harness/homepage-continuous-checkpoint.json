@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "date": "2026-08-14",
+  "branch": "improve/homepage-v2-continuous-2026-08-14",
+  "architecture": "existing-homev2-plus-homepage-premium-shell",
+  "rebuild_allowed": false,
+  "production_baseline": "0847a00a472d1daef3f695e1db627198b1151312",
+  "release_policy": "exact-sha-all-gates-green",
+  "checkpoint_scope": [
+    "task-aware-search",
+    "search-dialog-accessibility",
+    "mobile-task-discovery",
+    "viewport-safe-navigation",
+    "reduced-motion-corrections",
+    "truth-derived-payment-labels",
+    "user-controlled-brand-strip"
+  ]
+}

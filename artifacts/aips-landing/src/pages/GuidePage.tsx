@@ -114,7 +114,9 @@ function recommendations(definition: GuideDefinition) {
   }
   return [...groups.entries()].map(([slug, records]) => {
     const first = [...records].sort((a, b) => score(b, definition) - score(a, definition))[0];
-    const prices = records.map((record) => record.price).filter((price): price is number => typeof price === "number" && price > 0 && !record.requestPrice);
+    const prices = records
+      .filter((record) => !record.requestPrice && typeof record.price === "number" && record.price > 0)
+      .map((record) => record.price as number);
     return { slug, first, score: Math.max(...records.map((record) => score(record, definition))), price: prices.length ? Math.min(...prices) : null, access: records.map((record) => record.accessType) };
   }).sort((a, b) => b.score - a.score || (a.price ?? Infinity) - (b.price ?? Infinity)).slice(0, 8);
 }

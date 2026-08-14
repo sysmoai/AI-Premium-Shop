@@ -1,308 +1,217 @@
-import { motion } from "framer-motion";
-import { TOTAL_PRODUCTS, cheapestPriceFor } from "@/lib/catalogStats";
-import { MessageCircle, ChevronRight, ArrowRight, Star } from "lucide-react";
-import { Link, useLocation } from "wouter";
+import { useMemo } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, CheckCircle2, ChevronRight, MessageCircle, ShieldCheck, WalletCards } from "lucide-react";
+import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
-import { Breadcrumb } from "@/components/Breadcrumb";
+import { BrandIcon } from "@/components/BrandIcon";
+import { formatBDT } from "@/lib/format";
+import { productPath } from "@/lib/productRoutes";
+import productsData from "../../data/catalog-pages.json";
 
+const SITE = "https://aipremiumshop.com";
 const WHATSAPP = "https://wa.me/8801865385348";
+const RETIRED = new Set(["replit-bangladesh"]);
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.4, delay: i * 0.07 } }),
+interface ProductRecord {
+  id: string;
+  name: string;
+  slug: string;
+  brand: string | null;
+  brandColor: string | null;
+  category: string;
+  price: number | null;
+  requestPrice?: boolean;
+  accessType: string | null;
+}
+
+interface Family {
+  slug: string;
+  label: string;
+  brand: string | null;
+  brandColor: string | null;
+  category: string;
+  planCount: number;
+  minPrice: number | null;
+  access: string[];
+}
+
+const CATEGORY_META: Record<string, { label: string; href: string; workflow: string }> = {
+  "ai-assistant": { label: "AI Chat & Assistants", href: "/ai-assistant", workflow: "Research, documents, general assistance and everyday AI work" },
+  "ai-image": { label: "AI Image & Design", href: "/ai-image", workflow: "Image generation, editing and visual asset workflows" },
+  "ai-video": { label: "AI Video", href: "/ai-video", workflow: "Video generation, editing, avatars and production" },
+  "ai-voice-music": { label: "AI Voice & Music", href: "/ai-voice-music", workflow: "Speech, voice, audio and music workflows" },
+  "ai-code": { label: "AI Code & Development", href: "/ai-code", workflow: "Coding assistance, app building and development workflows" },
+  "ai-workspace": { label: "AI Workspace", href: "/ai-workspace", workflow: "Documents, meetings, productivity and team workflows" },
+  "ai-writing": { label: "AI Writing & SEO", href: "/ai-writing", workflow: "Writing, editing, research and content operations" },
+  "ai-design": { label: "AI Design & Creative", href: "/ai-design", workflow: "Design, presentations and creative production" },
+  bundles: { label: "Bundles & Services", href: "/bundles", workflow: "Multi-tool packages, implementation and setup services" },
 };
 
-const TOP_TOOLS = [
-  {
-    rank: 1, name: "ChatGPT Plus", price: "from BDT 499/mo", badge: "Best All-Rounder",
-    badgeColor: "#10a37f", slug: "/chatgpt-plans-bangladesh",
-    why: "Most versatile AI available. Writing, coding, image generation, web search, and autonomous agents in one tool. Cheapest entry point in our catalog.",
-    bestFor: ["Students", "Writers", "Developers", "Everyone"],
-  },
-  {
-    rank: 2, name: "Google AI Pro", price: "BDT 499/mo", badge: "Best Value",
-    badgeColor: "#4285f4", slug: "/gemini-advanced-bangladesh",
-    why: "Personal Gmail account, 2TB Drive storage, and AI in every Google app — for BDT 500/month. Strong value for Google Workspace users.",
-    bestFor: ["Professionals", "Students", "Job seekers"],
-  },
-  {
-    rank: 3, name: "Claude Pro", price: "from BDT 599/mo", badge: "Strong for Writing",
-    badgeColor: "#d97706", slug: "/claude-pro-bangladesh",
-    why: "Strong writing quality on independent benchmarks, a 1M token context window, and Claude Code for developers. A solid choice for writers, researchers, and analysts.",
-    bestFor: ["Writers", "Researchers", "Lawyers", "Developers"],
-  },
-  {
-    rank: 4, name: "GitHub Copilot Pro", price: "BDT 1,495/mo", badge: "Best for Developers",
-    badgeColor: "#6e40c9", slug: "/github-copilot-bangladesh",
-    why: "Works inside VS Code and JetBrains with zero workflow change. Unlimited code completions, 300 premium model requests, and multi-file editing. The highest-ROI tool for developers.",
-    bestFor: ["Developers", "Software engineers"],
-  },
-  {
-    rank: 5, name: "Midjourney", price: "from BDT 1,199/mo", badge: "Best for Images",
-    badgeColor: "#8b5cf6", slug: "/midjourney-bangladesh",
-    why: "Photorealistic and artistic image generation. Popular with designers and content creators.",
-    bestFor: ["Designers", "Content creators", "Marketers"],
-  },
-  {
-    rank: 6, name: "Perplexity Pro", price: "from BDT 599/mo", badge: "Best for Research",
-    badgeColor: "#20b2aa", slug: "/perplexity-pro-bangladesh",
-    why: "AI-powered search with citations and source links. Answers any research question with references you can verify. Best research tool at the lowest price.",
-    bestFor: ["Researchers", "Students", "Journalists"],
-  },
-  {
-    rank: 7, name: "Cursor Pro", price: "from BDT 2,990/mo", badge: "Best AI IDE",
-    badgeColor: "#3b82f6", slug: "/cursor-bangladesh",
-    why: "An AI-native coding environment. Agent mode can build entire features from a single prompt.",
-    bestFor: ["Full-stack developers", "Startup founders"],
-  },
-  {
-    rank: 8, name: "ElevenLabs", price: "from BDT 748/mo", badge: "Best for Voice",
-    badgeColor: "#f97316", slug: "/elevenlabs-bangladesh",
-    why: "AI voice cloning and text-to-speech. Create voiceovers, clone your voice, or generate narration in any language.",
-    bestFor: ["Content creators", "Marketers", "Podcasters"],
-  },
-  {
-    rank: 9, name: "Notion AI", price: "from BDT 800/mo", badge: "Best Workspace AI",
-    badgeColor: "#fff", slug: "/notion-business-bangladesh",
-    why: "AI built into the most popular workspace tool. Write, summarize, and organize directly in your Notion pages. Best for teams and knowledge workers.",
-    bestFor: ["Teams", "Managers", "Knowledge workers"],
-  },
-  {
-    rank: 10, name: "Suno AI", price: "from BDT 1,199/mo", badge: "Best for Music",
-    badgeColor: "#ec4899", slug: "/suno-ai-bangladesh",
-    why: "Generate complete songs with lyrics, instruments, and vocals from a text prompt. The best AI music generator for content creators and marketers who need background music.",
-    bestFor: ["Musicians", "Content creators", "Video editors"],
-  },
-];
+const catalog = (productsData.products as ProductRecord[]).filter((product) => !RETIRED.has(product.slug));
 
-const CATEGORY_TABLE = [
-  { category: "AI Writing", best: "Claude Pro", price: "BDT 599/mo", runner: "ChatGPT Plus", slug: "/claude-pro-bangladesh" },
-  { category: "AI Coding", best: "GitHub Copilot Pro", price: "BDT 1,495/mo", runner: "Cursor Pro", slug: "/github-copilot-bangladesh" },
-  { category: "AI Images", best: "Midjourney", price: "BDT 1,199/mo", runner: "Ideogram", slug: "/midjourney-bangladesh" },
-  { category: "AI Research", best: "Perplexity Pro", price: "BDT 599/mo", runner: "ChatGPT Plus", slug: "/perplexity-pro-bangladesh" },
-  { category: "AI Video", best: "Runway", price: "BDT 1,794/mo", runner: "HeyGen", slug: "/runway-bangladesh" },
-  { category: "AI Voice", best: "ElevenLabs", price: "BDT 748/mo", runner: "HeyGen", slug: "/elevenlabs-bangladesh" },
-  { category: "AI Music", best: "Suno AI", price: "BDT 1,199/mo", runner: "Udio", slug: "/suno-ai-bangladesh" },
-  { category: "AI Workspace", best: "Notion AI", price: "BDT 800/mo", runner: "Google AI Pro", slug: "/notion-business-bangladesh" },
-];
+function baseName(value: string): string {
+  return value.split(/—\s*/)[0].split(/\s+-\s+/)[0].trim();
+}
 
-const BUDGET_RECS = [
-  { budget: "Under BDT 500", title: "Best starter combo", tools: "ChatGPT Plus (BDT 499) + Perplexity Pro (BDT 499)", href: "/ai-under-500" },
-  { budget: "BDT 500–1,000", title: "Best solo tool", tools: "Google AI Pro (BDT 499) — personal account, 2TB Drive, AI in all Google apps", href: "/ai-under-1000" },
-  { budget: "BDT 1,000–2,000", title: "Writer's stack", tools: `Claude Pro (from BDT ${(cheapestPriceFor("claude-pro-bangladesh") ?? 0).toLocaleString()}) — the best writing quality, 1M context`, href: "/ai-under-3000" },
-  { budget: "BDT 2,000+", title: "Developer stack", tools: "Cursor Pro (BDT 2,990) — full AI-native coding environment with agent mode", href: "/ai-under-3000" },
-];
+function slugLabel(slug: string): string {
+  const acronyms: Record<string, string> = { ai: "AI", api: "API", seo: "SEO", chatgpt: "ChatGPT", github: "GitHub", pdf: "PDF" };
+  return slug.replace(/-bangladesh$/, "").split("-").map((part) => acronyms[part] ?? (part === "v0" ? "v0" : part.charAt(0).toUpperCase() + part.slice(1))).join(" ");
+}
+
+function safeLabel(record: ProductRecord): string {
+  const candidate = baseName(record.name);
+  return /\b(unlimited|bestseller|best seller)\b/i.test(candidate) ? slugLabel(record.slug) : candidate;
+}
+
+function accessLabel(value: string | null): string {
+  if (value === "shared") return "Shared";
+  if (value === "personal") return "Personal";
+  if (value === "team") return "Team";
+  if (value === "bundle") return "Bundle";
+  if (["setup-service", "setup", "service"].includes(value ?? "")) return "Setup / service";
+  return "Confirm";
+}
+
+function groupFamilies(): Family[] {
+  const groups = new Map<string, ProductRecord[]>();
+  for (const record of catalog) {
+    if (!groups.has(record.slug)) groups.set(record.slug, []);
+    groups.get(record.slug)?.push(record);
+  }
+  return [...groups.entries()].map(([slug, records]) => {
+    const first = records[0];
+    const prices = records
+      .filter((record) => !record.requestPrice && typeof record.price === "number" && record.price > 0)
+      .map((record) => record.price as number);
+    return {
+      slug,
+      label: safeLabel(first),
+      brand: first.brand,
+      brandColor: first.brandColor,
+      category: first.category,
+      planCount: records.length,
+      minPrice: prices.length ? Math.min(...prices) : null,
+      access: [...new Set(records.map((record) => accessLabel(record.accessType)))],
+    };
+  });
+}
+
+const families = groupFamilies();
 
 export default function BestAISubscriptionPage() {
-  const [, navigate] = useLocation();
+  const reducedMotion = useReducedMotion();
+
+  const categoryRows = useMemo(() => Object.entries(CATEGORY_META).map(([category, meta]) => {
+    const categoryFamilies = families.filter((family) => family.category === category);
+    const fixedPrices = categoryFamilies.map((family) => family.minPrice).filter((price): price is number => typeof price === "number");
+    return {
+      category,
+      meta,
+      families: categoryFamilies.length,
+      plans: catalog.filter((record) => record.category === category).length,
+      minPrice: fixedPrices.length ? Math.min(...fixedPrices) : null,
+    };
+  }), []);
+
+  const entryExamples = useMemo(() => categoryRows
+    .filter((row) => row.category !== "bundles")
+    .map((row) => families
+      .filter((family) => family.category === row.category && family.minPrice != null)
+      .sort((a, b) => (a.minPrice ?? Infinity) - (b.minPrice ?? Infinity) || a.label.localeCompare(b.label))[0])
+    .filter((family): family is Family => Boolean(family))
+    .slice(0, 8), [categoryRows]);
+
+  const title = "Best AI Subscription in Bangladesh 2026 | How to Choose";
+  const description = "How to choose an AI subscription in Bangladesh in 2026 using current AIPS workflow categories, published BDT prices and access models—not stale rankings or provider-limit claims.";
+  const askUrl = `${WHATSAPP}?text=${encodeURIComponent("Hi, help me choose an AI subscription for my workflow. Please ask about my use case, privacy needs and budget, then confirm current AIPS price, access model, availability, provider limits, delivery ETA and applicable terms before payment.")}`;
+
   return (
     <PageLayout>
-      <SEOHead
-        title="Best AI Subscription 2026 Bangladesh — Top 10 | AI Premium Shop"
-        description="The best AI subscriptions available in Bangladesh in 2026, ranked by value. ChatGPT, Claude, Google AI Pro, Midjourney and more — with BDT prices and local payment."
-        canonical="https://aipremiumshop.com/best-ai-subscription-2026"
-      />
-      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Best AI Subscription 2026" }]} />
+      <SEOHead title={title} description={description} canonical={`${SITE}/best-ai-subscription-2026`} />
+      <div id="main-content" className="max-w-6xl mx-auto px-4 md:px-8 py-10 md:py-14">
+        <nav aria-label="breadcrumb" className="flex items-center gap-2 text-xs mb-8" style={{ color: "#9ca3af" }}>
+          <Link href="/" className="hover:text-white">Home</Link><ChevronRight className="w-3.5 h-3.5" />
+          <Link href="/guides" className="hover:text-white">Guides</Link><ChevronRight className="w-3.5 h-3.5" />
+          <span className="text-white">AI subscription guide 2026</span>
+        </nav>
 
-      <div className="max-w-4xl mx-auto px-4 md:px-8 py-14">
-        <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-4 border border-white/20"
-            style={{ color: "#c9ceda" }}>
-            ⭐ Updated April 2026 — Bangladesh
+        <motion.header initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="max-w-4xl mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 text-xs font-semibold mb-4" style={{ color: "#f4b942", backgroundColor: "rgba(244,185,66,0.08)" }}>
+            <ShieldCheck className="w-3.5 h-3.5" /> 2026 decision guide · current public catalog
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
-            Best AI Subscription Bangladesh 2026 — Complete Guide
-          </h1>
-          <p className="text-lg mb-4" style={{ color: "#c9ceda" }}>
-            {TOTAL_PRODUCTS} premium AI tools ranked by value, use case, and price. All available in Bangladesh via bKash — no international card needed.
+          <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-4">How to Choose the Best AI Subscription in Bangladesh</h1>
+          <p className="text-base md:text-lg leading-relaxed" style={{ color: "#c9ceda" }}>
+            There is no single objectively best subscription for every user. Start with the workflow you need, choose an access model appropriate to your data, compare the current published AIPS price, and verify provider-controlled limits for the exact plan.
           </p>
-        </motion.div>
+        </motion.header>
 
-        {/* AIO Snippet */}
-        <motion.div custom={0.5} variants={fadeUp} initial="hidden" animate="visible"
-          className="p-5 rounded-2xl border mb-10"
-          style={{ backgroundColor: "rgba(244,185,66,0.06)", borderColor: "rgba(244,185,66,0.25)" }}>
-          <p className="text-sm leading-relaxed" style={{ color: "#e8d5a3" }}>
-            {`The best AI subscription in Bangladesh in 2026 depends on your use case: for the best all-round value, ChatGPT Plus Shared starts at BDT ${(cheapestPriceFor("chatgpt-plus-bangladesh") ?? 0).toLocaleString()}/month. For the best writing quality, Claude Pro starts at BDT ${(cheapestPriceFor("claude-pro-bangladesh") ?? 0).toLocaleString()}/month. For the best value overall, Google AI Pro at BDT ${(cheapestPriceFor("gemini-advanced-bangladesh") ?? 0).toLocaleString()}/month includes a personal Gmail account and 2TB storage. For developers, GitHub Copilot Pro (from BDT ${(cheapestPriceFor("github-copilot-bangladesh") ?? 0).toLocaleString()}/month) offers the highest return on investment. All available via bKash or Nagad — delivery in 5–30 minutes on WhatsApp.`}
-          </p>
-        </motion.div>
-
-        {/* Top 10 Ranked List */}
-        <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible" className="mb-14">
-          <h2 className="text-2xl font-bold text-white mb-6">Top 10 AI Subscriptions Bangladesh 2026</h2>
-          <div className="space-y-4">
-            {TOP_TOOLS.map((tool, i) => {
-              const waUrl = `${WHATSAPP}?text=${encodeURIComponent("Hi, I want to order " + tool.name)}`;
-              return (
-                <motion.div key={i} custom={i + 1} variants={fadeUp} initial="hidden" whileInView="visible"
-                  viewport={{ once: true }}
-                  className="p-5 rounded-2xl border border-white/10 border-l-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
-                  style={{ backgroundColor: "#151b3d", borderLeftColor: tool.badgeColor }}>
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 font-bold text-white text-lg"
-                      style={{ backgroundColor: tool.badgeColor + "20", border: `1px solid ${tool.badgeColor}40` }}>
-                      {tool.rank}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap mb-1">
-                        <h3 className="font-bold text-white text-base"
-                          style={{ cursor: "pointer" }}
-                          onClick={() => navigate(tool.slug)}>
-                          {tool.name}
-                        </h3>
-                        <span className="text-xs px-2 py-0.5 rounded-full font-semibold"
-                          style={{ backgroundColor: tool.badgeColor + "20", color: tool.badgeColor }}>
-                          {tool.badge}
-                        </span>
-                      </div>
-                      {/* Derived from the slug this card already links to. Four of the eight
-                          typed prices here disagreed with the product they sat beside —
-                          Claude Pro at BDT 1,495 (that is Copilot's price) against a real
-                          599, Perplexity at 499 against 599. */}
-                      <div className="text-sm font-semibold mb-2" style={{ color: "#f4b942" }}>
-                        {(() => {
-                          const p = cheapestPriceFor(tool.slug.replace(/^\//, ""));
-                          return p == null ? tool.price : `from BDT ${p.toLocaleString()}/mo`;
-                        })()}
-                      </div>
-                      <p className="text-sm mb-3" style={{ color: "#c9ceda" }}>{tool.why}</p>
-                      <div className="flex items-center flex-wrap gap-2">
-                        <span className="text-xs" style={{ color: "#c9ceda" }}>Best for:</span>
-                        {tool.bestFor.map((t) => (
-                          <span key={t} className="text-xs px-2 py-0.5 rounded-full border"
-                            style={{ borderColor: "rgba(255,255,255,0.1)", color: "#c9ceda" }}>
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-2 flex-shrink-0">
-                      <a href={waUrl} target="_blank" rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold hover:opacity-90 transition-opacity"
-                        style={{ backgroundColor: "#008236", color: "#fff" }}>
-                        <MessageCircle className="w-3.5 h-3.5" />
-                        Order
-                      </a>
-                      <button onClick={() => navigate(tool.slug)}
-                        className="flex items-center justify-center gap-1 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 text-white hover:bg-white/5 transition-colors">
-                        Details
-                        <ChevronRight className="w-3 h-3" />
-                      </button>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
-
-        {/* Best by category */}
-        <motion.div custom={2} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-14">
-          <h2 className="text-2xl font-bold text-white mb-5">Best AI by Category</h2>
-          <div className="rounded-2xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
-            <div className="grid grid-cols-4 text-xs font-semibold uppercase tracking-wider border-b border-white/10 px-5 py-3 bg-white/[0.03]"
-              style={{ color: "#c9ceda" }}>
-              <div>Category</div>
-              <div>Best Pick</div>
-              <div>Price</div>
-              <div>Runner-up</div>
-            </div>
-            {CATEGORY_TABLE.map((row, i) => (
-              <div key={i} className={`grid grid-cols-4 items-center px-5 py-3.5 ${i > 0 ? "border-t border-white/5" : ""}`}>
-                <div className="text-sm font-medium text-white">{row.category}</div>
-                <div>
-                  <a href={row.slug} onClick={(e) => { e.preventDefault(); navigate(row.slug); }}
-                    className="text-sm font-semibold hover:opacity-80 transition-opacity"
-                    style={{ color: "#f4b942" }}>
-                    {row.best}
-                  </a>
-                </div>
-                {/* CATEGORY_TABLE carries its own typed prices, so the page showed
-                    Claude Pro at 599 in the cards above and 1,495 in this table —
-                    the same page disagreeing with itself. Derived from row.slug. */}
-                <div className="text-sm" style={{ color: "#c9ceda" }}>
-                  {(() => {
-                    const p = cheapestPriceFor(row.slug.replace(/^\//, ""));
-                    return p == null ? row.price : `from BDT ${p.toLocaleString()}`;
-                  })()}
-                </div>
-                <div className="text-sm" style={{ color: "#c9ceda" }}>{row.runner}</div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Budget recommendations */}
-        <motion.div custom={3} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-14">
-          <h2 className="text-2xl font-bold text-white mb-5">Best AI Subscription by Budget</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {BUDGET_RECS.map((rec, i) => (
-              <div key={i} className="p-5 rounded-2xl border border-white/10 hover:border-white/20 transition-colors cursor-pointer"
-                style={{ backgroundColor: "#151b3d" }}
-                onClick={() => navigate(rec.href)}>
-                <div className="text-xs font-semibold mb-2 px-2 py-0.5 rounded-full w-fit"
-                  style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}>
-                  {rec.budget}
-                </div>
-                <div className="font-bold text-white text-sm mb-2">{rec.title}</div>
-                <p className="text-xs" style={{ color: "#c9ceda" }}>{rec.tools}</p>
-                <div className="flex items-center gap-1 mt-3 text-xs" style={{ color: "#f4b942" }}>
-                  See tools at this price
-                  <ArrowRight className="w-3 h-3" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Guide links */}
-        <motion.div custom={4} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-10">
-          <h2 className="text-xl font-bold text-white mb-4">Find the Best AI for Your Role</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <section className="rounded-2xl border border-white/10 p-6 md:p-8 mb-10" style={{ backgroundColor: "#151b3d" }}>
+          <h2 className="text-xl font-bold text-white mb-4">Use this four-part decision test</h2>
+          <div className="grid md:grid-cols-2 gap-4">
             {[
-              { label: "Students", href: "/best-ai-for-students" },
-              { label: "Freelancers", href: "/best-ai-for-freelancers" },
-              { label: "Content Creators", href: "/best-ai-for-creators" },
-              { label: "Business Owners", href: "/best-ai-for-business" },
-              { label: "Developers", href: "/best-ai-for-developers" },
-              { label: "Job Seekers", href: "/best-ai-for-job-seekers" },
-              { label: "Designers", href: "/best-ai-for-designers" },
-              { label: "Marketers", href: "/best-ai-for-marketers" },
-              { label: "E-commerce Sellers", href: "/best-ai-for-ecommerce" },
-            ].map((guide) => (
-              <Link key={guide.href} href={guide.href}
-                className="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 hover:border-white/25 text-sm font-medium text-white hover:bg-white/3 transition-colors">
-                {guide.label}
-                <ChevronRight className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#f4b942" }} />
-              </Link>
+              ["1", "Start with the workflow", "Choose the category that solves the job: assistant, writing, coding, video, image, voice, workspace, design or implementation."],
+              ["2", "Choose the access model", "Personal, shared, team, bundle and service access have different privacy and operational constraints. Match the access model to the work."],
+              ["3", "Compare current AIPS prices", "Use published BDT prices as current AIPS catalog evidence, not as an inferred discount against a provider price that may have changed."],
+              ["4", "Verify provider-controlled details", "Check current models, credits, quotas, storage, exports, integrations and other provider limits for the exact plan before payment."],
+            ].map(([number, heading, body]) => (
+              <div key={number} className="flex gap-3 rounded-xl border border-white/10 p-4" style={{ backgroundColor: "#0a0e27" }}>
+                <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ backgroundColor: "rgba(244,185,66,0.14)", color: "#f4b942" }}>{number}</div>
+                <div><h3 className="font-semibold text-white text-sm">{heading}</h3><p className="text-sm mt-1 leading-relaxed" style={{ color: "#c9ceda" }}>{body}</p></div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </section>
 
-        {/* CTA */}
-        <motion.div custom={5} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
-          className="p-8 rounded-2xl border border-white/10 text-center"
-          style={{ backgroundColor: "#151b3d" }}>
-          <Star className="w-8 h-8 mx-auto mb-3" style={{ color: "#f4b942" }} />
-          <h2 className="text-xl font-bold text-white mb-2">Not sure which one to get?</h2>
-          <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>
-            Tell us what you want to do and your budget. We'll recommend the best tool in under 5 minutes.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I need help choosing the best AI tool for my needs")}`}
-              target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: "#008236", color: "#fff" }}>
-              <MessageCircle className="w-5 h-5" />
-              Ask us on WhatsApp
-            </a>
-            <Link href="/products"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold border border-white/15 text-white hover:bg-white/5 transition-colors">
-              Browse All {TOTAL_PRODUCTS} Tools
-            </Link>
+        <section className="mb-12">
+          <div className="mb-5"><p className="text-xs uppercase tracking-[0.18em] font-semibold mb-2" style={{ color: "#f4b942" }}>Compare by workflow</p><h2 className="text-2xl font-bold text-white">Current catalog categories</h2></div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {categoryRows.map((row, index) => (
+              <motion.article key={row.category} initial={reducedMotion ? false : { opacity: 0, y: 12 }} whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.15) }} className="rounded-2xl border border-white/10 p-5" style={{ backgroundColor: "#151b3d" }}>
+                <h3 className="font-bold text-white mb-2">{row.meta.label}</h3>
+                <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>{row.meta.workflow}</p>
+                <dl className="space-y-2 text-xs mb-4">
+                  <div className="flex justify-between gap-3"><dt style={{ color: "#9ca3af" }}>Catalog families</dt><dd className="font-semibold text-white">{row.families}</dd></div>
+                  <div className="flex justify-between gap-3"><dt style={{ color: "#9ca3af" }}>Plan records</dt><dd className="font-semibold text-white">{row.plans}</dd></div>
+                  <div className="flex justify-between gap-3"><dt style={{ color: "#9ca3af" }}>Lowest fixed entry price</dt><dd className="font-semibold" style={{ color: "#f4b942" }}>{row.minPrice ? formatBDT(row.minPrice) : "On request"}</dd></div>
+                </dl>
+                <Link href={row.meta.href} className="inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: "#f4b942" }}>Explore category <ArrowRight className="w-4 h-4" /></Link>
+              </motion.article>
+            ))}
           </div>
-        </motion.div>
+        </section>
+
+        <section className="mb-12">
+          <div className="flex items-end justify-between gap-4 mb-5">
+            <div><p className="text-xs uppercase tracking-[0.18em] font-semibold mb-2" style={{ color: "#f4b942" }}>Mechanical entry-price examples</p><h2 className="text-2xl font-bold text-white">One current fixed-price family per workflow</h2></div>
+            <Link href="/pricing" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: "#f4b942" }}>All current pricing <ArrowRight className="w-4 h-4" /></Link>
+          </div>
+          <p className="text-sm leading-relaxed mb-5 max-w-3xl" style={{ color: "#9ca3af" }}>These examples are selected mechanically as the lowest published fixed AIPS entry price in each workflow category. They are not quality rankings or endorsements.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {entryExamples.map((family, index) => (
+              <motion.article key={family.slug} initial={reducedMotion ? false : { opacity: 0, y: 12 }} whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.15) }} className="rounded-2xl border border-white/10 p-5" style={{ backgroundColor: "#151b3d" }}>
+                <div className="flex items-start gap-3 mb-4"><div className="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center" style={{ backgroundColor: `${family.brandColor || "#f4b942"}16` }}><BrandIcon brand={family.brand ?? family.label} color={family.brandColor || "#f4b942"} size={26} /></div><div><h3 className="font-bold text-white">{family.label}</h3><p className="text-xs mt-1" style={{ color: "#9ca3af" }}>{family.access.join(", ")}</p></div></div>
+                <div className="text-[11px]" style={{ color: "#9ca3af" }}>Published AIPS entry price</div><div className="font-bold mb-4" style={{ color: "#f4b942" }}>{family.minPrice ? `From ${formatBDT(family.minPrice)}` : "Current price on request"}</div>
+                <Link href={productPath(family.slug)} className="inline-flex items-center gap-1 text-sm font-semibold text-white">View current details <ArrowRight className="w-4 h-4" /></Link>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid lg:grid-cols-[1fr_330px] gap-5">
+          <div className="rounded-2xl border border-white/10 p-6" style={{ backgroundColor: "rgba(21,27,61,0.65)" }}>
+            <h2 className="text-xl font-bold text-white mb-4">What this guide intentionally does not claim</h2>
+            <div className="space-y-3">
+              {["No universal Top 10 or objective number-one ranking without a published scoring methodology and current evidence.", "No fixed provider model, context-window, storage, credit or unrestricted-usage claim unless verified for the exact plan.", "No inferred discount, ROI, delivery-time or availability promise. Confirm commercial details for the exact order."].map((point) => <div key={point} className="flex gap-2.5"><CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#10b981" }} /><p className="text-sm" style={{ color: "#c9ceda" }}>{point}</p></div>)}
+            </div>
+          </div>
+          <aside className="rounded-2xl border border-white/10 p-6" style={{ backgroundColor: "#151b3d" }}>
+            <WalletCards className="w-6 h-6 mb-3" style={{ color: "#f4b942" }} />
+            <h2 className="text-lg font-bold text-white mb-3">Need a current fit for your workflow?</h2>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>Share the job, privacy requirement and budget. Confirm the exact AIPS price, access model, availability, provider limits, delivery ETA and terms before payment.</p>
+            <a href={askUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold text-sm" style={{ backgroundColor: "#008236", color: "#fff" }}><MessageCircle className="w-4 h-4" /> Ask for a current fit</a>
+          </aside>
+        </section>
       </div>
     </PageLayout>
   );

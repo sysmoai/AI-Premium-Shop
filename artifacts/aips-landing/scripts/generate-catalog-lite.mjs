@@ -1,17 +1,13 @@
 #!/usr/bin/env node
 // Generates the two trimmed catalogs the UI actually reads.
-//
-// Public pages must be derived from data/public-products.json, which is built
-// from data/products.json only after the Git-backed site/commercial SSOT agrees
-// on publication state. This keeps list/category/brand surfaces on the same
-// commercial projection as product detail and prerender output.
+// Public identity history may include retired tombstones, but UI/search/catalog
+// surfaces must contain only active public records.
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
-/** Exactly the fields catalogStats.ts and Navbar.tsx read. */
 export const buildLite = (products) =>
   products.map((p) => ({
     slug: p.slug,
@@ -24,7 +20,6 @@ export const buildLite = (products) =>
     officialUSD: p.officialUSD ?? null,
   }));
 
-/** Fields the lazy page chunks render — description and whatsappMsg included. */
 export const buildPages = (products) =>
   products.map((p) => ({
     id: p.id,
@@ -49,7 +44,7 @@ export const buildPages = (products) =>
 
 export const readProducts = () => {
   const projected = JSON.parse(readFileSync(join(ROOT, "data/public-products.json"), "utf8"));
-  return projected.products ?? [];
+  return (projected.products ?? []).filter((product) => product.publicStatus !== "retired");
 };
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
@@ -59,8 +54,13 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   writeFileSync(join(ROOT, "data/catalog-lite.json"), JSON.stringify({ products: lite }));
   writeFileSync(join(ROOT, "data/catalog-pages.json"), JSON.stringify({ products: pages }));
 
-  const kb = (o) => (JSON.stringify({ products: o }).length / 1024).toFixed(1);
-  console.log(`data/catalog-lite.json:  ${lite.length} records, ${kb(lite)} KB`);
-  console.log(`data/catalog-pages.json: ${pages.length} records, ${kb(pages)} KB`);
-  console.log(`(from ${kb(products)} KB public projection)`);
+  const kb = (object) => (JSON.stringify({ products: object }).length / 1024).toFixed(1);
+  console.log(`data/catalog-lite.json:  ${lite.length} active records, ${kb(lite)} KB`);
+  console.log(`data/catalog-pages.json: ${pages.length} active records, ${kb(pages)} KB`);
+  console.log(`(from ${kb(projectedForLog())} KB public projection including identity tombstones)`);
+}
+
+function projectedForLog() {
+  const projected = JSON.parse(readFileSync(join(ROOT, "data/public-products.json"), "utf8"));
+  return projected.products ?? [];
 }

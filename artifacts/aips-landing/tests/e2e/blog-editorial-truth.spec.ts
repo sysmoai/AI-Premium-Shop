@@ -19,6 +19,12 @@ const BLOCKED = [
   "no international card required",
 ];
 
+const htmlEscape = (value: string) => value
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;")
+  .replace(/"/g, "&quot;");
+
 test("all governed blog definitions are unique, concise and free of legacy claim phrases", async () => {
   expect(definitions.posts).toHaveLength(19);
   expect(new Set(definitions.posts.map((post: { slug: string }) => post.slug)).size).toBe(19);
@@ -61,7 +67,7 @@ test("guide index uses decision language and includes educators", async ({ page 
   expect(text).not.toContain("perfect ai tool");
   expect(text).not.toContain("2 minutes");
   expect(text).not.toContain("best value tier");
-  expect(text).toContain("confirm");
+  expect(text).toContain("confirm current price");
 });
 
 test("all 19 blog crawler pages are self-canonical and sanitized", async ({ request }) => {
@@ -70,7 +76,7 @@ test("all 19 blog crawler pages are self-canonical and sanitized", async ({ requ
     expect(response.ok(), post.slug).toBeTruthy();
     const html = await response.text();
     const lower = html.toLowerCase();
-    expect(html).toContain(`<title>${post.title}</title>`);
+    expect(html).toContain(`<title>${htmlEscape(post.title)}</title>`);
     expect(html).toContain(`rel="canonical" href="https://aipremiumshop.com/blog/${post.slug}"`);
     expect(lower).toContain('"@type":"blogposting"');
     expect(lower).toContain("separate provider facts from aips commercial facts");

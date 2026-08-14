@@ -30,13 +30,14 @@ test("AI code category runtime excludes retired Replit and fixed SLA/model claim
   expect(text).toContain("repository privacy");
 });
 
-test("bundles runtime removes typed savings/value packages and uses current catalog records", async ({ page }) => {
+test("bundles runtime removes typed savings/value marketing and uses current catalog records", async ({ page }) => {
   await page.goto("/bundles", { waitUntil: "networkidle" });
   const main = page.locator("#main-content");
   await expect(main.getByRole("heading", { name: "Bundles & Services" })).toBeVisible();
   const text = (await main.innerText()).toLowerCase();
   expect(text).toContain("exact inclusions");
-  expect(text).not.toContain("student essentials package");
+  expect(text).not.toContain("you save");
+  expect(text).not.toContain("vs buying separately");
   expect(text).not.toContain("replace bdt");
   for (const phrase of BLOCKED) expect(text, phrase).not.toContain(phrase.toLowerCase());
 });

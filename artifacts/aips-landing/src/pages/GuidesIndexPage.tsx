@@ -106,7 +106,7 @@ export default function GuidesIndexPage() {
 
         <section className="mt-14 rounded-2xl border border-white/10 bg-[#151b3d] p-7 text-center md:p-9">
           <h2 className="text-xl font-bold text-white">Need help narrowing the catalog?</h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-slate-400">Tell AIPS the workflow, data sensitivity and budget. Ask for current price, access model, availability, provider-controlled limits, delivery ETA and applicable terms before payment.</p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-slate-400">Tell AIPS the workflow, data sensitivity and budget. Confirm current price, access model, availability, provider-controlled limits, delivery ETA and applicable terms before payment.</p>
           <a href="https://wa.me/8801865385348?text=Hi%2C%20help%20me%20narrow%20the%20current%20AI%20catalog.%20Please%20ask%20about%20my%20workflow%2C%20data%20sensitivity%20and%20budget%2C%20then%20confirm%20current%20price%2C%20access%2C%20availability%2C%20provider%20limits%2C%20delivery%20ETA%20and%20terms%20before%20payment." target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#008236] px-5 py-3 text-sm font-bold text-white">Ask AIPS <ArrowRight className="h-4 w-4" /></a>
         </section>
       </div>

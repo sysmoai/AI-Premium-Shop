@@ -1,224 +1,115 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, BookOpen, Briefcase, Lightbulb, ShieldCheck, Users, Zap } from "lucide-react";
 import { Link } from "wouter";
-import { ArrowRight, BookOpen, Users, Briefcase, Zap, Lightbulb } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
 
-const GUIDE_CATEGORIES = [
+const GROUPS = [
   {
-    title: "By Audience",
-    description: "Find the perfect AI tools for your role",
+    title: "By audience",
+    description: "Start from the work and responsibilities of the person using the tool.",
     icon: Users,
-    color: "#3b82f6",
     guides: [
-      { name: "Students", desc: "Assignments, research, exams", href: "/best-ai-for-students", badge: "Popular" },
-      { name: "Freelancers", desc: "Upwork, Fiverr, proposals", href: "/best-ai-for-freelancers", badge: "New" },
-      { name: "Creators", desc: "YouTube, TikTok, content", href: "/best-ai-for-creators", badge: "New" },
-      { name: "Business Owners", desc: "Automation, scaling, teams", href: "/best-ai-for-business" },
-      { name: "Developers", desc: "Code, debugging, productivity", href: "/best-ai-for-developers" },
-      { name: "Job Seekers", desc: "Interviews, CV, portfolio", href: "/best-ai-for-job-seekers" },
-      { name: "Designers", desc: "Creative tools, inspiration", href: "/best-ai-for-designers" },
-      { name: "Marketers", desc: "Copy, campaigns, analytics", href: "/best-ai-for-marketers" },
+      ["Students", "Study, research and academic workflows", "/best-ai-for-students"],
+      ["Freelancers", "Client work, production and QA", "/best-ai-for-freelancers"],
+      ["Creators", "Video, image, audio and content workflows", "/best-ai-for-creators"],
+      ["Business owners", "Operations, documents and team workflows", "/best-ai-for-business"],
+      ["Developers", "Coding and development workflows", "/best-ai-for-developers"],
+      ["Job seekers", "CV, interview and portfolio workflows", "/best-ai-for-job-seekers"],
+      ["Designers", "Design and visual-production workflows", "/best-ai-for-designers"],
+      ["Marketers", "Writing, campaign and research workflows", "/best-ai-for-marketers"],
+      ["Educators", "Teaching, research and academic-policy checks", "/guides/educators"],
     ],
   },
   {
-    title: "By Use Case",
-    description: "Find tools for specific tasks",
+    title: "By workflow",
+    description: "Browse current catalog families for a specific job.",
     icon: Zap,
-    color: "#f59e0b",
     guides: [
-      { name: "Writing & Content", desc: "Blog, copy, social media", href: "/ai-writing" },
-      { name: "Image & Design", desc: "Midjourney, Ideogram, design", href: "/ai-image" },
-      { name: "Video Production", desc: "Runway, Pika, HeyGen", href: "/ai-video" },
-      { name: "Code & Development", desc: "GitHub Copilot, Claude, Cursor", href: "/ai-code" },
-      { name: "Voice & Audio", desc: "ElevenLabs, music generation", href: "/ai-voice-music" },
-      { name: "Research & Analysis", desc: "Perplexity, data insights", href: "/best-ai-subscription-2026" },
+      ["AI assistants", "General assistant and research workflows", "/ai-assistant"],
+      ["Writing & SEO", "Writing, editing and search workflows", "/ai-writing"],
+      ["Image", "Image-generation and visual workflows", "/ai-image"],
+      ["Video", "Video-generation and production workflows", "/ai-video"],
+      ["Code & development", "Coding-assistant and development workflows", "/ai-code"],
+      ["Voice & music", "Speech, audio and music workflows", "/ai-voice-music"],
+      ["Workspace", "Documents, meetings and productivity workflows", "/ai-workspace"],
+      ["Design", "Design, presentation and creative workflows", "/ai-design"],
     ],
   },
   {
-    title: "By Budget",
-    description: "AI tools within your price range",
+    title: "By published price",
+    description: "Use current AIPS price thresholds as filters, not as quality rankings.",
     icon: Lightbulb,
-    color: "#10b981",
     guides: [
-      { name: "Under BDT 500", desc: "Free & budget-friendly", href: "/ai-under-500" },
-      { name: "Under BDT 1,000", desc: "Best value tier", href: "/ai-under-1000" },
-      { name: "Under BDT 3,000", desc: "Premium tools", href: "/ai-under-3000" },
-      { name: "Best Overall Deal", desc: "Quality vs price ratio", href: "/best-ai-budget-bangladesh" },
+      ["Under BDT 500", "Current fixed-price records below the threshold", "/ai-under-500"],
+      ["Under BDT 1,000", "Current fixed-price records below the threshold", "/ai-under-1000"],
+      ["Under BDT 3,000", "Current fixed-price records below the threshold", "/ai-under-3000"],
+      ["Subscription decision guide", "Compare workflow, access model and current price", "/best-ai-subscription-2026"],
     ],
   },
   {
-    title: "Compare & Choose",
-    description: "Side-by-side tool comparisons",
+    title: "Compare",
+    description: "Compare current AIPS commercial data and verify provider-controlled details for the exact plans.",
     icon: Briefcase,
-    color: "#8b5cf6",
     guides: [
-      { name: "ChatGPT vs Claude", desc: "Most popular comparison", href: "/chatgpt-vs-claude", badge: "Popular" },
-      { name: "ChatGPT vs Gemini", desc: "Google's alternative", href: "/chatgpt-vs-gemini" },
-      { name: "ChatGPT vs Perplexity", desc: "General AI vs cited research", href: "/chatgpt-vs-perplexity" },
-      { name: "Claude vs Gemini", desc: "Writing vs Google Workspace", href: "/claude-vs-gemini" },
-      { name: "GitHub Copilot vs Cursor", desc: "Developer tools", href: "/copilot-vs-cursor" },
-      { name: "Midjourney vs Ideogram", desc: "Image generation", href: "/midjourney-vs-ideogram" },
-      { name: "Canva vs Adobe Express", desc: "AI design tools", href: "/canva-vs-adobe-express" },
+      ["ChatGPT vs Claude", "Compare the exact paid plans you are considering", "/chatgpt-vs-claude"],
+      ["ChatGPT vs Gemini", "Compare current plan and access context", "/chatgpt-vs-gemini"],
+      ["ChatGPT vs Perplexity", "Compare assistant and research workflows", "/chatgpt-vs-perplexity"],
+      ["Claude vs Gemini", "Compare current plan and workflow context", "/claude-vs-gemini"],
+      ["Copilot vs Cursor", "Compare coding-tool commercial context", "/copilot-vs-cursor"],
+      ["Midjourney vs Ideogram", "Compare image-tool commercial context", "/midjourney-vs-ideogram"],
+      ["Canva vs Adobe Express", "Compare design-tool commercial context", "/canva-vs-adobe-express"],
     ],
   },
 ];
 
-const BANGLA_GUIDES = [
-  {
-    title: "বাংলায় শিখুন",
-    description: "সম্পূর্ণ বাংলায় আপনার ভূমিকার জন্য AI গাইড",
-    icon: BookOpen,
-    color: "#ef4444",
-    guides: [
-      { name: "হোম", desc: "AI Premium Shop পরিচয়", href: "/bn" },
-      { name: "ছাত্রছাত্রীদের জন্য", desc: "Assignment, research, পরীক্ষা", href: "/students-bn" },
-      { name: "ডেভেলপারদের জন্য", desc: "কোডিং, debugging, দ্রুত উন্নয়ন", href: "/developers-bn" },
-      { name: "ফ্রিল্যান্সারদের জন্য", desc: "Upwork, Fiverr, প্রস্তাব লেখা", href: "/freelancers-bn" },
-      { name: "কন্টেন্ট ক্রিয়েটরদের জন্য", desc: "YouTube, TikTok, ভিডিও তৈরি", href: "/creators-bn" },
-      { name: "ছোট ব্যবসার জন্য", desc: "গ্রাহক সেবা, বিক্রয় অটোমেশন", href: "/smb-bn" },
-      { name: "শিক্ষকদের জন্য", desc: "পাঠ পরিকল্পনা, মূল্যায়ন, প্রতিক্রিয়া", href: "/educators-bn" },
-    ],
-  },
+const BANGLA = [
+  ["বাংলা হোম", "AI Premium Shop-এর বাংলা পরিচিতি", "/bn"],
+  ["ছাত্রছাত্রী", "পড়াশোনা, গবেষণা ও একাডেমিক কাজ", "/students-bn"],
+  ["ডেভেলপার", "কোডিং ও ডেভেলপমেন্ট ওয়ার্কফ্লো", "/developers-bn"],
+  ["ফ্রিল্যান্সার", "ক্লায়েন্ট কাজ ও ডেলিভারি ওয়ার্কফ্লো", "/freelancers-bn"],
+  ["কন্টেন্ট ক্রিয়েটর", "ভিডিও, ছবি ও কন্টেন্ট ওয়ার্কফ্লো", "/creators-bn"],
+  ["ছোট ব্যবসা", "অপারেশন ও ব্যবসায়িক ওয়ার্কফ্লো", "/smb-bn"],
+  ["শিক্ষক", "পাঠ পরিকল্পনা, গবেষণা ও একাডেমিক নীতি", "/educators-bn"],
 ];
 
-function GuideCard({
-  name,
-  desc,
-  href,
-  badge,
-}: {
-  name: string;
-  desc: string;
-  href: string;
-  badge?: string;
-}) {
-  return (
-    <Link href={href}>
-      <a className="group block p-4 rounded-lg border border-gray-800 hover:border-[#f4b942]/50 transition-all hover:bg-gray-900/80">
-        <div className="flex items-start justify-between">
-          <div>
-            <h4 className="font-semibold text-white group-hover:text-[#f4b942] transition-colors">{name}</h4>
-            <p className="text-sm text-gray-400 mt-1">{desc}</p>
-          </div>
-          <ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-[#f4b942] transition-all group-hover:translate-x-1 flex-shrink-0 mt-0.5" />
-        </div>
-        {badge && (
-          <div className="mt-2 inline-block px-2 py-1 rounded text-xs font-semibold" style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}>
-            {badge}
-          </div>
-        )}
-      </a>
-    </Link>
-  );
-}
-
-function CategorySection({
-  title,
-  description,
-  icon: Icon,
-  color,
-  guides,
-}: {
-  title: string;
-  description: string;
-  icon: React.ElementType;
-  color: string;
-  guides: Array<{ name: string; desc: string; href: string; badge?: string }>;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="mb-16"
-    >
-      <div className="flex items-center gap-3 mb-4">
-        <Icon className="w-6 h-6" style={{ color }} />
-        <div>
-          <h2 className="text-2xl font-bold text-white">{title}</h2>
-          <p className="text-sm text-gray-400">{description}</p>
-        </div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-        {guides.map((g) => (
-          <GuideCard key={g.name} {...g} />
-        ))}
-      </div>
-    </motion.div>
-  );
+function Card({ item }: { item: string[] }) {
+  const [name, description, href] = item;
+  return <Link href={href} className="group block rounded-xl border border-white/10 bg-[#151b3d] p-4 transition hover:border-[#f4b942]/35"><div className="flex items-start justify-between gap-3"><div><h3 className="font-semibold text-white group-hover:text-[#f4b942]">{name}</h3><p className="mt-1 text-sm leading-6 text-slate-400">{description}</p></div><ArrowRight className="mt-1 h-4 w-4 shrink-0 text-slate-600 group-hover:text-[#f4b942]" /></div></Link>;
 }
 
 export default function GuidesIndexPage() {
+  const reducedMotion = useReducedMotion();
   return (
     <PageLayout>
-      <SEOHead
-        title="AI Tools Guide Index — Find the Best AI by Role, Budget & Use Case"
-        description="Complete guide to AI tools. By audience (students, freelancers, creators), use case (writing, code, design), budget, and comparisons. All guides in one place."
-        canonical="https://aipremiumshop.com/guides"
-      />
+      <SEOHead title="AI Tool Guides Bangladesh | AI Premium Shop" description="Browse AI Premium Shop decision guides by audience, workflow, price threshold and comparison. Verify current price, access and provider limits before choosing." canonical="https://aipremiumshop.com/guides" />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Guides" }]} />
+      <div id="main-content" className="mx-auto max-w-6xl px-4 py-12 md:px-8 md:py-14">
+        <motion.header initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-14 max-w-4xl">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Decision guide index</div>
+          <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl">Choose an AI Tool by the Decision You Need to Make</h1>
+          <p className="mt-4 text-base leading-7 text-slate-300 md:text-lg">Start from your workflow, access requirements and budget. Use AIPS pages for current public price and access context, then verify provider-controlled features and limits for the exact plan.</p>
+        </motion.header>
 
-      <section className="max-w-6xl mx-auto px-4 md:px-8 py-14">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 text-xs font-medium"
-            style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}>
-            <BookOpen className="w-3.5 h-3.5" /> Complete Guide Index
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Find Your Perfect AI Tool
-          </h1>
-          <p className="text-lg max-w-2xl text-gray-300">
-            Filter by your role, use case, budget, or compare tools side-by-side. Everything you need to choose the right AI subscription for Bangladesh.
-          </p>
-        </motion.div>
-
-        {/* English Guides */}
-        <div className="mb-20">
-          {GUIDE_CATEGORIES.map((cat) => (
-            <CategorySection key={cat.title} {...cat} />
-          ))}
+        <div className="space-y-14">
+          {GROUPS.map((group, index) => {
+            const Icon = group.icon;
+            return <motion.section key={group.title} initial={reducedMotion ? false : { opacity: 0, y: 12 }} whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.3, delay: Math.min(index * 0.04, 0.12) }}><div className="mb-5 flex items-start gap-3"><div className="rounded-xl border border-white/10 bg-[#151b3d] p-2.5"><Icon className="h-5 w-5 text-[#f4b942]" /></div><div><h2 className="text-2xl font-bold text-white">{group.title}</h2><p className="mt-1 text-sm text-slate-400">{group.description}</p></div></div><div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">{group.guides.map((item) => <Card key={item[2]} item={item} />)}</div></motion.section>;
+          })}
         </div>
 
-        {/* Bangla Guides */}
-        <div className="border-t border-gray-800 pt-16">
-          <h2 className="text-2xl font-bold text-white mb-8 text-center">🇧🇩 বাংলায় পড়ুন</h2>
-          {BANGLA_GUIDES.map((cat) => (
-            <CategorySection key={cat.title} {...cat} />
-          ))}
-        </div>
+        <section className="mt-16 border-t border-white/10 pt-12">
+          <div className="mb-5 flex items-center gap-3"><BookOpen className="h-5 w-5 text-[#f4b942]" /><div><h2 className="text-2xl font-bold text-white">বাংলা গাইড</h2><p className="mt-1 text-sm text-slate-400">বাংলায় ভূমিকা ও কাজভিত্তিক গাইড দেখুন।</p></div></div>
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">{BANGLA.map((item) => <Card key={item[2]} item={item} />)}</div>
+        </section>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-16 p-8 rounded-2xl border border-gray-800"
-          style={{ backgroundColor: "#151b3d" }}
-        >
-          <div className="text-center">
-            <h3 className="text-xl font-bold text-white mb-2">Still not sure which tool to pick?</h3>
-            <p className="text-gray-400 mb-6">
-              Our AI CEO team will recommend the perfect tools for your needs in 2 minutes on WhatsApp.
-            </p>
-            <a
-              href="https://wa.me/8801865385348?text=I'm not sure which AI tool to pick. Can you recommend?"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105"
-              style={{ backgroundColor: "#008236", color: "#fff" }}
-            >
-              Message on WhatsApp →
-            </a>
-          </div>
-        </motion.div>
-      </section>
+        <section className="mt-14 rounded-2xl border border-white/10 bg-[#151b3d] p-7 text-center md:p-9">
+          <h2 className="text-xl font-bold text-white">Need help narrowing the catalog?</h2>
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-slate-400">Tell AIPS the workflow, data sensitivity and budget. Confirm current price, access model, availability, provider-controlled limits, delivery ETA and applicable terms before payment.</p>
+          <a href="https://wa.me/8801865385348?text=Hi%2C%20help%20me%20narrow%20the%20current%20AI%20catalog.%20Please%20ask%20about%20my%20workflow%2C%20data%20sensitivity%20and%20budget%2C%20then%20confirm%20current%20price%2C%20access%2C%20availability%2C%20provider%20limits%2C%20delivery%20ETA%20and%20terms%20before%20payment." target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#008236] px-5 py-3 text-sm font-bold text-white">Ask AIPS <ArrowRight className="h-4 w-4" /></a>
+        </section>
+      </div>
     </PageLayout>
   );
 }

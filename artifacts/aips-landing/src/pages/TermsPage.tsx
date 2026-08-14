@@ -1,142 +1,49 @@
-import { motion } from "framer-motion";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, ShieldCheck } from "lucide-react";
+import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
 
-const WHATSAPP = "https://wa.me/8801865385348";
+const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20have%20a%20question%20about%20the%20terms%20for%20an%20AIPS%20order.%20Please%20confirm%20the%20exact%20order-specific%20details%20before%20payment.";
 
 const TERMS = [
-  {
-    title: "1. Service Description",
-    content:
-      "AI Premium Shop provides access to third-party AI subscription services including, but not limited to, ChatGPT, Claude, Midjourney, GitHub Copilot, Runway, ElevenLabs, and others. We are an independent reseller and are not affiliated with, endorsed by, or officially partnered with OpenAI, Anthropic, Google, Microsoft, Adobe, or any other AI provider. All trademarks and product names belong to their respective owners.",
-  },
-  {
-    title: "2. Eligibility",
-    content:
-      "Our services are available to individuals and organizations in Bangladesh and internationally. By placing an order, you confirm that you are at least 18 years of age, or have parental/guardian consent to use these services.",
-  },
-  {
-    title: "3. Payment Terms",
-    content:
-      "All payments are due before service delivery. We accept bKash, Nagad, Rocket, and bank transfer. Prices are listed in Bangladeshi Taka (BDT) and are subject to change without prior notice. Current prices are always confirmed during the ordering process on WhatsApp.",
-  },
-  {
-    title: "4. Delivery",
-    content:
-      "Accounts are delivered via WhatsApp after payment confirmation. AI assistant accounts typically deliver within 5–30 minutes. Creative and developer tools within 30–60 minutes. Delivery times may vary during high-demand periods. We operate 10 AM – Midnight BST, 7 days a week.",
-  },
-  {
-    title: "5. Account Usage Rules",
-    content:
-      "Customers must not share, resell, or redistribute account credentials provided by AI Premium Shop. Accounts are for personal or business use only. Any misuse that violates the underlying platform's Terms of Service — including automated abuse, scraping, or unauthorized API access — may result in immediate account termination without refund.",
-  },
-  {
-    title: "6. Warranty & Replacements",
-    content:
-      "All accounts come with a 30-day replacement warranty. If an account fails to work as described during this period, we will replace it at no additional cost. The warranty does not cover issues caused by customer misuse, violation of platform terms, or issues outside our control.",
-  },
-  {
-    title: "7. Refund Policy",
-    content:
-      "Refunds are available within 15 minutes of delivery if the service does not match what was ordered. After this window, all issues are handled under the 30-day replacement warranty. See our full Refund Policy for details.",
-  },
-  {
-    title: "8. Limitation of Liability",
-    content:
-      "AI Premium Shop's liability is limited to the value of the subscription purchased. We are not liable for any indirect, incidental, or consequential damages arising from the use or inability to use AI tools, including business losses, data loss, or missed opportunities. We do not guarantee specific outputs, quality, or availability of any AI platform.",
-  },
-  {
-    title: "9. Third-Party Platform Changes",
-    content:
-      "AI platforms regularly update their features, pricing, and terms. AI Premium Shop is not responsible for changes made by third-party platforms that affect the service after delivery. In cases where a platform materially changes a product we've sold (e.g., removes a key feature), we will work in good faith to provide a fair resolution.",
-  },
-  {
-    title: "10. Dispute Resolution",
-    content:
-      "Any disputes should first be raised with our support team on WhatsApp at +880 1865-385348. We are committed to resolving all issues fairly and promptly. If a resolution cannot be reached through WhatsApp, disputes will be governed by the laws of Bangladesh.",
-  },
-  {
-    title: "11. Privacy",
-    content:
-      "We collect your name, WhatsApp number, and order details to process and deliver your subscription. We do not sell or share this data with third parties. Order information may be retained for up to 2 years for support and warranty purposes.",
-  },
-  {
-    title: "12. Changes to Terms",
-    content:
-      "AI Premium Shop reserves the right to update these Terms of Service at any time. The current version is always available at aipremiumshop.com/terms. Continued use of our services after changes constitutes acceptance of the updated terms.",
-  },
+  ["1. What AIPS provides", "AI Premium Shop presents and fulfills the AIPS products, access arrangements and services described on this site and in the exact order confirmation. The underlying AI platforms are operated by third-party providers. AIPS is independent from those providers unless a page explicitly states and evidences a different relationship."],
+  ["2. Exact order controls", "Before payment, confirm the product, plan, duration, published AIPS price, stated access model, availability, delivery ETA and any order-specific support, refund or replacement terms. Those confirmed order details are the reference for resolving an order issue."],
+  ["3. Provider-controlled features", "Third-party providers control their models, credits, quotas, storage, exports, integrations, licensing, availability and platform terms. These can change. AIPS does not guarantee a provider feature or limit unless it is explicitly confirmed for the exact plan and order."],
+  ["4. Payment", "Payment is handled according to the instructions confirmed for the exact order. Do not send money until the amount and method are confirmed. Never disclose a banking PIN, OTP, password, full card details or unrelated financial credentials to AIPS."],
+  ["5. Delivery and access", "Delivery timing and access handling depend on the exact product, access model and current availability. Do not assume a universal delivery window or account-control arrangement from a category label alone."],
+  ["6. Customer responsibilities", "Use the access only as confirmed for your order and comply with applicable provider rules and law. Do not resell, redistribute, automate abuse, scrape, or share credentials contrary to the confirmed arrangement or provider terms."],
+  ["7. Privacy and sensitive data", "Choose an access arrangement appropriate to the data you will process. A shared, personal, team or service label does not by itself guarantee a particular privacy or security configuration. Review the Privacy Policy and provider controls before using sensitive information."],
+  ["8. Refunds and resolutions", "Refund, replacement, credit or other resolution depends on the exact order, issue and terms that applied. See the current Refund & Resolution Policy. No blanket coverage period or outcome should be assumed unless it was confirmed for the order."],
+  ["9. Third-party changes and interruptions", "AIPS cannot control third-party outages, product changes, model changes, account-policy changes or provider restrictions. If one materially affects an AIPS order, contact support so the order can be reviewed against the confirmed terms."],
+  ["10. Limits of service", "AI outputs can be inaccurate or unsuitable. You are responsible for reviewing generated content and for decisions made using third-party AI tools. AIPS does not promise a particular business, academic, creative, financial or technical outcome from using a subscription."],
+  ["11. Changes to these terms", "AIPS may update these terms as products, operations and provider rules change. The version published on this page applies prospectively; order-specific terms already confirmed remain relevant to the review of that order."],
 ];
 
 export default function TermsPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="Terms of Service | AI Premium Shop Bangladesh"
-        description="Terms of service for AI Premium Shop Bangladesh. Shared & personal account terms explained."
+        title="Terms of Service | AI Premium Shop"
+        description="AIPS terms covering exact order details, third-party provider controls, payment safety, access responsibilities, privacy and order-specific resolutions."
         canonical="https://aipremiumshop.com/terms"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Terms" }]} />
 
-      <section className="max-w-3xl mx-auto px-4 md:px-8 py-14">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-10"
-        >
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">Terms of Service</h1>
-          <p style={{ color: "#c9ceda" }}>Effective date: January 1, 2024 &nbsp;|&nbsp; Last updated: April 2026</p>
-          <p className="mt-4 text-sm max-w-xl" style={{ color: "#c9ceda" }}>
-            By using AI Premium Shop&apos;s services, you agree to the following terms. Please read them carefully.
-          </p>
-        </motion.div>
+      <div id="main-content" className="mx-auto max-w-4xl px-4 py-12 md:px-8 md:py-16">
+        <header className="max-w-3xl">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Order-specific terms</div>
+          <h1 className="text-3xl font-bold text-white md:text-5xl">Terms of Service</h1>
+          <p className="mt-3 text-sm text-slate-500">Last updated: 14 August 2026</p>
+          <p className="mt-4 text-base leading-7 text-slate-300">These terms describe the general AIPS service framework. The exact product, access model, price, availability and any order-specific coverage should be confirmed before payment.</p>
+        </header>
 
-        <div className="space-y-4 mb-12">
-          {TERMS.map((section, i) => (
-            <motion.div
-              key={section.title}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.35, delay: i * 0.03 }}
-              className="p-6 rounded-2xl border border-white/10"
-              style={{ backgroundColor: "#151b3d" }}
-            >
-              <h2 className="font-bold text-white mb-2 text-sm">{section.title}</h2>
-              <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{section.content}</p>
-            </motion.div>
-          ))}
-        </div>
+        <section className="mt-10 space-y-4">
+          {TERMS.map(([title, body]) => <article key={title} className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="font-bold text-white">{title}</h2><p className="mt-2 text-sm leading-6 text-slate-300">{body}</p></article>)}
+        </section>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="p-8 rounded-2xl border border-white/10"
-          style={{ backgroundColor: "#151b3d" }}
-        >
-          <p className="font-semibold text-white mb-2">Questions about these terms?</p>
-          <p className="text-sm mb-5" style={{ color: "#c9ceda" }}>
-            Contact us on WhatsApp or email support@aipremiumshop.com and we&apos;ll explain anything clearly.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: "#008236", color: "#fff" }}>
-              <MessageCircle className="w-4 h-4" />
-              WhatsApp
-            </a>
-            <a href="mailto:support@aipremiumshop.com"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-white/10 hover:border-white/30 transition-colors"
-              style={{ color: "#c9ceda" }}>
-              Email Support
-            </a>
-          </div>
-        </motion.div>
-      </section>
+        <aside className="mt-10 rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="text-lg font-bold text-white">Questions about an order term?</h2><p className="mt-2 text-sm leading-6 text-slate-300">Ask for the exact plan, access, availability, provider-controlled limits, delivery ETA and applicable terms to be confirmed in the order conversation before payment.</p><div className="mt-5 flex flex-wrap gap-3"><a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#008236] px-5 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Ask on WhatsApp</a><Link href="/refund-policy" className="inline-flex min-h-11 items-center rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-white">Refund & resolution policy</Link></div></aside>
+      </div>
     </PageLayout>
   );
 }

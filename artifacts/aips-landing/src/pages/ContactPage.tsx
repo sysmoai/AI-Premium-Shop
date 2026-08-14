@@ -1,284 +1,61 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { MessageCircle, MessageSquare, Mail, Clock, CheckCircle } from "lucide-react";
-import { CommunitySocialCards } from "@/components/CommunitySocialCards";
+import { useMemo, useState } from "react";
+import { ExternalLink, MessageCircle, ShieldCheck } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { PaymentBadges } from "@/components/PaymentBadges";
 
-const WHATSAPP = "https://wa.me/8801865385348";
-
-
-const AI_TOOLS = [
-  "ChatGPT Plus / Pro",
-  "Claude Pro",
-  "Google AI Pro",
-  "Midjourney",
-  "GitHub Copilot",
-  "Cursor Pro",
-  "ElevenLabs",
-  "Suno AI",
-  "Runway",
-  "Notion Business",
-  "Other / Not sure",
-];
-
-const INQUIRY_TYPES = ["Order Inquiry", "Technical Support", "Bundle Pricing", "General Question", "Partnership"];
+const NUMBER = "8801865385348";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    tool: "",
-    inquiry: "",
-    message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
+  const [name, setName] = useState("");
+  const [topic, setTopic] = useState("Plan or pricing question");
+  const [message, setMessage] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const text = `New contact form submission:\n\nName: ${form.name}\nPhone: ${form.phone}\nTool interested in: ${form.tool}\nInquiry type: ${form.inquiry}\nMessage: ${form.message}`;
-    window.open(`${WHATSAPP}?text=${encodeURIComponent(text)}`, "_blank");
-    setSubmitted(true);
-  };
+  const whatsappUrl = useMemo(() => {
+    const text = [
+      "Hi AI Premium Shop,",
+      name.trim() ? `Name: ${name.trim()}` : "",
+      `Topic: ${topic}`,
+      message.trim() ? `Message: ${message.trim()}` : "",
+      "Please confirm any current price, access model, availability, provider-controlled limits, delivery ETA and applicable terms relevant to my question before payment.",
+    ].filter(Boolean).join("\n");
+    return `https://wa.me/${NUMBER}?text=${encodeURIComponent(text)}`;
+  }, [name, topic, message]);
 
   return (
     <PageLayout>
       <SEOHead
-        title="Contact AI Premium Shop — WhatsApp Order | bKash &amp; Nagad"
-        description="Contact AI Premium Shop in Dhaka, Bangladesh. WhatsApp +880 1865-385348, Messenger, or email. Under 5-minute response, 10 AM to Midnight BST."
+        title="Contact AI Premium Shop | WhatsApp Support"
+        description="Contact AI Premium Shop on WhatsApp for current plan, order and access questions. Do not send passwords, PINs, OTPs or unrelated financial credentials."
         canonical="https://aipremiumshop.com/contact"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Contact" }]} />
 
-      <section className="max-w-4xl mx-auto px-4 md:px-8 py-14">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-10"
-        >
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">Contact Us</h1>
-          <p className="text-lg max-w-xl" style={{ color: "#c9ceda" }}>
-            The fastest way to reach us is WhatsApp. We respond in under 5 minutes.
-          </p>
-        </motion.div>
+      <div id="main-content" className="mx-auto max-w-5xl px-4 py-12 md:px-8 md:py-16">
+        <header className="max-w-3xl">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Direct order and support contact</div>
+          <h1 className="text-3xl font-bold text-white md:text-5xl">Contact AI Premium Shop</h1>
+          <p className="mt-4 text-base leading-7 text-slate-300">Use WhatsApp for current plan, order and support questions. Response time depends on current support load; do not rely on a fixed response-time promise.</p>
+        </header>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-10"
-        >
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl text-lg font-bold hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#008236", color: "#fff" }}
-          >
-            <MessageCircle className="w-6 h-6" />
-            Message us on WhatsApp — +880 1865-385348
-          </a>
-        </motion.div>
-
-        <div className="mb-4">
-          <CommunitySocialCards cols="2" />
-        </div>
-
-        <a
-          href="https://m.me/aipremiumshopfb"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-start gap-4 p-5 rounded-xl border border-[#0084FF]/30 bg-[#0084FF]/10 hover:border-[#0084FF]/60 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg mb-12 cursor-pointer"
-        >
-          <MessageSquare className="w-8 h-8 text-[#0084FF] flex-shrink-0 mt-0.5" />
-          <div>
-            <h3 className="text-white font-bold text-lg">Messenger</h3>
-            <p className="text-gray-400 text-sm mt-1">Quick questions? Message us on Facebook Messenger for fast answers.</p>
-            <div className="text-[#0084FF] font-semibold text-sm mt-2 group-hover:underline">Chat on Messenger →</div>
+        <section className="mt-10 grid gap-6 lg:grid-cols-[1fr_340px]">
+          <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6 md:p-8">
+            <h2 className="text-xl font-bold text-white">Prepare a WhatsApp message</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-400">This form does not silently submit data to AIPS. The button opens WhatsApp with the text you entered, where you can review it before sending.</p>
+            <div className="mt-6 space-y-4">
+              <label className="block"><span className="mb-2 block text-sm font-semibold text-white">Name <span className="font-normal text-slate-500">(optional)</span></span><input value={name} onChange={(event) => setName(event.target.value)} className="min-h-11 w-full rounded-xl border border-white/10 bg-[#0a0e27] px-4 py-3 text-sm text-white outline-none focus:border-[#f4b942]/50" placeholder="Your name" /></label>
+              <label className="block"><span className="mb-2 block text-sm font-semibold text-white">Topic</span><select value={topic} onChange={(event) => setTopic(event.target.value)} className="min-h-11 w-full rounded-xl border border-white/10 bg-[#0a0e27] px-4 py-3 text-sm text-white outline-none focus:border-[#f4b942]/50"><option>Plan or pricing question</option><option>Order status</option><option>Access issue</option><option>Provider feature or limit</option><option>Refund or resolution question</option><option>Privacy or account handling</option></select></label>
+              <label className="block"><span className="mb-2 block text-sm font-semibold text-white">Message <span className="font-normal text-slate-500">(optional)</span></span><textarea value={message} onChange={(event) => setMessage(event.target.value)} rows={5} className="w-full rounded-xl border border-white/10 bg-[#0a0e27] px-4 py-3 text-sm text-white outline-none focus:border-[#f4b942]/50" placeholder="Product/plan, order context, or your question" /></label>
+            </div>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#008236] px-5 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Review and send in WhatsApp <ExternalLink className="h-3.5 w-3.5" /></a>
           </div>
-        </a>
 
-        {/* Contact Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12 p-6 md:p-8 rounded-2xl border border-white/10"
-          style={{ backgroundColor: "#151b3d" }}
-        >
-          <h2 className="text-xl font-bold text-white mb-2">Send us a message</h2>
-          <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>
-            Fill out the form and we&apos;ll open WhatsApp with your message pre-filled. Or just message us directly.
-          </p>
-
-          {submitted ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-center py-10"
-            >
-              <CheckCircle className="w-12 h-12 mx-auto mb-4" style={{ color: "#25d366" }} />
-              <h3 className="text-xl font-bold text-white mb-2">WhatsApp opened!</h3>
-              <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>
-                Your message has been pre-filled. Just tap Send in WhatsApp and we&apos;ll reply within 5 minutes.
-              </p>
-              <button
-                onClick={() => setSubmitted(false)}
-                className="text-sm hover:opacity-80 transition-opacity"
-                style={{ color: "#f4b942" }}
-              >
-                Send another message
-              </button>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="contact-name" className="block text-sm font-medium text-white mb-1.5">
-                    Your Name <span style={{ color: "#f4b942" }}>*</span>
-                  </label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    name="name"
-                    required
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder="e.g. Rahim Hossain"
-                    className="w-full rounded-xl px-4 py-3 text-sm border border-white/10 focus:outline-none focus:border-yellow-400 transition-colors"
-                    style={{ backgroundColor: "#0a0e27", color: "#fff" }}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="contact-phone" className="block text-sm font-medium text-white mb-1.5">
-                    Phone / WhatsApp <span style={{ color: "#f4b942" }}>*</span>
-                  </label>
-                  <input
-                    id="contact-phone"
-                    type="tel"
-                    name="phone"
-                    required
-                    value={form.phone}
-                    onChange={handleChange}
-                    placeholder="e.g. 01700-000000"
-                    className="w-full rounded-xl px-4 py-3 text-sm border border-white/10 focus:outline-none focus:border-yellow-400 transition-colors"
-                    style={{ backgroundColor: "#0a0e27", color: "#fff" }}
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="contact-tool" className="block text-sm font-medium text-white mb-1.5">AI Tool Interested In</label>
-                  <select
-                    id="contact-tool"
-                    name="tool"
-                    value={form.tool}
-                    onChange={handleChange}
-                    className="w-full rounded-xl px-4 py-3 text-sm border border-white/10 focus:outline-none focus:border-yellow-400 transition-colors"
-                    style={{ backgroundColor: "#0a0e27", color: form.tool ? "#fff" : "#c9ceda" }}
-                  >
-                    <option value="" style={{ color: "#c9ceda" }}>Select a tool (optional)</option>
-                    {AI_TOOLS.map((t) => (
-                      <option key={t} value={t} style={{ color: "#fff" }}>{t}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="contact-inquiry" className="block text-sm font-medium text-white mb-1.5">
-                    Inquiry Type <span style={{ color: "#f4b942" }}>*</span>
-                  </label>
-                  <select
-                    id="contact-inquiry"
-                    name="inquiry"
-                    required
-                    value={form.inquiry}
-                    onChange={handleChange}
-                    className="w-full rounded-xl px-4 py-3 text-sm border border-white/10 focus:outline-none focus:border-yellow-400 transition-colors"
-                    style={{ backgroundColor: "#0a0e27", color: form.inquiry ? "#fff" : "#c9ceda" }}
-                  >
-                    <option value="" style={{ color: "#c9ceda" }}>Select inquiry type</option>
-                    {INQUIRY_TYPES.map((t) => (
-                      <option key={t} value={t} style={{ color: "#fff" }}>{t}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="contact-message" className="block text-sm font-medium text-white mb-1.5">
-                  Message <span style={{ color: "#f4b942" }}>*</span>
-                </label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  required
-                  rows={4}
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="Tell us what you need — which tool, how you'll use it, any questions about pricing or setup..."
-                  className="w-full rounded-xl px-4 py-3 text-sm border border-white/10 focus:outline-none focus:border-yellow-400 transition-colors resize-none"
-                  style={{ backgroundColor: "#0a0e27", color: "#fff" }}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-base hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: "#008236", color: "#fff", minHeight: "52px" }}
-              >
-                <MessageCircle className="w-5 h-5" />
-                Send via WhatsApp
-              </button>
-              <p className="text-xs text-center" style={{ color: "#c9ceda" }}>
-                This will open WhatsApp with your message pre-filled. We respond in under 5 minutes.
-              </p>
-            </form>
-          )}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12"
-        >
-          <div className="p-6 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
-            <Clock className="w-5 h-5 mb-3" style={{ color: "#f4b942" }} />
-            <h3 className="font-bold text-white mb-2">Service Hours</h3>
-            <p className="text-sm" style={{ color: "#c9ceda" }}>10 AM – Midnight BST</p>
-            <p className="text-sm" style={{ color: "#c9ceda" }}>7 days a week, including holidays</p>
-            <p className="text-xs mt-3" style={{ color: "#f4b942" }}>WhatsApp response: under 5 minutes</p>
-          </div>
-          <div className="p-6 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
-            <div className="w-5 h-5 mb-3 text-lg">💳</div>
-            <h3 className="font-bold text-white mb-2">Payment Methods</h3>
-            <p className="text-sm mb-3" style={{ color: "#c9ceda" }}>We accept all local and international payment methods:</p>
-            <PaymentBadges label="" className="justify-start" />
-          </div>
-          <div className="p-6 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
-            <div className="w-5 h-5 mb-3 text-lg">📍</div>
-            <h3 className="font-bold text-white mb-2">Location</h3>
-            <p className="text-sm" style={{ color: "#c9ceda" }}>Dhaka, Bangladesh</p>
-          </div>
-          <div className="p-6 rounded-2xl border border-white/10" style={{ backgroundColor: "#151b3d" }}>
-            <Mail className="w-5 h-5 mb-3" style={{ color: "#f4b942" }} />
-            <h3 className="font-bold text-white mb-2">Email</h3>
-            <a href="mailto:NotionBusiness@aipremiumshop.com" className="text-sm hover:underline" style={{ color: "#c9ceda" }}>
-              NotionBusiness@aipremiumshop.com
-            </a>
-          </div>
-        </motion.div>
-      </section>
+          <aside className="space-y-4">
+            <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="font-bold text-white">Do not send sensitive credentials</h2><p className="mt-3 text-sm leading-6 text-slate-300">Do not send banking PINs, OTPs, passwords, full card details or unrelated private information. For troubleshooting, use screenshots that mask sensitive data.</p></div>
+            <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="font-bold text-white">Before payment</h2><p className="mt-3 text-sm leading-6 text-slate-300">Confirm the exact product, plan, duration, published AIPS price, access model, availability, delivery ETA and applicable terms for the order.</p></div>
+          </aside>
+        </section>
+      </div>
     </PageLayout>
   );
 }

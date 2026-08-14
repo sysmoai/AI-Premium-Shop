@@ -1,150 +1,67 @@
-import { useLocation } from "wouter";
-import { useT } from "@/lib/locale";
-import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
+import { MessageCircle } from "lucide-react";
+import { Link } from "wouter";
+import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
 import { BLOG_CATEGORIES } from "@/lib/blogTaxonomy";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
 
-// text picked per-bg so it clears WCAG AA (4.5:1). White fails on Nagad
-// (2.32:1) and Bank's #4285f4 (3.56:1); #1a1a1a passes both (7.50:1, 4.88:1)
-// — Bank is the tightest margin.
-// Binance (crypto) removed pending written Bangladesh legal/compliance review
-// of the exact transaction flow — see docs/homepage/executive-audit.md F2.
-const PAYMENT_BADGES = [
-  { label: "bKash",   bg: "#E2136E", text: "#fff" },
-  { label: "Nagad",   bg: "#F6921E", text: "#1a1a1a" },
-  { label: "Rocket",  bg: "#8B2F8B", text: "#fff" },
-  { label: "Bank",    bg: "#4285f4", text: "#1a1a1a" },
-];
+const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20please%20help%20me%20confirm%20the%20current%20details%20for%20an%20AI%20tool%20before%20payment.";
 
 const PRODUCT_LINKS = [
-  { label: "ChatGPT Plans",  href: "/chatgpt-plans-bangladesh" },
-  { label: "Claude",         href: "/claude-pro-bangladesh" },
-  { label: "Midjourney",     href: "/midjourney-bangladesh" },
-  { label: "Google AI Pro",  href: "/gemini-advanced-bangladesh" },
-  { label: "Copilot",        href: "/github-copilot-bangladesh" },
-  { label: "Bundles",        href: "/bundles" },
-  { label: "All Products",   href: "/pricing" },
+  ["All products", "/products"],
+  ["AI assistants", "/ai-assistant"],
+  ["AI image", "/ai-image"],
+  ["AI video", "/ai-video"],
+  ["AI code", "/ai-code"],
+  ["AI workspace", "/ai-workspace"],
+  ["AI writing", "/ai-writing"],
+  ["AI design", "/ai-design"],
+  ["Bundles & services", "/bundles"],
 ];
 
-const SOLUTION_LINKS = [
-  { label: "Students",    href: "/best-ai-for-students" },
-  { label: "Freelancers", href: "/best-ai-for-freelancers" },
-  { label: "Creators",    href: "/best-ai-for-creators" },
-  { label: "Business",    href: "/best-ai-for-business" },
-  { label: "Developers",  href: "/best-ai-for-developers" },
-  { label: "Job Seekers", href: "/best-ai-for-job-seekers" },
+const BUYER_LINKS = [
+  ["Current pricing", "/pricing"],
+  ["Decision guides", "/guides"],
+  ["Editorial guides", "/blog"],
+  ["How to order", "/how-to-order"],
+  ["Support", "/support"],
+  ["FAQ", "/faq"],
 ];
 
 const COMPANY_LINKS = [
-  { label: "About",   href: "/about" },
-  { label: "Support", href: "/support" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Contact", href: "/contact" },
+  ["About", "/about"],
+  ["Contact", "/contact"],
+  ["Refund & resolution", "/refund-policy"],
+  ["Terms", "/terms"],
+  ["Privacy", "/privacy-policy"],
+  ["বাংলা", "/bn"],
 ];
 
-// Top 5 blog categories by post count, plus the hub. Mirrors the same
-// taxonomy the Navbar mega-menu and BlogPage filter read — one list, three
-// surfaces, so a new category can never go missing from one of them.
-const BLOG_LINKS = [
-  { label: "All Guides", href: "/blog" },
-  ...BLOG_CATEGORIES.slice(0, 5).map((c) => ({ label: `${c.emoji} ${c.label}`, href: c.href })),
-];
-
-const LEGAL_LINKS = [
-  { label: "FAQ",            href: "/faq" },
-  { label: "How to Order",   href: "/how-to-order" },
-  { label: "Refund Policy",  href: "/refund-policy" },
-  { label: "Terms",          href: "/terms" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
-];
-
-function FooterLink({ label, href }: { label: string; href: string }) {
-  const [, navigate] = useLocation();
-  return (
-    <a href={href}
-      onClick={(e) => { e.preventDefault(); navigate(href); }}
-      className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
-      {label}
-    </a>
-  );
+function LinkGroup({ title, links }: { title: string; links: string[][] }) {
+  return <div><h2 className="text-sm font-bold text-white">{title}</h2><ul className="mt-4 space-y-2.5">{links.map(([label, href]) => <li key={href}><Link href={href} className="text-sm text-slate-400 transition hover:text-white">{label}</Link></li>)}</ul></div>;
 }
 
 export function PageFooter() {
-  const t = useT();
-  const [, navigate] = useLocation();
-
   return (
-    <footer data-testid="footer" className="border-t border-gray-800" style={{ backgroundColor: "#060914" }}>
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
-
-        {/* ── Main grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-8">
-
-          {/* Col 1 — Brand (spans 2 cols on lg) */}
-          <div className="lg:col-span-2">
-            <a href="/" onClick={(e) => { e.preventDefault(); navigate("/"); }} className="inline-block mb-2">
-              <span className="text-lg font-bold text-white">AI PREMIUM SHOP</span>
-            </a>
-            <p className="text-sm text-gray-400 mt-2 max-w-xs leading-relaxed">
-              {t(`Premium AI subscriptions in Bangladesh. ${TOTAL_PRODUCTS} tools. Local payment via bKash, Nagad and Rocket.`,
-                 `বাংলাদেশে প্রিমিয়াম AI সাবস্ক্রিপশন। ${TOTAL_PRODUCTS}টি টুল। bKash, Nagad ও রকেটে পেমেন্ট।`)}
-            </p>
-            <div className="flex items-center gap-3 mt-4">
-              <a href="https://www.facebook.com/aipremiumshopfb" target="_blank" rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors" aria-label="Facebook">
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a href="https://www.instagram.com/aipremiumshop/" target="_blank" rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors" aria-label="Instagram">
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a href="https://www.linkedin.com/showcase/aipremiumshop/" target="_blank" rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors" aria-label="LinkedIn">
-                <Linkedin className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-
-          {/* Col 2 — Products */}
+    <footer className="border-t border-white/10 bg-[#080b20]">
+      <div className="mx-auto max-w-7xl px-4 py-12 md:px-8">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr]">
           <div>
-            <h4 className="text-white text-sm font-semibold mb-3">Products</h4>
-            {PRODUCT_LINKS.map((l) => <FooterLink key={l.label} {...l} />)}
+            <PrimaryBrandLogo />
+            <p className="mt-4 max-w-sm text-sm leading-6 text-slate-400">Compare current AI catalog families, published AIPS BDT prices and stated access models. Confirm availability, provider-controlled limits, delivery ETA, payment instructions and applicable terms for the exact order before payment.</p>
+            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Confirm current details</a>
           </div>
-
-          {/* Col 3 — Best AI For */}
-          <div>
-            <h4 className="text-white text-sm font-semibold mb-3">Best AI For</h4>
-            {SOLUTION_LINKS.map((l) => <FooterLink key={l.label} {...l} />)}
-          </div>
-
-          {/* Col 4 — Blog & Guides */}
-          <div>
-            <h4 className="text-white text-sm font-semibold mb-3">Blog & Guides</h4>
-            {BLOG_LINKS.map((l) => <FooterLink key={l.label} {...l} />)}
-          </div>
-
-          {/* Col 5 — Company + Legal */}
-          <div>
-            <h4 className="text-white text-sm font-semibold mb-3">Company</h4>
-            {COMPANY_LINKS.map((l) => <FooterLink key={l.label} {...l} />)}
-            <h4 className="text-white text-sm font-semibold mb-3 mt-5">Legal</h4>
-            {LEGAL_LINKS.map((l) => <FooterLink key={l.label} {...l} />)}
-          </div>
+          <LinkGroup title="Catalog" links={PRODUCT_LINKS} />
+          <LinkGroup title="Buying help" links={BUYER_LINKS} />
+          <LinkGroup title="Company" links={COMPANY_LINKS} />
         </div>
 
-        {/* ── Bottom bar ── */}
-        <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-gray-500 text-xs">We accept:</span>
-            {PAYMENT_BADGES.map((b) => (
-              <span key={b.label}
-                className="text-xs font-semibold px-3 py-1 rounded-full"
-                style={{ backgroundColor: b.bg, color: b.text }}>
-                {b.label}
-              </span>
-            ))}
-          </div>
-          <span className="text-gray-500 text-xs">© 2026 AI Premium Shop. All rights reserved.</span>
+        <div className="mt-10 border-t border-white/10 pt-8">
+          <h2 className="text-sm font-bold text-white">Editorial topics</h2>
+          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">{BLOG_CATEGORIES.map((category) => <Link key={category.key} href={category.href} className="text-xs text-slate-500 hover:text-slate-300">{category.label}</Link>)}</div>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} AI Premium Shop. Product names and trademarks belong to their respective owners.</p>
+          <p>Payment instructions and order terms are confirmed for the exact order.</p>
         </div>
       </div>
     </footer>

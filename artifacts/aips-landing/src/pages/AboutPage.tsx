@@ -1,143 +1,57 @@
-import { motion } from "framer-motion";
-import { TOTAL_PRODUCTS, MIN_PRICE } from "@/lib/catalogStats";
-import { MessageCircle, Users, Package, Layers, Calendar, Clock } from "lucide-react";
-import { CommunitySocialCards } from "@/components/CommunitySocialCards";
+import { ArrowRight, CheckCircle2, MessageCircle, ShieldCheck } from "lucide-react";
+import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { PaymentBadges } from "@/components/PaymentBadges";
 
-const WHATSAPP = "https://wa.me/8801865385348";
-
-const STATS = [
-  { icon: Users, value: "10,000+", label: "Customers served" },
-  { icon: Package, value: String(TOTAL_PRODUCTS), label: "AI tools available" },
-  { icon: Layers, value: "19", label: "Leading brands" },
-  { icon: Calendar, value: "2022", label: "Founded" },
-  { icon: Clock, value: "<5 min", label: "WhatsApp response" },
-];
+const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20want%20to%20confirm%20the%20current%20details%20for%20an%20AI%20tool%20before%20payment.";
 
 export default function AboutPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="About AI Premium Shop — Trusted by 10,000+ customers since 2022 | Bangladesh"
-        description={`AI Premium Shop — Bangladesh's WhatsApp-first AI subscription store. Trusted by 10,000+ customers since 2022. ${TOTAL_PRODUCTS} tools including ChatGPT, Claude, Midjourney. Pay with bKash/Nagad. Real human support, 10 AM–Midnight BST.`}
+        title="About AI Premium Shop | AI Tools in Bangladesh"
+        description="Learn how AI Premium Shop presents current AI catalog prices and access models in Bangladesh, with provider-controlled details verified before purchase."
         canonical="https://aipremiumshop.com/about"
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "About" }]} />
 
-      <section className="max-w-5xl mx-auto px-4 md:px-8 py-14">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 text-xs font-medium"
-            style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}>
-            🇧🇩 Since 2022
+      <div id="main-content" className="mx-auto max-w-5xl px-4 py-12 md:px-8 md:py-16">
+        <header className="max-w-3xl">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Current-catalog buying support</div>
+          <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl">About AI Premium Shop</h1>
+          <p className="mt-5 text-base leading-7 text-slate-300 md:text-lg">AI Premium Shop helps people in Bangladesh compare AI product families, published AIPS prices and stated access models. We have served customers since 2022, while keeping provider-controlled features and order-specific delivery details separate from our own catalog data.</p>
+        </header>
+
+        <section className="mt-12 grid gap-5 md:grid-cols-3">
+          {[
+            ["Catalog evidence", "Product identity, public AIPS BDT price and stated access model come from the current catalog used by the site."],
+            ["Provider verification", "Models, credits, quotas, storage, exports, integrations and other entitlements can change and must be checked for the exact provider plan."],
+            ["Order confirmation", "Availability, delivery ETA, payment instructions and applicable order terms are confirmed for the exact order before payment."],
+          ].map(([title, body]) => <article key={title} className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="font-bold text-white">{title}</h2><p className="mt-3 text-sm leading-6 text-slate-300">{body}</p></article>)}
+        </section>
+
+        <section className="mt-12 grid gap-6 lg:grid-cols-[1fr_340px]">
+          <div className="rounded-2xl border border-white/10 bg-[#151b3d]/70 p-6 md:p-8">
+            <h2 className="text-2xl font-bold text-white">What we will not assume for you</h2>
+            <div className="mt-5 space-y-3">
+              {[
+                "A shared, personal, team or service label does not by itself prove a particular privacy or account-control arrangement; confirm the exact handling before use.",
+                "A provider plan name does not prove a model, credit amount, usage ceiling or licensing right is currently included.",
+                "A published AIPS price does not imply a discount against a provider price unless a current comparison basis is explicitly stated.",
+                "A product being listed does not guarantee immediate availability or a fixed delivery time.",
+              ].map((point) => <div key={point} className="flex gap-2.5"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-400" /><p className="text-sm leading-6 text-slate-300">{point}</p></div>)}
+            </div>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">About AI Premium Shop</h1>
-          <p className="text-lg max-w-2xl" style={{ color: "#c9ceda" }}>
-            A local source for premium AI tool subscriptions, paid via bKash, Nagad, or Rocket.
-          </p>
-        </motion.div>
+          <aside className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
+            <h2 className="text-lg font-bold text-white">Need a current answer?</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-300">Send the exact tool, plan or workflow. Ask us to confirm the current AIPS price, access model, availability, provider-controlled limits, delivery ETA and applicable terms before payment.</p>
+            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="mt-5 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Confirm current details</a>
+          </aside>
+        </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="p-8 rounded-2xl border border-white/10"
-            style={{ backgroundColor: "#151b3d" }}
-          >
-            <h2 className="text-xl font-bold text-white mb-4">Our Story</h2>
-            <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>
-              AI Premium Shop (AIPS) has served 10,000+ customers across Bangladesh since 2022 with premium AI subscriptions. Founded by Emon Hossain, AIPS delivers ChatGPT, Claude, Midjourney, and more via WhatsApp-first sales with bKash/Nagad payments.
-            </p>
-            <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
-              We started with a simple idea: make the world&apos;s best AI tools accessible to everyone in Bangladesh — without needing an international credit card. Today, students, freelancers, content creators, developers, and business owners trust us to deliver authentic AI subscriptions quickly, affordably, and with real human support.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="p-8 rounded-2xl border border-white/10"
-            style={{ backgroundColor: "#151b3d" }}
-          >
-            <h2 className="text-xl font-bold text-white mb-4">What We Offer</h2>
-            <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>
-              {TOTAL_PRODUCTS} premium AI tools from 20 leading brands including ChatGPT, Claude, Midjourney, GitHub Copilot, Runway, ElevenLabs, and more. Shared and personal accounts available. Prices start at just BDT {MIN_PRICE} per month.
-            </p>
-            <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
-              All plans come with 30-day replacement warranty, under-5-minute WhatsApp response, and local payment via bKash, Nagad, Rocket, or bank transfer.
-            </p>
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="p-8 rounded-2xl border border-white/10 mb-16"
-          style={{ backgroundColor: "#151b3d" }}
-        >
-          <h2 className="text-xl font-bold text-white mb-4">Our Difference</h2>
-          <p className="text-sm leading-relaxed mb-4" style={{ color: "#c9ceda" }}>
-            We don&apos;t just sell subscriptions. We provide 1:1 AI coaching to help you actually use these tools for your specific work. Whether you&apos;re a student writing a thesis or a business owner automating customer support — we set it up for you.
-          </p>
-          <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
-            Our team is available 10 AM to Midnight, 7 days a week. We respond to every WhatsApp message within 5 minutes. You always talk to a real human, not a bot.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-16">
-          {STATS.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-              className="p-5 rounded-2xl border border-white/10 text-center"
-              style={{ backgroundColor: "#151b3d" }}
-            >
-              <s.icon className="w-6 h-6 mx-auto mb-2" style={{ color: "#f4b942" }} />
-              <div className="text-xl font-bold text-white">{s.value}</div>
-              <div className="text-xs mt-1" style={{ color: "#c9ceda" }}>{s.label}</div>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
-        >
-          <h2 className="text-xl font-bold text-white mb-6">Connect With AI Premium Shop</h2>
-          <CommunitySocialCards cols="3" />
-        </motion.div>
-
-        <div className="p-8 rounded-2xl text-center border border-white/10" style={{ backgroundColor: "#151b3d" }}>
-          <p className="font-semibold text-white text-lg mb-2">Ready to get started?</p>
-          <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>Order your first AI subscription on WhatsApp. Delivered in minutes.</p>
-          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#008236", color: "#fff" }}>
-            <MessageCircle className="w-5 h-5" />
-            Order on WhatsApp
-          </a>
-          <div className="mt-6">
-            <PaymentBadges label="We accept" />
-          </div>
-        </div>
-      </section>
+        <div className="mt-10 flex flex-wrap gap-3"><Link href="/products" className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-white">Browse current catalog <ArrowRight className="h-4 w-4" /></Link><Link href="/how-to-order" className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-white">How to order <ArrowRight className="h-4 w-4" /></Link></div>
+      </div>
     </PageLayout>
   );
 }

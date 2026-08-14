@@ -31,7 +31,8 @@
     { "source": "/guides/students", "destination": "/best-ai-for-students", "permanent": true },
     { "source": "/guides/freelancers", "destination": "/best-ai-for-freelancers", "permanent": true },
     { "source": "/guides/creators", "destination": "/best-ai-for-creators", "permanent": true },
-    { "source": "/guides/smallbusiness", "destination": "/best-ai-for-business", "permanent": true }
+    { "source": "/guides/smallbusiness", "destination": "/best-ai-for-business", "permanent": true },
+    { "source": "/privacy", "destination": "/privacy-policy", "permanent": true }
   ],
   "headers": [
     {

@@ -1,280 +1,77 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, MessageCircle } from "lucide-react";
+import { ChevronDown, MessageCircle, ShieldCheck } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
-import { cheapestPriceFor, tierPrice, TOTAL_PRODUCTS } from "@/lib/catalogStats";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { faqSchema } from "@/utils/schemas";
 
-const WHATSAPP = "https://wa.me/8801865385348";
+const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20have%20a%20question%20about%20an%20AI%20Premium%20Shop%20order.%20Please%20confirm%20the%20current%20details%20for%20the%20exact%20plan.";
 
 const FAQS = [
-  // === General Questions (from Notion SEO FAQ + existing) ===
   {
-    q: "What is AI Premium Shop?",
-    a: `AI Premium Shop (AIPS) is a Bangladesh-based AI subscription provider operating since 2022. We provide access to ${TOTAL_PRODUCTS}+ AI tools including ChatGPT Plus, Claude Pro, Midjourney, GitHub Copilot, Gemini Advanced, and more. Pay with bKash, Nagad, or Rocket. Fast delivery, 10,000+ customers served.`,
+    q: "What information on an AIPS product page should I rely on?",
+    a: "Use the current product identity, published AIPS BDT price and stated access model as AIPS catalog information. Provider-controlled models, credits, quotas, storage, exports, integrations and licensing can change, so verify those details for the exact provider plan before buying.",
   },
   {
-    q: "Is AI Premium Shop legit and trustworthy?",
-    a: "Yes. AIPS has operated since 2022 and serves 10,000+ customers. We offer a 30-day replacement guarantee on all subscriptions, WhatsApp support with a fast response time, and operate transparently with published refund and privacy policies.",
+    q: "What do Shared, Personal, Team and Service mean?",
+    a: "They are catalog access labels that help distinguish the intended arrangement. They do not by themselves guarantee a particular privacy, credential, account-ownership or simultaneous-use setup. Confirm the exact handling for the plan before using it with sensitive data.",
   },
   {
-    q: "Which AI tools are available at AI Premium Shop?",
-    a: `ChatGPT Plus, Claude Pro, Midjourney, Gemini Advanced, Perplexity Pro, GitHub Copilot Pro, Cursor Pro, ElevenLabs, Grammarly Premium, Canva Pro, Notion Business, ChatGPT Business, ChatGPT Pro, CapCut Pro, Freepik, Kling AI, Synthesia, Windsurf, and more. Total ${TOTAL_PRODUCTS}+ AI subscriptions across 9 categories.`,
-  },
-  // === Pricing and Payment (from Notion SEO FAQ) ===
-  {
-    q: "What is the cheapest AI subscription in Bangladesh?",
-    a: `ChatGPT Plus shared seat at BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/month is the most affordable premium AI subscription in Bangladesh. Canva Pro at BDT ${cheapestPriceFor("canva-pro-bangladesh")}/month and GitHub Copilot at BDT ${cheapestPriceFor("github-copilot-bangladesh")}/month are also available at entry-level prices.`,
+    q: "How long will delivery take?",
+    a: "Delivery depends on the exact product, access model and current availability. Ask for the current delivery ETA for your order before payment rather than relying on a universal time window.",
   },
   {
-    q: "What payment methods does AI Premium Shop accept?",
-    a: "bKash, Nagad, Rocket, and bank transfer. No international credit card needed.",
+    q: "How do I pay?",
+    a: "Payment instructions are confirmed for the exact order after the product, plan, duration, price and access model are agreed. Do not send payment until the amount and method are confirmed, and never share a PIN, OTP, password or unrelated financial credential.",
   },
   {
-    q: "Can I pay in installments?",
-    a: "Subscriptions are billed monthly. Each month you pay the full monthly price. No annual commitment required. Simply message WhatsApp to renew each month.",
+    q: "What happens if the provider changes a feature or limit?",
+    a: "Third-party providers control their own models, features, credits, quotas and terms. Re-check current provider information for the exact plan, especially when a capability matters to your workflow. Contact AIPS if an order-specific issue needs review.",
   },
   {
-    q: "Are there any hidden charges?",
-    a: "No. The price shown is the total you pay. No setup fees, no activation fees, no taxes added. What you see is what you pay.",
+    q: "Is every order covered by the same refund or replacement rule?",
+    a: "No blanket coverage should be assumed. Review the current Refund & Resolution Policy and confirm any order-specific coverage or exclusions before payment. AIPS will review documented order issues against the terms that applied to that order.",
   },
   {
-    q: "Do prices change month to month?",
-    a: "Prices are stable. AIPS will notify customers via WhatsApp if any price change occurs, with at least 7 days advance notice.",
-  },
-  // === Delivery and Activation (from Notion SEO FAQ) ===
-  {
-    q: "How long does delivery take?",
-    a: "Typically 5–15 minutes after payment confirmation during business hours. During off-hours (midnight–8am), maximum 2–3 hours. Delivery is 100% digital — no physical pickup required.",
+    q: "What should I send when I need support?",
+    a: "Send the product or plan name, approximate order time, payment reference if relevant, and a description or screenshot of the issue. Do not send passwords, PINs, OTPs, full card details or unrelated private information.",
   },
   {
-    q: "Do I need to be in Dhaka to order?",
-    a: "No. AI Premium Shop delivers to all 64 districts in Bangladesh. Delivery is digital — location does not matter.",
-  },
-  {
-    q: "What do I receive after payment?",
-    a: "Depending on the subscription: login credentials for a shared account, activation instructions for your own account, or an invite link. All access comes with setup instructions via WhatsApp.",
-  },
-  {
-    q: "Do I need a VPN?",
-    a: "No. All subscriptions from AIPS work without VPN. We provide the subscription in a way that works directly in Bangladesh.",
-  },
-  // === Shared vs Personal (existing, good) ===
-  {
-    q: "What's the difference between Shared and Personal accounts?",
-    a: "Shared accounts give you access to the full AI plan at a lower cost. Multiple users access the same subscription — but nobody can see anyone else's conversations or data. Personal (Private) accounts are exclusively yours: full privacy, custom settings, no usage limits from other users, and your own login credentials.",
-  },
-  {
-    q: "Can I upgrade from Shared to Personal later?",
-    a: "Yes. Message us on WhatsApp when you're ready to upgrade. We'll help you switch seamlessly. You only pay the price difference for the remaining period of your current subscription.",
-  },
-  // === ChatGPT Plus Bangladesh (from Notion SEO FAQ) ===
-  {
-    q: "ChatGPT Plus price in Bangladesh 2026?",
-    a: "ChatGPT Plus shared: BDT 499/month. Premium shared: BDT 999/month. Personal account: BDT 2,990/month. ChatGPT Pro: BDT 4,500/month. All via bKash or Nagad at AI Premium Shop.",
-  },
-  {
-    q: "Does ChatGPT Plus shared account include GPT-5?",
-    a: "Yes. All ChatGPT Plus accounts (shared and personal) include access to GPT-5 series, DALL-E 3, Sora, Advanced Voice Mode, Deep Research, Custom GPTs, and Memory.",
-  },
-  {
-    q: "How to buy ChatGPT Plus with bKash in Bangladesh?",
-    a: "Message AIPS on WhatsApp (+8801865385348). Choose your plan. Pay via bKash/Nagad. Receive ChatGPT Plus access in 5–15 minutes.",
-  },
-  // === Claude Pro Bangladesh (from Notion SEO FAQ) ===
-  {
-    q: "Claude Pro price in Bangladesh 2026?",
-    a: `Claude Pro shared: from BDT ${cheapestPriceFor("claude-pro-bangladesh")}/month (Premium Shared: BDT ${tierPrice("claude-pro-bangladesh", "Premium Shared")}/month). Personal account also available. Pay with bKash or Nagad.`,
-  },
-  {
-    q: "What is Claude Pro best for?",
-    a: "Claude Pro is strong at coding, long document analysis (200K token context), academic writing, and nuanced explanations. Popular with developers and researchers.",
-  },
-  {
-    q: "Is Claude better than ChatGPT?",
-    a: "Different strengths. Claude is better for coding and long documents. ChatGPT Plus is better for image generation, voice, video (Sora), and general tasks. Many professionals use both.",
-  },
-  // === Warranty and Support (from Notion SEO FAQ) ===
-  {
-    q: "What is the 30-day warranty?",
-    a: "If your subscription stops working within 30 days of purchase due to any issue on our end, we will fix it, replace it, or issue a full refund — your choice. No questions asked.",
-  },
-  {
-    q: "How do I contact support?",
-    a: "WhatsApp: +8801865385348 — response within 5 minutes during business hours. Also available at aipremiumshop.com.",
-  },
-  {
-    q: "What happens after 30 days if there is a problem?",
-    a: "After 30 days, we still provide support and will try to resolve issues, but replacement or refund is at our discretion. We prioritize long-term customer relationships.",
-  },
-  {
-    q: "How do I renew my subscription?",
-    a: "Message AIPS on WhatsApp before expiry. We send a reminder 3 days before. Reply \"renew\" and we process it in minutes.",
-  },
-  // === Security and Privacy (from Notion SEO FAQ) ===
-  {
-    q: "Is my data safe with a shared ChatGPT account?",
-    a: "Yes. Each user on a family plan has a completely separate profile. Conversations are private to your profile. Other users cannot see your chat history.",
-  },
-  {
-    q: "Will OpenAI or Anthropic know I bought through AIPS?",
-    a: "No. You use the subscription normally. The purchase method is between you and AIPS.",
-  },
-  // === What AI for me (existing, updated pricing) ===
-  {
-    q: "What AI tool is best for my work?",
-    a: `It depends on your needs:
-
-• Students: ChatGPT Plus Shared (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}) or Google AI Pro (from BDT ${cheapestPriceFor("gemini-advanced-bangladesh")})
-• Freelancers: ChatGPT Plus (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}) or Claude Pro Premium Shared (BDT ${tierPrice("claude-pro-bangladesh", "Premium Shared")})
-• Developers: GitHub Copilot (from BDT ${cheapestPriceFor("github-copilot-bangladesh")}) or Cursor Pro (from BDT ${cheapestPriceFor("cursor-bangladesh")})
-• Content Creators: Midjourney (from BDT ${cheapestPriceFor("midjourney-bangladesh")}) + Suno AI (from BDT ${cheapestPriceFor("suno-ai-bangladesh")})
-• Business: ChatGPT Business (from BDT ${cheapestPriceFor("chatgpt-business-bangladesh")}) + Notion Business (from BDT ${cheapestPriceFor("notion-business-bangladesh")})
-
-Not sure? Message us on WhatsApp and we'll recommend the perfect tool.`,
-  },
-  // === Refunds & Policies (existing) ===
-  {
-    q: "Do you offer refunds?",
-    a: "Refunds are available within 15 minutes of delivery if the service doesn't match what was ordered. After activation, our 30-day replacement warranty covers all issues. See our full Refund Policy for details.",
-  },
-  {
-    q: "Can I pay in USD or use PayPal?",
-    a: "We accept local Bangladesh payment methods only — bKash, Nagad, Rocket, and bank transfer. We don't currently support USD, PayPal, or international card payments. Message us on WhatsApp if you're an international customer and need another arrangement.",
+    q: "Can I use a shared-access product for private or regulated information?",
+    a: "Do not assume a shared-access arrangement is appropriate for sensitive, client, student, health, financial or confidential data. Confirm the exact account and data-handling arrangement and the provider's current privacy controls before use.",
   },
 ];
-
-const BN_FAQS = [
-  {
-    q: "AI Premium Shop কী?",
-    // Previously: "#১" (unsupported "number one" claim), "২০২৪ সাল থেকে" (conflicts
-    // with the English site's "since 2022"), "৩,০০০+ গ্রাহক" (conflicts with the
-    // English site's 10,000+ figure — itself unverified, tracked as BLOCKERS.md
-    // B1), a hardcoded "৭৬+" tool count (real count is TOTAL_PRODUCTS, currently
-    // 197), and a stale ৳350 ChatGPT Plus price (catalogStats.ts's own header
-    // comment already documents ৳350 as a known-wrong historical number). Fixed
-    // to match the English site's current claims and derive from the catalog.
-    a: `AI Premium Shop বাংলাদেশের একটি AI সাবস্ক্রিপশন প্রোভাইডার, ২০২২ সাল থেকে সক্রিয়। ChatGPT Plus ৳${cheapestPriceFor("chatgpt-plus-bangladesh")}/মাস থেকে শুরু, সাথে Claude Pro, Midjourney সহ ${TOTAL_PRODUCTS}+ AI টুলস। bKash/Nagad-এ পেমেন্ট করুন। ৩০ দিনের রিপ্লেসমেন্ট ওয়ারেন্টি সহ।`,
-  },
-  {
-    q: "ChatGPT Plus কীভাবে কিনবো?",
-    a: "WhatsApp-এ মেসেজ করুন +8801865385348। প্ল্যান বলুন। bKash/Nagad-এ পেমেন্ট করুন। ৫-১৫ মিনিটে অ্যাক্সেস পাবেন।",
-  },
-  {
-    q: "শেয়ার্ড অ্যাকাউন্ট কি নিরাপদ?",
-    // Dropped the trailing "৳৩,০০০+ গ্রাহকের কোনো ডাটা সমস্যা হয়নি" clause — an
-    // unverified customer-count used as safety evidence, absent from the
-    // English equivalent ("Is my data safe with a shared ChatGPT account?").
-    // Kept the rest matching that answer's existing scope; broader review of
-    // shared-account safety language is BLOCKERS.md B5, not resolved here.
-    a: "হ্যাঁ। আপনি প্রাইভেট প্রোফাইল পান। অন্য ইউজার আপনার চ্যাট দেখতে পারে না।",
-  },
-  {
-    q: "ডেলিভারি কত দ্রুত?",
-    a: "সাধারণত ৫-১৫ মিনিট। রাত ১২টা থেকে সকাল ৮টার মধ্যে সর্বোচ্চ ২-৩ ঘণ্টা। ১০০% ডিজিটাল ডেলিভারি।",
-  },
-  {
-    q: "কোন পেমেন্ট মাধ্যম গ্রহণ করেন?",
-    a: "bKash, Nagad, Rocket, এবং ব্যাংক ট্রান্সফার। কোনো ইন্টারন্যাশনাল কার্ডের প্রয়োজন নেই।",
-  },
-];
-
-function FAQItem({ faq, index }: { faq: { q: string; a: string }; index: number }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: index * 0.03 }}
-      className="rounded-2xl border border-white/10 overflow-hidden"
-      style={{ backgroundColor: "#151b3d" }}
-    >
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex items-center justify-between w-full p-5 text-left"
-        aria-expanded={open}
-      >
-        <span className="font-semibold text-white text-sm pr-4">{faq.q}</span>
-        <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }} className="flex-shrink-0">
-          <ChevronDown className="w-4 h-4" style={{ color: "#f4b942" }} />
-        </motion.div>
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22 }}
-            className="overflow-hidden"
-          >
-            <div className="px-5 pb-5 text-sm leading-relaxed whitespace-pre-line" style={{ color: "#c9ceda" }}>
-              {faq.a}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-}
 
 export default function FAQPage() {
+  const [open, setOpen] = useState<number | null>(0);
   return (
     <PageLayout>
       <SEOHead
-        title="FAQ — AI Subscription Bangladesh | bKash/Nagad Payment | AI Premium Shop"
-        description={`${TOTAL_PRODUCTS}+ AI subscriptions in Bangladesh. ChatGPT Plus BDT 499, Claude Pro, Midjourney. bKash/Nagad payment, 30-day replacement guarantee, WhatsApp support. All questions answered.`}
+        title="AI Premium Shop FAQ | Orders, Access & Support"
+        description="Answers about AIPS catalog prices, access models, delivery confirmation, payment instructions, provider limits, support and order resolution."
         canonical="https://aipremiumshop.com/faq"
-        // No breadcrumbSchema here: <Breadcrumb> below already injects its own
-        // BreadcrumbList JSON-LD from these same items.
-        jsonLd={[faqSchema(FAQS)]}
-        // No Bangla FAQ page exists, so no bn pair is declared — this used to
-        // claim bn: "/faq" too, i.e. English and Bangla are the same document,
-        // the same lie the sitewide index.html default told about every page.
-        // Only state a hreflang pair when a real alternate exists.
-        hreflang={{ "en-BD": "/faq" }}
       />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "FAQ" }]} />
 
-      <section className="max-w-3xl mx-auto px-4 md:px-8 py-14">
-        <div className="mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">Frequently Asked Questions</h1>
-          <p style={{ color: "#c9ceda" }}>Everything you need to know about ordering AI subscriptions in Bangladesh.</p>
-        </div>
+      <div id="main-content" className="mx-auto max-w-4xl px-4 py-12 md:px-8 md:py-16">
+        <header className="mb-10 max-w-3xl">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Confirm-first answers</div>
+          <h1 className="text-3xl font-bold text-white md:text-5xl">Frequently Asked Questions</h1>
+          <p className="mt-4 text-base leading-7 text-slate-300">These answers separate AIPS catalog facts from provider-controlled details and order-specific terms.</p>
+        </header>
 
-        <div className="space-y-3 mb-12">
-          {FAQS.map((faq, i) => <FAQItem key={i} faq={faq} index={i} />)}
-        </div>
+        <section className="space-y-3">
+          {FAQS.map((item, index) => {
+            const active = open === index;
+            return <article key={item.q} className="overflow-hidden rounded-2xl border border-white/10 bg-[#151b3d]"><button type="button" onClick={() => setOpen(active ? null : index)} aria-expanded={active} className="flex w-full min-h-14 items-center justify-between gap-4 px-5 py-4 text-left"><span className="font-semibold text-white">{item.q}</span><ChevronDown className={`h-4 w-4 shrink-0 text-slate-400 transition-transform ${active ? "rotate-180" : ""}`} /></button>{active && <div className="border-t border-white/10 px-5 py-4"><p className="text-sm leading-6 text-slate-300">{item.a}</p></div>}</article>;
+          })}
+        </section>
 
-        {/* Bengali FAQ Section */}
-        <div className="mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">সচরাচর জিজ্ঞাসা (Bangla FAQ)</h2>
-          <p style={{ color: "#c9ceda" }} className="mb-6">বাংলাদেশে AI সাবস্ক্রিপশন কেনার সম্পর্কে সব তথ্য।</p>
-        </div>
-
-        <div className="space-y-3 mb-12">
-          {BN_FAQS.map((faq, i) => <FAQItem key={`bn-${i}`} faq={faq} index={FAQS.length + i} />)}
-        </div>
-
-        <div className="p-8 rounded-2xl text-center border border-white/10" style={{ backgroundColor: "#151b3d" }}>
-          <p className="font-semibold text-white text-lg mb-2">Still have questions?</p>
-          <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>
-            We're available 10 AM – Midnight BST, 7 days a week. WhatsApp response in under 5 minutes.
-          </p>
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#008236", color: "#fff" }}
-          >
-            <MessageCircle className="w-5 h-5" />
-            Ask us on WhatsApp
-          </a>
-        </div>
-      </section>
+        <aside className="mt-10 rounded-2xl border border-white/10 bg-[#151b3d] p-6 text-center">
+          <h2 className="text-lg font-bold text-white">Question about a specific order or plan?</h2>
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-slate-300">Send the exact product or order context. Confirm current price, access model, availability, provider-controlled limits, delivery ETA and applicable terms before payment.</p>
+          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#008236] px-5 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Ask on WhatsApp</a>
+        </aside>
+      </div>
     </PageLayout>
   );
 }

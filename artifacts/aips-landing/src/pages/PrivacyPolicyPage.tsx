@@ -1,166 +1,47 @@
+import { MessageCircle, ShieldCheck } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
 
-const WHATSAPP = "https://wa.me/8801865385348";
+const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20have%20a%20privacy%20question%20about%20AI%20Premium%20Shop.";
+
+const SECTIONS = [
+  ["1. Information you choose to send", "AIPS may receive the information you voluntarily send through WhatsApp or other contact channels, such as your name, contact details, product/plan question, order context and a payment reference when relevant. Do not send passwords, banking PINs, OTPs, full card details or unrelated sensitive information."],
+  ["2. On-site contact form", "The current contact form prepares a WhatsApp message in your browser. It does not silently submit the typed message to AIPS before you choose to open and send it in WhatsApp."],
+  ["3. AI concierge", "If you use the on-site AI concierge, the text you submit is processed to generate a response and may be logged for service quality and debugging according to the current application configuration. Do not submit secrets, credentials or information you would not want included in a support log."],
+  ["4. Analytics and advertising tags", "The site includes Google Analytics and Facebook Pixel integrations that are configured to activate only after cookie consent. Those third-party services process data under their own policies. You can decline consent or clear the site's stored consent state in your browser."],
+  ["5. WhatsApp and external services", "When you choose a WhatsApp, social-media or provider link, the destination service receives information according to its own privacy policy and technical operation. AIPS cannot control the data practices of those third-party services."],
+  ["6. Order records and retention", "AIPS may retain order and support records for operational, accounting, security, dispute-resolution and legal needs. Retention can vary by record type and business requirement; this page does not promise a universal deletion date."],
+  ["7. Access-model privacy", "A catalog label such as Shared, Personal, Team or Service is not itself a privacy guarantee. Before using sensitive, client, student, financial, health or confidential information, confirm the exact access arrangement and review the provider's current data controls."],
+  ["8. Security", "Use reasonable care when sharing order evidence. Mask credentials in screenshots and never send PINs, OTPs or passwords. No internet or third-party messaging system can be guaranteed to be completely secure."],
+  ["9. Questions and correction requests", "If you have a privacy question or believe information supplied to AIPS is inaccurate or should be reviewed, contact AIPS with enough context to identify the relevant conversation or order. The request will be handled according to the available records and applicable requirements."],
+  ["10. Policy changes", "AIPS may update this notice as the site, integrations and operating practices change. The date on this page identifies the current published version."],
+];
 
 export default function PrivacyPolicyPage() {
   return (
     <PageLayout>
       <SEOHead
-        title="Privacy Policy | AI Premium Shop Bangladesh"
-        description="Privacy policy for AI Premium Shop. How we handle your data, payments, and WhatsApp communication."
+        title="Privacy Policy | AI Premium Shop"
+        description="How AI Premium Shop handles contact, order, AI concierge, analytics and third-party service data, plus practical guidance for protecting sensitive information."
         canonical="https://aipremiumshop.com/privacy-policy"
       />
-
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Privacy Policy" }]} />
 
-      <section className="max-w-3xl mx-auto px-4 md:px-8 py-14">
-        <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">Privacy Policy</h1>
-        <p className="text-sm mb-10" style={{ color: "#c9ceda" }}>Last updated: July 2026</p>
+      <div id="main-content" className="mx-auto max-w-4xl px-4 py-12 md:px-8 md:py-16">
+        <header className="max-w-3xl">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Data-minimization guidance</div>
+          <h1 className="text-3xl font-bold text-white md:text-5xl">Privacy Policy</h1>
+          <p className="mt-3 text-sm text-slate-500">Last updated: 14 August 2026</p>
+          <p className="mt-4 text-base leading-7 text-slate-300">This notice describes the current site and contact flows at a practical level. It avoids promising a retention, deletion or security outcome that is not mechanically guaranteed by the application.</p>
+        </header>
 
-        <div className="space-y-10 text-sm leading-relaxed" style={{ color: "#c9ceda" }}>
+        <section className="mt-10 space-y-4">
+          {SECTIONS.map(([title, body]) => <article key={title} className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="font-bold text-white">{title}</h2><p className="mt-2 text-sm leading-6 text-slate-300">{body}</p></article>)}
+        </section>
 
-          <div>
-            <h2 className="text-lg font-semibold text-white mb-3">0. AI Assistant Conversations</h2>
-            <p className="mb-2">
-              The AI assistant on this site records the questions you ask it and the answers it gives, so we can see
-              where it fails people and fix it. This is separate from ordering — the assistant cannot take an order or
-              a payment.
-            </p>
-            <ul className="list-disc list-inside space-y-1 ml-2">
-              <li>We store the text of the conversation, which tools were suggested, and how long the reply took.</li>
-              <li>
-                Before anything is saved, we automatically remove phone numbers, email addresses, card numbers, and
-                anything that looks like a PIN, OTP or password. Never send us those — no one at AI Premium Shop will
-                ever ask for them.
-              </li>
-              <li>
-                A random ID identifies your browser tab so a multi-message conversation stays together. It is not
-                linked to your name, number, or any order, and it is discarded when you close the tab.
-              </li>
-              <li>We do not use these conversations for advertising and we do not sell them.</li>
-            </ul>
-            <p className="mt-2">
-              If you would rather not have a conversation recorded, order directly on{" "}
-              <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "#25d366" }}>
-                WhatsApp
-              </a>{" "}
-              instead of using the assistant.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold text-white mb-3">1. What We Collect</h2>
-            <p className="mb-2">When you interact with AI Premium Shop, we may collect:</p>
-            <ul className="list-disc list-inside space-y-1 ml-2">
-              <li>Your name and WhatsApp number (required to process your order)</li>
-              <li>Email address (optional, if you choose to provide it)</li>
-              <li>Payment confirmation reference (bKash/Nagad transaction ID)</li>
-              <li>The AI tools you ordered and account preferences</li>
-              <li>Basic website analytics (pages visited, browser type — anonymized)</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold text-white mb-3">2. How We Use Your Information</h2>
-            <ul className="list-disc list-inside space-y-1 ml-2">
-              <li>Order processing and account delivery</li>
-              <li>Customer support and warranty requests</li>
-              <li>Sending updates about your active subscriptions</li>
-              <li>Marketing communications (only with your consent; opt out anytime via WhatsApp)</li>
-              <li>Improving our website and services using anonymized analytics data</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold text-white mb-3">3. Payment Partners</h2>
-            <p>
-              We process payments through bKash, Nagad, and Rocket. These are third-party payment
-              platforms governed by their own privacy policies. We only receive the transaction
-              confirmation reference — we never have access to your banking credentials or card details.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold text-white mb-3">4. Communication via WhatsApp</h2>
-            <p>
-              All orders, delivery, and support are handled via WhatsApp (+880 1865-385348). By
-              messaging us, you consent to receiving order-related messages. We do not share your
-              WhatsApp number with third parties. You can stop marketing messages at any time by
-              replying "STOP" on WhatsApp.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold text-white mb-3">5. Analytics & Cookies</h2>
-            <p>
-              We use Google Analytics (GA4) to understand how visitors use our website. This data is
-              anonymized and helps us improve the site experience. We also use a cookie consent banner
-              — Google Analytics and Facebook Pixel only load after you accept cookies. You can
-              withdraw consent at any time by clearing your browser's local storage.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold text-white mb-3">6. Data Storage & Retention</h2>
-            <p>
-              Order records (name, contact, tool purchased) are stored securely and retained for the
-              duration of your subscription plus 30 days (the warranty period). After that, data is
-              deleted unless you are an ongoing customer. We do not sell your data to any third party.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold text-white mb-3">7. Your Rights</h2>
-            <ul className="list-disc list-inside space-y-1 ml-2">
-              <li>Request a copy of the data we hold about you</li>
-              <li>Request correction of inaccurate data</li>
-              <li>Request deletion of your data (we will comply within 7 days)</li>
-              <li>Withdraw consent for marketing at any time</li>
-            </ul>
-            <p className="mt-2">
-              To exercise any of these rights, message us on WhatsApp at +880 1865-385348.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold text-white mb-3">8. Security</h2>
-            <p>
-              We take reasonable steps to protect your information. All WhatsApp communications are
-              end-to-end encrypted by default. Payment references are stored securely and not shared.
-              However, no internet transmission is 100% secure, and we cannot guarantee absolute security.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold text-white mb-3">9. Changes to This Policy</h2>
-            <p>
-              We may update this privacy policy from time to time. The "Last updated" date at the top
-              of this page reflects the most recent revision. Continued use of our service after changes
-              constitutes acceptance of the updated policy.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold text-white mb-3">10. Contact Us</h2>
-            <p>
-              For any privacy-related questions or requests, contact us on WhatsApp:
-            </p>
-            <div className="mt-3">
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold"
-                style={{ backgroundColor: "#008236", color: "#fff" }}
-              >
-                WhatsApp: +880 1865-385348
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+        <aside className="mt-10 rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="text-lg font-bold text-white">Privacy question?</h2><p className="mt-2 text-sm leading-6 text-slate-300">Use the minimum information needed to identify the relevant order or conversation, and do not include credentials or unrelated sensitive data.</p><a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#008236] px-5 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Contact AIPS</a></aside>
+      </div>
     </PageLayout>
   );
 }

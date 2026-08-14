@@ -57,8 +57,9 @@ if (!c.authorizationOnFile && c.category !== "F" && c.category !== "G") {
 if (!c.disclaimer || c.disclaimer.length < 40) {
   fail("compliance.disclaimer is missing or too short — an independent-provider disclaimer is required (spec section 2)");
 }
-if (!fs.existsSync(path.join(APP, "..", "..", c.reviewDoc))) {
-  warn(`compliance.reviewDoc "${c.reviewDoc}" not found from repo root — the decision record should exist`);
+const reviewDocPath = path.join(APP, "..", "..", c.reviewDoc);
+if (!fs.existsSync(reviewDocPath)) {
+  fail(`compliance.reviewDoc "${c.reviewDoc}" is missing from the build context — the decision record is required`);
 }
 
 // ---- 2. Offer dates -------------------------------------------------------

@@ -1,0 +1,1 @@
+AI Premium Shop homepage continuous-improvement branch. Existing HomeV2 + HomepagePremiumShell architecture only. No rebuild.

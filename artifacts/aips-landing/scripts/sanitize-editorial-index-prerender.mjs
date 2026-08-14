@@ -47,7 +47,7 @@ function writeRoute(route, title, description, body) {
 const blogBody = `<main>
 <nav aria-label="breadcrumb"><a href="/">Home</a> › Blog</nav>
 <h1>AI Guides for Bangladesh</h1>
-<p>Use these verification-first guides to choose AI tools by workflow, access model and current AIPS commercial context. Provider-controlled models, credits, quotas, licensing and other entitlements can change and should be checked for the exact plan.</p>
+<p><strong>Verification-first editorial.</strong> Use these guides to choose AI tools by workflow, access model and current AIPS commercial context. Provider-controlled models, credits, quotas, licensing and other entitlements can change and should be checked for the exact plan.</p>
 <h2>Current editorial library</h2>
 <ul>${blog.posts.map((post) => `<li><a href="/blog/${esc(post.slug)}">${esc(post.title)}</a> — ${esc(post.description)}</li>`).join("")}</ul>
 <h2>Before choosing a subscription</h2>

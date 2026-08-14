@@ -1,318 +1,128 @@
 import { useMemo } from "react";
-import { TOTAL_PRODUCTS } from "@/lib/catalogStats";
-import { motion, type Variants } from "framer-motion";
-import { MessageCircle, ArrowRight, Zap, Shield } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, CheckCircle2, MessageCircle, ShieldCheck } from "lucide-react";
 import { Link } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import productsData from "../../data/products.json";
+import { BrandIcon } from "@/components/BrandIcon";
+import { formatBDT } from "@/lib/format";
+import { productPath } from "@/lib/productRoutes";
+import productsData from "../../data/catalog-pages.json";
 
+const SITE = "https://aipremiumshop.com";
 const WHATSAPP = "https://wa.me/8801865385348";
+const RETIRED_PRODUCT_SLUGS = new Set(["replit-bangladesh"]);
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.4, delay: i * 0.06, ease: [0, 0, 0.2, 1] } }),
-};
+type ProductRecord = (typeof productsData.products)[number];
 
-interface BudgetConfig {
+interface BudgetDefinition {
   maxPrice: number;
-  title: string;
-  h1: string;
-  subtitle: string;
-  aioSnippet: string;
-  metaDescription: string;
-  canonical: string;
-  nextTier?: { label: string; href: string };
-  highlight: string;
+  label: string;
+  next?: { label: string; href: string };
 }
 
-const BUDGETS: Record<string, BudgetConfig> = {
-  "ai-under-500": {
-    maxPrice: 500,
-    title: "AI Tools Under BDT 500 — Cheapest Premium AI Bangladesh",
-    h1: "AI Tools Under BDT 500",
-    subtitle: "Premium AI at student-friendly prices. No credit card needed.",
-    aioSnippet: "The cheapest premium AI tools in Bangladesh under BDT 500: ChatGPT Plus Starter Shared (BDT 499/mo) and Gamma (BDT 399/mo). Both available via bKash or Nagad — no international credit card required. Order on WhatsApp and receive access in 5–30 minutes.",
-    metaDescription: "AI tools under BDT 500 in Bangladesh. ChatGPT Plus BDT 499, Gamma BDT 399. Cheapest premium AI.",
-    canonical: "https://aipremiumshop.com/ai-under-500",
-    nextTier: { label: "See tools under BDT 1,000", href: "/ai-under-1000" },
-    highlight: "Start with ChatGPT Plus at just BDT 499 — Bangladesh's most affordable AI subscription.",
-  },
-  "ai-under-1000": {
-    maxPrice: 1000,
-    title: "AI Tools Under BDT 1000 — Budget AI Subscriptions BD",
-    h1: "AI Tools Under BDT 1,000",
-    subtitle: "The full range of premium AI tools — all under BDT 1,000/month.",
-    aioSnippet: "Premium AI tools available under BDT 1,000 per month in Bangladesh include ChatGPT Plus (from BDT 499), Google AI Pro (from BDT 599), Replit Core (from BDT 500), Gamma (BDT 399), Udio (from BDT 499), ElevenLabs Starter (from BDT 748), ChatGPT Plus Premium Shared (BDT 999), and Notion AI (from BDT 799). Pay with bKash or Nagad — no international card required.",
-    metaDescription: "AI tools under BDT 1000 in Bangladesh. Claude, Notion, Perplexity & more. Budget AI tools.",
-    canonical: "https://aipremiumshop.com/ai-under-1000",
-    nextTier: { label: "See tools under BDT 3,000", href: "/ai-under-3000" },
-    highlight: "Most popular AI tools — including private accounts — available under BDT 1,000.",
-  },
-  "ai-under-3000": {
-    maxPrice: 3000,
-    title: "AI Tools Under BDT 3000 — Mid-Range AI Bangladesh",
-    h1: "AI Tools Under BDT 3,000",
-    subtitle: "Every AI tool in our catalog, including personal accounts — all under BDT 3,000.",
-    aioSnippet: "Most premium AI tools in our Bangladesh catalog are available under BDT 3,000/month — including personal (private) accounts for ChatGPT Plus (BDT 2,990) and Claude Pro (from BDT 599, Personal from BDT 2,990). GitHub Copilot Pro starts from BDT 399. A few enterprise and bundle products (business setup services, agent tools) are priced above this tier — message us on WhatsApp for those. Pay with bKash or Nagad.",
-    metaDescription: "AI tools under BDT 3000 in Bangladesh. Personal accounts for pros. Mid-range AI subscriptions.",
-    canonical: "https://aipremiumshop.com/ai-under-3000",
-    highlight: "Most premium AI tools in our catalog are available under BDT 3,000 per month.",
-  },
+const BUDGETS: Record<string, BudgetDefinition> = {
+  "ai-under-500": { maxPrice: 500, label: "BDT 500", next: { label: "See tools under BDT 1,000", href: "/ai-under-1000" } },
+  "ai-under-1000": { maxPrice: 1000, label: "BDT 1,000", next: { label: "See tools under BDT 3,000", href: "/ai-under-3000" } },
+  "ai-under-3000": { maxPrice: 3000, label: "BDT 3,000" },
 };
 
-interface ProductCardProps {
-  product: (typeof productsData.products)[0];
-  index: number;
+const catalog = (productsData.products as ProductRecord[]).filter(
+  (product) =>
+    !RETIRED_PRODUCT_SLUGS.has(product.slug) &&
+    !product.requestPrice &&
+    typeof product.price === "number" &&
+    product.price > 0,
+);
+
+function accessLabel(value: string | null | undefined): string {
+  if (value === "shared") return "Shared";
+  if (value === "personal") return "Personal";
+  if (value === "team") return "Team";
+  if (value === "bundle") return "Bundle";
+  if (value === "setup-service" || value === "setup" || value === "service") return "Setup / service";
+  return "Confirm";
 }
 
-function ProductCard({ product, index }: ProductCardProps) {
-  const waUrl = `${WHATSAPP}?text=${encodeURIComponent(`Hi, I want to order ${product.name}`)}`;
-  const savings = product.officialUSD
-    ? Math.round(((product.officialUSD * 120 - product.price) / (product.officialUSD * 120)) * 100)
-    : null;
+export default function BudgetPage({ budgetKey }: { budgetKey: string }) {
+  const reducedMotion = useReducedMotion();
+  const definition = BUDGETS[budgetKey];
 
-  return (
-    <motion.div
-      custom={index}
-      variants={fadeUp}
-      initial="hidden"
-      animate="visible"
-      className="p-5 rounded-2xl border border-white/10 border-l-4 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
-      style={{ backgroundColor: "#151b3d", borderLeftColor: product.brandColor || "#f4b942" }}
-    >
-      <div className="flex items-start justify-between gap-3 mb-3">
-        <div className="flex-1 min-w-0">
-          <div className="flex flex-wrap items-center gap-2 mb-1">
-            <span className="font-semibold text-white text-sm truncate">{product.name}</span>
-            {product.badge && (
-              <span className="px-2 py-0.5 rounded-full text-xs font-semibold flex-shrink-0"
-                style={{ backgroundColor: (product.brandColor || "#f4b942") + "25", color: product.brandColor || "#f4b942" }}>
-                {product.badge}
-              </span>
-            )}
-          </div>
-          <div className="text-xs mb-2" style={{ color: product.brandColor || "#c9ceda" }}>{product.brand}</div>
-          <p className="text-xs leading-relaxed line-clamp-2" style={{ color: "#c9ceda" }}>{product.description}</p>
+  const products = useMemo(() => {
+    if (!definition) return [];
+    return catalog
+      .filter((product) => Number(product.price) <= definition.maxPrice)
+      .sort((a, b) => Number(a.price) - Number(b.price) || a.name.localeCompare(b.name));
+  }, [definition]);
+
+  if (!definition) {
+    return (
+      <PageLayout>
+        <SEOHead title="Budget Page Not Found | AI Premium Shop" description="This budget comparison is not available." noindex />
+        <div id="main-content" className="mx-auto max-w-4xl px-4 py-24 text-center">
+          <h1 className="mb-4 text-3xl font-bold text-white">Budget comparison not found</h1>
+          <Link href="/pricing" className="inline-flex items-center gap-2 rounded-xl bg-[#f4b942] px-5 py-3 font-semibold text-[#0a0e27]">View current pricing <ArrowRight className="h-4 w-4" /></Link>
         </div>
-      </div>
-      <div className="flex items-center gap-3 mb-4">
-        <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-lg border border-white/10" style={{ color: "#c9ceda" }}>
-          {product.accessType === "shared" ? "Shared" : "Personal"}
-        </span>
-        <span className="inline-flex items-center gap-1 text-xs" style={{ color: "#c9ceda" }}>
-          <Zap className="w-3 h-3" style={{ color: "#f4b942" }} />
-          {(product as any).deliveryMinutes ?? product.deliverySLA} delivery
-        </span>
-        <span className="inline-flex items-center gap-1 text-xs" style={{ color: "#c9ceda" }}>
-          <Shield className="w-3 h-3" style={{ color: "#25d366" }} />
-          {(product as any).warrantyDays ?? 30}d warranty
-        </span>
-      </div>
-      <div className="flex items-center justify-between">
-        <div>
-          <div className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT {(product.price ?? 0).toLocaleString()}</div>
-          {savings !== null && savings > 0 && (
-            <div className="text-xs" style={{ color: "#c9ceda" }}>
-              ${product.officialUSD}/mo officially · {savings}% off
-            </div>
-          )}
-        </div>
-        <a
-          href={waUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
-          style={{ backgroundColor: "#008236", color: "#fff" }}
-        >
-          <MessageCircle className="w-4 h-4" />
-          Order
-        </a>
-      </div>
-    </motion.div>
-  );
-}
+      </PageLayout>
+    );
+  }
 
-interface BudgetPageProps {
-  budgetKey: string;
-}
-
-export default function BudgetPage({ budgetKey }: BudgetPageProps) {
-  const config = BUDGETS[budgetKey];
-  if (!config) return null;
-
-  const products = useMemo(
-    () => productsData.products.filter((p) => p.price != null && p.price <= config.maxPrice).sort((a, b) => (a.price ?? 0) - (b.price ?? 0)),
-    [config.maxPrice]
-  );
+  const distinct = new Set(products.map((product) => product.slug)).size;
+  const minPrice = products[0]?.price ?? null;
+  const title = `AI Tools Under ${definition.label} in Bangladesh | AIPS`;
+  const description = `Browse current fixed-price AIPS plans at or below ${definition.label}. Compare published BDT price and access model, then confirm availability, provider limits, delivery ETA and terms before payment.`;
+  const canonical = `${SITE}/${budgetKey}`;
 
   return (
     <PageLayout>
-      <SEOHead title={config.title} description={config.metaDescription} canonical={config.canonical} />
-      <Breadcrumb items={[
-        { name: "Home", href: "/" },
-        { name: "Budget", href: "/pricing" },
-        { name: config.h1.replace("AI Tools ", "") },
-      ]} />
+      <SEOHead title={title} description={description} canonical={canonical} />
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Pricing", href: "/pricing" }, { name: `Under ${definition.label}` }]} />
 
-      <div className="max-w-5xl mx-auto px-4 md:px-8 py-14">
+      <div id="main-content" className="mx-auto max-w-6xl px-4 py-10 md:px-8 md:py-14">
+        <motion.header initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-10 max-w-4xl">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Current budget filter</div>
+          <h1 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-5xl">AI Tools Under {definition.label}</h1>
+          <p className="text-base leading-relaxed text-slate-300 md:text-lg">This page filters the current fixed-price public AIPS catalog by one rule: published price at or below {definition.label}. It does not calculate unofficial discounts, provider savings, “best value” rankings, or universal delivery/warranty promises. Confirm current availability, provider limits, delivery ETA and applicable terms before payment.</p>
+        </motion.header>
 
-        {/* Hero */}
-        <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border"
-            style={{ backgroundColor: "#f4b94215", borderColor: "#f4b94230", color: "#f4b942" }}>
-            💰 Budget Guide — Bangladesh 2026
+        <section className="mb-9 grid gap-4 sm:grid-cols-3" aria-label="Budget catalog summary">
+          <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><div className="text-2xl font-bold text-white">{products.length}</div><div className="mt-1 text-xs text-slate-400">fixed-price plan records</div></div>
+          <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><div className="text-2xl font-bold text-white">{distinct}</div><div className="mt-1 text-xs text-slate-400">tool families represented</div></div>
+          <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><div className="text-2xl font-bold text-[#f4b942]">{minPrice ? formatBDT(Number(minPrice)) : "—"}</div><div className="mt-1 text-xs text-slate-400">lowest current published price</div></div>
+        </section>
+
+        <section className="mb-10" aria-labelledby="budget-current-plans">
+          <div className="mb-5 flex items-end justify-between gap-4">
+            <div><p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#f4b942]">Current catalog</p><h2 id="budget-current-plans" className="text-2xl font-bold text-white">Plans within this threshold</h2></div>
+            {definition.next && <Link href={definition.next.href} className="hidden items-center gap-1.5 text-sm font-semibold text-[#f4b942] sm:inline-flex">{definition.next.label} <ArrowRight className="h-4 w-4" /></Link>}
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            {config.h1.includes("BDT") ? (
-              <>
-                {config.h1.split("BDT")[0]}
-                <span className="text-amber-400">BDT{config.h1.split("BDT")[1]}</span>
-              </>
-            ) : config.h1}
-          </h1>
-          <p className="text-lg" style={{ color: "#c9ceda" }}>{config.subtitle}</p>
-        </motion.div>
 
-        {/* AIO Snippet */}
-        <motion.div custom={0.5} variants={fadeUp} initial="hidden" animate="visible"
-          className="p-5 rounded-2xl border mb-6"
-          style={{ backgroundColor: "rgba(244,185,66,0.06)", borderColor: "rgba(244,185,66,0.25)" }}>
-          <p className="text-sm leading-relaxed" style={{ color: "#e8d5a3" }}>{config.aioSnippet}</p>
-        </motion.div>
-
-        {/* Highlight */}
-        <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible"
-          className="p-5 rounded-2xl border mb-8 flex items-center gap-3"
-          style={{ backgroundColor: "#f4b94210", borderColor: "#f4b94230" }}>
-          <span className="text-2xl">✅</span>
-          <p className="text-sm font-medium" style={{ color: "#f4b942" }}>{config.highlight}</p>
-        </motion.div>
-
-        {/* ChatGPT Hero — Under 500 only */}
-        {budgetKey === "ai-under-500" && (
-          <motion.div custom={1.5} variants={fadeUp} initial="hidden" animate="visible"
-            className="rounded-2xl border mb-10 overflow-hidden"
-            style={{ backgroundColor: "#10a37f0d", borderColor: "rgba(16,163,127,0.35)" }}>
-            <div className="p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
-                  <circle cx="20" cy="20" r="18" fill="#10a37f" />
-                  <path d="M10 30 L18 14 L22 22 L26 18 L30 30 Z" fill="white" />
-                  <circle cx="28" cy="13" r="4" fill="#f4b942" />
-                </svg>
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-widest mb-0.5" style={{ color: "#10a37f" }}>
-                    Best Value Under ৳500
+          <div className="grid gap-4 md:grid-cols-2">
+            {products.map((product, index) => {
+              const wa = `${WHATSAPP}?text=${encodeURIComponent(`Hi, I want ${product.name}. Published AIPS price: ${formatBDT(Number(product.price))}. Please confirm the current access model, availability, provider limits, delivery ETA and applicable terms before payment.`)}`;
+              return (
+                <motion.article key={product.id} initial={reducedMotion ? false : { opacity: 0, y: 12 }} whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.3, delay: Math.min(index * 0.02, 0.14) }} whileHover={reducedMotion ? undefined : { y: -3 }} className="rounded-2xl border border-white/10 bg-[#151b3d] p-5">
+                  <div className="mb-4 flex items-start gap-3">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10" style={{ backgroundColor: `${product.brandColor || "#f4b942"}16` }}><BrandIcon brand={product.brand ?? product.name} color={product.brandColor || "#f4b942"} size={26} /></div>
+                    <div className="min-w-0"><h3 className="font-bold leading-snug text-white">{product.name}</h3><div className="mt-1 text-xs text-slate-400">{accessLabel(product.accessType)}</div></div>
                   </div>
-                  <div className="font-bold text-white text-lg">ChatGPT Plus Shared — ৳499/mo</div>
-                </div>
-              </div>
-              <p className="text-sm mb-4 leading-relaxed" style={{ color: "#c9ceda" }}>
-                ChatGPT Plus Shared at ৳499/mo is the <strong className="text-white">#1 best-value AI tool in Bangladesh</strong>.
-                It gives you writing, coding, image generation, deep research, and AI agents —
-                all for the price of 2 cups of tea per month.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-5">
-                {["Writing", "Coding", "Research", "Images", "AI Agents", "Deep Research"].map((cap) => (
-                  <span key={cap} className="text-xs px-2.5 py-1 rounded-full"
-                    style={{ backgroundColor: "#10a37f20", color: "#10a37f" }}>
-                    {cap}
-                  </span>
-                ))}
-              </div>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href={`https://wa.me/8801865385348?text=${encodeURIComponent("Hi, I want ChatGPT Plus Starter Shared (৳499/mo)")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-                  style={{ backgroundColor: "#008236", color: "#fff" }}
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  Order ৳499/mo
-                </a>
-                <Link href="/chatgpt-plans-bangladesh"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold border border-white/20 text-white hover:bg-white/5 transition-colors text-sm">
-                  View all ChatGPT plans
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        )}
+                  <p className="mb-5 text-sm leading-relaxed text-slate-300">Use the product page to confirm the exact access arrangement, current availability, provider limits and delivery details before purchase.</p>
+                  <div className="flex items-end justify-between gap-3 border-t border-white/10 pt-4">
+                    <div><div className="text-[11px] text-slate-400">Published AIPS price</div><div className="font-bold text-[#f4b942]">{formatBDT(Number(product.price))}</div></div>
+                    <div className="flex gap-2"><Link href={productPath(product.slug)} className="rounded-lg border border-white/10 px-3 py-2 text-xs font-semibold text-white">Details</Link><a href={wa} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-[#008236] px-3 py-2 text-xs font-semibold text-white"><MessageCircle className="h-3.5 w-3.5" /> Confirm</a></div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+          {products.length === 0 && <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-8 text-center text-slate-300">No current fixed-price plans are published within this threshold.</div>}
+        </section>
 
-        {/* Stats row */}
-        <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible"
-          className="grid grid-cols-3 gap-4 mb-10">
-          <div className="p-4 rounded-2xl border border-white/10 text-center" style={{ backgroundColor: "#151b3d" }}>
-            <div className="text-2xl font-bold text-white">{products.length}</div>
-            <div className="text-xs mt-1" style={{ color: "#c9ceda" }}>Tools available</div>
-          </div>
-          <div className="p-4 rounded-2xl border border-white/10 text-center" style={{ backgroundColor: "#151b3d" }}>
-            <div className="text-2xl font-bold" style={{ color: "#f4b942" }}>BDT {products[0]?.price ?? 0}</div>
-            <div className="text-xs mt-1" style={{ color: "#c9ceda" }}>Starting from</div>
-          </div>
-          <div className="p-4 rounded-2xl border border-white/10 text-center" style={{ backgroundColor: "#151b3d" }}>
-            <div className="text-2xl font-bold" style={{ color: "#25d366" }}>5–60 min</div>
-            <div className="text-xs mt-1" style={{ color: "#c9ceda" }}>Delivery time</div>
-          </div>
-        </motion.div>
-
-        {/* Products Grid */}
-        <div className="grid md:grid-cols-2 gap-4 mb-10">
-          {products.map((p, i) => (
-            <ProductCard key={p.id} product={p} index={i + 3} />
-          ))}
-        </div>
-
-        {/* Next Tier Link */}
-        {config.nextTier && (
-          <motion.div
-            custom={products.length + 3}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            className="mb-10"
-          >
-          <div className="bg-white/[0.03] border border-white/10 rounded-xl p-4 text-center">
-            <Link href={config.nextTier.href}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 text-sm font-medium text-white hover:bg-white/5 transition-colors">
-              {config.nextTier.label}
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-          </motion.div>
-        )}
-
-        {/* CTA */}
-        <motion.div
-          custom={products.length + 5}
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          className="p-8 rounded-2xl text-center border border-white/10"
-          style={{ backgroundColor: "#151b3d" }}
-        >
-          <h2 className="text-xl font-bold text-white mb-3">Not sure which to choose?</h2>
-          <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>
-            Message us on WhatsApp. Tell us your budget and what you need — we'll recommend the perfect tool.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: "#008236", color: "#fff" }}>
-              <MessageCircle className="w-5 h-5" />
-              Ask on WhatsApp
-            </a>
-            <Link href="/products"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold border border-white/20 text-white hover:bg-white/5 transition-colors">
-              Browse All {TOTAL_PRODUCTS} Tools
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </motion.div>
+        <section className="grid gap-5 lg:grid-cols-[1fr_320px]">
+          <div className="rounded-2xl border border-white/10 bg-[#151b3d]/70 p-6"><h2 className="mb-4 text-xl font-bold text-white">Budget is only one filter</h2><div className="space-y-3">{["Check whether the plan uses shared, personal, team, bundle or service access.", "Check provider-controlled credits, quotas and feature limits for the exact plan.", "Confirm delivery ETA and applicable order terms before payment."].map((point) => <div key={point} className="flex gap-2.5"><CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-400" /><p className="text-sm text-slate-300">{point}</p></div>)}</div></div>
+          <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="mb-3 text-lg font-bold text-white">Need a workflow-based choice?</h2><p className="mb-4 text-sm leading-relaxed text-slate-300">A cheaper tool is not automatically a better fit. Start with the work you need to do and your access/privacy requirements.</p><Link href="/guides" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#f4b942]">Browse decision guides <ArrowRight className="h-4 w-4" /></Link></div>
+        </section>
       </div>
     </PageLayout>
   );

@@ -46,6 +46,11 @@ try {
   run(process.execPath, ["scripts/audit-bundle-budgets.mjs"]);
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
+  // The legacy general prerender still owns many route shells. Budget routes
+  // are immediately rewritten from the active public projection so typed old
+  // rankings, warranty/delivery promises and retired products cannot survive
+  // into crawler HTML.
+  run(process.execPath, ["scripts/sanitize-budget-prerender.mjs"]);
   // Homepage V2 is the production runtime route. Rewrite the root static shell
   // only after the legacy/general prerender pass so crawlers and no-JS clients
   // receive the same decision architecture as the hydrated application. The

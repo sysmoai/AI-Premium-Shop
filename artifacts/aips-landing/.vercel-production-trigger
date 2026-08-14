@@ -2,3 +2,4 @@ qualified-tree: f61d65b566198351af7bfce823252d78a1380f01
 qualified-head: 310356408fdfdc2e3c30075e76aa504bbe2507e9
 merged-main: 1beabf9de15272ca304a52a534077abc509dea67
 reason: force Vercel production build after monorepo unaffected-project skip; no runtime code change
+retry: 2026-08-14T12:08:00+06:00 after documented rolling-hour build window aged out

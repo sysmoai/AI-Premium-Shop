@@ -1,40 +1,26 @@
-// Single source of truth for blog categories. BlogPage's filter, Navbar's
-// Blog mega-menu, and PageFooter's Blog column all read this list — adding a
-// category here surfaces it everywhere at once, the same fix applied to the
-// product category list (ai-design was invisible in one place before that
-// fix). Keys must match the `category` field used on POSTS in BlogPage.tsx.
+// Shared taxonomy for the blog index, navbar and footer. Descriptions define
+// topic scope only; they deliberately avoid outcome, ranking or provider-limit
+// claims so navigation copy cannot become a separate source of commercial truth.
 export interface BlogCategory {
   key: string;
   label: string;
   emoji: string;
   color: string;
-  href: string; // /blog?category=<key>
+  href: string;
   description: string;
 }
 
 export const BLOG_CATEGORIES: BlogCategory[] = [
-  { key: "assistant", label: "AI Assistants", emoji: "🧠", color: "#4285f4", href: "/blog?category=assistant",
-    description: "ChatGPT, Claude, Gemini, Grok — comparisons, pricing and mastery guides." },
-  { key: "image-video", label: "Image & Video AI", emoji: "🎬", color: "#a855f7", href: "/blog?category=image-video",
-    description: "Midjourney, Runway, HeyGen, CapCut and every AI creative tool." },
-  { key: "voice-music", label: "Voice & Music AI", emoji: "🎵", color: "#ec4899", href: "/blog?category=voice-music",
-    description: "ElevenLabs, Suno and voice cloning / music generation guides." },
-  { key: "coding", label: "AI for Developers", emoji: "💻", color: "#22c55e", href: "/blog?category=coding",
-    description: "GitHub Copilot, Cursor, coding agents and dev workflows." },
-  { key: "agents", label: "AI Agents", emoji: "🤖", color: "#f4b942", href: "/blog?category=agents",
-    description: "Manus and the agentic-AI shift — what it means for BD users." },
-  { key: "payments", label: "Payments & Access", emoji: "💳", color: "#10b981", href: "/blog?category=payments",
-    description: "Paying for AI tools from Bangladesh without an international card." },
-  { key: "safety", label: "Safety & Scams", emoji: "🛡", color: "#ef4444", href: "/blog?category=safety",
-    description: "Spotting fake sellers, scam red flags, and staying protected." },
-  { key: "students", label: "For Students", emoji: "🎓", color: "#3b82f6", href: "/blog?category=students",
-    description: "Study, research and assignment workflows with AI." },
-  { key: "freelancers", label: "For Freelancers", emoji: "💼", color: "#f97316", href: "/blog?category=freelancers",
-    description: "Earning more and delivering faster with an AI toolkit." },
-  { key: "strategy", label: "Strategy & Comparisons", emoji: "💡", color: "#eab308", href: "/blog?category=strategy",
-    description: "Which tools to combine, and why one AI subscription is rarely enough." },
+  { key: "assistant", label: "AI Assistants", emoji: "🧠", color: "#4285f4", href: "/blog?category=assistant", description: "Plan, access and workflow guides for AI assistant products." },
+  { key: "image-video", label: "Image & Video AI", emoji: "🎬", color: "#a855f7", href: "/blog?category=image-video", description: "Decision guides for image, design and video-generation workflows." },
+  { key: "voice-music", label: "Voice & Music AI", emoji: "🎵", color: "#ec4899", href: "/blog?category=voice-music", description: "Voice, speech, audio and music workflow guides." },
+  { key: "coding", label: "AI for Developers", emoji: "💻", color: "#22c55e", href: "/blog?category=coding", description: "Coding-assistant and development-workflow decision guides." },
+  { key: "agents", label: "AI Agents", emoji: "🤖", color: "#f4b942", href: "/blog?category=agents", description: "Agent-product pricing, access and workflow guides." },
+  { key: "payments", label: "Payments & Access", emoji: "💳", color: "#10b981", href: "/blog?category=payments", description: "Payment, account-control and access-model guidance for Bangladesh." },
+  { key: "safety", label: "Safety & Scams", emoji: "🛡", color: "#ef4444", href: "/blog?category=safety", description: "Seller-evaluation, account-security and purchase-risk checklists." },
+  { key: "students", label: "For Students", emoji: "🎓", color: "#3b82f6", href: "/blog?category=students", description: "Study, research and academic-policy guidance for AI use." },
+  { key: "freelancers", label: "For Freelancers", emoji: "💼", color: "#f97316", href: "/blog?category=freelancers", description: "Client-work, QA and tool-selection guidance for freelancers." },
+  { key: "strategy", label: "Strategy & Comparisons", emoji: "💡", color: "#eab308", href: "/blog?category=strategy", description: "Workflow-first comparison and tool-stack decision guides." },
 ];
 
-export const BLOG_CATEGORY_MAP: Record<string, BlogCategory> = Object.fromEntries(
-  BLOG_CATEGORIES.map((c) => [c.key, c]),
-);
+export const BLOG_CATEGORY_MAP: Record<string, BlogCategory> = Object.fromEntries(BLOG_CATEGORIES.map((category) => [category.key, category]));

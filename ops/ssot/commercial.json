@@ -82,10 +82,10 @@
     "records_missing_commercialStatus": 239,
     "records_missing_verificationDate": 239,
     "records_missing_sourceUrl": 14,
-    "records_missing_officialUSD": 153,
+    "records_missing_officialUSD": 159,
     "records_with_unverified_trust_rating_or_reviewCount": 9,
     "status": "open-audit-debt",
-    "note": "These counts intentionally remain visible. Do not populate synthetic values merely to make validator warnings disappear."
+    "note": "Missing-evidence counts treat both absent and null values as unknown. These counts intentionally remain visible. Do not populate synthetic values merely to make validator warnings disappear."
   },
   "legacy_claim_occurrences": {
     "as_of": "2026-08-14",

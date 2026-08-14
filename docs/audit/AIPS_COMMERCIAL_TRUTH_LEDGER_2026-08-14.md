@@ -37,14 +37,14 @@ In commerce quarantine, the existing fail-closed behavior remains stronger: pric
 
 ## Catalog debt snapshot
 
-The SSOT snapshot is validated against `data/products.json`; the build fails if these counts drift without updating the ledger.
+The SSOT snapshot is validated against `data/products.json`; the build fails if these counts drift without updating the ledger. For evidence completeness, an `officialUSD` value counts as missing when the field is either absent or explicitly `null`.
 
 - 239 catalog records.
 - 44 shared-access records.
 - 239/239 records missing `commercialStatus`.
 - 239/239 records missing `verificationDate`.
 - 14/239 records missing `sourceUrl`.
-- 153/239 records missing `officialUSD`.
+- 159/239 records missing a usable `officialUSD` value (absent or `null`).
 - 9 records carry unverified `trust.rating` and/or `trust.reviewCount`.
 - Raw/source audit still finds historical claim terms including delivery-minute promises, warranty language, unscoped `unlimited`, instant-delivery labels and unsupported merchandising badges.
 

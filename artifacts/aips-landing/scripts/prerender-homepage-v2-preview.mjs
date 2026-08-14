@@ -147,12 +147,12 @@ function sanitizeProductsStatic() {
     `<p>${activeCatalogRecords.length} current public plan records with BDT prices where available. Check each product page for current access, availability and delivery details before purchase.</p>`,
   );
   html = html.replace(/<li><a href=["']\/replit-bangladesh["'][^>]*>[\s\S]*?<\/li>/gi, "");
-  html = html.replace(/\bUnlimited\b(?! \(provider limits apply\))/gi, (match) => `${match} (provider limits apply)`);
+  html = html.replace(/\bUnlimited\b(?! \(provider limit applies\))/gi, (match) => `${match} (provider limit applies)`);
 
   if (/fast delivery/i.test(html)) throw new Error("Products prerender truth guard failed: stale fast-delivery claim remains");
   if (/replit-bangladesh/i.test(html)) throw new Error("Products prerender truth guard failed: retired Replit route remains");
   if (/30[- ]day (replacement )?warranty/i.test(html)) throw new Error("Products prerender truth guard failed: stale universal warranty remains");
-  if (/\bunlimited\b/i.test(html) && !/provider limits apply/i.test(html)) throw new Error("Products prerender truth guard failed: unscoped unlimited label remains");
+  if (/\bunlimited\b/i.test(html) && !/provider limit applies/i.test(html)) throw new Error("Products prerender truth guard failed: unscoped unlimited label remains");
 
   writeFileSync(productsPath, html, "utf8");
   console.log(`[products-truth] sanitized static /products for ${activeFamilyCount} active tool families`);

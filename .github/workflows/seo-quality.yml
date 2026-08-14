@@ -18,6 +18,7 @@ on:
   pull_request:
     paths:
       - "artifacts/aips-landing/**"
+      - ".github/workflows/seo-quality.yml"
   schedule:
     - cron: "0 1 * * 1"
   workflow_dispatch:

@@ -24,7 +24,7 @@ const nameOf = (value) => String(value ?? "AI tool").split(/—\s*/)[0].split(/\
 const money = (value) => `BDT ${Number(value).toLocaleString("en-BD")}`;
 const access = (value) => value === "shared" ? "Shared access" : value === "team" ? "Team access" : value === "bundle" ? "Bundle" : ["setup-service", "setup", "service"].includes(value) ? "Setup / service" : "Personal access";
 const fit = (value, max) => value.length <= max ? value : `${value.slice(0, max - 1).trimEnd()}…`;
-const scopedTier = (value) => /\bunlimited\b/i.test(String(value ?? "")) ? `${value} (provider limits apply)` : value;
+const scopedTier = (value) => /\bunlimited\b/i.test(String(value ?? "")) ? `${value} (provider limit applies)` : value;
 
 function recordsFor(slug) {
   const direct = products.filter((product) => product.slug === slug);

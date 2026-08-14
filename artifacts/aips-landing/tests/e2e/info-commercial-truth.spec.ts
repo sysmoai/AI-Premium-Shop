@@ -26,7 +26,7 @@ test("secondary-page navbar keeps discovery/search without typed bundle promises
   await page.getByRole("button", { name: "Products" }).click();
   await expect(page.getByText(/current families/).first()).toBeVisible();
   await expect(page.getByRole("link", { name: "Browse the full current catalog" })).toBeVisible();
-  const navText = (await page.locator("header").innerText()).toLowerCase();
+  const navText = (await page.getByRole("banner").innerText()).toLowerCase();
   for (const phrase of BLOCKED) expect(navText, phrase).not.toContain(phrase.toLowerCase());
 
   await page.getByRole("button", { name: "Search catalog" }).click();

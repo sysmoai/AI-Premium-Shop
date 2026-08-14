@@ -21,7 +21,12 @@ dist
 *.log
 .DS_Store
 
-# Docs and reports: large, never served, and irrelevant to the build.
-docs
+# Docs and reports: keep the bulk out of Vercel's source upload. The Higgsfield
+# compliance decision record is a build dependency and is explicitly retained
+# so validate-higgsfield-offer.mjs can prove the inquiry-only decision exists.
+docs/**
 *.md
 !README.md
+!docs/
+!docs/compliance/
+!docs/compliance/higgsfield-offer-review.md

@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const APP = path.join(here, "..");
 const DIST = path.join(APP, "dist/public");
+const WHATSAPP = "https://wa.me/8801865385348";
 const publicCatalog = JSON.parse(fs.readFileSync(path.join(APP, "data/public-products.json"), "utf8"));
 const products = Array.isArray(publicCatalog) ? publicCatalog : publicCatalog.products ?? [];
 const activeProducts = products.filter((product) => product.publicStatus !== "retired");

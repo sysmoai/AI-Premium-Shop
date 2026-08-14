@@ -1,17 +1,25 @@
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
-  MessageCircle, ChevronRight, Check, X, Clock, Shield, Zap,
-  Wallet, ArrowRight, ChevronDown, BadgeCheck, Users,
+  ArrowRight,
+  Check,
+  ChevronDown,
+  ChevronRight,
+  Clock,
+  Info,
+  MessageCircle,
+  ShieldCheck,
+  Users,
+  Wallet,
+  X,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
-import { SEOHead } from "@/components/SEOHead";
-import { productPath } from "@/lib/productRoutes";
 import { PaymentBadges } from "@/components/PaymentBadges";
+import { SEOHead } from "@/components/SEOHead";
 import { formatBDT } from "@/lib/format";
-import { formulaPrice } from "@/lib/pricing";
-import { schemaJson, breadcrumbSchema, faqSchema } from "@/utils/schemas";
+import { productPath } from "@/lib/productRoutes";
+import { breadcrumbSchema, faqSchema, schemaJson } from "@/utils/schemas";
 import productsData from "../../data/products.json";
 
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -19,19 +27,19 @@ const SITE = "https://aipremiumshop.com";
 
 interface Plan {
   planName: string;
-  tierLevel: number;
+  tierLevel?: number;
   priceBDT: number;
-  officialUSD: number | null;
-  billingCycle: string;
+  officialUSD?: number | null;
+  billingCycle?: string;
   deliveryType: "shared" | "personal" | "team";
   whatsIncluded: string[];
   features: string[];
   limitations: string[];
-  bestFor: string;
+  bestFor?: string;
   seats?: number;
   durationOptions?: { months: number; priceBDT: number; label: string }[];
   badge?: string;
-  inStock: boolean;
+  inStock?: boolean;
   deliverySLA?: string;
 }
 
@@ -41,142 +49,189 @@ interface ProductDetail {
   slug: string;
   requestPrice?: boolean;
   brand: string;
-  brandSlug: string;
-  brandColor: string;
+  brandSlug?: string;
+  brandColor?: string;
   category: string;
   logo?: string;
   tagline?: string;
-  description: string;
+  description?: string;
   descriptionBN?: string;
-  plans: Plan[];
-  gallery?: string[];
-  higherPlanUpsell?: { targetPlan: string; whatYouUnlock: string[] };
+  plans?: Plan[];
   uniqueSellingPoints?: string[];
   useCasesBD?: string[];
-  whyBuyFromAIPS?: string;
   faq?: { q: string; a: string; qBN?: string; aBN?: string }[];
-  activationType?: string;
-  estimatedDeliveryTime?: string;
-  trust?: { warrantyDays: number; refundPolicy: string };
-  relatedProducts?: { slug: string; name: string; priceBDT: number; category: string }[];
-  bundleSuggestions?: { slug: string; name: string; savingBDT: number }[];
-  seo?: { title: string; metaDescription: string; canonical: string; ogImage: string; keywords: string[] };
-  specs?: { platforms: string[]; devices: string; regions: string; languages: string; deviceLimit: string };
-  stock?: { status: string; unitsNote?: string };
-  badges?: string[];
-  deliveryMethod?: string;
+  accessType?: string;
+  relatedProducts?: { slug: string; name: string; priceBDT?: number; category?: string }[];
   lastVerifiedDate?: string;
+  verificationDate?: string;
   priceUpdatedDate?: string;
-  competitorCompare?: { seller: string; price: string; risk: string }[];
-  videoDemoUrl?: string;
   howItWorksSteps?: { title: string; desc: string }[];
 }
 
+type RawRecord = ProductDetail & {
+  tier?: string;
+  price?: number | null;
+  capabilities?: string[];
+  deliverySLA?: string;
+};
+
+const rawProducts: RawRecord[] = Array.isArray(productsData)
+  ? (productsData as RawRecord[])
+  : (((productsData as { products?: RawRecord[] }).products ?? []) as RawRecord[]);
+
+const HARD_UNVERIFIED = [
+  /\bwarranty\b/i,
+  /\b(?:full\s+)?replacement\s+guarantee\b/i,
+  /\binstant\s+(?:delivery|access|activation)\b/i,
+  /\b5\s*[–-]\s*(?:15|30)\s*(?:min|minutes)\b/i,
+  /\btrusted\s+by\b/i,
+  /\bbest[ -]?seller\b/i,
+  /\blimited\s+(?:time|offer)\b/i,
+  /\bmoney[ -]?back\b/i,
+  /\bguaranteed\s+(?:income|permanent)\b/i,
+  /\b\d{1,3}%\s*off\b/i,
+];
+const NEGATION = /\b(no|not|never|without|cannot)\b/i;
+const UNLIMITED_SCOPE = /\b(fair[ -]?use|provider\s+limit|subject\s+to|credit|relaxed|slow|scope|usage\s+limit|rate\s+limit|limit applies|limits apply)\b/i;
+
+function isUnsafeClaim(value: string): boolean {
+  const text = value.trim();
+  if (!text) return false;
+  if (!NEGATION.test(text) && HARD_UNVERIFIED.some((pattern) => pattern.test(text))) return true;
+  if (/\bunlimited\b/i.test(text) && !NEGATION.test(text) && !UNLIMITED_SCOPE.test(text)) return true;
+  return false;
+}
+
+function sanitizeProse(value: string | undefined, fallback = "Check the current product and plan details before purchase."): string {
+  if (!value?.trim()) return fallback;
+  const sentences = value
+    .split(/(?<=[.!?।])\s+/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean)
+    .filter((sentence) => !isUnsafeClaim(sentence));
+  return sentences.length ? sentences.join(" ") : fallback;
+}
+
+function safeList(values: string[] | undefined): string[] {
+  return (values ?? []).map((value) => value.trim()).filter((value) => value && !isUnsafeClaim(value));
+}
+
+function fitTitle(value: string): string {
+  if (value.length <= 68) return value;
+  const suffix = " | AI Premium Shop";
+  const room = Math.max(24, 68 - suffix.length);
+  return `${value.slice(0, room - 1).trimEnd()}…${suffix}`;
+}
+
+function fitDescription(value: string): string {
+  if (value.length <= 158) return value;
+  return `${value.slice(0, 157).trimEnd()}…`;
+}
+
 function getProductBySlug(slug: string): ProductDetail | undefined {
-  const arr = Array.isArray(productsData) ? productsData : (productsData as any).products || [];
-  const all = (arr as ProductDetail[]).filter((p) => p.slug === slug);
+  const all = rawProducts.filter((product) => product.slug === slug);
   if (!all.length) return undefined;
+
   const main = all[0];
-  // Merge plans from all variants into the main entry
-  const merged: ProductDetail = { ...main };
-  // requestPrice records publish no numbers, so no plan rows are synthesized.
-  if (!merged.requestPrice && (!merged.plans || merged.plans.length === 0)) {
-    merged.plans = all.map((p) => {
-      const raw = p as any;
-      return {
-        planName: raw.tier ?? raw.name ?? "Plan",
-        tierLevel: raw.tier?.toLowerCase().includes("starter") ? 1 : raw.tier?.toLowerCase().includes("premium") ? 2 : raw.tier?.toLowerCase().includes("personal") ? 3 : 1,
-        priceBDT: Number(raw.price) || 0,
-        officialUSD: raw.officialUSD ?? null,
+  const merged: ProductDetail = {
+    ...main,
+    plans: Array.isArray(main.plans) ? [...main.plans] : [],
+  };
+
+  if (!merged.requestPrice && !merged.plans?.length) {
+    merged.plans = all
+      .filter((record) => typeof record.price === "number" && Number.isFinite(record.price) && (record.price ?? 0) > 0)
+      .map((record) => ({
+        planName: record.tier ?? record.name ?? "Plan",
+        priceBDT: Number(record.price),
         billingCycle: "monthly",
-        deliveryType: raw.accessType === "shared" ? "shared" : raw.accessType === "bundle" ? "shared" : "personal",
-        whatsIncluded: Array.isArray(raw.capabilities) ? raw.capabilities : [],
-        features: Array.isArray(raw.capabilities) ? raw.capabilities : [],
+        deliveryType: record.accessType === "shared" ? "shared" : record.accessType === "team" ? "team" : "personal",
+        whatsIncluded: safeList(record.capabilities),
+        features: safeList(record.capabilities),
         limitations: [],
-        bestFor: raw.accessType === "shared" ? "Budget users" : "Privacy-focused users",
-        seats: raw.accessType === "shared" ? 8 : 1,
-        badge: raw.badge ?? undefined,
-        inStock: true,
-        deliverySLA: raw.deliverySLA ?? undefined,
-      };
-    });
+        bestFor: record.accessType === "shared" ? "Users who understand the shared-access model" : "Users who prefer personal access",
+        deliverySLA: record.deliverySLA,
+      }));
   }
-  // Derive clean product display name: strip tier suffix after "—" or "-"
-  merged.name = merged.name.split(/—\s*/)[0].split(/\s*-\s*/)[0].trim();
+
+  merged.name = merged.name.split(/—\s*/)[0].split(/\s+-\s+/)[0].trim();
   return merged;
 }
 
-function getDirectAbroadPrice(officialUSD: number | null): number | null {
-  if (!officialUSD || officialUSD <= 0) return null;
-  return formulaPrice(officialUSD);
+const SAFE_USPS = [
+  "Pay in BDT with local payment options",
+  "Access model shown before purchase",
+  "Current availability confirmed before payment",
+  "Bangla support available via WhatsApp",
+  "10,000+ customers served since 2022",
+];
+
+const SAFE_HOW_IT_WORKS = [
+  { title: "Choose the plan", desc: "Review the access model, included features and published price." },
+  { title: "Confirm current details", desc: "Confirm availability, provider limits, delivery ETA and applicable terms before payment." },
+  { title: "Pay and receive access", desc: "Complete payment only after the order details are confirmed, then receive access according to that confirmation." },
+];
+
+function accessLabel(plan: Plan | null): string {
+  if (!plan) return "Confirm access model";
+  if (plan.deliveryType === "shared") return "Shared access";
+  if (plan.deliveryType === "team") return "Team access";
+  return "Personal access";
 }
 
-// No fabricated social proof: review counts/ratings were removed because no
-// verified review data exists yet. Warranty/refund wording stays pending a
-// CEO-approved terms record (see COORDINATION.md claims audit).
-const TRUST_DEFAULT = {
-  warrantyDays: 30,
-  refundPolicy: "Full refund within 24h if not delivered; replacement within 30 days for account issues.",
-};
-
-const USP_DEFAULT = [
-  "Fast delivery — shared plans in minutes, personal accounts same day",
-  "30-day warranty & replacement guarantee",
-  "Your own account (not shared) on Personal plans",
-  "Pay with bKash / Nagad / Rocket / Bank — no international card needed",
-  "Bangla human support via WhatsApp",
-  "10,000+ customers since 2022",
-];
-
-const HOW_IT_WORKS_DEFAULT = [
-  { title: "Choose plan", desc: "Pick the tier and duration that fits your needs." },
-  { title: "Pay bKash/Nagad", desc: "Send payment securely via local channels." },
-  { title: "Get instant access", desc: "Receive account details or activation in minutes." },
-];
-
 export default function ProductPage({ productSlug }: { productSlug: string }) {
-    const product = getProductBySlug(productSlug);
+  const product = getProductBySlug(productSlug);
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
   const [selectedDuration, setSelectedDuration] = useState(1);
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
 
-  const plans = product?.plans ?? [];
+  const plans = useMemo(() => product?.plans ?? [], [product]);
   const cheapestPlan = plans.length ? plans.reduce((a, b) => (a.priceBDT < b.priceBDT ? a : b)) : null;
-  const fromPrice = cheapestPlan?.priceBDT ?? product?.plans?.[0]?.priceBDT ?? 0;
+  const fromPrice = cheapestPlan?.priceBDT ?? 0;
 
   useEffect(() => {
     if (plans.length && !selectedPlan) setSelectedPlan(plans[0]);
-  }, [plans.length, selectedPlan]);
+  }, [plans, selectedPlan]);
+
+  useEffect(() => {
+    setSelectedPlan(plans[0] ?? null);
+    setSelectedDuration(plans[0]?.durationOptions?.[0]?.months ?? 1);
+    setFaqOpen(null);
+  }, [productSlug]);
 
   if (!product) {
     return (
       <PageLayout>
-        {/* An unknown slug here rendered with no noindex and no canonical —
-            indexable, thin, soft-404 content, same class of bug not-found.tsx
-            already solves with the noindex prop. Applied here too. */}
         <SEOHead
           title="Product Not Found | AI Premium Shop"
-          description="This product page is not available. Browse our full catalog of AI subscriptions."
+          description="This product page is not available. Browse the current AI Premium Shop catalog."
           noindex
         />
         <div className="max-w-5xl mx-auto px-4 pt-10 pb-20 text-center">
           <h1 className="text-3xl font-bold text-white mb-4">Product Not Found</h1>
           <p className="mb-8" style={{ color: "#c9ceda" }}>
-            The product you’re looking for doesn’t exist or has moved. Try searching our catalog.
+            This product is not in the current public catalog. Browse the catalog to find an active alternative.
           </p>
-          <Link href="/products" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-opacity hover:opacity-90"
-            style={{ backgroundColor: "#ec4899", color: "#fff" }}>
-            Browse All Products <ArrowRight className="w-4 h-4" />
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-opacity hover:opacity-90"
+            style={{ backgroundColor: "#ec4899", color: "#fff" }}
+          >
+            Browse Current Products <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </PageLayout>
     );
   }
 
-  const selectedPrice = selectedPlan?.durationOptions?.find((d) => d.months === selectedDuration)?.priceBDT ?? selectedPlan?.priceBDT ?? fromPrice;
+  const selectedPrice =
+    selectedPlan?.durationOptions?.find((duration) => duration.months === selectedDuration)?.priceBDT ??
+    selectedPlan?.priceBDT ??
+    fromPrice;
+
   const whatsappText = product.requestPrice
-    ? `Hi, I want ${product.name} from AI Premium Shop. Please share the current price, plans and next steps.`
-    : `Hi, I want to order ${product.name} (${selectedPlan?.planName ?? product.name}) from AI Premium Shop. Price: ${formatBDT(selectedPrice)}. Please help me with the next step.`;
+    ? `Hi, I want ${product.name} from AI Premium Shop. Please confirm the current price, access model, availability, provider limits, delivery ETA and applicable terms before payment.`
+    : `Hi, I want ${product.name}${selectedPlan ? ` (${selectedPlan.planName})` : ""} from AI Premium Shop. Published price: ${formatBDT(selectedPrice)}. Please confirm the current access model, availability, provider limits, delivery ETA and applicable terms before payment.`;
   const whatsappLink = `${WHATSAPP}?text=${encodeURIComponent(whatsappText)}`;
 
   const breadcrumbs = [
@@ -185,432 +240,393 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
     { name: product.name },
   ];
 
-  const seo = product.seo ?? (product.requestPrice ? {
-    title: `${product.name} price in Bangladesh — Buy with bKash/Nagad | AI Premium Shop`,
-    metaDescription: `Get ${product.name} in Bangladesh through AI Premium Shop. Provider pricing updates periodically, so we quote the current price on WhatsApp. Pay with bKash, Nagad or bank transfer — no international card needed.`,
-    canonical: `${SITE}${productPath(product.slug)}`,
-    ogImage: product.logo ?? "https://aipremiumshop.com/images/og/default-og.png",
-    keywords: [product.name, `${product.name} price in Bangladesh`, `${product.name} bKash`, "AI Premium Shop", "Bangladesh AI subscription"],
-  } : {
-    title: `${product.name} price in Bangladesh — ${formatBDT(fromPrice)}/mo | AI Premium Shop`,
-    metaDescription: `${product.name} price in Bangladesh is ${formatBDT(fromPrice)}/month at AI Premium Shop. Pay with bKash or Nagad. Delivery ${cheapestPlan?.deliverySLA ?? "as scheduled"}. 30-day warranty. Trusted by 10,000+ customers since 2022.`,
-    // Products with a dedicated brand page canonicalize there; the rest are
-    // self-canonical — pointing at /{slug} for an unrouted slug would declare
-    // a NotFound-rendering URL as the canonical version.
-    canonical: `${SITE}${productPath(product.slug)}`,
-    ogImage: product.logo ?? "https://aipremiumshop.com/images/og/default-og.png",
-    keywords: [product.name, `${product.name} price in Bangladesh`, `${product.name} bKash`, `${product.name} koto taka`, "AI Premium Shop", "Bangladesh AI subscription"],
-  });
+  const priceText = product.requestPrice || fromPrice <= 0 ? "Current price on request" : `From ${formatBDT(fromPrice)}/month`;
+  const seoTitle = fitTitle(`${product.name} Price in Bangladesh | AI Premium Shop`);
+  const seoDescription = fitDescription(
+    `${priceText}. Compare ${product.name} access options in Bangladesh and confirm current availability, provider limits, delivery ETA and terms before paying in BDT.`,
+  );
+  const canonical = `${SITE}${productPath(product.slug)}`;
 
-  const trust = product.trust ?? TRUST_DEFAULT;
-  const usps = product.uniqueSellingPoints ?? USP_DEFAULT;
-  const howItWorks = product.howItWorksSteps ?? HOW_IT_WORKS_DEFAULT;
-  const useCases = product.useCasesBD ?? [];
-  const faqs = product.faq ?? [];
+  const description = sanitizeProse(product.description, `${product.name} is listed in the current AI Premium Shop catalog. Review the access model and current plan details before purchase.`);
+  const productUsps = safeList(product.uniqueSellingPoints);
+  const usps = productUsps.length ? productUsps : SAFE_USPS;
+  const useCases = safeList(product.useCasesBD);
+  const howItWorks = (product.howItWorksSteps ?? [])
+    .filter((step) => step?.title && step?.desc)
+    .filter((step) => !isUnsafeClaim(`${step.title}. ${step.desc}`));
+  const safeHowItWorks = howItWorks.length ? howItWorks : SAFE_HOW_IT_WORKS;
+  const faqs = (product.faq ?? []).filter((faq) => !isUnsafeClaim(`${faq.q}. ${faq.a}`));
+  const safeBadges = safeList((product as ProductDetail & { badges?: string[] }).badges);
+  const verificationDate = product.verificationDate ?? product.lastVerifiedDate ?? product.priceUpdatedDate ?? null;
 
   return (
     <PageLayout>
-      <SEOHead title={seo.title} description={seo.metaDescription} canonical={seo.canonical} ogImage={seo.ogImage} />
+      <SEOHead title={seoTitle} description={seoDescription} canonical={canonical} ogImage={product.logo} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(breadcrumbSchema(breadcrumbs)) }} />
-      {faqs.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(faqSchema(faqs)) }} />}
+      {faqs.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(faqSchema(faqs)) }} />
+      )}
 
-      <div className="max-w-6xl mx-auto px-4 pt-6 pb-20">
-        {/* Breadcrumb */}
-        <nav aria-label="breadcrumb" className="flex items-center gap-2 text-sm mb-6" style={{ color: "#c9ceda" }}>
+      <div className="max-w-6xl mx-auto px-4 pt-6 pb-24">
+        <nav aria-label="breadcrumb" className="flex flex-wrap items-center gap-2 text-sm mb-6" style={{ color: "#c9ceda" }}>
           <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          {breadcrumbs.slice(1).map((b, i) => (
-            <span key={i} className="flex items-center gap-2">
+          {breadcrumbs.slice(1).map((breadcrumb, index) => (
+            <span key={`${breadcrumb.name}-${index}`} className="flex items-center gap-2">
               <ChevronRight className="w-3.5 h-3.5" />
-              {b.href ? <Link href={b.href} className="hover:text-white transition-colors capitalize">{b.name}</Link> : <span className="text-white">{b.name}</span>}
+              {breadcrumb.href ? (
+                <Link href={breadcrumb.href} className="hover:text-white transition-colors capitalize">{breadcrumb.name}</Link>
+              ) : (
+                <span className="text-white">{breadcrumb.name}</span>
+              )}
             </span>
           ))}
         </nav>
 
-        {/* Hero */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-14 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 mb-12 items-start">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              {product.logo && <img src={product.logo} alt={`${product.name} logo`} width={56} height={56} className="rounded-xl object-contain" />}
+              {product.logo && (
+                <img src={product.logo} alt={`${product.name} logo`} width={56} height={56} className="rounded-xl object-contain" />
+              )}
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight">{product.name}</h1>
-                {product.tagline && <p className="text-sm mt-1" style={{ color: "#f4b942" }}>{product.tagline}</p>}
+                {product.tagline && !isUnsafeClaim(product.tagline) && (
+                  <p className="text-sm mt-1" style={{ color: "#f4b942" }}>{product.tagline}</p>
+                )}
               </div>
             </div>
-            <div className="flex items-center gap-3 mb-4">
-              {product.badges?.map((b) => (
-                <span key={b} className="px-2 py-0.5 rounded-full text-xs font-semibold capitalize" style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942", border: "1px solid rgba(244,185,66,0.25)" }}>{b}</span>
-              ))}
-            </div>
-            <p className="mb-4 leading-relaxed" style={{ color: "#c9ceda" }}>{product.description}</p>
-            {product.descriptionBN && <p className="mb-4 leading-relaxed font-medium text-white/90">{product.descriptionBN}</p>}
+
+            {safeBadges.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {safeBadges.map((badge) => (
+                  <span
+                    key={badge}
+                    className="px-2 py-0.5 rounded-full text-xs font-semibold"
+                    style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942", border: "1px solid rgba(244,185,66,0.25)" }}
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <p className="mb-4 leading-relaxed" style={{ color: "#c9ceda" }}>{description}</p>
+            {product.descriptionBN && (
+              <p className="mb-5 leading-relaxed font-medium text-white/90">{product.descriptionBN}</p>
+            )}
             <div className="flex flex-wrap gap-2 mb-6">
-              {usps.slice(0, 4).map((u, i) => (
-                <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: "rgba(16,185,129,0.12)", color: "#10b981", border: "1px solid rgba(16,185,129,0.25)" }}>
-                  <Check className="w-3 h-3" /> {u}
+              {usps.slice(0, 5).map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium"
+                  style={{ backgroundColor: "rgba(16,185,129,0.12)", color: "#10b981", border: "1px solid rgba(16,185,129,0.25)" }}
+                >
+                  <Check className="w-3 h-3" /> {item}
                 </span>
               ))}
             </div>
             <PaymentBadges />
           </div>
 
-          {/* Sticky buy box (desktop) */}
           <div className="hidden lg:block">
             <div className="sticky top-24 rounded-2xl border border-white/10 p-6" style={{ backgroundColor: "#151b3d" }}>
               <div className="mb-4">
-                {product.requestPrice ? (
-                  <>
-                    <div className="text-sm mb-1" style={{ color: "#c9ceda" }}>Current price</div>
-                    <div className="text-xl font-bold text-white leading-snug">বর্তমান মূল্য জানতে WhatsApp করুন</div>
-                    <div className="text-xs mt-1" style={{ color: "#c9ceda" }}>Provider pricing updates periodically — we quote the live price.</div>
-                  </>
-                ) : (
-                  <>
-                    <div className="text-sm mb-1" style={{ color: "#c9ceda" }}>Starting from</div>
-                    <div className="text-3xl font-bold text-white">{formatBDT(fromPrice)}<span className="text-sm font-normal ml-1" style={{ color: "#c9ceda" }}>/mo</span></div>
-                  </>
-                )}
-                {selectedPlan?.officialUSD != null && (
-                  <div className="text-xs mt-1" style={{ color: "#c9ceda" }}>
-                    Direct abroad: <span className="line-through">{formatBDT(formulaPrice(selectedPlan.officialUSD))}</span> + intl card needed
-                  </div>
-                )}
+                <div className="text-sm mb-1" style={{ color: "#c9ceda" }}>{product.requestPrice ? "Current price" : "Starting from"}</div>
+                <div className="text-3xl font-bold text-white">
+                  {product.requestPrice || fromPrice <= 0 ? "Ask on WhatsApp" : formatBDT(fromPrice)}
+                  {!product.requestPrice && fromPrice > 0 && <span className="text-sm font-normal ml-1" style={{ color: "#c9ceda" }}>/mo</span>}
+                </div>
               </div>
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-bold text-base transition-all duration-200 mb-3"
-                style={{ backgroundColor: "#008236", color: "#fff" }}>
-                <MessageCircle className="w-5 h-5" /> Order on WhatsApp
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-bold text-base transition-opacity hover:opacity-90 mb-3"
+                style={{ backgroundColor: "#008236", color: "#fff" }}
+              >
+                <MessageCircle className="w-5 h-5" /> Confirm & Order on WhatsApp
               </a>
               <div className="text-xs text-center" style={{ color: "#c9ceda" }}>
-                <Clock className="w-3 h-3 inline mr-1" /> Delivery: {product.estimatedDeliveryTime ?? "5–15 min"}
+                <Clock className="w-3 h-3 inline mr-1" /> Confirm current delivery ETA before payment
               </div>
             </div>
           </div>
         </div>
 
-        {/* AIO Quick Answer */}
-        <div className="rounded-2xl border border-white/10 p-6 mb-14" style={{ backgroundColor: "#151b3d" }}>
+        <section className="rounded-2xl border border-white/10 p-6 mb-12" style={{ backgroundColor: "#151b3d" }}>
           <h2 className="text-lg font-bold text-white mb-2">
-            {product.requestPrice
-              ? `${product.name} is available in Bangladesh through AI Premium Shop (aipremiumshop.com) — current price on WhatsApp`
-              : `${product.name} price in Bangladesh is ${formatBDT(fromPrice)}/month at AI Premium Shop (aipremiumshop.com)`}
+            {product.requestPrice || fromPrice <= 0
+              ? `${product.name}: current Bangladesh price and access details on request`
+              : `${product.name} starts from ${formatBDT(fromPrice)}/month in the current AIPS catalog`}
           </h2>
           <p className="leading-relaxed" style={{ color: "#c9ceda" }}>
-            Pay with bKash or Nagad — no international card needed. Instant delivery in {product.estimatedDeliveryTime ?? "5–15 minutes"}. 30-day warranty on every order. Trusted by 10,000+ customers since 2022. AIPS provides access to authentic {product.brand} subscriptions; all product names and logos are trademarks of their respective owners.
+            AI Premium Shop accepts local BDT payment methods. Before paying, confirm the exact access model, current availability, provider limits, delivery ETA and applicable refund or replacement terms for the selected plan. Product names and trademarks belong to their respective owners; this page does not claim provider authorization unless explicitly documented.
           </p>
-        </div>
+        </section>
 
-        {/* Plan Selector */}
-        <div className="mb-14">
-          <h2 className="text-2xl font-bold text-white mb-6">Choose Your Plan</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {plans.map((plan) => {
-              const active = selectedPlan?.planName === plan.planName;
-              const directPrice = getDirectAbroadPrice(plan.officialUSD);
-              return (
-                <motion.div
-                  key={plan.planName}
-                  onClick={() => { setSelectedPlan(plan); setSelectedDuration(plan.durationOptions?.[0]?.months ?? 1); }}
-                  whileHover={{ y: -4 }}
-                  className={`rounded-2xl border p-5 cursor-pointer transition-all duration-200 ${active ? "border-[#f4b942] ring-1 ring-[#f4b942]/30" : "border-white/10 hover:border-white/20"}`}
-                  style={{ backgroundColor: "#151b3d" }}
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-semibold text-white">{plan.planName}</span>
-                    {plan.badge && (
-                      <span className="px-2 py-0.5 rounded-full text-xs font-semibold" style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}>{plan.badge}</span>
-                    )}
-                  </div>
-                  <div className="text-2xl font-bold text-white mb-1">{formatBDT(plan.priceBDT)}<span className="text-sm font-normal ml-1" style={{ color: "#c9ceda" }}>/mo</span></div>
-                  {directPrice != null && (
-                    <div className="text-xs mb-3" style={{ color: "#c9ceda" }}>
-                      Direct abroad: <span className="line-through">{formatBDT(directPrice)}</span>
+        {plans.length > 0 ? (
+          <section className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">Choose Your Plan</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {plans.map((plan) => {
+                const active = selectedPlan?.planName === plan.planName;
+                const included = safeList(plan.whatsIncluded);
+                const safeBadge = plan.badge && !isUnsafeClaim(plan.badge) ? plan.badge : null;
+                return (
+                  <motion.button
+                    type="button"
+                    key={plan.planName}
+                    onClick={() => {
+                      setSelectedPlan(plan);
+                      setSelectedDuration(plan.durationOptions?.[0]?.months ?? 1);
+                    }}
+                    whileHover={{ y: -4 }}
+                    className={`rounded-2xl border p-5 cursor-pointer transition-all duration-200 text-left ${active ? "border-[#f4b942] ring-1 ring-[#f4b942]/30" : "border-white/10 hover:border-white/20"}`}
+                    style={{ backgroundColor: "#151b3d" }}
+                    aria-pressed={active}
+                  >
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="font-semibold text-white">{plan.planName}</span>
+                      {safeBadge && (
+                        <span className="px-2 py-0.5 rounded-full text-xs font-semibold" style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}>
+                          {safeBadge}
+                        </span>
+                      )}
                     </div>
-                  )}
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {plan.whatsIncluded.slice(0, 4).map((f) => (
-                      <span key={f} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs" style={{ backgroundColor: "rgba(16,185,129,0.12)", color: "#10b981" }}>
-                        <Check className="w-3 h-3" /> {f}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="text-xs mb-2" style={{ color: "#c9ceda" }}>
-                    <Users className="w-3 h-3 inline mr-1" /> {plan.seats ?? 1} seat{plan.seats !== 1 ? "s" : ""} · {plan.deliveryType === "shared" ? "Shared" : plan.deliveryType === "team" ? "Team" : "Personal"}
-                  </div>
-                  <div className="text-xs" style={{ color: "#c9ceda" }}>
-                    <Clock className="w-3 h-3 inline mr-1" /> Delivery: {plan.deliveryType === "shared" ? "5–30 min" : "2–4 hrs"}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
+                    <div className="text-2xl font-bold text-white mb-3">
+                      {formatBDT(plan.priceBDT)}<span className="text-sm font-normal ml-1" style={{ color: "#c9ceda" }}>/mo</span>
+                    </div>
+                    {included.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {included.slice(0, 4).map((feature) => (
+                          <span key={feature} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs" style={{ backgroundColor: "rgba(16,185,129,0.12)", color: "#10b981" }}>
+                            <Check className="w-3 h-3" /> {feature}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <div className="text-xs mb-2" style={{ color: "#c9ceda" }}>
+                      <Users className="w-3 h-3 inline mr-1" /> {accessLabel(plan)}{typeof plan.seats === "number" && plan.seats > 0 ? ` · ${plan.seats} seat${plan.seats === 1 ? "" : "s"}` : ""}
+                    </div>
+                    <div className="text-xs" style={{ color: "#c9ceda" }}>
+                      <Clock className="w-3 h-3 inline mr-1" /> Delivery ETA: confirm before payment
+                    </div>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </section>
+        ) : (
+          <section className="mb-14 rounded-2xl border border-white/10 p-6" style={{ backgroundColor: "#151b3d" }}>
+            <h2 className="text-xl font-bold text-white mb-2">Current plan details are confirmed on request</h2>
+            <p className="text-sm" style={{ color: "#c9ceda" }}>
+              This listing does not publish a fixed plan price. Ask for the current price, access model, availability, provider limits and delivery ETA before payment.
+            </p>
+          </section>
+        )}
 
-        {/* Duration selector if available */}
         {selectedPlan?.durationOptions && selectedPlan.durationOptions.length > 1 && (
-          <div className="mb-14">
-            <h3 className="text-lg font-bold text-white mb-3">Select Duration</h3>
+          <section className="mb-14">
+            <h2 className="text-lg font-bold text-white mb-3">Select Duration</h2>
             <div className="flex flex-wrap gap-2">
-              {selectedPlan.durationOptions.map((d) => (
+              {selectedPlan.durationOptions.map((duration) => (
                 <button
-                  key={d.months}
-                  onClick={() => setSelectedDuration(d.months)}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${selectedDuration === d.months ? "border-[#f4b942] text-[#f4b942]" : "border-white/10 text-white/80 hover:border-white/20"} border`}
-                  style={selectedDuration === d.months ? { backgroundColor: "rgba(244,185,66,0.12)" } : { backgroundColor: "#151b3d" }}
+                  type="button"
+                  key={duration.months}
+                  onClick={() => setSelectedDuration(duration.months)}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all border ${selectedDuration === duration.months ? "border-[#f4b942] text-[#f4b942]" : "border-white/10 text-white/80 hover:border-white/20"}`}
+                  style={selectedDuration === duration.months ? { backgroundColor: "rgba(244,185,66,0.12)" } : { backgroundColor: "#151b3d" }}
                 >
-                  {d.label} — {formatBDT(d.priceBDT)}
+                  {duration.label} — {formatBDT(duration.priceBDT)}
                 </button>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
-        {/* Selected Plan Details */}
         <AnimatePresence mode="wait">
           {selectedPlan && (
-            <motion.div key={selectedPlan.planName} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="mb-14 grid md:grid-cols-2 gap-6">
+            <motion.section
+              key={selectedPlan.planName}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="mb-14 grid md:grid-cols-2 gap-6"
+              aria-label={`${selectedPlan.planName} details`}
+            >
               <div className="rounded-2xl border border-white/10 p-6" style={{ backgroundColor: "#151b3d" }}>
-                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><Check className="w-5 h-5" style={{ color: "#10b981" }} /> What’s Included</h3>
-                <ul className="space-y-2">
-                  {selectedPlan.whatsIncluded.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm" style={{ color: "#c9ceda" }}><Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#10b981" }} /> {f}</li>
-                  ))}
-                </ul>
+                <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><Check className="w-5 h-5" style={{ color: "#10b981" }} /> What’s Included</h2>
+                {safeList(selectedPlan.whatsIncluded).length ? (
+                  <ul className="space-y-2">
+                    {safeList(selectedPlan.whatsIncluded).map((feature) => (
+                      <li key={feature} className="flex items-start gap-2 text-sm" style={{ color: "#c9ceda" }}>
+                        <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#10b981" }} /> {feature}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm" style={{ color: "#c9ceda" }}>Confirm the current included features and provider limits before purchase.</p>
+                )}
               </div>
               <div className="rounded-2xl border border-white/10 p-6" style={{ backgroundColor: "#151b3d" }}>
-                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><X className="w-5 h-5" style={{ color: "#ef4444" }} /> Limitations</h3>
-                <ul className="space-y-2">
-                  {selectedPlan.limitations.map((l) => (
-                    <li key={l} className="flex items-start gap-2 text-sm" style={{ color: "#c9ceda" }}><X className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#ef4444" }} /> {l}</li>
-                  ))}
-                </ul>
+                <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><X className="w-5 h-5" style={{ color: "#ef4444" }} /> Limits & Conditions</h2>
+                {safeList(selectedPlan.limitations).length ? (
+                  <ul className="space-y-2">
+                    {safeList(selectedPlan.limitations).map((limitation) => (
+                      <li key={limitation} className="flex items-start gap-2 text-sm" style={{ color: "#c9ceda" }}>
+                        <Info className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#f4b942" }} /> {limitation}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm" style={{ color: "#c9ceda" }}>Provider limits can change. Confirm the limits that apply to this plan before payment.</p>
+                )}
               </div>
-            </motion.div>
+            </motion.section>
           )}
         </AnimatePresence>
 
-        {/* Higher plan upsell */}
-        {product.higherPlanUpsell && selectedPlan && (
-          <div className="mb-14 rounded-2xl border border-white/10 p-6" style={{ backgroundColor: "#151b3d" }}>
-            <h3 className="text-lg font-bold text-white mb-2">
-              Need more? Upgrade to <span style={{ color: "#f4b942" }}>{product.higherPlanUpsell.targetPlan}</span>
-            </h3>
-            <p className="text-sm mb-3" style={{ color: "#c9ceda" }}>Unlock extra features, higher limits, and more seats:</p>
-            <div className="flex flex-wrap gap-2">
-              {product.higherPlanUpsell.whatYouUnlock.map((u) => (
-                <span key={u} className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: "rgba(139,92,246,0.12)", color: "#8b5cf6" }}>
-                  <Zap className="w-3 h-3" /> {u}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Comparison matrix */}
-        {plans.length > 1 && (
-          <div className="mb-14 overflow-x-auto">
-            <h2 className="text-2xl font-bold text-white mb-6">Plan Comparison</h2>
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-                  <th className="text-left py-3 px-4 font-semibold text-white">Feature</th>
-                  {plans.map((p) => (
-                    <th key={p.planName} className="text-left py-3 px-4 font-semibold text-white min-w-[180px]">
-                      {p.planName}
-                      {p.badge && <span className="ml-2 px-1.5 py-0.5 rounded text-[10px] font-bold" style={{ backgroundColor: "#f4b942", color: "#0a0e27" }}>{p.badge}</span>}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                  <td className="py-3 px-4" style={{ color: "#c9ceda" }}>Price / month</td>
-                  {plans.map((p) => <td key={p.planName} className="py-3 px-4 font-bold text-white">{formatBDT(p.priceBDT)}</td>)}
-                </tr>
-                <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                  <td className="py-3 px-4" style={{ color: "#c9ceda" }}>Seats</td>
-                  {plans.map((p) => <td key={p.planName} className="py-3 px-4 text-white">{p.seats ?? 1}</td>)}
-                </tr>
-                <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                  <td className="py-3 px-4" style={{ color: "#c9ceda" }}>Delivery type</td>
-                  {plans.map((p) => <td key={p.planName} className="py-3 px-4 text-white capitalize">{p.deliveryType}</td>)}
-                </tr>
-                {selectedPlan?.features.map((feature) => (
-                  <tr key={feature} style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                    <td className="py-3 px-4" style={{ color: "#c9ceda" }}>{feature}</td>
-                    {plans.map((p) => (
-                      <td key={p.planName} className="py-3 px-4">
-                        {p.features.includes(feature) ? <Check className="w-4 h-4" style={{ color: "#10b981" }} /> : <X className="w-4 h-4" style={{ color: "#ef4444" }} />}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {/* Use Cases BD */}
         {useCases.length > 0 && (
-          <div className="mb-14">
-            <h2 className="text-2xl font-bold text-white mb-6">Perfect For Bangladesh Users</h2>
+          <section className="mb-14">
+            <h2 className="text-2xl font-bold text-white mb-6">Useful For Bangladesh Customers</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {useCases.map((u, i) => (
-                <div key={i} className="rounded-xl border border-white/10 p-5" style={{ backgroundColor: "#151b3d" }}>
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: "rgba(244,185,66,0.15)" }}>
-                    <Users className="w-4 h-4" style={{ color: "#f4b942" }} />
-                  </div>
-                  <p className="text-sm font-medium text-white">{u}</p>
+              {useCases.map((useCase) => (
+                <div key={useCase} className="rounded-xl border border-white/10 p-5" style={{ backgroundColor: "#151b3d" }}>
+                  <Users className="w-5 h-5 mb-3" style={{ color: "#f4b942" }} />
+                  <p className="text-sm font-medium text-white">{useCase}</p>
                 </div>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
-        {/* Why AIPS */}
-        <div className="mb-14">
-          <h2 className="text-2xl font-bold text-white mb-6">Why Buy From AI Premium Shop?</h2>
+        <section className="mb-14">
+          <h2 className="text-2xl font-bold text-white mb-6">Why Use AI Premium Shop?</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {usps.map((u, i) => (
-              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/10 p-4" style={{ backgroundColor: "#151b3d" }}>
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "rgba(16,185,129,0.12)" }}>
-                  <BadgeCheck className="w-4 h-4" style={{ color: "#10b981" }} />
-                </div>
-                <p className="text-sm text-white">{u}</p>
+            {usps.map((item) => (
+              <div key={item} className="flex items-start gap-3 rounded-xl border border-white/10 p-4" style={{ backgroundColor: "#151b3d" }}>
+                <ShieldCheck className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: "#10b981" }} />
+                <p className="text-sm text-white">{item}</p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Competitor compare */}
-        {product.competitorCompare && product.competitorCompare.length > 0 && (
-          <div className="mb-14 overflow-x-auto">
-            <h2 className="text-2xl font-bold text-white mb-6">AIPS vs Buying Direct vs Reseller</h2>
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-                  <th className="text-left py-3 px-4 font-semibold text-white">Seller</th>
-                  <th className="text-left py-3 px-4 font-semibold text-white">Price</th>
-                  <th className="text-left py-3 px-4 font-semibold text-white">Risk</th>
-                </tr>
-              </thead>
-              <tbody>
-                {product.competitorCompare.map((c, i) => (
-                  <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                    <td className="py-3 px-4 text-white font-medium">{c.seller}</td>
-                    <td className="py-3 px-4 text-white">{c.price}</td>
-                    <td className="py-3 px-4" style={{ color: "#c9ceda" }}>{c.risk}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {/* How It Works */}
-        <div className="mb-14">
+        <section className="mb-14">
           <h2 className="text-2xl font-bold text-white mb-6">How It Works</h2>
           <div className="grid sm:grid-cols-3 gap-4">
-            {howItWorks.map((step, i) => (
-              <div key={i} className="text-center rounded-xl border border-white/10 p-6" style={{ backgroundColor: "#151b3d" }}>
-                <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3 text-sm font-bold" style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}>{i + 1}</div>
+            {safeHowItWorks.map((step, index) => (
+              <div key={`${step.title}-${index}`} className="text-center rounded-xl border border-white/10 p-6" style={{ backgroundColor: "#151b3d" }}>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3 text-sm font-bold" style={{ backgroundColor: "rgba(244,185,66,0.15)", color: "#f4b942" }}>{index + 1}</div>
                 <h3 className="font-semibold text-white mb-1">{step.title}</h3>
                 <p className="text-xs" style={{ color: "#c9ceda" }}>{step.desc}</p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Trust bar */}
-        <div className="mb-14 rounded-2xl border border-white/10 p-6" style={{ backgroundColor: "#151b3d" }}>
+        <section className="mb-14 rounded-2xl border border-white/10 p-6" style={{ backgroundColor: "#151b3d" }}>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             <div>
-              <Shield className="w-6 h-6 mx-auto mb-2" style={{ color: "#10b981" }} />
-              <div className="font-bold text-white">{trust.warrantyDays}-day warranty</div>
-              <div className="text-xs" style={{ color: "#c9ceda" }}>Full replacement guarantee</div>
+              <ShieldCheck className="w-6 h-6 mx-auto mb-2" style={{ color: "#10b981" }} />
+              <div className="font-bold text-white">{accessLabel(selectedPlan)}</div>
+              <div className="text-xs" style={{ color: "#c9ceda" }}>Exact access method confirmed before payment</div>
             </div>
             <div>
               <Clock className="w-6 h-6 mx-auto mb-2" style={{ color: "#10b981" }} />
-              <div className="font-bold text-white">{product.estimatedDeliveryTime ?? "5–15 min"} delivery</div>
-              <div className="text-xs" style={{ color: "#c9ceda" }}>Instant activation</div>
+              <div className="font-bold text-white">Current ETA confirmed</div>
+              <div className="text-xs" style={{ color: "#c9ceda" }}>No default delivery-time promise</div>
             </div>
             <div>
               <Wallet className="w-6 h-6 mx-auto mb-2" style={{ color: "#10b981" }} />
               <div className="font-bold text-white">bKash / Nagad</div>
-              <div className="text-xs" style={{ color: "#c9ceda" }}>No international card</div>
+              <div className="text-xs" style={{ color: "#c9ceda" }}>Local BDT payment options</div>
             </div>
             <div>
               <Users className="w-6 h-6 mx-auto mb-2" style={{ color: "#10b981" }} />
               <div className="font-bold text-white">10,000+ customers</div>
-              <div className="text-xs" style={{ color: "#c9ceda" }}>Trusted since 2022</div>
+              <div className="text-xs" style={{ color: "#c9ceda" }}>Serving customers since 2022</div>
             </div>
           </div>
-        </div>
+          <div className="mt-5 text-center text-xs" style={{ color: "#c9ceda" }}>
+            Refund or replacement eligibility depends on the confirmed order terms. Review the <Link href="/refund-policy" className="underline hover:text-white">refund policy</Link> before payment.
+          </div>
+        </section>
 
-        {/* FAQ */}
         {faqs.length > 0 && (
-          <div className="mb-14">
+          <section className="mb-14">
             <h2 className="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
             <div className="space-y-3">
-              {faqs.map((faq, i) => (
-                <div key={i} className="rounded-xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
-                  <button onClick={() => setFaqOpen(faqOpen === i ? null : i)} className="w-full flex items-center justify-between px-5 py-4 text-left">
+              {faqs.map((faq, index) => (
+                <div key={`${faq.q}-${index}`} className="rounded-xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
+                  <button
+                    type="button"
+                    onClick={() => setFaqOpen(faqOpen === index ? null : index)}
+                    className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left"
+                    aria-expanded={faqOpen === index}
+                  >
                     <span className="font-medium text-white text-sm">{faq.q}</span>
-                    <ChevronDown className={`w-4 h-4 transition-transform ${faqOpen === i ? "rotate-180" : ""}`} style={{ color: "#c9ceda" }} />
+                    <ChevronDown className={`w-4 h-4 flex-shrink-0 transition-transform ${faqOpen === index ? "rotate-180" : ""}`} style={{ color: "#c9ceda" }} />
                   </button>
                   <AnimatePresence>
-                    {faqOpen === i && (
+                    {faqOpen === index && (
                       <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                        <div className="px-5 pb-4 text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{faq.a}</div>
+                        <div className="px-5 pb-4 text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{sanitizeProse(faq.a)}</div>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
-        {/* Related products */}
         {product.relatedProducts && product.relatedProducts.length > 0 && (
-          <div className="mb-14">
+          <section className="mb-14">
             <h2 className="text-2xl font-bold text-white mb-6">Related Products</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {product.relatedProducts.map((rp) => {
-                const arr = Array.isArray(productsData) ? productsData : (productsData as any).products || [];
-                const all = arr as ProductDetail[];
-                const rpProduct = all.find((p: ProductDetail) => p.slug === rp.slug);
-                const price = rp.priceBDT ?? rpProduct?.plans?.[0]?.priceBDT ?? 0;
-                const cat = rp.category ?? rpProduct?.category ?? "";
+              {product.relatedProducts.map((related) => {
+                const records = rawProducts.filter((record) => record.slug === related.slug);
+                if (!records.length) return null;
+                const main = records[0];
+                const prices = records
+                  .filter((record) => !record.requestPrice && typeof record.price === "number" && (record.price ?? 0) > 0)
+                  .map((record) => Number(record.price));
+                const currentPrice = prices.length ? Math.min(...prices) : null;
                 return (
-                  <Link key={rp.slug} href={productPath(rp.slug)} className="rounded-xl border border-white/10 p-4 block hover:border-white/20 transition-colors" style={{ backgroundColor: "#151b3d" }}>
-                    <div className="text-sm font-semibold text-white mb-1">{rp.name}</div>
-                    {price > 0 && <div className="text-sm font-bold" style={{ color: "#f4b942" }}>{formatBDT(price)}</div>}
-                    {cat && <div className="text-xs mt-1 capitalize" style={{ color: "#c9ceda" }}>{cat}</div>}
+                  <Link key={related.slug} href={productPath(related.slug)} className="rounded-xl border border-white/10 p-4 block hover:border-white/20 transition-colors" style={{ backgroundColor: "#151b3d" }}>
+                    <div className="text-sm font-semibold text-white mb-1">{main.name.split(/—\s*/)[0].trim()}</div>
+                    <div className="text-sm font-bold" style={{ color: "#f4b942" }}>{currentPrice ? `From ${formatBDT(currentPrice)}` : "Current price on request"}</div>
+                    <div className="text-xs mt-1 capitalize" style={{ color: "#c9ceda" }}>{main.category}</div>
                   </Link>
                 );
               })}
             </div>
-          </div>
+          </section>
         )}
 
-        {/* Content freshness */}
-        <div className="text-center text-xs mb-20" style={{ color: "#64748b" }}>
-          Price last verified: {product.lastVerifiedDate ?? "July 2026"} ·
-          All product names and logos are trademarks of their respective owners. AI Premium Shop provides access to authentic subscriptions.
+        <div className="text-center text-xs mb-16" style={{ color: "#64748b" }}>
+          {verificationDate ? `Catalog verification date: ${verificationDate}. ` : "Verification date is not yet published for this listing. "}
+          Product names and trademarks belong to their respective owners.
         </div>
       </div>
 
-      {/* Sticky mobile buy bar */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-white/10" style={{ backgroundColor: "#0a0e27" }}>
         <div className="flex items-center justify-between px-4 h-16 gap-3">
           <div>
             <div className="text-xs" style={{ color: "#c9ceda" }}>{selectedPlan?.planName ?? product.name}</div>
-            <div className="text-base font-bold" style={{ color: "#f4b942" }}>{product.requestPrice ? "মূল্য: WhatsApp-এ" : formatBDT(selectedPrice)}</div>
+            <div className="text-base font-bold" style={{ color: "#f4b942" }}>
+              {product.requestPrice || selectedPrice <= 0 ? "Price: ask on WhatsApp" : formatBDT(selectedPrice)}
+            </div>
           </div>
-          <a href={whatsappLink} target="_blank" rel="noopener noreferrer"
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity flex-shrink-0"
-            style={{ backgroundColor: "#008236", color: "#fff", minHeight: "44px" }}>
-            <MessageCircle className="w-4 h-4" /> Order
+            style={{ backgroundColor: "#008236", color: "#fff", minHeight: "44px" }}
+          >
+            <MessageCircle className="w-4 h-4" /> Confirm
           </a>
         </div>
       </div>

@@ -46,6 +46,13 @@ try {
   run(process.execPath, ["scripts/audit-bundle-budgets.mjs"]);
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
+
+  // Runtime components and crawler shells are separate surfaces. Both product
+  // and brand prerenders receive their own fail-closed truth pass before the
+  // general SEO/canonical audits are allowed to run.
+  run(process.execPath, ["scripts/sanitize-product-prerender-truth.mjs"]);
+  run(process.execPath, ["scripts/sanitize-brand-prerender-truth.mjs"]);
+
   // Homepage V2 is the production runtime route. Rewrite the root static shell
   // only after the legacy/general prerender pass so crawlers and no-JS clients
   // receive the same decision architecture as the hydrated application. The

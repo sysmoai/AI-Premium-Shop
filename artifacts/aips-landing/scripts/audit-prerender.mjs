@@ -16,7 +16,10 @@ const APP = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = path.join(APP, "dist/public");
 const SITE = "https://aipremiumshop.com";
 
-const sitemap = fs.readFileSync(path.join(APP, "public/sitemap.xml"), "utf8");
+// Audit the sitemap that will actually deploy. Late truth/canonical passes may
+// intentionally remove retired identities and permanent-redirect aliases from
+// dist/sitemap.xml after Vite copies the source sitemap into the build output.
+const sitemap = fs.readFileSync(path.join(DIST, "sitemap.xml"), "utf8");
 const routes = [...sitemap.matchAll(/<loc>https:\/\/aipremiumshop\.com([^<]*)<\/loc>/g)]
   .map((m) => m[1] || "/");
 
@@ -98,11 +101,11 @@ for (const [target, sources] of brokenLinks) {
   fail.push(`broken internal link ${target} — linked from ${list.length} page(s), e.g. ${list.slice(0, 3).join(", ")}`);
 }
 
-console.log(`audit-prerender: ${routes.length} sitemap URLs checked, ${validTargets.size} link targets`);
+console.log(`audit-prerender: ${routes.length} deployed sitemap URLs checked, ${validTargets.size} link targets`);
 warn.forEach((w) => console.log(`  ⚠ ${w}`));
 if (fail.length) {
   console.error(`\n✖ ${fail.length} hard failure(s):`);
   fail.forEach((f) => console.error(`  - ${f}`));
   process.exit(1);
 }
-console.log(`✔ all routes: static content, unique title, single canonical, meta description${warn.length ? ` (${warn.length} warning(s))` : ""}`);
+console.log(`✔ all deployed sitemap routes: static content, unique title, single canonical, meta description${warn.length ? ` (${warn.length} warning(s))` : ""}`);

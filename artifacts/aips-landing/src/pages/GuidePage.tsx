@@ -1,904 +1,231 @@
-import { useState } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
-import {
-  ChevronDown, ChevronRight, MessageCircle, CheckCircle, ArrowRight,
-  GraduationCap, Laptop, Camera, Briefcase, Code2, Search,
-  Palette, TrendingUp, ShoppingBag, type LucideIcon,
-} from "lucide-react";
+import { useMemo } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, CheckCircle2, ChevronRight, MessageCircle, Search, ShieldCheck, WalletCards } from "lucide-react";
 import { Link } from "wouter";
-import { cheapestPriceFor, tierPrice } from "@/lib/catalogStats";
-
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
-import { Breadcrumb } from "@/components/Breadcrumb";
-import { faqSchema, schemaJson } from "@/utils/schemas";
+import { BrandIcon } from "@/components/BrandIcon";
+import { formatBDT } from "@/lib/format";
+import { productPath } from "@/lib/productRoutes";
+import productsData from "../../data/catalog-pages.json";
 
+const SITE = "https://aipremiumshop.com";
 const WHATSAPP = "https://wa.me/8801865385348";
+const RETIRED = new Set(["replit-bangladesh"]);
 
-const GUIDE_ICONS: Record<string, { Icon: LucideIcon; color: string }> = {
-  students:      { Icon: GraduationCap, color: "#4285f4" },
-  freelancers:   { Icon: Laptop,        color: "#10a37f" },
-  creators:      { Icon: Camera,        color: "#ec4899" },
-  business:      { Icon: Briefcase,     color: "#f4b942" },
-  developers:    { Icon: Code2,         color: "#8b5cf6" },
-  "job-seekers": { Icon: Search,        color: "#6366f1" },
-  designers:     { Icon: Palette,       color: "#a855f7" },
-  marketers:     { Icon: TrendingUp,    color: "#4285f4" },
-  ecommerce:     { Icon: ShoppingBag,   color: "#f4b942" },
-};
-
-const GUIDE_GLOWS: Record<string, string> = {
-  students:      "bg-blue-500/[0.06]",
-  freelancers:   "bg-emerald-500/[0.06]",
-  creators:      "bg-pink-500/[0.06]",
-  business:      "bg-amber-500/[0.06]",
-  developers:    "bg-purple-500/[0.06]",
-  "job-seekers": "bg-indigo-500/[0.06]",
-  designers:     "bg-violet-500/[0.06]",
-  marketers:     "bg-blue-500/[0.06]",
-  ecommerce:     "bg-amber-500/[0.06]",
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.4, delay: i * 0.08, ease: [0, 0, 0.2, 1] } }),
-};
-
-interface Tool {
-  rank: number;
+interface ProductRecord {
+  id: string;
   name: string;
-  price: string;
-  reason: string;
-  badge?: string;
-  color?: string;
-}
-
-interface FAQ {
-  q: string;
-  a: string;
-}
-
-interface GuideConfig {
   slug: string;
-  title: string;
-  h1: string;
-  subtitle: string;
-  aioSnippet: string;
-  metaDescription: string;
-  canonical: string;
-  whyHeading: string;
-  whyText: string;
-  statLine?: string;
-  tools: Tool[];
-  startHere: { name: string; price: string; reason: string };
-  faqs: FAQ[];
-  accentColor: string;
-  emoji: string;
-  alsoRead: { label: string; href: string }[];
-  comparison?: { label: string; href: string };
+  brand: string | null;
+  brandColor: string | null;
+  category: string;
+  tier: string | null;
+  price: number | null;
+  requestPrice?: boolean;
+  accessType: string | null;
+  description: string | null;
+  capabilities?: string[];
 }
 
-const TOOL_BRAND_SLUGS: Record<string, string> = {
-  "ChatGPT": "/chatgpt-plans-bangladesh",
-  "ChatGPT Plus": "/chatgpt-plans-bangladesh",
-  "ChatGPT Plus — Starter Shared": "/chatgpt-plans-bangladesh",
-  "ChatGPT Plus — Premium Shared": "/chatgpt-plans-bangladesh",
-  "ChatGPT Team": "/chatgpt-business-bangladesh",
-  "Claude": "/claude-pro-bangladesh",
-  "Claude Pro": "/claude-pro-bangladesh",
-  "Claude Pro — Premium Shared": "/claude-pro-bangladesh",
-  "Claude Pro — Personal": "/claude-pro-bangladesh",
-  "Google AI Pro": "/gemini-advanced-bangladesh",
-  "Midjourney": "/midjourney-bangladesh",
-  "Midjourney — Standard Shared": "/midjourney-bangladesh",
-  "GitHub Copilot Pro": "/github-copilot-bangladesh",
-  "Cursor Pro": "/cursor-bangladesh",
-  "ElevenLabs": "/elevenlabs-bangladesh",
-  "ElevenLabs — Starter Plan": "/elevenlabs-bangladesh",
-  "Suno AI — Pro Plan": "/suno-ai-bangladesh",
-  "Runway — Standard Plan": "/runway-bangladesh",
-  "Notion AI — Plus Plan": "/notion-business-bangladesh",
-  "Replit": "/replit-bangladesh",
-  "v0.dev Pro — Shared": "/v0-dev-bangladesh",
-  "Perplexity Pro": "/perplexity-pro-bangladesh",
-  "Perplexity Pro — Shared": "/perplexity-pro-bangladesh",
-  "Grok": "/supergrok-bangladesh",
-};
+interface GuideDefinition {
+  label: string;
+  heading: string;
+  intro: string;
+  primaryCategories: string[];
+  capabilitySignals: string[];
+  decisionPoints: string[];
+  categoryLinks: { label: string; href: string }[];
+}
 
-const GUIDES: Record<string, GuideConfig> = {
+const GUIDE_DEFS: Record<string, GuideDefinition> = {
   students: {
-    slug: "best-ai-for-students",
-    title: "Best AI Tools for Students Bangladesh 2026 — From BDT 299",
-    h1: "Best AI Tools for Students in Bangladesh 2026",
-    subtitle: "Write better papers. Study smarter. Ace your exams.",
-    aioSnippet: `The best AI tools for students in Bangladesh in 2026 are Google AI Pro (from BDT ${cheapestPriceFor("gemini-advanced-bangladesh")}/mo) for Gmail and Docs integration, ChatGPT Plus Shared (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/mo) for writing and coding assignments, and Perplexity Pro Shared (from BDT ${cheapestPriceFor("perplexity-pro-bangladesh")}/mo) for research with cited sources. No international credit card needed — pay with bKash or Nagad and receive access in 5–30 minutes via WhatsApp.`,
-    metaDescription: "Best AI tools for students in Bangladesh 2026. Google AI BDT 499. ChatGPT BDT 499. Study smarter.",
-    canonical: "https://aipremiumshop.com/best-ai-for-students",
-    whyHeading: "Why AI Matters for Students",
-    whyText: "AI tools have become essential study companions — like having a tutor available at 2 AM. Whether you're writing research papers, solving math problems, debugging code assignments, or preparing for exams, AI accelerates learning significantly. Students who use AI tools consistently report submitting higher-quality work in less time. The best part: you can access the same tools used by university students in the US and UK — at Bangladesh prices.",
-    tools: [
-      { rank: 1, name: "Google AI Pro", price: `BDT ${tierPrice("gemini-advanced-bangladesh", "Shared")}/mo`, reason: "Best value. Deep Research for papers, 2TB storage, works with Gmail and Google Docs. 83% off official price.", badge: "Best Value", color: "#4285f4" },
-      { rank: 2, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Cheapest way to access GPT-5.4. Great for assignments, essays, coding, and exam prep.", badge: "Cheapest", color: "#10a37f" },
-      { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 599/mo", reason: "AI research engine with real citations and source links. Perfect for thesis and academic papers.", badge: "For Research", color: "#20b2aa" },
-    ],
-    startHere: {
-      name: "ChatGPT Plus — Starter Shared",
-      price: "BDT 499/mo",
-      reason: "The most affordable AI tool in our catalog. Access GPT-5.4 for writing, coding, and research. Delivered in 5–30 minutes via bKash or Nagad.",
-    },
-    faqs: [
-      { q: "Is AI allowed for university assignments?", a: "AI is a study tool, like a calculator. Use it to research, draft, and learn — but always submit your own work. Most universities allow AI as a research aid. Check your institution's specific policy on AI-assisted writing." },
-      { q: "Which is cheaper — ChatGPT or Google AI Pro?", a: "ChatGPT Plus Shared is BDT 499. Google AI Pro is BDT 499 but includes 2TB storage, Workspace AI, and more features. If you use Gmail and Google Docs, Google AI Pro is better value." },
-      { q: "Can I use these for coding assignments?", a: "Yes. Both ChatGPT and Google AI Pro can write, debug, and explain code in any programming language — Python, Java, C++, JavaScript, and more." },
-      { q: "Do I need a credit card?", a: "No. Pay with bKash or Nagad. No international card or bank account needed. We deliver directly to your WhatsApp after payment." },
-    ],
-    accentColor: "#4285f4",
-    emoji: "🎓",
-    alsoRead: [
-      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
-      { label: "Best AI for Job Seekers", href: "/best-ai-for-job-seekers" },
-    ],
-    comparison: { label: "ChatGPT vs Google Gemini — which is better for study?", href: "/chatgpt-vs-gemini" },
+    label: "Students",
+    heading: "AI Tools for Students in Bangladesh",
+    intro: "Compare current AI tools for research, writing, documents, study workflows and general assistance without relying on stale model-version or unlimited-usage claims.",
+    primaryCategories: ["ai-assistant", "ai-writing", "ai-workspace"],
+    capabilitySignals: ["document", "search", "text", "workspace"],
+    decisionPoints: ["Prefer personal access for private coursework or unpublished research.", "Check current provider citation, file and usage limits before academic work.", "Confirm whether your institution permits AI assistance for the specific assignment."],
+    categoryLinks: [{ label: "AI assistants", href: "/ai-assistant" }, { label: "Writing & SEO tools", href: "/ai-writing" }, { label: "Workspace tools", href: "/ai-workspace" }],
   },
   freelancers: {
-    slug: "best-ai-for-freelancers",
-    title: "Best AI for Freelancers Bangladesh 2026",
-    h1: "Best AI Tools for Freelancers in Bangladesh 2026",
-    subtitle: "Win more clients. Deliver faster. Earn more.",
-    aioSnippet: `The top AI tools for freelancers in Bangladesh 2026 are ChatGPT Plus (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/mo) for proposals and content delivery, Claude Pro (from BDT ${cheapestPriceFor("claude-pro-bangladesh")}/mo) for writing quality, and Midjourney Standard (from BDT ${cheapestPriceFor("midjourney-bangladesh")}/mo) for client graphics. Order any tool via WhatsApp and pay with bKash or Nagad.`,
-    metaDescription: "Best AI tools for freelancers Bangladesh 2026. Write proposals faster, deliver more work. From BDT 299. Upwork & Fiverr.",
-    canonical: "https://aipremiumshop.com/best-ai-for-freelancers",
-    whyHeading: "Why AI is a Freelancer's Competitive Advantage",
-    whyText: "AI tools let you write proposals faster, deliver projects on tighter deadlines, and take on more clients simultaneously. Whether you're a writer, designer, developer, or marketer, AI can multiply your output without multiplying your hours.",
-    statLine: "Freelancers doing AI-related work earn 44% more per hour than those who don't — Upwork Research Institute 2025",
-    tools: [
-      { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 999/mo", reason: "Write proposals, emails, and content faster. Higher stability than starter plan.", badge: "Top Pick", color: "#10a37f" },
-      { rank: 2, name: "Claude Pro — Premium Shared", price: `BDT ${tierPrice("claude-pro-bangladesh", "Premium Shared")}/mo`, reason: "Strong writing quality. Extended thinking for complex client projects.", badge: "Best Writing", color: "#d97706" },
-      { rank: 3, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Create client graphics, thumbnails, and mockups. Unlimited image generation.", badge: "For Design", color: "#8b5cf6" },
-      { rank: 4, name: "GitHub Copilot Pro — Individual", price: "BDT 1,495/mo", reason: "For developer freelancers. Works in VS Code and JetBrains.", badge: "For Devs", color: "#6e40c9" },
-    ],
-    startHere: {
-      name: "ChatGPT Plus — Starter Shared",
-      price: "BDT 499/mo",
-      reason: "Start with the essentials. Use ChatGPT to write proposals, respond to clients, and draft content. Upgrade to Premium Shared once you've landed your first clients.",
-    },
-    faqs: [
-      { q: "Which AI tool is best for writing client proposals?", a: "ChatGPT Plus and Claude Pro are both excellent for proposals. Claude Pro has slightly better writing quality, while ChatGPT is better for proposals that require research or data." },
-      { q: "Can I use AI-generated content for client work?", a: "Most clients allow AI-assisted work as long as the final deliverable meets their quality standards. Always review and edit AI outputs. Disclose AI usage if your client contract requires it." },
-      { q: "How much can I save compared to direct subscriptions?", a: "ChatGPT Plus costs $20/month officially (≈BDT 2,400+ with exchange and fees, and needs an international card). With AIPS you pay BDT 499–950 depending on the plan, using local bKash/Nagad payment." },
-      { q: "Can I get multiple tools at a discount?", a: "Yes. Message us on WhatsApp about bundle pricing. We offer package discounts when you take multiple subscriptions together." },
-    ],
-    accentColor: "#10a37f",
-    emoji: "💼",
-    alsoRead: [
-      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
-      { label: "Best AI for Business", href: "/best-ai-for-business" },
-    ],
-    comparison: { label: "ChatGPT vs Claude — which writes better proposals?", href: "/chatgpt-vs-claude" },
+    label: "Freelancers",
+    heading: "AI Tools for Freelancers in Bangladesh",
+    intro: "Build a practical client-work stack from current writing, design, coding, research and productivity tools while keeping access type, client confidentiality and recurring cost visible.",
+    primaryCategories: ["ai-assistant", "ai-writing", "ai-design", "ai-code", "ai-workspace"],
+    capabilitySignals: ["text", "design", "code", "search", "workspace"],
+    decisionPoints: ["Use personal access when client files or credentials are sensitive.", "Choose tools around billable workflows rather than collecting overlapping subscriptions.", "Verify provider limits and delivery details before committing to a client deadline."],
+    categoryLinks: [{ label: "AI assistants", href: "/ai-assistant" }, { label: "AI design", href: "/ai-design" }, { label: "AI code", href: "/ai-code" }],
   },
   creators: {
-    slug: "best-ai-for-creators",
-    title: "Best AI for Content Creators Bangladesh 2026",
-    h1: "Best AI Tools for Content Creators in Bangladesh 2026",
-    subtitle: "Create faster. Edit smarter. Grow your audience.",
-    aioSnippet: `The best AI tools for content creators in Bangladesh 2026 are ChatGPT Plus (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/mo) for scripting, Midjourney Standard (from BDT ${cheapestPriceFor("midjourney-bangladesh")}/mo) for thumbnails, ElevenLabs (from BDT ${cheapestPriceFor("elevenlabs-bangladesh")}/mo) for voiceovers, and Suno AI (from BDT ${cheapestPriceFor("suno-ai-bangladesh")}/mo) for copyright-free music. All accessible via bKash or Nagad payment through WhatsApp — no international card required.`,
-    metaDescription: "Best AI for content creators Bangladesh 2026. Script, thumbnail, music — all AI. From BDT 299.",
-    canonical: "https://aipremiumshop.com/best-ai-for-creators",
-    whyHeading: "Why AI is a Creator's Superpower",
-    whyText: "Content creation in 2026 is an arms race. YouTube channels, TikTok accounts, and social media pages that use AI produce more content, at higher quality, with less burnout. AI handles the repetitive parts — writing captions, generating thumbnails, creating voiceovers, composing background music — so you can focus on strategy and audience connection.",
-    tools: [
-      { rank: 1, name: "ChatGPT Plus — Premium Shared", price: "BDT 999/mo", reason: "Scripts, captions, content calendars, viral hooks — all in minutes.", badge: "For Scripts", color: "#10a37f" },
-      { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "AI thumbnails and graphics without hiring a designer. Unlimited generations.", badge: "For Thumbnails", color: "#8b5cf6" },
-      { rank: 3, name: "ElevenLabs — Starter Plan", price: "BDT 748/mo", reason: "Ultra-realistic AI voiceovers. Clone your own voice. Supports 29 languages.", badge: "For Voiceovers", color: "#f97316" },
-      { rank: 4, name: "Suno AI — Shared", price: `from BDT ${cheapestPriceFor("suno-ai-bangladesh")}/mo`, reason: "Create background music and jingles with no copyright issues. Commercial use included.", badge: "For Music", color: "#f59e0b" },
-      { rank: 5, name: "Runway — Standard Plan", price: "BDT 1,794/mo", reason: "AI video generation. B-roll, transitions, cinematic effects from text prompts.", badge: "For Video", color: "#ec4899" },
-    ],
-    startHere: {
-      name: "ChatGPT Plus — Starter Shared",
-      price: "BDT 499/mo",
-      reason: "Start with ChatGPT for content planning, scripts, and captions. Then add Midjourney for thumbnails when you're ready to upgrade your visual game.",
-    },
-    faqs: [
-      { q: "Which AI tool should YouTubers start with?", a: "Start with ChatGPT for scripting and SEO titles. Then add Midjourney for thumbnails once you're ready to upgrade your visuals." },
-      { q: "Is AI-generated music copyright safe for YouTube?", a: "Suno AI Pro includes commercial use licensing. Music generated on the Pro plan can be used on YouTube, TikTok, and other platforms without copyright strikes." },
-      { q: "Can I clone my own voice with ElevenLabs?", a: "Yes. ElevenLabs Starter allows voice cloning. You record a short sample and it generates your voice reading any text — useful for multilingual content or saving time on voiceovers." },
-      { q: "Can I use AI-generated thumbnails for YouTube monetization?", a: "Yes. AI-generated thumbnails are allowed on YouTube and do not affect monetization eligibility. Midjourney images are commercially licensed on paid plans." },
-    ],
-    accentColor: "#ec4899",
-    emoji: "🎬",
-    alsoRead: [
-      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
-      { label: "Best AI for Business", href: "/best-ai-for-business" },
-    ],
-    comparison: { label: "ChatGPT vs Claude — best AI for creative work", href: "/chatgpt-vs-claude" },
+    label: "Creators",
+    heading: "AI Tools for Content Creators in Bangladesh",
+    intro: "Compare current tools for ideation, image, video, voice, music, design and publishing workflows using the public AIPS catalog rather than fixed generation-limit claims.",
+    primaryCategories: ["ai-video", "ai-image", "ai-design", "ai-voice-music", "ai-writing"],
+    capabilitySignals: ["video-gen", "image-gen", "design", "audio", "music", "voice", "text"],
+    decisionPoints: ["Map each subscription to a repeatable production step such as scripting, visuals, editing or voice.", "Check current export, watermark, credit and commercial-use terms with the provider.", "Keep client or unreleased assets on an access model appropriate to their confidentiality."],
+    categoryLinks: [{ label: "AI video", href: "/ai-video" }, { label: "AI image", href: "/ai-image" }, { label: "Voice & music", href: "/ai-voice-music" }],
   },
   business: {
-    slug: "best-ai-for-business",
-    title: "Best AI for Business Bangladesh 2026",
-    h1: "Best AI Tools for Business Owners in Bangladesh 2026",
-    subtitle: "Automate operations. Cut costs. Scale faster.",
-    aioSnippet: `The top AI tools for business owners in Bangladesh 2026 are Google AI Pro (from BDT ${cheapestPriceFor("gemini-advanced-bangladesh")}/mo) for Gmail and Google Workspace AI, ChatGPT Business (from BDT ${cheapestPriceFor("chatgpt-business-bangladesh")}/mo) for team operations with admin controls, and Claude Pro (from BDT ${cheapestPriceFor("claude-pro-bangladesh")}/mo) for contracts and business documents. Pay with bKash or Nagad — no international card required.`,
-    metaDescription: "Best AI for business owners Bangladesh 2026. Automate sales, support, content. From BDT 500.",
-    canonical: "https://aipremiumshop.com/best-ai-for-business",
-    whyHeading: "Why Businesses in Bangladesh Are Adopting AI Now",
-    whyText: "AI is no longer a luxury for large corporations. Small and medium businesses in Bangladesh are using AI to draft contracts, analyze sales data, manage customer communications, and run marketing campaigns — all at a fraction of the cost of hiring specialists.",
-    tools: [
-      { rank: 1, name: "Google AI Pro", price: `BDT ${tierPrice("gemini-advanced-bangladesh", "Shared")}/mo`, reason: "Gmail AI, Google Docs AI, Sheets AI — AI built into tools your team already uses daily.", badge: "Best for Teams", color: "#4285f4" },
-      { rank: 2, name: "ChatGPT Business — Starter Shared", price: `from BDT ${cheapestPriceFor("chatgpt-business-bangladesh")}/mo`, reason: "Team AI assistant with admin controls and privacy. Unlimited GPT-5.4 for the whole team.", badge: "For Operations", color: "#10a37f" },
-      { rank: 3, name: "Notion Business — Monthly", price: `from BDT ${cheapestPriceFor("notion-business-bangladesh")}/mo`, reason: "AI workspace for docs, projects, SOPs, and team collaboration. Replaces multiple tools.", badge: "For Docs", color: "#000000" },
-      { rank: 4, name: "Claude Pro — Premium Shared", price: `BDT ${tierPrice("claude-pro-bangladesh", "Premium Shared")}/mo`, reason: "Best AI for drafting contracts, reports, and long-form business documents.", badge: "For Writing", color: "#d97706" },
-    ],
-    startHere: {
-      name: "Google AI Pro",
-      price: "BDT 500/mo",
-      reason: "The best-value AI upgrade for any business that uses Gmail, Google Docs, or Google Sheets. Get AI assistance in every tool your team already uses — for BDT 500.",
-    },
-    faqs: [
-      { q: "Can multiple team members share one subscription?", a: "Shared accounts are used by one person at a time. For teams, we recommend individual subscriptions per member, or the ChatGPT Team plan which is designed for multi-user access with admin controls." },
-      { q: "How can AI help reduce business costs?", a: "AI can replace or reduce spending on content writing, graphic design, customer support responses, data analysis, and market research. Most businesses recover the subscription cost within the first month." },
-      { q: "Is our business data safe with AI tools?", a: "ChatGPT Team and Notion Business do not use your data for model training. Google AI Pro with Workspace follows Google's enterprise data policies. For sensitive data, always use private account plans." },
-      { q: "Do you offer bulk pricing for multiple seats?", a: "Yes. Message us on WhatsApp with your team size and we'll provide custom bundle pricing for multiple subscriptions." },
-    ],
-    accentColor: "#4285f4",
-    emoji: "🏢",
-    alsoRead: [
-      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
-      { label: "Best AI for Developers", href: "/best-ai-for-developers" },
-    ],
-    comparison: { label: "ChatGPT vs Google Gemini for business use", href: "/chatgpt-vs-gemini" },
+    label: "Businesses",
+    heading: "AI Tools for Businesses in Bangladesh",
+    intro: "Evaluate current AI assistants, workspace tools, automation services and team options with an emphasis on governance, privacy, access control and measurable workflow value.",
+    primaryCategories: ["ai-workspace", "ai-assistant", "ai-code", "bundles"],
+    capabilitySignals: ["workspace", "agents", "search", "code"],
+    decisionPoints: ["Separate personal, shared and team access before putting business data into a tool.", "Define the workflow and owner before buying automation or setup services.", "Confirm provider admin, retention and usage controls from current provider documentation."],
+    categoryLinks: [{ label: "AI workspace", href: "/ai-workspace" }, { label: "AI assistants", href: "/ai-assistant" }, { label: "Bundles & services", href: "/bundles" }],
   },
   developers: {
-    slug: "best-ai-for-developers",
-    title: "Best AI Coding Tools Bangladesh 2026",
-    h1: "Best AI Coding Tools for Developers in Bangladesh 2026",
-    subtitle: "Code faster. Debug instantly. Ship on time.",
-    aioSnippet: `The best AI coding tools for developers in Bangladesh 2026 are GitHub Copilot Pro (from BDT ${cheapestPriceFor("github-copilot-bangladesh")}/mo) for IDE integration with zero workflow changes, Cursor Pro (from BDT ${cheapestPriceFor("cursor-bangladesh")}/mo) for full AI-native agent-mode coding, and Claude Pro (from BDT ${cheapestPriceFor("claude-pro-bangladesh")}/mo) for complex reasoning and debugging. GitHub Copilot reduces coding time by 55% (GitHub Developer Productivity Report). Order via WhatsApp — pay with bKash.`,
-    metaDescription: "Best AI coding tools Bangladesh 2026. Copilot, Cursor, Replit. Code 50% faster. From BDT 500.",
-    canonical: "https://aipremiumshop.com/best-ai-for-developers",
-    whyHeading: "Why Developers Need AI Coding Tools in 2026",
-    whyText: "AI coding assistants have changed what's possible for individual developers. GitHub Copilot reduces coding time by 55% according to GitHub's own research. Cursor's agent mode can write entire features from a single prompt. Claude Code can debug complex multi-file issues that would take hours manually. Developers who invest in AI tools are shipping products faster, catching bugs earlier, and competing with teams twice their size.",
-    statLine: "GitHub Copilot reduces coding time by 55% — GitHub Developer Productivity Report",
-    tools: [
-      { rank: 1, name: "GitHub Copilot Pro", price: "BDT 1,495/mo", reason: "Unlimited code completions. Works in VS Code, JetBrains, Neovim. Industry standard.", badge: "Industry Standard", color: "#6e40c9" },
-      { rank: 2, name: "Cursor Pro", price: "BDT 2,990/mo", reason: "AI-native editor with agent mode and full codebase understanding.", badge: "AI-Native Editor", color: "#3b82f6" },
-      { rank: 3, name: "Claude Pro — Personal", price: "BDT 2,990/mo", reason: "Strong reasoning. Claude Code terminal for complex debugging and architecture decisions.", badge: "For Reasoning", color: "#d97706" },
-      { rank: 4, name: "v0.dev Pro — Shared", price: "BDT 999/mo", reason: "AI web app builder by Vercel. Build UIs, apps, and sites from prompts and deploy instantly.", badge: "UI Builder", color: "#111827" },
-    ],
-    startHere: {
-      name: "GitHub Copilot Pro",
-      price: "BDT 1,495/mo",
-      reason: "The safest starting point. Works inside your existing IDE (VS Code or JetBrains) with zero workflow changes. Industry-proven, with access to GPT-5.4 and Claude models.",
-    },
-    faqs: [
-      { q: "Cursor or GitHub Copilot — which should I choose?", a: "GitHub Copilot is better if you want AI assistance inside your existing editor without changing workflows. Cursor is better if you want the most powerful AI coding experience with agent mode and codebase-wide understanding. Many developers use both." },
-      { q: "Does Copilot work with JetBrains IDEs?", a: "Yes. GitHub Copilot works in VS Code, JetBrains (IntelliJ, PyCharm, WebStorm, etc.), Neovim, and Visual Studio. The plugin is available from each IDE's marketplace." },
-      { q: "Which AI is best for debugging complex code?", a: "Claude Pro is the best for complex reasoning and debugging. Its 200K token context window means you can paste entire files or multiple files at once for analysis." },
-      { q: "Can I use these tools for commercial projects?", a: "Yes. All tools are licensed for commercial use on paid plans. GitHub Copilot Individual and Cursor Pro both include commercial use rights." },
-    ],
-    accentColor: "#6e40c9",
-    emoji: "💻",
-    alsoRead: [
-      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
-      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
-    ],
-    comparison: { label: "GitHub Copilot vs Cursor — full comparison", href: "/copilot-vs-cursor" },
+    label: "Developers",
+    heading: "AI Coding Tools for Developers in Bangladesh",
+    intro: "Compare active coding assistants, app builders and development tools from the current catalog without depending on stale model names, context windows or speed claims.",
+    primaryCategories: ["ai-code", "ai-assistant"],
+    capabilitySignals: ["code", "agents", "text"],
+    decisionPoints: ["Check repository privacy and training/data-retention settings before using proprietary code.", "Compare provider limits for the exact plan rather than assuming unlimited agent or completion usage.", "Choose by workflow fit: editor assistance, autonomous tasks, browser building or general reasoning."],
+    categoryLinks: [{ label: "AI code & development", href: "/ai-code" }, { label: "AI assistants", href: "/ai-assistant" }, { label: "Developer buying guide", href: "/guides" }],
   },
   "job-seekers": {
-    slug: "best-ai-for-job-seekers",
-    title: "Best AI for Job Seekers Bangladesh 2026",
-    h1: "Best AI Tools for Job Seekers in Bangladesh 2026",
-    subtitle: "Build a winning CV. Ace interviews. Land the job.",
-    aioSnippet: `The best AI tools for job seekers in Bangladesh 2026 are ChatGPT Plus Starter Shared (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/mo) for CVs and cover letters, Google AI Pro (from BDT ${cheapestPriceFor("gemini-advanced-bangladesh")}/mo) for Gmail-integrated job applications, and Perplexity Pro (from BDT ${cheapestPriceFor("perplexity-pro-bangladesh")}/mo) for researching companies before interviews. Pay with bKash via WhatsApp.`,
-    metaDescription: "Best AI for job seekers Bangladesh 2026. CV builder, interview prep, skill roadmap. From BDT 299.",
-    canonical: "https://aipremiumshop.com/best-ai-for-job-seekers",
-    whyHeading: "Why AI Gives Job Seekers an Edge",
-    whyText: "Job hunting in Bangladesh has never been more competitive. AI tools help you write stronger CVs, craft personalized cover letters, research companies before interviews, and practice answering difficult questions. Candidates who use AI to prepare their applications consistently report more callbacks and better interview performance. The best part: you can tailor your application to each job in minutes instead of hours.",
-    tools: [
-      { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Write professional CVs, cover letters, and LinkedIn summaries in minutes. Most affordable option.", badge: "Start Here", color: "#10a37f" },
-      { rank: 2, name: "Google AI Pro", price: `BDT ${tierPrice("gemini-advanced-bangladesh", "Shared")}/mo`, reason: "Gmail AI for job applications. Google Docs AI for CV formatting. 2TB storage included.", badge: "Best Value", color: "#4285f4" },
-      { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 599/mo", reason: "Research companies before interviews. Get industry insights with citations and sources.", badge: "For Research", color: "#20b2aa" },
-    ],
-    startHere: {
-      name: "ChatGPT Plus — Starter Shared",
-      price: "BDT 499/mo",
-      reason: "At BDT 499, this is the best investment for your job search. Use it to write and refine your CV, draft cover letters, practice interview questions, and research companies. One job offer pays back months of subscription.",
-    },
-    faqs: [
-      { q: "Can AI write my CV for me?", a: "Yes. ChatGPT and Google AI Pro can generate a professional CV from bullet points you provide. You input your experience and skills, and AI formats it into a polished, ATS-friendly document. Always review and personalize before sending." },
-      { q: "How do I use AI to prepare for interviews?", a: "Ask ChatGPT to role-play as an interviewer for your target role. It will ask you industry-standard questions and give feedback on your answers. Also ask it to generate likely technical questions for your specific job and field." },
-      { q: "Can Perplexity help me research a company before an interview?", a: "Yes. Perplexity Pro gives you real-time web search with cited sources. Ask it about the company's recent news, products, culture, and common interview questions — it'll compile everything with links you can verify." },
-      { q: "Is BDT 599 worth it just for a job search?", a: "Absolutely. One successful application from an AI-improved CV pays back months of subscription. Students and fresh graduates consistently report significantly more interview callbacks after using AI to upgrade their application materials." },
-    ],
-    accentColor: "#20b2aa",
-    emoji: "🎯",
-    alsoRead: [
-      { label: "Best AI for Students", href: "/best-ai-for-students" },
-      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
-    ],
-    comparison: { label: "ChatGPT vs Google Gemini — which is easier to start with?", href: "/chatgpt-vs-gemini" },
+    label: "Job Seekers",
+    heading: "AI Tools for Job Seekers in Bangladesh",
+    intro: "Use current writing, research and assistant tools for CV iteration, interview preparation, role research and communication while keeping personal information and accuracy under human review.",
+    primaryCategories: ["ai-assistant", "ai-writing", "ai-workspace"],
+    capabilitySignals: ["text", "search", "document"],
+    decisionPoints: ["Review every factual statement in a CV or application before submitting it.", "Avoid sharing unnecessary sensitive identity or employer information with shared accounts.", "Use AI to prepare and edit—not to fabricate experience, credentials or references."],
+    categoryLinks: [{ label: "AI assistants", href: "/ai-assistant" }, { label: "Writing tools", href: "/ai-writing" }, { label: "Workspace tools", href: "/ai-workspace" }],
   },
-  "designers": {
-    slug: "best-ai-for-designers",
-    title: "Best AI for Designers Bangladesh 2026",
-    h1: "Best AI Tools for Designers in Bangladesh 2026",
-    subtitle: "Generate stunning visuals. Cut design time in half. Win more clients.",
-    aioSnippet: `The best AI design tools for designers in Bangladesh in 2026 are Midjourney Standard (from BDT ${cheapestPriceFor("midjourney-bangladesh")}/mo) for photorealistic and artistic image generation, Ideogram (from BDT 2,990/mo) for typography and text-in-image design, and Leonardo AI (from BDT ${cheapestPriceFor("leonardo-ai-bangladesh")}/mo) for 3D textures and character design. All available via bKash — no international card needed.`,
-    metaDescription: "Best AI design tools for designers in Bangladesh 2026. Midjourney, Ideogram, Leonardo AI. BDT prices.",
-    canonical: "https://aipremiumshop.com/best-ai-for-designers",
-    whyHeading: "Why Every Designer Needs AI in 2026",
-    whyText: "AI image generation has changed design workflows. Generate mood boards in minutes, create client presentations faster, and produce visuals without a photography budget.",
-    tools: [
-      { rank: 1, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Photorealistic portraits, product renders, artistic illustrations. 15hr fast GPU + unlimited relaxed mode.", badge: "Best Quality", color: "#8b5cf6" },
-      { rank: 2, name: "Ideogram", price: "from BDT 2,990/mo", reason: "The only AI that reliably renders text inside images. Perfect for logos, posters, social media graphics, and typography-heavy designs. 400 priority images/month.", badge: "Best for Text & Logos", color: "#ec4899" },
-      { rank: 3, name: "Leonardo AI", price: "from BDT 599/mo", reason: "Budget image generation with strong 3D textures, character consistency, and motion effects. Great for game assets, product visuals, and UI design concepts.", badge: "Best Budget Option", color: "#f97316" },
-      { rank: 4, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Use AI to write design briefs, generate image prompts, write client emails, and research trends. The DALL-E image generation is also included.", badge: "For Workflow", color: "#10a37f" },
-    ],
-    startHere: {
-      name: "Midjourney — Standard Shared",
-      price: "BDT 1,199/mo",
-      reason: "Midjourney produces the highest quality AI images available. Generate unlimited concepts for clients at BDT 1,199/month — far cheaper than any stock photography subscription. Delivered in 5–30 minutes via WhatsApp.",
-    },
-    faqs: [
-      { q: "Which AI image tool is best for logo design?", a: "Ideogram is the best choice for logos and text-heavy designs. It renders text accurately inside images — which Midjourney struggles with. For logos with typography, start with Ideogram. For abstract logos and brand visuals, Midjourney produces better artistic results." },
-      { q: "Can I use AI-generated images for client work commercially?", a: "Yes. Midjourney Standard plans and above include commercial use rights. Ideogram Pro includes commercial use. Leonardo AI Apprentice plan also includes commercial use. Always use these on paid plans for commercial client work." },
-      { q: "Is Leonardo AI good enough compared to Midjourney?", a: "Leonardo AI is excellent for 3D textures, character consistency (same character in multiple images), and budget-conscious projects. Midjourney still produces better overall photorealistic and artistic quality. Many designers use both for different types of projects." },
-      { q: "How fast is image generation?", a: "Midjourney Standard Shared: 1-2 minutes for fast mode, 5-15 minutes for relaxed mode. Ideogram: 30-60 seconds per image. Delivery of your account after ordering: 5-30 minutes via WhatsApp." },
-    ],
-    accentColor: "#8b5cf6",
-    emoji: "🎨",
-    alsoRead: [
-      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
-      { label: "Best AI for Marketers", href: "/best-ai-for-marketers" },
-      { label: "Best AI for Freelancers", href: "/best-ai-for-freelancers" },
-    ],
-    comparison: { label: "Midjourney vs Ideogram — which is better for design?", href: "/midjourney-vs-ideogram" },
+  designers: {
+    label: "Designers",
+    heading: "AI Design Tools for Designers in Bangladesh",
+    intro: "Compare current design and image tools for concepting, assets, presentations, image generation and creative production, with provider licensing and export terms checked separately.",
+    primaryCategories: ["ai-design", "ai-image", "ai-video"],
+    capabilitySignals: ["design", "image-gen", "video-gen"],
+    decisionPoints: ["Check commercial-use and asset licensing terms for the provider and plan you select.", "Choose based on the deliverable: editable design, generated image, presentation, video or brand asset.", "Verify current credits, export limits and collaboration features before a production deadline."],
+    categoryLinks: [{ label: "AI design", href: "/ai-design" }, { label: "AI image", href: "/ai-image" }, { label: "AI video", href: "/ai-video" }],
   },
-  "marketers": {
-    slug: "best-ai-for-marketers",
-    title: "Best AI for Digital Marketers Bangladesh 2026",
-    h1: "Best AI Tools for Digital Marketers in Bangladesh 2026",
-    subtitle: "Write better copy. Create stunning visuals. Research faster.",
-    aioSnippet: `The best AI tools for digital marketers in Bangladesh in 2026 are ChatGPT Plus Shared (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/mo) for ad copy and social captions, Midjourney Standard (from BDT ${cheapestPriceFor("midjourney-bangladesh")}/mo) for visual content creation, and Perplexity Pro Shared (from BDT ${cheapestPriceFor("perplexity-pro-bangladesh")}/mo) for competitor research with real citations. Total: from BDT ${(cheapestPriceFor("chatgpt-plus-bangladesh") ?? 0) + (cheapestPriceFor("midjourney-bangladesh") ?? 0) + (cheapestPriceFor("perplexity-pro-bangladesh") ?? 0)}/mo for a complete marketing AI stack — pay with bKash or Nagad, no international card required.`,
-    metaDescription: "Best AI tools for digital marketers in Bangladesh 2026. ChatGPT, Midjourney, Perplexity. BDT prices.",
-    canonical: "https://aipremiumshop.com/best-ai-for-marketers",
-    whyHeading: "Why AI is Non-Negotiable for Marketers in 2026",
-    whyText: "Digital marketing in 2026 is a speed game. AI tools let marketers produce a week's worth of content in a single afternoon. Write Facebook ads, generate Instagram visuals, research competitor strategies, draft email sequences, and analyze campaign performance — all with AI. Marketers who adopt AI consistently outperform those who don't, regardless of budget. The tools that used to cost thousands of dollars are now available from BDT 299/month.",
-    statLine: "Marketers using AI tools save 5+ hours per week on content creation — HubSpot 2026 Marketing Report",
-    tools: [
-      { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "The essential marketing copywriter. Write ad copy, email campaigns, social media captions, blog posts, and product descriptions. Fastest and cheapest AI tool available.", badge: "Essential", color: "#10a37f" },
-      { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Generate professional marketing visuals — social media graphics, product mockups, campaign imagery — without a photographer or designer. 15hr fast GPU monthly.", badge: "For Visuals", color: "#8b5cf6" },
-      { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 599/mo", reason: "AI-powered market research with real-time citations. Research competitor strategies, industry trends, and consumer behavior in minutes — with source links you can verify.", badge: "For Research", color: "#20b2aa" },
-      { rank: 4, name: "Claude Pro — Premium Shared", price: `BDT ${tierPrice("claude-pro-bangladesh", "Premium Shared")}/mo`, reason: "Best AI for long-form marketing content. Blog posts, whitepapers, case studies, and email sequences with higher writing quality than ChatGPT.", badge: "For Long-form", color: "#d97706" },
-    ],
-    startHere: {
-      name: "ChatGPT Plus — Starter Shared",
-      price: "BDT 499/mo",
-      reason: "Start with ChatGPT Plus at BDT 499 — the most versatile marketing AI available. Use it for copy, research, strategy, and daily content. When you're ready to scale visuals, add Midjourney.",
-    },
-    faqs: [
-      { q: "Can AI write Facebook and Google Ads?", a: "Yes. ChatGPT is excellent at writing ad copy with specific character limits, calls-to-action, and emotional hooks. Give it your product, target audience, and goals, and it will generate multiple variations in seconds." },
-      { q: "Which AI is best for creating social media content?", a: "ChatGPT for captions, hashtags, and written content. Midjourney for visuals and graphics. Together they form a complete social media content creation stack for under BDT 1,600/month." },
-      { q: "How can AI help with SEO content?", a: "Claude Pro is the best AI for writing long-form SEO content. It produces more natural, human-sounding articles that rank well. For keyword research and competitor analysis, use Perplexity Pro — it gives real-time data with citations." },
-      { q: "Can AI replace a marketing agency?", a: "AI dramatically reduces the need for external agencies for content, copywriting, and basic design. However, strategy, media buying, and campaign management still benefit from human expertise. AI augments marketers — it doesn't replace strategy." },
-    ],
-    accentColor: "#ec4899",
-    emoji: "📈",
-    alsoRead: [
-      { label: "Best AI for Business Owners", href: "/best-ai-for-business" },
-      { label: "Best AI for Content Creators", href: "/best-ai-for-creators" },
-      { label: "Best AI for Designers", href: "/best-ai-for-designers" },
-    ],
-    comparison: { label: "ChatGPT vs Claude — which writes better marketing copy?", href: "/chatgpt-vs-claude" },
+  marketers: {
+    label: "Marketers",
+    heading: "AI Tools for Marketers in Bangladesh",
+    intro: "Compare current writing, research, design and automation tools for campaigns, SEO, content operations and reporting without treating generated claims or metrics as verified marketing facts.",
+    primaryCategories: ["ai-writing", "ai-design", "ai-workspace", "ai-assistant"],
+    capabilitySignals: ["text", "design", "search", "workspace"],
+    decisionPoints: ["Keep factual and performance claims evidence-backed before publishing them.", "Choose tools around campaign bottlenecks such as research, production, repurposing or reporting.", "Confirm provider quotas and integrations for the plan you will actually use."],
+    categoryLinks: [{ label: "Writing & SEO", href: "/ai-writing" }, { label: "AI design", href: "/ai-design" }, { label: "AI workspace", href: "/ai-workspace" }],
   },
-  "ecommerce": {
-    slug: "best-ai-for-ecommerce",
-    title: "Best AI for E-commerce Bangladesh 2026",
-    h1: "Best AI Tools for E-commerce Sellers in Bangladesh 2026",
-    subtitle: "Better product photos. Faster listings. More sales.",
-    aioSnippet: `The best AI tools for e-commerce sellers in Bangladesh in 2026 are ChatGPT Plus Shared (from BDT ${cheapestPriceFor("chatgpt-plus-bangladesh")}/mo) for product descriptions and customer support copy, Midjourney Standard (from BDT ${cheapestPriceFor("midjourney-bangladesh")}/mo) for professional product photography and lifestyle images, and Perplexity Pro (from BDT ${cheapestPriceFor("perplexity-pro-bangladesh")}/mo) for competitor and market research. Available via bKash — no international card needed.`,
-    metaDescription: "Best AI tools for e-commerce sellers in Bangladesh 2026. Product photos, descriptions, customer support AI.",
-    canonical: "https://aipremiumshop.com/best-ai-for-ecommerce",
-    whyHeading: "Why E-commerce Sellers Need AI in 2026",
-    whyText: "Running an e-commerce business in Bangladesh is increasingly competitive. AI tools help sellers write product listings faster, create professional product images without a photography studio, respond to customer queries automatically, and research trending products.",
-    tools: [
-      { rank: 1, name: "ChatGPT Plus — Starter Shared", price: "BDT 499/mo", reason: "Write compelling product titles and descriptions optimized for search. Draft FAQ responses, customer service templates, and promotional copy. Essential for any e-commerce operation.", badge: "Essential", color: "#10a37f" },
-      { rank: 2, name: "Midjourney — Standard Shared", price: "BDT 1,199/mo", reason: "Generate professional product photography and lifestyle images without a studio. Create background-removed product shots, styled scenes, and banner graphics for social media.", badge: "For Visuals", color: "#8b5cf6" },
-      { rank: 3, name: "Perplexity Pro — Shared", price: "BDT 599/mo", reason: "Research trending products, analyze competitor pricing, and identify market gaps. Get real-time data on what's selling and why — with citations you can verify.", badge: "For Research", color: "#20b2aa" },
-      { rank: 4, name: "Claude Pro — Premium Shared", price: `BDT ${tierPrice("claude-pro-bangladesh", "Premium Shared")}/mo`, reason: "Write longer-form content like seller profiles, brand stories, and email marketing sequences with higher quality than ChatGPT.", badge: "For Brand Content", color: "#d97706" },
-    ],
-    startHere: {
-      name: "ChatGPT Plus — Starter Shared",
-      price: "BDT 499/mo",
-      reason: "At BDT 499, ChatGPT Plus pays for itself with better product listings alone. Use it to write all your product titles and descriptions in bulk — then add Midjourney when you're ready to upgrade your visuals.",
-    },
-    faqs: [
-      { q: "Can AI write Daraz and Facebook Marketplace listings?", a: "Yes. ChatGPT is excellent at writing product titles and descriptions optimized for search engines and shoppers. Give it your product details (name, specs, price range) and it will write multiple variations. Works for Daraz, Chaldal, Facebook Marketplace, and any other platform." },
-      { q: "Can Midjourney replace product photography?", a: "For digital goods, social media graphics, and lifestyle imagery, yes — Midjourney produces professional results. For products that need to show exact textures and colors (clothing, electronics), traditional photography is still better for e-commerce listings. Many sellers use Midjourney for marketing visuals and traditional photography for listing images." },
-      { q: "How can AI help with customer support?", a: "Use ChatGPT to draft standard response templates for your most common customer questions (shipping times, return policy, size guides). For high-volume stores, Claude Pro's longer context window is better for handling complex customer situations." },
-      { q: "Can AI help me find trending products to sell?", a: "Yes. Perplexity Pro gives you real-time market data with citations. Ask it to research trending products in Bangladesh, popular categories on Daraz, or compare competitor pricing — it'll give you current information with sources." },
-    ],
-    accentColor: "#f97316",
-    emoji: "🛒",
-    alsoRead: [
-      { label: "Best AI for Business Owners", href: "/best-ai-for-business" },
-      { label: "Best AI for Marketers", href: "/best-ai-for-marketers" },
-      { label: "Best AI for Designers", href: "/best-ai-for-designers" },
-    ],
-    comparison: { label: "ChatGPT vs Claude — which writes better product descriptions?", href: "/chatgpt-vs-claude" },
+  ecommerce: {
+    label: "E-commerce Teams",
+    heading: "AI Tools for E-commerce in Bangladesh",
+    intro: "Compare current AI tools for product content, creative production, research, customer operations and workflow automation while keeping human review around pricing, claims and customer data.",
+    primaryCategories: ["ai-writing", "ai-design", "ai-workspace", "ai-assistant"],
+    capabilitySignals: ["text", "design", "workspace", "search"],
+    decisionPoints: ["Never publish generated product claims or specifications without checking source data.", "Use privacy-appropriate access for customer, order and supplier information.", "Evaluate automation on measurable operational time saved, not on the number of tools connected."],
+    categoryLinks: [{ label: "Writing & SEO", href: "/ai-writing" }, { label: "AI workspace", href: "/ai-workspace" }, { label: "Bundles & services", href: "/bundles" }],
   },
 };
 
-function FAQItem({ faq, index }: { faq: FAQ; index: number }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: index * 0.04 }}
-      className="rounded-2xl border border-white/10 overflow-hidden"
-      style={{ backgroundColor: "#151b3d" }}
-    >
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex items-center justify-between w-full p-5 text-left"
-        aria-expanded={open}
-      >
-        <span className="font-semibold text-white text-sm pr-4">{faq.q}</span>
-        <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }} className="flex-shrink-0">
-          <ChevronDown className="w-4 h-4" style={{ color: "#f4b942" }} />
-        </motion.div>
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22 }}
-            className="overflow-hidden"
-          >
-            <div className="px-5 pb-5 text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{faq.a}</div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
+const catalog = (productsData.products as ProductRecord[]).filter((product) => !RETIRED.has(product.slug));
+
+function baseName(value: string): string {
+  return value.split(/—\s*/)[0].split(/\s+-\s+/)[0].trim();
 }
 
-interface GuidePageProps {
-  guideKey: string;
+function score(record: ProductRecord, definition: GuideDefinition): number {
+  let value = 0;
+  const categoryIndex = definition.primaryCategories.indexOf(record.category);
+  if (categoryIndex >= 0) value += (definition.primaryCategories.length - categoryIndex) * 10;
+  for (const capability of record.capabilities ?? []) if (definition.capabilitySignals.includes(capability)) value += 3;
+  if (record.price != null && record.price > 0) value += 2;
+  return value;
 }
 
-// hreflang only takes effect when both sides declare each other, so the
-// English guides point back at the Bangla pages that name them. Keys absent
-// here simply have no Bangla equivalent yet.
-const BANGLA_ALTERNATE: Record<string, string> = {
-  students: "/students-bn",
-  developers: "/developers-bn",
-  freelancers: "/freelancers-bn",
-  creators: "/creators-bn",
-  business: "/smb-bn",
-};
+function groupRecommendations(definition: GuideDefinition) {
+  const bySlug = new Map<string, ProductRecord[]>();
+  for (const record of catalog) {
+    if (!definition.primaryCategories.includes(record.category)) continue;
+    if (!bySlug.has(record.slug)) bySlug.set(record.slug, []);
+    bySlug.get(record.slug)?.push(record);
+  }
 
-export default function GuidePage({ guideKey }: GuidePageProps) {
-  const guide = GUIDES[guideKey];
-  if (!guide) return null;
+  return [...bySlug.entries()]
+    .map(([slug, records]) => {
+      const sorted = [...records].sort((a, b) => score(b, definition) - score(a, definition));
+      const prices = records.map((record) => record.price).filter((price): price is number => typeof price === "number" && price > 0);
+      const access = [...new Set(records.map((record) => record.accessType).filter(Boolean))];
+      return { slug, first: sorted[0], score: Math.max(...records.map((record) => score(record, definition))), price: prices.length ? Math.min(...prices) : null, access };
+    })
+    .sort((a, b) => b.score - a.score || (a.price ?? Infinity) - (b.price ?? Infinity))
+    .slice(0, 8);
+}
 
-  const wa = `${WHATSAPP}?text=${encodeURIComponent(`Hi, I want to order ${guide.tools[0]?.name} for ${guide.tools[0]?.price}`)}`;
+function accessText(values: (string | null)[]): string {
+  const labels = values.map((value) => {
+    if (value === "shared") return "Shared";
+    if (value === "personal") return "Personal";
+    if (value === "team") return "Team";
+    if (value === "bundle") return "Bundle";
+    return "Service";
+  });
+  return labels.length ? [...new Set(labels)].join(", ") : "Confirm before payment";
+}
+
+export default function GuidePage({ guideKey }: { guideKey: string }) {
+  const reducedMotion = useReducedMotion();
+  const definition = GUIDE_DEFS[guideKey];
+  const recommendations = useMemo(() => definition ? groupRecommendations(definition) : [], [definition]);
+
+  if (!definition) {
+    return (
+      <PageLayout>
+        <SEOHead title="Guide Not Found | AI Premium Shop" description="This AI tool guide is not available." noindex />
+        <main className="max-w-4xl mx-auto px-4 py-24 text-center"><h1 className="text-3xl font-bold text-white mb-4">Guide not found</h1><Link href="/guides" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold" style={{ backgroundColor: "#f4b942", color: "#0a0e27" }}>Browse guides <ArrowRight className="w-4 h-4" /></Link></main>
+      </PageLayout>
+    );
+  }
+
+  const canonical = `${SITE}/best-ai-for-${guideKey}`;
+  const title = `${definition.heading} | Compare Current Options`;
+  const description = `${definition.intro} Compare current AIPS prices and access models, then confirm provider limits, availability, delivery ETA and terms before payment.`;
 
   return (
     <PageLayout>
-      <SEOHead
-        title={guide.title}
-        description={guide.metaDescription}
-        canonical={guide.canonical}
-        hreflang={
-          BANGLA_ALTERNATE[guideKey]
-            ? { en: new URL(guide.canonical).pathname, bn: BANGLA_ALTERNATE[guideKey] }
-            : undefined
-        }
-      />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(faqSchema(guide.faqs)) }} />
-      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Guides", href: "/blog" }, { name: guide.h1 }]} />
+      <SEOHead title={title} description={description} canonical={canonical} />
+      <main id="main-content" className="max-w-6xl mx-auto px-4 md:px-8 py-10 md:py-14">
+        <nav aria-label="breadcrumb" className="flex items-center gap-2 text-xs mb-8" style={{ color: "#9ca3af" }}><Link href="/" className="hover:text-white">Home</Link><ChevronRight className="w-3.5 h-3.5" /><Link href="/guides" className="hover:text-white">Guides</Link><ChevronRight className="w-3.5 h-3.5" /><span className="text-white">{definition.label}</span></nav>
 
-      <div className="max-w-4xl mx-auto px-4 md:px-8 py-14 relative overflow-hidden">
-        {GUIDE_GLOWS[guideKey] && (
-          <div className={`absolute top-0 right-0 w-64 h-64 rounded-full ${GUIDE_GLOWS[guideKey]} blur-[80px] pointer-events-none`} />
-        )}
+        <motion.header initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} className="max-w-4xl mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 text-xs font-semibold mb-4" style={{ color: "#f4b942", backgroundColor: "rgba(244,185,66,0.08)" }}><ShieldCheck className="w-3.5 h-3.5" /> Current-catalog decision guide</div>
+          <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-4">{definition.heading}</h1>
+          <p className="text-base md:text-lg leading-relaxed" style={{ color: "#c9ceda" }}>{definition.intro}</p>
+        </motion.header>
 
-        {/* Hero */}
-        <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-12">
-          <div className="flex items-start justify-between gap-6">
-            <div className="flex-1 min-w-0">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border"
-                style={{ backgroundColor: guide.accentColor + "18", borderColor: guide.accentColor + "40", color: guide.accentColor }}>
-                <span>{guide.emoji}</span>
-                <span>Guide for {guide.h1.replace("Best AI Tools for ", "")}</span>
-              </div>
-              <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">{guide.h1}</h1>
-              <p className="text-lg md:text-xl" style={{ color: "#c9ceda" }}>{guide.subtitle}</p>
-              {guide.statLine && (
-                <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border"
-                  style={{ backgroundColor: "#f4b94215", borderColor: "#f4b94230", color: "#f4b942" }}>
-                  <span>📊</span>
-                  <span>{guide.statLine}</span>
-                </div>
-              )}
+        <section className="grid lg:grid-cols-[1fr_330px] gap-6 mb-12">
+          <div>
+            <div className="flex items-end justify-between gap-4 mb-5"><div><p className="text-xs uppercase tracking-[0.18em] font-semibold mb-2" style={{ color: "#f4b942" }}>Current shortlist</p><h2 className="text-2xl font-bold text-white">Relevant catalog options</h2></div><span className="text-xs" style={{ color: "#9ca3af" }}>Not an objective ranking</span></div>
+            <div className="grid md:grid-cols-2 gap-4">
+              {recommendations.map((item, index) => {
+                const product = item.first;
+                const label = baseName(product.name);
+                return (
+                  <motion.article key={item.slug} initial={reducedMotion ? false : { opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.15) }} className="rounded-2xl border border-white/10 p-5" style={{ backgroundColor: "#151b3d" }}>
+                    <div className="flex items-start gap-3 mb-4"><div className="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${product.brandColor || "#f4b942"}16` }}><BrandIcon brand={product.brand ?? label} color={product.brandColor || "#f4b942"} size={26} /></div><div><h3 className="font-bold text-white">{label}</h3><p className="text-xs mt-1" style={{ color: "#9ca3af" }}>{accessText(item.access)}</p></div></div>
+                    <p className="text-sm leading-relaxed mb-4 line-clamp-3" style={{ color: "#c9ceda" }}>{product.description || `${label} is in the current public AIPS catalog.`}</p>
+                    <div className="flex items-end justify-between gap-3"><div><div className="text-[11px]" style={{ color: "#9ca3af" }}>Published AIPS price</div><div className="font-bold" style={{ color: "#f4b942" }}>{item.price ? `From ${formatBDT(item.price)}` : "Current price on request"}</div></div><Link href={productPath(item.slug)} className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: product.brandColor || "#f4b942" }}>Details <ArrowRight className="w-4 h-4" /></Link></div>
+                  </motion.article>
+                );
+              })}
             </div>
-            {GUIDE_ICONS[guideKey] && (() => {
-              const { Icon, color } = GUIDE_ICONS[guideKey];
-              return (
-                <div className="hidden md:flex flex-shrink-0 w-24 h-24 rounded-3xl items-center justify-center"
-                  style={{ backgroundColor: color + "15", border: `1px solid ${color}30` }}>
-                  <Icon className="w-12 h-12" style={{ color }} />
-                </div>
-              );
-            })()}
           </div>
-        </motion.div>
 
-        {/* AIO Snippet */}
-        <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible"
-          className="p-5 rounded-2xl border mb-8"
-          style={{ backgroundColor: "rgba(244,185,66,0.06)", borderColor: "rgba(244,185,66,0.25)" }}>
-          <p className="text-sm leading-relaxed" style={{ color: "#e8d5a3" }}>{guide.aioSnippet}</p>
-        </motion.div>
+          <aside className="rounded-2xl border border-white/10 p-6 h-fit" style={{ backgroundColor: "#151b3d" }}>
+            <Search className="w-6 h-6 mb-3" style={{ color: "#f4b942" }} /><h2 className="text-lg font-bold text-white mb-3">Decision checklist</h2>
+            <div className="space-y-4">{definition.decisionPoints.map((point) => <div key={point} className="flex gap-2.5"><CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#10b981" }} /><p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{point}</p></div>)}</div>
+            <a href={`${WHATSAPP}?text=${encodeURIComponent(`Hi, I need an AI tool recommendation for ${definition.label.toLowerCase()}. Please ask about my workflow, privacy needs and budget, then confirm current price, access model, availability, provider limits, delivery ETA and terms before payment.`)}`} target="_blank" rel="noopener noreferrer" className="mt-6 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold text-sm" style={{ backgroundColor: "#008236", color: "#fff" }}><MessageCircle className="w-4 h-4" /> Ask for a current fit</a>
+          </aside>
+        </section>
 
-        {/* Quick Price Comparison Table */}
-        <motion.div custom={1.5} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
-          <h2 className="text-xl font-bold text-white mb-4">Price Comparison — {new Date().getFullYear()}</h2>
-          <div className="rounded-2xl border border-white/10 overflow-hidden" style={{ backgroundColor: "#151b3d" }}>
-            <div className="grid grid-cols-[auto_1fr_auto_auto] text-xs font-semibold uppercase tracking-wider border-b border-white/10 px-5 py-3" style={{ color: "#c9ceda" }}>
-              <div className="w-7">#</div>
-              <div>Tool</div>
-              <div className="text-right pr-6">Price/mo</div>
-              <div className="w-20 text-center">Order</div>
-            </div>
-            {guide.tools.map((tool, i) => {
-              const slug = TOOL_BRAND_SLUGS[tool.name] ?? null;
-              const waUrl = `${WHATSAPP}?text=${encodeURIComponent(`Hi, I want to order ${tool.name}`)}`;
-              return (
-                <div key={i} className={`grid grid-cols-[auto_1fr_auto_auto] items-center px-5 py-3 ${i > 0 ? "border-t border-white/6" : ""}`}>
-                  <div className="w-7 text-sm font-bold" style={{ color: guide.accentColor }}>{tool.rank}</div>
-                  <div>
-                    {slug
-                      ? <Link href={slug} className="font-semibold text-white text-sm hover:opacity-80 transition-opacity underline decoration-white/20">{tool.name}</Link>
-                      : <span className="font-semibold text-white text-sm">{tool.name}</span>
-                    }
-                    {tool.badge && <span className="ml-2 px-1.5 py-0.5 rounded-full text-xs font-semibold" style={{ backgroundColor: (tool.color ?? guide.accentColor) + "25", color: tool.color ?? guide.accentColor }}>{tool.badge}</span>}
-                  </div>
-                  <div className="text-sm font-bold pr-6" style={{ color: "#f4b942" }}>{tool.price}</div>
-                  <a href={waUrl} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity"
-                    style={{ backgroundColor: "#008236", color: "#fff" }}>
-                    <MessageCircle className="w-3 h-3" />
-                    Order
-                  </a>
-                </div>
-              );
-            })}
-          </div>
-        </motion.div>
+        <section className="rounded-2xl border border-white/10 p-6 md:p-8 mb-10" style={{ backgroundColor: "rgba(21,27,61,0.65)" }}><WalletCards className="w-6 h-6 mb-3" style={{ color: "#f4b942" }} /><h2 className="text-xl font-bold text-white mb-3">What this guide does—and does not claim</h2><p className="text-sm leading-relaxed max-w-4xl" style={{ color: "#c9ceda" }}>The shortlist is generated from current public AIPS categories and discovery tags. It is not a benchmark ranking and does not assert current provider model names, context windows, generation quotas, earnings impact or unlimited usage. Check provider-controlled features and limits against current provider documentation, and confirm AIPS commercial details before payment.</p></section>
 
-        {/* Why AI */}
-        <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible"
-          className="p-6 md:p-8 rounded-2xl border border-white/10 mb-10"
-          style={{ backgroundColor: "#151b3d" }}>
-          <h2 className="text-xl font-bold text-white mb-3">{guide.whyHeading}</h2>
-          <p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>{guide.whyText}</p>
-        </motion.div>
-
-        {/* Guide-specific ChatGPT callout boxes */}
-        {guideKey === "students" && (
-          <motion.div custom={2.5} variants={fadeUp} initial="hidden" animate="visible"
-            className="rounded-2xl border mb-10 overflow-hidden"
-            style={{ backgroundColor: "rgba(59,130,246,0.05)", borderColor: "rgba(59,130,246,0.25)" }}>
-            <div className="p-6">
-              <div className="text-5xl mb-3">🎓</div>
-              <p className="text-sm font-semibold text-white mb-3">Every subject. Every assignment. Every exam. One tool.</p>
-              <div className="flex flex-wrap gap-2">
-                {["Economics", "Accounting", "Law", "CSE", "English", "BBA", "Medical", "HSC"].map((tag) => (
-                  <span key={tag} className="text-xs px-2.5 py-1 rounded-full"
-                    style={{ backgroundColor: "rgba(59,130,246,0.15)", color: "#93c5fd" }}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {guideKey === "freelancers" && (
-          <motion.div custom={2.5} variants={fadeUp} initial="hidden" animate="visible"
-            className="rounded-2xl border mb-10 overflow-hidden"
-            style={{ backgroundColor: "rgba(16,163,127,0.05)", borderColor: "rgba(16,163,127,0.25)" }}>
-            <div className="p-6">
-              <div className="text-5xl mb-3">💻</div>
-              <h3 className="text-base font-bold text-white mb-4">Freelancer Income Calculator</h3>
-              <div className="space-y-2 text-sm mb-5" style={{ color: "#c9ceda" }}>
-                <div className="flex justify-between"><span>Without AI: 5 projects × $50</span><span className="font-semibold" style={{ color: "#ef4444" }}>$250/month</span></div>
-                <div className="flex justify-between"><span>With ChatGPT + Midjourney: 12 projects × $80</span><span className="font-semibold" style={{ color: "#10a37f" }}>$960/month</span></div>
-                <div className="border-t border-white/10 pt-2 flex justify-between font-semibold"><span>Potential extra income/month</span><span style={{ color: "#f4b942" }}>up to $710 (~৳92,300)</span></div>
-                <div className="flex justify-between text-xs"><span>AI subscription cost</span><span>৳299–1,199/month</span></div>
-                <div className="flex justify-between text-xs font-bold"><span>ROI</span><span style={{ color: "#10a37f" }}>77x–264x return</span></div>
-                {/* The table models an achievable outcome, not an average one.
-                    Saying so once, next to the figures, is what makes the
-                    figures usable — and it matches the concierge, which
-                    refuses to promise income at all. */}
-                <p className="text-[11px] pt-2 leading-relaxed" style={{ color: "#8b93a7" }}>
-                  Illustrative scenario based on typical freelance rates. Actual earnings depend on your skill,
-                  niche and client demand — AI tools change how fast you can deliver, not whether clients hire you.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                {[
-                  { type: "Writer", rec: "ChatGPT Plus ৳499" },
-                  { type: "Designer", rec: "+ Midjourney ৳1,199" },
-                  { type: "Developer", rec: "+ Copilot ৳1,495" },
-                  { type: "VA", rec: "ChatGPT + Notion ৳1,150" },
-                ].map((item) => (
-                  <div key={item.type} className="rounded-lg p-2 border border-white/10" style={{ backgroundColor: "#151b3d" }}>
-                    <div className="font-semibold text-white">{item.type}</div>
-                    <div style={{ color: "#10a37f" }}>{item.rec}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Recommended Tools */}
-        <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
-          <h2 className="text-2xl font-bold text-white mb-2">Recommended Tools</h2>
-          <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>Ranked by value for {guide.h1.replace("Best AI Tools for ", "").toLowerCase()}.</p>
-          <div className="space-y-4">
-            {guide.tools.map((tool, i) => (
-              <motion.div key={i} custom={i + 3} variants={fadeUp} initial="hidden" animate="visible"
-                className="flex items-start gap-4 p-5 rounded-2xl border border-white/10 border-l-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
-                style={{ backgroundColor: "#151b3d", borderLeftColor: tool.rank === 1 ? "#fbbf24" : tool.rank === 2 ? "#9ca3af" : tool.rank === 3 ? "#92400e" : "rgba(255,255,255,0.1)" }}>
-                <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"
-                  style={{ backgroundColor: (tool.color ?? guide.accentColor) + "25", color: tool.color ?? guide.accentColor }}>
-                  {tool.rank}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <span className="font-semibold text-white">{tool.name}</span>
-                    {tool.badge && (
-                      <span className="px-2 py-0.5 rounded-full text-xs font-semibold"
-                        style={{ backgroundColor: (tool.color ?? guide.accentColor) + "25", color: tool.color ?? guide.accentColor }}>
-                        {tool.badge}
-                      </span>
-                    )}
-                  </div>
-                  <div className="text-sm font-bold mb-1" style={{ color: "#f4b942" }}>{tool.price}</div>
-                  <p className="text-sm" style={{ color: "#c9ceda" }}>{tool.reason}</p>
-                </div>
-                <a href={`${WHATSAPP}?text=${encodeURIComponent(`Hi, I want to order ${tool.name}`)}`}
-                  target="_blank" rel="noopener noreferrer"
-                  className="flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
-                  style={{ backgroundColor: "#008236", color: "#fff" }}>
-                  <MessageCircle className="w-4 h-4" />
-                  <span className="hidden sm:inline">Order</span>
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Start Here */}
-        <motion.div custom={guide.tools.length + 3} variants={fadeUp} initial="hidden" animate="visible"
-          className="p-6 md:p-8 rounded-2xl mb-10 border"
-          style={{ backgroundColor: guide.accentColor + "12", borderColor: guide.accentColor + "35" }}>
-          <div className="flex items-center gap-2 mb-3">
-            <CheckCircle className="w-5 h-5" style={{ color: guide.accentColor }} />
-            <span className="font-bold text-white">Start Here</span>
-          </div>
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <div className="font-semibold text-white mb-1">{guide.startHere.name}</div>
-              <div className="text-lg font-bold mb-2" style={{ color: "#f4b942" }}>{guide.startHere.price}</div>
-              <p className="text-sm" style={{ color: "#c9ceda" }}>{guide.startHere.reason}</p>
-            </div>
-            <a href={`${WHATSAPP}?text=${encodeURIComponent(`Hi, I want to order ${guide.startHere.name}`)}`}
-              target="_blank" rel="noopener noreferrer"
-              className="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: "#008236", color: "#fff" }}>
-              <MessageCircle className="w-5 h-5" />
-              Order Now
-            </a>
-          </div>
-        </motion.div>
-
-        {/* Internal brand links */}
-        {guide.tools.some((t) => TOOL_BRAND_SLUGS[t.name]) && (
-          <motion.div custom={guide.tools.length + 4} variants={fadeUp} initial="hidden" animate="visible"
-            className="p-6 rounded-2xl border border-white/10 mb-10"
-            style={{ backgroundColor: "#151b3d" }}>
-            <h3 className="font-bold text-white mb-1 text-sm">Explore each tool in detail</h3>
-            <p className="text-xs mb-4" style={{ color: "#c9ceda" }}>Read full pricing, plans, and reviews for each tool.</p>
-            <div className="flex flex-wrap gap-2">
-              {guide.tools.filter((t) => TOOL_BRAND_SLUGS[t.name]).map((t) => (
-                <Link key={t.name} href={TOOL_BRAND_SLUGS[t.name]}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-white/10 text-sm font-medium hover:border-white/30 transition-colors"
-                  style={{ color: t.color ?? guide.accentColor, minHeight: "36px" }}>
-                  {t.name.split(" —")[0].split(" — ")[0]}
-                  <ChevronRight className="w-3 h-3" />
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-
-        {/* FAQ */}
-        <motion.div custom={guide.tools.length + 5} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
-          <h2 className="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
-          <div className="space-y-3">
-            {guide.faqs.map((faq, i) => <FAQItem key={i} faq={faq} index={i} />)}
-          </div>
-        </motion.div>
-
-        {/* Also Read */}
-        {(guide.alsoRead.length > 0 || guide.comparison) && (
-          <motion.div custom={guide.tools.length + 6} variants={fadeUp} initial="hidden" animate="visible"
-            className="p-6 rounded-2xl border border-white/10 mb-10"
-            style={{ backgroundColor: "#151b3d" }}>
-            <h3 className="font-semibold text-white mb-4">Also read</h3>
-            <div className="flex flex-col gap-2">
-              {guide.alsoRead.map((item) => (
-                <Link key={item.href} href={item.href}
-                  className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity"
-                  style={{ color: "#f4b942" }}>
-                  <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
-                  {item.label}
-                </Link>
-              ))}
-              {guide.comparison && (
-                <Link href={guide.comparison.href}
-                  className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity"
-                  style={{ color: "#c9ceda" }}>
-                  <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
-                  {guide.comparison.label}
-                </Link>
-              )}
-            </div>
-          </motion.div>
-        )}
-
-        {/* Developer Career Path */}
-        {guideKey === "developers" && (
-          <motion.div custom={guide.tools.length + 6.8} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
-            <h2 className="text-2xl font-bold text-white mb-6">Developer Career Path With AI</h2>
-            <div className="space-y-3 mb-6">
-              {[
-                { border: "border-blue-500", level: "Level 1: Junior", tool: "Copilot Pro BDT 1,495", desc: "Learn faster, code faster, get hired faster" },
-                { border: "border-purple-500", level: "Level 2: Mid-level", tool: "Copilot + Cursor BDT 4,485", desc: "Complex projects, premium freelance rates" },
-                { border: "border-amber-500", level: "Level 3: Senior", tool: "+ Claude Pro BDT 7,475", desc: "Architect systems, $50+/hr" },
-                { border: "border-green-500", level: "Level 4: AI Agent Builder", tool: "Full stack BDT 10,000+", desc: "Build AI products, $100+/hr" },
-              ].map((item) => (
-                <div key={item.level} className={`bg-gray-900 rounded-lg p-4 border-l-4 ${item.border}`}>
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <div className="font-bold text-white text-sm mb-0.5">{item.level}</div>
-                      <div className="text-sm mb-1" style={{ color: "#f4b942" }}>{item.tool}</div>
-                      <div className="text-sm" style={{ color: "#c9ceda" }}>{item.desc}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="rounded-xl p-6" style={{ backgroundColor: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.2)" }}>
-              <p className="text-sm" style={{ color: "#c9ceda" }}>
-                AI coding tools are now widely used across the developer community. Teams that adopt them early get a head start on the workflow changes they bring.
-              </p>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Creator AI Stack Calculator */}
-        {guideKey === "creators" && (
-          <motion.div custom={guide.tools.length + 6.8} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
-            <h2 className="text-2xl font-bold text-white mb-6">Creator AI Stack — Cost Calculator</h2>
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700">
-              <div className="space-y-2 text-sm mb-4">
-                {[
-                  { label: "ChatGPT", note: "scripts", price: "BDT 499" },
-                  { label: "Midjourney", note: "visuals", price: "BDT 1,199" },
-                  { label: "ElevenLabs", note: "voiceover", price: "BDT 748" },
-                  { label: "Suno AI", note: "music", price: `BDT ${cheapestPriceFor("suno-ai-bangladesh")}` },
-                  { label: "Runway", note: "video", price: "BDT 1,794" },
-                ].map((item) => (
-                  <div key={item.label} className="flex justify-between items-center py-1 border-b border-white/5">
-                    <span style={{ color: "#c9ceda" }}>{item.label} <span className="text-xs opacity-60">({item.note})</span></span>
-                    <span style={{ color: "#c9ceda" }}>{item.price}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="flex justify-between items-center py-2 mb-3">
-                <span className="font-bold text-white">Total</span>
-                <span className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT 5,586/mo</span>
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Designer AI Stack ROI */}
-        {guideKey === "designers" && (
-          <motion.div custom={guide.tools.length + 6.8} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
-            <h3 className="text-xl font-bold text-white mb-5">Designer AI Stack ROI</h3>
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700">
-              <div className="space-y-2 text-sm mb-4">
-                {[
-                  { label: "Midjourney", price: "BDT 1,199" },
-                  { label: "Ideogram", price: "BDT 2,990" },
-                  { label: "ChatGPT", price: "BDT 499" },
-                ].map((item) => (
-                  <div key={item.label} className="flex justify-between items-center py-1 border-b border-white/5">
-                    <span style={{ color: "#c9ceda" }}>{item.label}</span>
-                    <span style={{ color: "#c9ceda" }}>{item.price}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="flex justify-between items-center py-2">
-                <span className="font-bold text-white">Total</span>
-                <span className="text-xl font-bold" style={{ color: "#f4b942" }}>BDT 4,539/mo</span>
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {/* FOMO Banner — all guide pages. This used to render twice (a
-            near-identical "The Cost of Waiting" block also existed earlier
-            in this file) — found and deduplicated 2026-08-07 via a visual
-            screenshot pass, not caught by any text-based gate since neither
-            copy was individually wrong. Kept this one (has the CTA button,
-            sits right before the page's final conversion block).
-            Citations verified live, not assumed: "Freelancers with AI earn
-            44% more" misapplied an Upwork finding about freelancers who DO
-            AI-related work vs. unrelated work, as if any freelancer using
-            an AI tool earns 44% more — the source does not say that.
-            "Businesses save 60-80% (McKinsey)" had no primary McKinsey
-            source, only third-party marketing blogs. "Students outperform
-            in every metric" was an unsourced absolute claim. Kept only what
-            a source check actually confirmed, worded to match the source. */}
-        <motion.div custom={guide.tools.length + 6.9} variants={fadeUp} initial="hidden" animate="visible" className="mb-8">
-          <div className="rounded-xl p-6" style={{ backgroundColor: "#151b3d", border: "1px solid rgba(239,68,68,0.1)" }}>
-            <h3 className="text-lg font-bold text-white mb-3">AI Is No Longer Optional</h3>
-            <div className="text-sm leading-relaxed space-y-1 mb-4" style={{ color: "#d1d5db" }}>
-              <p>• Freelancers doing AI-related work earn 44% more per hour than those who don't (Upwork Research Institute 2025)</p>
-              <p>• 92% of developers use AI coding tools (GitHub Developer Survey 2023)</p>
-            </div>
-            <p className="text-white font-bold mb-4">The question is not "should I use AI?" — it's "how long can I afford not to?"</p>
-            <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi, I want to start with AI tools")}`}
-              target="_blank" rel="noopener noreferrer"
-              className="inline-block bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-              Start for BDT 299/mo →
-            </a>
-          </div>
-        </motion.div>
-
-        {/* Final CTA */}
-        <motion.div custom={guide.tools.length + 7} variants={fadeUp} initial="hidden" animate="visible"
-          className="p-8 rounded-2xl text-center border border-white/10"
-          style={{ backgroundColor: "#151b3d" }}>
-          <h2 className="text-2xl font-bold text-white mb-3">Ready to get started?</h2>
-          <p className="text-sm mb-6" style={{ color: "#c9ceda" }}>
-            Message us on WhatsApp. Tell us which tool you want. We'll deliver within 30 minutes.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href={wa} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: "#008236", color: "#fff" }}>
-              <MessageCircle className="w-5 h-5" />
-              Order on WhatsApp
-            </a>
-            <Link href="/products"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold border border-white/20 text-white hover:bg-white/5 transition-colors">
-              Browse All Products
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </motion.div>
-      </div>
+        <section><h2 className="text-xl font-bold text-white mb-4">Explore the underlying categories</h2><div className="flex flex-wrap gap-2">{definition.categoryLinks.map((item) => <Link key={item.href} href={item.href} className="px-4 py-2.5 rounded-xl border border-white/10 text-sm font-medium hover:border-white/20" style={{ color: "#e5e7eb" }}>{item.label}</Link>)}<Link href="/pricing" className="px-4 py-2.5 rounded-xl border border-white/10 text-sm font-medium hover:border-white/20" style={{ color: "#e5e7eb" }}>Current pricing</Link></div></section>
+      </main>
     </PageLayout>
   );
 }

@@ -38,6 +38,10 @@ try {
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
   run(process.execPath, ["scripts/sanitize-brand-prerender.mjs"]);
+  // Category routes previously inherited raw catalog descriptions, delivery
+  // SLAs, badges, official-price comparisons, FAQ claims and typed bundle
+  // savings. Rewrite their crawler shells from the active public projection.
+  run(process.execPath, ["scripts/sanitize-category-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-product-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-budget-prerender.mjs"]);
   // Audience guides are high-intent SEO routes. Rewrite their crawler shells

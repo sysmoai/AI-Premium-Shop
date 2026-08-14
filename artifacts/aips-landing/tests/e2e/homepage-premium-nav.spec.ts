@@ -13,6 +13,7 @@ test("premium homepage Products hover opens the mega menu and category hover upd
 
   await page.getByTestId("mega-category-ai-video").hover();
   await expect(page.getByTestId("mega-active-category-title")).toHaveText("AI Video");
+  await expect(mega.getByTestId("mega-subcategory-link").filter({ hasText: "AI avatars" })).toHaveAttribute("href", "/products?category=ai-video&q=avatar");
 
   const productLinks = mega.getByTestId("mega-product-link");
   expect(await productLinks.count()).toBeGreaterThan(0);
@@ -22,16 +23,24 @@ test("premium homepage Products hover opens the mega menu and category hover upd
   }
 });
 
-test("premium homepage exposes search and solution navigation without stale V1 claims", async ({ page }) => {
+test("premium homepage search is modal, task-aware and restores focus", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto(PREVIEW, { waitUntil: "networkidle" });
 
-  await page.getByRole("button", { name: "Search AI tools" }).click();
-  await expect(page.getByTestId("premium-search-overlay")).toBeVisible();
-  await page.getByPlaceholder(/Search ChatGPT/).fill("Claude");
-  await expect(page.getByTestId("premium-search-overlay").getByRole("link").first()).toBeVisible();
+  const searchButton = page.getByRole("button", { name: "Search AI tools" });
+  await searchButton.click();
+  const overlay = page.getByTestId("premium-search-overlay");
+  await expect(overlay).toBeVisible();
+  await expect(overlay.getByRole("dialog")).toHaveAttribute("aria-modal", "true");
+  await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
+
+  await overlay.getByRole("searchbox", { name: "Search AI tools" }).fill("AI avatars");
+  await expect(overlay.getByRole("link").first()).toBeVisible();
+  await expect(overlay.getByRole("link").first()).toHaveAttribute("href", /.+/);
+
   await page.keyboard.press("Escape");
-  await expect(page.getByTestId("premium-search-overlay")).toHaveCount(0);
+  await expect(overlay).toHaveCount(0);
+  await expect(searchButton).toBeFocused();
 
   await page.getByRole("button", { name: "Solutions", exact: true }).hover();
   await expect(page.getByRole("link", { name: "Students", exact: true }).first()).toBeVisible();
@@ -42,15 +51,22 @@ test("premium homepage exposes search and solution navigation without stale V1 c
   }
 });
 
-test("premium homepage mobile navigation exposes category accordions and touch-safe category paths", async ({ page }) => {
+test("premium homepage mobile navigation exposes categories, task subcategories and viewport-safe scrolling", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(PREVIEW, { waitUntil: "networkidle" });
 
   await page.getByRole("button", { name: "Open navigation" }).click();
   await expect(page.getByRole("button", { name: "Products & categories" })).toBeVisible();
+  await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
+
   const aiVideo = page.getByRole("link", { name: /AI Video/ }).first();
   await expect(aiVideo).toBeVisible();
   await expect(aiVideo).toHaveAttribute("href", "/ai-video");
+
+  await page.getByRole("button", { name: "Show AI Video tasks" }).click();
+  const avatarTask = page.getByTestId("mobile-subcategory-link").filter({ hasText: "AI avatars" });
+  await expect(avatarTask).toBeVisible();
+  await expect(avatarTask).toHaveAttribute("href", "/products?category=ai-video&q=avatar");
 
   const bodyWidth = await page.locator("body").evaluate((element) => element.scrollWidth);
   expect(bodyWidth).toBeLessThanOrEqual(390);

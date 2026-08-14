@@ -9,7 +9,7 @@ const BLOCKED = [
 test("audience guide runtime uses current catalog evidence instead of stale rankings and earnings claims", async ({ page }) => {
   await page.goto("/best-ai-for-students", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: /AI Tools for Students/i })).toBeVisible();
-  await expect(page.getByText("Current catalog", { exact: false }).first()).toBeVisible();
+  await expect(page.getByText("Current-catalog decision guide", { exact: true })).toBeVisible();
   const main = page.getByRole("main");
   const text = (await main.innerText()).toLowerCase();
   for (const phrase of BLOCKED) expect(text).not.toContain(phrase.toLowerCase());

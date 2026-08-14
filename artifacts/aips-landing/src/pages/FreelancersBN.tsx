@@ -52,7 +52,7 @@ export default function FreelancersBN() {
           <h2 className="text-3xl font-bold text-center mb-4">ফ্রিল্যান্স workflow-এ AI কোথায় ব্যবহার করবেন</h2>
           <p className="text-center text-gray-400 max-w-3xl mx-auto mb-12">AI output client-ready ধরে নেবেন না। Scope, facts, citations, code, rights এবং platform/client policy অনুযায়ী final review আপনার দায়িত্ব।</p>
           <div className="grid md:grid-cols-2 gap-8">
-            {useCases.map((item, i) => (
+            {useCases.map((item) => (
               <motion.div key={item.task} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
                 <h3 className="text-lg font-bold text-white mb-2">{item.task}</h3>
                 <div className="text-sm text-yellow-400 mb-3">উদাহরণ টুল: {item.tools}</div>
@@ -66,7 +66,7 @@ export default function FreelancersBN() {
           <h2 className="text-3xl font-bold text-center mb-4">কিছু বর্তমান freelancer option</h2>
           <p className="text-center text-gray-400 max-w-3xl mx-auto mb-12">দাম catalog-derived। Combined price মানেই discount নয়। Exact product, plan, access model, availability, delivery ETA এবং resolution terms পেমেন্টের আগে নিশ্চিত করুন।</p>
           <div className="grid md:grid-cols-3 gap-6">
-            {packages.map((pkg, i) => (
+            {packages.map((pkg) => (
               <motion.div key={pkg.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className={`rounded-xl p-6 border ${pkg.featured ? "bg-gradient-to-br from-yellow-900/40 to-gray-900 border-yellow-400" : "bg-gray-900/50 border-gray-800"}`}>
                 {pkg.featured && <div className="text-xs font-bold text-yellow-400 mb-2">Long-context workflow</div>}
                 <h3 className="text-lg font-bold text-white mb-2">{pkg.name}</h3>

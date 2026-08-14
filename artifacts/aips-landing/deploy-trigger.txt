@@ -1,7 +1,5 @@
-Purpose: force Vercel to classify the AIPS project as affected after the qualified PR #37 release was merged but automatic production deployment was skipped/canceled by monorepo unaffected-project detection.
-Qualified PR head: 310356408fdfdc2e3c30075e76aa504bbe2507e9
-Qualified runtime tree: f61d65b566198351af7bfce823252d78a1380f01
-Merged qualified commit: 1beabf9de15272ca304a52a534077abc509dea67
-Current main before this release-only marker: db093c02882e19a5980e5752e07b1d1689cc90c5
-Runtime impact: none; this file is not imported, served, or used by the build.
+Purpose: ensure Vercel classifies release-control changes for AIPS as affected so exact-head previews and production deployments are observable and verifiable.
+Current release: GitHub Actions Node 24 runtime migration and workflow self-test coverage.
+Runtime impact: none; this file is not imported, served, or used by the application build.
+Previous production baseline: 6d3771fa28f097c8b855cb59e3c8dc6fcb906eb5
 Date: 2026-08-14

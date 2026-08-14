@@ -35,11 +35,16 @@ if (commercial?.schema_version !== 2 || commercial?.public_projection_policy?.ap
 const neutralizeLegacyApprovedFields = (product) => {
   const safe = { ...product };
 
+  // Provider MSRP is not an AIPS-owned fact. It stays hidden until the exact
+  // record has a current evidence path and is approved for public comparison.
+  safe.officialUSD = null;
+
   safe.deliverySLA = null;
   safe.estimatedDeliveryTime = null;
   safe.deliveryMethod = null;
   safe.stock = null;
   safe.trust = null;
+  safe.badge = null;
   safe.badges = [];
   safe.competitorCompare = [];
   safe.whatsappMsg = null;
@@ -56,7 +61,6 @@ const stripCommercialFields = (product) => {
 
   safe.price = null;
   safe.requestPrice = true;
-  safe.officialUSD = null;
   safe.accessType = null;
   safe.plans = [];
   safe.relatedProducts = Array.isArray(safe.relatedProducts)
@@ -81,6 +85,7 @@ const output = {
     mode: publicationAllowed && !commercialQuarantine ? "approved-commerce" : "informational-fail-closed",
     approved_mode_policy: commercial.public_projection_policy.approved_mode,
     legacy_commercial_fields_neutralized: true,
+    unverified_provider_pricing_neutralized: true,
   },
   products: publicProducts,
 };

@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-08-14T11:30:00+06:00",
+  "updated_at": "2026-08-14T11:40:00+06:00",
   "policy_revision": "commercial-truth-v2-2026-08-14",
   "publication_allowed": true,
   "quarantine": false,
@@ -17,6 +17,7 @@
     "price": {
       "mode": "aips-catalog-price-confirm-before-payment",
       "provider_msrp_claim_allowed": false,
+      "provider_msrp_publication_requires_verified_record": true,
       "discount_claim_requires_current_basis": true,
       "per_record_reverification_complete": false
     },
@@ -58,12 +59,16 @@
       "accessType",
       "category and route identity"
     ],
+    "blocked_unverified_fields": [
+      "officialUSD"
+    ],
     "blocked_legacy_fields": [
       "deliverySLA",
       "estimatedDeliveryTime",
       "deliveryMethod",
       "stock",
       "trust",
+      "badge",
       "badges",
       "competitorCompare",
       "whatsappMsg",
@@ -72,7 +77,7 @@
       "higherPlanUpsell",
       "howItWorksSteps"
     ],
-    "blocked_field_behavior": "Remove or neutralize in the generated public projection even when commerce publication is allowed. Raw catalog retention is audit debt, not publication authority.",
+    "blocked_field_behavior": "Remove or neutralize deprecated legacy claims and unverified provider-price fields in the generated public projection even when commerce publication is allowed. Raw catalog retention is audit debt, not publication authority.",
     "quarantine_behavior": "Fail closed by stripping all protected commercial fields, prices and access models as already enforced by the informational-fail-closed projection."
   },
   "catalog_snapshot": {

@@ -49,6 +49,8 @@ const catalog = Array.isArray(catalogDocument) ? catalogDocument : catalogDocume
 if (commercial?.schema_version !== 2) fail('commercial.schema_version must be 2');
 if (!nonEmpty(commercial?.updated_at) || Number.isNaN(Date.parse(commercial.updated_at))) fail('commercial.updated_at must be a valid ISO timestamp');
 if (!nonEmpty(commercial?.policy_revision)) fail('commercial.policy_revision is required');
+if (commercial?.public_claim_policy?.price?.provider_msrp_claim_allowed !== false) fail('provider MSRP claims must remain blocked until verified');
+if (commercial?.public_claim_policy?.price?.provider_msrp_publication_requires_verified_record !== true) fail('provider MSRP publication must require a verified record');
 if (commercial?.public_claim_policy?.delivery?.mode !== 'confirm-before-payment') fail('commercial delivery policy must be confirm-before-payment');
 if (commercial?.public_claim_policy?.delivery?.fixed_sla_allowed !== false) fail('fixed delivery SLA must remain disallowed until verified');
 if (commercial?.public_claim_policy?.warranty_refund?.mode !== 'order-specific-resolution') fail('commercial warranty/refund policy must be order-specific-resolution');
@@ -58,12 +60,13 @@ if (commercial?.public_claim_policy?.ratings_reviews?.aggregate_rating_schema_al
 if (commercial?.public_claim_policy?.provider_entitlements?.mode !== 'provider-controlled-exact-plan-verification-required') fail('provider entitlements must require exact-plan verification');
 if (commercial?.public_projection_policy?.approved_mode !== 'governed-approved-commerce-v2') fail('approved public projection must use governed-approved-commerce-v2');
 
-const requiredBlockedFields = [
+const requiredBlockedLegacyFields = [
   'deliverySLA',
   'estimatedDeliveryTime',
   'deliveryMethod',
   'stock',
   'trust',
+  'badge',
   'badges',
   'competitorCompare',
   'whatsappMsg',
@@ -72,10 +75,12 @@ const requiredBlockedFields = [
   'higherPlanUpsell',
   'howItWorksSteps',
 ];
-const blockedFields = new Set(commercial?.public_projection_policy?.blocked_legacy_fields ?? []);
-for (const field of requiredBlockedFields) {
-  if (!blockedFields.has(field)) fail(`commercial public projection must block legacy field ${field}`);
+const blockedLegacyFields = new Set(commercial?.public_projection_policy?.blocked_legacy_fields ?? []);
+for (const field of requiredBlockedLegacyFields) {
+  if (!blockedLegacyFields.has(field)) fail(`commercial public projection must block legacy field ${field}`);
 }
+const blockedUnverifiedFields = new Set(commercial?.public_projection_policy?.blocked_unverified_fields ?? []);
+if (!blockedUnverifiedFields.has('officialUSD')) fail('commercial public projection must block unverified officialUSD');
 
 const snapshot = commercial?.catalog_snapshot ?? {};
 const missingString = (field) => catalog.filter((item) => !nonEmpty(item?.[field])).length;

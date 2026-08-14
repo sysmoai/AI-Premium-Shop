@@ -49,12 +49,14 @@ function assert(condition, message) {
   if (!condition) throw new Error(`[public-projection-test] ${message}`);
 }
 
-function assertNeutralizedLegacyFields(product, label) {
+function assertNeutralizedProtectedFields(product, label) {
+  assert(product.officialUSD == null, `${label}: unverified officialUSD survived governed projection`);
   assert(product.deliverySLA == null, `${label}: deliverySLA survived governed projection`);
   assert(product.estimatedDeliveryTime == null, `${label}: estimatedDeliveryTime survived governed projection`);
   assert(product.deliveryMethod == null, `${label}: deliveryMethod survived governed projection`);
   assert(product.stock == null, `${label}: stock survived governed projection`);
   assert(product.trust == null, `${label}: trust/rating block survived governed projection`);
+  assert(product.badge == null, `${label}: singular badge survived governed projection`);
   assert(!Array.isArray(product.badges) || product.badges.length === 0, `${label}: badges survived governed projection`);
   assert(!Array.isArray(product.competitorCompare) || product.competitorCompare.length === 0, `${label}: competitorCompare survived governed projection`);
   assert(product.whatsappMsg == null, `${label}: stale product-specific WhatsApp message survived governed projection`);
@@ -75,6 +77,7 @@ try {
   assert(current.projection.schema_version === 2, "current projection is not schema v2");
   assert(current.projection.approved_mode_policy === "governed-approved-commerce-v2", "approved projection policy revision is missing");
   assert(current.projection.legacy_commercial_fields_neutralized === true, "approved projection did not record legacy-field neutralization");
+  assert(current.projection.unverified_provider_pricing_neutralized === true, "approved projection did not record provider-price neutralization");
   assert(
     current.projection.mode === "approved-commerce",
     `expected approved-commerce current mode, got ${current.projection.mode}`,
@@ -89,7 +92,7 @@ try {
   for (let index = 0; index < current.products.length; index += 1) {
     const projected = current.products[index];
     const source = rawProducts[index];
-    assertNeutralizedLegacyFields(projected, projected.slug ?? `record-${index}`);
+    assertNeutralizedProtectedFields(projected, projected.slug ?? `record-${index}`);
     if (typeof source.price === "number" && Number.isFinite(source.price)) {
       assert(projected.price === source.price, `${projected.slug}: approved AIPS price changed during governance projection`);
       preservedPriceCount += 1;
@@ -126,10 +129,9 @@ try {
   assert(quarantinedHomepage.catalog.publicPlans === 0, "Homepage V2 retained public sellable plan count under quarantine");
 
   for (const product of quarantined.products) {
-    assertNeutralizedLegacyFields(product, product.slug);
+    assertNeutralizedProtectedFields(product, product.slug);
     assert(product.price == null, `${product.slug}: numeric/public price survived quarantine`);
     assert(product.requestPrice === true, `${product.slug}: request-price fallback not enforced`);
-    assert(product.officialUSD == null, `${product.slug}: officialUSD survived quarantine`);
     assert(product.accessType == null, `${product.slug}: accessType survived quarantine`);
     assert(!Array.isArray(product.plans) || product.plans.length === 0, `${product.slug}: plans survived quarantine`);
   }
@@ -143,7 +145,7 @@ try {
     }
   }
 
-  console.log(`[public-projection-test] PASS: ${current.products.length} governed approved records preserve catalog price/access while blocking legacy commercial claims; quarantine still fails closed`);
+  console.log(`[public-projection-test] PASS: ${current.products.length} governed approved records preserve AIPS price/access while blocking unverified provider MSRP, badges and legacy commercial claims; quarantine still fails closed`);
 } finally {
   writeFileSync(sitePath, originalSite, "utf8");
   writeFileSync(commercialPath, originalCommercial, "utf8");

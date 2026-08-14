@@ -16,6 +16,8 @@ AIPS commerce remains publishable. The catalog may continue to show AIPS-owned B
 
 Before payment, the exact order must confirm current availability, access arrangement, delivery ETA and applicable terms. Provider-controlled models, credits, quotas, storage, export quality, integrations and licensing require exact-plan verification.
 
+Provider MSRP / `officialUSD` is now neutralized from the approved public projection until a record has a current evidence path and publication approval. This prevents stale provider prices from reappearing as savings or discount claims while the evidence register is incomplete.
+
 ## Claims that are not approved as blanket facts
 
 - Fixed delivery SLA or activation time from legacy `deliverySLA`, `estimatedDeliveryTime`, `deliveryMethod` or `stock` fields.
@@ -26,14 +28,21 @@ Before payment, the exact order must confirm current availability, access arrang
 - Vendor authorization, reseller, partnership or endorsement claims without current written evidence.
 - Unlimited/provider-entitlement claims without the exact scope and limit.
 - Privacy or account-isolation guarantees inferred only from an access label.
+- Provider MSRP or savings comparisons derived from an unverified `officialUSD` value.
 
 ## Mechanical projection rule
 
-In approved-commerce mode the generated public projection preserves catalog identity, AIPS price, `requestPrice`, `accessType`, category and routes, while neutralizing legacy commercial fields that are no longer publication authority:
+In approved-commerce mode the generated public projection preserves catalog identity, AIPS price, `requestPrice`, `accessType`, category and routes, while neutralizing fields that are not current publication authority.
 
-`deliverySLA`, `estimatedDeliveryTime`, `deliveryMethod`, `stock`, `trust`, `badges`, `competitorCompare`, `whatsappMsg`, `activationType`, `bundleSuggestions`, `higherPlanUpsell`, and `howItWorksSteps`.
+Unverified provider-price field:
 
-In commerce quarantine, the existing fail-closed behavior remains stronger: prices, access models, plan commerce and other protected commercial fields are removed as well.
+`officialUSD`.
+
+Deprecated legacy commercial fields:
+
+`deliverySLA`, `estimatedDeliveryTime`, `deliveryMethod`, `stock`, `trust`, `badge`, `badges`, `competitorCompare`, `whatsappMsg`, `activationType`, `bundleSuggestions`, `higherPlanUpsell`, and `howItWorksSteps`.
+
+In commerce quarantine, the existing fail-closed behavior remains stronger: AIPS prices, access models, plan commerce and other protected commercial fields are removed as well.
 
 ## Catalog debt snapshot
 
@@ -56,7 +65,7 @@ On 2026-08-10, Emon Hossain directed restoration of all 44 `accessType: "shared"
 
 ## Next closure sequence
 
-1. Resolve the two Midjourney shared-vs-personal price inversions as either intentional offers or data errors.
+1. Resolve the two Midjourney shared-vs-personal price warnings as either an intentional offer, a catalog error, or an unverified price-on-request case. GitHub issue #38 records the decision gate.
 2. Re-verify records in evidence batches and populate `verificationDate`, `sourceUrl`, provider MSRP/officialUSD only where a current source supports them.
 3. Replace or delete raw legacy delivery/warranty/merchandising fields as evidence batches close; do not bulk-copy current dates into old records.
 4. Classify the 44 shared records vendor-by-vendor for provider terms, authorization and operational risk.

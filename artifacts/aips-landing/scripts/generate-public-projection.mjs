@@ -20,15 +20,9 @@ const commercialQuarantine = Boolean(commercial?.quarantine);
 const publicationAllowed = Boolean(commercial?.publication_allowed);
 const sitePublishAllowed = Boolean(site?.current_publication_state?.commerce_publish_allowed);
 
-if (siteQuarantine !== commercialQuarantine) {
-  throw new Error("Public projection refused: site/commercial quarantine flags disagree");
-}
-if (publicationAllowed !== sitePublishAllowed) {
-  throw new Error("Public projection refused: site/commercial publication flags disagree");
-}
-if (commercialQuarantine && publicationAllowed) {
-  throw new Error("Public projection refused: commerce cannot be publishable while quarantine is active");
-}
+if (siteQuarantine !== commercialQuarantine) throw new Error("Public projection refused: site/commercial quarantine flags disagree");
+if (publicationAllowed !== sitePublishAllowed) throw new Error("Public projection refused: site/commercial publication flags disagree");
+if (commercialQuarantine && publicationAllowed) throw new Error("Public projection refused: commerce cannot be publishable while quarantine is active");
 
 const HARD_UNVERIFIED = [
   /\bwarranty\b/i,
@@ -57,18 +51,12 @@ function isUnsafeClaim(value) {
 
 function sanitizeText(value, fallback = "") {
   if (typeof value !== "string" || !value.trim()) return fallback;
-  const sentences = value
-    .split(/(?<=[.!?।])\s+/)
-    .map((sentence) => sentence.trim())
-    .filter(Boolean)
-    .filter((sentence) => !isUnsafeClaim(sentence));
+  const sentences = value.split(/(?<=[.!?।])\s+/).map((sentence) => sentence.trim()).filter(Boolean).filter((sentence) => !isUnsafeClaim(sentence));
   return sentences.length ? sentences.join(" ") : fallback;
 }
 
 function safeList(values) {
-  return Array.isArray(values)
-    ? values.map((value) => String(value ?? "").trim()).filter((value) => value && !isUnsafeClaim(value))
-    : [];
+  return Array.isArray(values) ? values.map((value) => String(value ?? "").trim()).filter((value) => value && !isUnsafeClaim(value)) : [];
 }
 
 function fitTitle(value) {
@@ -85,15 +73,8 @@ function fitDescription(value) {
 function safeSeo(product) {
   const displayName = String(product.name ?? "AI tool").split(/—\s*/)[0].split(/\s+-\s+/)[0].trim();
   const title = fitTitle(`${displayName} Price in Bangladesh | AI Premium Shop`);
-  const metaDescription = fitDescription(
-    `Compare current AIPS plan records for ${displayName} in Bangladesh. Confirm the access model, availability, provider limits, delivery ETA and terms before paying in BDT.`,
-  );
-  return {
-    ...(product.seo ?? {}),
-    title,
-    metaDescription,
-    description: metaDescription,
-  };
+  const metaDescription = fitDescription(`Compare current AIPS plan records for ${displayName} in Bangladesh. Confirm the access model, availability, provider limits, delivery ETA and terms before paying in BDT.`);
+  return { ...(product.seo ?? {}), title, metaDescription, description: metaDescription };
 }
 
 function sanitizePlan(plan, verified) {
@@ -117,10 +98,7 @@ function sanitizeApprovedProduct(product) {
   const verified = Boolean(product?.verificationDate && product?.sourceUrl);
   const displayName = String(product?.name ?? "AI tool").split(/—\s*/)[0].split(/\s+-\s+/)[0].trim();
 
-  safe.description = sanitizeText(
-    product.description,
-    `${displayName} is listed in the current AI Premium Shop catalog. Confirm current product and plan details before purchase.`,
-  );
+  safe.description = sanitizeText(product.description, `${displayName} is listed in the current AI Premium Shop catalog. Confirm current product and plan details before purchase.`);
   if (product.tagline && isUnsafeClaim(product.tagline)) delete safe.tagline;
   if (product.badge && isUnsafeClaim(product.badge)) delete safe.badge;
   safe.capabilities = safeList(product.capabilities);
@@ -129,10 +107,7 @@ function sanitizeApprovedProduct(product) {
   safe.badges = safeList(product.badges);
   safe.seo = safeSeo(product);
   safe.plans = Array.isArray(product.plans) ? product.plans.map((plan) => sanitizePlan(plan, verified)) : product.plans;
-
-  safe.trust = verified && product.trust
-    ? Object.fromEntries(Object.entries(product.trust).filter(([key]) => !["reviewCount", "rating"].includes(key)))
-    : null;
+  safe.trust = verified && product.trust ? Object.fromEntries(Object.entries(product.trust).filter(([key]) => !["reviewCount", "rating"].includes(key))) : null;
 
   if (!verified) {
     delete safe.deliverySLA;
@@ -151,13 +126,11 @@ function sanitizeApprovedProduct(product) {
     safe.faq = Array.isArray(product.faq) ? product.faq : [];
     safe.howItWorksSteps = Array.isArray(product.howItWorksSteps) ? product.howItWorksSteps : [];
   }
-
   return safe;
 }
 
-const stripCommercialFields = (product) => {
+function stripCommercialFields(product) {
   const safe = sanitizeApprovedProduct(product);
-
   safe.price = null;
   safe.requestPrice = true;
   safe.officialUSD = null;
@@ -178,32 +151,44 @@ const stripCommercialFields = (product) => {
   safe.bundleSuggestions = [];
   safe.higherPlanUpsell = null;
   safe.howItWorksSteps = [];
+  safe.faq = [];
   safe.plans = [];
-  safe.relatedProducts = Array.isArray(safe.relatedProducts)
-    ? safe.relatedProducts.map(({ priceBDT: _priceBDT, ...related }) => related)
-    : [];
-
+  safe.relatedProducts = Array.isArray(safe.relatedProducts) ? safe.relatedProducts.map(({ priceBDT: _priceBDT, ...related }) => related) : [];
   return safe;
-};
+}
 
-const sourceProducts = (Array.isArray(raw) ? raw : raw.products ?? []).filter(
-  (product) => !RETIRED_PRODUCT_SLUGS.has(product.slug),
-);
-const publicProducts = publicationAllowed && !commercialQuarantine
-  ? sourceProducts.map(sanitizeApprovedProduct)
-  : sourceProducts.map(stripCommercialFields);
+function retireProduct(product) {
+  const safe = stripCommercialFields(product);
+  safe.publicStatus = "retired";
+  safe.description = "This historical catalog identity is retired and is not an active public commerce offer.";
+  safe.seo = {
+    ...(safe.seo ?? {}),
+    title: "Retired Listing | AI Premium Shop",
+    metaDescription: "This older listing is no longer part of the active AI Premium Shop catalog.",
+    description: "This older listing is no longer part of the active AI Premium Shop catalog.",
+    noindex: true,
+  };
+  return safe;
+}
+
+const sourceProducts = Array.isArray(raw) ? raw : raw.products ?? [];
+const publicProducts = sourceProducts.map((product) => {
+  if (RETIRED_PRODUCT_SLUGS.has(product.slug)) return retireProduct(product);
+  if (publicationAllowed && !commercialQuarantine) return sanitizeApprovedProduct(product);
+  return stripCommercialFields(product);
+});
 
 const output = {
   projection: {
-    schema_version: 3,
+    schema_version: 4,
     generated_from: "data/products.json + ops/ssot/site.json + ops/ssot/commercial.json",
     publication_allowed: publicationAllowed,
     quarantine: commercialQuarantine,
     mode: publicationAllowed && !commercialQuarantine ? "approved-commerce" : "informational-fail-closed",
-    truth_policy: "unverified marketing, delivery, warranty, review, stock, discount and comparison claims are stripped; retired product slugs are excluded from the public projection",
+    truth_policy: "unverified marketing/delivery/warranty/review/stock/discount/comparison claims are stripped; retired identities are preserved only as non-commercial tombstones",
   },
   products: publicProducts,
 };
 
 writeFileSync(outPath, `${JSON.stringify(output)}\n`, "utf8");
-console.log(`[public-projection] ${publicProducts.length} records -> ${output.projection.mode} (truth-sanitized v${output.projection.schema_version})`);
+console.log(`[public-projection] ${publicProducts.length} identity records -> ${output.projection.mode} (truth-sanitized v${output.projection.schema_version}; retired=${publicProducts.filter((product) => product.publicStatus === "retired").length})`);

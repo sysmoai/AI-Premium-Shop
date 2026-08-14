@@ -9,6 +9,7 @@ on:
       - "artifacts/aips-landing/**"
       - "lib/**"
       - "ops/**"
+      - ".github/workflows/aips-upgrade-ci.yml"
       - "package.json"
       - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"
@@ -23,13 +24,13 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Use pnpm from packageManager
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v4.4.0
 
       - name: Use Node 24
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "24"
           cache: "pnpm"

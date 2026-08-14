@@ -38,21 +38,15 @@ try {
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
   run(process.execPath, ["scripts/sanitize-brand-prerender.mjs"]);
-  // Category routes previously inherited raw catalog descriptions, delivery
-  // SLAs, badges, official-price comparisons, FAQ claims and typed bundle
-  // savings. Rewrite their crawler shells from the active public projection.
   run(process.execPath, ["scripts/sanitize-category-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-product-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-budget-prerender.mjs"]);
-  // Audience guides are high-intent SEO routes. Rewrite their crawler shells
-  // from the active public projection so old rankings, earnings, model-version,
-  // SLA and unscoped usage claims cannot survive in generated HTML.
   run(process.execPath, ["scripts/sanitize-guide-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-best-subscription-prerender.mjs"]);
-  // Blog posts used to duplicate dated provider feature tables, rankings,
-  // income claims and old commercial copy. Rebuild all 19 crawler articles from
-  // the governed editorial definitions plus current public catalog fields.
   run(process.execPath, ["scripts/sanitize-blog-prerender.mjs"]);
+  // Keep the two editorial index shells aligned with their governed runtimes.
+  // The legacy generic prerender still starts these pages with older sales copy.
+  run(process.execPath, ["scripts/sanitize-editorial-index-prerender.mjs"]);
   run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
   run(process.execPath, ["scripts/audit-homepage-v2-preview.mjs"]);

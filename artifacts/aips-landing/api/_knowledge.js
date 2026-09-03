@@ -5,6 +5,21 @@
 // provider entitlements. Those protected facts come from the governed runtime
 // policy and public catalog. This playbook only helps the assistant ask useful
 // questions and explain uncertainty without inventing commercial facts.
+//
+// Vercel's Node function tracer must be able to see build/runtime JSON
+// dependencies through static literal file references. concierge.js reads the
+// same files through a helper; keeping these literal references in an imported
+// module guarantees both JSON assets are copied into the function bundle. The
+// byte counts are intentionally unused business data: they are only a bundle
+// integrity assertion, and module initialization must fail if either governed
+// runtime asset is absent.
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
+export const RUNTIME_ASSET_TRACE = Object.freeze({
+  catalogBytes: readFileSync(fileURLToPath(new URL("./_catalog.json", import.meta.url)), "utf8").length,
+  policyBytes: readFileSync(fileURLToPath(new URL("./_policy.json", import.meta.url)), "utf8").length,
+});
 
 export const KNOWLEDGE = [
   {

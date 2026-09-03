@@ -6,6 +6,8 @@
   "key_file": "5ff7284a41e595fc2e582e4e42c777abc8508aa71b6713b4a3f4b9645f3968e1.txt",
   "endpoint": "https://api.indexnow.org/indexnow",
   "submission_policy": "one-shot-on-this-change-set-merge-after-exact-production-sha-is-live",
+  "submission_attempt": 2,
+  "retry_reason": "The first workflow run failed in actions/setup-node before change-set resolution, validation, production gating or any IndexNow request. Automatic pnpm cache detection is disabled for this retry; the submitted URL set is unchanged.",
   "source_release": {
     "git_sha": "516a5ed1aababa9a5e3736da76a1ab3b764ffe52",
     "deployment_id": "dpl_5bV229CUgDdfHZjRx1Lg5gXKwZTt",

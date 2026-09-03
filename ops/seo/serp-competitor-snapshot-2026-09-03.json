@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-03",
+  "market": "Bangladesh",
+  "method": "Current web SERP sampling for Bangladesh-oriented AI subscription/product queries. This is not Google Search Console data, a complete rank tracker, or proof of fixed ranking positions.",
+  "primary_observation": "AIPS is easier to discover at homepage/entity level than at individual money-page level in the sampled results. Several local competitors and sibling properties surface more frequently for high-intent product queries.",
+  "recurring_competitor_domains": [
+    "martsoon.com",
+    "subscriptionsmartbd.com",
+    "softofficebd.com",
+    "deltaboxit.com",
+    "techhaat.com.bd",
+    "bdsubscription.com",
+    "giftcardszonebd.com",
+    "digitallybuy.com",
+    "marketmindstudio.com",
+    "saveonsub.com",
+    "aiteampremium.com"
+  ],
+  "observed_competitor_strengths": [
+    "exact price-in-Bangladesh title/H1 targeting",
+    "long decision-oriented product copy",
+    "plan comparison tables",
+    "Bangladesh-local buying/payment context",
+    "last-updated or last-verified freshness presentation",
+    "pre-purchase FAQ coverage",
+    "product imagery and richer product cards",
+    "external reputation/business identity surfaces",
+    "checkout/cart depth",
+    "audience and use-case sections"
+  ],
+  "aips_displacement_rule": "Beat competitors with evidence density, decision usefulness, crawl/index quality, original media/research, measurable conversion and legitimate authority. Never copy unsupported claims, fabricated reviews, fake urgency, provider-authorization language or unverifiable delivery/warranty promises.",
+  "query_samples": [
+    {
+      "cluster": "Claude Pro Bangladesh",
+      "observed_surfaces": ["subscriptionsmartbd.com", "martsoon.com", "giftcardszonebd.com"],
+      "aips_owner": "/claude-pro-bangladesh"
+    },
+    {
+      "cluster": "ChatGPT Plus Bangladesh",
+      "observed_surfaces": ["aiteampremium.com", "digitallybuy.com", "bdsubscription.com", "techhaat.com.bd"],
+      "aips_owner": "/chatgpt-plus-bangladesh"
+    },
+    {
+      "cluster": "Perplexity Pro Bangladesh",
+      "observed_surfaces": ["softofficebd.com"],
+      "aips_owner": "/perplexity-pro-bangladesh"
+    },
+    {
+      "cluster": "Cursor Pro Bangladesh",
+      "observed_surfaces": ["saveonsub.com"],
+      "aips_owner": "/cursor-bangladesh"
+    },
+    {
+      "cluster": "Higgsfield AI Bangladesh",
+      "observed_surfaces": ["martsoon.com", "subscriptionsmartbd.com"],
+      "aips_owner": "/product/higgsfield-ai-bangladesh"
+    },
+    {
+      "cluster": "Kling AI Bangladesh",
+      "observed_surfaces": ["martsoon.com"],
+      "aips_owner": "/kling-ai-bangladesh"
+    },
+    {
+      "cluster": "Suno AI Bangladesh",
+      "observed_surfaces": ["saveonsub.com"],
+      "aips_owner": "/suno-ai-bangladesh"
+    },
+    {
+      "cluster": "GitHub Copilot Bangladesh",
+      "observed_surfaces": ["subscriptionsmartbd.com", "bdsubscription.com"],
+      "aips_owner": "/github-copilot-bangladesh"
+    },
+    {
+      "cluster": "Notion Business Bangladesh",
+      "observed_surfaces": ["deltaboxit.com"],
+      "aips_owner": "/notion-business-bangladesh"
+    },
+    {
+      "cluster": "Grammarly Premium Bangladesh",
+      "observed_surfaces": ["softofficebd.com", "saveonsub.com"],
+      "aips_owner": "/grammarly-premium-bangladesh"
+    },
+    {
+      "cluster": "QuillBot Premium Bangladesh",
+      "observed_surfaces": ["techhaat.com.bd", "saveonsub.com"],
+      "aips_owner": "/quillbot-premium-bangladesh"
+    },
+    {
+      "cluster": "Ideogram Bangladesh",
+      "observed_surfaces": ["saveonsub.com"],
+      "aips_owner": "/ideogram-bangladesh"
+    },
+    {
+      "cluster": "Manus AI Bangladesh",
+      "observed_surfaces": ["saveonsub.com", "marketmindstudio.com"],
+      "aips_owner": "/manus-ai-bangladesh"
+    }
+  ],
+  "caveats": [
+    "Search results vary by geography, personalization, query wording and time.",
+    "Observed presence does not establish a fixed rank position or traffic volume.",
+    "Current Search Console query/page data should replace qualitative SERP sampling for prioritization as soon as it is connected/exported.",
+    "A sibling domain surfacing for a query is a cannibalization signal to review, not proof of harm without query/page performance data."
+  ]
+}

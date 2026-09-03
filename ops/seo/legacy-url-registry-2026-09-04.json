@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-04T04:20:00+06:00",
+  "scope": "Evidence-backed historical URL handling for aipremiumshop.com. This registry is intentionally fail-closed: a historical URL receives a permanent redirect only when the destination is a one-to-one current equivalent. Unrelated category or homepage redirects are not treated as equivalence.",
+  "classification_definitions": {
+    "REDIRECT_EXACT": "Historical URL and current destination represent the same page/product/intent; a permanent redirect is required.",
+    "GONE_404": "Historical route has no verified current one-to-one equivalent and should remain a genuine 404/noindex unless later evidence changes the classification.",
+    "REVIEW_NON_EQUIVALENT": "A redirect exists or has been proposed, but current evidence does not prove one-to-one equivalence. Do not upgrade or broaden it without new evidence.",
+    "KEEP_CANONICAL": "Current canonical URL; do not redirect away."
+  },
+  "rules": [
+    "Never redirect a removed product, cart, checkout, account or marketing route to the homepage or /products merely to avoid a 404.",
+    "Provider-restricted informational pages may receive exact historical redirects because the destination preserves the same product identity without reviving blocked commerce.",
+    "Do not infer current commerce availability from a redirect.",
+    "A REDIRECT_EXACT entry must be represented in artifacts/aips-landing/vercel.json with permanent=true.",
+    "GONE_404 entries must not be added as redirect sources without explicit new evidence and registry reclassification."
+  ],
+  "evidence_sources": [
+    {
+      "id": "historical-sitemap-2026-07",
+      "type": "git-history",
+      "ref": "f3b7fb26ddc7fb0fad3f2feb7aae0d7634fdd2b2",
+      "finding": "Historical public sitemap explicitly published /product/{slug} versions of multiple products that now have top-level canonical product-family pages."
+    },
+    {
+      "id": "current-product-route-policy-2026-09-04",
+      "type": "current-code",
+      "ref": "artifacts/aips-landing/src/lib/productRoutes.ts",
+      "finding": "Current brand-page slugs intentionally use top-level canonical routes instead of generic /product/ duplicates."
+    },
+    {
+      "id": "current-live-404-sample-2026-09-04",
+      "type": "live-http",
+      "finding": "Sampled historical /product/chatgpt-plus-bangladesh, /product/claude-pro-bangladesh, /product/gemini-advanced-bangladesh and /product/midjourney-bangladesh returned genuine 404/noindex while their current top-level equivalents exist."
+    },
+    {
+      "id": "gsc-claude-team-history",
+      "type": "historical-search-console-evidence",
+      "finding": "/claude-team-bangladesh had measured Google Search demand and maps to the current Claude Pro family under the existing exact redirect decision."
+    }
+  ],
+  "records": [
+    {"source_path":"/product/chatgpt-plus-bangladesh","destination":"/chatgpt-plus-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04","current-live-404-sample-2026-09-04"]},
+    {"source_path":"/product/claude-pro-bangladesh","destination":"/claude-pro-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04","current-live-404-sample-2026-09-04"]},
+    {"source_path":"/product/gemini-advanced-bangladesh","destination":"/gemini-advanced-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04","current-live-404-sample-2026-09-04"]},
+    {"source_path":"/product/midjourney-bangladesh","destination":"/midjourney-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04","current-live-404-sample-2026-09-04"]},
+    {"source_path":"/product/github-copilot-bangladesh","destination":"/github-copilot-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04"]},
+    {"source_path":"/product/supergrok-bangladesh","destination":"/supergrok-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04"]},
+    {"source_path":"/product/perplexity-pro-bangladesh","destination":"/perplexity-pro-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04"]},
+    {"source_path":"/product/elevenlabs-bangladesh","destination":"/elevenlabs-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04"]},
+    {"source_path":"/product/runway-bangladesh","destination":"/runway-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04"]},
+    {"source_path":"/product/cursor-bangladesh","destination":"/cursor-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04"]},
+    {"source_path":"/product/capcut-pro-bangladesh","destination":"/capcut-pro-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04"],"destination_mode":"provider-restricted-informational"},
+    {"source_path":"/product/freepik-premium-bangladesh","destination":"/freepik-premium-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04"],"destination_mode":"provider-restricted-informational"},
+    {"source_path":"/product/kling-ai-bangladesh","destination":"/kling-ai-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04"]},
+    {"source_path":"/product/synthesia-bangladesh","destination":"/synthesia-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04"]},
+    {"source_path":"/product/windsurf-bangladesh","destination":"/windsurf-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["historical-sitemap-2026-07","current-product-route-policy-2026-09-04"],"destination_mode":"provider-restricted-informational"},
+
+    {"source_path":"/claude-team-bangladesh","destination":"/claude-pro-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["gsc-claude-team-history"]},
+    {"source_path":"/products/kling-ai-bangladesh","destination":"/kling-ai-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["current-product-route-policy-2026-09-04"]},
+    {"source_path":"/buy/gemini-advanced-bangladesh","destination":"/gemini-advanced-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["current-product-route-policy-2026-09-04"]},
+    {"source_path":"/google-ai-pro-bangladesh","destination":"/gemini-advanced-bangladesh","classification":"REDIRECT_EXACT","redirect_required":true,"evidence_refs":["current-product-route-policy-2026-09-04"]},
+
+    {"source_path":"/branding/","destination":null,"classification":"GONE_404","redirect_required":false,"reason":"Historical WordPress-era utility/marketing route; no verified current one-to-one equivalent."},
+    {"source_path":"/wishlist/","destination":null,"classification":"GONE_404","redirect_required":false,"reason":"Historical WordPress-era user utility route; no verified current one-to-one equivalent."},
+    {"source_path":"/cart","destination":null,"classification":"GONE_404","redirect_required":false,"reason":"Historical ecommerce cart state has no current one-to-one public destination."},
+    {"source_path":"/checkout","destination":null,"classification":"GONE_404","redirect_required":false,"reason":"Historical checkout state has no current one-to-one public destination."},
+    {"source_path":"/order/:orderNumber","destination":null,"classification":"GONE_404","redirect_required":false,"reason":"Historical order-detail pattern has no verified current one-to-one public destination and must not be redirected to a generic page."},
+
+    {"source_path":"/netflix","destination":"/products","classification":"REVIEW_NON_EQUIVALENT","redirect_required":false,"current_redirect_permanent":false,"reason":"The current destination is a generic catalog, not a one-to-one Netflix equivalent. Preserve current temporary guard until an explicit product-retirement decision is made."},
+    {"source_path":"/youtube-premium","destination":"/products","classification":"REVIEW_NON_EQUIVALENT","redirect_required":false,"current_redirect_permanent":false,"reason":"The current destination is a generic catalog, not a one-to-one YouTube Premium equivalent. Preserve current temporary guard until an explicit product-retirement decision is made."},
+    {"source_path":"/replit-bangladesh","destination":"/products","classification":"REVIEW_NON_EQUIVALENT","redirect_required":false,"current_redirect_permanent":true,"reason":"Current production excludes the historical Replit commerce surface, but available evidence does not establish /products as a one-to-one equivalent. Do not broaden or use this as precedent; revisit when retirement evidence is explicit."},
+    {"source_path":"/product/replit-bangladesh","destination":"/products","classification":"REVIEW_NON_EQUIVALENT","redirect_required":false,"current_redirect_permanent":true,"reason":"Current production excludes the historical Replit commerce surface, but available evidence does not establish /products as a one-to-one equivalent. Do not broaden or use this as precedent; revisit when retirement evidence is explicit."}
+  ]
+}

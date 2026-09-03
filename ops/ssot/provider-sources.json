@@ -1,10 +1,62 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-03T12:33:00+06:00",
+  "updated_at": "2026-09-03T14:40:00+06:00",
   "authority": {
     "scope": "provider-controlled pricing, entitlement, access-policy and authorization evidence",
     "commercial_source_of_truth": "ops/ssot/commercial.json",
     "rule": "Provider evidence may classify provider-controlled facts, but it does not invent AIPS prices, availability, delivery promises, refunds or customer claims. Unknown provider facts remain unknown."
+  },
+  "shared_access_governance": {
+    "status": "ENFORCED",
+    "effective_at": "2026-09-03T14:40:00+06:00",
+    "catalog_snapshot_shared_records": 44,
+    "catalog_snapshot_shared_providers": 37,
+    "default_publication_rule": "BLOCK_COMMERCE_UNTIL_EXPLICIT_PROVIDER_EVIDENCE_ALLOWS",
+    "explicit_allow_required": true,
+    "explicit_allow_rule": "A shared or multi-user commerce record may be published only when current first-party provider evidence or a provider agreement explicitly permits the exact access model and AIPS delivery/resale arrangement. Silence, team collaboration features, multiple-device login, owner approval, historical operation, or absence of enforcement are not authorization.",
+    "route_preservation_rule": "If a shared-only product family would otherwise disappear, retain a neutral informational identity page with price/access/order claims removed. If a compliant non-shared sibling exists, exclude the unresolved shared row and preserve the family through the non-shared sibling.",
+    "providers_in_scope": [
+      "OpenAI",
+      "Anthropic",
+      "Perplexity",
+      "Midjourney",
+      "Leonardo AI",
+      "CapCut",
+      "HeyGen",
+      "Udio",
+      "Vercel",
+      "Otter.ai",
+      "Gamma",
+      "Writesonic",
+      "Grammarly",
+      "QuillBot",
+      "Canva",
+      "Microsoft",
+      "Jasper",
+      "Pika",
+      "Opus",
+      "Descript",
+      "Murf",
+      "Freepik",
+      "Kling AI",
+      "Synthesia",
+      "Windsurf",
+      "xAI",
+      "Google",
+      "Buffer",
+      "Make",
+      "Monday.com",
+      "Remove.bg",
+      "Scholarcy",
+      "Tidio",
+      "Wordtune",
+      "Cursor",
+      "GitHub",
+      "Suno"
+    ],
+    "explicit_publication_allows": [],
+    "review_state": "PUBLICATION_RISK_CLOSED_BY_DEFAULT",
+    "note": "Provider-by-provider evidence enrichment can continue without exposing unresolved shared commerce. Re-enabling any shared record requires an explicit allow entry backed by current first-party evidence or a provider agreement."
   },
   "providers": {
     "openai": {
@@ -59,11 +111,87 @@
         "automatic_publication_change_in_this_evidence_record": true,
         "note": "Approved-commerce projection must exclude OpenAI shared-access source rows and shared nested plans while preserving compliant personal/non-shared OpenAI options and the underlying raw audit record."
       }
+    },
+    "perplexity": {
+      "provider_name": "Perplexity",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "perplexity-account-sharing-2026-09-03",
+          "url": "https://www.perplexity.ai/help-center/en/articles/10352998-account-management-and-security",
+          "source_type": "official-help-center",
+          "fact_scope": "account sharing",
+          "finding": "Perplexity says sharing an account violates its Terms of Use and risks suspension or termination.",
+          "classification": "account-sharing-not-permitted"
+        }
+      ],
+      "access_policy": {
+        "personal_account_multi_user_sharing": "prohibited-by-current-provider-guidance",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-current-provider-guidance"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "perplexity-shared-account-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Perplexity",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "perplexity-account-sharing-2026-09-03"
+          ],
+          "reason": "Current Perplexity first-party guidance states that account sharing violates its Terms of Use."
+        }
+      ]
+    },
+    "midjourney": {
+      "provider_name": "Midjourney",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "midjourney-terms-sharing-resale-2026-09-03",
+          "url": "https://docs.midjourney.com/hc/en-us/articles/32083055291277-Terms-of-Service",
+          "source_type": "official-terms",
+          "fact_scope": "single-user account and resale/redistribution of service access",
+          "finding": "Midjourney states that only one user may use the Services per registered account and that users may not resell or redistribute the Services or access to the Service.",
+          "classification": "single-user-and-resale-access-prohibited"
+        }
+      ],
+      "access_policy": {
+        "personal_account_multi_user_sharing": "prohibited-by-current-provider-guidance",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-current-provider-guidance"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "midjourney-shared-account-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Midjourney",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "midjourney-terms-sharing-resale-2026-09-03"
+          ],
+          "reason": "Current Midjourney first-party terms require one user per registered account and prohibit resale or redistribution of service access."
+        }
+      ]
     }
   },
   "review_queue": {
-    "priority": "shared-access providers first, then highest-revenue and highest-traffic providers",
-    "status": "open",
-    "rule": "Each reviewed provider must use current first-party terms, policy, pricing or help-center evidence where available. Do not infer authorization from silence."
+    "priority": "Evidence enrichment and exact-plan re-enable review only; unresolved shared commerce is already fail-closed.",
+    "status": "non-blocking-evidence-enrichment",
+    "rule": "Each provider re-enable review must use current first-party terms, policy, pricing or help-center evidence where available. Do not infer authorization from silence."
   }
 }

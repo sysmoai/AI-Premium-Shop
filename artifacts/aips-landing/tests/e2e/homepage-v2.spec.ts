@@ -40,7 +40,7 @@ test("Homepage V2 renders the full decision-support path", async ({ page }) => {
   await expect(page.getByTestId("homepage-v2-faq")).toBeVisible();
   await expect(page.getByTestId("homepage-v2-final-cta")).toBeVisible();
 
-  const paymentQuestion = page.getByText("Which local payment methods are currently shown by AIPS?", { exact: true });
+  const paymentQuestion = page.getByText("Which local payment methods are currently shown by AI Premium Shop?", { exact: true });
   await paymentQuestion.click();
   await expect(page.getByTestId("homepage-v2-faq")).toContainText("bKash");
   await expect(page.getByTestId("homepage-v2-faq")).toContainText("Nagad");

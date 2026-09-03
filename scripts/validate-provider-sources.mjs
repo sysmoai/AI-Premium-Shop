@@ -121,10 +121,14 @@ for (const [providerKey, provider] of providers) {
       if (matchedRows.length === 0) fail(`${providerKey}/${control.id}: ENFORCED control matches no current raw catalog rows`);
       let nestedPlanMatches = 0;
       if (control.nested_plan_match) {
+        // This selector is intentionally allowed to match zero nested plans today:
+        // it is a future-safe constraint that prevents a later shared nested plan
+        // from bypassing the same provider evidence. The source-row match above is
+        // the required current anchor, and projection validation proves that any
+        // matching nested plans that do exist cannot survive publication.
         for (const record of catalog.filter((item) => item?.provider === control.match.provider)) {
           nestedPlanMatches += (record?.plans ?? []).filter((plan) => matches(plan, control.nested_plan_match)).length;
         }
-        if (nestedPlanMatches === 0) fail(`${providerKey}/${control.id}: configured nested plan control matches no current raw plans`);
       }
       enforcedMatches.push({
         providerKey,

@@ -30,7 +30,7 @@ test("launcher is visible and closed by default, with an accessible name", async
   const launcher = page.getByRole("button", { name: /open ai assistant/i });
   await expect(launcher).toBeVisible();
   await expect(launcher).toHaveAttribute("aria-expanded", "false");
-  await expect(page.getByRole("dialog", { name: /aips ai assistant/i })).toHaveCount(0);
+  await expect(page.getByRole("dialog", { name: /ai premium shop ai assistant/i })).toHaveCount(0);
 
   expect(errors).toEqual([]);
 });
@@ -44,7 +44,7 @@ test("opens as an accessible dialog, focuses the input, and Escape returns focus
   const launcher = page.locator('[aria-controls="concierge-panel"]');
   await launcher.click();
 
-  const dialog = page.getByRole("dialog", { name: /aips ai assistant/i });
+  const dialog = page.getByRole("dialog", { name: /ai premium shop ai assistant/i });
   await expect(dialog).toBeVisible();
   await expect(dialog).toHaveAttribute("aria-modal", "true");
   await expect(launcher).toHaveAttribute("aria-expanded", "true");
@@ -84,7 +84,7 @@ test("a failed backend call degrades gracefully: no crash, a WhatsApp fallback a
   await expect(page.getByRole("button", { name: /আবার চেষ্টা করুন/i })).toBeVisible();
 
   // The dialog itself must still be usable afterwards -- the app did not crash.
-  await expect(page.getByRole("dialog", { name: /aips ai assistant/i })).toBeVisible();
+  await expect(page.getByRole("dialog", { name: /ai premium shop ai assistant/i })).toBeVisible();
 
   // Chrome itself logs "Failed to load resource: ... 404" as a console.error
   // for ANY failed HTTP request -- that's the browser reporting the request

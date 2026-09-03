@@ -55,7 +55,7 @@ test("blog index and representative articles use the governed editorial renderer
     await expect(page.getByRole("main")).toHaveCount(1);
     const text = (await page.locator("body").innerText()).toLowerCase();
     for (const phrase of BLOCKED) expect(text, `${route}: ${phrase}`).not.toContain(phrase.toLowerCase());
-    expect(text).toContain("provider facts and aips commercial facts are different");
+    expect(text).toContain("provider facts and ai premium shop commercial facts are different");
   }
 });
 
@@ -79,7 +79,7 @@ test("all 19 blog crawler pages are self-canonical and sanitized", async ({ requ
     expect(html).toContain(`<title>${htmlEscape(post.title)}</title>`);
     expect(html).toContain(`rel="canonical" href="https://aipremiumshop.com/blog/${post.slug}"`);
     expect(lower).toContain('"@type":"blogposting"');
-    expect(lower).toContain("separate provider facts from aips commercial facts");
+    expect(lower).toContain("separate provider facts from ai premium shop commercial facts");
     for (const phrase of BLOCKED) expect(lower, `${post.slug}: ${phrase}`).not.toContain(phrase.toLowerCase());
   }
 });

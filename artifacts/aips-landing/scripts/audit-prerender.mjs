@@ -16,7 +16,11 @@ const APP = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = path.join(APP, "dist/public");
 const SITE = "https://aipremiumshop.com";
 
-const sitemap = fs.readFileSync(path.join(APP, "public/sitemap.xml"), "utf8");
+// Audit the sitemap that will actually be deployed. Earlier builds read the
+// source public/sitemap.xml here even though canonical pruning mutates the
+// dist copy immediately before this audit, so redirect/noindex URLs removed
+// from production were still being counted and checked as if they shipped.
+const sitemap = fs.readFileSync(path.join(DIST, "sitemap.xml"), "utf8");
 const routes = [...sitemap.matchAll(/<loc>https:\/\/aipremiumshop\.com([^<]*)<\/loc>/g)]
   .map((m) => m[1] || "/");
 
@@ -98,7 +102,7 @@ for (const [target, sources] of brokenLinks) {
   fail.push(`broken internal link ${target} — linked from ${list.length} page(s), e.g. ${list.slice(0, 3).join(", ")}`);
 }
 
-console.log(`audit-prerender: ${routes.length} sitemap URLs checked, ${validTargets.size} link targets`);
+console.log(`audit-prerender: ${routes.length} deployed sitemap URLs checked, ${validTargets.size} link targets`);
 warn.forEach((w) => console.log(`  ⚠ ${w}`));
 if (fail.length) {
   console.error(`\n✖ ${fail.length} hard failure(s):`);

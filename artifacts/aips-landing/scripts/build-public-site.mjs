@@ -20,6 +20,7 @@ try {
   run(process.execPath, ["scripts/validate-blog-prices.mjs"]);
   run(process.execPath, ["scripts/validate-higgsfield-offer.mjs"]);
   run(process.execPath, ["scripts/validate-media-registry.mjs"]);
+  run(process.execPath, ["scripts/audit-provider-coverage.mjs"]);
   run(process.execPath, ["scripts/generate-public-projection.mjs"]);
   run(process.execPath, ["scripts/generate-publication-state.mjs"]);
 

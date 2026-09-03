@@ -69,6 +69,7 @@ try {
   run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/normalize-public-brand-name.mjs"]);
   run(process.execPath, ["scripts/validate-public-brand-name.mjs"]);
+  run(process.execPath, ["scripts/normalize-sitemap-metadata.mjs"]);
   run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
   run(process.execPath, ["scripts/audit-informational-routes.mjs"]);
   run(process.execPath, ["scripts/audit-homepage-v2-preview.mjs"]);

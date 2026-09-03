@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "change_set_id": "go2-legacy-product-moves-2026-09-04",
+  "created_at": "2026-09-04T04:30:00+06:00",
+  "host": "aipremiumshop.com",
+  "key_file": "5ff7284a41e595fc2e582e4e42c777abc8508aa71b6713b4a3f4b9645f3968e1.txt",
+  "endpoint": "https://api.indexnow.org/indexnow",
+  "submission_policy": "one-shot-on-this-change-set-merge-after-exact-production-sha-is-live",
+  "source_release": {
+    "git_sha": "516a5ed1aababa9a5e3736da76a1ab3b764ffe52",
+    "deployment_id": "dpl_5bV229CUgDdfHZjRx1Lg5gXKwZTt",
+    "reason": "These historical URLs changed from genuine 404/noindex to evidence-backed permanent redirects in PR #69."
+  },
+  "urls": [
+    "https://aipremiumshop.com/product/chatgpt-plus-bangladesh",
+    "https://aipremiumshop.com/product/claude-pro-bangladesh",
+    "https://aipremiumshop.com/product/gemini-advanced-bangladesh",
+    "https://aipremiumshop.com/product/midjourney-bangladesh",
+    "https://aipremiumshop.com/product/github-copilot-bangladesh",
+    "https://aipremiumshop.com/product/supergrok-bangladesh",
+    "https://aipremiumshop.com/product/perplexity-pro-bangladesh",
+    "https://aipremiumshop.com/product/elevenlabs-bangladesh",
+    "https://aipremiumshop.com/product/runway-bangladesh",
+    "https://aipremiumshop.com/product/cursor-bangladesh",
+    "https://aipremiumshop.com/product/capcut-pro-bangladesh",
+    "https://aipremiumshop.com/product/freepik-premium-bangladesh",
+    "https://aipremiumshop.com/product/kling-ai-bangladesh",
+    "https://aipremiumshop.com/product/synthesia-bangladesh",
+    "https://aipremiumshop.com/product/windsurf-bangladesh"
+  ],
+  "rules": [
+    "Submit only URLs that actually changed in the GO2 move/redirect release.",
+    "Do not submit the full sitemap or old unchanged URLs merely because IndexNow was newly integrated.",
+    "Do not treat IndexNow acceptance as a crawl, index, ranking or traffic guarantee.",
+    "Google indexing is not represented by this change set; Google is handled by normal crawl signals, permanent redirects, canonicals, sitemap and Search Console when live data access is available."
+  ]
+}

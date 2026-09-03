@@ -1,0 +1,82 @@
+name: AIPS IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ops/seo/indexnow-change-set-*.json"
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+
+      - name: Use Node 24
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Resolve exactly one changed IndexNow change set
+        id: change_set
+        shell: bash
+        run: |
+          set -euo pipefail
+          before="${{ github.event.before }}"
+          if [[ -z "$before" || "$before" =~ ^0+$ ]]; then
+            echo "A normal previous commit is required for one-shot change-set resolution." >&2
+            exit 1
+          fi
+          mapfile -t files < <(git diff --name-only "$before" "$GITHUB_SHA" -- 'ops/seo/indexnow-change-set-*.json')
+          if [[ "${#files[@]}" -ne 1 ]]; then
+            printf 'Expected exactly one changed IndexNow change set, found %s:\n' "${#files[@]}" >&2
+            printf ' - %s\n' "${files[@]:-<none>}" >&2
+            exit 1
+          fi
+          echo "path=${files[0]}" >> "$GITHUB_OUTPUT"
+          echo "Resolved ${files[0]}"
+
+      - name: Validate explicit IndexNow change set
+        run: node artifacts/aips-landing/scripts/validate-indexnow-config.mjs "${{ steps.change_set.outputs.path }}"
+
+      - name: Wait for this exact Git SHA to be production
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+        run: |
+          node --input-type=module <<'NODE'
+          const expected = process.env.EXPECTED_SHA;
+          const url = 'https://aipremiumshop.com/.well-known/aips-build.json';
+          let last = 'unavailable';
+          for (let attempt = 0; attempt < 60; attempt += 1) {
+            try {
+              const response = await fetch(url, { headers: { 'user-agent': 'AIPS-IndexNow-Release-Gate/1.0' } });
+              if (response.ok) {
+                const data = await response.json();
+                last = data.git_sha || 'missing';
+                if (data.git_sha === expected && data.publication?.publication_allowed === true && data.publication?.commercial_quarantine !== true) {
+                  console.log(`Exact production release is live: ${expected}`);
+                  process.exit(0);
+                }
+              } else {
+                last = `HTTP ${response.status}`;
+              }
+            } catch (error) {
+              last = error.message;
+            }
+            await new Promise((resolve) => setTimeout(resolve, 5000));
+          }
+          console.error(`Exact production release did not become eligible; expected=${expected}; last=${last}`);
+          process.exit(1);
+          NODE
+
+      - name: Submit changed URLs to IndexNow
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: node artifacts/aips-landing/scripts/submit-indexnow.mjs "${{ steps.change_set.outputs.path }}"

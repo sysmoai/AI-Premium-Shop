@@ -24,6 +24,8 @@ try {
   run(process.execPath, ["scripts/validate-higgsfield-offer.mjs"]);
   run(process.execPath, ["scripts/validate-media-registry.mjs"]);
   run(process.execPath, ["scripts/validate-legacy-url-registry.mjs"]);
+  run(process.execPath, ["scripts/validate-indexnow-config.mjs"]);
+  run(process.execPath, ["scripts/submit-indexnow.mjs", "ops/seo/indexnow-change-set-2026-09-04.json", "--dry-run"]);
   // The full provider registry validator lives at repo scope because provider
   // evidence is a Git business SSOT, not an app-local data file. Vercel builds
   // must run the same registry gate as GitHub CI before projecting commerce.

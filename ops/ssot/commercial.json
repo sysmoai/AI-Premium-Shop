@@ -1,13 +1,13 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-08-14T11:40:00+06:00",
-  "policy_revision": "commercial-truth-v2-2026-08-14",
+  "updated_at": "2026-09-03T12:35:00+06:00",
+  "policy_revision": "commercial-truth-v2.1-2026-09-03",
   "publication_allowed": true,
   "quarantine": false,
   "commercial_facts": {
-    "approved_public_skus": "All 239 catalog records remain eligible for public catalog projection subject to the field-level truth controls below and the owner decision for shared access.",
-    "approved_public_prices": "AIPS-owned BDT catalog prices in data/products.json may be displayed as AIPS prices. They are not represented as current provider MSRP or discounts. Exact order price is re-confirmed before payment; per-record verificationDate coverage is still incomplete and remains audit debt.",
-    "approved_access_models": "Personal, bundle and service catalog labels may be shown. Shared access remains owner-approved for public sale by the 2026-08-10 decision, while provider/ToS classification remains unresolved and must not be represented as vendor-authorized.",
+    "approved_public_skus": "The raw 239-record catalog remains the canonical audit source. Current public eligibility is determined by the governed projection, including ENFORCED provider-specific controls in ops/ssot/provider-sources.json.",
+    "approved_public_prices": "AIPS-owned BDT catalog prices in data/products.json may be displayed for records that remain eligible in the governed public projection. They are not represented as current provider MSRP or discounts. Exact order price is re-confirmed before payment; per-record verificationDate coverage is still incomplete and remains audit debt.",
+    "approved_access_models": "Catalog access labels may be shown only when the record remains eligible under current provider evidence. The 2026-08-10 broad owner approval remains historical authority, but a current provider-specific evidence control may supersede it for affected records. Provider/ToS reconciliation remains incomplete for other providers, and no offer may be represented as vendor-authorized without evidence.",
     "approved_payment_facts": "bKash and Nagad are approved public payment references. Do not infer blanket support for every local/international payment method and never request passwords, PINs or OTPs.",
     "approved_delivery_facts": "Confirm current availability and delivery ETA for the exact order before payment. Legacy deliverySLA, estimatedDeliveryTime, deliveryMethod and stock fields are deprecated as public commercial facts until re-verified.",
     "approved_warranty_refund_facts": "No blanket warranty, refund, replacement period or guaranteed resolution outcome is approved site-wide. Resolution is order-specific under the current Refund & Resolution Policy and the terms confirmed for the exact order.",
@@ -24,6 +24,7 @@
     "access_model": {
       "mode": "show-catalog-label-without-extra-privacy-or-authorization-inference",
       "shared_owner_approved_for_sale": true,
+      "provider_evidence_can_block_shared_publication": true,
       "shared_provider_tos_reconciliation_complete": false,
       "vendor_authorization_claim_allowed": false
     },
@@ -53,12 +54,14 @@
   "public_projection_policy": {
     "approved_mode": "governed-approved-commerce-v2",
     "preserve_fields": [
-      "identity",
-      "AIPS catalog price",
+      "identity for eligible records",
+      "AIPS catalog price for eligible records",
       "requestPrice",
-      "accessType",
-      "category and route identity"
+      "accessType for eligible records",
+      "category and route identity where an eligible family remains"
     ],
+    "provider_compliance_source": "ops/ssot/provider-sources.json",
+    "provider_compliance_behavior": "Apply only ENFORCED provider public_catalog_controls before approved-commerce publication. Matching source records or nested plans may be excluded while their raw source remains retained for audit. Controls must be evidence-backed and scoped to the explicit provider/access criteria.",
     "blocked_unverified_fields": [
       "officialUSD"
     ],
@@ -78,7 +81,7 @@
       "howItWorksSteps"
     ],
     "blocked_field_behavior": "Remove or neutralize deprecated legacy claims and unverified provider-price fields in the generated public projection even when commerce publication is allowed. Raw catalog retention is audit debt, not publication authority.",
-    "quarantine_behavior": "Fail closed by stripping all protected commercial fields, prices and access models as already enforced by the informational-fail-closed projection."
+    "quarantine_behavior": "Fail closed by stripping all protected commercial fields, prices and access models while retaining raw catalog identity records."
   },
   "catalog_snapshot": {
     "as_of": "2026-08-14",
@@ -90,7 +93,7 @@
     "records_missing_officialUSD": 159,
     "records_with_unverified_trust_rating_or_reviewCount": 9,
     "status": "open-audit-debt",
-    "note": "Missing-evidence counts treat both absent and null values as unknown. These counts intentionally remain visible. Do not populate synthetic values merely to make validator warnings disappear."
+    "note": "This snapshot describes the raw canonical catalog, not the current public projection. Missing-evidence counts treat both absent and null values as unknown. Do not populate synthetic values merely to make validator warnings disappear."
   },
   "legacy_claim_occurrences": {
     "as_of": "2026-08-14",
@@ -111,8 +114,16 @@
       "decision_by": "Emon Hossain (owner)",
       "decision": "Restore all 44 accessType:\"shared\" SKUs to public sale, overriding the AIPS-P0-20260810-COMMERCE-COMPLIANCE-DRIFT quarantine before per-vendor ToS reconciliation was completed.",
       "risk_disclosed": "Shared-account access may conflict with affected vendors' terms. Provider-side detection can result in account suspension, customer disputes, chargebacks or vendor action against AIPS. This risk was disclosed before the owner directed restoration.",
-      "scope": "All 44 shared SKUs. Per-vendor ToS and authorization classification remains open and unresolved; this decision authorizes AIPS publication/sale but does not create provider authorization or close the evidence gap."
+      "scope": "All 44 shared SKUs. Per-vendor ToS and authorization classification remained open at the time; this decision authorized AIPS publication/sale but did not create provider authorization or close the evidence gap."
+    },
+    {
+      "date": "2026-09-03",
+      "decision_by": "AIPS governed operator",
+      "decision": "Apply current first-party provider evidence as a narrower fail-closed publication constraint where provider-sources.json records an ENFORCED control.",
+      "evidence": "ops/ssot/provider-sources.json#providers.openai",
+      "scope": "Only records and nested plans matching the explicit OpenAI control. Unrelated providers and access models are unchanged.",
+      "relationship_to_2026_08_10": "The historical decision is retained. Current provider-specific evidence supersedes it only for the explicitly matched records."
     }
   ],
-  "rule": "Unknown protected facts remain unknown. Agents must not infer or backfill delivery SLAs, warranty/refund periods, ratings, review counts, vendor authorization, provider entitlements, discounts or other protected commercial claims from old pages, stale pull requests, historical docs or raw legacy fields. Explicit scoped owner decisions may authorize AIPS business actions, but they do not convert provider-controlled facts into verified provider facts."
+  "rule": "Unknown protected facts remain unknown. Agents must not infer or backfill delivery SLAs, warranty/refund periods, ratings, review counts, vendor authorization, provider entitlements, discounts or other protected commercial claims from old pages, stale pull requests, historical docs or raw legacy fields. Explicit scoped owner decisions may authorize AIPS business actions, but they do not convert provider-controlled facts into verified provider facts. Current verified provider evidence may impose narrower publication constraints than an earlier broad owner approval."
 }

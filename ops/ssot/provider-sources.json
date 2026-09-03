@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-03T12:27:00+06:00",
+  "authority": {
+    "scope": "provider-controlled pricing, entitlement, access-policy and authorization evidence",
+    "commercial_source_of_truth": "ops/ssot/commercial.json",
+    "rule": "Provider evidence may classify provider-controlled facts, but it does not invent AIPS prices, availability, delivery promises, refunds or customer claims. Unknown provider facts remain unknown."
+  },
+  "providers": {
+    "openai": {
+      "provider_name": "OpenAI",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "openai-account-sharing-policy-2026-09-03",
+          "url": "https://help.openai.com/en/articles/10471989",
+          "source_type": "official-help-center",
+          "fact_scope": "individual account sharing",
+          "finding": "OpenAI states that an account is meant for the individual who created it and that another person should create their own account.",
+          "classification": "sharing-personal-account-with-other-users-not-permitted"
+        },
+        {
+          "id": "openai-chatgpt-plus-2026-09-03",
+          "url": "https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus",
+          "source_type": "official-help-center",
+          "fact_scope": "ChatGPT Plus base subscription price and provider-controlled feature/limit variability",
+          "finding": "ChatGPT Plus is listed by OpenAI at USD 20 per month; model availability and usage limits can change and should be checked for the account/plan.",
+          "classification": "provider-price-and-entitlements-currently-evidenced"
+        }
+      ],
+      "access_policy": {
+        "personal_account_multi_user_sharing": "prohibited-by-current-provider-guidance",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-current-provider-guidance"
+      },
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_requires_remediation_review": true,
+        "automatic_publication_change_in_this_evidence_record": false,
+        "note": "This evidence resolves the previously unknown OpenAI personal-account sharing classification. A separate gated commerce change must decide how affected AIPS shared SKUs are unpublished, converted, or otherwise remediated without disrupting unrelated products."
+      }
+    }
+  },
+  "review_queue": {
+    "priority": "shared-access providers first, then highest-revenue and highest-traffic providers",
+    "status": "open",
+    "rule": "Each reviewed provider must use current first-party terms, policy, pricing or help-center evidence where available. Do not infer authorization from silence."
+  }
+}

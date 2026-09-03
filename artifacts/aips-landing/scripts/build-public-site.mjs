@@ -49,6 +49,11 @@ try {
   // blanket warranty/payment or privacy claims from generic prerender extraction.
   run(process.execPath, ["scripts/sanitize-info-prerender.mjs"]);
   run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
+  // Public identity is a final-output invariant. Legacy internal acronym debt may
+  // still exist in source/renderers, but generated crawler surfaces must publish
+  // only the approved full name and the verified current entity links.
+  run(process.execPath, ["scripts/normalize-public-brand-name.mjs"]);
+  run(process.execPath, ["scripts/validate-public-brand-name.mjs"]);
   run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
   run(process.execPath, ["scripts/audit-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/audit-plan-pages.mjs"]);

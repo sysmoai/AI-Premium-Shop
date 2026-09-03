@@ -3,6 +3,24 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
+const PUBLIC_NAME = "AI Premium Shop";
+
+// Final browser-bundle guard for the approved public naming rule. The legacy
+// source tree still contains some uppercase AIPS copy while it is retired in
+// small reviewed waves. This post-bundle hook expands the standalone acronym
+// in emitted JavaScript so React cannot render it to customers. Lowercase
+// internal keys such as aips.concierge.* and URLs are intentionally untouched.
+const publicBrandBundleGuard = {
+  name: "aips-public-brand-bundle-guard",
+  enforce: "post" as const,
+  generateBundle(_options: unknown, bundle: Record<string, { type: string; code?: string }>) {
+    for (const output of Object.values(bundle)) {
+      if (output.type !== "chunk" || typeof output.code !== "string") continue;
+      output.code = output.code.replace(/\bAIPS\b/g, PUBLIC_NAME);
+    }
+  },
+};
+
 // PORT only affects the dev server, and BASE_PATH is "/" for every deploy target we
 // use. Hard-failing the config when they are absent broke `vite build` in any context
 // that did not pre-set them (CI, a plain `pnpm build`, Vercel without the inline env).
@@ -22,7 +40,7 @@ if (!basePath.startsWith("/")) {
 
 export default defineConfig({
   base: basePath,
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), publicBrandBundleGuard],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "src"),

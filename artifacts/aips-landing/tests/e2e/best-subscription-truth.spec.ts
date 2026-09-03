@@ -18,7 +18,7 @@ test("best subscription runtime is a transparent decision guide, not a typed ran
   const text = (await main.innerText()).toLowerCase();
   for (const phrase of BLOCKED) expect(text, phrase).not.toContain(phrase.toLowerCase());
   expect(text).toContain("provider-controlled");
-  expect(text).toContain("published aips entry price");
+  expect(text).toContain("published ai premium shop entry price");
 });
 
 test("best subscription current examples use product links and exclude retired Replit", async ({ page }) => {

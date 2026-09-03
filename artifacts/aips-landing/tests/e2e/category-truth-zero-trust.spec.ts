@@ -13,7 +13,7 @@ test("AI assistant category runtime uses governed family cards and confirm-first
   const main = page.locator("#main-content");
   await expect(main.getByRole("heading", { name: "AI Assistants & Chat" })).toBeVisible();
   await expect(main.getByText("Current public catalog")).toBeVisible();
-  await expect(main.getByText("Published AIPS entry price").first()).toBeVisible();
+  await expect(main.getByText("Published AI Premium Shop entry price").first()).toBeVisible();
   await expect(main.getByRole("link", { name: "Confirm current details" })).toBeVisible();
   const text = (await main.innerText()).toLowerCase();
   for (const phrase of BLOCKED) expect(text, phrase).not.toContain(phrase.toLowerCase());
@@ -49,7 +49,7 @@ test("all category crawler artifacts are self-canonical, runtime-capable and tru
     expect(response.ok(), route).toBeTruthy();
     const html = (await response.text()).toLowerCase();
     expect(html, route).toContain(`rel="canonical" href="https://aipremiumshop.com${route}"`);
-    expect(html, route).toContain("browse current public aips catalog families");
+    expect(html, route).toContain("browse current public ai premium shop catalog families");
     expect(html, route).toContain("confirm current availability, delivery eta and applicable terms before payment");
     expect(html, route).toContain('<script type="module"');
     expect(html, route).not.toContain('"@type":"faqpage"');

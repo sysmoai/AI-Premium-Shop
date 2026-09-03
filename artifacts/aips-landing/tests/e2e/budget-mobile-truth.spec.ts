@@ -20,7 +20,7 @@ test("budget runtime is a current threshold filter, not a legacy ranking page", 
 
   await expect(page.getByRole("heading", { name: "AI Tools Under BDT 500" })).toBeVisible();
   await expect(page.getByText("Current budget filter")).toBeVisible();
-  await expect(page.getByText("Published AIPS price").first()).toBeVisible();
+  await expect(page.getByText("Published AI Premium Shop price").first()).toBeVisible();
   await expect(page.getByRole("main")).toHaveCount(1);
 
   const text = (await page.getByRole("main").innerText()).toLowerCase();
@@ -35,7 +35,7 @@ test("all generated budget artifacts are fail-closed and self-canonical", async 
     expect(response.ok()).toBeTruthy();
     const html = (await response.text()).toLowerCase();
 
-    expect(html).toContain("this page filters the current fixed-price public aips catalog");
+    expect(html).toContain("this page filters the current fixed-price public ai premium shop catalog");
     expect(html).toContain(`rel="canonical" href="https://aipremiumshop.com/${route}"`);
     expect(html).toContain("confirm current availability");
     for (const phrase of BLOCKED_BUDGET_COPY) expect(html).not.toContain(phrase);
@@ -51,7 +51,7 @@ test("mobile plan help is confirm-first and viewport safe", async ({ page }) => 
   await expect(bar).toBeVisible();
   await expect(bar).toContainText("Need help choosing?");
   await expect(bar).toContainText("Confirm the exact plan before payment");
-  await expect(bar.getByRole("link", { name: "Ask AIPS" })).toHaveAttribute("href", /confirming%20a%20current%20AI%20plan/i);
+  await expect(bar.getByRole("link", { name: "Ask AI Premium Shop" })).toHaveAttribute("href", /confirming%20a%20current%20AI%20plan/i);
 
   const barText = (await bar.innerText()).toLowerCase();
   expect(barText).not.toContain("bdt 299");

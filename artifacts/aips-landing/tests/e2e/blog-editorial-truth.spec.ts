@@ -4,6 +4,7 @@ import path from "node:path";
 
 const APP = process.cwd();
 const definitions = JSON.parse(fs.readFileSync(path.join(APP, "data/blog-guides.json"), "utf8"));
+const PUBLIC_NAME = "AI Premium Shop";
 const BLOCKED = [
   "replit",
   "unlimited",
@@ -24,6 +25,17 @@ const htmlEscape = (value: string) => value
   .replace(/</g, "&lt;")
   .replace(/>/g, "&gt;")
   .replace(/"/g, "&quot;");
+
+const publicTitle = (sourceTitle: string) => {
+  const value = sourceTitle.replace(/\bAIPS\b/g, PUBLIC_NAME);
+  if (value.length <= 70) return value;
+  const suffix = ` | ${PUBLIC_NAME}`;
+  if (value.endsWith(suffix)) {
+    const available = 69 - suffix.length;
+    return `${value.slice(0, Math.max(20, available)).trimEnd()}…${suffix}`;
+  }
+  return `${value.slice(0, 69).trimEnd()}…`;
+};
 
 test("all governed blog definitions are unique, concise and free of legacy claim phrases", async () => {
   expect(definitions.posts).toHaveLength(19);
@@ -55,7 +67,7 @@ test("blog index and representative articles use the governed editorial renderer
     await expect(page.getByRole("main")).toHaveCount(1);
     const text = (await page.locator("body").innerText()).toLowerCase();
     for (const phrase of BLOCKED) expect(text, `${route}: ${phrase}`).not.toContain(phrase.toLowerCase());
-    expect(text).toContain("provider facts and aips commercial facts are different");
+    expect(text).toContain("provider facts and ai premium shop commercial facts are different");
   }
 });
 
@@ -76,10 +88,10 @@ test("all 19 blog crawler pages are self-canonical and sanitized", async ({ requ
     expect(response.ok(), post.slug).toBeTruthy();
     const html = await response.text();
     const lower = html.toLowerCase();
-    expect(html).toContain(`<title>${htmlEscape(post.title)}</title>`);
+    expect(html).toContain(`<title>${htmlEscape(publicTitle(post.title))}</title>`);
     expect(html).toContain(`rel="canonical" href="https://aipremiumshop.com/blog/${post.slug}"`);
     expect(lower).toContain('"@type":"blogposting"');
-    expect(lower).toContain("separate provider facts from aips commercial facts");
+    expect(lower).toContain("separate provider facts from ai premium shop commercial facts");
     for (const phrase of BLOCKED) expect(lower, `${post.slug}: ${phrase}`).not.toContain(phrase.toLowerCase());
   }
 });

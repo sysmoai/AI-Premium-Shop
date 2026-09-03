@@ -20,7 +20,8 @@ const priorityCount = [...xml.matchAll(/<priority>[^<]*<\/priority>/g)].length;
 
 // Search engines do not need speculative crawl cadence or arbitrary priority
 // scores. Remove those hints mechanically while preserving the URL set,
-// canonicals and any existing lastmod values.
+// canonicals and any existing lastmod values. This step validates lastmod
+// syntax only; it does not claim the historical dates are evidence-backed.
 xml = xml
   .replace(/\n\s*<changefreq>[^<]*<\/changefreq>/g, "")
   .replace(/\n\s*<priority>[^<]*<\/priority>/g, "");
@@ -47,5 +48,5 @@ if (/<changefreq>|<priority>/.test(xml)) {
 
 fs.writeFileSync(SITEMAP, xml, "utf8");
 console.log(
-  `[sitemap-metadata] ${afterUrls} URLs; removed ${changefreqCount} changefreq + ${priorityCount} priority hints; preserved ${lastmods.length} evidenced lastmod values`,
+  `[sitemap-metadata] ${afterUrls} URLs; removed ${changefreqCount} changefreq + ${priorityCount} priority hints; preserved ${lastmods.length} existing valid lastmod values without changing dates`,
 );

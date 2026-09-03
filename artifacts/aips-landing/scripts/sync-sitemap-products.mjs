@@ -41,14 +41,12 @@ for (const s of stale) {
   xml = xml.replace(re, "");
 }
 
-// append missing product URLs before </urlset>
+// Append missing product URLs before </urlset>. Do not manufacture lastmod
+// from the build date and do not publish arbitrary changefreq/priority hints.
+// A lastmod belongs here only when a material-update evidence source exists.
 if (missing.length) {
-  const today = new Date().toISOString().slice(0, 10);
   const block = missing
-    .map(
-      (s) =>
-        `  <url>\n    <loc>https://aipremiumshop.com/product/${s}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.9</priority>\n  </url>`,
-    )
+    .map((s) => `  <url>\n    <loc>https://aipremiumshop.com/product/${s}</loc>\n  </url>`)
     .join("\n");
   xml = xml.replace(/<\/urlset>\s*$/, `${block}\n</urlset>\n`);
 }

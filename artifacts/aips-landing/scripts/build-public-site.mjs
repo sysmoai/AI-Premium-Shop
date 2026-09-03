@@ -44,6 +44,10 @@ try {
   const viteBin = join(APP, "node_modules/vite/bin/vite.js");
   run(process.execPath, [viteBin, "build", "--config", "vite.config.ts"]);
   run(process.execPath, ["scripts/audit-bundle-budgets.mjs"]);
+  // Provider-restricted families are absent from the commerce projection, so
+  // preserve their established canonical URLs as neutral informational pages
+  // before the normal commerce prerenderers run.
+  run(process.execPath, ["scripts/prerender-informational-products.mjs"]);
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
   run(process.execPath, ["scripts/sanitize-brand-prerender.mjs"]);
@@ -59,6 +63,7 @@ try {
   run(process.execPath, ["scripts/normalize-public-brand-name.mjs"]);
   run(process.execPath, ["scripts/validate-public-brand-name.mjs"]);
   run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
+  run(process.execPath, ["scripts/audit-informational-routes.mjs"]);
   run(process.execPath, ["scripts/audit-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/audit-plan-pages.mjs"]);
   run(process.execPath, ["scripts/audit-prerender.mjs"]);

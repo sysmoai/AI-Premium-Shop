@@ -25,6 +25,8 @@
     { "source": "/chatgpt-vs-claude-bangladesh", "destination": "/chatgpt-vs-claude", "permanent": true },
     { "source": "/chatgpt-plans-comparison-bangladesh", "destination": "/chatgpt-plans-bangladesh", "permanent": true },
     { "source": "/google-ai-pro-bangladesh", "destination": "/gemini-advanced-bangladesh", "permanent": true },
+    { "source": "/products/kling-ai-bangladesh", "destination": "/kling-ai-bangladesh", "permanent": true },
+    { "source": "/buy/gemini-advanced-bangladesh", "destination": "/gemini-advanced-bangladesh", "permanent": true },
     { "source": "/best-ai-budget-bangladesh", "destination": "/ai-under-500", "permanent": true },
     { "source": "/replit-bangladesh", "destination": "/products", "permanent": true },
     { "source": "/product/replit-bangladesh", "destination": "/products", "permanent": true },

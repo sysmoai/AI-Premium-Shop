@@ -33,17 +33,16 @@ if (commercialQuarantine && publicationAllowed) {
 if (commercial?.schema_version !== 2 || commercial?.public_projection_policy?.approved_mode !== "governed-approved-commerce-v2") {
   throw new Error("Public projection refused: commercial truth v2 policy is missing");
 }
-if (providerSources?.schema_version !== 1 || commercial?.public_projection_policy?.provider_compliance_source !== "ops/ssot/provider-sources.json") {
-  throw new Error("Public projection refused: provider compliance source is missing or not governed");
+if (providerSources?.schema_version !== 2 || commercial?.public_projection_policy?.provider_compliance_source !== "ops/ssot/provider-sources.json") {
+  throw new Error("Public projection refused: provider compliance source v2 is missing or not governed");
+}
+if (providerSources?.review_queue?.status !== "closed-for-current-shared-catalog-scope") {
+  throw new Error("Public projection refused: shared-provider evidence review is not closed for the current catalog scope");
 }
 
 const neutralizeLegacyApprovedFields = (product) => {
   const safe = { ...product };
-
-  // Provider MSRP is not an AIPS-owned fact. It stays hidden until the exact
-  // record has a current evidence path and is approved for public comparison.
   safe.officialUSD = null;
-
   safe.deliverySLA = null;
   safe.estimatedDeliveryTime = null;
   safe.deliveryMethod = null;
@@ -57,13 +56,11 @@ const neutralizeLegacyApprovedFields = (product) => {
   safe.bundleSuggestions = [];
   safe.higherPlanUpsell = null;
   safe.howItWorksSteps = [];
-
   return safe;
 };
 
 const stripCommercialFields = (product) => {
   const safe = neutralizeLegacyApprovedFields(product);
-
   safe.price = null;
   safe.requestPrice = true;
   safe.accessType = null;
@@ -71,7 +68,6 @@ const stripCommercialFields = (product) => {
   safe.relatedProducts = Array.isArray(safe.relatedProducts)
     ? safe.relatedProducts.map(({ priceBDT: _priceBDT, ...related }) => related)
     : [];
-
   return safe;
 };
 
@@ -138,6 +134,8 @@ const output = {
     schema_version: 2,
     generated_from: "data/products.json + ops/ssot/site.json + ops/ssot/commercial.json + ops/ssot/provider-sources.json",
     commercial_policy_revision: commercial.policy_revision,
+    provider_evidence_schema_version: providerSources.schema_version,
+    provider_review_status: providerSources.review_queue.status,
     publication_allowed: publicationAllowed,
     quarantine: commercialQuarantine,
     mode: approvedCommerce ? "approved-commerce" : "informational-fail-closed",

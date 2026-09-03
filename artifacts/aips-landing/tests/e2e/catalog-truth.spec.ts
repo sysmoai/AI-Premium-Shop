@@ -54,7 +54,11 @@ test("products generated HTML does not emit stale universal FAQ commerce claims"
   expect(response.ok()).toBeTruthy();
   const html = (await response.text()).toLowerCase();
 
-  expect(html).toContain("all 196 ai tools");
+  // The active family count is a governed build output and can change whenever
+  // evidence-backed provider controls change. Assert the generated semantic
+  // shape rather than freezing an obsolete business count into the test.
+  expect(html).toMatch(/<h1>all \d+ ai tools<\/h1>/);
+  expect(html).toMatch(/<title>ai tools in bangladesh — \d+ active tool families \| ai premium shop<\/title>/);
   for (const claim of STALE_UNIVERSAL_CLAIMS) {
     expect(html).not.toContain(claim);
   }

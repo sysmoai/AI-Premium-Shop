@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-03T12:27:00+06:00",
+  "updated_at": "2026-09-03T12:33:00+06:00",
   "authority": {
     "scope": "provider-controlled pricing, entitlement, access-policy and authorization evidence",
     "commercial_source_of_truth": "ops/ssot/commercial.json",
@@ -14,7 +14,7 @@
       "sources": [
         {
           "id": "openai-account-sharing-policy-2026-09-03",
-          "url": "https://help.openai.com/en/articles/10471989",
+          "url": "https://help.openai.com/en/articles/10471989-openai-account-sharing-policy",
           "source_type": "official-help-center",
           "fact_scope": "individual account sharing",
           "finding": "OpenAI states that an account is meant for the individual who created it and that another person should create their own account.",
@@ -22,7 +22,7 @@
         },
         {
           "id": "openai-chatgpt-plus-2026-09-03",
-          "url": "https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus",
+          "url": "https://help.openai.com/en/articles/6950777-what",
           "source_type": "official-help-center",
           "fact_scope": "ChatGPT Plus base subscription price and provider-controlled feature/limit variability",
           "finding": "ChatGPT Plus is listed by OpenAI at USD 20 per month; model availability and usage limits can change and should be checked for the account/plan.",
@@ -34,11 +34,30 @@
         "vendor_authorized_shared_resale": "not-evidenced",
         "aips_shared_catalog_compatibility": "conflicts-with-current-provider-guidance"
       },
+      "public_catalog_controls": [
+        {
+          "id": "openai-shared-account-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "OpenAI",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "openai-account-sharing-policy-2026-09-03"
+          ],
+          "reason": "Current OpenAI first-party guidance says an account is for the individual who created it. AIPS shared-account records therefore must not be published as current sellable OpenAI access while this guidance applies."
+        }
+      ],
       "commerce_implication": {
         "public_vendor_authorization_claim_allowed": false,
-        "shared_access_requires_remediation_review": true,
-        "automatic_publication_change_in_this_evidence_record": false,
-        "note": "This evidence resolves the previously unknown OpenAI personal-account sharing classification. A separate gated commerce change must decide how affected AIPS shared SKUs are unpublished, converted, or otherwise remediated without disrupting unrelated products."
+        "shared_access_requires_remediation_review": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Approved-commerce projection must exclude OpenAI shared-access source rows and shared nested plans while preserving compliant personal/non-shared OpenAI options and the underlying raw audit record."
       }
     }
   },

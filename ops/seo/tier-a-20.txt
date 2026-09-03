@@ -1,0 +1,20 @@
+ChatGPT Plus | /chatgpt-plus-bangladesh
+Claude Pro | /claude-pro-bangladesh
+Google AI Pro / Gemini Advanced | /gemini-advanced-bangladesh
+Perplexity Pro / Max | /perplexity-pro-bangladesh
+SuperGrok | /supergrok-bangladesh
+Midjourney | /midjourney-bangladesh
+Canva Pro | /canva-pro-bangladesh
+Kling AI | /kling-ai-bangladesh
+Runway | /runway-bangladesh
+Higgsfield AI | /product/higgsfield-ai-bangladesh
+ElevenLabs | /elevenlabs-bangladesh
+Suno AI | /suno-ai-bangladesh
+GitHub Copilot | /github-copilot-bangladesh
+Cursor | /cursor-bangladesh
+Notion Business | /notion-business-bangladesh
+Grammarly Premium | /grammarly-premium-bangladesh
+QuillBot Premium | /quillbot-premium-bangladesh
+Ideogram | /ideogram-bangladesh
+Leonardo AI | /leonardo-ai-bangladesh
+Manus AI | /manus-ai-bangladesh

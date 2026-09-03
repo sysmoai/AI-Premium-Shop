@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-03",
+  "market": "Bangladesh",
+  "domain": "aipremiumshop.com",
+  "production_baseline_sha": "db7adba2459b4176954e18948c2f8b3897594deb",
+  "purpose": "Prevent internal and sibling-domain cannibalization while assigning one primary AIPS URL to each high-value search intent. This is an intent-routing SSOT, not a ranking or traffic guarantee.",
+  "evidence_basis": [
+    "current governed AIPS public catalog and routes",
+    "current production HTML and canonical behavior",
+    "Google Search Console transactional email evidence available in the connected AIPS mailbox",
+    "2026-09-03 web SERP sampling for Bangladesh-oriented AI subscription queries",
+    "current commercial and provider SSOT"
+  ],
+  "rules": [
+    "One primary AIPS URL owns one primary transactional intent family.",
+    "Do not create near-duplicate pages solely for word-order, price, buy, bKash, Nagad, cheap or Bangladesh query variants.",
+    "A product-family hub may own broad plan-comparison intent while an exact plan page owns exact-plan transactional intent.",
+    "Provider-restricted informational-only pages must never be promoted as commerce pages without new current evidence and an SSOT change.",
+    "Sibling sites must not intentionally clone AIPS transactional money-page copy or metadata for the same primary query.",
+    "Price, availability, access model, provider entitlement, delivery, refund, warranty, review and authorization claims remain governed by commercial/provider SSOT, not this file.",
+    "Search volume, conversion rate and rank remain unknown until current Search Console and transaction attribution data are available. Priority labels below are qualitative execution priority, not fabricated keyword-volume estimates."
+  ],
+  "sibling_domain_boundaries": {
+    "aipremiumshop.com": "Primary Bangladesh AI commerce authority: exact product identity, AIPS BDT catalog price, governed access model, buying decision, order path and evidence-backed product guidance.",
+    "saveonsub.com": "Savings/value/deal and market-comparison territory. Avoid cloning AIPS exact transactional money pages or using duplicate titles/H1/body for the same primary AIPS query.",
+    "aiteampremium.com": "Maintain its own distinct business/editorial positioning. Avoid duplicate AIPS exact transactional product pages and unsupported shared-access claims.",
+    "cross_domain_rule": "Cross-link only when it materially helps a user. Do not create a reciprocal keyword network or mass duplicated landing pages to manipulate rankings."
+  },
+  "tier_a_product_count": 20,
+  "owners": [
+    {
+      "priority": "P0",
+      "tier_a": false,
+      "entity": "ChatGPT plan family",
+      "primary_url": "/chatgpt-plans-bangladesh",
+      "primary_intent": "ChatGPT plans Bangladesh; compare ChatGPT Go vs Plus vs Business vs Pro",
+      "supports": ["ChatGPT plans price Bangladesh", "which ChatGPT plan should I buy in Bangladesh"],
+      "must_not_replace": "/chatgpt-plus-bangladesh",
+      "notes": "Broad family/plan-comparison hub. Exact ChatGPT Plus transactional intent belongs to the Plus page."
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "ChatGPT Plus",
+      "primary_url": "/chatgpt-plus-bangladesh",
+      "primary_intent": "ChatGPT Plus price in Bangladesh; buy ChatGPT Plus Bangladesh",
+      "supports": ["ChatGPT Plus bKash", "ChatGPT Plus Nagad", "ChatGPT Plus Bangladesh price"],
+      "notes": "Only currently governed eligible access/price facts may render. OpenAI shared-access records remain blocked by provider governance."
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "Claude Pro",
+      "primary_url": "/claude-pro-bangladesh",
+      "primary_intent": "Claude Pro price in Bangladesh; buy Claude Pro Bangladesh",
+      "supports": ["Claude subscription Bangladesh", "Claude Pro bKash", "Claude Pro Nagad"]
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "Google AI Pro / Gemini Advanced",
+      "primary_url": "/gemini-advanced-bangladesh",
+      "primary_intent": "Gemini Advanced price in Bangladesh; Google AI Pro price Bangladesh",
+      "supports": ["buy Gemini Advanced Bangladesh", "Google AI Pro Bangladesh"]
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "Perplexity Pro / Max family",
+      "primary_url": "/perplexity-pro-bangladesh",
+      "primary_intent": "Perplexity Pro price in Bangladesh; Perplexity subscription Bangladesh",
+      "supports": ["Perplexity Max Bangladesh", "buy Perplexity Pro Bangladesh"],
+      "notes": "Page must clearly distinguish the exact current AIPS plan name(s) from the broader query label."
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "SuperGrok",
+      "primary_url": "/supergrok-bangladesh",
+      "primary_intent": "SuperGrok price in Bangladesh; Grok premium subscription Bangladesh",
+      "supports": ["buy SuperGrok Bangladesh", "Grok subscription price Bangladesh"]
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "Midjourney",
+      "primary_url": "/midjourney-bangladesh",
+      "primary_intent": "Midjourney price in Bangladesh; buy Midjourney Bangladesh",
+      "supports": ["Midjourney subscription Bangladesh", "Midjourney bKash"]
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "Canva Pro",
+      "primary_url": "/canva-pro-bangladesh",
+      "primary_intent": "Canva Pro price in Bangladesh; buy Canva Pro Bangladesh",
+      "supports": ["Canva Pro subscription Bangladesh"],
+      "notes": "Only provider-compatible eligible access survives current governance; do not revive blocked shared-credential records."
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "Kling AI",
+      "primary_url": "/kling-ai-bangladesh",
+      "primary_intent": "Kling AI price in Bangladesh; Kling AI subscription Bangladesh",
+      "supports": ["buy Kling AI Bangladesh", "Kling AI plan Bangladesh"]
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "Runway",
+      "primary_url": "/runway-bangladesh",
+      "primary_intent": "Runway AI price in Bangladesh; Runway subscription Bangladesh",
+      "supports": ["buy Runway Bangladesh", "Runway AI plan Bangladesh"]
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "Higgsfield AI",
+      "primary_url": "/product/higgsfield-ai-bangladesh",
+      "primary_intent": "Higgsfield AI price in Bangladesh; Higgsfield subscription Bangladesh",
+      "supports": ["buy Higgsfield AI Bangladesh", "Higgsfield plans Bangladesh"],
+      "notes": "Current route is a dedicated evidence-first page and may use price-on-WhatsApp behavior where the governed catalog does not expose a fixed public price."
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "ElevenLabs",
+      "primary_url": "/elevenlabs-bangladesh",
+      "primary_intent": "ElevenLabs price in Bangladesh; ElevenLabs subscription Bangladesh",
+      "supports": ["buy ElevenLabs Bangladesh", "ElevenLabs Pro Bangladesh"]
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "Suno AI",
+      "primary_url": "/suno-ai-bangladesh",
+      "primary_intent": "Suno AI price in Bangladesh; Suno subscription Bangladesh",
+      "supports": ["buy Suno AI Bangladesh", "Suno Premier Bangladesh"]
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "GitHub Copilot",
+      "primary_url": "/github-copilot-bangladesh",
+      "primary_intent": "GitHub Copilot price in Bangladesh; buy GitHub Copilot Bangladesh",
+      "supports": ["GitHub Copilot Pro Bangladesh", "GitHub Copilot subscription Bangladesh"]
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "Cursor",
+      "primary_url": "/cursor-bangladesh",
+      "primary_intent": "Cursor Pro price in Bangladesh; Cursor subscription Bangladesh",
+      "supports": ["buy Cursor Pro Bangladesh", "Cursor AI Bangladesh"]
+    },
+    {
+      "priority": "P0",
+      "tier_a": true,
+      "entity": "Notion Business",
+      "primary_url": "/notion-business-bangladesh",
+      "primary_intent": "Notion Business price in Bangladesh; Notion subscription Bangladesh",
+      "supports": ["buy Notion Business Bangladesh", "Notion Business 6 month Bangladesh"]
+    },
+    {
+      "priority": "P1",
+      "tier_a": true,
+      "entity": "Grammarly Premium",
+      "primary_url": "/grammarly-premium-bangladesh",
+      "primary_intent": "Grammarly Premium price in Bangladesh; buy Grammarly Premium Bangladesh",
+      "supports": ["Grammarly subscription Bangladesh"]
+    },
+    {
+      "priority": "P1",
+      "tier_a": true,
+      "entity": "QuillBot Premium",
+      "primary_url": "/quillbot-premium-bangladesh",
+      "primary_intent": "QuillBot Premium price in Bangladesh; buy QuillBot Premium Bangladesh",
+      "supports": ["QuillBot subscription Bangladesh"]
+    },
+    {
+      "priority": "P1",
+      "tier_a": true,
+      "entity": "Ideogram",
+      "primary_url": "/ideogram-bangladesh",
+      "primary_intent": "Ideogram price in Bangladesh; Ideogram subscription Bangladesh",
+      "supports": ["buy Ideogram Pro Bangladesh"]
+    },
+    {
+      "priority": "P1",
+      "tier_a": true,
+      "entity": "Leonardo AI",
+      "primary_url": "/leonardo-ai-bangladesh",
+      "primary_intent": "Leonardo AI price in Bangladesh; Leonardo AI subscription Bangladesh",
+      "supports": ["buy Leonardo AI Bangladesh"]
+    },
+    {
+      "priority": "P1",
+      "tier_a": true,
+      "entity": "Manus AI",
+      "primary_url": "/manus-ai-bangladesh",
+      "primary_intent": "Manus AI price in Bangladesh; Manus subscription Bangladesh",
+      "supports": ["buy Manus AI Bangladesh"]
+    }
+  ],
+  "next_expansion_after_tier_a": [
+    "ChatGPT Go",
+    "ChatGPT Business",
+    "ChatGPT Pro",
+    "Microsoft Copilot Pro",
+    "Adobe Firefly",
+    "Pika Labs",
+    "Opus Clip",
+    "Descript Pro",
+    "Udio",
+    "Murf AI",
+    "Jasper AI",
+    "products with current Search Console impressions or verified transaction demand once those datasets are connected"
+  ]
+}

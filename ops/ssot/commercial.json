@@ -1,13 +1,13 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-03T12:52:00+06:00",
-  "policy_revision": "commercial-truth-v2.2-2026-09-03",
+  "updated_at": "2026-09-03T14:40:00+06:00",
+  "policy_revision": "commercial-truth-v2.3-2026-09-03",
   "publication_allowed": true,
   "quarantine": false,
   "commercial_facts": {
-    "approved_public_skus": "The raw 239-record catalog remains the canonical audit source. Current public eligibility is determined by the governed projection, including ENFORCED provider-specific controls in ops/ssot/provider-sources.json.",
+    "approved_public_skus": "The raw 239-record catalog remains the canonical audit source. Current public eligibility is determined by the governed projection, including ENFORCED provider-specific controls and shared-access fail-closed governance in ops/ssot/provider-sources.json.",
     "approved_public_prices": "AIPS-owned BDT catalog prices in data/products.json may be displayed for records that remain eligible in the governed public projection. They are not represented as current provider MSRP or discounts. Exact order price is re-confirmed before payment; per-record verificationDate coverage is still incomplete and remains audit debt.",
-    "approved_access_models": "Catalog access labels may be shown only when the record remains eligible under current provider evidence. The 2026-08-10 broad owner approval remains historical authority, but a current provider-specific evidence control may supersede it for affected records. Provider/ToS reconciliation remains incomplete for other providers, and no offer may be represented as vendor-authorized without evidence.",
+    "approved_access_models": "Catalog access labels may be shown only when the record remains eligible under current provider evidence. The 2026-08-10 broad owner approval remains historical authority, but it does not create provider authorization. Effective 2026-09-03, unresolved shared/multi-user commerce fails closed unless current first-party provider evidence or a provider agreement explicitly permits the exact access model and AIPS delivery/resale arrangement.",
     "approved_payment_facts": "bKash and Nagad are approved public payment references. Do not infer blanket support for every local/international payment method and never request passwords, PINs or OTPs.",
     "approved_delivery_facts": "Confirm current availability and delivery ETA for the exact order before payment. Legacy deliverySLA, estimatedDeliveryTime, deliveryMethod and stock fields are deprecated as public commercial facts until re-verified.",
     "approved_warranty_refund_facts": "No blanket warranty, refund, replacement period or guaranteed resolution outcome is approved site-wide. Resolution is order-specific under the current Refund & Resolution Policy and the terms confirmed for the exact order.",
@@ -34,8 +34,12 @@
     "access_model": {
       "mode": "show-catalog-label-without-extra-privacy-or-authorization-inference",
       "shared_owner_approved_for_sale": true,
+      "shared_owner_approval_creates_provider_authorization": false,
       "provider_evidence_can_block_shared_publication": true,
+      "shared_publication_requires_explicit_provider_allow": true,
+      "shared_publication_default_when_provider_authorization_unknown": "fail-closed-inquiry-only-or-excluded",
       "shared_provider_tos_reconciliation_complete": false,
+      "shared_publication_risk_closed_by_default": true,
       "vendor_authorization_claim_allowed": false,
       "seat_count_claim_allowed_without_plan_evidence": false,
       "privacy_specifics_claim_allowed_without_plan_evidence": false,
@@ -75,7 +79,7 @@
       "category and route identity where an eligible family remains"
     ],
     "provider_compliance_source": "ops/ssot/provider-sources.json",
-    "provider_compliance_behavior": "Apply only ENFORCED provider public_catalog_controls before approved-commerce publication. Matching source records or nested plans may be excluded while their raw source remains retained for audit. Controls must be evidence-backed and scoped to the explicit provider/access criteria.",
+    "provider_compliance_behavior": "Apply ENFORCED provider-specific controls and the ENFORCED shared-access default fail-closed rule before approved-commerce publication. A shared row may remain sellable only with an explicit evidence-backed ALLOW in provider-sources.json. Unresolved shared rows are excluded when a non-shared sibling preserves the family; shared-only families are converted to neutral inquiry-only identity records so established URLs are not unnecessarily destroyed. Raw source records remain retained for audit.",
     "blocked_unverified_fields": [
       "officialUSD"
     ],
@@ -106,8 +110,8 @@
     "records_missing_sourceUrl": 14,
     "records_missing_officialUSD": 159,
     "records_with_unverified_trust_rating_or_reviewCount": 9,
-    "status": "open-audit-debt",
-    "note": "This snapshot describes the raw canonical catalog, not the current public projection. Missing-evidence counts treat both absent and null values as unknown. Do not populate synthetic values merely to make validator warnings disappear."
+    "status": "raw-audit-debt-publication-risk-closed-by-projection",
+    "note": "This snapshot describes the raw canonical catalog, not the current public projection. Missing-evidence counts treat both absent and null values as unknown. Do not populate synthetic values merely to make validator warnings disappear. Unresolved shared-access rows are now fail-closed at projection time."
   },
   "legacy_claim_occurrences": {
     "as_of": "2026-08-14",
@@ -135,9 +139,17 @@
       "decision_by": "AIPS governed operator",
       "decision": "Apply current first-party provider evidence as a narrower fail-closed publication constraint where provider-sources.json records an ENFORCED control.",
       "evidence": "ops/ssot/provider-sources.json#providers.openai",
-      "scope": "Only records and nested plans matching the explicit OpenAI control. Unrelated providers and access models are unchanged.",
-      "relationship_to_2026_08_10": "The historical decision is retained. Current provider-specific evidence supersedes it only for the explicitly matched records."
+      "scope": "Initially applied to explicit OpenAI records and nested plans.",
+      "relationship_to_2026_08_10": "The historical decision is retained. Current provider-specific evidence supersedes it for explicitly matched records."
+    },
+    {
+      "date": "2026-09-03",
+      "decision_by": "Emon Hossain instruction executed by AIPS governed operator",
+      "decision": "Close unresolved shared-access publication risk by default instead of continuing to publish while provider authorization is unknown. Shared commerce requires explicit current provider evidence or a provider agreement that permits the exact model; otherwise it is excluded or converted to inquiry-only identity to preserve useful URLs.",
+      "evidence": "User instruction to complete and audit all outstanding work; ops/ssot/provider-sources.json#shared_access_governance",
+      "scope": "All raw accessType:\"shared\" records and nested deliveryType:\"shared\" plans, while preserving raw audit history and non-shared/public-safe alternatives.",
+      "relationship_to_2026_08_10": "This does not erase the prior owner decision. It replaces publication-while-unknown with a safer fail-closed operating rule because owner approval cannot create provider authorization."
     }
   ],
-  "rule": "Unknown protected facts remain unknown. Agents must not infer or backfill delivery SLAs, warranty/refund periods, ratings, review counts, vendor authorization, provider entitlements, discounts or other protected commercial claims from old pages, stale pull requests, historical docs or raw legacy fields. Explicit scoped owner decisions may authorize AIPS business actions, but they do not convert provider-controlled facts into verified provider facts. Current verified provider evidence may impose narrower publication constraints than an earlier broad owner approval."
+  "rule": "Unknown protected facts remain unknown. Agents must not infer or backfill delivery SLAs, warranty/refund periods, ratings, review counts, vendor authorization, provider entitlements, discounts or other protected commercial claims from old pages, stale pull requests, historical docs or raw legacy fields. Explicit scoped owner decisions may authorize AIPS business actions, but they do not convert provider-controlled facts into verified provider facts. Current verified provider evidence may impose narrower publication constraints than an earlier broad owner approval. Unresolved shared-access commerce is not publicly sellable by default."
 }

@@ -11,11 +11,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { FacebookPixel } from "@/components/FacebookPixel";
 import informationalProductsData from "../data/informational-products.json";
-// Home and NotFound stay eagerly imported: Home is the landing route for most
-// visitors, so code-splitting it would only delay first paint. Every other page
-// is lazy-loaded so the initial bundle no longer ships all 26 pages at once.
 import NotFound from "@/pages/not-found";
-import Home from "@/pages/Home";
 
 const ProductsPage = lazy(() => import("@/pages/ProductsPage"));
 const CategoryPage = lazy(() => import("@/pages/CategoryPage"));
@@ -113,10 +109,26 @@ function MobileOrderBar() {
 
 const queryClient = new QueryClient();
 
+function SafeHomepageBootstrap() {
+  useEffect(() => {
+    // RootApp owns the governed homepage. If a visitor reaches / through the
+    // legacy App router during client-side navigation, reload the current URL
+    // so RootApp can select HomeV2. Keeping a second homepage renderer here
+    // previously allowed stale commercial copy to reappear after SPA navigation.
+    window.location.reload();
+  }, []);
+
+  return (
+    <main className="min-h-screen bg-[#07101f]" aria-busy="true" aria-label="Loading AI Premium Shop homepage">
+      <span className="sr-only">Loading AI Premium Shop homepage</span>
+    </main>
+  );
+}
+
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/" component={SafeHomepageBootstrap} />
 
       {/* Product catalog */}
       <Route path="/products" component={ProductsPage} />

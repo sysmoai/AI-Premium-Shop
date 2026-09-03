@@ -103,3 +103,26 @@ test("homepage raw prerender exposes category, budget and comparison architectur
   expect(html).not.toContain('"@type":"FAQPage"');
   expect(html.toLowerCase()).not.toContain("replit-bangladesh");
 });
+
+test("SPA return from catalog always reboots into the governed homepage", async ({ page }) => {
+  await page.goto("/products", { waitUntil: "networkidle" });
+  const homeLink = page.locator('a[href="/"]').first();
+  await expect(homeLink).toBeVisible();
+
+  await homeLink.click();
+  await page.waitForLoadState("networkidle");
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.getByTestId("homepage-v2-access-models")).toBeVisible();
+
+  const bodyText = (await page.locator("body").innerText()).toLowerCase();
+  for (const prohibited of [
+    "30-day replacement warranty",
+    "30-day warranty",
+    "5-30 min delivery",
+    "4 payment methods",
+    "rocket",
+    "all brands, all features, all working",
+  ]) {
+    expect(bodyText).not.toContain(prohibited);
+  }
+});

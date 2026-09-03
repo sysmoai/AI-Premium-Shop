@@ -7,6 +7,7 @@ const APP = join(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(APP, "../..");
 const rawPath = join(APP, "data/products.json");
 const outPath = join(APP, "data/public-products.json");
+const informationalPath = join(APP, "data/informational-products.json");
 const commercialPath = join(REPO, "ops/ssot/commercial.json");
 const sitePath = join(REPO, "ops/ssot/site.json");
 const providerSourcesPath = join(REPO, "ops/ssot/provider-sources.json");
@@ -21,29 +22,22 @@ const commercialQuarantine = Boolean(commercial?.quarantine);
 const publicationAllowed = Boolean(commercial?.publication_allowed);
 const sitePublishAllowed = Boolean(site?.current_publication_state?.commerce_publish_allowed);
 
-if (siteQuarantine !== commercialQuarantine) {
-  throw new Error("Public projection refused: site/commercial quarantine flags disagree");
-}
-if (publicationAllowed !== sitePublishAllowed) {
-  throw new Error("Public projection refused: site/commercial publication flags disagree");
-}
-if (commercialQuarantine && publicationAllowed) {
-  throw new Error("Public projection refused: commerce cannot be publishable while quarantine is active");
-}
+if (siteQuarantine !== commercialQuarantine) throw new Error("Public projection refused: site/commercial quarantine flags disagree");
+if (publicationAllowed !== sitePublishAllowed) throw new Error("Public projection refused: site/commercial publication flags disagree");
+if (commercialQuarantine && publicationAllowed) throw new Error("Public projection refused: commerce cannot be publishable while quarantine is active");
 if (commercial?.schema_version !== 2 || commercial?.public_projection_policy?.approved_mode !== "governed-approved-commerce-v2") {
   throw new Error("Public projection refused: commercial truth v2 policy is missing");
 }
-if (providerSources?.schema_version !== 1 || commercial?.public_projection_policy?.provider_compliance_source !== "ops/ssot/provider-sources.json") {
-  throw new Error("Public projection refused: provider compliance source is missing or not governed");
+if (providerSources?.schema_version !== 2 || commercial?.public_projection_policy?.provider_compliance_source !== "ops/ssot/provider-sources.json") {
+  throw new Error("Public projection refused: provider compliance source v2 is missing or not governed");
+}
+if (providerSources?.review_queue?.status !== "closed-for-current-shared-catalog-scope") {
+  throw new Error("Public projection refused: shared-provider evidence review is not closed for the current catalog scope");
 }
 
 const neutralizeLegacyApprovedFields = (product) => {
   const safe = { ...product };
-
-  // Provider MSRP is not an AIPS-owned fact. It stays hidden until the exact
-  // record has a current evidence path and is approved for public comparison.
   safe.officialUSD = null;
-
   safe.deliverySLA = null;
   safe.estimatedDeliveryTime = null;
   safe.deliveryMethod = null;
@@ -57,13 +51,11 @@ const neutralizeLegacyApprovedFields = (product) => {
   safe.bundleSuggestions = [];
   safe.higherPlanUpsell = null;
   safe.howItWorksSteps = [];
-
   return safe;
 };
 
 const stripCommercialFields = (product) => {
   const safe = neutralizeLegacyApprovedFields(product);
-
   safe.price = null;
   safe.requestPrice = true;
   safe.accessType = null;
@@ -71,8 +63,34 @@ const stripCommercialFields = (product) => {
   safe.relatedProducts = Array.isArray(safe.relatedProducts)
     ? safe.relatedProducts.map(({ priceBDT: _priceBDT, ...related }) => related)
     : [];
-
   return safe;
+};
+
+const baseName = (value) => String(value ?? "AI tool").split(/—\s*/)[0].split(/\s+-\s+/)[0].trim() || "AI tool";
+const informationalIdentity = (source) => {
+  const name = baseName(source?.name);
+  const safe = stripCommercialFields(source ?? {});
+  return {
+    ...safe,
+    id: `informational-${source?.slug ?? "unknown"}`,
+    name,
+    tier: null,
+    price: null,
+    requestPrice: false,
+    accessType: null,
+    plans: [],
+    capabilities: [],
+    uniqueSellingPoints: [],
+    useCasesBD: [],
+    howItWorksSteps: [],
+    faq: [],
+    relatedProducts: [],
+    description: `${name} remains available here as a reference page. AI Premium Shop does not currently publish a purchasable plan for this product. Browse active alternatives and verify the provider's current access rules before deciding.`,
+    descriptionBN: null,
+    informationalOnly: true,
+    commerceEligible: false,
+    publicationStatus: "informational-provider-restricted",
+  };
 };
 
 const nonEmpty = (value) => typeof value === "string" && value.trim().length > 0;
@@ -133,11 +151,27 @@ const publicProducts = approvedCommerce
   ? applyApprovedProviderControls(sourceProducts)
   : sourceProducts.map(stripCommercialFields);
 
+const sourceFamilies = new Map();
+for (const source of sourceProducts) {
+  if (!source?.slug) continue;
+  if (!sourceFamilies.has(source.slug)) sourceFamilies.set(source.slug, []);
+  sourceFamilies.get(source.slug).push(source);
+}
+const publicSlugs = new Set(publicProducts.map((product) => product?.slug).filter(Boolean));
+const informationalProducts = approvedCommerce
+  ? [...sourceFamilies.entries()]
+      .filter(([slug]) => !publicSlugs.has(slug))
+      .map(([, records]) => informationalIdentity(records[0]))
+      .sort((a, b) => a.slug.localeCompare(b.slug))
+  : [];
+
 const output = {
   projection: {
     schema_version: 2,
     generated_from: "data/products.json + ops/ssot/site.json + ops/ssot/commercial.json + ops/ssot/provider-sources.json",
     commercial_policy_revision: commercial.policy_revision,
+    provider_evidence_schema_version: providerSources.schema_version,
+    provider_review_status: providerSources.review_queue.status,
     publication_allowed: publicationAllowed,
     quarantine: commercialQuarantine,
     mode: approvedCommerce ? "approved-commerce" : "informational-fail-closed",
@@ -149,15 +183,23 @@ const output = {
     provider_compliance_excluded_records: excludedRecords.length,
     provider_compliance_excluded_record_refs: excludedRecords,
     provider_compliance_filtered_nested_plans: filteredNestedPlans,
+    informational_route_preservation_count: informationalProducts.length,
+    informational_route_preservation_slugs: informationalProducts.map((product) => product.slug),
   },
   products: publicProducts,
 };
 
 writeFileSync(outPath, `${JSON.stringify(output)}\n`, "utf8");
+writeFileSync(informationalPath, `${JSON.stringify({
+  schema_version: 1,
+  generated_from: "data/products.json + governed provider controls",
+  purpose: "Preserve existing canonical product URLs whose current commerce records are entirely blocked by provider evidence. These records are informational only and must never enter commerce listings, price surfaces or the concierge catalog.",
+  products: informationalProducts,
+}, null, 2)}\n`, "utf8");
+
 const compliance = approvedCommerce
-  ? `; provider-controls=${providerControls.length}; excluded=${excludedRecords.length}; nested-plans-filtered=${filteredNestedPlans}`
+  ? `; provider-controls=${providerControls.length}; excluded=${excludedRecords.length}; nested-plans-filtered=${filteredNestedPlans}; informational-routes=${informationalProducts.length}`
   : "; provider-controls not applied in informational fail-closed mode";
-console.log(`[public-projection] ${publicProducts.length}/${sourceProducts.length} records -> ${output.projection.mode}; policy=${output.projection.approved_mode_policy}${compliance}`);
-if (excludedRecords.length) {
-  console.log(`[public-projection] excluded source rows: ${excludedRecords.map((item) => `${item.id ?? item.slug ?? "unknown"}(${item.control_id})`).join(", ")}`);
-}
+console.log(`[public-projection] ${publicProducts.length}/${sourceProducts.length} commerce records -> ${output.projection.mode}; policy=${output.projection.approved_mode_policy}${compliance}`);
+if (excludedRecords.length) console.log(`[public-projection] excluded source rows: ${excludedRecords.map((item) => `${item.id ?? item.slug ?? "unknown"}(${item.control_id})`).join(", ")}`);
+if (informationalProducts.length) console.log(`[public-projection] preserved informational-only routes: ${informationalProducts.map((item) => item.slug).join(", ")}`);

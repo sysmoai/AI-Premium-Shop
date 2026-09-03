@@ -1,13 +1,13 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-03T12:52:00+06:00",
-  "policy_revision": "commercial-truth-v2.2-2026-09-03",
+  "updated_at": "2026-09-03T14:15:00+06:00",
+  "policy_revision": "commercial-truth-v2.3-2026-09-03",
   "publication_allowed": true,
   "quarantine": false,
   "commercial_facts": {
     "approved_public_skus": "The raw 239-record catalog remains the canonical audit source. Current public eligibility is determined by the governed projection, including ENFORCED provider-specific controls in ops/ssot/provider-sources.json.",
-    "approved_public_prices": "AIPS-owned BDT catalog prices in data/products.json may be displayed for records that remain eligible in the governed public projection. They are not represented as current provider MSRP or discounts. Exact order price is re-confirmed before payment; per-record verificationDate coverage is still incomplete and remains audit debt.",
-    "approved_access_models": "Catalog access labels may be shown only when the record remains eligible under current provider evidence. The 2026-08-10 broad owner approval remains historical authority, but a current provider-specific evidence control may supersede it for affected records. Provider/ToS reconciliation remains incomplete for other providers, and no offer may be represented as vendor-authorized without evidence.",
+    "approved_public_prices": "AI Premium Shop-owned BDT catalog prices in data/products.json may be displayed for records that remain eligible in the governed public projection. They are not represented as current provider MSRP or discounts. Exact order price is re-confirmed before payment; per-record verificationDate coverage is still incomplete and remains audit debt.",
+    "approved_access_models": "Catalog access labels may be shown only when the record remains eligible under current provider evidence. The 2026-08-10 broad owner approval remains historical authority. The 2026-09-03 review classified all 37 providers represented by the 44 raw shared-access records; current first-party evidence now imposes narrower ENFORCED publication blocks for 26 providers where the shared access represented by the raw record conflicts with reviewed provider rules. No surviving offer may be represented as vendor-authorized without explicit evidence, and exact access arrangements must be confirmed before payment.",
     "approved_payment_facts": "bKash and Nagad are approved public payment references. Do not infer blanket support for every local/international payment method and never request passwords, PINs or OTPs.",
     "approved_delivery_facts": "Confirm current availability and delivery ETA for the exact order before payment. Legacy deliverySLA, estimatedDeliveryTime, deliveryMethod and stock fields are deprecated as public commercial facts until re-verified.",
     "approved_warranty_refund_facts": "No blanket warranty, refund, replacement period or guaranteed resolution outcome is approved site-wide. Resolution is order-specific under the current Refund & Resolution Policy and the terms confirmed for the exact order.",
@@ -35,7 +35,12 @@
       "mode": "show-catalog-label-without-extra-privacy-or-authorization-inference",
       "shared_owner_approved_for_sale": true,
       "provider_evidence_can_block_shared_publication": true,
-      "shared_provider_tos_reconciliation_complete": false,
+      "shared_provider_tos_reconciliation_complete": true,
+      "shared_provider_reviewed_provider_count": 37,
+      "shared_provider_reviewed_raw_record_count": 44,
+      "shared_provider_enforced_block_provider_count": 26,
+      "shared_provider_access_limited_provider_count": 2,
+      "shared_provider_evidence_source": "ops/ssot/provider-sources.json",
       "vendor_authorization_claim_allowed": false,
       "seat_count_claim_allowed_without_plan_evidence": false,
       "privacy_specifics_claim_allowed_without_plan_evidence": false,
@@ -69,13 +74,13 @@
     "approved_mode": "governed-approved-commerce-v2",
     "preserve_fields": [
       "identity for eligible records",
-      "AIPS catalog price for eligible records",
+      "AI Premium Shop catalog price for eligible records",
       "requestPrice",
       "accessType for eligible records",
       "category and route identity where an eligible family remains"
     ],
     "provider_compliance_source": "ops/ssot/provider-sources.json",
-    "provider_compliance_behavior": "Apply only ENFORCED provider public_catalog_controls before approved-commerce publication. Matching source records or nested plans may be excluded while their raw source remains retained for audit. Controls must be evidence-backed and scoped to the explicit provider/access criteria.",
+    "provider_compliance_behavior": "The current 44-record shared-access scope must have a closed evidence classification before approved-commerce projection. Apply only ENFORCED provider public_catalog_controls. Matching source records or nested plans may be excluded while their raw source remains retained for audit. Controls must be current-source-backed and scoped to explicit provider/access criteria. Review-complete does not imply vendor authorization.",
     "blocked_unverified_fields": [
       "officialUSD"
     ],
@@ -127,17 +132,17 @@
       "date": "2026-08-10",
       "decision_by": "Emon Hossain (owner)",
       "decision": "Restore all 44 accessType:\"shared\" SKUs to public sale, overriding the AIPS-P0-20260810-COMMERCE-COMPLIANCE-DRIFT quarantine before per-vendor ToS reconciliation was completed.",
-      "risk_disclosed": "Shared-account access may conflict with affected vendors' terms. Provider-side detection can result in account suspension, customer disputes, chargebacks or vendor action against AIPS. This risk was disclosed before the owner directed restoration.",
-      "scope": "All 44 shared SKUs. Per-vendor ToS and authorization classification remained open at the time; this decision authorized AIPS publication/sale but did not create provider authorization or close the evidence gap."
+      "risk_disclosed": "Shared-account access may conflict with affected vendors' terms. Provider-side detection can result in account suspension, customer disputes, chargebacks or vendor action against AI Premium Shop. This risk was disclosed before the owner directed restoration.",
+      "scope": "All 44 shared SKUs. Per-vendor ToS and authorization classification remained open at the time; this decision authorized AI Premium Shop publication/sale but did not create provider authorization or close the evidence gap."
     },
     {
       "date": "2026-09-03",
-      "decision_by": "AIPS governed operator",
-      "decision": "Apply current first-party provider evidence as a narrower fail-closed publication constraint where provider-sources.json records an ENFORCED control.",
-      "evidence": "ops/ssot/provider-sources.json#providers.openai",
-      "scope": "Only records and nested plans matching the explicit OpenAI control. Unrelated providers and access models are unchanged.",
-      "relationship_to_2026_08_10": "The historical decision is retained. Current provider-specific evidence supersedes it only for the explicitly matched records."
+      "decision_by": "AI Premium Shop governed operator under owner instruction to complete and audit the current website work",
+      "decision": "Complete the current first-party review for every provider represented by the 44 raw shared-access records and apply narrower fail-closed publication constraints wherever current first-party evidence supports an explicit conflict.",
+      "evidence": "ops/ssot/provider-sources.json schema v2",
+      "scope": "All 37 shared-access providers are classified. ENFORCED controls affect only providers and access models explicitly matched by current evidence. Providers with distinct authorized-user/family models or insufficient machine-verifiable sharing language remain unblocked but cannot be described as vendor-authorized; exact access must be confirmed before payment.",
+      "relationship_to_2026_08_10": "The historical broad owner decision is retained. Current provider-specific evidence supersedes it only for records matched by an ENFORCED current-source control."
     }
   ],
-  "rule": "Unknown protected facts remain unknown. Agents must not infer or backfill delivery SLAs, warranty/refund periods, ratings, review counts, vendor authorization, provider entitlements, discounts or other protected commercial claims from old pages, stale pull requests, historical docs or raw legacy fields. Explicit scoped owner decisions may authorize AIPS business actions, but they do not convert provider-controlled facts into verified provider facts. Current verified provider evidence may impose narrower publication constraints than an earlier broad owner approval."
+  "rule": "Unknown protected facts remain unknown. Agents must not infer or backfill delivery SLAs, warranty/refund periods, ratings, review counts, vendor authorization, provider entitlements, discounts or other protected commercial claims from old pages, stale pull requests, historical docs or raw legacy fields. Explicit scoped owner decisions may authorize AI Premium Shop business actions, but they do not convert provider-controlled facts into verified provider facts. Current verified provider evidence may impose narrower publication constraints than an earlier broad owner approval."
 }

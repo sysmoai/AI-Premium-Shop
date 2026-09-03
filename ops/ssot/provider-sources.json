@@ -1,10 +1,22 @@
 {
-  "schema_version": 1,
-  "updated_at": "2026-09-03T12:33:00+06:00",
+  "schema_version": 2,
+  "updated_at": "2026-09-03T14:05:00+06:00",
   "authority": {
     "scope": "provider-controlled pricing, entitlement, access-policy and authorization evidence",
     "commercial_source_of_truth": "ops/ssot/commercial.json",
-    "rule": "Provider evidence may classify provider-controlled facts, but it does not invent AIPS prices, availability, delivery promises, refunds or customer claims. Unknown provider facts remain unknown."
+    "rule": "Provider evidence may classify provider-controlled facts, but it does not invent AI Premium Shop prices, availability, delivery promises, refunds or customer claims. Unknown provider facts remain unknown. Silence does not create vendor authorization."
+  },
+  "review_method": {
+    "scope": "all providers represented by the 44 raw accessType=shared catalog records",
+    "providers_in_scope": 37,
+    "reviewed_current_sources": 35,
+    "reviewed_current_source_access_limited": 2,
+    "provider_specific_publication_blocks": 26,
+    "rule": "Use current first-party terms, legal, security or help-center sources. Apply an automatic publication block only when current evidence conflicts with the shared access represented by the raw record strongly enough to support that action. When evidence supports distinct invited/family/authorized-user access but does not evidence AI Premium Shop resale authorization, retain the owner-approved catalog row but never claim provider authorization and confirm the exact access arrangement before payment.",
+    "access_limited_providers": [
+      "Kling AI",
+      "Pika"
+    ]
   },
   "providers": {
     "openai": {
@@ -24,19 +36,19 @@
           "id": "openai-chatgpt-plus-2026-09-03",
           "url": "https://help.openai.com/en/articles/6950777-what",
           "source_type": "official-help-center",
-          "fact_scope": "ChatGPT Plus base subscription price and provider-controlled feature/limit variability",
-          "finding": "ChatGPT Plus is listed by OpenAI at USD 20 per month; model availability and usage limits can change and should be checked for the account/plan.",
+          "fact_scope": "ChatGPT Plus provider price and entitlement variability",
+          "finding": "OpenAI lists ChatGPT Plus at USD 20 per month and notes that model availability and usage limits can vary.",
           "classification": "provider-price-and-entitlements-currently-evidenced"
         }
       ],
       "access_policy": {
-        "personal_account_multi_user_sharing": "prohibited-by-current-provider-guidance",
+        "multi_user_or_account_sharing": "individual-account-sharing-prohibited",
         "vendor_authorized_shared_resale": "not-evidenced",
         "aips_shared_catalog_compatibility": "conflicts-with-current-provider-guidance"
       },
       "public_catalog_controls": [
         {
-          "id": "openai-shared-account-publication-block-2026-09-03",
+          "id": "openai-shared-publication-block-2026-09-03",
           "status": "ENFORCED",
           "match": {
             "provider": "OpenAI",
@@ -47,23 +59,1502 @@
           },
           "action": "exclude-from-approved-commerce-projection",
           "evidence_refs": [
-            "openai-account-sharing-policy-2026-09-03"
+            "openai-account-sharing-policy-2026-09-03",
+            "openai-chatgpt-plus-2026-09-03"
           ],
-          "reason": "Current OpenAI first-party guidance says an account is for the individual who created it. AIPS shared-account records therefore must not be published as current sellable OpenAI access while this guidance applies."
+          "reason": "OpenAI first-party guidance says an account is for the individual who created it. Shared AIPS OpenAI records must not be published while this guidance applies."
         }
       ],
       "commerce_implication": {
         "public_vendor_authorization_claim_allowed": false,
-        "shared_access_requires_remediation_review": false,
         "shared_access_publication_block_enforced": true,
         "automatic_publication_change_in_this_evidence_record": true,
-        "note": "Approved-commerce projection must exclude OpenAI shared-access source rows and shared nested plans while preserving compliant personal/non-shared OpenAI options and the underlying raw audit record."
+        "note": "OpenAI first-party guidance says an account is for the individual who created it. Shared AIPS OpenAI records must not be published while this guidance applies."
+      }
+    },
+    "anthropic": {
+      "provider_name": "Anthropic",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "anthropic-consumer-terms-update-2026-09-03",
+          "url": "https://www.anthropic.com/news/updates-to-our-consumer-terms",
+          "source_type": "official-provider-news",
+          "fact_scope": "consumer versus commercial plan boundary",
+          "finding": "Anthropic identifies Claude Free, Pro and Max as consumer plans and separately identifies Claude for Work, Team and Enterprise under commercial terms.",
+          "classification": "consumer-and-commercial-access-models-distinct"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "exact-shared-login-rule-not-evidenced-in-reviewed-current-source",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "unresolved-no-provider-authorized-shared-resale-evidence"
+      },
+      "public_catalog_controls": [],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": false,
+        "automatic_publication_change_in_this_evidence_record": false,
+        "note": "No vendor-authorized AIPS shared-resale model was evidenced in the reviewed first-party source; no provider-specific publication block is imposed without stronger evidence."
+      }
+    },
+    "buffer": {
+      "provider_name": "Buffer",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "buffer-team-user-security-2026-09-03",
+          "url": "https://support.buffer.com/en-us/articles/best-practices-for-buffer-account-security-GH1k1HJ9ws",
+          "source_type": "official-help-center",
+          "fact_scope": "team account user access",
+          "finding": "Buffer states that each user added to an organization has their own unique login.",
+          "classification": "multi-user-access-uses-distinct-logins"
+        },
+        {
+          "id": "buffer-terms-2026-09-03",
+          "url": "https://buffer.com/legal",
+          "source_type": "official-terms",
+          "fact_scope": "account registration and credential confidentiality",
+          "finding": "Buffer requires account registration and makes the registrant responsible for maintaining account/password confidentiality.",
+          "classification": "account-credentials-confidential"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "team-access-uses-distinct-logins",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "shared-credential-resale-not-evidenced"
+      },
+      "public_catalog_controls": [],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": false,
+        "automatic_publication_change_in_this_evidence_record": false,
+        "note": "No vendor-authorized AIPS shared-resale model was evidenced in the reviewed first-party source; no provider-specific publication block is imposed without stronger evidence."
+      }
+    },
+    "bytedance": {
+      "provider_name": "ByteDance",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "capcut-terms-2026-09-03",
+          "url": "https://www.capcut.com/clause/terms-of-service?lang=en",
+          "source_type": "official-terms",
+          "fact_scope": "CapCut account credentials",
+          "finding": "CapCut terms require login details to remain confidential and not be disclosed to a third party.",
+          "classification": "third-party-credential-disclosure-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "credential-sharing-with-third-parties-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-credential-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "bytedance-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "ByteDance",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "capcut-terms-2026-09-03"
+          ],
+          "reason": "CapCut first-party terms require login details to remain confidential and not be disclosed to third parties; the AIPS shared CapCut record is blocked from approved commerce."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "CapCut first-party terms require login details to remain confidential and not be disclosed to third parties; the AIPS shared CapCut record is blocked from approved commerce."
+      }
+    },
+    "canva": {
+      "provider_name": "Canva",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "canva-terms-2026-09-03",
+          "url": "https://www.canva.com/policies/terms-of-use/",
+          "source_type": "official-terms",
+          "fact_scope": "user account access",
+          "finding": "Canva requires each person to have a unique account and prohibits allowing another party to access the service using a user's unique username, password or security code.",
+          "classification": "single-user-credentials-not-shareable"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "unique-user-account-required",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-credential-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "canva-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Canva",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "canva-terms-2026-09-03"
+          ],
+          "reason": "Canva requires unique user accounts and prohibits another party using a user's unique credentials; the AIPS shared Canva record is blocked."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Canva requires unique user accounts and prohibits another party using a user's unique credentials; the AIPS shared Canva record is blocked."
+      }
+    },
+    "codeium": {
+      "provider_name": "Codeium",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "windsurf-msa-2026-09-03",
+          "url": "https://windsurf.com/msa",
+          "source_type": "official-master-services-agreement",
+          "fact_scope": "authorized-user access and restrictions",
+          "finding": "Windsurf grants use to the customer and Authorized Users, requires safeguarding usernames/passwords, and restricts making the service available to anyone other than Authorized Users.",
+          "classification": "authorized-users-only-distinct-controlled-access"
+        },
+        {
+          "id": "windsurf-pilot-terms-2026-09-03",
+          "url": "https://windsurf.com/docs/pilot.pdf",
+          "source_type": "official-terms",
+          "fact_scope": "user login credentials",
+          "finding": "Windsurf pilot terms state each user must keep login credentials confidential and not share them with anyone else.",
+          "classification": "login-credentials-not-shareable"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "user-credentials-not-shareable",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-credential-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "codeium-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Codeium",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "windsurf-msa-2026-09-03",
+            "windsurf-pilot-terms-2026-09-03"
+          ],
+          "reason": "Windsurf/Codeium first-party terms require user credentials to remain individual and restrict access to authorized users; the AIPS shared Windsurf record is blocked."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Windsurf/Codeium first-party terms require user credentials to remain individual and restrict access to authorized users; the AIPS shared Windsurf record is blocked."
+      }
+    },
+    "cursor": {
+      "provider_name": "Cursor",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "cursor-msa-2026-09-03",
+          "url": "https://cursor.com/terms/msa",
+          "source_type": "official-master-services-agreement",
+          "fact_scope": "authorized-user login access",
+          "finding": "Cursor's current MSA requires that an Authorized User's login not be shared by multiple people.",
+          "classification": "login-not-shareable-by-multiple-people"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "authorized-user-login-not-shareable",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-login-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "cursor-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Cursor",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "cursor-msa-2026-09-03"
+          ],
+          "reason": "Cursor's current MSA says an Authorized User login must not be shared by multiple people; the AIPS shared Cursor record is blocked."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Cursor's current MSA says an Authorized User login must not be shared by multiple people; the AIPS shared Cursor record is blocked."
+      }
+    },
+    "descript": {
+      "provider_name": "Descript",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "descript-terms-2026-09-03",
+          "url": "https://www.descript.com/terms",
+          "source_type": "official-terms",
+          "fact_scope": "account credentials",
+          "finding": "Descript states account credentials may not be shared or transferred except to an employee/contractor Authorized User performing a job function for the account holder.",
+          "classification": "credential-sharing-limited-to-authorized-workforce-users"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "third-party-shared-resale-not-permitted-by-reviewed-credential-rule",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-unrelated-shared-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "descript-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Descript",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "descript-terms-2026-09-03"
+          ],
+          "reason": "Descript limits shared credentials to defined employee/contractor Authorized Users; unrelated AIPS shared resale is not compatible with that rule."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Descript limits shared credentials to defined employee/contractor Authorized Users; unrelated AIPS shared resale is not compatible with that rule."
+      }
+    },
+    "freepik": {
+      "provider_name": "Freepik",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "freepik-terms-2026-09-03",
+          "url": "https://www.freepik.com/legal/terms-of-use",
+          "source_type": "official-terms",
+          "fact_scope": "account password confidentiality",
+          "finding": "Freepik requires the account password to be kept confidential and not disclosed to third parties.",
+          "classification": "password-disclosure-to-third-parties-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "password-third-party-sharing-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-credential-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "freepik-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Freepik",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "freepik-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "gamma": {
+      "provider_name": "Gamma",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "gamma-terms-2026-09-03",
+          "url": "https://gamma.app/terms",
+          "source_type": "official-terms",
+          "fact_scope": "account, API key and password sharing",
+          "finding": "Gamma states that users may not share their account, API keys or password with anyone.",
+          "classification": "account-and-credential-sharing-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "account-sharing-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "gamma-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Gamma",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "gamma-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "github": {
+      "provider_name": "GitHub",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "github-terms-2026-09-03",
+          "url": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service?apiVersion=2022-11-28",
+          "source_type": "official-terms",
+          "fact_scope": "single-login usage",
+          "finding": "GitHub's effective April 27, 2026 Terms state a login may only be used by one person and a single login may not be shared by multiple people.",
+          "classification": "single-login-sharing-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "single-login-sharing-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "github-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "GitHub",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "github-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "google": {
+      "provider_name": "Google",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "google-ai-pro-family-sharing-2026-09-03",
+          "url": "https://support.google.com/googleone/answer/9004015?hl=en",
+          "source_type": "official-help-center",
+          "fact_scope": "Google One and Google AI plan family sharing",
+          "finding": "Google documents family-group sharing through separate Google Accounts, with members required to be in the same country; selected AI benefits and AI credits can be shared while some benefits remain plan-manager-only.",
+          "classification": "provider-supported-family-sharing-via-separate-accounts-with-eligibility-rules"
+        },
+        {
+          "id": "google-ai-pro-membership-2026-09-03",
+          "url": "https://support.google.com/googleone/answer/16476811?hl=en",
+          "source_type": "official-help-center",
+          "fact_scope": "Google AI Pro eligibility and family benefits",
+          "finding": "Google AI Pro requires a personal Google Account and notes that family plan members can enjoy selected AI benefits at no extra cost.",
+          "classification": "ai-pro-family-benefits-provider-documented"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "provider-supports-family-sharing-via-separate-accounts",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "exact-aips-shared-mechanism-and-resale-authorization-not-evidenced"
+      },
+      "public_catalog_controls": [],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": false,
+        "automatic_publication_change_in_this_evidence_record": false,
+        "note": "No vendor-authorized AIPS shared-resale model was evidenced in the reviewed first-party source; no provider-specific publication block is imposed without stronger evidence."
+      }
+    },
+    "grammarly": {
+      "provider_name": "Grammarly",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "grammarly-terms-2026-09-03",
+          "url": "https://www.grammarly.com/terms",
+          "source_type": "official-terms",
+          "fact_scope": "account credentials",
+          "finding": "Grammarly states credentials are unique to the user and must not be shared with other persons, entities or end users except as permitted for multi-user accounts.",
+          "classification": "unique-credentials-not-shareable-outside-supported-multi-user-model"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "unique-credentials-required",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-generic-shared-credential-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "grammarly-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Grammarly",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "grammarly-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "heygen": {
+      "provider_name": "HeyGen",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "heygen-terms-2026-09-03",
+          "url": "https://www.heygen.com/terms",
+          "source_type": "official-terms",
+          "fact_scope": "third-party access",
+          "finding": "HeyGen permits certain employees, affiliates and contractors to use services on the user's behalf but states third parties may not be authorized to use the Services.",
+          "classification": "third-party-use-not-authorized"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "unrelated-third-party-access-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-resale-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "heygen-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "HeyGen",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "heygen-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "jasper": {
+      "provider_name": "Jasper",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "jasper-usage-policy-2026-09-03",
+          "url": "https://www.jasper.ai/legal/usage-policies",
+          "source_type": "official-usage-policy",
+          "fact_scope": "user credentials and resale",
+          "finding": "Jasper states user access credentials are for the designated individual only and cannot be shared, and restricts selling, reselling, renting, leasing or distributing the Services absent express permission.",
+          "classification": "individual-credentials-and-resale-restrictions"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "credentials-designated-individual-only",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-resale-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "jasper-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Jasper",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "jasper-usage-policy-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "kling_ai": {
+      "provider_name": "Kling AI",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-source-access-limited",
+      "sources": [
+        {
+          "id": "kling-official-terms-location-2026-09-03",
+          "url": "https://klingai.com/",
+          "source_type": "official-provider-site",
+          "fact_scope": "provider terms/account access review",
+          "finding": "Kling AI's public site exposes provider-controlled account access, but the current legal text could not be reliably retrieved by the audit crawler because the domain blocks automated access.",
+          "classification": "current-first-party-legal-text-access-limited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "current-legal-text-not-machine-verifiable",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "vendor-authorized-shared-resale-not-evidenced"
+      },
+      "public_catalog_controls": [],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": false,
+        "automatic_publication_change_in_this_evidence_record": false,
+        "note": "Current first-party legal text could not be reliably retrieved by the audit crawler. No vendor-authorization claim may be made; existing owner-approved publication remains subject to exact order/access confirmation."
+      }
+    },
+    "leonardo_ai": {
+      "provider_name": "Leonardo AI",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "leonardo-terms-2026-09-03",
+          "url": "https://www.leonardo.ai/terms-of-service",
+          "source_type": "official-terms",
+          "fact_scope": "Teams Plan authorized users",
+          "finding": "Leonardo's January 19, 2026 Terms say Teams Plan users are invited as Authorized Users and each requires a login linked to the account; usernames/passwords must be secure and confidential.",
+          "classification": "multi-user-access-via-separate-authorized-user-logins"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "teams-plan-uses-separate-authorized-user-logins",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "exact-aips-shared-mechanism-not-evidenced"
+      },
+      "public_catalog_controls": [],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": false,
+        "automatic_publication_change_in_this_evidence_record": false,
+        "note": "No vendor-authorized AIPS shared-resale model was evidenced in the reviewed first-party source; no provider-specific publication block is imposed without stronger evidence."
+      }
+    },
+    "make": {
+      "provider_name": "Make (Integromat) Pro",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "make-terms-hub-2026-09-03",
+          "url": "https://www.make.com/en/terms-and-conditions",
+          "source_type": "official-terms-hub",
+          "fact_scope": "current master services agreement",
+          "finding": "Make states use and access are governed by its current Master Services Agreement and publishes the March 2026 MSA from the legal hub.",
+          "classification": "current-msa-identified"
+        },
+        {
+          "id": "make-security-2026-09-03",
+          "url": "https://www.make.com/en/enterprise-security.pdf",
+          "source_type": "official-security-document",
+          "fact_scope": "account credential sharing",
+          "finding": "Make's security guidance says it does not recommend sharing user-account credentials or sharing accounts between multiple users.",
+          "classification": "shared-account-use-discouraged-by-provider-security-guidance"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "shared-accounts-not-recommended; exact-prohibition-not-evidenced",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "vendor-authorized-shared-resale-not-evidenced"
+      },
+      "public_catalog_controls": [],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": false,
+        "automatic_publication_change_in_this_evidence_record": false,
+        "note": "No vendor-authorized AIPS shared-resale model was evidenced in the reviewed first-party source; no provider-specific publication block is imposed without stronger evidence."
+      }
+    },
+    "microsoft": {
+      "provider_name": "Microsoft",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "microsoft-services-agreement-2026-09-03",
+          "url": "https://www.microsoft.com/en-US/servicesagreement",
+          "source_type": "official-terms",
+          "fact_scope": "Microsoft account credentials",
+          "finding": "Microsoft's services agreement states Microsoft account credentials cannot be transferred to another user or entity.",
+          "classification": "credential-transfer-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "credential-transfer-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-credential-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "microsoft-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Microsoft",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "microsoft-services-agreement-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "midjourney": {
+      "provider_name": "Midjourney",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "midjourney-terms-2026-09-03",
+          "url": "https://docs.midjourney.com/hc/en-us/articles/32083055291277-Terms-of-Service",
+          "source_type": "official-terms",
+          "fact_scope": "single-user account and resale",
+          "finding": "Midjourney states only one user may use the Services per registered account and prohibits reselling or redistributing the Services or access to them.",
+          "classification": "single-user-and-resale-restrictions"
+        },
+        {
+          "id": "midjourney-community-guidelines-2026-09-03",
+          "url": "https://docs.midjourney.com/hc/en-us/articles/32013696484109-Community-Guidelines",
+          "source_type": "official-guidelines",
+          "fact_scope": "account sharing as redistribution",
+          "finding": "Midjourney's current community guidance identifies account sharing as a form of prohibited resale or redistribution.",
+          "classification": "account-sharing-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "single-user-account; account-sharing-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-resale-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "midjourney-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Midjourney",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "midjourney-terms-2026-09-03",
+            "midjourney-community-guidelines-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "monday": {
+      "provider_name": "Monday.com",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "monday-invite-users-2026-09-03",
+          "url": "https://support.monday.com/hc/en-us/articles/360002430099-How-to-invite-users-to-join-an-account",
+          "source_type": "official-help-center",
+          "fact_scope": "multi-user account access",
+          "finding": "monday.com documents inviting people as account users and controlling who may join, with user-specific authentication and invitation settings.",
+          "classification": "multi-user-access-via-invited-users"
+        },
+        {
+          "id": "monday-user-management-2026-09-03",
+          "url": "https://support.monday.com/hc/en-us/articles/360002426980-How-to-manage-users-on-your-account",
+          "source_type": "official-help-center",
+          "fact_scope": "user account management",
+          "finding": "monday.com documents per-user profiles and per-user password reset rather than a single shared credential model.",
+          "classification": "distinct-user-account-management"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "multi-user-access-via-distinct-invited-users",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "exact-aips-shared-mechanism-not-evidenced"
+      },
+      "public_catalog_controls": [],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": false,
+        "automatic_publication_change_in_this_evidence_record": false,
+        "note": "No vendor-authorized AIPS shared-resale model was evidenced in the reviewed first-party source; no provider-specific publication block is imposed without stronger evidence."
+      }
+    },
+    "murf": {
+      "provider_name": "Murf",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "murf-terms-2026-09-03",
+          "url": "https://murf.ai/legal/terms-of-service",
+          "source_type": "official-terms",
+          "fact_scope": "account transfer and use",
+          "finding": "Murf requires one account in the user's real name, requires keeping the password confidential, prohibits transferring any part of the account, and prohibits use or attempted use of another's account.",
+          "classification": "account-transfer-and-other-person-use-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "account-transfer-and-other-person-use-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "murf-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Murf",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "murf-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "opus": {
+      "provider_name": "Opus",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "opusclip-terms-2026-09-03",
+          "url": "https://www.opus.pro/terms-of-service",
+          "source_type": "official-terms",
+          "fact_scope": "account sharing",
+          "finding": "OpusClip states users may not make credentials/account available outside their organization and explicitly says users will not share their OpusClip account with anyone.",
+          "classification": "account-sharing-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "account-sharing-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "opus-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Opus",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "opusclip-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "otter": {
+      "provider_name": "Otter.ai",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "otter-software-services-agreement-2026-09-03",
+          "url": "https://otter.ai/software-services-agreement",
+          "source_type": "official-services-agreement",
+          "fact_scope": "authorized-user credentials",
+          "finding": "Otter states each Authorized User account is personal to that user and credentials may not be shared or used by anyone other than the individual provisioned.",
+          "classification": "authorized-user-credentials-not-shareable"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "authorized-user-account-personal",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-login-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "otter-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Otter.ai",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "otter-software-services-agreement-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "perplexity": {
+      "provider_name": "Perplexity",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "perplexity-account-security-2026-09-03",
+          "url": "https://www.perplexity.ai/help-center/en/articles/10352998-account-management-and-security",
+          "source_type": "official-help-center",
+          "fact_scope": "account sharing",
+          "finding": "Perplexity states sharing an account violates its Terms of Use and risks account suspension or termination.",
+          "classification": "account-sharing-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "account-sharing-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "perplexity-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Perplexity",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "perplexity-account-security-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "pika": {
+      "provider_name": "Pika",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-source-access-limited",
+      "sources": [
+        {
+          "id": "pika-terms-2026-09-03",
+          "url": "https://pika.art/terms-of-service",
+          "source_type": "official-terms",
+          "fact_scope": "current Pika service terms",
+          "finding": "Pika's current sign-in flow links and requires acceptance of its current Terms of Service. The automated audit could verify the current legal endpoint but could not reliably extract account-sharing language.",
+          "classification": "current-first-party-terms-located-sharing-rule-not-machine-verified"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "exact-account-sharing-rule-not-machine-verifiable",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "vendor-authorized-shared-resale-not-evidenced"
+      },
+      "public_catalog_controls": [],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": false,
+        "automatic_publication_change_in_this_evidence_record": false,
+        "note": "No vendor-authorized AIPS shared-resale model was evidenced in the reviewed first-party source; no provider-specific publication block is imposed without stronger evidence."
+      }
+    },
+    "quillbot": {
+      "provider_name": "QuillBot",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "quillbot-account-sharing-2026-09-03",
+          "url": "https://help.quillbot.com/hc/en-us/articles/4403885450519-Can-I-share-my-QuillBot-account-with-others",
+          "source_type": "official-help-center",
+          "fact_scope": "Premium account sharing",
+          "finding": "QuillBot states account sharing is expressly prohibited, shared accounts may be permanently disabled, and a Team Plan should be used for multiple users.",
+          "classification": "account-sharing-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "premium-account-sharing-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "quillbot-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "QuillBot",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "quillbot-account-sharing-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "removebg": {
+      "provider_name": "Remove.bg Pro",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "removebg-terms-2026-09-03",
+          "url": "https://www.remove.bg/tos",
+          "source_type": "official-terms",
+          "fact_scope": "making service available to third parties",
+          "finding": "remove.bg Terms prohibit renting, leasing, selling, distributing, sublicensing or otherwise making the Service available to a third party except as permitted by the Terms.",
+          "classification": "third-party-service-resale-and-availability-restricted"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "third-party-service-access-restricted",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-resale-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "removebg-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Remove.bg Pro",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "removebg-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "scholarcy": {
+      "provider_name": "Scholarcy Premium",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "scholarcy-terms-2026-09-03",
+          "url": "https://www.scholarcy.com/terms-of-service",
+          "source_type": "official-terms",
+          "fact_scope": "account sharing",
+          "finding": "Scholarcy states a personal account may only be used by one person and a single account shared by multiple people is not permitted.",
+          "classification": "single-account-sharing-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "single-account-sharing-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "scholarcy-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Scholarcy Premium",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "scholarcy-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "suno": {
+      "provider_name": "Suno",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "suno-terms-2026-09-03",
+          "url": "https://suno.com/terms-september-2026",
+          "source_type": "official-terms",
+          "fact_scope": "commercial resale or grant of service access",
+          "finding": "Suno's terms effective September 3, 2026 prohibit selling, reselling, granting access to, transferring or otherwise commercially exploiting the Service except for specifically permitted commercial use of eligible Outputs.",
+          "classification": "service-access-resale-and-grant-restricted"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "commercial-grant-or-resale-of-service-access-restricted",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-resale-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "suno-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Suno",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "suno-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "synthesia": {
+      "provider_name": "Synthesia",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "synthesia-customer-terms-2026-09-03",
+          "url": "https://www.synthesia.io/legal/customer-terms-of-service",
+          "source_type": "official-customer-terms",
+          "fact_scope": "Authorized User model",
+          "finding": "Synthesia's Customer Terms effective July 20, 2026 define Authorized Users as individuals invited by the Customer to access/use the Services, with access determined by the subscription and configuration.",
+          "classification": "multi-user-access-via-invited-authorized-users"
+        },
+        {
+          "id": "synthesia-user-terms-2026-09-03",
+          "url": "https://www.synthesia.io/legal/user-terms-of-service",
+          "source_type": "official-user-terms",
+          "fact_scope": "invited user access",
+          "finding": "Synthesia's User Terms describe an individual joining an organization/customer account by invitation as an Authorized User.",
+          "classification": "distinct-invited-user-model"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "multi-user-access-via-authorized-user-invitations",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "exact-aips-shared-mechanism-not-evidenced"
+      },
+      "public_catalog_controls": [],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": false,
+        "automatic_publication_change_in_this_evidence_record": false,
+        "note": "No vendor-authorized AIPS shared-resale model was evidenced in the reviewed first-party source; no provider-specific publication block is imposed without stronger evidence."
+      }
+    },
+    "tidio": {
+      "provider_name": "Tidio",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "tidio-terms-2026-09-03",
+          "url": "https://www.tidio.com/terms/",
+          "source_type": "official-terms",
+          "fact_scope": "account password disclosure",
+          "finding": "Tidio states users must safeguard their password and agree not to disclose it to any third party.",
+          "classification": "password-disclosure-to-third-parties-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "password-third-party-sharing-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-credential-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "tidio-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Tidio",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "tidio-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "udio": {
+      "provider_name": "Udio",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "udio-account-creation-2026-09-03",
+          "url": "https://help.udio.com/en/articles/10739104-creating-a-udio-account",
+          "source_type": "official-help-center",
+          "fact_scope": "account identity and registration",
+          "finding": "Udio requires an account to create music and states each creator may control only one free account, while allowing more than one paid account.",
+          "classification": "creator-specific-account-model"
+        },
+        {
+          "id": "udio-account-login-2026-09-03",
+          "url": "https://help.udio.com/en/articles/10847370-changing-your-password",
+          "source_type": "official-help-center",
+          "fact_scope": "account login",
+          "finding": "Udio accounts use the creator's external identity provider or an email magic link for sign-in.",
+          "classification": "creator-linked-login-model"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "creator-linked-account; explicit-sharing-rule-not-found-in-reviewed-current-help",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "vendor-authorized-shared-resale-not-evidenced"
+      },
+      "public_catalog_controls": [],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": false,
+        "automatic_publication_change_in_this_evidence_record": false,
+        "note": "No vendor-authorized AIPS shared-resale model was evidenced in the reviewed first-party source; no provider-specific publication block is imposed without stronger evidence."
+      }
+    },
+    "vercel": {
+      "provider_name": "Vercel",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "vercel-terms-2026-09-03",
+          "url": "https://vercel.com/legal/terms",
+          "source_type": "official-terms",
+          "fact_scope": "unique login credentials",
+          "finding": "Vercel states each user must have unique login credentials that must not be shared by multiple users.",
+          "classification": "unique-login-credentials-not-shareable"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "unique-login-sharing-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "vercel-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Vercel",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "vercel-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "wordtune": {
+      "provider_name": "Wordtune Premium",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "wordtune-consumer-terms-2026-09-03",
+          "url": "https://www.wordtune.com/terms-of-use",
+          "source_type": "official-terms",
+          "fact_scope": "consumer account credential confidentiality",
+          "finding": "Wordtune makes the account holder responsible for maintaining confidentiality and security of account credentials.",
+          "classification": "credential-confidentiality-required"
+        },
+        {
+          "id": "wordtune-business-terms-2026-09-03",
+          "url": "https://www.wordtune.com/business/terms-of-use",
+          "source_type": "official-business-terms",
+          "fact_scope": "business multi-user account model",
+          "finding": "Wordtune Business describes an Admin Account and separate User Accounts for users.",
+          "classification": "multi-user-access-via-separate-user-accounts"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "business-multi-user-access-uses-separate-user-accounts",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "exact-aips-shared-mechanism-not-evidenced"
+      },
+      "public_catalog_controls": [],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": false,
+        "automatic_publication_change_in_this_evidence_record": false,
+        "note": "No vendor-authorized AIPS shared-resale model was evidenced in the reviewed first-party source; no provider-specific publication block is imposed without stronger evidence."
+      }
+    },
+    "writesonic": {
+      "provider_name": "Writesonic",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "writesonic-terms-2026-09-03",
+          "url": "https://writesonic.com/legal/terms",
+          "source_type": "official-terms",
+          "fact_scope": "user seats and credentials",
+          "finding": "Writesonic states each user seat is for a single named individual and may not be shared; credentials may not be shared, transferred or used by more than one person without written permission.",
+          "classification": "single-named-user-seat-not-shareable"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "single-named-user-seat-not-shareable",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "writesonic-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Writesonic",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "writesonic-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
+      }
+    },
+    "xai": {
+      "provider_name": "xAI",
+      "reviewed_at": "2026-09-03",
+      "status": "reviewed-current-sources",
+      "sources": [
+        {
+          "id": "xai-consumer-terms-2026-09-03",
+          "url": "https://x.ai/legal/terms-of-service",
+          "source_type": "official-terms",
+          "fact_scope": "consumer account credentials",
+          "finding": "xAI's consumer terms effective September 1, 2026 state users may not share account credentials or make an account available to anyone else.",
+          "classification": "account-credential-sharing-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "account-sharing-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-shared-access"
+      },
+      "public_catalog_controls": [
+        {
+          "id": "xai-shared-publication-block-2026-09-03",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "xAI",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "xai-consumer-terms-2026-09-03"
+          ],
+          "reason": "Current first-party provider evidence conflicts with publishing a shared-access AIPS record under this provider. Raw audit records remain retained."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "Shared AIPS publication is blocked by current first-party evidence."
       }
     }
   },
   "review_queue": {
     "priority": "shared-access providers first, then highest-revenue and highest-traffic providers",
-    "status": "open",
-    "rule": "Each reviewed provider must use current first-party terms, policy, pricing or help-center evidence where available. Do not infer authorization from silence."
+    "status": "closed-for-current-shared-catalog-scope",
+    "closed_at": "2026-09-03",
+    "scope_result": "All 37 providers represented by the current 44 raw shared-access records have a current first-party evidence classification or an explicit first-party-source access limitation recorded. Twenty-six provider-specific blocks are enforced. The two crawler-limited providers remain unknown on exact account-sharing language and therefore cannot be described as vendor-authorized.",
+    "reopen_when": [
+      "a provider changes terms, account model, pricing or sharing rules",
+      "AI Premium Shop changes the exact fulfillment/access mechanism for a provider",
+      "a previously crawler-limited provider supplies accessible current legal text",
+      "owner or provider supplies written authorization that changes a current classification"
+    ],
+    "rule": "Do not infer authorization from silence. A closed review means the current evidence state is classified, not that every provider authorizes resale or sharing."
   }
 }

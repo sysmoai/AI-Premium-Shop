@@ -5,11 +5,12 @@ import { MessageCircle } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CookieBanner } from "@/components/CookieBanner";
-import { BRAND_PAGE_SLUGS } from "@/lib/productRoutes";
+import { BRAND_PAGE_SLUGS, productPath } from "@/lib/productRoutes";
 import { ConciergeWidget } from "@/components/ConciergeWidget";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { FacebookPixel } from "@/components/FacebookPixel";
+import informationalProductsData from "../data/informational-products.json";
 // Home and NotFound stay eagerly imported: Home is the landing route for most
 // visitors, so code-splitting it would only delay first paint. Every other page
 // is lazy-loaded so the initial bundle no longer ships all 26 pages at once.
@@ -35,6 +36,7 @@ const SupportPage = lazy(() => import("@/pages/SupportPage"));
 const HowToOrderPage = lazy(() => import("@/pages/HowToOrderPage"));
 const BestAISubscriptionPage = lazy(() => import("@/pages/BestAISubscriptionPage"));
 const ProductPage = lazy(() => import("@/pages/ProductPage"));
+const ProviderRestrictedPage = lazy(() => import("@/pages/ProviderRestrictedPage"));
 const HiggsfieldPage = lazy(() => import("@/pages/HiggsfieldPage"));
 const GuidesIndexPage = lazy(() => import("@/pages/GuidesIndexPage"));
 const StudentsGuide = lazy(() => import("@/pages/guides/StudentsGuide"));
@@ -49,6 +51,13 @@ const FreelancersBN = lazy(() => import("@/pages/FreelancersBN"));
 const CreatorsBN = lazy(() => import("@/pages/CreatorsBN"));
 const SMBBangla = lazy(() => import("@/pages/SMBBangla"));
 const EducatorsBangla = lazy(() => import("@/pages/EducatorsBangla"));
+
+const INFORMATIONAL_PRODUCT_SLUGS = new Set(
+  ((informationalProductsData as { products?: Array<{ slug?: string }> }).products ?? [])
+    .map((product) => product.slug)
+    .filter((slug): slug is string => Boolean(slug)),
+);
+const INFORMATIONAL_PRODUCT_PATHS = new Set([...INFORMATIONAL_PRODUCT_SLUGS].map((slug) => productPath(slug)));
 
 const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20need%20help%20confirming%20a%20current%20AI%20plan%20before%20payment.";
 const MOBILE_BAR_EXCLUDED_ROUTES = new Set([
@@ -73,7 +82,7 @@ function MobileOrderBar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (MOBILE_BAR_EXCLUDED_ROUTES.has(location)) return null;
+  if (MOBILE_BAR_EXCLUDED_ROUTES.has(location) || INFORMATIONAL_PRODUCT_PATHS.has(location)) return null;
 
   return (
     <aside
@@ -95,7 +104,7 @@ function MobileOrderBar() {
           style={{ backgroundColor: "#008236", color: "#fff" }}
         >
           <MessageCircle className="h-4 w-4" />
-          Ask AIPS
+          Ask AI Premium Shop
         </a>
       </div>
     </aside>
@@ -123,11 +132,12 @@ function Router() {
       <Route path="/ai-design">{() => <CategoryPage categoryId="ai-design" />}</Route>
       <Route path="/bundles">{() => <CategoryPage categoryId="bundles" />}</Route>
 
-      {/* Brand pages — one route per slug in BRAND_PAGE_SLUGS, which is also
-          what productPath() uses for product links and canonical URLs, so the
-          route table and canonicals stay in sync by construction. */}
+      {/* Brand pages — a provider-restricted family keeps its established URL,
+          but renders a neutral informational page rather than a sellable plan. */}
       {BRAND_PAGE_SLUGS.map((slug) => (
-        <Route key={slug} path={`/${slug}`}>{() => <BrandPage brandSlug={slug} />}</Route>
+        <Route key={slug} path={`/${slug}`}>
+          {() => INFORMATIONAL_PRODUCT_SLUGS.has(slug) ? <ProviderRestrictedPage productSlug={slug} /> : <BrandPage brandSlug={slug} />}
+        </Route>
       ))}
 
       {/* Blog */}
@@ -180,7 +190,9 @@ function Router() {
           otherwise win and render the template whose hardcoded trust claims this
           page exists to avoid. See docs/compliance/higgsfield-offer-review.md. */}
       <Route path="/product/higgsfield-ai-bangladesh" component={HiggsfieldPage} />
-      <Route path="/product/:slug">{(params) => <ProductPage productSlug={params.slug} />}</Route>
+      <Route path="/product/:slug">
+        {(params) => INFORMATIONAL_PRODUCT_SLUGS.has(params.slug) ? <ProviderRestrictedPage productSlug={params.slug} /> : <ProductPage productSlug={params.slug} />}
+      </Route>
 
       {/* Info pages */}
       <Route path="/about" component={AboutPage} />

@@ -16,6 +16,7 @@ let homepage;
 let brandVisual;
 let compatibilityBrand;
 let catalogDocument;
+let providerSources;
 
 try {
   site = readJson('ops/ssot/site.json');
@@ -26,6 +27,7 @@ try {
   brandVisual = readJson('ops/ssot/brand-visual.json');
   compatibilityBrand = readJson('artifacts/aips-landing/data/brand.json');
   catalogDocument = readJson('artifacts/aips-landing/data/products.json');
+  providerSources = readJson('ops/ssot/provider-sources.json');
 } catch (error) {
   fail(`cannot read required SSOT/catalog JSON: ${error.message}`);
   process.exit();
@@ -141,6 +143,7 @@ if (!blockedUnverifiedFields.has('officialUSD')) fail('commercial public project
 const snapshot = commercial?.catalog_snapshot ?? {};
 const missingString = (field) => catalog.filter((item) => !nonEmpty(item?.[field])).length;
 const sharedCount = catalog.filter((item) => item?.accessType === 'shared').length;
+const sharedProviderCount = new Set(catalog.filter((item) => item?.accessType === 'shared').map((item) => item?.provider).filter(nonEmpty)).size;
 const missingOfficialUSD = catalog.filter((item) => item?.officialUSD == null).length;
 const unverifiedTrustCount = catalog.filter((item) => {
   const trust = item?.trust;
@@ -161,7 +164,21 @@ for (const [key, expected] of Object.entries(expectedSnapshot)) {
 if (snapshot?.status !== 'open-audit-debt') fail('commercial catalog snapshot must remain open-audit-debt until per-record verification is complete');
 if (commercial?.public_claim_policy?.price?.per_record_reverification_complete !== false) fail('price per-record reverification must remain false while verificationDate coverage is incomplete');
 if (snapshot.records_missing_verificationDate > 0 && commercial?.public_claim_policy?.price?.per_record_reverification_complete === true) fail('cannot mark price re-verification complete while verificationDate gaps remain');
-if (sharedCount > 0 && commercial?.public_claim_policy?.access_model?.shared_provider_tos_reconciliation_complete !== false) fail('shared provider/ToS reconciliation cannot be marked complete while the commercial SSOT records it as unresolved');
+
+const accessPolicy = commercial?.public_claim_policy?.access_model ?? {};
+if (sharedCount > 0) {
+  if (accessPolicy.shared_provider_tos_reconciliation_complete !== true) fail('shared provider/ToS reconciliation must remain complete for the current governed raw shared scope');
+  if (accessPolicy.shared_provider_reviewed_raw_record_count !== sharedCount) fail(`commercial reviewed raw shared count=${accessPolicy.shared_provider_reviewed_raw_record_count}; catalog=${sharedCount}`);
+  if (accessPolicy.shared_provider_reviewed_provider_count !== sharedProviderCount) fail(`commercial reviewed shared provider count=${accessPolicy.shared_provider_reviewed_provider_count}; catalog=${sharedProviderCount}`);
+  if (accessPolicy.shared_provider_evidence_source !== 'ops/ssot/provider-sources.json') fail('commercial shared-provider evidence source must be ops/ssot/provider-sources.json');
+  if (providerSources?.schema_version !== 2) fail('provider evidence registry schema v2 is required after shared reconciliation completion');
+  if (providerSources?.review_queue?.status !== 'closed-for-current-shared-catalog-scope') fail('provider evidence review queue must remain closed for the current shared catalog scope');
+  if (providerSources?.review_method?.providers_in_scope !== sharedProviderCount) fail(`provider evidence scope=${providerSources?.review_method?.providers_in_scope}; catalog shared providers=${sharedProviderCount}`);
+  const blockedProviders = Object.values(providerSources?.providers ?? {}).filter((provider) =>
+    (provider?.public_catalog_controls ?? []).some((control) => control?.status === 'ENFORCED' && control?.action === 'exclude-from-approved-commerce-projection'),
+  ).length;
+  if (accessPolicy.shared_provider_enforced_block_provider_count !== blockedProviders) fail(`commercial blocked-provider count=${accessPolicy.shared_provider_enforced_block_provider_count}; provider evidence=${blockedProviders}`);
+}
 if (!Array.isArray(commercial?.owner_decisions) || commercial.owner_decisions.length === 0) fail('commercial owner decisions must preserve the shared-access override record');
 
 const allowedHomepageStatuses = new Set(['DRAFT', 'APPROVED', 'SUSPENDED', 'RETIRED']);
@@ -211,4 +228,4 @@ for (const item of homepage?.campaigns ?? []) {
   if (!Array.isArray(item.offer_ids) || item.offer_ids.length === 0 || item.offer_ids.some((offerId) => !nonEmpty(offerId))) fail(`${item.id}: approved campaign requires one or more governed offer_ids`);
 }
 
-if (!process.exitCode) console.log(`[ssot] canonical GitHub authority, verified measurement state, visual brand/commercial separation, growth/site publication consistency, commercial truth v2 (${catalog.length} raw records), homepage governance, and fail-closed invariants verified`);
+if (!process.exitCode) console.log(`[ssot] canonical GitHub authority, verified measurement state, visual brand/commercial separation, growth/site publication consistency, commercial truth v2 (${catalog.length} raw records), provider evidence reconciliation, homepage governance, and fail-closed invariants verified`);

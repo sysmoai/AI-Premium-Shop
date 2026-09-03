@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-03T11:35:00+06:00",
+  "updated_at": "2026-09-03T12:36:00+06:00",
   "objective": {
     "organic_sessions_per_month_target": 50000,
     "planning_horizon_weeks": 12,
@@ -24,15 +24,16 @@
     "ga4": "instrumentation_present_production_measurement_id_unverified"
   },
   "catalog_metric_definitions": {
-    "raw_catalog_record": "One source row in artifacts/aips-landing/data/products.json. This is the metric used by commercial.catalog_snapshot.record_count.",
-    "public_projection_record": "One source row after the governed public projection neutralizes blocked legacy and unverified fields. In approved-commerce mode the projection preserves source-row cardinality.",
+    "raw_catalog_record": "One source row in artifacts/aips-landing/data/products.json. This is the metric used by commercial.catalog_snapshot.record_count and remains an audit metric even when a row is not currently public.",
+    "public_projection_record": "One source row remaining after the governed approved-commerce projection applies provider-specific publication controls and neutralizes blocked legacy or unverified fields. Public projection cardinality can therefore be lower than raw catalog cardinality.",
     "public_plan_record": "One eligible projected row counted by generate-homepage-v2-view.mjs when it is not a request-price-only row with no public price.",
-    "active_tool_family": "One unique eligible product slug after retired-platform filtering. Multiple plan rows can belong to the same tool family.",
-    "rule": "Do not compare raw catalog records, public plan records and active tool families as if they were the same metric. Generated build outputs are authoritative for current public-plan and family counts."
+    "active_tool_family": "One unique eligible product slug after provider controls and retired-platform filtering. Multiple plan rows can belong to the same tool family.",
+    "rule": "Do not compare raw catalog records, public projection records, public plan records and active tool families as if they were the same metric. Generated build outputs are authoritative for current public counts; raw catalog counts remain audit counts."
   },
   "priorities": [
     "preserve indexability for truth-safe audited routes and prevent accidental noindex regressions",
     "continue removing or neutralizing unsupported legacy claims while commerce remains live",
+    "enforce evidence-backed provider-specific publication controls without disrupting unrelated catalog families",
     "build an owned or explicitly licensed visual media library",
     "add crawlable responsive images and reviewed video assets to indexable pages",
     "establish Search Console performance-data ingestion and verify the production GA4 measurement ID",

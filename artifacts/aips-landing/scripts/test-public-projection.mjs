@@ -8,6 +8,7 @@ const APP = join(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(APP, "../..");
 const sitePath = join(REPO, "ops/ssot/site.json");
 const commercialPath = join(REPO, "ops/ssot/commercial.json");
+const providerSourcesPath = join(REPO, "ops/ssot/provider-sources.json");
 const rawPath = join(APP, "data/products.json");
 const projectedPath = join(APP, "data/public-products.json");
 const publicationStatePath = join(APP, "src/generated/publicationState.ts");
@@ -66,33 +67,50 @@ function assertNeutralizedProtectedFields(product, label) {
   assert(!Array.isArray(product.howItWorksSteps) || product.howItWorksSteps.length === 0, `${label}: howItWorksSteps survived governed projection`);
 }
 
+const matches = (value, criteria) => Object.entries(criteria ?? {}).every(([key, expected]) => value?.[key] === expected);
+
 try {
   const raw = JSON.parse(readFileSync(rawPath, "utf8"));
   const rawProducts = Array.isArray(raw) ? raw : raw.products ?? [];
+  const providerSources = JSON.parse(readFileSync(providerSourcesPath, "utf8"));
+  const controls = Object.values(providerSources?.providers ?? {})
+    .flatMap((provider) => provider?.public_catalog_controls ?? [])
+    .filter((control) => control?.status === "ENFORCED" && control?.action === "exclude-from-approved-commerce-projection");
+
+  const excludedSourceRows = rawProducts.filter((record) => controls.some((control) => matches(record, control.match)));
+  const excludedIds = new Set(excludedSourceRows.map((record) => record.id));
+  const expectedApprovedCount = rawProducts.length - excludedSourceRows.length;
+  const rawById = new Map(rawProducts.map((record) => [record.id, record]));
+
   const current = runProjection();
   const currentState = runPublicationState();
   const currentHomepage = runHomepageV2();
 
-  assert(current.products.length === rawProducts.length, "current projection changed catalog record count");
+  assert(current.products.length === expectedApprovedCount, `approved projection count ${current.products.length} does not equal raw ${rawProducts.length} minus controlled exclusions ${excludedSourceRows.length}`);
   assert(current.projection.schema_version === 2, "current projection is not schema v2");
   assert(current.projection.approved_mode_policy === "governed-approved-commerce-v2", "approved projection policy revision is missing");
   assert(current.projection.legacy_commercial_fields_neutralized === true, "approved projection did not record legacy-field neutralization");
   assert(current.projection.unverified_provider_pricing_neutralized === true, "approved projection did not record provider-price neutralization");
-  assert(
-    current.projection.mode === "approved-commerce",
-    `expected approved-commerce current mode, got ${current.projection.mode}`,
-  );
+  assert(current.projection.provider_compliance_controls_applied === true, "approved projection did not apply provider controls");
+  assert(current.projection.provider_compliance_control_count === controls.length, "provider control count metadata disagrees with SSOT");
+  assert(current.projection.provider_compliance_excluded_records === excludedSourceRows.length, "provider exclusion metadata disagrees with catalog impact");
+  assert(current.projection.mode === "approved-commerce", `expected approved-commerce current mode, got ${current.projection.mode}`);
   assert(currentState.includes('"publicationAllowed": true'), "current compile-time gate did not allow approved commerce");
   assert(currentState.includes('"quarantine": false'), "current compile-time gate unexpectedly enabled quarantine");
   assert(currentHomepage.publication.mode === "approved-commerce", "Homepage V2 did not inherit approved publication mode");
   assert(!currentHomepage.recommendations.some((p) => p.slug === "replit-bangladesh"), "retired platform leaked into Homepage V2 recommendations");
 
+  for (const excluded of excludedSourceRows) {
+    assert(!current.products.some((product) => product.id === excluded.id), `${excluded.id}: provider-controlled excluded source row survived approved projection`);
+  }
+
   let preservedPriceCount = 0;
   let preservedAccessCount = 0;
-  for (let index = 0; index < current.products.length; index += 1) {
-    const projected = current.products[index];
-    const source = rawProducts[index];
-    assertNeutralizedProtectedFields(projected, projected.slug ?? `record-${index}`);
+  for (const projected of current.products) {
+    const source = rawById.get(projected.id);
+    assert(source, `${projected.id}: projected record does not map to a raw source record`);
+    assert(!excludedIds.has(projected.id), `${projected.id}: excluded source record reappeared in approved projection`);
+    assertNeutralizedProtectedFields(projected, projected.slug ?? projected.id);
     if (typeof source.price === "number" && Number.isFinite(source.price)) {
       assert(projected.price === source.price, `${projected.slug}: approved AIPS price changed during governance projection`);
       preservedPriceCount += 1;
@@ -101,9 +119,24 @@ try {
       assert(projected.accessType === source.accessType, `${projected.slug}: approved catalog access label changed during governance projection`);
       preservedAccessCount += 1;
     }
+    for (const control of controls) {
+      if (projected.provider !== control?.match?.provider || !control?.nested_plan_match) continue;
+      assert(!(projected.plans ?? []).some((plan) => matches(plan, control.nested_plan_match)), `${projected.id}: provider-controlled nested plan survived approved projection`);
+    }
   }
   assert(preservedPriceCount > 0, "approved projection preserved no numeric AIPS prices");
   assert(preservedAccessCount > 0, "approved projection preserved no access labels");
+
+  const openaiControl = controls.find((control) => control?.match?.provider === "OpenAI" && control?.match?.accessType === "shared");
+  if (openaiControl) {
+    const rawEligibleOpenAi = rawProducts.filter((record) => record?.provider === "OpenAI" && !matches(record, openaiControl.match));
+    assert(rawEligibleOpenAi.length > 0, "OpenAI control would remove every OpenAI source row; no compliant option remains to preserve the family");
+    assert(current.products.some((record) => record?.provider === "OpenAI" && !matches(record, openaiControl.match)), "approved projection removed all OpenAI options instead of preserving non-matching records");
+    if (rawProducts.some((record) => record?.slug === "chatgpt-plus-bangladesh" && record?.provider === "OpenAI" && !matches(record, openaiControl.match))) {
+      assert(current.products.some((record) => record?.slug === "chatgpt-plus-bangladesh" && record?.provider === "OpenAI"), "ChatGPT family route lost despite a remaining non-matching OpenAI record");
+    }
+    assert(current.projection.provider_compliance_filtered_nested_plans > 0, "OpenAI nested-plan control matched raw plans but projection reported no filtered nested plans");
+  }
 
   const site = JSON.parse(originalSite);
   const commercial = JSON.parse(originalCommercial);
@@ -120,7 +153,9 @@ try {
   const quarantinedState = runPublicationState();
   const quarantinedHomepage = runHomepageV2();
   assert(quarantined.projection.mode === "informational-fail-closed", "quarantine did not switch projection mode");
-  assert(quarantined.products.length === rawProducts.length, "quarantine changed identity record count");
+  assert(quarantined.products.length === rawProducts.length, "quarantine changed raw identity record count");
+  assert(quarantined.projection.provider_compliance_controls_applied === false, "provider commerce exclusions should not delete identity rows in informational quarantine mode");
+  assert(quarantined.projection.provider_compliance_excluded_records === 0, "quarantine incorrectly recorded approved-commerce exclusions");
   assert(quarantinedState.includes('"publicationAllowed": false'), "compile-time gate remained publishable under quarantine");
   assert(quarantinedState.includes('"quarantine": true'), "compile-time gate did not enable quarantine");
   assert(quarantinedState.includes('"mode": "informational-fail-closed"'), "compile-time gate did not record fail-closed mode");
@@ -145,7 +180,7 @@ try {
     }
   }
 
-  console.log(`[public-projection-test] PASS: ${current.products.length} governed approved records preserve AIPS price/access while blocking unverified provider MSRP, badges and legacy commercial claims; quarantine still fails closed`);
+  console.log(`[public-projection-test] PASS: raw=${rawProducts.length}; approved=${current.products.length}; provider-excluded=${excludedSourceRows.length}; nested-filtered=${current.projection.provider_compliance_filtered_nested_plans}; approved prices/access preserved for eligible records; quarantine retains all identities and fails closed`);
 } finally {
   writeFileSync(sitePath, originalSite, "utf8");
   writeFileSync(commercialPath, originalCommercial, "utf8");

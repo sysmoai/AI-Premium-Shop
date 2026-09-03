@@ -9,6 +9,7 @@ on:
       - "artifacts/aips-landing/**"
       - "lib/**"
       - "ops/**"
+      - "scripts/**"
       - ".github/workflows/aips-upgrade-ci.yml"
       - "package.json"
       - "pnpm-lock.yaml"
@@ -43,6 +44,9 @@ jobs:
 
       - name: Validate canonical GitHub SSOT
         run: node scripts/validate-ssot.mjs
+
+      - name: Validate provider evidence registry
+        run: node scripts/validate-provider-sources.mjs
 
       - name: Validate catalog and truth rules
         working-directory: artifacts/aips-landing

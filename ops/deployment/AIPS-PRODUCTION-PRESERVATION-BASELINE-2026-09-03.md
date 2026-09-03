@@ -16,21 +16,37 @@ This record freezes the known-good production identity before the September 2026
 - Baseline commit message: `Align AIPS validation jobs with Node 24`
 - Vercel team: `team_WCN7gRRsLzPy8C0EdOFtDYrJ`
 - Vercel project: `prj_aP4bi30UW8mcHgBvU7E72yyFOPQd`
+- Vercel framework/runtime: `vite` / Node `24.x`
 - Production deployment: `dpl_FvKP6Poqyjv4uRuYhiFyezoaBXev`
-- Production deployment state at capture: `READY`
+- Production deployment state at verification: `READY`
 - Production deployment target: `production`
 - Production deployment Git ref: `main`
 - Production deployment Git SHA: `f0d7425913cfb7e24bac277f5dbc984842e63563`
-- Production deployment is currently marked by Vercel as a rollback candidate.
+- `main` still resolves to the same Git SHA at this checkpoint.
+- Production deployment is marked by Vercel as a rollback candidate.
 - Previous READY production rollback candidate: `dpl_4KduhLbbH2dcreYCFEBz13nGpPty`, Git SHA `8bcf55f37a8832a222853583ccf380f37177709e`.
+- Verified primary domains remain `aipremiumshop.com` and `www.aipremiumshop.com`.
 
 ## Hosting compliance checkpoint
 
-At capture time, Vercel reports the team plan as `hobby`.
+Initial capture found the Vercel team on `hobby`.
 
-Owner action W0.1 is in progress: move the existing team/project to a commercial-compliant Vercel plan while preserving the current project, deployment lineage, domains, and Git integration. No application migration or domain change is part of W0.1.
+On 2026-09-03 at approximately 10:56 Asia/Dhaka, the connected Vercel account reports the same team as plan `pro`. The owner-provided onboarding screenshot shows `Pro Trial`, so the current commercial-plan surface is active but continuity beyond the trial remains an owner billing responsibility.
 
-This branch must not be merged merely to trigger a production deployment before W0.1 verification.
+W0.1 status: **VERIFIED ACTIVE ON PRO PLAN SURFACE**.
+
+No application migration, project replacement, domain change, or production deployment was required for this plan transition.
+
+## Preview isolation evidence
+
+The first evidence-only commit on branch `aips/w0-preservation-baseline-2026-09-03` generated Vercel Preview deployment `dpl_6cZXd8xL4zpNapD4PWsFScZpKTZC`.
+
+- Preview state: `READY`
+- Preview target: none / non-production
+- Preview Git SHA: `90651c6d81bf8f4f550e8eabcf9c554fe2bb4c05`
+- Production remained `dpl_FvKP6Poqyjv4uRuYhiFyezoaBXev` at baseline SHA `f0d7425913cfb7e24bac277f5dbc984842e63563`.
+
+This confirms the branch/preview path is isolated from the active production deployment.
 
 ## Preservation contract
 
@@ -46,7 +62,7 @@ This branch must not be merged merely to trigger a production deployment before 
 
 ## Known baseline risks intentionally NOT fixed in this evidence commit
 
-- Vercel team was still on Hobby at capture time; W0.1 is owner-controlled.
+- The owner onboarding screen indicates `Pro Trial`; billing continuity after the trial must remain active to avoid falling back to a non-commercial tier.
 - `ops/ssot/growth.json` has known state drift versus newer site/commercial SSOT and must be reconciled in a later isolated change.
 - Analytics environment-variable contract has known drift (`VITE_*` runtime expectations vs documented non-VITE names).
 - Main branch was observed as unprotected at this checkpoint; repository governance should be assessed separately before changing branch rules.

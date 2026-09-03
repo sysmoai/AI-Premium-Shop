@@ -37,13 +37,20 @@ if (providerSources?.schema_version !== 1 || commercial?.public_projection_polic
   throw new Error("Public projection refused: provider compliance source is missing or not governed");
 }
 
+const sharedGovernance = providerSources?.shared_access_governance;
+if (
+  sharedGovernance?.status !== "ENFORCED" ||
+  sharedGovernance?.default_publication_rule !== "BLOCK_COMMERCE_UNTIL_EXPLICIT_PROVIDER_EVIDENCE_ALLOWS" ||
+  sharedGovernance?.explicit_allow_required !== true ||
+  !Array.isArray(sharedGovernance?.explicit_publication_allows)
+) {
+  throw new Error("Public projection refused: shared-access fail-closed governance is missing or malformed");
+}
+
 const neutralizeLegacyApprovedFields = (product) => {
   const safe = { ...product };
 
-  // Provider MSRP is not an AIPS-owned fact. It stays hidden until the exact
-  // record has a current evidence path and is approved for public comparison.
   safe.officialUSD = null;
-
   safe.deliverySLA = null;
   safe.estimatedDeliveryTime = null;
   safe.deliveryMethod = null;
@@ -75,6 +82,34 @@ const stripCommercialFields = (product) => {
   return safe;
 };
 
+const neutralizeUnverifiedSharedIdentity = (product) => {
+  const safe = stripCommercialFields(product);
+  const baseName = String(product?.name ?? "AI subscription").split(" — ")[0];
+
+  safe.name = baseName;
+  safe.tier = "Availability Review";
+  safe.status = "Inquiry Only";
+  safe.commercialStatus = "INQUIRY_ONLY_PROVIDER_ACCESS_UNVERIFIED";
+  safe.description = "Shared or multi-user access for this provider is not published as a current sellable offer while provider authorization and the exact access model remain unverified. Ask us to check a current provider-supported personal, team, or other compliant option.";
+  safe.descriptionBN = "এই প্রোভাইডারের শেয়ার্ড বা মাল্টি-ইউজার অ্যাক্সেস বর্তমানে বিক্রয়যোগ্য অফার হিসেবে প্রকাশ করা হচ্ছে না, কারণ প্রোভাইডার অনুমোদন ও সঠিক অ্যাক্সেস মডেল যাচাই করা হয়নি। বর্তমান provider-supported personal, team বা অন্য compliant option যাচাই করতে আমাদের জিজ্ঞেস করুন।";
+  safe.capabilities = [];
+  safe.useCases = [];
+  safe.whyBuyFromAIPS = null;
+  safe.faq = [];
+  safe.uniqueSellingPoints = [];
+  safe.plans = [];
+
+  const canonical = safe?.seo?.canonical ?? null;
+  safe.seo = {
+    ...(safe.seo ?? {}),
+    title: `${baseName} in Bangladesh | AI Premium Shop`,
+    metaDescription: `Check current provider-supported access options for ${baseName} in Bangladesh. Shared access is not published while provider authorization and the exact access model remain unverified.`,
+    ...(canonical ? { canonical } : {}),
+  };
+
+  return safe;
+};
+
 const nonEmpty = (value) => typeof value === "string" && value.trim().length > 0;
 const matches = (value, criteria) => Object.entries(criteria ?? {}).every(([key, expected]) => value?.[key] === expected);
 
@@ -95,22 +130,62 @@ for (const [providerKey, provider] of Object.entries(providerSources?.providers 
   }
 }
 
+const sharedAllows = sharedGovernance.explicit_publication_allows;
+for (const allow of sharedAllows) {
+  if (
+    allow?.status !== "ALLOW" ||
+    !nonEmpty(allow?.provider) ||
+    allow?.accessType !== "shared" ||
+    !Array.isArray(allow?.evidence_refs) ||
+    allow.evidence_refs.length === 0
+  ) {
+    throw new Error("[public-projection] malformed explicit shared publication allow");
+  }
+}
+
+const sharedAllowed = (source) => sharedAllows.some((allow) => allow.status === "ALLOW" && allow.provider === source?.provider && allow.accessType === source?.accessType);
+const nestedSharedAllowed = (source) => sharedAllows.some((allow) => allow.status === "ALLOW" && allow.provider === source?.provider && allow.accessType === "shared");
+
 const sourceProducts = Array.isArray(raw) ? raw : raw.products ?? [];
+const familyHasNonSharedSource = new Map();
+for (const product of sourceProducts) {
+  if (!nonEmpty(product?.slug)) continue;
+  if (product?.accessType !== "shared") familyHasNonSharedSource.set(product.slug, true);
+  else if (!familyHasNonSharedSource.has(product.slug)) familyHasNonSharedSource.set(product.slug, false);
+}
+
 let excludedRecords = [];
 let filteredNestedPlans = 0;
+let unresolvedSharedExcluded = 0;
+let unresolvedSharedInformational = 0;
+let unresolvedSharedNestedPlansFiltered = 0;
+
+const exclusionRef = (source, controlId) => ({
+  id: source?.id ?? null,
+  slug: source?.slug ?? null,
+  tier: source?.tier ?? null,
+  provider: source?.provider ?? null,
+  control_id: controlId,
+});
 
 const applyApprovedProviderControls = (products) => {
   const kept = [];
+
   for (const source of products) {
     const blocking = providerControls.find(({ control }) => matches(source, control.match));
     if (blocking) {
-      excludedRecords.push({
-        id: source?.id ?? null,
-        slug: source?.slug ?? null,
-        tier: source?.tier ?? null,
-        provider: source?.provider ?? null,
-        control_id: blocking.control.id,
-      });
+      excludedRecords.push(exclusionRef(source, blocking.control.id));
+      continue;
+    }
+
+    if (source?.accessType === "shared" && !sharedAllowed(source)) {
+      if (familyHasNonSharedSource.get(source?.slug) === true) {
+        excludedRecords.push(exclusionRef(source, "shared-access-default-fail-closed-2026-09-03"));
+        unresolvedSharedExcluded += 1;
+      } else {
+        kept.push(neutralizeUnverifiedSharedIdentity(source));
+        unresolvedSharedInformational += 1;
+      }
       continue;
     }
 
@@ -122,9 +197,17 @@ const applyApprovedProviderControls = (products) => {
         safe.plans = safe.plans.filter((plan) => !matches(plan, control.nested_plan_match));
         filteredNestedPlans += before - safe.plans.length;
       }
+
+      if (!nestedSharedAllowed(safe)) {
+        const before = safe.plans.length;
+        safe.plans = safe.plans.filter((plan) => plan?.deliveryType !== "shared");
+        unresolvedSharedNestedPlansFiltered += before - safe.plans.length;
+      }
     }
+
     kept.push(neutralizeLegacyApprovedFields(safe));
   }
+
   return kept;
 };
 
@@ -132,6 +215,17 @@ const approvedCommerce = publicationAllowed && !commercialQuarantine;
 const publicProducts = approvedCommerce
   ? applyApprovedProviderControls(sourceProducts)
   : sourceProducts.map(stripCommercialFields);
+
+if (approvedCommerce) {
+  const leakedShared = publicProducts.filter((product) => product?.accessType === "shared" && !sharedAllowed(product));
+  if (leakedShared.length) {
+    throw new Error(`[public-projection] shared-access fail-closed leak: ${leakedShared.map((product) => product?.id ?? product?.slug ?? "unknown").join(", ")}`);
+  }
+  const leakedNested = publicProducts.flatMap((product) => (product?.plans ?? []).filter((plan) => plan?.deliveryType === "shared" && !nestedSharedAllowed(product)).map(() => product?.id ?? product?.slug ?? "unknown"));
+  if (leakedNested.length) {
+    throw new Error(`[public-projection] unresolved shared nested-plan leak: ${[...new Set(leakedNested)].join(", ")}`);
+  }
+}
 
 const output = {
   projection: {
@@ -149,13 +243,18 @@ const output = {
     provider_compliance_excluded_records: excludedRecords.length,
     provider_compliance_excluded_record_refs: excludedRecords,
     provider_compliance_filtered_nested_plans: filteredNestedPlans,
+    shared_access_default_fail_closed: approvedCommerce,
+    shared_access_explicit_allow_count: sharedAllows.length,
+    unresolved_shared_records_excluded: unresolvedSharedExcluded,
+    unresolved_shared_records_retained_informational: unresolvedSharedInformational,
+    unresolved_shared_nested_plans_filtered: unresolvedSharedNestedPlansFiltered,
   },
   products: publicProducts,
 };
 
 writeFileSync(outPath, `${JSON.stringify(output)}\n`, "utf8");
 const compliance = approvedCommerce
-  ? `; provider-controls=${providerControls.length}; excluded=${excludedRecords.length}; nested-plans-filtered=${filteredNestedPlans}`
+  ? `; provider-controls=${providerControls.length}; excluded=${excludedRecords.length}; nested-plans-filtered=${filteredNestedPlans}; shared-default=fail-closed; shared-allows=${sharedAllows.length}; unresolved-shared-excluded=${unresolvedSharedExcluded}; unresolved-shared-informational=${unresolvedSharedInformational}; unresolved-shared-nested-filtered=${unresolvedSharedNestedPlansFiltered}`
   : "; provider-controls not applied in informational fail-closed mode";
 console.log(`[public-projection] ${publicProducts.length}/${sourceProducts.length} records -> ${output.projection.mode}; policy=${output.projection.approved_mode_policy}${compliance}`);
 if (excludedRecords.length) {

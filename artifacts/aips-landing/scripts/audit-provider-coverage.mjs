@@ -83,7 +83,10 @@ for (const row of rows) {
 if (verifyProjection) {
   const projectionDoc = JSON.parse(readFileSync(join(APP, "data/public-products.json"), "utf8"));
   const projected = Array.isArray(projectionDoc) ? projectionDoc : (projectionDoc.products ?? []);
+  const informationalDoc = JSON.parse(readFileSync(join(APP, "data/informational-products.json"), "utf8"));
+  const informational = informationalDoc?.products ?? [];
   if (projectionDoc?.projection?.mode !== "approved-commerce") fail(`projection verification expected approved-commerce, got ${projectionDoc?.projection?.mode ?? "unknown"}`);
+
   for (const row of rows) {
     for (const control of row.controls) {
       const surviving = projected.filter((p) => p?.provider === row.provider && p?.accessType === "shared");
@@ -94,7 +97,25 @@ if (verifyProjection) {
       }
     }
   }
-  console.log(`[provider-coverage] projection verified: public records=${projected.length}; provider blocks=${blockedProviders}`);
+
+  const rawSlugs = new Set(products.map((p) => p?.slug).filter(Boolean));
+  const projectedSlugs = new Set(projected.map((p) => p?.slug).filter(Boolean));
+  const missingCommerceSlugs = [...rawSlugs].filter((slug) => !projectedSlugs.has(slug)).sort();
+  const informationalSlugs = informational.map((p) => p?.slug).filter(Boolean).sort();
+  if (JSON.stringify(informationalSlugs) !== JSON.stringify(missingCommerceSlugs)) {
+    fail(`informational route set does not exactly preserve commerce-missing raw slugs; expected=${missingCommerceSlugs.join(",")}; got=${informationalSlugs.join(",")}`);
+  }
+  if (projectionDoc?.projection?.informational_route_preservation_count !== informational.length) fail("projection informational route count does not match informational-products.json");
+  if (informationalDoc?.schema_version !== 1) fail("informational-products.json schema_version must be 1");
+  for (const product of informational) {
+    if (product?.informationalOnly !== true || product?.commerceEligible !== false || product?.publicationStatus !== "informational-provider-restricted") fail(`${product?.slug ?? "unknown"}: informational route flags are invalid`);
+    if (product?.price != null || product?.accessType != null || product?.requestPrice !== false || (product?.plans ?? []).length) fail(`${product?.slug ?? "unknown"}: protected commerce fields survived informational route projection`);
+    if ((product?.capabilities ?? []).length || (product?.uniqueSellingPoints ?? []).length || (product?.faq ?? []).length) fail(`${product?.slug ?? "unknown"}: unverified sales/entitlement content survived informational route projection`);
+    if (projectedSlugs.has(product.slug)) fail(`${product.slug}: informational route overlaps an active commerce family`);
+  }
+
+  console.log(`[provider-coverage] projection verified: commerce records=${projected.length}; provider blocks=${blockedProviders}; informational routes=${informational.length}`);
+  if (informational.length) console.log(`[provider-coverage] informational-only URL preservation: ${informationalSlugs.join(", ")}`);
 }
 
 if (strict && (unresolved.length || failures.length)) {
@@ -106,4 +127,4 @@ if (failures.length) {
   console.warn(`[provider-coverage] WARN (${failures.length})`);
   for (const item of failures) console.warn(`- ${item}`);
 }
-console.log(`[provider-coverage] ${strict ? "PASS" : "REPORT"}: current shared-provider scope is classified${verifyProjection ? " and ENFORCED blocks are absent from the public projection" : ""}`);
+console.log(`[provider-coverage] ${strict ? "PASS" : "REPORT"}: current shared-provider scope is classified${verifyProjection ? ", ENFORCED blocks are absent from commerce, and removed families retain informational URLs" : ""}`);

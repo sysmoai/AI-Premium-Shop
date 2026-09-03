@@ -79,7 +79,16 @@ try {
 
   const excludedSourceRows = rawProducts.filter((record) => controls.some((control) => matches(record, control.match)));
   const excludedIds = new Set(excludedSourceRows.map((record) => record.id));
-  const expectedApprovedCount = rawProducts.length - excludedSourceRows.length;
+  const retainedRawProducts = rawProducts.filter((record) => !excludedIds.has(record.id));
+  const expectedApprovedCount = retainedRawProducts.length;
+  const expectedNestedFilters = retainedRawProducts.reduce((total, record) => {
+    let count = 0;
+    for (const control of controls) {
+      if (record?.provider !== control?.match?.provider || !control?.nested_plan_match) continue;
+      count += (record?.plans ?? []).filter((plan) => matches(plan, control.nested_plan_match)).length;
+    }
+    return total + count;
+  }, 0);
   const rawById = new Map(rawProducts.map((record) => [record.id, record]));
 
   const current = runProjection();
@@ -94,6 +103,7 @@ try {
   assert(current.projection.provider_compliance_controls_applied === true, "approved projection did not apply provider controls");
   assert(current.projection.provider_compliance_control_count === controls.length, "provider control count metadata disagrees with SSOT");
   assert(current.projection.provider_compliance_excluded_records === excludedSourceRows.length, "provider exclusion metadata disagrees with catalog impact");
+  assert(current.projection.provider_compliance_filtered_nested_plans === expectedNestedFilters, `nested-plan metadata ${current.projection.provider_compliance_filtered_nested_plans} does not equal expected retained-row filtering ${expectedNestedFilters}`);
   assert(current.projection.mode === "approved-commerce", `expected approved-commerce current mode, got ${current.projection.mode}`);
   assert(currentState.includes('"publicationAllowed": true'), "current compile-time gate did not allow approved commerce");
   assert(currentState.includes('"quarantine": false'), "current compile-time gate unexpectedly enabled quarantine");
@@ -130,12 +140,11 @@ try {
   const openaiControl = controls.find((control) => control?.match?.provider === "OpenAI" && control?.match?.accessType === "shared");
   if (openaiControl) {
     const rawEligibleOpenAi = rawProducts.filter((record) => record?.provider === "OpenAI" && !matches(record, openaiControl.match));
-    assert(rawEligibleOpenAi.length > 0, "OpenAI control would remove every OpenAI source row; no compliant option remains to preserve the family");
+    assert(rawEligibleOpenAi.length > 0, "OpenAI control would remove every OpenAI source row; no non-matching option remains to preserve the family");
     assert(current.products.some((record) => record?.provider === "OpenAI" && !matches(record, openaiControl.match)), "approved projection removed all OpenAI options instead of preserving non-matching records");
     if (rawProducts.some((record) => record?.slug === "chatgpt-plus-bangladesh" && record?.provider === "OpenAI" && !matches(record, openaiControl.match))) {
       assert(current.products.some((record) => record?.slug === "chatgpt-plus-bangladesh" && record?.provider === "OpenAI"), "ChatGPT family route lost despite a remaining non-matching OpenAI record");
     }
-    assert(current.projection.provider_compliance_filtered_nested_plans > 0, "OpenAI nested-plan control matched raw plans but projection reported no filtered nested plans");
   }
 
   const site = JSON.parse(originalSite);

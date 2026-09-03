@@ -22,6 +22,13 @@ try {
   run(process.execPath, ["scripts/validate-media-registry.mjs"]);
   run(process.execPath, ["scripts/generate-public-projection.mjs"]);
   run(process.execPath, ["scripts/generate-publication-state.mjs"]);
+
+  // Serverless concierge assets are generated from the SAME governed sources
+  // as the browser/crawler site. This happens before Vercel bundles api/*.
+  run(process.execPath, ["scripts/generate-concierge-policy.mjs"]);
+  run(process.execPath, ["scripts/generate-concierge-catalog.mjs", "--source-public", "--public-safe"]);
+  run(process.execPath, ["scripts/validate-concierge-truth.mjs", "--runtime"]);
+
   const projected = JSON.parse(readFileSync(publicProductsPath, "utf8"));
   writeFileSync(productsPath, `${JSON.stringify({ products: projected.products })}\n`, "utf8");
   console.log(`[public-build] activated ${projected.projection.mode} projection for all renderers`);
@@ -45,13 +52,8 @@ try {
   run(process.execPath, ["scripts/sanitize-best-subscription-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-blog-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-editorial-index-prerender.mjs"]);
-  // Info, support and policy routes must never inherit legacy fixed SLA,
-  // blanket warranty/payment or privacy claims from generic prerender extraction.
   run(process.execPath, ["scripts/sanitize-info-prerender.mjs"]);
   run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
-  // Public identity is a final-output invariant. Legacy internal acronym debt may
-  // still exist in source/renderers, but generated crawler surfaces must publish
-  // only the approved full name and the verified current entity links.
   run(process.execPath, ["scripts/normalize-public-brand-name.mjs"]);
   run(process.execPath, ["scripts/validate-public-brand-name.mjs"]);
   run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
@@ -62,5 +64,5 @@ try {
   run(process.execPath, ["scripts/write-build-identity.mjs"]);
 } finally {
   writeFileSync(productsPath, originalProducts, "utf8");
-  console.log("[public-build] restored canonical raw data/products.json");
+  console.log("[public-build] restored canonical raw data/products.json; generated concierge runtime assets remain public-safe for serverless bundling");
 }

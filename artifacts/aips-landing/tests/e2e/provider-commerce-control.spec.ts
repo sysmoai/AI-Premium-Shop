@@ -36,9 +36,12 @@ test("ChatGPT Plus crawler artifact excludes provider-blocked options and keeps 
 test("pricing surface does not re-expose blocked ChatGPT Plus rows", async ({ page }) => {
   await page.goto("/pricing", { waitUntil: "networkidle" });
   const main = page.getByRole("main");
-  const text = await main.innerText();
+  const chatgptRows = main.getByRole("row").filter({ hasText: /ChatGPT Plus/i });
 
-  await expectBlockedChatGptOptionsAbsent(text);
-  expect(text).toContain("ChatGPT Plus");
-  expect(text).toContain("2,990");
+  await expect(chatgptRows).toHaveCount(1);
+  const rowText = await chatgptRows.first().innerText();
+
+  await expectBlockedChatGptOptionsAbsent(rowText);
+  expect(rowText).toContain("Personal");
+  expect(rowText).toContain("2,990");
 });

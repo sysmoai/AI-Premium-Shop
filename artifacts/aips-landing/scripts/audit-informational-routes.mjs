@@ -24,14 +24,19 @@ for (const product of infoDoc?.products ?? []) {
     continue;
   }
   const html = fs.readFileSync(file, "utf8");
+  const shell = html.match(/<div\s+id="prerender-shell">([\s\S]*?)<\/div>\s*<\/div>\s*<\/body>/i)?.[1] ?? "";
+  if (!shell) fail(`${route}: prerender shell is missing or malformed`);
   const canonicalMatch = html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1];
   if (canonicalMatch !== canonical) fail(`${route}: canonical=${canonicalMatch ?? "missing"}, expected=${canonical}`);
   if (/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(html)) fail(`${route}: informational page must remain indexable`);
-  if (!/No current purchasable AI Premium Shop plan is published for this product/i.test(html)) fail(`${route}: status disclosure is missing`);
-  if (!/does not represent an offer for sale/i.test(html)) fail(`${route}: no-offer disclosure is missing`);
+  if (!/No current purchasable AI Premium Shop plan is published for this product/i.test(shell)) fail(`${route}: status disclosure is missing`);
+  if (!/does not represent an offer for sale/i.test(shell)) fail(`${route}: no-offer disclosure is missing`);
   if (/"@type"\s*:\s*"(?:Product|Offer|SoftwareApplication)"/i.test(html)) fail(`${route}: Product/Offer software commerce schema must not appear`);
-  if (/(?:৳|\bBDT\b|\bprice\s+on\s+request\b|\bpublished\s+(?:AI Premium Shop\s+)?price\b)/i.test(html)) fail(`${route}: price language survived on restricted informational page`);
-  if (/wa\.me\/8801865385348[^"'<\s]*/i.test(html)) fail(`${route}: direct WhatsApp ordering CTA survived on restricted informational shell`);
+  // The shared HTML template legitimately contains Organization metadata such as
+  // currenciesAccepted=BDT. Commerce assertions are therefore scoped to the
+  // product-specific prerender shell, not global site identity markup.
+  if (/(?:৳|\bBDT\b|\bprice\s+on\s+request\b|\bpublished\s+(?:AI Premium Shop\s+)?price\b)/i.test(shell)) fail(`${route}: price language survived on restricted informational page`);
+  if (/wa\.me\/8801865385348[^"'<\s]*/i.test(shell)) fail(`${route}: direct WhatsApp ordering CTA survived on restricted informational shell`);
 
   const registry = (routeRegistry?.routes ?? []).filter((item) => item?.canonicalPath === route && item?.active);
   if (registry.length !== 1) fail(`${route}: expected exactly one active route-registry owner, found ${registry.length}`);

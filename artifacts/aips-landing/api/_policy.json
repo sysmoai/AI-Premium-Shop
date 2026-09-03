@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_from": "ops/ssot/commercial.json",
-  "commercial_policy_revision": "commercial-truth-v2.2-2026-09-03",
+  "commercial_policy_revision": "commercial-truth-v2.3-2026-09-03",
   "payment": {
     "approved_public_methods": [
       "bKash",

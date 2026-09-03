@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-03T11:32:00+06:00",
+  "authority": {
+    "scope": "visual identity only",
+    "commercial_source_of_truth": "ops/ssot/commercial.json",
+    "site_identity_source_of_truth": "ops/ssot/site.json",
+    "protected_commercial_facts_allowed_here": false
+  },
+  "identity": {
+    "public_name": "AI Premium Shop",
+    "internal_short_name": "AIPS",
+    "public_abbreviation_allowed": false,
+    "domain": "aipremiumshop.com",
+    "canonical_url": "https://aipremiumshop.com",
+    "market": "Bangladesh"
+  },
+  "logo": {
+    "production_asset": "/images/brand/aips-logo.png",
+    "repository_asset": "artifacts/aips-landing/public/images/brand/aips-logo.png",
+    "rules": [
+      "preserve the approved logo exactly",
+      "do not redraw, recolor, crop, distort, duplicate or replace the approved logo",
+      "do not invent a subtitle or alternate public brand name"
+    ]
+  },
+  "palette": {
+    "deep_navy": "#0A0E27",
+    "secondary_navy": "#151B3D",
+    "gold": "#F4B942",
+    "purple": "#8B5CF6",
+    "white": "#FFFFFF",
+    "secondary_text": "#C9CEDA",
+    "success": "#10B981",
+    "whatsapp_channel_accent": "#25D366"
+  },
+  "typography": {
+    "latin": "Inter",
+    "bangla": "Anek Bangla"
+  },
+  "compatibility_projection": "artifacts/aips-landing/data/brand.json",
+  "forbidden_fact_classes": [
+    "price or discount claims",
+    "customer counts or social proof",
+    "founded/since claims unless separately governed",
+    "delivery or response-time SLA",
+    "warranty, refund or replacement promises",
+    "payment-method availability",
+    "payment instructions or payment links",
+    "provider authorization or entitlement claims",
+    "ratings, review counts or trust badges"
+  ]
+}

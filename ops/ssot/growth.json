@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-03T11:05:00+06:00",
+  "updated_at": "2026-09-03T11:35:00+06:00",
   "objective": {
     "organic_sessions_per_month_target": 50000,
     "planning_horizon_weeks": 12,
@@ -14,15 +14,28 @@
   "measurement": {
     "vercel": "connected",
     "live_http_probes": "connected",
-    "google_search_console": "not_connected",
-    "ga4": "not_connected"
+    "google_search_console": "property_verified_connector_unavailable",
+    "google_search_console_property_verified": true,
+    "google_search_console_live_data_access": "not_connected",
+    "google_search_console_evidence": [
+      "Google Search Console transactional email on 2026-04-07 stated that https://aipremiumshop.com/ was verified or created as a verified property.",
+      "Google Search Console milestone email on 2026-05-05 reported 150 Google Search clicks in the preceding 28 days."
+    ],
+    "ga4": "instrumentation_present_production_measurement_id_unverified"
+  },
+  "catalog_metric_definitions": {
+    "raw_catalog_record": "One source row in artifacts/aips-landing/data/products.json. This is the metric used by commercial.catalog_snapshot.record_count.",
+    "public_projection_record": "One source row after the governed public projection neutralizes blocked legacy and unverified fields. In approved-commerce mode the projection preserves source-row cardinality.",
+    "public_plan_record": "One eligible projected row counted by generate-homepage-v2-view.mjs when it is not a request-price-only row with no public price.",
+    "active_tool_family": "One unique eligible product slug after retired-platform filtering. Multiple plan rows can belong to the same tool family.",
+    "rule": "Do not compare raw catalog records, public plan records and active tool families as if they were the same metric. Generated build outputs are authoritative for current public-plan and family counts."
   },
   "priorities": [
     "preserve indexability for truth-safe audited routes and prevent accidental noindex regressions",
     "continue removing or neutralizing unsupported legacy claims while commerce remains live",
     "build an owned or explicitly licensed visual media library",
     "add crawlable responsive images and reviewed video assets to indexable pages",
-    "establish Search Console and analytics ingestion",
+    "establish Search Console performance-data ingestion and verify the production GA4 measurement ID",
     "publish intent-matched educational and category content from verified facts",
     "improve internal linking, structured data, Core Web Vitals and conversion UX",
     "measure impressions, clicks, rankings, organic sessions and conversion outcomes"

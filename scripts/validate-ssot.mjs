@@ -13,6 +13,8 @@ let growth;
 let commercial;
 let policy;
 let homepage;
+let brandVisual;
+let compatibilityBrand;
 let catalogDocument;
 
 try {
@@ -21,6 +23,8 @@ try {
   commercial = readJson('ops/ssot/commercial.json');
   policy = readJson('ops/ssot/autonomy-policy.json');
   homepage = readJson('ops/ssot/homepage.json');
+  brandVisual = readJson('ops/ssot/brand-visual.json');
+  compatibilityBrand = readJson('artifacts/aips-landing/data/brand.json');
   catalogDocument = readJson('artifacts/aips-landing/data/products.json');
 } catch (error) {
   fail(`cannot read required SSOT/catalog JSON: ${error.message}`);
@@ -35,6 +39,46 @@ if (site?.identity?.domain !== 'aipremiumshop.com') fail('canonical domain misma
 
 if (growth?.schema_version !== 1) fail('growth.schema_version must be 1');
 if (typeof growth?.updated_at !== 'string' || Number.isNaN(Date.parse(growth.updated_at))) fail('growth.updated_at must be a valid ISO timestamp');
+if (growth?.measurement?.google_search_console_property_verified !== true) fail('growth must preserve verified Search Console property state');
+if (growth?.measurement?.google_search_console !== 'property_verified_connector_unavailable') fail('growth must distinguish GSC property verification from connector availability');
+if (growth?.measurement?.google_search_console_live_data_access !== 'not_connected') fail('growth must not claim live Search Console data access without a connector');
+if (growth?.measurement?.ga4 !== 'instrumentation_present_production_measurement_id_unverified') fail('growth must not claim verified GA4 collection until the production measurement ID is verified');
+
+if (brandVisual?.schema_version !== 1) fail('brand-visual.schema_version must be 1');
+if (brandVisual?.authority?.scope !== 'visual identity only') fail('brand-visual authority must remain visual identity only');
+if (brandVisual?.authority?.protected_commercial_facts_allowed_here !== false) fail('protected commercial facts must stay out of brand-visual SSOT');
+if (brandVisual?.authority?.commercial_source_of_truth !== 'ops/ssot/commercial.json') fail('brand-visual must delegate commercial facts to commercial SSOT');
+if (brandVisual?.identity?.public_name !== site?.identity?.name) fail('brand-visual public name must match site identity');
+if (brandVisual?.identity?.domain !== site?.identity?.domain) fail('brand-visual domain must match site identity');
+if (brandVisual?.identity?.public_abbreviation_allowed !== false) fail('AIPS abbreviation must remain internal-only unless explicitly approved later');
+if (brandVisual?.logo?.production_asset !== '/images/brand/aips-logo.png') fail('approved production logo path changed unexpectedly');
+if (compatibilityBrand?.generatedFrom !== 'ops/ssot/brand-visual.json') fail('legacy brand projection must declare brand-visual SSOT as its source');
+if (compatibilityBrand?.name !== brandVisual?.identity?.public_name) fail('legacy brand projection name must match brand-visual SSOT');
+if (compatibilityBrand?.domain !== brandVisual?.identity?.domain) fail('legacy brand projection domain must match brand-visual SSOT');
+if (compatibilityBrand?.publicShortNameAllowed !== false) fail('legacy brand projection must not authorize public AIPS abbreviation');
+
+const forbiddenBrandKeys = new Set([
+  'customersServed',
+  'foundedYear',
+  'deliveryHours',
+  'avgResponseTime',
+  'trustBadges',
+  'paymentMethods',
+  'bkashPaymentLink',
+]);
+const scanForbiddenBrandKeys = (value, currentPath = 'brand') => {
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => scanForbiddenBrandKeys(item, `${currentPath}[${index}]`));
+    return;
+  }
+  if (!value || typeof value !== 'object') return;
+  for (const [key, child] of Object.entries(value)) {
+    if (forbiddenBrandKeys.has(key)) fail(`${currentPath}.${key} is a protected/stale commercial key and must not live in visual brand data`);
+    scanForbiddenBrandKeys(child, `${currentPath}.${key}`);
+  }
+};
+scanForbiddenBrandKeys(brandVisual, 'ops/ssot/brand-visual.json');
+scanForbiddenBrandKeys(compatibilityBrand, 'artifacts/aips-landing/data/brand.json');
 
 const quarantine = site?.current_publication_state?.commerce_quarantine;
 if (quarantine !== commercial?.quarantine) fail('site/commercial quarantine flags disagree');
@@ -167,4 +211,4 @@ for (const item of homepage?.campaigns ?? []) {
   if (!Array.isArray(item.offer_ids) || item.offer_ids.length === 0 || item.offer_ids.some((offerId) => !nonEmpty(offerId))) fail(`${item.id}: approved campaign requires one or more governed offer_ids`);
 }
 
-if (!process.exitCode) console.log(`[ssot] canonical GitHub authority, growth/site publication consistency, commercial truth v2 (${catalog.length} records), homepage governance, and fail-closed invariants verified`);
+if (!process.exitCode) console.log(`[ssot] canonical GitHub authority, verified measurement state, visual brand/commercial separation, growth/site publication consistency, commercial truth v2 (${catalog.length} raw records), homepage governance, and fail-closed invariants verified`);

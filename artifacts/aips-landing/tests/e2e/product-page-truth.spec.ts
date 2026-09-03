@@ -28,7 +28,7 @@ const PRODUCT_ROUTE = "/product/removebg-pro-bangladesh";
 test("generic product runtime is confirm-first and does not invent trust or delivery facts", async ({ page }) => {
   await page.goto(PRODUCT_ROUTE, { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "Remove.bg Pro" })).toBeVisible();
-  await expect(page.getByText("Current AIPS listing")).toBeVisible();
+  await expect(page.getByText("Current AI Premium Shop listing")).toBeVisible();
   await expect(page.getByRole("link", { name: "Confirm current plan" })).toBeVisible();
   await expect(page.getByRole("main")).toHaveCount(1);
 

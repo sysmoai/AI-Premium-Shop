@@ -73,7 +73,7 @@ test("generic active product plan cards expose price and access without syntheti
 test("provider-restricted product runtime preserves the URL without exposing commerce", async ({ page }) => {
   await page.goto(RESTRICTED_PRODUCT_ROUTE, { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "Remove.bg Pro" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Current listing status" })).toBeVisible();
+  await expect(page.getByText("Current listing status", { exact: true })).toBeVisible();
   await expect(page.getByText(/No current purchasable AI Premium Shop plan is published/i)).toBeVisible();
   await expect(page.getByRole("link", { name: "Browse active alternatives" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Confirm current plan" })).toHaveCount(0);

@@ -9,6 +9,7 @@ const fail = (message) => {
 };
 
 let site;
+let growth;
 let commercial;
 let policy;
 let homepage;
@@ -16,6 +17,7 @@ let catalogDocument;
 
 try {
   site = readJson('ops/ssot/site.json');
+  growth = readJson('ops/ssot/growth.json');
   commercial = readJson('ops/ssot/commercial.json');
   policy = readJson('ops/ssot/autonomy-policy.json');
   homepage = readJson('ops/ssot/homepage.json');
@@ -31,11 +33,21 @@ if (site?.authority?.chatgpt_is_operator !== true) fail('ChatGPT operator flag m
 if (site?.identity?.canonical_repository !== 'sysmoai/AI-Premium-Shop') fail('canonical repository mismatch');
 if (site?.identity?.domain !== 'aipremiumshop.com') fail('canonical domain mismatch');
 
+if (growth?.schema_version !== 1) fail('growth.schema_version must be 1');
+if (typeof growth?.updated_at !== 'string' || Number.isNaN(Date.parse(growth.updated_at))) fail('growth.updated_at must be a valid ISO timestamp');
+
 const quarantine = site?.current_publication_state?.commerce_quarantine;
 if (quarantine !== commercial?.quarantine) fail('site/commercial quarantine flags disagree');
+if (growth?.current_constraints?.commerce_quarantine !== quarantine) fail('growth/site commerce quarantine flags disagree');
 if (quarantine === true && commercial?.publication_allowed !== false) fail('commerce cannot be publishable while quarantine is active');
 if (quarantine === true && site?.current_publication_state?.public_indexing !== 'noindex,nofollow') {
   fail('quarantine requires noindex,nofollow publication state');
+}
+
+const publicIndexing = site?.current_publication_state?.public_indexing;
+const expectedSitewideNoindex = publicIndexing !== 'index,follow';
+if (growth?.current_constraints?.sitewide_noindex !== expectedSitewideNoindex) {
+  fail(`growth.sitewide_noindex=${growth?.current_constraints?.sitewide_noindex} disagrees with site public_indexing=${publicIndexing}`);
 }
 
 if (policy?.failure_behavior !== 'fail_closed') fail('autonomy policy must fail closed');
@@ -155,4 +167,4 @@ for (const item of homepage?.campaigns ?? []) {
   if (!Array.isArray(item.offer_ids) || item.offer_ids.length === 0 || item.offer_ids.some((offerId) => !nonEmpty(offerId))) fail(`${item.id}: approved campaign requires one or more governed offer_ids`);
 }
 
-if (!process.exitCode) console.log(`[ssot] canonical GitHub authority, commercial truth v2 (${catalog.length} records), homepage governance, and fail-closed invariants verified`);
+if (!process.exitCode) console.log(`[ssot] canonical GitHub authority, growth/site publication consistency, commercial truth v2 (${catalog.length} records), homepage governance, and fail-closed invariants verified`);

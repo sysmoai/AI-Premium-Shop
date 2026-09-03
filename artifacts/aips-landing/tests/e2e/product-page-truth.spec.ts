@@ -79,7 +79,7 @@ test("provider-restricted product runtime preserves the URL without exposing com
   await expect(page.getByRole("link", { name: "Confirm current plan" })).toHaveCount(0);
   await expect(page.getByRole("button", { name: /Shared|Personal/i })).toHaveCount(0);
 
-  const text = (await page.getByRole("main").innerText()).toLowerCase();
+  const text = (await page.locator("#main-content").innerText()).toLowerCase();
   expect(text).toContain("no provider authorization is implied");
   expect(text).toContain("no price or access plan is offered");
   for (const phrase of BLOCKED_PRODUCT_COPY) expect(text).not.toContain(phrase);

@@ -5,10 +5,6 @@ on:
     branches: [main]
     paths:
       - "ops/seo/indexnow-change-set-*.json"
-      - "artifacts/aips-landing/public/*.txt"
-      - "artifacts/aips-landing/scripts/validate-indexnow-config.mjs"
-      - "artifacts/aips-landing/scripts/submit-indexnow.mjs"
-      - ".github/workflows/aips-indexnow.yml"
 
 permissions:
   contents: read

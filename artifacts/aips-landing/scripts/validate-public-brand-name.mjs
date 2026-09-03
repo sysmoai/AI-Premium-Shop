@@ -9,12 +9,12 @@ const PUBLIC_ACRONYM = /\bAIPS\b/;
 const STALE_LINKEDIN = "https://www.linkedin.com/company/aipremiumshop/";
 const CURRENT_LINKEDIN = "https://www.linkedin.com/showcase/aipremiumshop/";
 
-function walk(dir) {
+function walk(dir, accept) {
   const files = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const file = path.join(dir, entry.name);
-    if (entry.isDirectory()) files.push(...walk(file));
-    else if (entry.isFile() && entry.name.endsWith(".html")) files.push(file);
+    if (entry.isDirectory()) files.push(...walk(file, accept));
+    else if (entry.isFile() && accept(entry.name)) files.push(file);
   }
   return files;
 }
@@ -23,9 +23,10 @@ if (!fs.existsSync(DIST)) throw new Error("[public-brand] dist/public does not e
 
 const failures = [];
 let htmlCount = 0;
+let jsCount = 0;
 let currentLinkedInCount = 0;
 
-for (const file of walk(DIST)) {
+for (const file of walk(DIST, (name) => name.endsWith(".html"))) {
   htmlCount += 1;
   const html = fs.readFileSync(file, "utf8");
   const relative = path.relative(DIST, file) || "index.html";
@@ -40,6 +41,14 @@ for (const file of walk(DIST)) {
   if (description.length > 158) failures.push(`${relative}: meta description length ${description.length} exceeds 158`);
 }
 
+for (const file of walk(DIST, (name) => name.endsWith(".js"))) {
+  jsCount += 1;
+  const code = fs.readFileSync(file, "utf8");
+  const relative = path.relative(DIST, file);
+  if (PUBLIC_ACRONYM.test(code)) failures.push(`${relative}: emitted browser bundle still contains standalone public acronym AIPS`);
+  if (code.includes(STALE_LINKEDIN)) failures.push(`${relative}: emitted browser bundle contains stale LinkedIn company URL`);
+}
+
 if (currentLinkedInCount === 0) failures.push("no generated HTML contains the verified LinkedIn showcase URL");
 
 if (failures.length) {
@@ -49,4 +58,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`[public-brand] PASS: ${htmlCount} generated HTML files use the full public name, no stale LinkedIn sameAs remains, and title/description budgets are intact`);
+console.log(`[public-brand] PASS: ${htmlCount} HTML files and ${jsCount} browser chunks contain no standalone public acronym, stale LinkedIn sameAs is absent, and title/description budgets are intact`);

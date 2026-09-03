@@ -110,8 +110,9 @@
     "records_missing_sourceUrl": 14,
     "records_missing_officialUSD": 159,
     "records_with_unverified_trust_rating_or_reviewCount": 9,
-    "status": "raw-audit-debt-publication-risk-closed-by-projection",
-    "note": "This snapshot describes the raw canonical catalog, not the current public projection. Missing-evidence counts treat both absent and null values as unknown. Do not populate synthetic values merely to make validator warnings disappear. Unresolved shared-access rows are now fail-closed at projection time."
+    "status": "open-audit-debt",
+    "publication_risk_state": "unresolved-shared-access-fail-closed-by-projection",
+    "note": "This snapshot describes the raw canonical catalog, not the current public projection. Missing-evidence counts treat both absent and null values as unknown. Do not populate synthetic values merely to make validator warnings disappear. Unresolved shared-access rows are fail-closed at projection time, while raw per-record verification debt remains open."
   },
   "legacy_claim_occurrences": {
     "as_of": "2026-08-14",

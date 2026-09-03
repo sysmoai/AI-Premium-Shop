@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "generated_from": "ops/ssot/commercial.json",
+  "commercial_policy_revision": "commercial-truth-v2.2-2026-09-03",
+  "payment": {
+    "approved_public_methods": [
+      "bKash",
+      "Nagad"
+    ],
+    "unlisted_method_claim_allowed": false,
+    "credentials_may_be_requested": false,
+    "exact_instruction_requires_order_confirmation": true
+  },
+  "price": {
+    "mode": "aips-catalog-price-confirm-before-payment",
+    "confirm_before_payment": true,
+    "provider_msrp_claim_allowed": false
+  },
+  "access": {
+    "mode": "show-catalog-label-without-extra-privacy-or-authorization-inference",
+    "vendor_authorization_claim_allowed": false,
+    "seat_count_claim_allowed_without_plan_evidence": false,
+    "privacy_specifics_claim_allowed_without_plan_evidence": false,
+    "full_feature_access_claim_allowed_without_plan_evidence": false,
+    "dedicated_or_exclusive_account_claim_allowed_without_plan_evidence": false,
+    "provider_evidence_can_block_shared_publication": true
+  },
+  "delivery": {
+    "mode": "confirm-before-payment",
+    "fixed_sla_allowed": false,
+    "confirm_availability_before_payment": true,
+    "confirm_eta_before_payment": true
+  },
+  "resolution": {
+    "mode": "order-specific-resolution",
+    "blanket_period_allowed": false,
+    "guaranteed_outcome_allowed": false,
+    "exact_terms_require_order_confirmation": true
+  },
+  "channel": {
+    "ordering": "WhatsApp",
+    "whatsapp_number_e164": "+8801865385348"
+  }
+}

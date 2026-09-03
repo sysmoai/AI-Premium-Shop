@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-03T12:52:00+06:00",
-  "policy_revision": "commercial-truth-v2.2-2026-09-03",
+  "updated_at": "2026-09-03T12:35:00+06:00",
+  "policy_revision": "commercial-truth-v2.1-2026-09-03",
   "publication_allowed": true,
   "quarantine": false,
   "commercial_facts": {
@@ -21,26 +21,12 @@
       "discount_claim_requires_current_basis": true,
       "per_record_reverification_complete": false
     },
-    "payment": {
-      "mode": "approved-public-references-order-specific",
-      "approved_public_methods": [
-        "bKash",
-        "Nagad"
-      ],
-      "unlisted_payment_method_claim_allowed": false,
-      "payment_credentials_may_be_requested": false,
-      "exact_payment_instruction_requires_order_confirmation": true
-    },
     "access_model": {
       "mode": "show-catalog-label-without-extra-privacy-or-authorization-inference",
       "shared_owner_approved_for_sale": true,
       "provider_evidence_can_block_shared_publication": true,
       "shared_provider_tos_reconciliation_complete": false,
-      "vendor_authorization_claim_allowed": false,
-      "seat_count_claim_allowed_without_plan_evidence": false,
-      "privacy_specifics_claim_allowed_without_plan_evidence": false,
-      "full_feature_access_claim_allowed_without_plan_evidence": false,
-      "dedicated_or_exclusive_account_claim_allowed_without_plan_evidence": false
+      "vendor_authorization_claim_allowed": false
     },
     "delivery": {
       "mode": "confirm-before-payment",

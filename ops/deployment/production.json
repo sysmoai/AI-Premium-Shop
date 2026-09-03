@@ -1,19 +1,34 @@
 {
   "schema_version": 1,
-  "verified_at": "2026-08-10T06:22:00+06:00",
+  "verified_at": "2026-09-03T10:56:00+06:00",
   "production_domain": "aipremiumshop.com",
   "hosting": "vercel",
   "vercel": {
     "team_id": "team_WCN7gRRsLzPy8C0EdOFtDYrJ",
     "team_slug": "sysmoaigits-projects",
+    "team_plan_at_verification": "pro",
     "project_id": "prj_aP4bi30UW8mcHgBvU7E72yyFOPQd",
     "project_name": "ai-premium-shopai-premium-shop-aipai-premium-shops-landing",
-    "production_deployment_id_at_verification": "dpl_37aYM6oQ3NpX73vEejn1p2Y3pzhf",
-    "production_deployment_sha_at_verification": "2ff9f7df7339f9130b1d2dfb165af90e3e736f2b"
+    "framework": "vite",
+    "node_version": "24.x",
+    "production_deployment_id_at_verification": "dpl_FvKP6Poqyjv4uRuYhiFyezoaBXev",
+    "production_deployment_sha_at_verification": "f0d7425913cfb7e24bac277f5dbc984842e63563",
+    "production_deployment_state_at_verification": "READY",
+    "production_deployment_ref_at_verification": "main",
+    "main_matches_production_at_verification": true,
+    "previous_ready_production_rollback_candidate": {
+      "deployment_id": "dpl_4KduhLbbH2dcreYCFEBz13nGpPty",
+      "git_sha": "8bcf55f37a8832a222853583ccf380f37177709e"
+    },
+    "verified_domains": [
+      "aipremiumshop.com",
+      "www.aipremiumshop.com"
+    ]
   },
   "source": {
     "provider": "github",
     "repository": "sysmoai/AI-Premium-Shop",
+    "default_branch": "main",
     "root_directory": "artifacts/aips-landing",
     "framework": "vite"
   },
@@ -24,6 +39,6 @@
     "require_publication_policy_validation": true,
     "require_production_smoke_test": true,
     "do_not_assume_main_equals_production": true,
-    "notes": "At verification time production and main were diverged. New upgrade work must reconcile or start from the exact production lineage before promotion."
+    "notes": "At the 2026-09-03 verification checkpoint, main and the active production deployment match exactly. Future releases must still verify the exact production deployment ID and Git SHA rather than assuming main equals production."
   }
 }

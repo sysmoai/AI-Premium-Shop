@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 // Generates api/_catalog.json — the catalog the AI Concierge is grounded in.
 //
-// Two modes exist deliberately:
-// - default: mirrors canonical data/products.json for source-drift validation;
-// - --public-safe: used only after build-public-site activates the governed
-//   public projection. It keeps current AIPS price/access labels but strips
-//   provider-controlled capability copy, delivery SLAs and badges from the
-//   model-facing runtime catalog.
+// Two dimensions are explicit:
+// - source: canonical data/products.json (default) or the governed
+//   data/public-products.json projection (--source-public);
+// - exposure: canonical mirror (default) or model-safe runtime fields
+//   (--public-safe).
 //
-// The public-safe mode prevents the serverless concierge from bypassing the
-// same truth controls that protect browser and crawler surfaces.
+// Production and local dev must use BOTH --source-public and --public-safe.
+// The default mode exists only so validate-catalog.mjs can prove the committed
+// canonical mirror has not drifted from raw source data before a build starts.
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
@@ -23,9 +23,6 @@ function blurbOf(rec) {
   return (first.length > 120 ? `${first.slice(0, 117)}…` : first) || null;
 }
 
-// Exported so validate-catalog.mjs can validate the committed canonical mirror
-// without duplicating the aggregation algorithm. publicSafe defaults false so
-// the existing raw-catalog drift check remains exact.
 export function buildCatalog(products, brandSlugs, { publicSafe = false } = {}) {
   const bySlug = new Map();
   for (const p of products) {
@@ -52,8 +49,8 @@ export function buildCatalog(products, brandSlugs, { publicSafe = false } = {}) 
       category: first.category,
       brand: first.brand ?? null,
       // Description/capability fields can contain provider-controlled claims.
-      // Until an exact-plan evidence layer exists, the production concierge
-      // retrieves by identity/category/tier only and does not receive them.
+      // Until exact-plan evidence is wired into this runtime, production
+      // retrieval uses identity/category/tier only and does not receive them.
       blurb: publicSafe ? null : blurbOf(first),
       caps: publicSafe ? [] : (Array.isArray(first.capabilities) ? first.capabilities.slice(0, 6) : []),
       tiers,
@@ -62,21 +59,32 @@ export function buildCatalog(products, brandSlugs, { publicSafe = false } = {}) 
   return out;
 }
 
-export function readSources() {
-  const products = JSON.parse(readFileSync(join(ROOT, "data/products.json"), "utf8")).products;
+export function readSources({ publicProjection = false } = {}) {
+  const source = publicProjection ? "data/public-products.json" : "data/products.json";
+  const document = JSON.parse(readFileSync(join(ROOT, source), "utf8"));
+  const products = Array.isArray(document) ? document : (document.products ?? []);
   const routesSrc = readFileSync(join(ROOT, "src/lib/productRoutes.ts"), "utf8");
-  return { products, brandSlugs: new Set([...routesSrc.matchAll(/"([a-z0-9-]+-bangladesh)",/g)].map((m) => m[1])) };
+  return {
+    source,
+    products,
+    brandSlugs: new Set([...routesSrc.matchAll(/"([a-z0-9-]+-bangladesh)",/g)].map((m) => m[1])),
+  };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const { products, brandSlugs } = readSources();
   const publicSafe = process.argv.includes("--public-safe");
+  const publicProjection = process.argv.includes("--source-public");
+  if (publicSafe !== publicProjection) {
+    throw new Error("[concierge-catalog] runtime generation requires --public-safe and --source-public together; canonical validation uses neither");
+  }
+
+  const { source, products, brandSlugs } = readSources({ publicProjection });
   const out = buildCatalog(products, brandSlugs, { publicSafe });
   writeFileSync(join(ROOT, "api/_catalog.json"), JSON.stringify(out));
   const bytes = JSON.stringify(out).length;
   console.log(
     `api/_catalog.json: ${out.length} products (${products.length} records, ` +
-      `${products.length - out.length} tier-merges), mode=${publicSafe ? "public-safe" : "canonical-mirror"}, ` +
+      `${products.length - out.length} tier-merges), source=${source}, mode=${publicSafe ? "public-safe" : "canonical-mirror"}, ` +
       `${out.filter((p) => p.blurb).length} with blurb, ${(bytes / 1024).toFixed(1)} KB`,
   );
 }

@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "generated_from": "data/products.json + governed provider controls",
+  "purpose": "Generated at build time. Preserve canonical product URLs whose current commerce records are entirely blocked by provider evidence. Informational records must never enter commerce listings, price surfaces or the concierge catalog.",
+  "products": []
+}

@@ -6,6 +6,8 @@ const BLOCKED = [
   "no intl card", "no international card", "lifetime support", "gpt-5.4", "your conversations are private from other users",
 ];
 
+const PLUS_META_DESCRIPTION = "ChatGPT Plus in Bangladesh: compare the current AI Premium Shop personal price, OpenAI's $20/month reference, bKash/Nagad and key checks before payment.";
+
 function assertBlockedAbsent(text: string) {
   const lower = text.toLowerCase();
   for (const phrase of BLOCKED) expect(lower).not.toContain(phrase.toLowerCase());
@@ -20,6 +22,7 @@ test("ChatGPT Plus V2 owns exact transactional intent with first-party evidence"
   await expect(page.getByText(/account is meant for the individual who created it/i)).toBeVisible();
   await expect(page.getByRole("link", { name: /Compare all ChatGPT plans/i })).toHaveAttribute("href", "/chatgpt-plans-bangladesh");
   await expect(page.getByText("Personal access").first()).toBeVisible();
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", PLUS_META_DESCRIPTION);
   const text = await page.getByRole("main").innerText();
   expect(text).toMatch(/৳[0-9,]+\/month/);
   expect(text.toLowerCase()).not.toContain("shared access");
@@ -47,6 +50,7 @@ test("ChatGPT Plus crawler artifact carries V2 evidence without stale commerce",
   const html = await response.text();
   const lower = html.toLowerCase();
   expect(html).toContain('<title>ChatGPT Plus Price in Bangladesh | AI Premium Shop</title>');
+  expect(html).toContain(`<meta name="description" content="${PLUS_META_DESCRIPTION}" />`);
   expect(html).toContain('rel="canonical" href="https://aipremiumshop.com/chatgpt-plus-bangladesh"');
   expect(html).toContain("$20/month");
   expect(html).toContain("bKash");

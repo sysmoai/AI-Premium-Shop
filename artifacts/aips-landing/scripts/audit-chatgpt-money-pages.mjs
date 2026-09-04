@@ -12,6 +12,7 @@ const BLOCKED = [
   "official distributor", "exclusive promotional rate", "no international card", "no intl card",
   "lifetime support", "guaranteed activation", "guaranteed delivery", "gpt-5.4",
 ];
+const escAttr = (value) => String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 function fail(message) {
   console.error(`[chatgpt-money-audit] FAIL: ${message}`);
@@ -31,7 +32,14 @@ function auditCommon(slug, html) {
   const route = evidence.routes[slug];
   const lower = html.toLowerCase();
   if (!html.includes(`<title>${route.title}</title>`)) fail(`${slug} final title does not match V2 evidence`);
-  if (!html.includes(`content="${route.description}"`)) fail(`${slug} final description does not match V2 evidence`);
+
+  const descriptionMatches = [...html.matchAll(/<meta\s+name="description"\s+content="([^"]*)"\s*\/?\s*>/gi)];
+  if (descriptionMatches.length !== 1) {
+    fail(`${slug} must contain exactly one name=description meta tag, found ${descriptionMatches.length}`);
+  } else if (descriptionMatches[0][1] !== escAttr(route.description)) {
+    fail(`${slug} name=description content drift: expected ${JSON.stringify(escAttr(route.description))}, got ${JSON.stringify(descriptionMatches[0][1])}`);
+  }
+
   if (!html.includes(`rel="canonical" href="https://aipremiumshop.com${route.path}"`)) fail(`${slug} canonical drift`);
   if (!html.includes(`<h1>${route.h1}</h1>`)) fail(`${slug} H1 drift`);
   if (!lower.includes("first-party sources reviewed")) fail(`${slug} evidence section is missing`);
@@ -62,4 +70,4 @@ if (!plans.includes("OpenAI reference") || !plans.includes("Current AI Premium S
 
 if (plus === plans) fail(`Plus and plan-family artifacts are identical`);
 if (process.exitCode) process.exit(process.exitCode);
-console.log(`[chatgpt-money-audit] PASS: transactional Plus and broad plan-family artifacts are distinct, evidence-rich, canonical, and free of blocked OpenAI shared-access commerce`);
+console.log(`[chatgpt-money-audit] PASS: transactional Plus and broad plan-family artifacts have exact description tags, distinct intent, first-party evidence, canonical ownership, and no blocked OpenAI shared-access commerce`);

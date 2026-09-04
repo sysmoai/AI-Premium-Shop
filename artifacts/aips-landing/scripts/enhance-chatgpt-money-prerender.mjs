@@ -87,11 +87,14 @@ ${sourceList(route.source_ids)}
 }
 
 function setMeta(html, route, canonical) {
+  const escapedDescription = esc(route.description);
   return html
     .replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(route.title)}</title>`)
-    .replace(/(<meta\s+name="description"\s+content=")[^"]*(")/i, `$1${esc(route.description)}$2`)
+    // Use a function replacer so `$20`, `$100`, `$&`, etc. in evidence text are
+    // emitted literally instead of being interpreted as String.replace tokens.
+    .replace(/(<meta\s+name="description"\s+content=")[^"]*(")/i, (_match, prefix, suffix) => `${prefix}${escapedDescription}${suffix}`)
     .replace(/<meta property="og:title" content="[^"]*"\s*\/>/i, `<meta property="og:title" content="${esc(route.title)}" />`)
-    .replace(/<meta property="og:description" content="[^"]*"\s*\/>/i, `<meta property="og:description" content="${esc(route.description)}" />`)
+    .replace(/<meta property="og:description" content="[^"]*"\s*\/>/i, `<meta property="og:description" content="${escapedDescription}" />`)
     .replace(/<meta property="og:url" content="[^"]*"\s*\/>/i, `<meta property="og:url" content="${esc(canonical)}" />`)
     .replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/>/i, `<link rel="canonical" href="${esc(canonical)}" />`);
 }

@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-09-04",
+  "authority": {
+    "scope": "ChatGPT money-page editorial and first-party provider-reference facts only",
+    "commercial_source": "ops/ssot/commercial.json",
+    "provider_governance": "ops/ssot/provider-sources.json",
+    "keyword_ownership": "ops/seo/keyword-ownership-2026-09-03.json",
+    "rule": "Never override AI Premium Shop catalog eligibility, local price, access model, payment, delivery, refund or warranty, review, provider authorization, or other protected commercial truth."
+  },
+  "provider_facts": {
+    "plus": {
+      "official_reference": "$20/month",
+      "billing": "Billed monthly",
+      "positioning": "ChatGPT Plus provides broader model and tool access than Free, with higher model limits and advanced reasoning access. Exact model availability and usage limits can change over time.",
+      "features": [
+        "Advanced reasoning access",
+        "Voice conversations",
+        "Image generation",
+        "File uploads and analysis",
+        "Deep Research where available"
+      ],
+      "source_id": "openai-plus"
+    },
+    "go": {
+      "official_reference": "Check OpenAI's current pricing page for the country and currency shown to the buyer",
+      "positioning": "ChatGPT Go is a lower-cost individual plan with expanded access to popular ChatGPT tools compared with Free. OpenAI says pricing can vary by country and currency and can change over time.",
+      "source_id": "openai-go"
+    },
+    "pro": {
+      "official_reference": "$100 and $200 tiers",
+      "positioning": "OpenAI currently documents two ChatGPT Pro tiers. The $100 tier has 5x higher usage than Plus and the $200 tier has 20x higher usage than Plus; model-specific allowances can still apply.",
+      "source_id": "openai-pro"
+    },
+    "business": {
+      "official_reference": "Standard: $25/user monthly or $20/user/month billed annually; Premium: $125/user monthly or $100/user/month billed annually",
+      "positioning": "ChatGPT Business is a team workspace with centralized billing and admin controls. OpenAI currently requires at least two paid seats, which can be Standard, Premium, or a mix.",
+      "source_id": "openai-business"
+    },
+    "account_policy": {
+      "statement": "OpenAI says an account is meant for the individual who created it and another person should create their own account.",
+      "source_id": "openai-account-sharing"
+    }
+  },
+  "local_payment": {
+    "methods": [
+      "bKash",
+      "Nagad"
+    ],
+    "rule": "These are AI Premium Shop public payment references, not a claim about payment methods accepted directly by OpenAI."
+  },
+  "sources": [
+    {
+      "id": "openai-plus",
+      "title": "OpenAI Help Center — What is ChatGPT Plus?",
+      "url": "https://help.openai.com/en/articles/6950777-what",
+      "checked_at": "2026-09-04"
+    },
+    {
+      "id": "openai-account-sharing",
+      "title": "OpenAI Help Center — Account Sharing Policy",
+      "url": "https://help.openai.com/en/articles/10471989-openai-account-sharing-policy",
+      "checked_at": "2026-09-04"
+    },
+    {
+      "id": "openai-go",
+      "title": "OpenAI Help Center — What is ChatGPT Go?",
+      "url": "https://help.openai.com/en/articles/11989085-what-is-chatgpt-go.com",
+      "checked_at": "2026-09-04"
+    },
+    {
+      "id": "openai-pro",
+      "title": "OpenAI Help Center — About ChatGPT Pro tiers",
+      "url": "https://help.openai.com/en/articles/9793128-what-is-c",
+      "checked_at": "2026-09-04"
+    },
+    {
+      "id": "openai-business",
+      "title": "OpenAI Help Center — ChatGPT Business: General FAQ",
+      "url": "https://help.openai.com/en/articles/8542115",
+      "checked_at": "2026-09-04"
+    },
+    {
+      "id": "openai-pricing",
+      "title": "OpenAI — ChatGPT pricing",
+      "url": "https://chatgpt.com/pricing/",
+      "checked_at": "2026-09-04"
+    }
+  ],
+  "routes": {
+    "chatgpt-plus-bangladesh": {
+      "path": "/chatgpt-plus-bangladesh",
+      "page_type": "transactional",
+      "title": "ChatGPT Plus Price in Bangladesh | AI Premium Shop",
+      "description": "ChatGPT Plus in Bangladesh: compare the current AI Premium Shop personal price, OpenAI's $20/month reference, bKash/Nagad and key checks before payment.",
+      "h1": "ChatGPT Plus Price in Bangladesh",
+      "kicker": "Personal plan buying guide",
+      "source_ids": [
+        "openai-plus",
+        "openai-account-sharing",
+        "openai-pricing"
+      ]
+    },
+    "chatgpt-plans-bangladesh": {
+      "path": "/chatgpt-plans-bangladesh",
+      "page_type": "comparison",
+      "title": "ChatGPT Plans Bangladesh: Go vs Plus vs Pro vs Business",
+      "description": "Compare ChatGPT Go, Plus, Pro and Business in Bangladesh using current AI Premium Shop prices and first-party OpenAI references before you choose.",
+      "h1": "ChatGPT Plans in Bangladesh: Go vs Plus vs Pro vs Business",
+      "kicker": "Choose the right ChatGPT plan",
+      "source_ids": [
+        "openai-go",
+        "openai-plus",
+        "openai-pro",
+        "openai-business",
+        "openai-account-sharing",
+        "openai-pricing"
+      ]
+    }
+  }
+}

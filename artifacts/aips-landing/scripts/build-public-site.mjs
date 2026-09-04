@@ -26,6 +26,7 @@ try {
   run(process.execPath, ["scripts/validate-legacy-url-registry.mjs"]);
   run(process.execPath, ["scripts/validate-indexnow-config.mjs"]);
   run(process.execPath, ["scripts/submit-indexnow.mjs", "ops/seo/indexnow-change-set-2026-09-04.json", "--dry-run"]);
+  run(process.execPath, ["scripts/validate-chatgpt-money-pages.mjs"]);
   // The full provider registry validator lives at repo scope because provider
   // evidence is a Git business SSOT, not an app-local data file. Vercel builds
   // must run the same registry gate as GitHub CI before projecting commerce.
@@ -61,6 +62,7 @@ try {
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
   run(process.execPath, ["scripts/sanitize-brand-prerender.mjs"]);
+  run(process.execPath, ["scripts/enhance-chatgpt-money-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-category-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-product-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-budget-prerender.mjs"]);
@@ -72,6 +74,7 @@ try {
   run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/normalize-public-brand-name.mjs"]);
   run(process.execPath, ["scripts/validate-public-brand-name.mjs"]);
+  run(process.execPath, ["scripts/audit-chatgpt-money-pages.mjs"]);
   run(process.execPath, ["scripts/normalize-sitemap-metadata.mjs"]);
   run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
   run(process.execPath, ["scripts/audit-keyword-ownership.mjs"]);

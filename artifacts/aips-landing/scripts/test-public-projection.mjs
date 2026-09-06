@@ -3,12 +3,12 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
+import { loadEffectiveProviderEvidence } from "../../../scripts/lib/provider-evidence.mjs";
 
 const APP = join(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(APP, "../..");
 const sitePath = join(REPO, "ops/ssot/site.json");
 const commercialPath = join(REPO, "ops/ssot/commercial.json");
-const providerSourcesPath = join(REPO, "ops/ssot/provider-sources.json");
 const rawPath = join(APP, "data/products.json");
 const projectedPath = join(APP, "data/public-products.json");
 const publicationStatePath = join(APP, "src/generated/publicationState.ts");
@@ -72,7 +72,7 @@ const matches = (value, criteria) => Object.entries(criteria ?? {}).every(([key,
 try {
   const raw = JSON.parse(readFileSync(rawPath, "utf8"));
   const rawProducts = Array.isArray(raw) ? raw : raw.products ?? [];
-  const providerSources = JSON.parse(readFileSync(providerSourcesPath, "utf8"));
+  const providerSources = loadEffectiveProviderEvidence(REPO);
   const controls = Object.values(providerSources?.providers ?? {})
     .flatMap((provider) => provider?.public_catalog_controls ?? [])
     .filter((control) => control?.status === "ENFORCED" && control?.action === "exclude-from-approved-commerce-projection");
@@ -98,10 +98,11 @@ try {
   assert(current.products.length === expectedApprovedCount, `approved projection count ${current.products.length} does not equal raw ${rawProducts.length} minus controlled exclusions ${excludedSourceRows.length}`);
   assert(current.projection.schema_version === 2, "current projection is not schema v2");
   assert(current.projection.approved_mode_policy === "governed-approved-commerce-v2", "approved projection policy revision is missing");
+  assert(current.projection.provider_evidence_amendment_schema_version === 1, "effective provider evidence amendment was not recorded in projection metadata");
   assert(current.projection.legacy_commercial_fields_neutralized === true, "approved projection did not record legacy-field neutralization");
   assert(current.projection.unverified_provider_pricing_neutralized === true, "approved projection did not record provider-price neutralization");
   assert(current.projection.provider_compliance_controls_applied === true, "approved projection did not apply provider controls");
-  assert(current.projection.provider_compliance_control_count === controls.length, "provider control count metadata disagrees with SSOT");
+  assert(current.projection.provider_compliance_control_count === controls.length, "provider control count metadata disagrees with effective provider evidence");
   assert(current.projection.provider_compliance_excluded_records === excludedSourceRows.length, "provider exclusion metadata disagrees with catalog impact");
   assert(current.projection.provider_compliance_filtered_nested_plans === expectedNestedFilters, `nested-plan metadata ${current.projection.provider_compliance_filtered_nested_plans} does not equal expected retained-row filtering ${expectedNestedFilters}`);
   assert(current.projection.mode === "approved-commerce", `expected approved-commerce current mode, got ${current.projection.mode}`);
@@ -147,6 +148,15 @@ try {
     }
   }
 
+  const anthropicControl = controls.find((control) => control?.match?.provider === "Anthropic" && control?.match?.accessType === "shared");
+  assert(anthropicControl, "Anthropic shared-access control from current Consumer Terms is missing");
+  if (anthropicControl) {
+    const rawAnthropicShared = rawProducts.filter((record) => matches(record, anthropicControl.match));
+    assert(rawAnthropicShared.length === 2, `expected 2 raw Anthropic shared rows under the current amendment, found ${rawAnthropicShared.length}`);
+    assert(!current.products.some((record) => record?.provider === "Anthropic" && record?.accessType === "shared"), "approved projection retained an Anthropic shared row despite current Consumer Terms");
+    assert(current.products.some((record) => record?.slug === "claude-pro-bangladesh" && record?.provider === "Anthropic" && record?.accessType !== "shared"), "Claude family route lost despite remaining non-shared Anthropic records");
+  }
+
   const site = JSON.parse(originalSite);
   const commercial = JSON.parse(originalCommercial);
   site.current_publication_state.commerce_quarantine = true;
@@ -189,7 +199,7 @@ try {
     }
   }
 
-  console.log(`[public-projection-test] PASS: raw=${rawProducts.length}; approved=${current.products.length}; provider-excluded=${excludedSourceRows.length}; nested-filtered=${current.projection.provider_compliance_filtered_nested_plans}; approved prices/access preserved for eligible records; quarantine retains all identities and fails closed`);
+  console.log(`[public-projection-test] PASS: raw=${rawProducts.length}; approved=${current.products.length}; provider-excluded=${excludedSourceRows.length}; nested-filtered=${current.projection.provider_compliance_filtered_nested_plans}; effective provider evidence applied; approved prices/access preserved for eligible records; quarantine retains all identities and fails closed`);
 } finally {
   writeFileSync(sitePath, originalSite, "utf8");
   writeFileSync(commercialPath, originalCommercial, "utf8");

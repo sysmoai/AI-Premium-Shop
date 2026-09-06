@@ -3,6 +3,7 @@ import { PageFooter } from "@/components/PageFooter";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { StickyMobileBar } from "@/components/StickyMobileBar";
 import { BackToTop } from "@/components/BackToTop";
+import { TierASeoLayer } from "@/components/TierASeoLayer";
 
 interface PageLayoutProps {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ export function PageLayout({ children }: PageLayoutProps) {
       <main className="pt-20 pb-16 lg:pb-0">
         {children}
       </main>
+      <TierASeoLayer />
       <PageFooter />
       <FloatingWhatsApp />
       <StickyMobileBar />

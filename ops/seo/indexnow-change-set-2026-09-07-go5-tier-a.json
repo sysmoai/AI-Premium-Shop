@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "change_set_id": "go5-p0-tier-a-schema-internal-links-2026-09-07",
+  "change_kind": "content-update",
+  "created_at": "2026-09-07T02:52:00+06:00",
+  "host": "aipremiumshop.com",
+  "key_file": "5ff7284a41e595fc2e582e4e42c777abc8508aa71b6713b4a3f4b9645f3968e1.txt",
+  "endpoint": "https://api.indexnow.org/indexnow",
+  "submission_policy": "one-shot-on-this-change-set-merge-after-exact-production-sha-is-live",
+  "evidence_files": [
+    "artifacts/aips-landing/data/tier-a-seo-links.json",
+    "artifacts/aips-landing/scripts/apply-tier-a-seo-layer.mjs",
+    "ops/seo/sitemap-lastmod-overrides-2026-09-07.json"
+  ],
+  "urls": [
+    "https://aipremiumshop.com/chatgpt-plus-bangladesh",
+    "https://aipremiumshop.com/claude-pro-bangladesh",
+    "https://aipremiumshop.com/gemini-advanced-bangladesh",
+    "https://aipremiumshop.com/perplexity-pro-bangladesh",
+    "https://aipremiumshop.com/supergrok-bangladesh",
+    "https://aipremiumshop.com/midjourney-bangladesh",
+    "https://aipremiumshop.com/canva-pro-bangladesh",
+    "https://aipremiumshop.com/kling-ai-bangladesh",
+    "https://aipremiumshop.com/runway-bangladesh",
+    "https://aipremiumshop.com/product/higgsfield-ai-bangladesh",
+    "https://aipremiumshop.com/elevenlabs-bangladesh",
+    "https://aipremiumshop.com/suno-ai-bangladesh",
+    "https://aipremiumshop.com/github-copilot-bangladesh",
+    "https://aipremiumshop.com/cursor-bangladesh",
+    "https://aipremiumshop.com/notion-business-bangladesh"
+  ],
+  "rules": [
+    "Submit only the 15 P0 Tier-A canonical routes materially changed by GO5 and allowed by the existing IndexNow policy gate.",
+    "The five P1 Tier-A routes changed in GO5 remain discoverable through their canonical HTML, internal links and evidence-backed sitemap lastmod; do not weaken the P0-only IndexNow guardrail to submit them.",
+    "Do not submit the full sitemap or unchanged category/editorial URLs.",
+    "The workflow must wait for the exact merge SHA to be the active production build before submission.",
+    "IndexNow acceptance is not a crawl, index, ranking or traffic guarantee.",
+    "Google indexing continues through normal crawl signals, canonicals, sitemap and Search Console when live connector data is available."
+  ]
+}

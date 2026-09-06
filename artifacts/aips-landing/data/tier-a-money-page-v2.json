@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-09-07",
+  "authority": {
+    "scope": "Claude Pro and Google AI Pro money-page editorial plus first-party provider-reference facts only",
+    "commercial_source": "ops/ssot/commercial.json",
+    "provider_governance_base": "ops/ssot/provider-sources.json",
+    "provider_governance_amendment": "ops/ssot/provider-amendments-2026-09-07.json",
+    "keyword_ownership": "ops/seo/keyword-ownership-2026-09-03.json",
+    "rule": "Never override AI Premium Shop catalog eligibility, local price, access model, payment, delivery, refund or warranty, review, provider authorization or other protected commercial truth. Local BDT values must come from the governed public projection at build/runtime."
+  },
+  "local_payment": {
+    "methods": [
+      "bKash",
+      "Nagad"
+    ],
+    "rule": "These are AI Premium Shop public payment references, not claims about payment methods accepted directly by Anthropic or Google."
+  },
+  "provider_facts": {
+    "claude": {
+      "pro": {
+        "official_reference": "$20/month or $200/year",
+        "positioning": "Claude Pro is Anthropic's paid individual plan. Anthropic says it provides at least five times the usage per session compared with Free, plus priority access during high-traffic periods, early access to new features, Claude Code and Cowork. API usage is billed separately.",
+        "source_ids": [
+          "anthropic-pro",
+          "anthropic-pricing"
+        ]
+      },
+      "max": {
+        "official_reference": "$100/month for Max 5x or $200/month for Max 20x",
+        "positioning": "Anthropic positions Max as higher-usage individual access above Pro, with 5x or 20x Pro usage capacity depending on the selected Max tier.",
+        "source_ids": [
+          "anthropic-plan-guide",
+          "anthropic-pricing"
+        ]
+      },
+      "team": {
+        "official_reference": "Standard: $25/member monthly or $20/member/month billed annually; Premium: $125/member monthly or $100/member/month billed annually",
+        "positioning": "Anthropic Team is for 2 to 150 members and supports Standard and Premium seats. A local catalog label must not be assumed to represent an Anthropic Team seat or workspace unless the exact arrangement is confirmed.",
+        "source_ids": [
+          "anthropic-team",
+          "anthropic-pricing"
+        ]
+      },
+      "availability": {
+        "statement": "Anthropic lists Bangladesh among locations where Claude can be accessed.",
+        "source_id": "anthropic-availability"
+      },
+      "account_policy": {
+        "statement": "Anthropic Consumer Terms say users may not share account login information, API keys or account credentials with anyone else, may not make the account available to anyone else, and may not resell the Services.",
+        "source_id": "anthropic-consumer-terms"
+      }
+    },
+    "google": {
+      "pro": {
+        "official_reference": "$19.99/month on the current Google One plan page",
+        "positioning": "Google AI Pro is a Google One AI plan with 5 TB storage and expanded access to Gemini and other Google AI features. Exact models, feature availability and usage limits remain provider-controlled and can change.",
+        "source_ids": [
+          "google-one-plans",
+          "google-ai-plans"
+        ]
+      },
+      "availability": {
+        "statement": "Google lists Bangladesh among countries where Google AI Pro and Google AI Ultra are available.",
+        "source_id": "google-gemini-limits"
+      },
+      "limits": {
+        "statement": "Google says Gemini Apps usage limits are compute-based and depend on factors such as prompt complexity, models, features and chat length.",
+        "source_id": "google-gemini-limits"
+      },
+      "family": {
+        "statement": "Google documents family sharing for Google One and says family members on a Google AI Pro membership can enjoy select AI benefits. Some benefits and limits vary, so a local AI Premium Shop Shared listing must not be assumed to be Google family sharing or provider-authorized resale.",
+        "source_ids": [
+          "google-pro-benefits",
+          "google-family-sharing"
+        ]
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": "anthropic-pro",
+      "provider": "Anthropic",
+      "title": "Claude Help Center — What is the Pro plan?",
+      "url": "https://support.claude.com/en/articles/8325606-what-is-the-pro-plan",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "anthropic-plan-guide",
+      "provider": "Anthropic",
+      "title": "Claude Help Center — Choose a Claude plan",
+      "url": "https://support.claude.com/en/articles/11049762-choose-a-claude-plan",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "anthropic-team",
+      "provider": "Anthropic",
+      "title": "Claude Help Center — What is the Team plan?",
+      "url": "https://support.claude.com/en/articles/9266767-what-is-the-team-plan",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "anthropic-pricing",
+      "provider": "Anthropic",
+      "title": "Claude — Plans & Pricing",
+      "url": "https://claude.com/pricing",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "anthropic-availability",
+      "provider": "Anthropic",
+      "title": "Claude Help Center — Where can I access Claude?",
+      "url": "https://support.claude.com/en/articles/8461763-where-can-i-access-claude",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "anthropic-consumer-terms",
+      "provider": "Anthropic",
+      "title": "Anthropic — Consumer Terms of Service",
+      "url": "https://www.anthropic.com/legal/consumer-terms",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "google-one-plans",
+      "provider": "Google",
+      "title": "Google One — Plans and pricing",
+      "url": "https://one.google.com/about/plans?hl=bn",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "google-ai-plans",
+      "provider": "Google",
+      "title": "Google One — Google AI plans",
+      "url": "https://one.google.com/about/google-ai-plans/",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "google-pro-benefits",
+      "provider": "Google",
+      "title": "Google One Help — Use Google AI Pro benefits",
+      "url": "https://support.google.com/googleone/answer/14534406?hl=en",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "google-family-sharing",
+      "provider": "Google",
+      "title": "Google One Help — Start or stop sharing with your family",
+      "url": "https://support.google.com/googleone/answer/9004015?hl=en",
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "google-gemini-limits",
+      "provider": "Google",
+      "title": "Gemini Apps Help — Limits and upgrades for Google AI subscribers",
+      "url": "https://support.google.com/gemini/answer/16275805?hl=en",
+      "checked_at": "2026-09-07"
+    }
+  ],
+  "routes": {
+    "claude-pro-bangladesh": {
+      "path": "/claude-pro-bangladesh",
+      "provider": "Anthropic",
+      "page_type": "transactional",
+      "title": "Claude Pro Price in Bangladesh | AI Premium Shop",
+      "description": "Claude Pro in Bangladesh: compare the current AI Premium Shop Personal listing, Anthropic's $20/month Pro reference, bKash/Nagad and buying checks.",
+      "h1": "Claude Pro Price in Bangladesh",
+      "kicker": "Claude Pro buying guide",
+      "hero_price_label": "Compare the current Personal listing below",
+      "hero_intro": "Compare the current governed AI Premium Shop Claude listings with Anthropic's first-party Pro, Max and Team references. Provider prices, limits and plan structures are separate facts from AI Premium Shop local catalog prices.",
+      "suppress_generic_plan_grid": true,
+      "source_ids": [
+        "anthropic-pro",
+        "anthropic-plan-guide",
+        "anthropic-team",
+        "anthropic-pricing",
+        "anthropic-availability",
+        "anthropic-consumer-terms"
+      ]
+    },
+    "gemini-advanced-bangladesh": {
+      "path": "/gemini-advanced-bangladesh",
+      "provider": "Google",
+      "page_type": "transactional",
+      "title": "Google AI Pro Price in Bangladesh | AI Premium Shop",
+      "description": "Google AI Pro in Bangladesh: compare current AI Premium Shop Personal and Shared listings, Google's $19.99/month reference, bKash/Nagad and key access checks.",
+      "h1": "Google AI Pro Price in Bangladesh",
+      "kicker": "Google AI Pro buying guide",
+      "hero_price_label": "Compare Personal and Shared listings carefully",
+      "hero_intro": "This established URL also serves legacy Gemini Advanced search intent. Google currently presents the paid Google One AI tier as Google AI Pro. Compare provider facts separately from AI Premium Shop local catalog listings and confirm the exact access mechanism before payment.",
+      "suppress_generic_plan_grid": true,
+      "source_ids": [
+        "google-one-plans",
+        "google-ai-plans",
+        "google-pro-benefits",
+        "google-family-sharing",
+        "google-gemini-limits"
+      ]
+    }
+  }
+}

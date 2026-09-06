@@ -79,6 +79,11 @@ try {
   run(process.execPath, ["scripts/validate-public-brand-name.mjs"]);
   run(process.execPath, ["scripts/audit-chatgpt-money-pages.mjs"]);
   run(process.execPath, ["scripts/audit-tier-a-money-pages.mjs"]);
+  // GO5 runs only after every truth sanitizer and product-specific V2 audit so
+  // structured data and crawlable internal links are projected from the final
+  // governed public artifacts, never from raw legacy catalog fallbacks.
+  run(process.execPath, ["scripts/apply-tier-a-seo-layer.mjs"]);
+  run(process.execPath, ["scripts/audit-tier-a-seo-layer.mjs"]);
   run(process.execPath, ["scripts/normalize-sitemap-metadata.mjs"]);
   run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
   run(process.execPath, ["scripts/audit-keyword-ownership.mjs"]);

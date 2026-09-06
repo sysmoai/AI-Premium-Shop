@@ -33,6 +33,9 @@ for (const route of [
     await expect(links.getByRole("heading", { name: "Compare related AI tools" })).toBeVisible();
     expect(await links.locator('a[href^="/"]').count()).toBeGreaterThanOrEqual(3);
 
+    await expect(page.locator('script[data-tier-a-static="true"]')).toHaveCount(0);
+    await expect(page.locator('script[data-tier-a-runtime="true"]')).toHaveCount(2);
+
     const nodes = await jsonLd(page);
     const products = nodes.filter((node) => types(node).includes("Product"));
     const breadcrumbs = nodes.filter((node) => types(node).includes("BreadcrumbList"));
@@ -63,9 +66,13 @@ test("Higgsfield remains inquiry-only with Product schema but no Offer", async (
   await page.goto("/product/higgsfield-ai-bangladesh");
   await expect(page.getByText("Enquiry only — no payment is taken on this site.")).toBeVisible();
   await expect(page.locator("[data-tier-a-internal-links]")).toBeVisible();
+  await expect(page.locator('script[data-tier-a-static="true"]')).toHaveCount(0);
+  await expect(page.locator('script[data-tier-a-runtime="true"]')).toHaveCount(0);
   const nodes = await jsonLd(page);
   const products = nodes.filter((node) => types(node).includes("Product"));
+  const breadcrumbs = nodes.filter((node) => types(node).includes("BreadcrumbList"));
   expect(products).toHaveLength(1);
+  expect(breadcrumbs).toHaveLength(1);
   expect(products[0].offers).toBeUndefined();
   expect(JSON.stringify(products[0])).not.toMatch(/"availability"|"aggregateRating"|"review"/i);
 });

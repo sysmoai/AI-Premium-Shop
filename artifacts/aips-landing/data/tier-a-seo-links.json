@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-07",
+  "source_keyword_ownership": "ops/seo/keyword-ownership-2026-09-03.json",
+  "purpose": "Deterministic internal-link graph for the 20 canonical Tier-A product owners. This file carries no price, availability, authorization, delivery, refund, warranty, review or rating facts.",
+  "routes": [
+    {"path":"/chatgpt-plus-bangladesh","label":"ChatGPT Plus","category_path":"/ai-assistant","category_label":"AI Chat & Assistants","related":["/claude-pro-bangladesh","/gemini-advanced-bangladesh","/perplexity-pro-bangladesh","/supergrok-bangladesh"]},
+    {"path":"/claude-pro-bangladesh","label":"Claude Pro","category_path":"/ai-assistant","category_label":"AI Chat & Assistants","related":["/chatgpt-plus-bangladesh","/gemini-advanced-bangladesh","/perplexity-pro-bangladesh","/manus-ai-bangladesh"]},
+    {"path":"/gemini-advanced-bangladesh","label":"Google AI Pro","category_path":"/ai-assistant","category_label":"AI Chat & Assistants","related":["/chatgpt-plus-bangladesh","/claude-pro-bangladesh","/perplexity-pro-bangladesh","/supergrok-bangladesh"]},
+    {"path":"/perplexity-pro-bangladesh","label":"Perplexity Pro / Max","category_path":"/ai-assistant","category_label":"AI Chat & Assistants","related":["/chatgpt-plus-bangladesh","/claude-pro-bangladesh","/gemini-advanced-bangladesh","/supergrok-bangladesh"]},
+    {"path":"/supergrok-bangladesh","label":"SuperGrok","category_path":"/ai-assistant","category_label":"AI Chat & Assistants","related":["/chatgpt-plus-bangladesh","/gemini-advanced-bangladesh","/perplexity-pro-bangladesh","/claude-pro-bangladesh"]},
+    {"path":"/midjourney-bangladesh","label":"Midjourney","category_path":"/ai-image","category_label":"AI Image & Design","related":["/canva-pro-bangladesh","/ideogram-bangladesh","/leonardo-ai-bangladesh"]},
+    {"path":"/canva-pro-bangladesh","label":"Canva Pro","category_path":"/ai-design","category_label":"AI Design & Creative","related":["/midjourney-bangladesh","/ideogram-bangladesh","/leonardo-ai-bangladesh"]},
+    {"path":"/kling-ai-bangladesh","label":"Kling AI","category_path":"/ai-video","category_label":"AI Video","related":["/runway-bangladesh","/product/higgsfield-ai-bangladesh"]},
+    {"path":"/runway-bangladesh","label":"Runway","category_path":"/ai-video","category_label":"AI Video","related":["/kling-ai-bangladesh","/product/higgsfield-ai-bangladesh"]},
+    {"path":"/product/higgsfield-ai-bangladesh","label":"Higgsfield AI","category_path":"/ai-video","category_label":"AI Video","inquiry_only":true,"related":["/kling-ai-bangladesh","/runway-bangladesh"]},
+    {"path":"/elevenlabs-bangladesh","label":"ElevenLabs","category_path":"/ai-voice-music","category_label":"AI Voice & Music","related":["/suno-ai-bangladesh","/product/higgsfield-ai-bangladesh"]},
+    {"path":"/suno-ai-bangladesh","label":"Suno AI","category_path":"/ai-voice-music","category_label":"AI Voice & Music","related":["/elevenlabs-bangladesh","/product/higgsfield-ai-bangladesh"]},
+    {"path":"/github-copilot-bangladesh","label":"GitHub Copilot","category_path":"/ai-code","category_label":"AI Code & Development","related":["/cursor-bangladesh","/chatgpt-plus-bangladesh","/claude-pro-bangladesh"]},
+    {"path":"/cursor-bangladesh","label":"Cursor","category_path":"/ai-code","category_label":"AI Code & Development","related":["/github-copilot-bangladesh","/chatgpt-plus-bangladesh","/claude-pro-bangladesh"]},
+    {"path":"/notion-business-bangladesh","label":"Notion Business","category_path":"/ai-workspace","category_label":"AI Workspace","related":["/grammarly-premium-bangladesh","/quillbot-premium-bangladesh","/manus-ai-bangladesh"]},
+    {"path":"/grammarly-premium-bangladesh","label":"Grammarly Premium","category_path":"/ai-writing","category_label":"AI Writing & SEO","related":["/quillbot-premium-bangladesh","/notion-business-bangladesh","/chatgpt-plus-bangladesh"]},
+    {"path":"/quillbot-premium-bangladesh","label":"QuillBot Premium","category_path":"/ai-writing","category_label":"AI Writing & SEO","related":["/grammarly-premium-bangladesh","/notion-business-bangladesh","/chatgpt-plus-bangladesh"]},
+    {"path":"/ideogram-bangladesh","label":"Ideogram","category_path":"/ai-image","category_label":"AI Image & Design","related":["/midjourney-bangladesh","/leonardo-ai-bangladesh","/canva-pro-bangladesh"]},
+    {"path":"/leonardo-ai-bangladesh","label":"Leonardo AI","category_path":"/ai-image","category_label":"AI Image & Design","related":["/midjourney-bangladesh","/ideogram-bangladesh","/canva-pro-bangladesh"]},
+    {"path":"/manus-ai-bangladesh","label":"Manus AI","category_path":"/ai-assistant","category_label":"AI Chat & Assistants","related":["/chatgpt-plus-bangladesh","/claude-pro-bangladesh","/notion-business-bangladesh"]}
+  ]
+}

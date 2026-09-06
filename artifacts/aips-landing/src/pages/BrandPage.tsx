@@ -6,10 +6,12 @@ import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import { BrandIcon } from "@/components/BrandIcon";
 import { ChatGPTMoneyPageV2 } from "@/components/ChatGPTMoneyPageV2";
+import { TierAMoneyPageV2 } from "@/components/TierAMoneyPageV2";
 import { formatBDT } from "@/lib/format";
 import { productPath } from "@/lib/productRoutes";
 import productsData from "../../data/catalog-pages.json";
 import chatgptMoneyData from "../../data/chatgpt-money-page-v2.json";
+import tierAMoneyData from "../../data/tier-a-money-page-v2.json";
 
 const SITE = "https://aipremiumshop.com";
 const WHATSAPP = "https://wa.me/8801865385348";
@@ -69,12 +71,19 @@ export default function BrandPage({ brandSlug }: { brandSlug: string }) {
   const priced = products.filter((product) => !product.requestPrice && typeof product.price === "number" && product.price > 0);
   const fromPrice = priced.length ? Math.min(...priced.map((product) => Number(product.price))) : null;
   const capabilities = [...new Set(products.flatMap((product) => product.capabilities ?? []))].slice(0, 10);
-  const routeEditorial = brandSlug in chatgptMoneyData.routes
+  const chatgptRouteEditorial = brandSlug in chatgptMoneyData.routes
     ? chatgptMoneyData.routes[brandSlug as keyof typeof chatgptMoneyData.routes]
     : null;
+  const tierARouteEditorial = brandSlug in tierAMoneyData.routes
+    ? tierAMoneyData.routes[brandSlug as keyof typeof tierAMoneyData.routes]
+    : null;
+  const routeEditorial = chatgptRouteEditorial ?? tierARouteEditorial;
+  const suppressGenericPlanGrid = tierARouteEditorial?.suppress_generic_plan_grid === true;
   const title = routeEditorial?.title ?? fitTitle(`${name} Price in Bangladesh | AI Premium Shop`);
   const description = routeEditorial?.description ?? fitDescription(`${fromPrice ? `${name} AIPS plans currently start from ${formatBDT(fromPrice)}.` : `Check the current AIPS price for ${name}.`} Compare published access options and confirm availability, provider limits, delivery ETA and terms before payment.`);
   const h1 = routeEditorial?.h1 ?? `${name} in Bangladesh`;
+  const heroPriceLabel = tierARouteEditorial?.hero_price_label ?? (fromPrice ? `Published plans from ${formatBDT(fromPrice)}/month` : "Current price on request");
+  const heroIntro = tierARouteEditorial?.hero_intro ?? `Compare the current AI Premium Shop listings for ${name}. This page publishes AI Premium Shop catalog price and access information; provider-controlled models, quotas, credits, storage and feature limits can change independently.`;
   const canonical = `${SITE}/${brandSlug}`;
   const related = ALL.filter((product, index, array) => product.category === category && !distinctSlugs.has(product.slug) && array.findIndex((candidate) => candidate.slug === product.slug) === index).slice(0, 4);
 
@@ -97,15 +106,15 @@ export default function BrandPage({ brandSlug }: { brandSlug: string }) {
               <motion.div initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
                 <div className="mb-5 flex items-center gap-3"><div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10" style={{ backgroundColor: `${accent}18` }}><BrandIcon brand={first.brand ?? name} color={accent} size={36} /></div><span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><Sparkles className="h-3.5 w-3.5" /> {routeEditorial?.kicker ?? "Current public catalog"}</span></div>
                 <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl">{h1}</h1>
-                <p className="mt-4 text-xl font-semibold" style={{ color: accent }}>{fromPrice ? `Published plans from ${formatBDT(fromPrice)}/month` : "Current price on request"}</p>
-                <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300">Compare the current AI Premium Shop listings for {name}. This page publishes AI Premium Shop catalog price and access information; provider-controlled models, quotas, credits, storage and feature limits can change independently.</p>
+                <p className="mt-4 text-xl font-semibold" style={{ color: accent }}>{heroPriceLabel}</p>
+                <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300">{heroIntro}</p>
               </motion.div>
               <aside className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><h2 className="font-bold text-white">Before you pay</h2><div className="mt-4 space-y-3 text-sm text-slate-300">{["Confirm the exact access model.", "Confirm current availability and delivery ETA.", "Check provider-controlled limits for the exact plan.", "Confirm applicable order and support terms."].map((item) => <div key={item} className="flex gap-2"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /><span>{item}</span></div>)}</div><a href={askUrl} target="_blank" rel="noopener noreferrer" className="mt-5 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Confirm current details</a></aside>
             </div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-4 py-12 md:px-8" aria-labelledby="brand-current-plans">
+        {!suppressGenericPlanGrid && <section className="mx-auto max-w-6xl px-4 py-12 md:px-8" aria-labelledby="brand-current-plans">
           <div className="mb-6 flex items-end justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4b942]">Current options</p><h2 id="brand-current-plans" className="mt-2 text-2xl font-bold text-white md:text-3xl">Compare published plans</h2></div><span className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-400">{products.length} plan record{products.length === 1 ? "" : "s"}</span></div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {products.map((product, index) => {
@@ -114,9 +123,10 @@ export default function BrandPage({ brandSlug }: { brandSlug: string }) {
               return <motion.article key={product.id} initial={reducedMotion ? false : { opacity: 0, y: 12 }} whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.15) }} className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><h3 className="font-bold text-white">{product.tier ?? baseName(product.name)}</h3><p className="mt-2 text-xl font-bold text-[#f4b942]">{price}</p><p className="mt-2 text-sm text-slate-300">{accessLabel(product.accessType)}</p><p className="mt-4 text-xs leading-5 text-slate-500">Availability, provider limits and delivery ETA: confirm before payment.</p><div className="mt-5 flex gap-2"><Link href={productPath(product.slug)} className="flex-1 rounded-xl border border-white/10 px-3 py-2 text-center text-xs font-bold text-white">Details</Link><a href={wa} target="_blank" rel="noopener noreferrer" className="flex-1 rounded-xl bg-[#008236] px-3 py-2 text-center text-xs font-bold text-white">Confirm</a></div></motion.article>;
             })}
           </div>
-        </section>
+        </section>}
 
         <ChatGPTMoneyPageV2 brandSlug={brandSlug} products={products} />
+        <TierAMoneyPageV2 brandSlug={brandSlug} products={products} />
 
         {capabilities.length > 0 && <section className="border-y border-white/10 bg-[#0d1230] py-10"><div className="mx-auto max-w-6xl px-4 md:px-8"><h2 className="text-xl font-bold text-white">Catalog discovery tags</h2><div className="mt-4 flex flex-wrap gap-2">{capabilities.map((capability) => <span key={capability} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-sm capitalize text-slate-300">{safeTag(capability)}</span>)}</div><p className="mt-4 text-xs leading-5 text-slate-500">Discovery tags help visitors narrow the catalog. They are not a guarantee that every provider feature is included in every plan.</p></div></section>}
 

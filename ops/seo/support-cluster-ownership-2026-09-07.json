@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-07",
+  "market": "Bangladesh",
+  "domain": "aipremiumshop.com",
+  "purpose": "Define one canonical owner for each AIPS comparison, audience/use-case and budget-support intent so supporting content strengthens money pages without cloning transactional price/buy intent or creating keyword-permutation pages.",
+  "authority": {
+    "business_truth": "ops/ssot/",
+    "transactional_ownership": "ops/seo/keyword-ownership-2026-09-03.json",
+    "rule": "This file controls SEO intent routing and internal-link architecture only. It cannot create or override protected commercial/provider facts."
+  },
+  "rules": [
+    "Reuse the existing canonical support route when it already satisfies the user intent; do not create word-order or Bangladesh suffix variants solely for SEO.",
+    "Comparison pages compare only currently governed AIPS public catalog evidence and must not imply an access mode that is not currently published for the compared product.",
+    "Audience/use-case guides help users narrow a workflow and link to canonical product owners; they do not own exact product price/buy queries.",
+    "Budget pages are deterministic filters of current governed fixed-price AIPS catalog records. They are not rankings, discount claims or cheapest-in-market claims.",
+    "Support pages may link to Tier-A money pages, categories and other support owners using descriptive natural anchors; redirect-source aliases must not be used as internal destinations.",
+    "Product/Offer/AggregateRating/Review structured data does not belong on these support pages. Use WebPage/CollectionPage/BreadcrumbList semantics only where truthful.",
+    "Unknown provider features, quotas, credits, current plan entitlements, delivery, refunds, warranties, authorization and social proof remain unpublished unless separately governed."
+  ],
+  "comparisons": [
+    {
+      "route": "/chatgpt-vs-claude",
+      "intent": "Compare ChatGPT Plus and Claude Pro for a Bangladesh buyer without replacing either product money page.",
+      "product_slugs": ["chatgpt-plus-bangladesh", "claude-pro-bangladesh"],
+      "support_routes": ["/best-ai-for-students", "/best-ai-for-freelancers", "/best-ai-subscription-2026"]
+    },
+    {
+      "route": "/chatgpt-vs-gemini",
+      "intent": "Compare ChatGPT Plus and Google AI Pro/Gemini Advanced for a Bangladesh buyer.",
+      "product_slugs": ["chatgpt-plus-bangladesh", "gemini-advanced-bangladesh"],
+      "support_routes": ["/best-ai-for-students", "/best-ai-for-business", "/best-ai-subscription-2026"]
+    },
+    {
+      "route": "/chatgpt-vs-perplexity",
+      "intent": "Compare ChatGPT Plus and Perplexity Pro/Max for a Bangladesh buyer.",
+      "product_slugs": ["chatgpt-plus-bangladesh", "perplexity-pro-bangladesh"],
+      "support_routes": ["/best-ai-for-students", "/best-ai-for-freelancers", "/best-ai-subscription-2026"]
+    },
+    {
+      "route": "/claude-vs-gemini",
+      "intent": "Compare Claude Pro and Google AI Pro/Gemini Advanced for a Bangladesh buyer.",
+      "product_slugs": ["claude-pro-bangladesh", "gemini-advanced-bangladesh"],
+      "support_routes": ["/best-ai-for-developers", "/best-ai-for-business", "/best-ai-subscription-2026"]
+    },
+    {
+      "route": "/canva-vs-adobe-express",
+      "intent": "Compare Canva Pro and Adobe Express Premium as design workflow options without owning either exact-product transaction query.",
+      "product_slugs": ["canva-pro-bangladesh", "adobe-express-premium-bangladesh"],
+      "support_routes": ["/best-ai-for-designers", "/best-ai-for-marketers", "/best-ai-subscription-2026"]
+    },
+    {
+      "route": "/copilot-vs-cursor",
+      "intent": "Compare GitHub Copilot and Cursor for developer workflows in Bangladesh.",
+      "product_slugs": ["github-copilot-bangladesh", "cursor-bangladesh"],
+      "support_routes": ["/best-ai-for-developers", "/best-ai-for-freelancers", "/best-ai-subscription-2026"]
+    },
+    {
+      "route": "/midjourney-vs-ideogram",
+      "intent": "Compare Midjourney and Ideogram for image/design workflows without publishing unsupported model-performance claims.",
+      "product_slugs": ["midjourney-bangladesh", "ideogram-bangladesh"],
+      "support_routes": ["/best-ai-for-designers", "/best-ai-for-creators", "/best-ai-subscription-2026"]
+    }
+  ],
+  "audience_guides": [
+    {
+      "route": "/best-ai-for-students",
+      "intent": "Help Bangladesh students choose a workflow category and current AIPS product owner.",
+      "product_slugs": ["chatgpt-plus-bangladesh", "claude-pro-bangladesh", "gemini-advanced-bangladesh", "perplexity-pro-bangladesh", "notion-business-bangladesh", "grammarly-premium-bangladesh", "quillbot-premium-bangladesh"],
+      "support_routes": ["/chatgpt-vs-claude", "/chatgpt-vs-gemini", "/ai-under-1000"]
+    },
+    {
+      "route": "/best-ai-for-freelancers",
+      "intent": "Help Bangladesh freelancers choose tools around repeatable client workflows and access/privacy fit.",
+      "product_slugs": ["chatgpt-plus-bangladesh", "claude-pro-bangladesh", "canva-pro-bangladesh", "cursor-bangladesh", "grammarly-premium-bangladesh", "notion-business-bangladesh"],
+      "support_routes": ["/chatgpt-vs-claude", "/copilot-vs-cursor", "/ai-under-3000"]
+    },
+    {
+      "route": "/best-ai-for-creators",
+      "intent": "Help Bangladesh creators choose tools by production step such as image, video, voice/music, writing and design.",
+      "product_slugs": ["midjourney-bangladesh", "canva-pro-bangladesh", "kling-ai-bangladesh", "runway-bangladesh", "higgsfield-ai-bangladesh", "elevenlabs-bangladesh", "suno-ai-bangladesh", "ideogram-bangladesh"],
+      "support_routes": ["/midjourney-vs-ideogram", "/best-ai-for-designers", "/ai-under-3000"]
+    },
+    {
+      "route": "/best-ai-for-business",
+      "intent": "Help Bangladesh businesses narrow assistants/workspace/tools by governance and workflow value.",
+      "product_slugs": ["chatgpt-plus-bangladesh", "gemini-advanced-bangladesh", "notion-business-bangladesh", "canva-pro-bangladesh", "perplexity-pro-bangladesh"],
+      "support_routes": ["/chatgpt-vs-gemini", "/claude-vs-gemini", "/best-ai-subscription-2026"]
+    },
+    {
+      "route": "/best-ai-for-developers",
+      "intent": "Help Bangladesh developers compare coding assistants and general AI tools without freezing model/quota claims.",
+      "product_slugs": ["github-copilot-bangladesh", "cursor-bangladesh", "chatgpt-plus-bangladesh", "claude-pro-bangladesh", "gemini-advanced-bangladesh"],
+      "support_routes": ["/copilot-vs-cursor", "/chatgpt-vs-claude", "/ai-under-3000"]
+    },
+    {
+      "route": "/best-ai-for-job-seekers",
+      "intent": "Help Bangladesh job seekers use writing/research tools for preparation and editing without fabricating credentials.",
+      "product_slugs": ["chatgpt-plus-bangladesh", "grammarly-premium-bangladesh", "quillbot-premium-bangladesh", "perplexity-pro-bangladesh"],
+      "support_routes": ["/best-ai-for-students", "/ai-under-1000", "/best-ai-subscription-2026"]
+    },
+    {
+      "route": "/best-ai-for-designers",
+      "intent": "Help Bangladesh designers narrow design/image/video tools by deliverable and licensing checks.",
+      "product_slugs": ["canva-pro-bangladesh", "midjourney-bangladesh", "ideogram-bangladesh", "leonardo-ai-bangladesh", "runway-bangladesh"],
+      "support_routes": ["/midjourney-vs-ideogram", "/best-ai-for-creators", "/ai-under-3000"]
+    },
+    {
+      "route": "/best-ai-for-marketers",
+      "intent": "Help Bangladesh marketers choose writing, research, design and workspace tools by campaign bottleneck.",
+      "product_slugs": ["chatgpt-plus-bangladesh", "canva-pro-bangladesh", "grammarly-premium-bangladesh", "notion-business-bangladesh", "perplexity-pro-bangladesh"],
+      "support_routes": ["/chatgpt-vs-perplexity", "/best-ai-for-designers", "/ai-under-3000"]
+    },
+    {
+      "route": "/best-ai-for-ecommerce",
+      "intent": "Help Bangladesh e-commerce teams choose tools for product content, creative production, research and operations.",
+      "product_slugs": ["chatgpt-plus-bangladesh", "canva-pro-bangladesh", "midjourney-bangladesh", "ideogram-bangladesh", "notion-business-bangladesh"],
+      "support_routes": ["/best-ai-for-marketers", "/midjourney-vs-ideogram", "/ai-under-3000"]
+    }
+  ],
+  "budget_hubs": [
+    {
+      "route": "/ai-under-500",
+      "intent": "Deterministic current AIPS fixed-price catalog filter at or below BDT 500.",
+      "max_bdt": 500,
+      "support_routes": ["/best-ai-for-students", "/best-ai-for-job-seekers", "/best-ai-subscription-2026"]
+    },
+    {
+      "route": "/ai-under-1000",
+      "intent": "Deterministic current AIPS fixed-price catalog filter at or below BDT 1,000.",
+      "max_bdt": 1000,
+      "support_routes": ["/best-ai-for-students", "/best-ai-for-freelancers", "/best-ai-subscription-2026"]
+    },
+    {
+      "route": "/ai-under-3000",
+      "intent": "Deterministic current AIPS fixed-price catalog filter at or below BDT 3,000.",
+      "max_bdt": 3000,
+      "support_routes": ["/best-ai-for-freelancers", "/best-ai-for-creators", "/best-ai-subscription-2026"]
+    }
+  ],
+  "umbrella": {
+    "route": "/best-ai-subscription-2026",
+    "intent": "Broad workflow-first AI subscription decision guide for Bangladesh; not a universal ranking and not an exact-product transaction owner.",
+    "product_slugs": ["chatgpt-plus-bangladesh", "claude-pro-bangladesh", "gemini-advanced-bangladesh", "perplexity-pro-bangladesh", "canva-pro-bangladesh", "github-copilot-bangladesh", "midjourney-bangladesh"],
+    "support_routes": ["/best-ai-for-students", "/best-ai-for-freelancers", "/best-ai-for-creators", "/chatgpt-vs-claude", "/copilot-vs-cursor", "/ai-under-1000"]
+  },
+  "legacy_aliases": [
+    { "source": "/chatgpt-vs-claude-bangladesh", "destination": "/chatgpt-vs-claude" },
+    { "source": "/best-ai-budget-bangladesh", "destination": "/ai-under-500" },
+    { "source": "/guides/students", "destination": "/best-ai-for-students" },
+    { "source": "/guides/freelancers", "destination": "/best-ai-for-freelancers" },
+    { "source": "/guides/creators", "destination": "/best-ai-for-creators" },
+    { "source": "/guides/smallbusiness", "destination": "/best-ai-for-business" }
+  ],
+  "sibling_domain_boundary": {
+    "aipremiumshop.com": "Commerce decision authority: exact product money pages plus non-duplicative comparison/use-case/budget support.",
+    "saveonsub.com": "Savings, deal, market-price and value-analysis territory; do not clone these AIPS support pages or exact AIPS transactional owners.",
+    "aiteampremium.com": "Distinct business/editorial territory; do not clone AIPS transactional owners or these support pages, and do not revive unsupported shared-access claims."
+  }
+}

@@ -14,4 +14,7 @@ Authority rules:
 Current operating files:
 
 - `SEO-GROUND-TRUTH-2026-09-03.md` — verified production/search baseline and current execution diagnosis.
-- `keyword-ownership-2026-09-03.json` — primary URL ownership and first Tier-A product set.
+- `keyword-ownership-2026-09-03.json` — primary transactional URL ownership and the first Tier-A product set.
+- `support-cluster-ownership-2026-09-07.json` — canonical ownership and internal-link boundaries for the existing comparison, audience/use-case, budget and umbrella decision-support cluster. It deliberately reuses existing URLs rather than creating keyword-permutation pages and cannot override protected commercial/provider facts.
+- `legacy-url-registry-2026-09-04.json` — evidence-backed legacy URL disposition and canonical successor decisions.
+- `indexnow-change-set-*.json` — explicit evidence-backed URL notification sets; these are release-scoped notifications, not crawl/index/ranking guarantees.

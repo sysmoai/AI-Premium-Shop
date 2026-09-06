@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "change_set_id": "higgsfield-payment-truth-2026-09-07",
+  "change_kind": "content-update",
+  "created_at": "2026-09-07T03:10:00+06:00",
+  "host": "aipremiumshop.com",
+  "key_file": "5ff7284a41e595fc2e582e4e42c777abc8508aa71b6713b4a3f4b9645f3968e1.txt",
+  "endpoint": "https://api.indexnow.org/indexnow",
+  "submission_policy": "one-shot-on-this-change-set-merge-after-exact-production-sha-is-live",
+  "evidence_files": [
+    "artifacts/aips-landing/data/higgsfield-offer.json",
+    "artifacts/aips-landing/scripts/validate-higgsfield-payment-truth.mjs",
+    "ops/ssot/commercial.json"
+  ],
+  "urls": [
+    "https://aipremiumshop.com/product/higgsfield-ai-bangladesh"
+  ],
+  "rules": [
+    "Submit only the materially corrected Higgsfield canonical URL.",
+    "The corrected public payment references are bKash and Nagad only, as governed by commercial.json.",
+    "Do not submit the full sitemap or unrelated Tier-A routes.",
+    "The workflow must wait for the exact merge SHA to be the active production build before submission.",
+    "IndexNow acceptance is a notification acknowledgement, not a crawl, index, ranking or traffic guarantee."
+  ]
+}

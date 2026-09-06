@@ -2,25 +2,28 @@
   "schema_version": 1,
   "as_of": "2026-09-07",
   "host": "aipremiumshop.com",
-  "purpose": "Update sitemap lastmod only for canonical routes whose public content materially changed in GO4. This file must not be used to mass-refresh unchanged URLs.",
+  "purpose": "Update sitemap lastmod only for canonical routes whose public content materially changed in GO4 or GO5. This file must not be used to mass-refresh unchanged URLs.",
   "routes": [
-    {
-      "path": "/claude-pro-bangladesh",
-      "lastmod": "2026-09-07",
-      "reason": "Material rewrite to evidence-backed Claude Pro money-page V2 plus current Anthropic shared-access publication governance.",
-      "evidence": [
-        "artifacts/aips-landing/data/tier-a-money-page-v2.json",
-        "ops/ssot/provider-amendments-2026-09-07.json"
-      ]
-    },
-    {
-      "path": "/gemini-advanced-bangladesh",
-      "lastmod": "2026-09-07",
-      "reason": "Material rewrite to current Google AI Pro naming, provider facts, family-sharing caveats and local buying-decision flow while retaining the established canonical URL.",
-      "evidence": [
-        "artifacts/aips-landing/data/tier-a-money-page-v2.json"
-      ]
-    }
+    {"path":"/chatgpt-plus-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A breadcrumb/product structured data and visible related-tool internal links.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","artifacts/aips-landing/scripts/apply-tier-a-seo-layer.mjs"]},
+    {"path":"/claude-pro-bangladesh","lastmod":"2026-09-07","reason":"GO4 evidence-backed money-page V2 plus GO5 canonical Tier-A schema and internal links.","evidence":["artifacts/aips-landing/data/tier-a-money-page-v2.json","ops/ssot/provider-amendments-2026-09-07.json","artifacts/aips-landing/data/tier-a-seo-links.json"]},
+    {"path":"/gemini-advanced-bangladesh","lastmod":"2026-09-07","reason":"GO4 Google AI Pro money-page V2 plus GO5 canonical Tier-A schema and internal links.","evidence":["artifacts/aips-landing/data/tier-a-money-page-v2.json","artifacts/aips-landing/data/tier-a-seo-links.json"]},
+    {"path":"/perplexity-pro-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A breadcrumb/product structured data and visible related-tool internal links.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","artifacts/aips-landing/scripts/apply-tier-a-seo-layer.mjs"]},
+    {"path":"/supergrok-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A breadcrumb/product structured data and visible related-tool internal links.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","artifacts/aips-landing/scripts/apply-tier-a-seo-layer.mjs"]},
+    {"path":"/midjourney-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A breadcrumb semantics and visible related-tool internal links while preserving provider-governed publication state.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","ops/ssot/provider-sources.json"]},
+    {"path":"/canva-pro-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A breadcrumb semantics and visible related-tool internal links while preserving provider-governed publication state.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","ops/ssot/provider-sources.json"]},
+    {"path":"/kling-ai-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A schema and visible related-tool internal links from the governed public projection.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","artifacts/aips-landing/scripts/apply-tier-a-seo-layer.mjs"]},
+    {"path":"/runway-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A schema and visible related-tool internal links from the governed public projection.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","artifacts/aips-landing/scripts/apply-tier-a-seo-layer.mjs"]},
+    {"path":"/product/higgsfield-ai-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds the canonical Tier-A internal-link graph while preserving Higgsfield inquiry-only no-Offer structured data.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","artifacts/aips-landing/data/higgsfield-offer.json"]},
+    {"path":"/elevenlabs-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A schema and visible related-tool internal links from the governed public projection.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","artifacts/aips-landing/scripts/apply-tier-a-seo-layer.mjs"]},
+    {"path":"/suno-ai-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A breadcrumb semantics and visible related-tool internal links while preserving provider-governed publication state.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","ops/ssot/provider-sources.json"]},
+    {"path":"/github-copilot-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A breadcrumb semantics and visible related-tool internal links while preserving provider-governed publication state.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","ops/ssot/provider-sources.json"]},
+    {"path":"/cursor-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A breadcrumb semantics and visible related-tool internal links while preserving provider-governed publication state.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","ops/ssot/provider-sources.json"]},
+    {"path":"/notion-business-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A schema and visible related-tool internal links from the governed public projection.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","artifacts/aips-landing/scripts/apply-tier-a-seo-layer.mjs"]},
+    {"path":"/grammarly-premium-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A schema and visible related-tool internal links from the governed public projection.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","artifacts/aips-landing/scripts/apply-tier-a-seo-layer.mjs"]},
+    {"path":"/quillbot-premium-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A breadcrumb semantics and visible related-tool internal links while preserving provider-governed publication state.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","ops/ssot/provider-sources.json"]},
+    {"path":"/ideogram-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A schema and visible related-tool internal links from the governed public projection.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","artifacts/aips-landing/scripts/apply-tier-a-seo-layer.mjs"]},
+    {"path":"/leonardo-ai-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A schema and visible related-tool internal links from the governed public projection.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","artifacts/aips-landing/scripts/apply-tier-a-seo-layer.mjs"]},
+    {"path":"/manus-ai-bangladesh","lastmod":"2026-09-07","reason":"GO5 adds canonical Tier-A schema and visible related-tool internal links from the governed public projection.","evidence":["artifacts/aips-landing/data/tier-a-seo-links.json","artifacts/aips-landing/scripts/apply-tier-a-seo-layer.mjs"]}
   ],
   "rules": [
     "Only canonical same-host routes may appear here.",

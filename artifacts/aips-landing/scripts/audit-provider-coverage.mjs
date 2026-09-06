@@ -2,11 +2,12 @@
 import { readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadEffectiveProviderEvidence, PROVIDER_AMENDMENT_SOURCE, PROVIDER_BASE_SOURCE } from "../../../scripts/lib/provider-evidence.mjs";
 
 const APP = join(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(APP, "../..");
 const productsDoc = JSON.parse(readFileSync(join(APP, "data/products.json"), "utf8"));
-const providerDoc = JSON.parse(readFileSync(join(REPO, "ops/ssot/provider-sources.json"), "utf8"));
+const providerDoc = loadEffectiveProviderEvidence(REPO);
 const products = Array.isArray(productsDoc) ? productsDoc : (productsDoc.products ?? []);
 const providerEntries = providerDoc.providers ?? {};
 const strict = process.argv.includes("--strict");
@@ -47,7 +48,9 @@ const rows = [...byProvider.entries()]
     };
   });
 
-if (providerDoc?.schema_version !== 2) fail("provider-sources.json schema_version must be 2");
+if (providerDoc?.schema_version !== 2) fail("effective provider evidence schema_version must be 2");
+if (providerDoc?.effective_evidence?.base_source !== PROVIDER_BASE_SOURCE) fail("effective provider evidence base source mismatch");
+if (providerDoc?.effective_evidence?.amendment_source !== PROVIDER_AMENDMENT_SOURCE) fail("effective provider evidence amendment source mismatch");
 if (providerDoc?.review_queue?.status !== "closed-for-current-shared-catalog-scope") fail("shared provider review queue is not closed for the current catalog scope");
 if (providerDoc?.review_method?.providers_in_scope !== rows.length) fail(`review_method providers_in_scope=${providerDoc?.review_method?.providers_in_scope} but raw shared providers=${rows.length}`);
 if (providerDoc?.review_method?.scope !== "all providers represented by the 44 raw accessType=shared catalog records") fail("provider review_method scope changed unexpectedly");
@@ -72,8 +75,9 @@ for (const row of rows) {
 
 const blockedProviders = rows.filter((r) => r.enforced_control_present).length;
 if (providerDoc?.review_method?.provider_specific_publication_blocks !== blockedProviders) fail(`review_method block count=${providerDoc?.review_method?.provider_specific_publication_blocks} but actual blocked providers=${blockedProviders}`);
+if (blockedProviders !== 27) fail(`effective provider block count must be 27; found ${blockedProviders}`);
 
-console.log(`[provider-coverage] shared records=${shared.length}; providers=${rows.length}; resolved=${rows.length - unresolved.length}; access-limited=${rows.filter((r) => r.access_limited).length}; blocked-providers=${blockedProviders}; unresolved=${unresolved.length}`);
+console.log(`[provider-coverage] shared records=${shared.length}; providers=${rows.length}; resolved=${rows.length - unresolved.length}; access-limited=${rows.filter((r) => r.access_limited).length}; blocked-providers=${blockedProviders}; unresolved=${unresolved.length}; effective=${PROVIDER_BASE_SOURCE}+${PROVIDER_AMENDMENT_SOURCE}`);
 for (const row of rows) {
   const ids = row.records.map((r) => r.id).join(", ");
   const state = row.access_limited ? "LIMITED" : row.review_resolved ? "REVIEWED" : "UNRESOLVED";
@@ -86,6 +90,7 @@ if (verifyProjection) {
   const informationalDoc = JSON.parse(readFileSync(join(APP, "data/informational-products.json"), "utf8"));
   const informational = informationalDoc?.products ?? [];
   if (projectionDoc?.projection?.mode !== "approved-commerce") fail(`projection verification expected approved-commerce, got ${projectionDoc?.projection?.mode ?? "unknown"}`);
+  if (projectionDoc?.projection?.provider_evidence_amendment_schema_version !== 1) fail("projection did not record provider evidence amendment schema version");
 
   for (const row of rows) {
     for (const control of row.controls) {
@@ -97,6 +102,9 @@ if (verifyProjection) {
       }
     }
   }
+
+  const anthropicShared = projected.filter((p) => p?.provider === "Anthropic" && p?.accessType === "shared");
+  if (anthropicShared.length) fail(`Anthropic: ${anthropicShared.length} shared record(s) survived the 2026-09-07 Consumer Terms block`);
 
   const rawSlugs = new Set(products.map((p) => p?.slug).filter(Boolean));
   const projectedSlugs = new Set(projected.map((p) => p?.slug).filter(Boolean));

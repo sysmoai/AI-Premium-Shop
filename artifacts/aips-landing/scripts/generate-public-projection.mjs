@@ -2,6 +2,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadEffectiveProviderEvidence, PROVIDER_AMENDMENT_SOURCE, PROVIDER_BASE_SOURCE } from "../../../scripts/lib/provider-evidence.mjs";
 
 const APP = join(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(APP, "../..");
@@ -10,12 +11,11 @@ const outPath = join(APP, "data/public-products.json");
 const informationalPath = join(APP, "data/informational-products.json");
 const commercialPath = join(REPO, "ops/ssot/commercial.json");
 const sitePath = join(REPO, "ops/ssot/site.json");
-const providerSourcesPath = join(REPO, "ops/ssot/provider-sources.json");
 
 const raw = JSON.parse(readFileSync(rawPath, "utf8"));
 const commercial = JSON.parse(readFileSync(commercialPath, "utf8"));
 const site = JSON.parse(readFileSync(sitePath, "utf8"));
-const providerSources = JSON.parse(readFileSync(providerSourcesPath, "utf8"));
+const providerSources = loadEffectiveProviderEvidence(REPO);
 
 const siteQuarantine = Boolean(site?.current_publication_state?.commerce_quarantine);
 const commercialQuarantine = Boolean(commercial?.quarantine);
@@ -28,8 +28,11 @@ if (commercialQuarantine && publicationAllowed) throw new Error("Public projecti
 if (commercial?.schema_version !== 2 || commercial?.public_projection_policy?.approved_mode !== "governed-approved-commerce-v2") {
   throw new Error("Public projection refused: commercial truth v2 policy is missing");
 }
-if (providerSources?.schema_version !== 2 || commercial?.public_projection_policy?.provider_compliance_source !== "ops/ssot/provider-sources.json") {
-  throw new Error("Public projection refused: provider compliance source v2 is missing or not governed");
+if (providerSources?.schema_version !== 2 || commercial?.public_projection_policy?.provider_compliance_source !== PROVIDER_BASE_SOURCE) {
+  throw new Error("Public projection refused: provider compliance base source v2 is missing or not governed");
+}
+if (commercial?.public_projection_policy?.provider_compliance_amendment_source !== PROVIDER_AMENDMENT_SOURCE) {
+  throw new Error("Public projection refused: current provider evidence amendment is not governed by commercial SSOT");
 }
 if (providerSources?.review_queue?.status !== "closed-for-current-shared-catalog-scope") {
   throw new Error("Public projection refused: shared-provider evidence review is not closed for the current catalog scope");
@@ -168,9 +171,11 @@ const informationalProducts = approvedCommerce
 const output = {
   projection: {
     schema_version: 2,
-    generated_from: "data/products.json + ops/ssot/site.json + ops/ssot/commercial.json + ops/ssot/provider-sources.json",
+    generated_from: `data/products.json + ops/ssot/site.json + ops/ssot/commercial.json + ${PROVIDER_BASE_SOURCE} + ${PROVIDER_AMENDMENT_SOURCE}`,
     commercial_policy_revision: commercial.policy_revision,
     provider_evidence_schema_version: providerSources.schema_version,
+    provider_evidence_amendment_schema_version: providerSources?.effective_evidence?.amendment_schema_version ?? null,
+    provider_evidence_effective_updated_at: providerSources?.effective_evidence?.effective_updated_at ?? null,
     provider_review_status: providerSources.review_queue.status,
     publication_allowed: publicationAllowed,
     quarantine: commercialQuarantine,
@@ -192,7 +197,7 @@ const output = {
 writeFileSync(outPath, `${JSON.stringify(output)}\n`, "utf8");
 writeFileSync(informationalPath, `${JSON.stringify({
   schema_version: 1,
-  generated_from: "data/products.json + governed provider controls",
+  generated_from: `data/products.json + ${PROVIDER_BASE_SOURCE} + ${PROVIDER_AMENDMENT_SOURCE}`,
   purpose: "Preserve existing canonical product URLs whose current commerce records are entirely blocked by provider evidence. These records are informational only and must never enter commerce listings, price surfaces or the concierge catalog.",
   products: informationalProducts,
 }, null, 2)}\n`, "utf8");

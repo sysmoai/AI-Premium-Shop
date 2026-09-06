@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { loadEffectiveProviderEvidence, PROVIDER_AMENDMENT_SOURCE, PROVIDER_BASE_SOURCE } from './lib/provider-evidence.mjs';
 
 const root = process.cwd();
 const failures = [];
@@ -8,10 +9,10 @@ const fail = (message) => failures.push(message);
 let registry;
 let catalogDocument;
 try {
-  registry = JSON.parse(fs.readFileSync(path.join(root, 'ops/ssot/provider-sources.json'), 'utf8'));
+  registry = loadEffectiveProviderEvidence(root);
   catalogDocument = JSON.parse(fs.readFileSync(path.join(root, 'artifacts/aips-landing/data/products.json'), 'utf8'));
 } catch (error) {
-  console.error(`[provider-sources] cannot read provider registry/catalog JSON: ${error.message}`);
+  console.error(`[provider-sources] cannot read effective provider registry/catalog JSON: ${error.message}`);
   process.exit(1);
 }
 
@@ -30,6 +31,8 @@ if (registry?.schema_version !== 2) fail('schema_version must be 2');
 if (!nonEmpty(registry?.updated_at) || Number.isNaN(Date.parse(registry.updated_at))) fail('updated_at must be a valid ISO timestamp');
 if (registry?.authority?.commercial_source_of_truth !== 'ops/ssot/commercial.json') fail('commercial authority must remain ops/ssot/commercial.json');
 if (!nonEmpty(registry?.authority?.rule)) fail('authority.rule is required');
+if (registry?.effective_evidence?.base_source !== PROVIDER_BASE_SOURCE) fail('effective provider evidence base source mismatch');
+if (registry?.effective_evidence?.amendment_source !== PROVIDER_AMENDMENT_SOURCE) fail('effective provider evidence amendment source mismatch');
 if (!registry?.providers || typeof registry.providers !== 'object' || Array.isArray(registry.providers)) fail('providers must be an object');
 if (!Array.isArray(catalog) || catalog.length === 0) fail('raw catalog must contain records');
 if (sharedCatalog.length !== 44) fail(`current governed shared scope expects 44 raw records; found ${sharedCatalog.length}. Reopen provider review before changing this scope.`);
@@ -121,11 +124,6 @@ for (const [providerKey, provider] of providers) {
       if (matchedRows.length === 0) fail(`${providerKey}/${control.id}: ENFORCED control matches no current raw catalog rows`);
       let nestedPlanMatches = 0;
       if (control.nested_plan_match) {
-        // This selector is intentionally allowed to match zero nested plans today:
-        // it is a future-safe constraint that prevents a later shared nested plan
-        // from bypassing the same provider evidence. The source-row match above is
-        // the required current anchor, and projection validation proves that any
-        // matching nested plans that do exist cannot survive publication.
         for (const record of catalog.filter((item) => item?.provider === control.match.provider)) {
           nestedPlanMatches += (record?.plans ?? []).filter((plan) => matches(plan, control.nested_plan_match)).length;
         }
@@ -152,7 +150,7 @@ if (accessLimitedCount !== registry?.review_method?.reviewed_current_source_acce
 if (blockedProviderCount !== registry?.review_method?.provider_specific_publication_blocks) {
   fail(`review_method blocked provider count=${registry?.review_method?.provider_specific_publication_blocks}; actual=${blockedProviderCount}`);
 }
-if (blockedProviderCount !== 26) fail(`current reviewed scope expects 26 evidence-backed blocked providers; found ${blockedProviderCount}`);
+if (blockedProviderCount !== 27) fail(`current effective scope expects 27 evidence-backed blocked providers; found ${blockedProviderCount}`);
 
 const openai = providerByNormalizedName.get(normalize('OpenAI'))?.provider;
 if (!openai) {
@@ -164,13 +162,24 @@ if (!openai) {
   if (!openaiBlock || openaiBlock?.match?.provider !== 'OpenAI' || openaiBlock?.match?.accessType !== 'shared') fail('openai: scoped publication block is missing or malformed');
 }
 
+const anthropic = providerByNormalizedName.get(normalize('Anthropic'))?.provider;
+if (!anthropic) {
+  fail('anthropic: required effective evidence entry missing');
+} else {
+  if (anthropic?.access_policy?.multi_user_or_account_sharing !== 'account-and-credential-sharing-prohibited') fail('anthropic: current account-sharing classification is not enforced');
+  if (anthropic?.commerce_implication?.shared_access_publication_block_enforced !== true) fail('anthropic: shared-access block must remain enforced while current Consumer Terms apply');
+  const anthropicBlock = (anthropic?.public_catalog_controls ?? []).find((control) => control?.status === 'ENFORCED');
+  if (!anthropicBlock || anthropicBlock?.match?.provider !== 'Anthropic' || anthropicBlock?.match?.accessType !== 'shared') fail('anthropic: scoped publication block is missing or malformed');
+  if (!(anthropic?.sources ?? []).some((source) => source?.id === 'anthropic-consumer-terms-account-access-2026-09-07')) fail('anthropic: 2026-09-07 Consumer Terms evidence is missing');
+}
+
 if (failures.length) {
   console.error(`[provider-sources] FAIL (${failures.length})`);
   for (const message of failures) console.error(`- ${message}`);
   process.exit(1);
 }
 
-console.log(`[provider-sources] PASS: ${providers.length} shared-provider evidence records cover ${sharedCatalog.length} raw shared records; blocked-providers=${blockedProviderCount}; access-limited=${accessLimitedCount}; controls=${controlIds.size}`);
+console.log(`[provider-sources] PASS: ${providers.length} shared-provider evidence records cover ${sharedCatalog.length} raw shared records; blocked-providers=${blockedProviderCount}; access-limited=${accessLimitedCount}; controls=${controlIds.size}; effective=${PROVIDER_BASE_SOURCE}+${PROVIDER_AMENDMENT_SOURCE}`);
 for (const item of enforcedMatches) {
   const rows = item.rows.map((row) => `${row.id ?? row.slug ?? 'unknown'}${row.tier ? `/${row.tier}` : ''}`).join(', ');
   console.log(`[provider-sources] ENFORCED ${item.providerKey}/${item.controlId}: rows=${item.rows.length} [${rows}]; nested-plans=${item.nestedPlanMatches}`);

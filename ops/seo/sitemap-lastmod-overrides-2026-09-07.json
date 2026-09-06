@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-07",
+  "host": "aipremiumshop.com",
+  "purpose": "Update sitemap lastmod only for canonical routes whose public content materially changed in GO4. This file must not be used to mass-refresh unchanged URLs.",
+  "routes": [
+    {
+      "path": "/claude-pro-bangladesh",
+      "lastmod": "2026-09-07",
+      "reason": "Material rewrite to evidence-backed Claude Pro money-page V2 plus current Anthropic shared-access publication governance.",
+      "evidence": [
+        "artifacts/aips-landing/data/tier-a-money-page-v2.json",
+        "ops/ssot/provider-amendments-2026-09-07.json"
+      ]
+    },
+    {
+      "path": "/gemini-advanced-bangladesh",
+      "lastmod": "2026-09-07",
+      "reason": "Material rewrite to current Google AI Pro naming, provider facts, family-sharing caveats and local buying-decision flow while retaining the established canonical URL.",
+      "evidence": [
+        "artifacts/aips-landing/data/tier-a-money-page-v2.json"
+      ]
+    }
+  ],
+  "rules": [
+    "Only canonical same-host routes may appear here.",
+    "Every date must be evidence-backed by a material public-page change.",
+    "Do not use build time, deploy time or today's date as a blanket sitemap freshness signal.",
+    "Remove or update an override only when a later evidenced material revision exists."
+  ]
+}

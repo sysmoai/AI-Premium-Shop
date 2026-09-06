@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "change_set_id": "go4-tier-a-claude-google-ai-pro-2026-09-07",
+  "change_kind": "content-update",
+  "created_at": "2026-09-07T02:28:00+06:00",
+  "host": "aipremiumshop.com",
+  "key_file": "5ff7284a41e595fc2e582e4e42c777abc8508aa71b6713b4a3f4b9645f3968e1.txt",
+  "endpoint": "https://api.indexnow.org/indexnow",
+  "submission_policy": "one-shot-on-this-change-set-merge-after-exact-production-sha-is-live",
+  "evidence_files": [
+    "artifacts/aips-landing/data/tier-a-money-page-v2.json",
+    "ops/ssot/provider-amendments-2026-09-07.json",
+    "ops/seo/sitemap-lastmod-overrides-2026-09-07.json"
+  ],
+  "urls": [
+    "https://aipremiumshop.com/claude-pro-bangladesh",
+    "https://aipremiumshop.com/gemini-advanced-bangladesh"
+  ],
+  "rules": [
+    "Submit only the two canonical routes materially rewritten in GO4.",
+    "Do not submit the full sitemap or unchanged product/category URLs.",
+    "The workflow must wait for the exact merge SHA to be the active production build before submission.",
+    "IndexNow acceptance is not a crawl, index, ranking or traffic guarantee.",
+    "Google indexing is handled by normal crawl signals, canonicals, sitemap and Search Console when live connector data is available."
+  ]
+}

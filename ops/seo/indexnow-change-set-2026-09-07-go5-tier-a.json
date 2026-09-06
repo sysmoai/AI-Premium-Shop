@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "change_set_id": "go5-tier-a-schema-internal-links-2026-09-07",
+  "change_set_id": "go5-p0-tier-a-schema-internal-links-2026-09-07",
   "change_kind": "content-update",
   "created_at": "2026-09-07T02:52:00+06:00",
   "host": "aipremiumshop.com",
@@ -27,15 +27,11 @@
     "https://aipremiumshop.com/suno-ai-bangladesh",
     "https://aipremiumshop.com/github-copilot-bangladesh",
     "https://aipremiumshop.com/cursor-bangladesh",
-    "https://aipremiumshop.com/notion-business-bangladesh",
-    "https://aipremiumshop.com/grammarly-premium-bangladesh",
-    "https://aipremiumshop.com/quillbot-premium-bangladesh",
-    "https://aipremiumshop.com/ideogram-bangladesh",
-    "https://aipremiumshop.com/leonardo-ai-bangladesh",
-    "https://aipremiumshop.com/manus-ai-bangladesh"
+    "https://aipremiumshop.com/notion-business-bangladesh"
   ],
   "rules": [
-    "Submit only the 20 canonical Tier-A routes materially changed by GO5 schema/internal-link projection.",
+    "Submit only the 15 P0 Tier-A canonical routes materially changed by GO5 and allowed by the existing IndexNow policy gate.",
+    "The five P1 Tier-A routes changed in GO5 remain discoverable through their canonical HTML, internal links and evidence-backed sitemap lastmod; do not weaken the P0-only IndexNow guardrail to submit them.",
     "Do not submit the full sitemap or unchanged category/editorial URLs.",
     "The workflow must wait for the exact merge SHA to be the active production build before submission.",
     "IndexNow acceptance is not a crawl, index, ranking or traffic guarantee.",

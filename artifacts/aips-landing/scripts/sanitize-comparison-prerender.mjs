@@ -127,14 +127,14 @@ for (const comparison of ownership.comparisons ?? []) {
   if (!fs.existsSync(file)) throw new Error(`[comparison-truth] generated route missing: ${route}`);
 
   const title = `${a.name} vs ${b.name} in Bangladesh | AI Premium Shop`;
-  const description = `Compare current AI Premium Shop public catalog evidence for ${a.name} and ${b.name}: published BDT price range and access modes, with provider-controlled features verified separately.`;
+  const description = `Compare current AI Premium Shop catalog records for ${a.name} and ${b.name}: governed published BDT price range and access modes, with provider-controlled features verified separately.`;
   const canonical = `${SITE}${route}`;
   const row = (family) => `<tr data-go6-product="${esc(family.slug)}"><th scope="row"><a href="${esc(family.href)}">${esc(family.name)}</a></th><td>${family.planCount}</td><td>${esc(priceText(family))}</td><td>${esc(family.accessModes.length ? family.accessModes.map(accessLabel).join(", ") : "Confirm before payment")}</td></tr>`;
   const related = (comparison.support_routes ?? []).filter((href) => href !== route).map((href) => `<li><a href="${esc(href)}">${esc(supportLabel(href))}</a></li>`).join("");
   const body = `<main data-go6-comparison="${esc(route)}">
 <nav aria-label="breadcrumb"><a href="/">Home</a> › <a href="/guides">Decision guides</a> › ${esc(a.name)} vs ${esc(b.name)}</nav>
 <h1>${esc(a.name)} vs ${esc(b.name)} in Bangladesh</h1>
-<p>This page is decision support, not a universal winner or a second product checkout page. It compares only the current governed AI Premium Shop public catalog evidence below. Exact product price/buy intent remains with each linked product page.</p>
+<p>Compare current AI Premium Shop catalog records for these two products below. This page is decision support, not a universal winner or a second product checkout page. Exact product price/buy intent remains with each linked product page.</p>
 <h2>Current AI Premium Shop catalog snapshot</h2>
 <table><thead><tr><th>Product</th><th>Current public plan records</th><th>Published AI Premium Shop price</th><th>Published access modes</th></tr></thead><tbody>${row(a)}${row(b)}</tbody></table>
 <p data-go6-access-rule>Only access modes currently published in the governed catalog are represented above. This comparison does not recommend or imply an unpublished access arrangement.</p>

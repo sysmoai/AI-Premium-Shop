@@ -16,62 +16,53 @@ const productRoutes = fs.readFileSync(path.join(APP, "src/lib/productRoutes.ts")
 const brandSlugs = new Set([...productRoutes.matchAll(/"([a-z0-9-]+)"/g)].map((match) => match[1]));
 
 const BLOCKED = [
-  "you can use shared access",
-  "compare shared plans",
-  "shared-access arrangement",
-  "shared credential",
-  "shared-credential",
-  "30-day warranty",
-  "30 day warranty",
-  "5-30 min",
-  "5–30 min",
-  "instant delivery",
-  "best value",
-  "cheapest",
-  "% off",
-  "official price",
-  "aggregateRating",
-  "reviewCount"
+  "you can use shared access", "compare shared plans", "shared-access arrangement",
+  "shared credential", "shared-credential", "30-day warranty", "30 day warranty",
+  "5-30 min", "5–30 min", "instant delivery", "best value", "cheapest", "% off",
+  "official price", "aggregateRating", "reviewCount"
 ];
 
-const esc = (value) => String(value ?? "")
-  .replace(/&/g, "&amp;")
-  .replace(/</g, "&lt;")
-  .replace(/>/g, "&gt;")
-  .replace(/"/g, "&quot;");
+const esc = (value) => String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const money = (value) => `BDT ${Number(value).toLocaleString("en-BD")}`;
 const baseName = (value) => String(value ?? "AI tool").split(/—\s*/)[0].split(/\s+-\s+/)[0].trim();
 const productHref = (slug) => brandSlugs.has(slug) ? `/${slug}` : `/product/${slug}`;
-const supportLabel = (route) => route
-  .replace(/^\//, "")
-  .replace(/^best-ai-for-/, "AI tools for ")
-  .replace(/^best-ai-subscription-2026$/, "AI subscription decision guide")
-  .replace(/^ai-under-/, "AI tools under BDT ")
-  .replace(/^chatgpt-vs-claude$/, "ChatGPT vs Claude")
-  .replace(/^chatgpt-vs-gemini$/, "ChatGPT vs Google AI Pro")
-  .replace(/^chatgpt-vs-perplexity$/, "ChatGPT vs Perplexity")
-  .replace(/^claude-vs-gemini$/, "Claude vs Google AI Pro")
-  .replace(/^canva-vs-adobe-express$/, "Canva vs Adobe Express")
-  .replace(/^copilot-vs-cursor$/, "GitHub Copilot vs Cursor")
-  .replace(/^midjourney-vs-ideogram$/, "Midjourney vs Ideogram")
-  .replaceAll("-", " ")
-  .replace(/\b\w/g, (character) => character.toUpperCase());
+const supportLabel = (route) => {
+  const exact = {
+    "/chatgpt-vs-claude": "ChatGPT vs Claude",
+    "/chatgpt-vs-gemini": "ChatGPT vs Google AI Pro",
+    "/chatgpt-vs-perplexity": "ChatGPT vs Perplexity",
+    "/claude-vs-gemini": "Claude vs Google AI Pro",
+    "/canva-vs-adobe-express": "Canva vs Adobe Express",
+    "/copilot-vs-cursor": "GitHub Copilot vs Cursor",
+    "/midjourney-vs-ideogram": "Midjourney vs Ideogram",
+    "/best-ai-subscription-2026": "AI subscription decision guide",
+    "/best-ai-for-students": "AI tools for students",
+    "/best-ai-for-freelancers": "AI tools for freelancers",
+    "/best-ai-for-creators": "AI tools for creators",
+    "/best-ai-for-business": "AI tools for business",
+    "/best-ai-for-developers": "AI tools for developers",
+    "/best-ai-for-job-seekers": "AI tools for job seekers",
+    "/best-ai-for-designers": "AI tools for designers",
+    "/best-ai-for-marketers": "AI tools for marketers",
+    "/best-ai-for-ecommerce": "AI tools for e-commerce",
+    "/ai-under-500": "AI tools under BDT 500",
+    "/ai-under-1000": "AI tools under BDT 1,000",
+    "/ai-under-3000": "AI tools under BDT 3,000"
+  };
+  return exact[route] ?? route.replace(/^\//, "").replaceAll("-", " ");
+};
 
 function currentFamily(slug) {
   const rows = products.filter((product) => product.slug === slug);
   if (!rows.length) throw new Error(`[comparison-truth] governed public family missing: ${slug}`);
-  const fixed = rows
-    .filter((row) => !row.requestPrice && typeof row.price === "number" && Number.isFinite(row.price) && row.price > 0)
-    .map((row) => Number(row.price));
-  const modes = [...new Set(rows.map((row) => row.accessType).filter(Boolean))];
+  const fixed = rows.filter((row) => !row.requestPrice && typeof row.price === "number" && Number.isFinite(row.price) && row.price > 0).map((row) => Number(row.price));
   return {
     slug,
-    rows,
     name: baseName(rows[0]?.brand || rows[0]?.name || slug),
     planCount: rows.length,
     minPrice: fixed.length ? Math.min(...fixed) : null,
     maxPrice: fixed.length ? Math.max(...fixed) : null,
-    accessModes: modes,
+    accessModes: [...new Set(rows.map((row) => row.accessType).filter(Boolean))],
     href: productHref(slug)
   };
 }
@@ -84,13 +75,11 @@ function accessLabel(mode) {
   if (mode === "setup-service" || mode === "setup" || mode === "service") return "Setup / service";
   return String(mode || "Confirm").replaceAll("-", " ");
 }
-
 function priceText(family) {
   if (family.minPrice == null) return "Current price on request";
   if (family.minPrice === family.maxPrice) return money(family.minPrice);
   return `${money(family.minPrice)}–${money(family.maxPrice)}`;
 }
-
 function removeRouteJsonLd(html) {
   return html.replace(/\s*<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi, (block, json) => {
     const lower = json.toLowerCase();
@@ -98,7 +87,6 @@ function removeRouteJsonLd(html) {
     return block;
   });
 }
-
 function setMeta(html, title, description, canonical) {
   let next = html
     .replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`)
@@ -109,15 +97,13 @@ function setMeta(html, title, description, canonical) {
     .replace(/(<meta\s+property=["']og:url["']\s+content=["'])[^"']*(["'])/i, `$1${esc(canonical)}$2`);
   return next.replace(/<\/head>/i, `  <link rel="canonical" href="${esc(canonical)}" />\n</head>`);
 }
-
 function replaceRoot(html, body) {
   const root = /<div\s+id=["']root["'][^>]*>/i.exec(html);
   const bodyEnd = html.search(/<\/body>/i);
   if (!root || bodyEnd < 0) throw new Error("[comparison-truth] cannot replace generated root");
   return `${html.slice(0, root.index)}<div id="root"><div id="prerender-shell">${body}</div></div>\n  ${html.slice(bodyEnd)}`;
 }
-
-function injectSchema(html, route, a, b, title, description) {
+function injectStaticBreadcrumb(html, route, a, b) {
   const canonical = `${SITE}${route}`;
   const breadcrumb = {
     "@context": "https://schema.org",
@@ -128,23 +114,13 @@ function injectSchema(html, route, a, b, title, description) {
       { "@type": "ListItem", position: 3, name: `${a.name} vs ${b.name}`, item: canonical }
     ]
   };
-  const webpage = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: title,
-    url: canonical,
-    description,
-    about: [a.name, b.name]
-  };
-  const scripts = `<script type="application/ld+json" data-go6-comparison-schema="breadcrumb">${JSON.stringify(breadcrumb)}</script>\n<script type="application/ld+json" data-go6-comparison-schema="webpage">${JSON.stringify(webpage)}</script>\n`;
-  return html.replace(/<\/head>/i, `${scripts}</head>`);
+  const script = `<script type="application/ld+json" data-go6-comparison-static="breadcrumb">${JSON.stringify(breadcrumb)}</script>\n`;
+  return html.replace(/<\/head>/i, `${script}</head>`);
 }
 
 let sanitized = 0;
 for (const comparison of ownership.comparisons ?? []) {
-  if (!Array.isArray(comparison.product_slugs) || comparison.product_slugs.length !== 2) {
-    throw new Error(`[comparison-truth] ${comparison.route} must map exactly two product owners`);
-  }
+  if (!Array.isArray(comparison.product_slugs) || comparison.product_slugs.length !== 2) throw new Error(`[comparison-truth] ${comparison.route} must map exactly two product owners`);
   const [a, b] = comparison.product_slugs.map(currentFamily);
   const route = comparison.route;
   const file = path.join(DIST, route.replace(/^\//, ""), "index.html");
@@ -174,12 +150,10 @@ ${related ? `<h2>Related decision guides</h2><ul>${related}</ul>` : ""}
   html = removeRouteJsonLd(html);
   html = setMeta(html, title, description, canonical);
   html = replaceRoot(html, body);
-  html = injectSchema(html, route, a, b, title, description);
+  html = injectStaticBreadcrumb(html, route, a, b);
 
   const lower = html.toLowerCase();
-  for (const phrase of BLOCKED) {
-    if (lower.includes(phrase.toLowerCase())) throw new Error(`[comparison-truth] ${route} contains blocked phrase: ${phrase}`);
-  }
+  for (const phrase of BLOCKED) if (lower.includes(phrase.toLowerCase())) throw new Error(`[comparison-truth] ${route} contains blocked phrase: ${phrase}`);
   if (!/<script\s+type=["']module["']/i.test(html)) throw new Error(`[comparison-truth] ${route} lost React runtime module script`);
   if ((html.match(/<link\s+rel=["']canonical["']/gi) ?? []).length !== 1) throw new Error(`[comparison-truth] ${route} must have exactly one canonical`);
   if (!lower.includes(`href="${a.href.toLowerCase()}"`) || !lower.includes(`href="${b.href.toLowerCase()}"`)) throw new Error(`[comparison-truth] ${route} lost product-owner links`);
@@ -187,4 +161,4 @@ ${related ? `<h2>Related decision guides</h2><ul>${related}</ul>` : ""}
   sanitized += 1;
 }
 
-console.log(`[comparison-truth] sanitized ${sanitized} governed comparison crawler pages; unpublished access modes are not implied`);
+console.log(`[comparison-truth] sanitized ${sanitized} governed comparison crawler pages; static BreadcrumbList + runtime WebPage have single ownership`);

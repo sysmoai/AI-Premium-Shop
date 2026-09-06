@@ -20,9 +20,7 @@ const productHref = (slug) => brandSlugs.has(slug) ? `/${slug}` : `/product/${sl
 const accessLabel = (mode) => mode === "personal" ? "Personal" : mode === "team" ? "Team" : mode === "bundle" ? "Bundle" : mode === "shared" ? "Shared" : (mode === "setup-service" || mode === "setup" || mode === "service") ? "Setup / service" : String(mode || "Confirm").replaceAll("-", " ");
 const money = (value) => `BDT ${Number(value).toLocaleString("en-BD")}`;
 
-function fileFor(route) {
-  return path.join(DIST, route.replace(/^\//, ""), "index.html");
-}
+function fileFor(route) { return path.join(DIST, route.replace(/^\//, ""), "index.html"); }
 function family(slug) {
   const rows = products.filter((product) => product.slug === slug);
   if (!rows.length) throw new Error(`[support-cluster-audit] governed product family missing: ${slug}`);
@@ -46,9 +44,7 @@ function getCanonical(html) {
 function jsonLdBlocks(html) {
   return [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)].map((match) => match[1]);
 }
-function hrefs(html) {
-  return [...html.matchAll(/href=["']([^"']+)["']/gi)].map((match) => match[1]);
-}
+function hrefs(html) { return [...html.matchAll(/href=["']([^"']+)["']/gi)].map((match) => match[1]); }
 
 const owners = [
   ...(ownership.comparisons ?? []).map((entry) => ({ ...entry, kind: "comparison" })),
@@ -57,8 +53,7 @@ const owners = [
   { ...(ownership.umbrella ?? {}), kind: "umbrella" }
 ].filter((entry) => entry.route);
 
-const expectedOwnerCount = 20;
-if (owners.length !== expectedOwnerCount) throw new Error(`[support-cluster-audit] expected ${expectedOwnerCount} support owners, found ${owners.length}`);
+if (owners.length !== 20) throw new Error(`[support-cluster-audit] expected 20 support owners, found ${owners.length}`);
 if (new Set(owners.map((owner) => owner.route)).size !== owners.length) throw new Error("[support-cluster-audit] duplicate canonical support route in ownership SSOT");
 
 const titles = new Map();
@@ -90,7 +85,6 @@ for (const owner of owners) {
       throw new Error(`[support-cluster-audit] ${route} contains commerce/review JSON-LD not allowed on support owners`);
     }
   }
-
   for (const href of hrefs(html)) {
     const local = href.startsWith(SITE) ? new URL(href).pathname : href.startsWith("/") ? href.split(/[?#]/)[0] : null;
     if (local && redirectSources.has(local)) throw new Error(`[support-cluster-audit] ${route} links to redirect-source alias ${local}`);
@@ -113,17 +107,14 @@ for (const owner of owners) {
       if (!hrefs(html).includes(productHref(slug))) throw new Error(`[support-cluster-audit] ${route} missing canonical product owner link for ${slug}`);
     }
     const schema = jsonLdBlocks(html).join("\n").toLowerCase();
-    if (!schema.includes('"@type":"webpage"') || !schema.includes('"@type":"breadcrumblist"')) throw new Error(`[support-cluster-audit] ${route} missing WebPage/BreadcrumbList semantics`);
+    if (!schema.includes('"@type":"breadcrumblist"')) throw new Error(`[support-cluster-audit] ${route} missing static BreadcrumbList semantics`);
+    if (schema.includes('"@type":"webpage"')) throw new Error(`[support-cluster-audit] ${route} static WebPage would duplicate the React runtime WebPage after hydration`);
   } else if (owner.kind === "budget") {
     budgets += 1;
     const records = products.filter((product) => !product.requestPrice && typeof product.price === "number" && product.price > 0 && product.price <= Number(owner.max_bdt));
     const families = new Set(records.map((product) => product.slug)).size;
-    if (!html.includes(`<strong>${records.length}</strong> fixed-price plan records across <strong>${families}</strong> tool families`)) {
-      throw new Error(`[support-cluster-audit] ${route} plan/family counts diverge from governed projection`);
-    }
-    for (const phrase of ["best value", "cheapest premium", "biggest savings", "% off"]) {
-      if (lower.includes(phrase)) throw new Error(`[support-cluster-audit] ${route} contains ranking/discount claim: ${phrase}`);
-    }
+    if (!html.includes(`<strong>${records.length}</strong> fixed-price plan records across <strong>${families}</strong> tool families`)) throw new Error(`[support-cluster-audit] ${route} plan/family counts diverge from governed projection`);
+    for (const phrase of ["best value", "cheapest premium", "biggest savings", "% off"]) if (lower.includes(phrase)) throw new Error(`[support-cluster-audit] ${route} contains ranking/discount claim: ${phrase}`);
   } else if (owner.kind === "audience") {
     audiences += 1;
     for (const slug of owner.product_slugs ?? []) {
@@ -132,14 +123,9 @@ for (const owner of owners) {
     }
   } else if (owner.kind === "umbrella") {
     umbrella += 1;
-    if (lower.includes("universal product ranking")) {
-      // The phrase is acceptable only in an explicit negative statement.
-      if (!lower.includes("not a universal product ranking")) throw new Error(`[support-cluster-audit] ${route} makes an unsupported universal ranking claim`);
-    }
+    if (lower.includes("universal product ranking") && !lower.includes("not a universal product ranking")) throw new Error(`[support-cluster-audit] ${route} makes an unsupported universal ranking claim`);
   }
 }
 
-if (comparisons !== 7 || audiences !== 9 || budgets !== 3 || umbrella !== 1) {
-  throw new Error(`[support-cluster-audit] owner-kind counts unexpected: comparisons=${comparisons}, audiences=${audiences}, budgets=${budgets}, umbrella=${umbrella}`);
-}
-console.log(`[support-cluster-audit] PASS: ${owners.length} canonical support owners (${comparisons} comparisons, ${audiences} audience guides, ${budgets} budget hubs, ${umbrella} umbrella); current price/access evidence aligned; legacy aliases and commerce/review schema excluded`);
+if (comparisons !== 7 || audiences !== 9 || budgets !== 3 || umbrella !== 1) throw new Error(`[support-cluster-audit] owner-kind counts unexpected: comparisons=${comparisons}, audiences=${audiences}, budgets=${budgets}, umbrella=${umbrella}`);
+console.log(`[support-cluster-audit] PASS: ${owners.length} canonical support owners (${comparisons} comparisons, ${audiences} audience guides, ${budgets} budget hubs, ${umbrella} umbrella); governed price/access aligned; static/runtime schema ownership single; legacy aliases and commerce/review schema excluded`);

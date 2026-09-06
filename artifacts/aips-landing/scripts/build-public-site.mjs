@@ -27,6 +27,7 @@ try {
   run(process.execPath, ["scripts/validate-indexnow-config.mjs"]);
   run(process.execPath, ["scripts/submit-indexnow.mjs", "ops/seo/indexnow-change-set-2026-09-04.json", "--dry-run"]);
   run(process.execPath, ["scripts/submit-indexnow.mjs", "ops/seo/indexnow-change-set-2026-09-07-go4-tier-a.json", "--dry-run"]);
+  run(process.execPath, ["scripts/submit-indexnow.mjs", "ops/seo/indexnow-change-set-2026-09-07-go5-tier-a.json", "--dry-run"]);
   run(process.execPath, ["scripts/validate-chatgpt-money-pages.mjs"]);
   run(process.execPath, ["scripts/validate-tier-a-money-pages.mjs"]);
   // The full provider registry validator lives at repo scope because provider

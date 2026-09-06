@@ -62,17 +62,29 @@ test("Midjourney keeps only governed commerce while blocked shared tiers stay ab
   expect(JSON.stringify(products[0])).not.toMatch(/authorized reseller|provider-authorized|aggregateRating|review/i);
 });
 
-test("Higgsfield remains inquiry-only with Product schema but no Offer", async ({ page }) => {
+test("Higgsfield remains inquiry-only and publishes only SSOT-approved payment methods", async ({ page }) => {
   await page.goto("/product/higgsfield-ai-bangladesh");
   await expect(page.getByText("Enquiry only — no payment is taken on this site.")).toBeVisible();
   await expect(page.locator("[data-tier-a-internal-links]")).toBeVisible();
   await expect(page.locator('script[data-tier-a-static="true"]')).toHaveCount(0);
   await expect(page.locator('script[data-tier-a-runtime="true"]')).toHaveCount(0);
+
+  const bodyText = await page.locator("body").innerText();
+  expect(bodyText).toMatch(/bKash/i);
+  expect(bodyText).toMatch(/Nagad/i);
+  expect(bodyText).not.toMatch(/\bRocket\b|bank transfer/i);
+
   const nodes = await jsonLd(page);
   const products = nodes.filter((node) => types(node).includes("Product"));
   const breadcrumbs = nodes.filter((node) => types(node).includes("BreadcrumbList"));
+  const faqPages = nodes.filter((node) => types(node).includes("FAQPage"));
   expect(products).toHaveLength(1);
   expect(breadcrumbs).toHaveLength(1);
   expect(products[0].offers).toBeUndefined();
-  expect(JSON.stringify(products[0])).not.toMatch(/"availability"|"aggregateRating"|"review"/i);
+  const schemaText = JSON.stringify(nodes);
+  expect(schemaText).not.toMatch(/"availability"|"aggregateRating"|"review"/i);
+  expect(schemaText).not.toMatch(/\bRocket\b|bank transfer/i);
+  expect(faqPages).toHaveLength(1);
+  expect(schemaText).toMatch(/bKash/i);
+  expect(schemaText).toMatch(/Nagad/i);
 });

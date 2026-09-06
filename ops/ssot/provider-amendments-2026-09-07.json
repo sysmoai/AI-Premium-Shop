@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-07T02:13:00+06:00",
+  "base_source": "ops/ssot/provider-sources.json",
+  "purpose": "Apply newer first-party provider evidence without rewriting the historical 2026-09-03 provider review snapshot. Amendments may only narrow publication or clarify provider-controlled facts; they do not create AI Premium Shop prices, availability, delivery, refund, warranty, review or authorization claims.",
+  "amendments": {
+    "anthropic": {
+      "provider_name": "Anthropic",
+      "reviewed_at": "2026-09-07",
+      "status": "reviewed-current-sources",
+      "add_sources": [
+        {
+          "id": "anthropic-consumer-terms-account-access-2026-09-07",
+          "url": "https://www.anthropic.com/legal/consumer-terms",
+          "source_type": "official-terms",
+          "fact_scope": "Claude consumer account credentials, account availability and resale",
+          "finding": "Anthropic Consumer Terms state that users may not share account login information, API keys or other account credentials with anyone else, may not make the account available to anyone else, and may not resell the Services.",
+          "classification": "account-credential-sharing-and-resale-prohibited"
+        }
+      ],
+      "access_policy": {
+        "multi_user_or_account_sharing": "account-and-credential-sharing-prohibited",
+        "vendor_authorized_shared_resale": "not-evidenced",
+        "aips_shared_catalog_compatibility": "conflicts-with-current-provider-terms"
+      },
+      "replace_public_catalog_controls": [
+        {
+          "id": "anthropic-shared-publication-block-2026-09-07",
+          "status": "ENFORCED",
+          "match": {
+            "provider": "Anthropic",
+            "accessType": "shared"
+          },
+          "nested_plan_match": {
+            "deliveryType": "shared"
+          },
+          "action": "exclude-from-approved-commerce-projection",
+          "evidence_refs": [
+            "anthropic-consumer-terms-account-access-2026-09-07"
+          ],
+          "reason": "Current Anthropic Consumer Terms prohibit sharing account credentials or making the account available to another person and prohibit resale of the Services. AI Premium Shop shared Claude rows are therefore excluded from approved public commerce while this evidence applies."
+        }
+      ],
+      "commerce_implication": {
+        "public_vendor_authorization_claim_allowed": false,
+        "shared_access_publication_block_enforced": true,
+        "automatic_publication_change_in_this_evidence_record": true,
+        "note": "The two raw shared Anthropic records are retained for audit but blocked from approved public commerce under the 2026-09-07 first-party Terms review. Personal or other non-shared catalog rows remain subject to normal AI Premium Shop truth controls and exact-order confirmation."
+      }
+    }
+  },
+  "expected_effective_state": {
+    "shared_provider_reviewed_provider_count": 37,
+    "shared_provider_reviewed_raw_record_count": 44,
+    "provider_specific_publication_blocks": 27
+  },
+  "rule": "The effective provider evidence is the historical base registry plus this amendment. Unknown provider authorization remains unknown. A provider-specific block applies only to the exact provider/access selector backed by first-party evidence."
+}

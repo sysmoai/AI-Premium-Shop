@@ -61,6 +61,6 @@ test("umbrella guide stays workflow-first and does not claim a universal winner"
   await expect(page.getByRole("heading", { level: 1, name: /Best AI Subscription|Choose the Best AI Subscription/i })).toBeVisible();
   const body = await page.locator("body").innerText();
   expect(body).not.toMatch(/#1 AI|number one AI|guaranteed best/i);
-  await expect(page.locator('a[href="/products"]')).toBeVisible();
-  await expect(page.locator('a[href="/pricing"]')).toBeVisible();
+  await expect(page.locator('a[href="/products"]').first()).toBeVisible();
+  await expect(page.getByRole("link", { name: "Current pricing", exact: true })).toBeVisible();
 });

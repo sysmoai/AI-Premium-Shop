@@ -75,7 +75,7 @@ function offerSchema(records, canonical) {
 }
 
 function jsonLd(value) {
-  return `<script type="application/ld+json">${JSON.stringify(value)}</script>`;
+  return `<script type="application/ld+json" data-tier-a-static="true">${JSON.stringify(value)}</script>`;
 }
 
 function schemaFor(route, records, isInformational) {

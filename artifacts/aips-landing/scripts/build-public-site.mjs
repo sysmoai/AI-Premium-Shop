@@ -71,9 +71,13 @@ try {
   run(process.execPath, ["scripts/enhance-tier-a-money-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-category-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-product-prerender.mjs"]);
+  // GO6 rebuilds existing comparison crawler pages from the governed public
+  // projection before the broader support-cluster link graph is applied.
+  run(process.execPath, ["scripts/sanitize-comparison-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-budget-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-guide-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-best-subscription-prerender.mjs"]);
+  run(process.execPath, ["scripts/apply-support-cluster-links.mjs"]);
   run(process.execPath, ["scripts/sanitize-blog-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-editorial-index-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-info-prerender.mjs"]);
@@ -87,6 +91,7 @@ try {
   // governed public artifacts, never from raw legacy catalog fallbacks.
   run(process.execPath, ["scripts/apply-tier-a-seo-layer.mjs"]);
   run(process.execPath, ["scripts/audit-tier-a-seo-layer.mjs"]);
+  run(process.execPath, ["scripts/audit-support-clusters.mjs"]);
   run(process.execPath, ["scripts/normalize-sitemap-metadata.mjs"]);
   run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
   run(process.execPath, ["scripts/audit-keyword-ownership.mjs"]);

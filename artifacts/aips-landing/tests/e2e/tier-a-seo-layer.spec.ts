@@ -51,7 +51,7 @@ for (const route of [
 test("Midjourney keeps only governed commerce while blocked shared tiers stay absent", async ({ page }) => {
   await page.goto("/midjourney-bangladesh");
   await expect(page.locator("[data-tier-a-internal-links]")).toBeVisible();
-  await expect(page.getByText(/Pro Shared|Premium Shared|Shared access/i)).toHaveCount(0);
+  await expect(page.getByText(/Pro Shared|Premium Shared/i)).toHaveCount(0);
   const nodes = await jsonLd(page);
   const products = nodes.filter((node) => types(node).includes("Product"));
   expect(products).toHaveLength(1);

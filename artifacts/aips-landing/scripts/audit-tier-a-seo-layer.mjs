@@ -69,8 +69,12 @@ for (const route of routes) {
   const isInformational = informational.has(slug) || records.length === 0;
   const isInquiry = route.inquiry_only === true;
   const canonical = `${SITE}${route.path}`;
+  const staticManagedScripts = [...html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*data-tier-a-static=["']true["'][^>]*>/gi)];
+  const expectedStaticScripts = isInformational ? 1 : 2;
 
   if (!html.includes(`rel="canonical" href="${canonical}"`)) fail(`${route.path}: canonical link missing/drifted`);
+  if (html.includes("data-tier-a-runtime")) fail(`${route.path}: runtime-only schema marker leaked into static artifact`);
+  if (staticManagedScripts.length !== expectedStaticScripts) fail(`${route.path}: expected ${expectedStaticScripts} hydration-handoff static schema marker(s), found ${staticManagedScripts.length}`);
   if (breadcrumbs.length !== 1) fail(`${route.path}: expected exactly one BreadcrumbList, found ${breadcrumbs.length}`);
   if (breadcrumbs.length === 1) {
     const items = breadcrumbs[0].itemListElement ?? [];
@@ -123,4 +127,4 @@ if (failures.length) {
   for (const message of failures) console.error(`- ${message}`);
   process.exit(1);
 }
-console.log(`[tier-a-seo-audit] PASS: 20 canonicals; commerce=${commerceCount}; informational=${informationalCount}; inquiry-only=${inquiryCount}; BreadcrumbList exact; Product offers projection-matched; protected merchant/review fields absent; internal link graph canonical-only`);
+console.log(`[tier-a-seo-audit] PASS: 20 canonicals; commerce=${commerceCount}; informational=${informationalCount}; inquiry-only=${inquiryCount}; BreadcrumbList exact; Product offers projection-matched; static/runtime handoff markers enforced; protected merchant/review fields absent; internal link graph canonical-only`);

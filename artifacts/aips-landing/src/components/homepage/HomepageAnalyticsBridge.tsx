@@ -22,6 +22,15 @@ export function HomepageAnalyticsBridge({ enabled }: HomepageAnalyticsBridgeProp
       const detail = (event as CustomEvent<HomepageAnalyticsEvent>).detail;
       if (!detail || typeof window.gtag !== "function") return;
 
+      if (detail.name === "homepage_whatsapp_click") {
+        window.gtag("event", "whatsapp_click", {
+          product_name: "general_assistance",
+          page_path: window.location.pathname,
+          button_location: detail.placement === "header" ? "homepage_header" : "homepage_final_cta",
+        });
+        return;
+      }
+
       const { name, ...parameters } = detail;
       window.gtag("event", name, parameters);
     };

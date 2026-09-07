@@ -18,6 +18,9 @@
 let sqlPromise = null;
 let schemaReady = false;
 
+// Native Neon integrations commonly expose DATABASE_URL; migrated Vercel
+// Postgres projects may still expose POSTGRES_URL, so keep both during the
+// transition without requiring an environment-variable cutover.
 function getConnectionString() {
   return process.env.DATABASE_URL || process.env.POSTGRES_URL || null;
 }

@@ -1,12 +1,12 @@
-// Durable conversation log for the AI Concierge (Vercel Postgres / Neon).
+// Durable conversation log for the AI Concierge (Neon Postgres).
 //
 // Two non-negotiables shaped this file:
 //
 // 1. THE CHAT MUST NEVER BREAK BECAUSE OF LOGGING. The database is optional.
-//    If POSTGRES_URL is unset (it is, until the store is provisioned), if the
-//    driver isn't installed, or if a write fails, every function here degrades
-//    to a no-op and the customer still gets their answer. Logging is a
-//    business convenience; answering is the product.
+//    If neither DATABASE_URL nor the legacy POSTGRES_URL is configured, if the
+//    driver cannot load, or if a write fails, every function here degrades to
+//    a no-op and the customer still gets their answer. Logging is a business
+//    convenience; answering is the product.
 //
 // 2. NOTHING UNREDACTED IS WRITTEN. Callers pass text through api/_redact.js
 //    first. This module does not see raw customer input by design, so a
@@ -18,12 +18,20 @@
 let sqlPromise = null;
 let schemaReady = false;
 
+// Native Neon integrations commonly expose DATABASE_URL; migrated Vercel
+// Postgres projects may still expose POSTGRES_URL, so keep both during the
+// transition without requiring an environment-variable cutover.
+function getConnectionString() {
+  return process.env.DATABASE_URL || process.env.POSTGRES_URL || null;
+}
+
 /** Lazily resolves the driver. Returns null when logging is not configured. */
 async function getSql() {
-  if (!process.env.POSTGRES_URL) return null;
+  const connectionString = getConnectionString();
+  if (!connectionString) return null;
   if (!sqlPromise) {
-    sqlPromise = import("@vercel/postgres")
-      .then((m) => m.sql)
+    sqlPromise = import("@neondatabase/serverless")
+      .then(({ neon }) => neon(connectionString, { fullResults: true }))
       .catch((e) => {
         console.error(JSON.stringify({ event: "store_driver_missing", error: String(e.message || e).slice(0, 120) }));
         return null;
@@ -33,7 +41,7 @@ async function getSql() {
 }
 
 export function storeEnabled() {
-  return !!process.env.POSTGRES_URL;
+  return !!getConnectionString();
 }
 
 // Created on first write rather than in a migration step, because this app has

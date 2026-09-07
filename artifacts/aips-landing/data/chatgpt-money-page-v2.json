@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-09-04",
+  "reviewed_at": "2026-09-08",
   "authority": {
     "scope": "ChatGPT money-page editorial and first-party provider-reference facts only",
     "commercial_source": "ops/ssot/commercial.json",
@@ -24,7 +24,21 @@
     },
     "go": {
       "official_reference": "Check OpenAI's current pricing page for the country and currency shown to the buyer",
-      "positioning": "ChatGPT Go is a lower-cost individual plan with expanded access to popular ChatGPT tools compared with Free. OpenAI says pricing can vary by country and currency and can change over time.",
+      "billing": "Billed monthly",
+      "positioning": "ChatGPT Go is a lower-cost individual plan with expanded access to popular ChatGPT tools compared with Free. OpenAI says Go is available in countries where ChatGPT is supported, while pricing can vary by country and currency and can change over time.",
+      "features": [
+        "Higher usage limits for eligible ChatGPT features than Free",
+        "Extended image generation",
+        "Extended file uploads",
+        "Extended advanced data analysis",
+        "Longer memory",
+        "Projects, tasks, custom GPTs and Library subject to current availability and limits"
+      ],
+      "caveats": [
+        "Some advanced products and higher-tier features may require Plus or another eligible plan",
+        "API usage is not included and is billed independently",
+        "Usage remains subject to plan limits, abuse guardrails and temporary restrictions during high demand"
+      ],
       "source_id": "openai-go"
     },
     "pro": {
@@ -65,8 +79,8 @@
     {
       "id": "openai-go",
       "title": "OpenAI Help Center — What is ChatGPT Go?",
-      "url": "https://help.openai.com/en/articles/11989085-what-is-chatgpt-go.com",
-      "checked_at": "2026-09-04"
+      "url": "https://help.openai.com/en/articles/11989085",
+      "checked_at": "2026-09-08"
     },
     {
       "id": "openai-pro",
@@ -84,10 +98,23 @@
       "id": "openai-pricing",
       "title": "OpenAI — ChatGPT pricing",
       "url": "https://chatgpt.com/pricing/",
-      "checked_at": "2026-09-04"
+      "checked_at": "2026-09-08"
     }
   ],
   "routes": {
+    "chatgpt-go-bangladesh": {
+      "path": "/chatgpt-go-bangladesh",
+      "page_type": "transactional",
+      "title": "ChatGPT Go Price in Bangladesh | AI Premium Shop",
+      "description": "ChatGPT Go in Bangladesh: compare the current AI Premium Shop personal price with OpenAI's Go plan details, bKash/Nagad and checks before payment.",
+      "h1": "ChatGPT Go Price in Bangladesh",
+      "kicker": "Lower-cost ChatGPT buying guide",
+      "source_ids": [
+        "openai-go",
+        "openai-account-sharing",
+        "openai-pricing"
+      ]
+    },
     "chatgpt-plus-bangladesh": {
       "path": "/chatgpt-plus-bangladesh",
       "page_type": "transactional",

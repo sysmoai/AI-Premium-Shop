@@ -1,0 +1,50 @@
+name: AIPS knowledge URL-path isolation
+
+on:
+  push:
+    branches:
+      - aips/concierge-knowledge-url-hardening-20260908
+
+permissions:
+  contents: write
+
+jobs:
+  edit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Remove remaining concierge-only fileURLToPath conversions
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('artifacts/aips-landing/api/_knowledge.js')
+          text = path.read_text()
+          old_import = 'import { fileURLToPath } from "node:url";\n'
+          old_catalog = 'readFileSync(fileURLToPath(new URL("./_catalog.json", import.meta.url)), "utf8").length'
+          old_policy = 'readFileSync(fileURLToPath(new URL("./_policy.json", import.meta.url)), "utf8").length'
+          new_catalog = 'readFileSync(new URL("./_catalog.json", import.meta.url), "utf8").length'
+          new_policy = 'readFileSync(new URL("./_policy.json", import.meta.url), "utf8").length'
+          if old_import not in text or old_catalog not in text or old_policy not in text:
+              raise SystemExit('expected knowledge URL-path pattern not found')
+          text = text.replace(old_import, '', 1)
+          text = text.replace(old_catalog, new_catalog, 1).replace(old_policy, new_policy, 1)
+          path.write_text(text)
+          PY
+          ! grep -q 'fileURLToPath' artifacts/aips-landing/api/_knowledge.js
+          ! grep -q 'from "node:url"' artifacts/aips-landing/api/_knowledge.js
+
+      - name: Commit source edit and remove one-shot workflow
+        shell: bash
+        run: |
+          rm .github/workflows/aips-knowledge-url-path-edit.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artifacts/aips-landing/api/_knowledge.js .github/workflows/aips-knowledge-url-path-edit.yml
+          git commit -m "fix: remove remaining concierge legacy URL conversion"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { MIN_PRICE, taka } from "@/lib/catalogStats";
 import { motion, AnimatePresence } from "framer-motion";
-import { WhatsAppLink } from "@/components/WhatsAppLink";
-import { AIPS_QUALIFIED_HELP_HREF } from "@/lib/whatsapp";
+
+const WHATSAPP_LINK = "https://wa.me/8801865385348";
 
 interface StickyMobileBarProps {
   heroRef?: React.RefObject<HTMLElement | null>;
@@ -44,15 +44,14 @@ export function StickyMobileBar({ heroRef }: StickyMobileBarProps) {
               <div className="text-xs" style={{ color: "#c9ceda" }}>AI tools starting from</div>
               <div className="text-lg font-semibold text-white">{taka(MIN_PRICE)}/month</div>
             </div>
-            <WhatsAppLink
-              href={AIPS_QUALIFIED_HELP_HREF}
-              productName="general_assistance"
-              buttonLocation="sticky_mobile"
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-cta px-6 py-3 rounded-xl text-sm font-semibold whitespace-nowrap"
-              data-testid="sticky-mobile-whatsapp"
             >
-              Find my AI plan
-            </WhatsAppLink>
+              Order Now
+            </a>
           </div>
         </motion.div>
       )}

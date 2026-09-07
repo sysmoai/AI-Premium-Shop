@@ -44,11 +44,20 @@ function auditCommon(slug, html) {
   if (!html.includes(`<h1>${route.h1}</h1>`)) fail(`${slug} H1 drift`);
   if (!lower.includes("first-party sources reviewed")) fail(`${slug} evidence section is missing`);
   if (!lower.includes("help.openai.com")) fail(`${slug} has no first-party OpenAI Help source link`);
-  if (!lower.includes("evidence reviewed 2026-09-04")) fail(`${slug} reviewed date is missing`);
+  if (!lower.includes(`evidence reviewed ${String(evidence.reviewed_at).toLowerCase()}`)) fail(`${slug} reviewed date is missing`);
   if (lower.includes("shared access")) fail(`${slug} exposes an OpenAI Shared access catalog row`);
   if (/"@type"\s*:\s*"faqpage"/i.test(html)) fail(`${slug} contains FAQPage schema without a governed FAQ evidence layer`);
   for (const phrase of BLOCKED) if (lower.includes(phrase.toLowerCase())) fail(`${slug} contains blocked phrase: ${phrase}`);
 }
+
+const go = read("chatgpt-go-bangladesh");
+auditCommon("chatgpt-go-bangladesh", go);
+if (!go.includes("bKash") || !go.includes("Nagad")) fail(`Go page missing approved AI Premium Shop payment references`);
+if (!go.toLowerCase().includes("account is meant for the individual who created it")) fail(`Go page missing account-sharing policy summary`);
+if (!go.includes("/chatgpt-plus-bangladesh") || !go.includes("/chatgpt-plans-bangladesh")) fail(`Go page does not link to Plus and plan-family owners`);
+if (!/BDT\s+[0-9,]+\/month/.test(go)) fail(`Go page missing governed local BDT listing`);
+if (!go.toLowerCase().includes("api usage is not included")) fail(`Go page missing current OpenAI API-billing caveat`);
+if (!go.includes("https://help.openai.com/en/articles/11989085")) fail(`Go page missing current OpenAI Go evidence URL`);
 
 const plus = read("chatgpt-plus-bangladesh");
 auditCommon("chatgpt-plus-bangladesh", plus);
@@ -66,8 +75,9 @@ for (const label of ["Go", "Plus", "Pro", "Business"]) {
 if (!plans.includes("$100 and $200 Pro tiers")) fail(`plan-family page missing current OpenAI Pro tier reference`);
 if (!plans.toLowerCase().includes("at least two paid seats")) fail(`plan-family page missing current OpenAI Business minimum-seat reference`);
 if (!plans.includes("/chatgpt-plus-bangladesh")) fail(`plan-family page does not link to exact Plus owner`);
+if (!plans.includes("/chatgpt-go-bangladesh")) fail(`plan-family page does not link to exact Go owner`);
 if (!plans.includes("OpenAI reference") || !plans.includes("Current AI Premium Shop listing")) fail(`plan-family page does not separate provider and local seller references`);
 
-if (plus === plans) fail(`Plus and plan-family artifacts are identical`);
+if (go === plus || go === plans || plus === plans) fail(`ChatGPT money-page artifacts must remain distinct by intent`);
 if (process.exitCode) process.exit(process.exitCode);
-console.log(`[chatgpt-money-audit] PASS: transactional Plus and broad plan-family artifacts have exact description tags, distinct intent, first-party evidence, canonical ownership, and no blocked OpenAI shared-access commerce`);
+console.log(`[chatgpt-money-audit] PASS: Go, Plus and broad plan-family artifacts have exact metadata, distinct intent, first-party evidence, canonical ownership, governed local listings and no blocked OpenAI shared-access commerce`);

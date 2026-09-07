@@ -8,11 +8,14 @@ function readMessage(href: string | null) {
   return url.searchParams.get("text") ?? "";
 }
 
-test("site-wide WhatsApp entry points prefill qualification context", async ({ page }) => {
-  await page.goto("/");
+test("primary site-wide WhatsApp entry points prefill qualification context", async ({ page }) => {
+  await page.goto("/products");
 
   const navbar = page.getByRole("link", { name: "Ask AIPS" });
   const floating = page.getByTestId("floating-whatsapp");
+
+  await expect(navbar).toBeVisible();
+  await expect(floating).toBeVisible();
 
   const navbarHref = await navbar.getAttribute("href");
   const floatingHref = await floating.getAttribute("href");
@@ -27,7 +30,10 @@ test("site-wide WhatsApp entry points prefill qualification context", async ({ p
 });
 
 test("floating WhatsApp CTA emits the controlled conversion event", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/products");
+
+  const floating = page.getByTestId("floating-whatsapp");
+  await expect(floating).toBeVisible();
 
   await page.evaluate(() => {
     const state = window as typeof window & { __aipsGtagEvents?: unknown[][] };
@@ -42,7 +48,7 @@ test("floating WhatsApp CTA emits the controlled conversion event", async ({ pag
     );
   });
 
-  await page.getByTestId("floating-whatsapp").click();
+  await floating.click();
 
   const events = await page.evaluate(() => {
     const state = window as typeof window & { __aipsGtagEvents?: unknown[][] };
@@ -54,7 +60,7 @@ test("floating WhatsApp CTA emits the controlled conversion event", async ({ pag
     "whatsapp_click",
     expect.objectContaining({
       product_name: "general_assistance",
-      page_path: "/",
+      page_path: "/products",
       button_location: "floating_sitewide",
     }),
   ]);

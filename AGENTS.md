@@ -36,4 +36,4 @@ Prohibited: passwords/OTPs, unapproved shared-seat or family-splitting delivery,
 A merge is not proof of a live fix. Search indexing is not considered recovered until external crawl/index evidence exists.
 
 ## Current publication state
-The public site is intentionally under commerce quarantine until `ops/ssot/commercial.json` permits publication. Do not remove quarantine or re-enable old commerce output by inference.
+Read the current publication flags in `ops/ssot/site.json` and `ops/ssot/commercial.json` rather than assuming a historical quarantine state. As checked on 2026-09-07, publication is allowed and quarantine is false. Provider-specific publication controls and unknown protected facts still apply; do not re-enable blocked legacy offers by inference.

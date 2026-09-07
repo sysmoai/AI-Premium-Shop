@@ -128,11 +128,14 @@ jobs:
       - name: Open an issue on failure
         if: failure()
         uses: actions/github-script@v8
+        env:
+          MONITOR_FAILURES: ${{ steps.check.outputs.failures }}
         with:
           script: |
+            const failures = process.env.MONITOR_FAILURES || '(see the workflow log)';
             const body = `Automated live-site check failed on ${new Date().toISOString()}.
 
-            ${{ steps.check.outputs.failures || '(see the workflow log)' }}
+            ${failures}
 
             Safety rule: do not assume the failing public route is served by Vercel or that reverting \`main\` is a valid production rollback. First identify the account-authoritative Cloudflare/origin route, verify the deployed build identity, and use the rollback candidate for that actual origin.
             Harness: \`ops/harness/homepage-v2.json\`.

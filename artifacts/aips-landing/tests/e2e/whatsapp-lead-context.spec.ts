@@ -13,8 +13,9 @@ test("primary site-wide WhatsApp entry points prefill qualification context", as
 
   // The public-build brand normalizer expands the internal AIPS shorthand in
   // browser chunks, so the real rendered accessible name must use the approved
-  // full public brand rather than the source-code abbreviation.
-  const navbar = page.getByRole("link", { name: "Ask AI Premium Shop" });
+  // full public brand rather than the source-code abbreviation. Scope this to
+  // the banner because product-card CTAs intentionally share the same label.
+  const navbar = page.getByRole("banner").getByRole("link", { name: "Ask AI Premium Shop" });
   const floating = page.getByTestId("floating-whatsapp");
 
   await expect(navbar).toBeVisible();

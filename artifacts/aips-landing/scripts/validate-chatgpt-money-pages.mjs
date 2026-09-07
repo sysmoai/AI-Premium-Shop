@@ -16,6 +16,7 @@ const commercial = JSON.parse(fs.readFileSync(COMMERCIAL_PATH, "utf8"));
 const providers = JSON.parse(fs.readFileSync(PROVIDER_PATH, "utf8"));
 
 const EXPECTED_ROUTES = new Map([
+  ["chatgpt-go-bangladesh", "/chatgpt-go-bangladesh"],
   ["chatgpt-plus-bangladesh", "/chatgpt-plus-bangladesh"],
   ["chatgpt-plans-bangladesh", "/chatgpt-plans-bangladesh"],
 ]);
@@ -130,8 +131,8 @@ const serialized = JSON.stringify(data).toLowerCase();
 for (const phrase of BLOCKED) {
   if (serialized.includes(phrase.toLowerCase())) fail(`evidence contains blocked commercial phrase: ${phrase}`);
 }
-if (/\bBDT\s*\d|৳\s*\d/i.test(JSON.stringify(data))) fail(`AIPS BDT prices must come from the governed public catalog, not the editorial evidence file`);
-if (/"(?:aips_)?price(?:_bdt)?"\s*:/i.test(JSON.stringify(data))) fail(`editorial evidence must not define an AIPS local price field`);
+if (/\bBDT\s*\d|৳\s*\d/i.test(JSON.stringify(data))) fail(`AI Premium Shop BDT prices must come from the governed public catalog, not the editorial evidence file`);
+if (/"(?:aips_)?price(?:_bdt)?"\s*:/i.test(JSON.stringify(data))) fail(`editorial evidence must not define an AI Premium Shop local price field`);
 
 if (process.exitCode) process.exit(process.exitCode);
 console.log(`[chatgpt-money-pages] PASS: ${routeEntries.length} owned routes, ${sourceIds.size} first-party sources, payment methods match commercial SSOT, OpenAI shared-access block remains enforced`);

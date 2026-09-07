@@ -21,7 +21,7 @@ type Props = {
 type FactKey = "go" | "plus" | "pro" | "business";
 
 const WHATSAPP = "https://wa.me/8801865385348";
-const ROUTES = new Set(["chatgpt-plus-bangladesh", "chatgpt-plans-bangladesh"]);
+const ROUTES = new Set(["chatgpt-go-bangladesh", "chatgpt-plus-bangladesh", "chatgpt-plans-bangladesh"]);
 
 function accessLabel(value?: string | null) {
   if (value === "personal") return "Personal access";
@@ -70,6 +70,86 @@ function SafetyPanel() {
         </div>
       </div>
     </section>
+  );
+}
+
+function GoPage({ products }: { products: Product[] }) {
+  const listing = currentPrice(products.filter((product) => product.slug === "chatgpt-go-bangladesh"));
+  const go = evidence.provider_facts.go;
+  const route = evidence.routes["chatgpt-go-bangladesh"];
+  const askUrl = `${WHATSAPP}?text=${encodeURIComponent("Hi, I want ChatGPT Go Personal. Please confirm the current AI Premium Shop price, personal access model, availability, delivery ETA and applicable order terms before payment.")}`;
+
+  return (
+    <div className="mx-auto max-w-6xl space-y-6 px-4 pb-12 md:px-8">
+      <section className="grid gap-4 lg:grid-cols-3" aria-label="ChatGPT Go quick answer">
+        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Current AI Premium Shop listing</p>
+          <p className="mt-3 text-2xl font-bold text-white">{listing?.price ? `${formatBDT(listing.price)}/month` : "Confirm current price"}</p>
+          <p className="mt-2 text-sm text-slate-300">{listing ? accessLabel(listing.accessType) : "Confirm exact access model"}. Exact order price is reconfirmed before payment.</p>
+        </article>
+        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">OpenAI provider reference</p>
+          <p className="mt-3 text-lg font-bold leading-7 text-[#f4b942]">{go.official_reference}</p>
+          <p className="mt-2 text-sm text-slate-300">{go.billing}. OpenAI's provider pricing is separate from the AI Premium Shop local catalog price.</p>
+        </article>
+        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Local payment at AI Premium Shop</p>
+          <p className="mt-3 text-2xl font-bold text-white">{evidence.local_payment.methods.join(" · ")}</p>
+          <p className="mt-2 text-sm text-slate-300">These are AI Premium Shop payment references. They do not describe payment methods accepted directly by OpenAI.</p>
+        </article>
+      </section>
+
+      <section className="grid gap-5 lg:grid-cols-[1fr_340px]">
+        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4b942]">What the provider currently says</p>
+          <h2 className="mt-2 text-2xl font-bold text-white">What ChatGPT Go is for</h2>
+          <p className="mt-3 text-sm leading-7 text-slate-300">{go.positioning}</p>
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+            {go.features.map((feature) => (
+              <li key={feature} className="flex gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 text-sm text-slate-200">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-5 rounded-xl border border-white/10 bg-white/[0.02] p-4">
+            <h3 className="text-sm font-bold text-white">Important provider limits</h3>
+            <ul className="mt-3 space-y-2 text-xs leading-5 text-slate-400">
+              {go.caveats.map((caveat) => <li key={caveat}>• {caveat}</li>)}
+            </ul>
+          </div>
+        </div>
+        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
+          <h2 className="text-lg font-bold text-white">Before ordering Go</h2>
+          <div className="mt-4 space-y-3 text-sm text-slate-300">
+            {["Confirm Personal access for the exact order.", "Reconfirm the current AI Premium Shop price before payment.", "Check OpenAI's current Go availability and plan limits for the account.", "Confirm availability, delivery ETA and applicable order terms."].map((item) => (
+              <div key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /><span>{item}</span></div>
+            ))}
+          </div>
+          <a href={askUrl} target="_blank" rel="noopener noreferrer" className="mt-5 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white">
+            <MessageCircle className="h-4 w-4" /> Confirm Go on WhatsApp
+          </a>
+        </div>
+      </section>
+
+      <SafetyPanel />
+
+      <section className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
+        <div className="flex items-start gap-3">
+          <Info className="mt-0.5 h-5 w-5 shrink-0 text-[#f4b942]" />
+          <div>
+            <h2 className="text-xl font-bold text-white">Go or Plus?</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-300">Go is positioned as a lower-cost individual plan with expanded access over Free. If you need broader advanced-plan capabilities, compare the exact current provider limits and the current AI Premium Shop listings before choosing.</p>
+            <div className="mt-4 flex flex-wrap gap-4">
+              <Link href="/chatgpt-plus-bangladesh" className="inline-flex items-center gap-2 text-sm font-bold text-[#f4b942]">Open the ChatGPT Plus guide <ArrowRight className="h-4 w-4" /></Link>
+              <Link href="/chatgpt-plans-bangladesh" className="inline-flex items-center gap-2 text-sm font-bold text-[#f4b942]">Compare all ChatGPT plans <ArrowRight className="h-4 w-4" /></Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SourceLinks ids={[...route.source_ids]} />
+    </div>
   );
 }
 
@@ -209,5 +289,7 @@ function PlansPage({ products }: { products: Product[] }) {
 
 export function ChatGPTMoneyPageV2({ brandSlug, products }: Props) {
   if (!ROUTES.has(brandSlug)) return null;
-  return brandSlug === "chatgpt-plus-bangladesh" ? <PlusPage products={products} /> : <PlansPage products={products} />;
+  if (brandSlug === "chatgpt-go-bangladesh") return <GoPage products={products} />;
+  if (brandSlug === "chatgpt-plus-bangladesh") return <PlusPage products={products} />;
+  return <PlansPage products={products} />;
 }

@@ -9,7 +9,6 @@ interface WhatsAppLinkProps {
   style?: React.CSSProperties;
   "aria-label"?: string;
   "data-testid"?: string;
-  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
   onMouseEnter?: (event: MouseEvent<HTMLAnchorElement>) => void;
   onMouseLeave?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }
@@ -23,11 +22,10 @@ export function WhatsAppLink({
   style,
   "aria-label": ariaLabel,
   "data-testid": testId,
-  onClick,
   onMouseEnter,
   onMouseLeave,
 }: WhatsAppLinkProps) {
-  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (_e: MouseEvent<HTMLAnchorElement>) => {
     if (typeof window.gtag === "function") {
       window.gtag("event", "whatsapp_click", {
         product_name: productName ?? "unknown",
@@ -40,7 +38,6 @@ export function WhatsAppLink({
         content_name: productName ?? buttonLocation,
       });
     }
-    onClick?.(event);
   };
 
   return (

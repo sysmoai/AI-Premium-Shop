@@ -8,6 +8,7 @@
 // 3. This module refuses to start if protected catalog fields survived that
 //    projection, and it mechanically blocks a small set of known stale claims
 //    from model output before they reach the customer.
+import "./_dep0169-trace.js";
 import { randomUUID } from "node:crypto";
 import { redact, containsCredential } from "./_redact.js";
 import { logTurn } from "./_store.js";

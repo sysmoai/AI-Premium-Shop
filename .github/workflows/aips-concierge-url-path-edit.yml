@@ -1,0 +1,47 @@
+name: AIPS concierge URL-path experiment
+
+on:
+  push:
+    branches:
+      - aips/concierge-url-path-hardening-20260908
+
+permissions:
+  contents: write
+
+jobs:
+  edit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use WHATWG URL directly with fs.readFileSync
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('artifacts/aips-landing/api/concierge.js')
+          text = path.read_text()
+          old_import = 'import { fileURLToPath } from "node:url";\n'
+          old_read = 'const readAdjacentJson = (name) => JSON.parse(readFileSync(fileURLToPath(new URL(name, import.meta.url)), "utf8"));'
+          new_read = 'const readAdjacentJson = (name) => JSON.parse(readFileSync(new URL(name, import.meta.url), "utf8"));'
+          if old_import not in text or old_read not in text:
+              raise SystemExit('expected concierge URL-path pattern not found')
+          text = text.replace(old_import, '', 1).replace(old_read, new_read, 1)
+          path.write_text(text)
+          PY
+          ! grep -q 'fileURLToPath' artifacts/aips-landing/api/concierge.js
+          ! grep -q 'from "node:url"' artifacts/aips-landing/api/concierge.js
+
+      - name: Commit source edit and remove one-shot workflow
+        shell: bash
+        run: |
+          rm .github/workflows/aips-concierge-url-path-edit.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artifacts/aips-landing/api/concierge.js .github/workflows/aips-concierge-url-path-edit.yml
+          git commit -m "fix: use WHATWG URL directly for concierge assets"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

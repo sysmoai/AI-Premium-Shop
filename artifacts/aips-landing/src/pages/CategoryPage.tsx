@@ -280,6 +280,21 @@ export default function CategoryPage({ categoryId }: { categoryId: string }) {
           </div>
         </motion.header>
 
+        {categoryId === "ai-video" && (
+          <section className="mb-12 rounded-2xl border border-white/10 p-6 md:p-8" style={{ backgroundColor: "rgba(21,27,61,0.65)" }}>
+            <p className="text-xs uppercase tracking-[0.18em] font-semibold mb-2" style={{ color: config.accent }}>Choose by workflow</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Which AI video tool do you actually need?</h2>
+            <p className="max-w-3xl leading-relaxed mb-6" style={{ color: "#c9ceda" }}>Start with the job, not the brand name. AI video covers several different workflows, so choosing by the output you need is more useful than comparing a long feature list.</p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="rounded-xl border border-white/10 p-4"><h3 className="font-semibold text-white mb-1">Generate new footage</h3><p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>Compare tools when you need a new clip created from a prompt, image or other source material.</p></div>
+              <div className="rounded-xl border border-white/10 p-4"><h3 className="font-semibold text-white mb-1">Edit existing footage</h3><p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>Prioritize an editing workflow when you already have video and mainly need to refine, restructure or finish it.</p></div>
+              <div className="rounded-xl border border-white/10 p-4"><h3 className="font-semibold text-white mb-1">Presenter or avatar workflow</h3><p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>Verify consent, voice, export and usage rules for the exact plan before using synthetic presenters or voices.</p></div>
+              <div className="rounded-xl border border-white/10 p-4"><h3 className="font-semibold text-white mb-1">Repurpose long video</h3><p className="text-sm leading-relaxed" style={{ color: "#c9ceda" }}>Compare clipping, reframing, caption and export workflow before paying for generation capacity you may not need.</p></div>
+            </div>
+            <p className="text-sm leading-relaxed mt-5" style={{ color: "#c9ceda" }}>For any option, verify provider-controlled credits, duration, watermark, export, licensing and other plan limits before payment.</p>
+          </section>
+        )}
+
         <section className="grid lg:grid-cols-[1fr_350px] gap-6 mb-12">
           <div>
             <div className="flex items-end justify-between gap-4 mb-5">

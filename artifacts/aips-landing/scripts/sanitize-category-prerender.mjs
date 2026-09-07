@@ -106,6 +106,10 @@ function replaceRoot(html, body) {
   return `${html.slice(0, root.index)}<div id="root"><div id="prerender-shell">${body}</div></div>\n  ${html.slice(bodyEnd)}`;
 }
 
+function aiVideoIntentBody() {
+  return `<section><h2>Which AI video tool do you actually need?</h2><p>Start with the job, not the brand name. AI video covers several different workflows, so choosing by the output you need is more useful than comparing a long feature list.</p><ul><li><strong>Generate new footage:</strong> compare tools when you need a new clip created from a prompt, image or other source material.</li><li><strong>Edit existing footage:</strong> prioritize an editing workflow when you already have video and mainly need to refine, restructure or finish it.</li><li><strong>Presenter or avatar workflow:</strong> verify consent, voice, export and usage rules for the exact plan before using synthetic presenters or voices.</li><li><strong>Repurpose long video:</strong> compare clipping, reframing, caption and export workflow before paying for generation capacity you may not need.</li></ul><p>For any option, verify provider-controlled credits, duration, watermark, export, licensing and other plan limits before payment.</p></section>`;
+}
+
 let rewritten = 0;
 for (const [category, meta] of Object.entries(CATEGORIES)) {
   const route = category === "bundles" ? "/bundles" : `/${category}`;
@@ -116,7 +120,8 @@ for (const [category, meta] of Object.entries(CATEGORIES)) {
     const price = family.minPrice ? `From ${fmtBDT(family.minPrice)}` : "Current price on request";
     return `<li><strong><a href="${esc(productHref(family.slug))}">${esc(family.label)}</a></strong> — ${esc(price)} · ${esc(family.access.join(", "))} · ${family.planCount} plan record${family.planCount === 1 ? "" : "s"}</li>`;
   }).join("");
-  const body = `<main><nav aria-label="breadcrumb"><a href="/">Home</a> › ${esc(meta.heading)}</nav><h1>${esc(meta.heading)}</h1><p>Browse current public AIPS catalog families in this category. Compare published AIPS entry prices and access models; provider-controlled features, credits, quotas, licensing and limits must be checked for the exact plan.</p><p>${families.length} current catalog families.</p><h2>Current catalog families</h2>${list ? `<ul>${list}</ul>` : "<p>No current public catalog families are published in this category.</p>"}<h2>Before choosing</h2><ul><li>Choose an access model appropriate to your data and workflow.</li><li>Verify provider-controlled features and limits for the exact plan.</li><li>Confirm current availability, delivery ETA and applicable terms before payment.</li></ul><p><a href="/products">All AI tools</a> · <a href="/pricing">Current pricing</a> · <a href="/guides">Decision guides</a></p></main>`;
+  const intent = category === "ai-video" ? aiVideoIntentBody() : "";
+  const body = `<main><nav aria-label="breadcrumb"><a href="/">Home</a> › ${esc(meta.heading)}</nav><h1>${esc(meta.heading)}</h1><p>Browse current public AIPS catalog families in this category. Compare published AIPS entry prices and access models; provider-controlled features, credits, quotas, licensing and limits must be checked for the exact plan.</p><p>${families.length} current catalog families.</p>${intent}<h2>Current catalog families</h2>${list ? `<ul>${list}</ul>` : "<p>No current public catalog families are published in this category.</p>"}<h2>Before choosing</h2><ul><li>Choose an access model appropriate to your data and workflow.</li><li>Verify provider-controlled features and limits for the exact plan.</li><li>Confirm current availability, delivery ETA and applicable terms before payment.</li></ul><p><a href="/products">All AI tools</a> · <a href="/pricing">Current pricing</a> · <a href="/guides">Decision guides</a></p></main>`;
 
   let html = fs.readFileSync(file, "utf8");
   html = removeUnsafeJsonLd(html);
@@ -127,6 +132,7 @@ for (const [category, meta] of Object.entries(CATEGORIES)) {
   for (const phrase of BLOCKED) {
     if (lower.includes(phrase.toLowerCase())) throw new Error(`[category-truth] ${route} still contains blocked phrase: ${phrase}`);
   }
+  if (category === "ai-video" && !lower.includes("which ai video tool do you actually need?")) throw new Error("[category-truth] /ai-video lost its governed decision-intent section");
   if (/"@type"\s*:\s*"FAQPage"/i.test(html)) throw new Error(`[category-truth] ${route} still contains FAQPage schema`);
   if (!/<script\s+type=["']module["']/i.test(html)) throw new Error(`[category-truth] ${route} lost React runtime module script`);
   if (!lower.includes(`rel="canonical" href="${SITE.toLowerCase()}${route}"`)) throw new Error(`[category-truth] ${route} canonical mismatch`);

@@ -9,14 +9,13 @@
 //    projection, and it mechanically blocks a small set of known stale claims
 //    from model output before they reach the customer.
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import { randomUUID } from "node:crypto";
 import { redact, containsCredential } from "./_redact.js";
 import { logTurn } from "./_store.js";
 import { knowledgeFor } from "./_knowledge.js";
 import { tokenMatches } from "./_auth.js";
 
-const readAdjacentJson = (name) => JSON.parse(readFileSync(fileURLToPath(new URL(name, import.meta.url)), "utf8"));
+const readAdjacentJson = (name) => JSON.parse(readFileSync(new URL(name, import.meta.url), "utf8"));
 const catalog = readAdjacentJson("./_catalog.json");
 const policy = readAdjacentJson("./_policy.json");
 

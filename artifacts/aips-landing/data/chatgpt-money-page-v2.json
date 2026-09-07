@@ -48,7 +48,21 @@
     },
     "business": {
       "official_reference": "Standard: $25/user monthly or $20/user/month billed annually; Premium: $125/user monthly or $100/user/month billed annually",
-      "positioning": "ChatGPT Business is a team workspace with centralized billing and admin controls. OpenAI currently requires at least two paid seats, which can be Standard, Premium, or a mix.",
+      "billing": "Monthly or annual billing at the workspace level",
+      "positioning": "ChatGPT Business is a self-serve team workspace. OpenAI currently requires at least two paid seats, allows Standard and Premium seats to be mixed, and supports up to 200 paid seats for current workspaces.",
+      "features": [
+        "Standard and Premium paid seat types can be mixed in one workspace",
+        "Centralized workspace billing and administration",
+        "Standard seats include ChatGPT, ChatGPT Work and Codex subject to current included limits",
+        "Premium seats provide a higher usage allotment than Standard",
+        "Current workspaces support 2 to 200 paid Standard and Premium seats combined"
+      ],
+      "caveats": [
+        "At least two paid Standard or Premium seats are required for a new Business workspace",
+        "Prices listed by OpenAI are in USD and may vary by country and currency",
+        "API usage is separate from the Business workspace subscription and billed independently",
+        "OpenAI plan structure, included usage and workspace limits can change over time"
+      ],
       "source_id": "openai-business"
     },
     "account_policy": {
@@ -92,7 +106,13 @@
       "id": "openai-business",
       "title": "OpenAI Help Center — ChatGPT Business: General FAQ",
       "url": "https://help.openai.com/en/articles/8542115",
-      "checked_at": "2026-09-04"
+      "checked_at": "2026-09-07"
+    },
+    {
+      "id": "openai-business-overview",
+      "title": "OpenAI Help Center — ChatGPT Business Overview",
+      "url": "https://help.openai.com/en/articles/8792828",
+      "checked_at": "2026-09-07"
     },
     {
       "id": "openai-pricing",
@@ -128,6 +148,19 @@
         "openai-pricing"
       ]
     },
+    "chatgpt-business-bangladesh": {
+      "path": "/chatgpt-business-bangladesh",
+      "page_type": "transactional",
+      "title": "ChatGPT Business Price in Bangladesh | AI Premium Shop",
+      "description": "ChatGPT Business in Bangladesh: compare the current AI Premium Shop listing with OpenAI Standard/Premium seat rules and checks before payment.",
+      "h1": "ChatGPT Business Price in Bangladesh",
+      "kicker": "Team workspace buying guide",
+      "source_ids": [
+        "openai-business",
+        "openai-business-overview",
+        "openai-pricing"
+      ]
+    },
     "chatgpt-plans-bangladesh": {
       "path": "/chatgpt-plans-bangladesh",
       "page_type": "comparison",
@@ -140,6 +173,7 @@
         "openai-plus",
         "openai-pro",
         "openai-business",
+        "openai-business-overview",
         "openai-account-sharing",
         "openai-pricing"
       ]

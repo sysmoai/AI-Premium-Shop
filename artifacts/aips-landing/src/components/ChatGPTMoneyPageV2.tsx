@@ -21,7 +21,7 @@ type Props = {
 type FactKey = "go" | "plus" | "pro" | "business";
 
 const WHATSAPP = "https://wa.me/8801865385348";
-const ROUTES = new Set(["chatgpt-go-bangladesh", "chatgpt-plus-bangladesh", "chatgpt-plans-bangladesh"]);
+const ROUTES = new Set(["chatgpt-go-bangladesh", "chatgpt-plus-bangladesh", "chatgpt-business-bangladesh", "chatgpt-plans-bangladesh"]);
 
 function accessLabel(value?: string | null) {
   if (value === "personal") return "Personal access";
@@ -78,76 +78,19 @@ function GoPage({ products }: { products: Product[] }) {
   const go = evidence.provider_facts.go;
   const route = evidence.routes["chatgpt-go-bangladesh"];
   const askUrl = `${WHATSAPP}?text=${encodeURIComponent("Hi, I want ChatGPT Go Personal. Please confirm the current AI Premium Shop price, personal access model, availability, delivery ETA and applicable order terms before payment.")}`;
-
   return (
     <div className="mx-auto max-w-6xl space-y-6 px-4 pb-12 md:px-8">
       <section className="grid gap-4 lg:grid-cols-3" aria-label="ChatGPT Go quick answer">
-        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Current AI Premium Shop listing</p>
-          <p className="mt-3 text-2xl font-bold text-white">{listing?.price ? `${formatBDT(listing.price)}/month` : "Confirm current price"}</p>
-          <p className="mt-2 text-sm text-slate-300">{listing ? accessLabel(listing.accessType) : "Confirm exact access model"}. Exact order price is reconfirmed before payment.</p>
-        </article>
-        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">OpenAI provider reference</p>
-          <p className="mt-3 text-lg font-bold leading-7 text-[#f4b942]">{go.official_reference}</p>
-          <p className="mt-2 text-sm text-slate-300">{go.billing}. OpenAI's provider pricing is separate from the AI Premium Shop local catalog price.</p>
-        </article>
-        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Local payment at AI Premium Shop</p>
-          <p className="mt-3 text-2xl font-bold text-white">{evidence.local_payment.methods.join(" · ")}</p>
-          <p className="mt-2 text-sm text-slate-300">These are AI Premium Shop payment references. They do not describe payment methods accepted directly by OpenAI.</p>
-        </article>
+        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Current AI Premium Shop listing</p><p className="mt-3 text-2xl font-bold text-white">{listing?.price ? `${formatBDT(listing.price)}/month` : "Confirm current price"}</p><p className="mt-2 text-sm text-slate-300">{listing ? accessLabel(listing.accessType) : "Confirm exact access model"}. Exact order price is reconfirmed before payment.</p></article>
+        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">OpenAI provider reference</p><p className="mt-3 text-lg font-bold leading-7 text-[#f4b942]">{go.official_reference}</p><p className="mt-2 text-sm text-slate-300">{go.billing}. OpenAI's provider pricing is separate from the AI Premium Shop local catalog price.</p></article>
+        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Local payment at AI Premium Shop</p><p className="mt-3 text-2xl font-bold text-white">{evidence.local_payment.methods.join(" · ")}</p><p className="mt-2 text-sm text-slate-300">These are AI Premium Shop payment references. They do not describe payment methods accepted directly by OpenAI.</p></article>
       </section>
-
       <section className="grid gap-5 lg:grid-cols-[1fr_340px]">
-        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4b942]">What the provider currently says</p>
-          <h2 className="mt-2 text-2xl font-bold text-white">What ChatGPT Go is for</h2>
-          <p className="mt-3 text-sm leading-7 text-slate-300">{go.positioning}</p>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-            {go.features.map((feature) => (
-              <li key={feature} className="flex gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 text-sm text-slate-200">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-5 rounded-xl border border-white/10 bg-white/[0.02] p-4">
-            <h3 className="text-sm font-bold text-white">Important provider limits</h3>
-            <ul className="mt-3 space-y-2 text-xs leading-5 text-slate-400">
-              {go.caveats.map((caveat) => <li key={caveat}>• {caveat}</li>)}
-            </ul>
-          </div>
-        </div>
-        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
-          <h2 className="text-lg font-bold text-white">Before ordering Go</h2>
-          <div className="mt-4 space-y-3 text-sm text-slate-300">
-            {["Confirm Personal access for the exact order.", "Reconfirm the current AI Premium Shop price before payment.", "Check OpenAI's current Go availability and plan limits for the account.", "Confirm availability, delivery ETA and applicable order terms."].map((item) => (
-              <div key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /><span>{item}</span></div>
-            ))}
-          </div>
-          <a href={askUrl} target="_blank" rel="noopener noreferrer" className="mt-5 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white">
-            <MessageCircle className="h-4 w-4" /> Confirm Go on WhatsApp
-          </a>
-        </div>
+        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4b942]">What the provider currently says</p><h2 className="mt-2 text-2xl font-bold text-white">What ChatGPT Go is for</h2><p className="mt-3 text-sm leading-7 text-slate-300">{go.positioning}</p><ul className="mt-5 grid gap-3 sm:grid-cols-2">{go.features.map((feature) => <li key={feature} className="flex gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 text-sm text-slate-200"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /><span>{feature}</span></li>)}</ul><div className="mt-5 rounded-xl border border-white/10 bg-white/[0.02] p-4"><h3 className="text-sm font-bold text-white">Important provider limits</h3><ul className="mt-3 space-y-2 text-xs leading-5 text-slate-400">{go.caveats.map((caveat) => <li key={caveat}>• {caveat}</li>)}</ul></div></div>
+        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="text-lg font-bold text-white">Before ordering Go</h2><div className="mt-4 space-y-3 text-sm text-slate-300">{["Confirm Personal access for the exact order.", "Reconfirm the current AI Premium Shop price before payment.", "Check OpenAI's current Go availability and plan limits for the account.", "Confirm availability, delivery ETA and applicable order terms."].map((item) => <div key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /><span>{item}</span></div>)}</div><a href={askUrl} target="_blank" rel="noopener noreferrer" className="mt-5 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Confirm Go on WhatsApp</a></div>
       </section>
-
       <SafetyPanel />
-
-      <section className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
-        <div className="flex items-start gap-3">
-          <Info className="mt-0.5 h-5 w-5 shrink-0 text-[#f4b942]" />
-          <div>
-            <h2 className="text-xl font-bold text-white">Go or Plus?</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-300">Go is positioned as a lower-cost individual plan with expanded access over Free. If you need broader advanced-plan capabilities, compare the exact current provider limits and the current AI Premium Shop listings before choosing.</p>
-            <div className="mt-4 flex flex-wrap gap-4">
-              <Link href="/chatgpt-plus-bangladesh" className="inline-flex items-center gap-2 text-sm font-bold text-[#f4b942]">Open the ChatGPT Plus guide <ArrowRight className="h-4 w-4" /></Link>
-              <Link href="/chatgpt-plans-bangladesh" className="inline-flex items-center gap-2 text-sm font-bold text-[#f4b942]">Compare all ChatGPT plans <ArrowRight className="h-4 w-4" /></Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <section className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><div className="flex items-start gap-3"><Info className="mt-0.5 h-5 w-5 shrink-0 text-[#f4b942]" /><div><h2 className="text-xl font-bold text-white">Go or Plus?</h2><p className="mt-2 text-sm leading-6 text-slate-300">Go is positioned as a lower-cost individual plan with expanded access over Free. If you need broader advanced-plan capabilities, compare the exact current provider limits and the current AI Premium Shop listings before choosing.</p><div className="mt-4 flex flex-wrap gap-4"><Link href="/chatgpt-plus-bangladesh" className="inline-flex items-center gap-2 text-sm font-bold text-[#f4b942]">Open the ChatGPT Plus guide <ArrowRight className="h-4 w-4" /></Link><Link href="/chatgpt-plans-bangladesh" className="inline-flex items-center gap-2 text-sm font-bold text-[#f4b942]">Compare all ChatGPT plans <ArrowRight className="h-4 w-4" /></Link></div></div></div></section>
       <SourceLinks ids={[...route.source_ids]} />
     </div>
   );
@@ -158,68 +101,42 @@ function PlusPage({ products }: { products: Product[] }) {
   const plus = evidence.provider_facts.plus;
   const route = evidence.routes["chatgpt-plus-bangladesh"];
   const askUrl = `${WHATSAPP}?text=${encodeURIComponent("Hi, I want ChatGPT Plus Personal. Please confirm the current AI Premium Shop price, personal access model, availability, delivery ETA and applicable order terms before payment.")}`;
-
   return (
     <div className="mx-auto max-w-6xl space-y-6 px-4 pb-12 md:px-8">
       <section className="grid gap-4 lg:grid-cols-3" aria-label="ChatGPT Plus quick answer">
-        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Current AI Premium Shop listing</p>
-          <p className="mt-3 text-2xl font-bold text-white">{listing?.price ? `${formatBDT(listing.price)}/month` : "Confirm current price"}</p>
-          <p className="mt-2 text-sm text-slate-300">{listing ? accessLabel(listing.accessType) : "Confirm exact access model"}. Exact order price is reconfirmed before payment.</p>
-        </article>
-        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">OpenAI provider reference</p>
-          <p className="mt-3 text-2xl font-bold text-[#f4b942]">{plus.official_reference}</p>
-          <p className="mt-2 text-sm text-slate-300">{plus.billing}. This is OpenAI's provider price reference, not an AI Premium Shop MSRP or discount claim.</p>
-        </article>
-        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Local payment at AI Premium Shop</p>
-          <p className="mt-3 text-2xl font-bold text-white">{evidence.local_payment.methods.join(" · ")}</p>
-          <p className="mt-2 text-sm text-slate-300">These are AI Premium Shop payment references. They do not describe payment methods accepted directly by OpenAI.</p>
-        </article>
+        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Current AI Premium Shop listing</p><p className="mt-3 text-2xl font-bold text-white">{listing?.price ? `${formatBDT(listing.price)}/month` : "Confirm current price"}</p><p className="mt-2 text-sm text-slate-300">{listing ? accessLabel(listing.accessType) : "Confirm exact access model"}. Exact order price is reconfirmed before payment.</p></article>
+        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">OpenAI provider reference</p><p className="mt-3 text-2xl font-bold text-[#f4b942]">{plus.official_reference}</p><p className="mt-2 text-sm text-slate-300">{plus.billing}. This is OpenAI's provider price reference, not an AI Premium Shop MSRP or discount claim.</p></article>
+        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Local payment at AI Premium Shop</p><p className="mt-3 text-2xl font-bold text-white">{evidence.local_payment.methods.join(" · ")}</p><p className="mt-2 text-sm text-slate-300">These are AI Premium Shop payment references. They do not describe payment methods accepted directly by OpenAI.</p></article>
       </section>
-
       <section className="grid gap-5 lg:grid-cols-[1fr_340px]">
-        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4b942]">What the provider currently says</p>
-          <h2 className="mt-2 text-2xl font-bold text-white">What ChatGPT Plus is for</h2>
-          <p className="mt-3 text-sm leading-7 text-slate-300">{plus.positioning}</p>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-            {plus.features.map((feature) => (
-              <li key={feature} className="flex gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 text-sm text-slate-200">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 text-xs leading-5 text-slate-500">Model names, feature availability and usage limits are provider-controlled and can change. Verify the current model picker and provider documentation for the exact account.</p>
-        </div>
-        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
-          <h2 className="text-lg font-bold text-white">Before ordering Plus</h2>
-          <div className="mt-4 space-y-3 text-sm text-slate-300">
-            {["Confirm Personal access for the exact order.", "Reconfirm the current AI Premium Shop price before payment.", "Check current OpenAI model and usage limits for Plus.", "Confirm availability, delivery ETA and applicable order terms."].map((item) => (
-              <div key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /><span>{item}</span></div>
-            ))}
-          </div>
-          <a href={askUrl} target="_blank" rel="noopener noreferrer" className="mt-5 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white">
-            <MessageCircle className="h-4 w-4" /> Confirm Plus on WhatsApp
-          </a>
-        </div>
+        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4b942]">What the provider currently says</p><h2 className="mt-2 text-2xl font-bold text-white">What ChatGPT Plus is for</h2><p className="mt-3 text-sm leading-7 text-slate-300">{plus.positioning}</p><ul className="mt-5 grid gap-3 sm:grid-cols-2">{plus.features.map((feature) => <li key={feature} className="flex gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 text-sm text-slate-200"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /><span>{feature}</span></li>)}</ul><p className="mt-4 text-xs leading-5 text-slate-500">Model names, feature availability and usage limits are provider-controlled and can change. Verify the current model picker and provider documentation for the exact account.</p></div>
+        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="text-lg font-bold text-white">Before ordering Plus</h2><div className="mt-4 space-y-3 text-sm text-slate-300">{["Confirm Personal access for the exact order.", "Reconfirm the current AI Premium Shop price before payment.", "Check current OpenAI model and usage limits for Plus.", "Confirm availability, delivery ETA and applicable order terms."].map((item) => <div key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /><span>{item}</span></div>)}</div><a href={askUrl} target="_blank" rel="noopener noreferrer" className="mt-5 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Confirm Plus on WhatsApp</a></div>
       </section>
-
       <SafetyPanel />
+      <section className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><div className="flex items-start gap-3"><Info className="mt-0.5 h-5 w-5 shrink-0 text-[#f4b942]" /><div><h2 className="text-xl font-bold text-white">Not sure Plus is the right plan?</h2><p className="mt-2 text-sm leading-6 text-slate-300">The broader ChatGPT plan guide separates Go, Plus, Pro and Business so the exact Plus transactional page does not compete with the family-comparison intent.</p><Link href="/chatgpt-plans-bangladesh" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#f4b942]">Compare all ChatGPT plans <ArrowRight className="h-4 w-4" /></Link></div></div></section>
+      <SourceLinks ids={[...route.source_ids]} />
+    </div>
+  );
+}
 
-      <section className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
-        <div className="flex items-start gap-3">
-          <Info className="mt-0.5 h-5 w-5 shrink-0 text-[#f4b942]" />
-          <div>
-            <h2 className="text-xl font-bold text-white">Not sure Plus is the right plan?</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-300">The broader ChatGPT plan guide separates Go, Plus, Pro and Business so the exact Plus transactional page does not compete with the family-comparison intent.</p>
-            <Link href="/chatgpt-plans-bangladesh" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#f4b942]">Compare all ChatGPT plans <ArrowRight className="h-4 w-4" /></Link>
-          </div>
-        </div>
+function BusinessPage({ products }: { products: Product[] }) {
+  const listing = currentPrice(products.filter((product) => product.slug === "chatgpt-business-bangladesh"));
+  const business = evidence.provider_facts.business;
+  const route = evidence.routes["chatgpt-business-bangladesh"];
+  const askUrl = `${WHATSAPP}?text=${encodeURIComponent("Hi, I am considering the current AI Premium Shop ChatGPT Business listing. OpenAI Business requires a multi-seat workspace, so please confirm exactly what AIPS is offering: current price, access model, seat/workspace arrangement, availability, delivery ETA and applicable terms before payment.")}`;
+  return (
+    <div className="mx-auto max-w-6xl space-y-6 px-4 pb-12 md:px-8">
+      <section className="grid gap-4 lg:grid-cols-3" aria-label="ChatGPT Business quick answer">
+        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Current AI Premium Shop listing</p><p className="mt-3 text-2xl font-bold text-white">{listing?.price ? `${formatBDT(listing.price)}/month` : "Confirm current price"}</p><p className="mt-2 text-sm text-slate-300">Catalog label: {listing ? accessLabel(listing.accessType) : "confirm access"}. This label is not proof of an OpenAI Business workspace or seat configuration.</p></article>
+        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">OpenAI provider reference</p><p className="mt-3 text-sm font-bold leading-6 text-[#f4b942]">{business.official_reference}</p><p className="mt-2 text-sm text-slate-300">{business.billing}. Provider pricing is separate from the AI Premium Shop local catalog listing.</p></article>
+        <article className="rounded-2xl border border-white/10 bg-[#151b3d] p-5"><p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Local payment at AI Premium Shop</p><p className="mt-3 text-2xl font-bold text-white">{evidence.local_payment.methods.join(" · ")}</p><p className="mt-2 text-sm text-slate-300">These are AI Premium Shop payment references, not payment methods accepted directly by OpenAI.</p></article>
       </section>
-
+      <section className="grid gap-5 lg:grid-cols-[1fr_360px]">
+        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4b942]">Current OpenAI structure</p><h2 className="mt-2 text-2xl font-bold text-white">How ChatGPT Business seats work</h2><p className="mt-3 text-sm leading-7 text-slate-300">{business.positioning}</p><ul className="mt-5 grid gap-3 sm:grid-cols-2">{business.features.map((feature) => <li key={feature} className="flex gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 text-sm text-slate-200"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /><span>{feature}</span></li>)}</ul><div className="mt-5 rounded-xl border border-amber-300/20 bg-amber-300/[0.04] p-4"><h3 className="text-sm font-bold text-white">Do not infer the workspace from the local listing</h3><p className="mt-2 text-xs leading-5 text-slate-300">OpenAI Business requires at least two paid seats. A local AIPS catalog row or access label does not itself prove that a direct OpenAI workspace, seat count, owner role or specific seat type is included. Confirm the exact arrangement before payment.</p></div></div>
+        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="text-lg font-bold text-white">Before ordering Business</h2><div className="mt-4 space-y-3 text-sm text-slate-300">{["Confirm exactly what AIPS is selling and who owns/administers the workspace.", "Confirm the exact number and type of seats, if any, included in the order.", "Reconfirm the current AIPS price, availability and delivery ETA.", "Check OpenAI's current Business billing, usage and workspace rules.", "Confirm applicable order and support terms before payment."].map((item) => <div key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /><span>{item}</span></div>)}</div><a href={askUrl} target="_blank" rel="noopener noreferrer" className="mt-5 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Confirm Business details</a></div>
+      </section>
+      <section className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="text-xl font-bold text-white">Important provider limits</h2><ul className="mt-4 space-y-3 text-sm text-slate-300">{business.caveats.map((caveat) => <li key={caveat} className="flex gap-2"><Info className="mt-0.5 h-4 w-4 shrink-0 text-[#f4b942]" /><span>{caveat}</span></li>)}</ul></section>
+      <section className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="text-xl font-bold text-white">Need an individual ChatGPT plan instead?</h2><p className="mt-2 text-sm leading-6 text-slate-300">Business is a workspace product. If you are buying only for yourself, compare Go, Plus and Pro separately rather than assuming Business is the correct individual plan.</p><Link href="/chatgpt-plans-bangladesh" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#f4b942]">Compare all ChatGPT plans <ArrowRight className="h-4 w-4" /></Link></section>
       <SourceLinks ids={[...route.source_ids]} />
     </div>
   );
@@ -229,58 +146,15 @@ const PLAN_SPECS: Array<{ slug: string; label: string; fact: FactKey; fit: strin
   { slug: "chatgpt-go-bangladesh", label: "Go", fact: "go", fit: "Lower-cost individual access when you need more core ChatGPT use than Free.", check: "Check OpenAI's current country/currency price and current Go limits before comparing it with Plus." },
   { slug: "chatgpt-plus-bangladesh", label: "Plus", fact: "plus", fit: "Individual use when broader tools, higher limits and advanced reasoning access matter.", check: "Model availability and usage limits can change; verify the current account before purchase." },
   { slug: "chatgpt-pro-bangladesh", label: "Pro", fact: "pro", fit: "Higher-usage individual work where the Pro tier's additional allowance is valuable.", check: "OpenAI currently documents $100 and $200 Pro tiers. Confirm which exact provider tier the local listing corresponds to before payment." },
-  { slug: "chatgpt-business-bangladesh", label: "Business", fact: "business", fit: "A team workspace when centralized billing and admin controls are required.", check: "OpenAI Business requires at least two paid seats. Do not infer a full direct-provider workspace configuration from a local listing name; confirm the exact seat/workspace arrangement." },
+  { slug: "chatgpt-business-bangladesh", label: "Business", fact: "business", fit: "A team workspace when centralized billing and admin controls are required.", check: "OpenAI Business requires at least two paid seats. Do not infer a direct-provider workspace configuration from a local listing name or access label; confirm the exact seat/workspace arrangement." },
 ];
 
 function PlansPage({ products }: { products: Product[] }) {
   const route = evidence.routes["chatgpt-plans-bangladesh"];
   return (
     <div className="mx-auto max-w-6xl space-y-6 px-4 pb-12 md:px-8">
-      <section className="rounded-2xl border border-white/10 bg-[#151b3d] p-6" aria-labelledby="chatgpt-plan-guide">
-        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4b942]">Decision guide</p>
-        <h2 id="chatgpt-plan-guide" className="mt-2 text-2xl font-bold text-white">Go vs Plus vs Pro vs Business</h2>
-        <p className="mt-3 max-w-4xl text-sm leading-7 text-slate-300">Use the OpenAI reference column to understand the provider's current plan structure, and the AI Premium Shop column for the current local catalog listing. They are different reference points; one should not be treated as a hidden conversion of the other.</p>
-        <div className="mt-6 overflow-x-auto rounded-xl border border-white/10">
-          <table className="w-full min-w-[820px] border-collapse text-left text-sm">
-            <thead className="bg-white/[0.04] text-slate-300">
-              <tr><th className="p-4">Plan</th><th className="p-4">OpenAI reference</th><th className="p-4">Current AI Premium Shop listing</th><th className="p-4">Best fit / check</th></tr>
-            </thead>
-            <tbody>
-              {PLAN_SPECS.map((spec) => {
-                const records = products.filter((product) => product.slug === spec.slug);
-                const listing = currentPrice(records);
-                const fact = evidence.provider_facts[spec.fact];
-                return (
-                  <tr key={spec.slug} className="border-t border-white/10 align-top">
-                    <td className="p-4"><Link href={`/${spec.slug}`} className="font-bold text-white hover:text-[#f4b942]">{spec.label}</Link></td>
-                    <td className="p-4 text-slate-300"><strong className="text-white">{fact.official_reference}</strong><div className="mt-2 leading-6">{fact.positioning}</div></td>
-                    <td className="p-4 text-slate-300">{listing?.price ? <><strong className="text-[#f4b942]">{formatBDT(listing.price)}/month</strong><div className="mt-2">{accessLabel(listing.accessType)}</div></> : "Confirm current price and access"}</td>
-                    <td className="p-4 text-slate-300"><div>{spec.fit}</div><div className="mt-2 text-xs leading-5 text-slate-500">{spec.check}</div></td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-        <p className="mt-4 text-xs leading-5 text-slate-500">AI Premium Shop prices above come from the current governed public catalog and are reconfirmed before payment. OpenAI references come from the first-party sources listed below.</p>
-      </section>
-
-      <section className="grid gap-4 md:grid-cols-2">
-        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
-          <h2 className="text-xl font-bold text-white">Choose by the work, not by the highest tier</h2>
-          <div className="mt-4 space-y-3 text-sm text-slate-300">
-            {["Start with whether this is individual use or a team workspace.", "Compare the provider's current limits and tools for the exact plan.", "Use the current AI Premium Shop BDT price only as the local seller reference.", "Confirm access, availability, delivery ETA and order terms before payment."].map((item) => (
-              <div key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /><span>{item}</span></div>
-            ))}
-          </div>
-        </div>
-        <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
-          <h2 className="text-xl font-bold text-white">Buying ChatGPT Plus specifically?</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-300">The dedicated Plus page owns exact Plus price/buying intent and has the focused Personal-plan ordering checklist.</p>
-          <Link href="/chatgpt-plus-bangladesh" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#f4b942]">Open the ChatGPT Plus buying guide <ArrowRight className="h-4 w-4" /></Link>
-        </div>
-      </section>
-
+      <section className="rounded-2xl border border-white/10 bg-[#151b3d] p-6" aria-labelledby="chatgpt-plan-guide"><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4b942]">Decision guide</p><h2 id="chatgpt-plan-guide" className="mt-2 text-2xl font-bold text-white">Go vs Plus vs Pro vs Business</h2><p className="mt-3 max-w-4xl text-sm leading-7 text-slate-300">Use the OpenAI reference column to understand the provider's current plan structure, and the AI Premium Shop column for the current local catalog listing. They are different reference points; one should not be treated as a hidden conversion of the other.</p><div className="mt-6 overflow-x-auto rounded-xl border border-white/10"><table className="w-full min-w-[820px] border-collapse text-left text-sm"><thead className="bg-white/[0.04] text-slate-300"><tr><th className="p-4">Plan</th><th className="p-4">OpenAI reference</th><th className="p-4">Current AI Premium Shop listing</th><th className="p-4">Best fit / check</th></tr></thead><tbody>{PLAN_SPECS.map((spec) => { const records = products.filter((product) => product.slug === spec.slug); const listing = currentPrice(records); const fact = evidence.provider_facts[spec.fact]; return <tr key={spec.slug} className="border-t border-white/10 align-top"><td className="p-4"><Link href={`/${spec.slug}`} className="font-bold text-white hover:text-[#f4b942]">{spec.label}</Link></td><td className="p-4 text-slate-300"><strong className="text-white">{fact.official_reference}</strong><div className="mt-2 leading-6">{fact.positioning}</div></td><td className="p-4 text-slate-300">{listing?.price ? <><strong className="text-[#f4b942]">{formatBDT(listing.price)}/month</strong><div className="mt-2">{accessLabel(listing.accessType)}</div></> : "Confirm current price and access"}</td><td className="p-4 text-slate-300"><div>{spec.fit}</div><div className="mt-2 text-xs leading-5 text-slate-500">{spec.check}</div></td></tr>; })}</tbody></table></div><p className="mt-4 text-xs leading-5 text-slate-500">AI Premium Shop prices above come from the current governed public catalog and are reconfirmed before payment. OpenAI references come from the first-party sources listed below.</p></section>
+      <section className="grid gap-4 md:grid-cols-2"><div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="text-xl font-bold text-white">Choose by the work, not by the highest tier</h2><div className="mt-4 space-y-3 text-sm text-slate-300">{["Start with whether this is individual use or a team workspace.", "Compare the provider's current limits and tools for the exact plan.", "Use the current AI Premium Shop BDT price only as the local seller reference.", "Confirm access, availability, delivery ETA and order terms before payment."].map((item) => <div key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /><span>{item}</span></div>)}</div></div><div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6"><h2 className="text-xl font-bold text-white">Buying ChatGPT Plus specifically?</h2><p className="mt-3 text-sm leading-6 text-slate-300">The dedicated Plus page owns exact Plus price/buying intent and has the focused Personal-plan ordering checklist.</p><Link href="/chatgpt-plus-bangladesh" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#f4b942]">Open the ChatGPT Plus buying guide <ArrowRight className="h-4 w-4" /></Link></div></section>
       <SafetyPanel />
       <SourceLinks ids={[...route.source_ids]} />
     </div>
@@ -291,5 +165,6 @@ export function ChatGPTMoneyPageV2({ brandSlug, products }: Props) {
   if (!ROUTES.has(brandSlug)) return null;
   if (brandSlug === "chatgpt-go-bangladesh") return <GoPage products={products} />;
   if (brandSlug === "chatgpt-plus-bangladesh") return <PlusPage products={products} />;
+  if (brandSlug === "chatgpt-business-bangladesh") return <BusinessPage products={products} />;
   return <PlansPage products={products} />;
 }

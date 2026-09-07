@@ -11,7 +11,10 @@ function readMessage(href: string | null) {
 test("primary site-wide WhatsApp entry points prefill qualification context", async ({ page }) => {
   await page.goto("/products");
 
-  const navbar = page.getByRole("link", { name: "Ask AIPS" });
+  // The public-build brand normalizer expands the internal AIPS shorthand in
+  // browser chunks, so the real rendered accessible name must use the approved
+  // full public brand rather than the source-code abbreviation.
+  const navbar = page.getByRole("link", { name: "Ask AI Premium Shop" });
   const floating = page.getByTestId("floating-whatsapp");
 
   await expect(navbar).toBeVisible();

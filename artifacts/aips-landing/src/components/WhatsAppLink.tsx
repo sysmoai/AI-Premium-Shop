@@ -7,7 +7,10 @@ interface WhatsAppLinkProps {
   children: ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  "aria-label"?: string;
   "data-testid"?: string;
+  onMouseEnter?: (event: MouseEvent<HTMLAnchorElement>) => void;
+  onMouseLeave?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export function WhatsAppLink({
@@ -17,7 +20,10 @@ export function WhatsAppLink({
   children,
   className,
   style,
+  "aria-label": ariaLabel,
   "data-testid": testId,
+  onMouseEnter,
+  onMouseLeave,
 }: WhatsAppLinkProps) {
   const handleClick = (_e: MouseEvent<HTMLAnchorElement>) => {
     if (typeof window.gtag === "function") {
@@ -42,7 +48,10 @@ export function WhatsAppLink({
       rel="noopener noreferrer"
       className={className}
       style={style}
+      aria-label={ariaLabel}
       data-testid={testId}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       {children}
     </a>

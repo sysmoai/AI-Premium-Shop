@@ -92,6 +92,7 @@ try {
   run(process.execPath, ["scripts/apply-tier-a-seo-layer.mjs"]);
   run(process.execPath, ["scripts/audit-tier-a-seo-layer.mjs"]);
   run(process.execPath, ["scripts/audit-support-clusters.mjs"]);
+  run(process.execPath, ["scripts/sync-editorial-sitemap.mjs"]);
   run(process.execPath, ["scripts/normalize-sitemap-metadata.mjs"]);
   run(process.execPath, ["scripts/prune-sitemap-canonicals.mjs"]);
   run(process.execPath, ["scripts/audit-keyword-ownership.mjs"]);

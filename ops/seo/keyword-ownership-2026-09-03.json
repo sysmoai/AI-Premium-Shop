@@ -3,14 +3,14 @@
   "as_of": "2026-09-08",
   "market": "Bangladesh",
   "domain": "aipremiumshop.com",
-  "production_baseline_sha": "811295b1dea2130ab8668d3d85f5b3afe9a3158b",
+  "production_baseline_sha": "2eab01895dd01ea5f54eca36cbe4651e3408ab62",
   "purpose": "Prevent internal and sibling-domain cannibalization while assigning one primary AI Premium Shop URL to each high-value search intent. This is an intent-routing SSOT, not a ranking or traffic guarantee.",
   "evidence_basis": [
     "current governed AI Premium Shop public catalog and routes",
     "current production HTML and canonical behavior",
     "Google Search Console transactional email evidence available in the connected AI Premium Shop mailbox",
     "2026-09-03 web SERP sampling for Bangladesh-oriented AI subscription queries",
-    "2026-09-08 first-party OpenAI ChatGPT Go evidence and live-route review",
+    "2026-09-08 first-party OpenAI ChatGPT Go and ChatGPT Business evidence plus live-route review",
     "current commercial and provider SSOT"
   ],
   "rules": [
@@ -38,7 +38,7 @@
       "primary_intent": "ChatGPT plans Bangladesh; compare ChatGPT Go vs Plus vs Business vs Pro",
       "supports": ["ChatGPT plans price Bangladesh", "which ChatGPT plan should I buy in Bangladesh"],
       "must_not_replace": "/chatgpt-plus-bangladesh",
-      "notes": "Broad family/plan-comparison hub. Exact ChatGPT Plus and ChatGPT Go transactional intent belongs to their exact plan pages."
+      "notes": "Broad family/plan-comparison hub. Exact ChatGPT Plus, ChatGPT Go and ChatGPT Business transactional intent belongs to their exact plan pages."
     },
     {
       "priority": "P1",
@@ -48,6 +48,15 @@
       "primary_intent": "ChatGPT Go price in Bangladesh; buy ChatGPT Go Bangladesh",
       "supports": ["ChatGPT Go Bangladesh price", "ChatGPT Go bKash", "ChatGPT Go Nagad", "ChatGPT Go subscription Bangladesh"],
       "notes": "Existing canonical product-family route promoted from the expansion queue on 2026-09-08 after current first-party OpenAI Go evidence review. AI Premium Shop local catalog price and OpenAI provider pricing remain separate facts."
+    },
+    {
+      "priority": "P1",
+      "tier_a": false,
+      "entity": "ChatGPT Business",
+      "primary_url": "/chatgpt-business-bangladesh",
+      "primary_intent": "ChatGPT Business price in Bangladesh; buy ChatGPT Business Bangladesh",
+      "supports": ["ChatGPT Business Bangladesh price", "ChatGPT Business Standard Premium seats", "ChatGPT Business bKash", "ChatGPT Business subscription Bangladesh"],
+      "notes": "Existing canonical route promoted on 2026-09-08 after current first-party OpenAI Business seat/pricing review. The AI Premium Shop local listing/access label is not proof of an OpenAI workspace seat configuration; exact arrangement must be confirmed before payment."
     },
     {
       "priority": "P0",
@@ -215,7 +224,6 @@
     }
   ],
   "next_expansion_after_tier_a": [
-    "ChatGPT Business",
     "ChatGPT Pro",
     "Microsoft Copilot Pro",
     "Adobe Firefly",

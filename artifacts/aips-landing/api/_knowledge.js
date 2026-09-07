@@ -14,11 +14,10 @@
 // integrity assertion, and module initialization must fail if either governed
 // runtime asset is absent.
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 
 export const RUNTIME_ASSET_TRACE = Object.freeze({
-  catalogBytes: readFileSync(fileURLToPath(new URL("./_catalog.json", import.meta.url)), "utf8").length,
-  policyBytes: readFileSync(fileURLToPath(new URL("./_policy.json", import.meta.url)), "utf8").length,
+  catalogBytes: readFileSync(new URL("./_catalog.json", import.meta.url), "utf8").length,
+  policyBytes: readFileSync(new URL("./_policy.json", import.meta.url), "utf8").length,
 });
 
 export const KNOWLEDGE = [

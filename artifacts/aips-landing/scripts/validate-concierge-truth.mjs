@@ -65,7 +65,8 @@ for (const claim of stalePositiveClaims) {
 }
 
 for (const required of [
-  'readAdjacentJson("./_policy.json")',
+  'import catalog from "./_catalog.json" with { type: "json" };',
+  'import policy from "./_policy.json" with { type: "json" };',
   "assertRuntimeTruth();",
   "violatesCommercialTruth",
   "deliverySLA: null",
@@ -74,6 +75,7 @@ for (const required of [
 ]) {
   if (!conciergeSource.includes(required)) fail(`concierge source missing truth guard: ${required}`);
 }
+if (conciergeSource.includes("import.meta.url") || conciergeSource.includes("readFileSync(")) fail("concierge runtime must not load governed JSON through runtime URL/filesystem conversion");
 if (/function productBlock[\s\S]{0,500}p\.caps/.test(conciergeSource)) fail("model-facing productBlock still exposes unverified capability claims");
 if (/function formatTiers[\s\S]{0,700}deliverySLA/.test(conciergeSource)) fail("model-facing tier formatter still exposes delivery SLA");
 if (/function formatTiers[\s\S]{0,700}badge/.test(conciergeSource)) fail("model-facing tier formatter still exposes unverified badge");

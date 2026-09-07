@@ -18,6 +18,7 @@ const providers = JSON.parse(fs.readFileSync(PROVIDER_PATH, "utf8"));
 const EXPECTED_ROUTES = new Map([
   ["chatgpt-go-bangladesh", "/chatgpt-go-bangladesh"],
   ["chatgpt-plus-bangladesh", "/chatgpt-plus-bangladesh"],
+  ["chatgpt-business-bangladesh", "/chatgpt-business-bangladesh"],
   ["chatgpt-plans-bangladesh", "/chatgpt-plans-bangladesh"],
 ]);
 const ALLOWED_SOURCE_HOSTS = new Set(["help.openai.com", "chatgpt.com"]);
@@ -50,13 +51,6 @@ function asDate(value, label) {
   return d;
 }
 
-function deepStrings(value, out = []) {
-  if (typeof value === "string") out.push(value);
-  else if (Array.isArray(value)) value.forEach((item) => deepStrings(item, out));
-  else if (value && typeof value === "object") Object.values(value).forEach((item) => deepStrings(item, out));
-  return out;
-}
-
 if (data.schema_version !== 1) fail(`unsupported schema_version ${data.schema_version}`);
 asDate(data.reviewed_at, "reviewed_at");
 
@@ -80,6 +74,11 @@ for (const [slug, expectedPath] of EXPECTED_ROUTES) {
 const plansOwner = owners.get("/chatgpt-plans-bangladesh");
 if (plansOwner?.must_not_replace !== "/chatgpt-plus-bangladesh") {
   fail(`ChatGPT plan-family owner must protect /chatgpt-plus-bangladesh via must_not_replace`);
+}
+
+const businessOwner = owners.get("/chatgpt-business-bangladesh");
+if (!businessOwner || businessOwner.tier_a !== false) {
+  fail(`ChatGPT Business must remain a distinct non-Tier-A exact-intent owner until separately promoted`);
 }
 
 const approvedPayment = commercial.public_claim_policy?.payment?.approved_public_methods ?? [];
@@ -117,6 +116,12 @@ for (const [key, fact] of Object.entries(data.provider_facts ?? {})) {
   if (!sourceIds.has(fact.source_id)) fail(`provider fact ${key} references unknown source ${fact.source_id}`);
 }
 
+const business = data.provider_facts?.business;
+if (!business?.official_reference?.includes("Standard: $25/user monthly")) fail(`Business provider reference must include current Standard monthly pricing`);
+if (!business?.official_reference?.includes("Premium: $125/user monthly")) fail(`Business provider reference must include current Premium monthly pricing`);
+if (!/at least two paid seats/i.test(String(business?.positioning ?? ""))) fail(`Business provider fact must preserve the current two-seat minimum`);
+if (!(business?.caveats ?? []).some((item) => /API usage is separate/i.test(item))) fail(`Business provider fact must preserve separate API billing`);
+
 const openaiProvider = providers.providers?.openai;
 const governedUrls = new Set((openaiProvider?.sources ?? []).map((source) => source.url));
 const plusSource = (data.sources ?? []).find((source) => source.id === "openai-plus")?.url;
@@ -135,4 +140,4 @@ if (/\bBDT\s*\d|৳\s*\d/i.test(JSON.stringify(data))) fail(`AI Premium Shop BDT
 if (/"(?:aips_)?price(?:_bdt)?"\s*:/i.test(JSON.stringify(data))) fail(`editorial evidence must not define an AI Premium Shop local price field`);
 
 if (process.exitCode) process.exit(process.exitCode);
-console.log(`[chatgpt-money-pages] PASS: ${routeEntries.length} owned routes, ${sourceIds.size} first-party sources, payment methods match commercial SSOT, OpenAI shared-access block remains enforced`);
+console.log(`[chatgpt-money-pages] PASS: ${routeEntries.length} owned routes, ${sourceIds.size} first-party sources, payment methods match commercial SSOT, Business seat rules are current, OpenAI shared-access block remains enforced`);

@@ -32,14 +32,9 @@ function auditCommon(slug, html) {
   const route = evidence.routes[slug];
   const lower = html.toLowerCase();
   if (!html.includes(`<title>${route.title}</title>`)) fail(`${slug} final title does not match V2 evidence`);
-
   const descriptionMatches = [...html.matchAll(/<meta\s+name="description"\s+content="([^"]*)"\s*\/?\s*>/gi)];
-  if (descriptionMatches.length !== 1) {
-    fail(`${slug} must contain exactly one name=description meta tag, found ${descriptionMatches.length}`);
-  } else if (descriptionMatches[0][1] !== escAttr(route.description)) {
-    fail(`${slug} name=description content drift: expected ${JSON.stringify(escAttr(route.description))}, got ${JSON.stringify(descriptionMatches[0][1])}`);
-  }
-
+  if (descriptionMatches.length !== 1) fail(`${slug} must contain exactly one name=description meta tag, found ${descriptionMatches.length}`);
+  else if (descriptionMatches[0][1] !== escAttr(route.description)) fail(`${slug} name=description content drift: expected ${JSON.stringify(escAttr(route.description))}, got ${JSON.stringify(descriptionMatches[0][1])}`);
   if (!html.includes(`rel="canonical" href="https://aipremiumshop.com${route.path}"`)) fail(`${slug} canonical drift`);
   if (!html.includes(`<h1>${route.h1}</h1>`)) fail(`${slug} H1 drift`);
   if (!lower.includes("first-party sources reviewed")) fail(`${slug} evidence section is missing`);
@@ -67,6 +62,17 @@ if (!plus.toLowerCase().includes("account is meant for the individual who create
 if (!plus.includes("/chatgpt-plans-bangladesh")) fail(`Plus page does not link to the plan-family owner`);
 if (!/BDT\s+[0-9,]+\/month/.test(plus)) fail(`Plus page missing governed local BDT listing`);
 
+const business = read("chatgpt-business-bangladesh");
+auditCommon("chatgpt-business-bangladesh", business);
+if (!business.includes("bKash") || !business.includes("Nagad")) fail(`Business page missing approved AI Premium Shop payment references`);
+if (!/BDT\s+[0-9,]+\/month/.test(business)) fail(`Business page missing governed local BDT listing`);
+if (!business.includes("Standard: $25/user monthly") || !business.includes("Premium: $125/user monthly")) fail(`Business page missing current OpenAI Standard/Premium monthly references`);
+if (!business.toLowerCase().includes("at least two paid seats")) fail(`Business page missing current two-seat minimum`);
+if (!business.toLowerCase().includes("api usage is separate")) fail(`Business page missing separate API billing caveat`);
+if (!business.toLowerCase().includes("not proof of an openai workspace or seat configuration")) fail(`Business page must distinguish the local access label from provider workspace structure`);
+if (!business.includes("https://help.openai.com/en/articles/8542115") || !business.includes("https://help.openai.com/en/articles/8792828")) fail(`Business page missing current first-party OpenAI Business evidence links`);
+if (!business.includes("/chatgpt-plans-bangladesh")) fail(`Business page does not link to the plan-family owner`);
+
 const plans = read("chatgpt-plans-bangladesh");
 auditCommon("chatgpt-plans-bangladesh", plans);
 for (const label of ["Go", "Plus", "Pro", "Business"]) {
@@ -74,10 +80,10 @@ for (const label of ["Go", "Plus", "Pro", "Business"]) {
 }
 if (!plans.includes("$100 and $200 Pro tiers")) fail(`plan-family page missing current OpenAI Pro tier reference`);
 if (!plans.toLowerCase().includes("at least two paid seats")) fail(`plan-family page missing current OpenAI Business minimum-seat reference`);
-if (!plans.includes("/chatgpt-plus-bangladesh")) fail(`plan-family page does not link to exact Plus owner`);
-if (!plans.includes("/chatgpt-go-bangladesh")) fail(`plan-family page does not link to exact Go owner`);
+for (const route of ["/chatgpt-plus-bangladesh", "/chatgpt-go-bangladesh", "/chatgpt-business-bangladesh"]) if (!plans.includes(route)) fail(`plan-family page does not link to exact owner ${route}`);
 if (!plans.includes("OpenAI reference") || !plans.includes("Current AI Premium Shop listing")) fail(`plan-family page does not separate provider and local seller references`);
 
-if (go === plus || go === plans || plus === plans) fail(`ChatGPT money-page artifacts must remain distinct by intent`);
+const artifacts = [go, plus, business, plans];
+for (let i = 0; i < artifacts.length; i += 1) for (let j = i + 1; j < artifacts.length; j += 1) if (artifacts[i] === artifacts[j]) fail(`ChatGPT money-page artifacts must remain distinct by intent`);
 if (process.exitCode) process.exit(process.exitCode);
-console.log(`[chatgpt-money-audit] PASS: Go, Plus and broad plan-family artifacts have exact metadata, distinct intent, first-party evidence, canonical ownership, governed local listings and no blocked OpenAI shared-access commerce`);
+console.log(`[chatgpt-money-audit] PASS: Go, Plus, Business and broad plan-family artifacts have exact metadata, distinct intent, first-party evidence, canonical ownership, governed local listings and no blocked OpenAI shared-access commerce`);

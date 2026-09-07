@@ -9,7 +9,7 @@ const evidence = JSON.parse(fs.readFileSync(path.join(APP, "data/chatgpt-money-p
 const publicCatalog = JSON.parse(fs.readFileSync(path.join(APP, "data/public-products.json"), "utf8"));
 const products = Array.isArray(publicCatalog) ? publicCatalog : publicCatalog.products ?? [];
 const SITE = "https://aipremiumshop.com";
-const ROUTES = ["chatgpt-go-bangladesh", "chatgpt-plus-bangladesh", "chatgpt-plans-bangladesh"];
+const ROUTES = ["chatgpt-go-bangladesh", "chatgpt-plus-bangladesh", "chatgpt-business-bangladesh", "chatgpt-plans-bangladesh"];
 
 const esc = (value) => String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const money = (value) => `BDT ${Number(value).toLocaleString("en-BD")}`;
@@ -81,11 +81,33 @@ ${sourceList(route.source_ids)}
 </main>`;
 }
 
+function businessBody(records) {
+  const route = evidence.routes["chatgpt-business-bangladesh"];
+  const business = evidence.provider_facts.business;
+  const listing = currentRecord(records, "chatgpt-business-bangladesh");
+  return `<main>
+<nav aria-label="breadcrumb"><a href="/">Home</a> › <a href="/ai-assistant">AI Chat & Assistants</a> › ChatGPT Business</nav>
+<h1>${esc(route.h1)}</h1>
+<p>Compare the current AI Premium Shop listing with OpenAI's current ChatGPT Business seat and workspace rules. The two references are separate facts and must not be treated as automatically equivalent.</p>
+<section><h2>Quick answer</h2><ul>
+<li><strong>Current AI Premium Shop listing:</strong> ${listing ? `${money(listing.price)}/month · catalog label ${esc(access(listing.accessType))}` : "Confirm current price and access"}. The local label is not proof of an OpenAI workspace or seat configuration.</li>
+<li><strong>OpenAI provider reference:</strong> ${esc(business.official_reference)} · ${esc(business.billing)}.</li>
+<li><strong>AI Premium Shop payment references:</strong> ${evidence.local_payment.methods.map(esc).join(" and ")}. These do not describe payment methods accepted directly by OpenAI.</li>
+</ul></section>
+<section><h2>How ChatGPT Business seats work</h2><p>${esc(business.positioning)}</p><ul>${business.features.map((feature) => `<li>${esc(feature)}</li>`).join("")}</ul><h3>Important provider limits</h3><ul>${business.caveats.map((caveat) => `<li>${esc(caveat)}</li>`).join("")}</ul></section>
+<section><h2>Do not infer the workspace from the local listing</h2><p>OpenAI Business requires at least two paid seats. A local AI Premium Shop catalog row or access label does not itself prove that a direct OpenAI workspace, seat count, owner role or specific seat type is included. Confirm the exact arrangement before payment.</p></section>
+<section><h2>Before ordering ChatGPT Business</h2><ul><li>Confirm exactly what AI Premium Shop is selling and who owns or administers the workspace.</li><li>Confirm the exact number and type of seats, if any, included in the order.</li><li>Reconfirm the current local price, availability and delivery ETA.</li><li>Check OpenAI's current Business billing, usage and workspace rules.</li><li>Confirm applicable order and support terms before payment.</li></ul></section>
+<section><h2>Need an individual ChatGPT plan instead?</h2><p>Business is a workspace product. If you are buying only for yourself, compare Go, Plus and Pro separately.</p><p><a href="/chatgpt-plans-bangladesh">Compare all ChatGPT plans</a></p></section>
+${sourceList(route.source_ids)}
+<p><a href="/products">Browse all AI tools</a> · <a href="/pricing">Compare current pricing</a> · <a href="/how-to-order">How to order</a></p>
+</main>`;
+}
+
 const PLAN_SPECS = [
   { slug: "chatgpt-go-bangladesh", label: "Go", fact: "go", fit: "Lower-cost individual access when you need more core ChatGPT use than Free.", check: "Check OpenAI's current country/currency price and current Go limits before comparing it with Plus." },
   { slug: "chatgpt-plus-bangladesh", label: "Plus", fact: "plus", fit: "Individual use when broader tools, higher limits and advanced reasoning access matter.", check: "Model availability and usage limits can change; verify the current account before purchase." },
   { slug: "chatgpt-pro-bangladesh", label: "Pro", fact: "pro", fit: "Higher-usage individual work where additional Pro allowance is valuable.", check: "OpenAI currently documents $100 and $200 Pro tiers. Confirm which exact provider tier the local listing corresponds to before payment." },
-  { slug: "chatgpt-business-bangladesh", label: "Business", fact: "business", fit: "A team workspace when centralized billing and admin controls are required.", check: "OpenAI Business requires at least two paid seats. Confirm the exact seat and workspace arrangement instead of inferring it from a local listing name." }
+  { slug: "chatgpt-business-bangladesh", label: "Business", fact: "business", fit: "A team workspace when centralized billing and admin controls are required.", check: "OpenAI Business requires at least two paid seats. Confirm the exact seat and workspace arrangement instead of inferring it from a local listing name or access label." }
 ];
 
 function plansBody(records) {
@@ -134,7 +156,7 @@ for (const slug of ROUTES) {
   const records = recordsFor(slug);
   if (!records.length) throw new Error(`[chatgpt-money-prerender] no governed public records for ${slug}`);
   const canonical = `${SITE}${route.path}`;
-  const body = slug === "chatgpt-go-bangladesh" ? goBody(records) : slug === "chatgpt-plus-bangladesh" ? plusBody(records) : plansBody(records);
+  const body = slug === "chatgpt-go-bangladesh" ? goBody(records) : slug === "chatgpt-plus-bangladesh" ? plusBody(records) : slug === "chatgpt-business-bangladesh" ? businessBody(records) : plansBody(records);
   let html = fs.readFileSync(file, "utf8");
   html = setMeta(html, route, canonical);
   html = replaceRoot(html, body);

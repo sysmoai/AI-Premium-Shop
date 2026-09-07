@@ -1,0 +1,54 @@
+name: AIPS DEP0169 trace edit
+
+on:
+  push:
+    branches:
+      - aips/concierge-dep0169-trace-20260908
+
+permissions:
+  contents: write
+
+jobs:
+  edit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Put diagnostic listener first in concierge imports
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('artifacts/aips-landing/api/concierge.js')
+          text = path.read_text()
+          anchor = 'import { randomUUID } from "node:crypto";\n'
+          injection = 'import "./_dep0169-trace.js";\n' + anchor
+          if 'import "./_dep0169-trace.js";' in text:
+              raise SystemExit('trace import already installed')
+          if anchor not in text:
+              raise SystemExit('expected concierge import anchor not found')
+          text = text.replace(anchor, injection, 1)
+          path.write_text(text)
+          PY
+          python3 - <<'PY'
+          from pathlib import Path
+          text = Path('artifacts/aips-landing/api/concierge.js').read_text()
+          trace = text.index('import "./_dep0169-trace.js";')
+          crypto = text.index('import { randomUUID } from "node:crypto";')
+          if trace > crypto:
+              raise SystemExit('trace import is not first')
+          PY
+
+      - name: Commit source edit and remove one-shot workflow
+        shell: bash
+        run: |
+          rm .github/workflows/aips-dep0169-trace-edit.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artifacts/aips-landing/api/concierge.js .github/workflows/aips-dep0169-trace-edit.yml
+          git commit -m "diag: load DEP0169 listener before concierge dependencies"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

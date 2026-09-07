@@ -9,18 +9,29 @@ export function HomepageHeroMedia({ asset }: HomepageHeroMediaProps) {
     return (
       <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0d1930] p-6 sm:p-8" data-testid="homepage-hero-media-placeholder">
         <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-[#f4b942]/10 blur-3xl" aria-hidden="true" />
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#f4b942]">HP-HERO-01</p>
-        <h2 className="mt-3 text-2xl font-semibold">Hero media slot is ready</h2>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#f4b942]">A simpler way to choose</p>
+        <h2 className="mt-3 text-2xl font-semibold">Start with the job, not the brand name.</h2>
         <p className="mt-3 text-sm leading-6 text-slate-300">
-          The final asset will enter through the approved media registry. Until then, this preview keeps the exact production layout without inventing a visual.
+          Narrow the catalog by what you need to do, the access model you prefer and your budget. Then open the relevant product page to review the current options before you pay.
         </p>
-        <div className="mt-7 grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
-          {["Research", "Coding", "Images", "Video", "Automation", "Local buying"].map((label) => (
-            <div key={label} className="rounded-xl border border-white/10 bg-white/[0.035] px-3 py-4 text-center text-slate-200">
-              {label}
+        <div className="mt-7 grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
+          {[
+            { title: "1. Pick the task", note: "Study, code, create, research or automate." },
+            { title: "2. Compare access", note: "Check Personal, Shared, Bundle or Setup options." },
+            { title: "3. Confirm the plan", note: "Review the current product details before payment." },
+          ].map((item) => (
+            <div key={item.title} className="rounded-xl border border-white/10 bg-white/[0.035] px-4 py-4">
+              <p className="font-semibold text-white">{item.title}</p>
+              <p className="mt-1 text-xs leading-5 text-slate-400">{item.note}</p>
             </div>
           ))}
         </div>
+        <a
+          href="#finder"
+          className="mt-6 inline-flex min-h-11 items-center rounded-xl border border-[#f4b942]/30 bg-[#f4b942]/10 px-4 py-2.5 text-sm font-bold text-[#ffd26f] transition hover:border-[#f4b942]/55 hover:bg-[#f4b942]/15"
+        >
+          Use the AI tool finder
+        </a>
       </div>
     );
   }

@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle } from "lucide-react";
-
-const WHATSAPP_LINK = "https://wa.me/8801865385348";
+import { WhatsAppLink } from "@/components/WhatsAppLink";
+import { AIPS_QUALIFIED_HELP_HREF } from "@/lib/whatsapp";
 
 export function FloatingWhatsApp() {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <a
-      href={WHATSAPP_LINK}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Chat on WhatsApp"
+    <WhatsAppLink
+      href={AIPS_QUALIFIED_HELP_HREF}
+      productName="general_assistance"
+      buttonLocation="floating_sitewide"
+      aria-label="Get help choosing an AI subscription on WhatsApp"
       data-testid="floating-whatsapp"
       className="fixed z-50 flex items-center gap-3"
       style={{ bottom: 84, right: 24 }}
@@ -29,7 +29,7 @@ export function FloatingWhatsApp() {
             className="px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap shadow-lg"
             style={{ backgroundColor: "#008236", color: "#fff" }}
           >
-            Chat with us
+            Find the right AI plan
           </motion.div>
         )}
       </AnimatePresence>
@@ -62,6 +62,6 @@ export function FloatingWhatsApp() {
           .whatsapp-pulse { animation: none !important; }
         }
       `}</style>
-    </a>
+    </WhatsAppLink>
   );
 }

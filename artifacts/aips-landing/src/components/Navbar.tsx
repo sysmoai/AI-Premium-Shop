@@ -3,11 +3,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, MessageCircle, Search, X } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { PrimaryBrandLogo } from "@/components/PrimaryBrandLogo";
+import { WhatsAppLink } from "@/components/WhatsAppLink";
 import { productPath } from "@/lib/productRoutes";
+import { AIPS_QUALIFIED_HELP_HREF } from "@/lib/whatsapp";
 import productsData from "../../data/catalog-lite.json";
 
 const RETIRED = new Set(["replit-bangladesh"]);
-const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20please%20help%20me%20confirm%20the%20current%20details%20for%20an%20AI%20tool%20before%20payment.";
 
 const CATEGORY_DEFS = [
   ["ai-assistant", "AI Assistants", "/ai-assistant"],
@@ -98,11 +99,11 @@ export function Navbar() {
           <Link href="/support" className={navClass("/support")}>Support</Link>
         </nav>
         <button type="button" onClick={() => setSearchOpen(true)} aria-label="Search catalog" className="ml-auto rounded-xl border border-white/10 p-2.5 text-slate-300 hover:text-white lg:ml-1"><Search className="h-4 w-4" /></button>
-        <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="hidden min-h-10 items-center gap-2 rounded-xl bg-[#008236] px-4 py-2 text-sm font-bold text-white sm:inline-flex"><MessageCircle className="h-4 w-4" /> Ask AIPS</a>
+        <WhatsAppLink href={AIPS_QUALIFIED_HELP_HREF} productName="general_assistance" buttonLocation="navbar_desktop" className="hidden min-h-10 items-center gap-2 rounded-xl bg-[#008236] px-4 py-2 text-sm font-bold text-white sm:inline-flex"><MessageCircle className="h-4 w-4" /> Ask AIPS</WhatsAppLink>
         <button type="button" onClick={() => setMobileOpen(!mobileOpen)} aria-expanded={mobileOpen} aria-label="Toggle menu" className="rounded-xl border border-white/10 p-2.5 text-white lg:hidden">{mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
       </div>
 
-      <AnimatePresence>{mobileOpen && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden border-t border-white/10 bg-[#0a0e27] lg:hidden"><div className="mx-auto max-w-7xl px-4 py-5 md:px-8"><div className="grid gap-2 sm:grid-cols-2">{CATEGORY_DEFS.map(([id, label, href]) => { const stats = familyStats(id); return <Link key={id} href={href} className="rounded-xl border border-white/10 bg-[#151b3d] px-4 py-3"><div className="text-sm font-semibold text-white">{label}</div><div className="mt-1 text-xs text-slate-500">{stats.count} current families{stats.minPrice ? ` · from BDT ${stats.minPrice.toLocaleString("en-BD")}` : ""}</div></Link>; })}</div><div className="mt-4 grid grid-cols-2 gap-2"><Link href="/guides" className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-slate-300">Guides</Link><Link href="/blog" className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-slate-300">Blog</Link><Link href="/pricing" className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-slate-300">Pricing</Link><Link href="/support" className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-slate-300">Support</Link></div><a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="mt-4 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Confirm current details</a></div></motion.div>}</AnimatePresence>
+      <AnimatePresence>{mobileOpen && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden border-t border-white/10 bg-[#0a0e27] lg:hidden"><div className="mx-auto max-w-7xl px-4 py-5 md:px-8"><div className="grid gap-2 sm:grid-cols-2">{CATEGORY_DEFS.map(([id, label, href]) => { const stats = familyStats(id); return <Link key={id} href={href} className="rounded-xl border border-white/10 bg-[#151b3d] px-4 py-3"><div className="text-sm font-semibold text-white">{label}</div><div className="mt-1 text-xs text-slate-500">{stats.count} current families{stats.minPrice ? ` · from BDT ${stats.minPrice.toLocaleString("en-BD")}` : ""}</div></Link>; })}</div><div className="mt-4 grid grid-cols-2 gap-2"><Link href="/guides" className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-slate-300">Guides</Link><Link href="/blog" className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-slate-300">Blog</Link><Link href="/pricing" className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-slate-300">Pricing</Link><Link href="/support" className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-slate-300">Support</Link></div><WhatsAppLink href={AIPS_QUALIFIED_HELP_HREF} productName="general_assistance" buttonLocation="navbar_mobile" className="mt-4 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Confirm current details</WhatsAppLink></div></motion.div>}</AnimatePresence>
     </header>
     <AnimatePresence>{searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}</AnimatePresence>
   </>;

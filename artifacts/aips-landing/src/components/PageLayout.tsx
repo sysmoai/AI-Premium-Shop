@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { PageFooter } from "@/components/PageFooter";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
-import { StickyMobileBar } from "@/components/StickyMobileBar";
 import { BackToTop } from "@/components/BackToTop";
 import { TierASeoLayer } from "@/components/TierASeoLayer";
 
@@ -19,7 +18,6 @@ export function PageLayout({ children }: PageLayoutProps) {
       <TierASeoLayer />
       <PageFooter />
       <FloatingWhatsApp />
-      <StickyMobileBar />
       <BackToTop />
     </div>
   );

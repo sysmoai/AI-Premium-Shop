@@ -20,6 +20,20 @@ test("AI assistant category runtime uses governed family cards and confirm-first
   expect(text).toContain("provider-controlled");
 });
 
+test("AI video runtime exposes a truth-safe workflow decision hub", async ({ page }) => {
+  await page.goto("/ai-video", { waitUntil: "networkidle" });
+  const main = page.locator("#main-content");
+  await expect(main.getByRole("heading", { name: "Which AI video tool do you actually need?" })).toBeVisible();
+  await expect(main.getByRole("heading", { name: "Generate new footage" })).toBeVisible();
+  await expect(main.getByRole("heading", { name: "Edit existing footage" })).toBeVisible();
+  await expect(main.getByRole("heading", { name: "Presenter or avatar workflow" })).toBeVisible();
+  await expect(main.getByRole("heading", { name: "Repurpose long video" })).toBeVisible();
+  const text = (await main.innerText()).toLowerCase();
+  expect(text).toContain("start with the job, not the brand name");
+  expect(text).toContain("provider-controlled credits");
+  for (const phrase of BLOCKED) expect(text, phrase).not.toContain(phrase.toLowerCase());
+});
+
 test("AI code category runtime excludes retired Replit and fixed SLA/model claims", async ({ page }) => {
   await page.goto("/ai-code", { waitUntil: "networkidle" });
   const main = page.locator("#main-content");
@@ -51,6 +65,10 @@ test("all category crawler artifacts are self-canonical, runtime-capable and tru
     expect(html, route).toContain(`rel="canonical" href="https://aipremiumshop.com${route}"`);
     expect(html, route).toContain("browse current public ai premium shop catalog families");
     expect(html, route).toContain("confirm current availability, delivery eta and applicable terms before payment");
+    if (category === "ai-video") {
+      expect(html, route).toContain("which ai video tool do you actually need?");
+      expect(html, route).toContain("start with the job, not the brand name");
+    }
     expect(html, route).toContain('<script type="module"');
     expect(html, route).not.toContain('"@type":"faqpage"');
     for (const phrase of BLOCKED) expect(html, `${route}: ${phrase}`).not.toContain(phrase.toLowerCase());

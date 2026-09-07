@@ -9,7 +9,7 @@ const evidence = JSON.parse(fs.readFileSync(path.join(APP, "data/chatgpt-money-p
 const publicCatalog = JSON.parse(fs.readFileSync(path.join(APP, "data/public-products.json"), "utf8"));
 const products = Array.isArray(publicCatalog) ? publicCatalog : publicCatalog.products ?? [];
 const SITE = "https://aipremiumshop.com";
-const ROUTES = ["chatgpt-plus-bangladesh", "chatgpt-plans-bangladesh"];
+const ROUTES = ["chatgpt-go-bangladesh", "chatgpt-plus-bangladesh", "chatgpt-plans-bangladesh"];
 
 const esc = (value) => String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const money = (value) => `BDT ${Number(value).toLocaleString("en-BD")}`;
@@ -35,6 +35,28 @@ function sourceList(ids) {
 
 function safetySection() {
   return `<section><h2>Account and access safety</h2><p>${esc(evidence.provider_facts.account_policy.statement)}</p><p>Under current AI Premium Shop provider governance, shared OpenAI account offers are not published on these ChatGPT money pages. Confirm the exact access model before payment.</p></section>`;
+}
+
+function goBody(records) {
+  const route = evidence.routes["chatgpt-go-bangladesh"];
+  const go = evidence.provider_facts.go;
+  const listing = currentRecord(records, "chatgpt-go-bangladesh");
+  return `<main>
+<nav aria-label="breadcrumb"><a href="/">Home</a> › <a href="/ai-assistant">AI Chat & Assistants</a> › ChatGPT Go</nav>
+<h1>${esc(route.h1)}</h1>
+<p>Compare the current AI Premium Shop Personal listing with OpenAI's first-party ChatGPT Go information before you order in Bangladesh.</p>
+<section><h2>Quick answer</h2><ul>
+<li><strong>Current AI Premium Shop listing:</strong> ${listing ? `${money(listing.price)}/month · ${esc(access(listing.accessType))}` : "Confirm current price and access"}. Exact order price is reconfirmed before payment.</li>
+<li><strong>OpenAI provider reference:</strong> ${esc(go.official_reference)} · ${esc(go.billing)}.</li>
+<li><strong>AI Premium Shop payment references:</strong> ${evidence.local_payment.methods.map(esc).join(" and ")}. These do not describe payment methods accepted directly by OpenAI.</li>
+</ul></section>
+<section><h2>What OpenAI currently says ChatGPT Go includes</h2><p>${esc(go.positioning)}</p><ul>${go.features.map((feature) => `<li>${esc(feature)}</li>`).join("")}</ul><h3>Important provider limits</h3><ul>${go.caveats.map((caveat) => `<li>${esc(caveat)}</li>`).join("")}</ul></section>
+${safetySection()}
+<section><h2>Before ordering ChatGPT Go</h2><ul><li>Confirm Personal access for the exact order.</li><li>Reconfirm the current AI Premium Shop price before payment.</li><li>Check OpenAI's current Go availability and plan limits for the account.</li><li>Confirm availability, delivery ETA and applicable order terms.</li></ul></section>
+<section><h2>Go or Plus?</h2><p>Go is positioned as a lower-cost individual plan with expanded access over Free. Compare the exact current provider limits before choosing.</p><p><a href="/chatgpt-plus-bangladesh">Open the ChatGPT Plus guide</a> · <a href="/chatgpt-plans-bangladesh">Compare all ChatGPT plans</a></p></section>
+${sourceList(route.source_ids)}
+<p><a href="/products">Browse all AI tools</a> · <a href="/pricing">Compare current pricing</a> · <a href="/how-to-order">How to order</a></p>
+</main>`;
 }
 
 function plusBody(records) {
@@ -90,8 +112,6 @@ function setMeta(html, route, canonical) {
   const escapedDescription = esc(route.description);
   return html
     .replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(route.title)}</title>`)
-    // Use a function replacer so `$20`, `$100`, `$&`, etc. in evidence text are
-    // emitted literally instead of being interpreted as String.replace tokens.
     .replace(/(<meta\s+name="description"\s+content=")[^"]*(")/i, (_match, prefix, suffix) => `${prefix}${escapedDescription}${suffix}`)
     .replace(/<meta property="og:title" content="[^"]*"\s*\/>/i, `<meta property="og:title" content="${esc(route.title)}" />`)
     .replace(/<meta property="og:description" content="[^"]*"\s*\/>/i, `<meta property="og:description" content="${escapedDescription}" />`)
@@ -114,7 +134,7 @@ for (const slug of ROUTES) {
   const records = recordsFor(slug);
   if (!records.length) throw new Error(`[chatgpt-money-prerender] no governed public records for ${slug}`);
   const canonical = `${SITE}${route.path}`;
-  const body = slug === "chatgpt-plus-bangladesh" ? plusBody(records) : plansBody(records);
+  const body = slug === "chatgpt-go-bangladesh" ? goBody(records) : slug === "chatgpt-plus-bangladesh" ? plusBody(records) : plansBody(records);
   let html = fs.readFileSync(file, "utf8");
   html = setMeta(html, route, canonical);
   html = replaceRoot(html, body);

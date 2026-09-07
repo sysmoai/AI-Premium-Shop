@@ -1,84 +1,285 @@
 {
   "ignoreCommand": "node scripts/vercel-ignore-build.mjs",
   "functions": {
-    "api/concierge.js": { "maxDuration": 45 }
+    "api/concierge.js": {
+      "maxDuration": 45
+    }
   },
   "buildCommand": "PORT=3000 BASE_PATH=/ pnpm run build",
   "outputDirectory": "dist/public",
   "installCommand": "pnpm install --frozen-lockfile",
   "env": {
     "PORT": "3000",
-    "BASE_PATH": "/"
+    "BASE_PATH": "/",
+    "NODE_OPTIONS": "--trace-deprecation"
   },
   "redirects": [
-    { "source": "/chatgpt", "destination": "/chatgpt-plans-bangladesh", "permanent": true },
-    { "source": "/claude", "destination": "/claude-pro-bangladesh", "permanent": true },
-    { "source": "/claude-team-bangladesh", "destination": "/claude-pro-bangladesh", "permanent": true },
-    { "source": "/midjourney", "destination": "/midjourney-bangladesh", "permanent": true },
-    { "source": "/canva", "destination": "/canva-pro-bangladesh", "permanent": true },
-    { "source": "/netflix", "destination": "/products", "permanent": false },
-    { "source": "/youtube-premium", "destination": "/products", "permanent": false },
-    { "source": "/b2b-implementation-bangladesh", "destination": "/product/b2b-implementation-bangladesh", "permanent": true },
-    { "source": "/business-package-bangladesh", "destination": "/product/business-package-bangladesh", "permanent": true },
-    { "source": "/freelancer-bundle-bangladesh", "destination": "/product/freelancer-bundle-bangladesh", "permanent": true },
-    { "source": "/student-package-bangladesh", "destination": "/product/student-package-bangladesh", "permanent": true },
-    { "source": "/chatgpt-vs-claude-bangladesh", "destination": "/chatgpt-vs-claude", "permanent": true },
-    { "source": "/chatgpt-plans-comparison-bangladesh", "destination": "/chatgpt-plans-bangladesh", "permanent": true },
-    { "source": "/google-ai-pro-bangladesh", "destination": "/gemini-advanced-bangladesh", "permanent": true },
-    { "source": "/products/kling-ai-bangladesh", "destination": "/kling-ai-bangladesh", "permanent": true },
-    { "source": "/buy/gemini-advanced-bangladesh", "destination": "/gemini-advanced-bangladesh", "permanent": true },
-    { "source": "/product/chatgpt-plus-bangladesh", "destination": "/chatgpt-plus-bangladesh", "permanent": true },
-    { "source": "/product/claude-pro-bangladesh", "destination": "/claude-pro-bangladesh", "permanent": true },
-    { "source": "/product/gemini-advanced-bangladesh", "destination": "/gemini-advanced-bangladesh", "permanent": true },
-    { "source": "/product/midjourney-bangladesh", "destination": "/midjourney-bangladesh", "permanent": true },
-    { "source": "/product/github-copilot-bangladesh", "destination": "/github-copilot-bangladesh", "permanent": true },
-    { "source": "/product/supergrok-bangladesh", "destination": "/supergrok-bangladesh", "permanent": true },
-    { "source": "/product/perplexity-pro-bangladesh", "destination": "/perplexity-pro-bangladesh", "permanent": true },
-    { "source": "/product/elevenlabs-bangladesh", "destination": "/elevenlabs-bangladesh", "permanent": true },
-    { "source": "/product/runway-bangladesh", "destination": "/runway-bangladesh", "permanent": true },
-    { "source": "/product/cursor-bangladesh", "destination": "/cursor-bangladesh", "permanent": true },
-    { "source": "/product/capcut-pro-bangladesh", "destination": "/capcut-pro-bangladesh", "permanent": true },
-    { "source": "/product/freepik-premium-bangladesh", "destination": "/freepik-premium-bangladesh", "permanent": true },
-    { "source": "/product/kling-ai-bangladesh", "destination": "/kling-ai-bangladesh", "permanent": true },
-    { "source": "/product/synthesia-bangladesh", "destination": "/synthesia-bangladesh", "permanent": true },
-    { "source": "/product/windsurf-bangladesh", "destination": "/windsurf-bangladesh", "permanent": true },
-    { "source": "/best-ai-budget-bangladesh", "destination": "/ai-under-500", "permanent": true },
-    { "source": "/replit-bangladesh", "destination": "/products", "permanent": true },
-    { "source": "/product/replit-bangladesh", "destination": "/products", "permanent": true },
-    { "source": "/guides/students", "destination": "/best-ai-for-students", "permanent": true },
-    { "source": "/guides/freelancers", "destination": "/best-ai-for-freelancers", "permanent": true },
-    { "source": "/guides/creators", "destination": "/best-ai-for-creators", "permanent": true },
-    { "source": "/guides/smallbusiness", "destination": "/best-ai-for-business", "permanent": true },
-    { "source": "/privacy", "destination": "/privacy-policy", "permanent": true }
+    {
+      "source": "/chatgpt",
+      "destination": "/chatgpt-plans-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/claude",
+      "destination": "/claude-pro-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/claude-team-bangladesh",
+      "destination": "/claude-pro-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/midjourney",
+      "destination": "/midjourney-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/canva",
+      "destination": "/canva-pro-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/netflix",
+      "destination": "/products",
+      "permanent": false
+    },
+    {
+      "source": "/youtube-premium",
+      "destination": "/products",
+      "permanent": false
+    },
+    {
+      "source": "/b2b-implementation-bangladesh",
+      "destination": "/product/b2b-implementation-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/business-package-bangladesh",
+      "destination": "/product/business-package-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/freelancer-bundle-bangladesh",
+      "destination": "/product/freelancer-bundle-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/student-package-bangladesh",
+      "destination": "/product/student-package-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/chatgpt-vs-claude-bangladesh",
+      "destination": "/chatgpt-vs-claude",
+      "permanent": true
+    },
+    {
+      "source": "/chatgpt-plans-comparison-bangladesh",
+      "destination": "/chatgpt-plans-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/google-ai-pro-bangladesh",
+      "destination": "/gemini-advanced-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/products/kling-ai-bangladesh",
+      "destination": "/kling-ai-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/buy/gemini-advanced-bangladesh",
+      "destination": "/gemini-advanced-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/chatgpt-plus-bangladesh",
+      "destination": "/chatgpt-plus-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/claude-pro-bangladesh",
+      "destination": "/claude-pro-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/gemini-advanced-bangladesh",
+      "destination": "/gemini-advanced-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/midjourney-bangladesh",
+      "destination": "/midjourney-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/github-copilot-bangladesh",
+      "destination": "/github-copilot-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/supergrok-bangladesh",
+      "destination": "/supergrok-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/perplexity-pro-bangladesh",
+      "destination": "/perplexity-pro-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/elevenlabs-bangladesh",
+      "destination": "/elevenlabs-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/runway-bangladesh",
+      "destination": "/runway-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/cursor-bangladesh",
+      "destination": "/cursor-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/capcut-pro-bangladesh",
+      "destination": "/capcut-pro-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/freepik-premium-bangladesh",
+      "destination": "/freepik-premium-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/kling-ai-bangladesh",
+      "destination": "/kling-ai-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/synthesia-bangladesh",
+      "destination": "/synthesia-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/product/windsurf-bangladesh",
+      "destination": "/windsurf-bangladesh",
+      "permanent": true
+    },
+    {
+      "source": "/best-ai-budget-bangladesh",
+      "destination": "/ai-under-500",
+      "permanent": true
+    },
+    {
+      "source": "/replit-bangladesh",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/product/replit-bangladesh",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/guides/students",
+      "destination": "/best-ai-for-students",
+      "permanent": true
+    },
+    {
+      "source": "/guides/freelancers",
+      "destination": "/best-ai-for-freelancers",
+      "permanent": true
+    },
+    {
+      "source": "/guides/creators",
+      "destination": "/best-ai-for-creators",
+      "permanent": true
+    },
+    {
+      "source": "/guides/smallbusiness",
+      "destination": "/best-ai-for-business",
+      "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy-policy",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; media-src 'self' https://media.aipremiumshop.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; frame-ancestors 'none';" },
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" }
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; media-src 'self' https://media.aipremiumshop.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; frame-ancestors 'none';"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
       ]
     },
     {
       "source": "/(.*)\\.(png|jpg|jpeg|gif|svg|webp|ico)",
       "headers": [
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; media-src 'self' https://media.aipremiumshop.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; frame-ancestors 'none';" },
-        { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" }
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; media-src 'self' https://media.aipremiumshop.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; frame-ancestors 'none';"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; media-src 'self' https://media.aipremiumshop.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; frame-ancestors 'none';" },
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" },
-        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains; preload" }
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; media-src 'self' https://media.aipremiumshop.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; frame-ancestors 'none';"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains; preload"
+        }
       ]
     }
   ]

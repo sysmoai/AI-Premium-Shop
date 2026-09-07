@@ -34,19 +34,29 @@ function fail(message) {
   process.exitCode = 1;
 }
 
+function todayInDhaka() {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Dhaka",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
 function asDate(value, label) {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value ?? ""))) {
+  const normalized = String(value ?? "");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized)) {
     fail(`${label} must be YYYY-MM-DD`);
     return null;
   }
-  const d = new Date(`${value}T00:00:00Z`);
-  if (Number.isNaN(d.getTime())) {
+  const d = new Date(`${normalized}T00:00:00Z`);
+  if (Number.isNaN(d.getTime()) || d.toISOString().slice(0, 10) !== normalized) {
     fail(`${label} is invalid`);
     return null;
   }
-  const today = new Date();
-  const todayUtc = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
-  if (d > todayUtc) fail(`${label} cannot be in the future`);
+  if (normalized > todayInDhaka()) fail(`${label} cannot be in the future`);
   return d;
 }
 

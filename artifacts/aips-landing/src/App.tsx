@@ -5,7 +5,9 @@ import { MessageCircle } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CookieBanner } from "@/components/CookieBanner";
+import { WhatsAppLink } from "@/components/WhatsAppLink";
 import { BRAND_PAGE_SLUGS, productPath } from "@/lib/productRoutes";
+import { AIPS_QUALIFIED_HELP_HREF } from "@/lib/whatsapp";
 import { ConciergeWidget } from "@/components/ConciergeWidget";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
@@ -55,7 +57,6 @@ const INFORMATIONAL_PRODUCT_SLUGS = new Set(
 );
 const INFORMATIONAL_PRODUCT_PATHS = new Set([...INFORMATIONAL_PRODUCT_SLUGS].map((slug) => productPath(slug)));
 
-const WHATSAPP = "https://wa.me/8801865385348?text=Hi%2C%20I%20need%20help%20confirming%20a%20current%20AI%20plan%20before%20payment.";
 const MOBILE_BAR_EXCLUDED_ROUTES = new Set([
   "/contact",
   "/support",
@@ -92,16 +93,17 @@ function MobileOrderBar() {
           <div className="text-xs font-semibold text-white">Need help choosing?</div>
           <div className="mt-0.5 truncate text-[11px]" style={{ color: "#c9ceda" }}>Confirm the exact plan before payment</div>
         </div>
-        <a
-          href={WHATSAPP}
-          target="_blank"
-          rel="noopener noreferrer"
+        <WhatsAppLink
+          href={AIPS_QUALIFIED_HELP_HREF}
+          productName="general_assistance"
+          buttonLocation="mobile_fallback"
           className="flex min-h-11 flex-shrink-0 items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition-opacity hover:opacity-90"
           style={{ backgroundColor: "#008236", color: "#fff" }}
+          aria-label="Get help choosing an AI subscription on WhatsApp"
         >
           <MessageCircle className="h-4 w-4" />
           Ask AI Premium Shop
-        </a>
+        </WhatsAppLink>
       </div>
     </aside>
   );

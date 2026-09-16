@@ -32,17 +32,13 @@ try {
   run(process.execPath, ["scripts/submit-indexnow.mjs", "ops/seo/indexnow-change-set-2026-09-07-higgsfield-payment-truth.json", "--dry-run"]);
   run(process.execPath, ["scripts/validate-chatgpt-money-pages.mjs"]);
   run(process.execPath, ["scripts/validate-tier-a-money-pages.mjs"]);
-  // The full provider registry validator lives at repo scope because provider
-  // evidence is a Git business SSOT, not an app-local data file. Vercel builds
-  // must run the same effective registry gate as GitHub CI before projecting commerce.
   runRepo(process.execPath, ["scripts/validate-provider-sources.mjs"]);
   run(process.execPath, ["scripts/audit-provider-coverage.mjs", "--strict"]);
   run(process.execPath, ["scripts/generate-public-projection.mjs"]);
+  run(process.execPath, ["scripts/normalize-approved-access-models.mjs"]);
   run(process.execPath, ["scripts/audit-provider-coverage.mjs", "--strict", "--projection"]);
   run(process.execPath, ["scripts/generate-publication-state.mjs"]);
 
-  // Serverless concierge assets are generated from the SAME governed sources
-  // as the browser/crawler site. This happens before Vercel bundles api/*.
   run(process.execPath, ["scripts/generate-concierge-policy.mjs"]);
   run(process.execPath, ["scripts/generate-concierge-catalog.mjs", "--source-public", "--public-safe"]);
   run(process.execPath, ["scripts/validate-concierge-truth.mjs", "--runtime"]);
@@ -57,13 +53,11 @@ try {
   run(process.execPath, ["scripts/generate-media-catalog.mjs"]);
   run(process.execPath, ["scripts/generate-homepage-v2-view.mjs"]);
   run(process.execPath, ["scripts/apply-approved-homepage-positioning.mjs"]);
+  run(process.execPath, ["scripts/apply-approved-pricing-positioning.mjs"]);
 
   const viteBin = join(APP, "node_modules/vite/bin/vite.js");
   run(process.execPath, [viteBin, "build", "--config", "vite.config.ts"]);
   run(process.execPath, ["scripts/audit-bundle-budgets.mjs"]);
-  // Provider-restricted families are absent from the commerce projection, so
-  // preserve their established canonical URLs as neutral informational pages
-  // before the normal commerce prerenderers run.
   run(process.execPath, ["scripts/prerender-informational-products.mjs"]);
   run(process.execPath, ["scripts/prerender-plans.mjs"]);
   run(process.execPath, ["scripts/prerender-products.mjs"]);
@@ -72,8 +66,6 @@ try {
   run(process.execPath, ["scripts/enhance-tier-a-money-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-category-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-product-prerender.mjs"]);
-  // GO6 rebuilds existing comparison crawler pages from the governed public
-  // projection before the broader support-cluster link graph is applied.
   run(process.execPath, ["scripts/sanitize-comparison-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-budget-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-guide-prerender.mjs"]);
@@ -88,9 +80,6 @@ try {
   run(process.execPath, ["scripts/validate-public-brand-name.mjs"]);
   run(process.execPath, ["scripts/audit-chatgpt-money-pages.mjs"]);
   run(process.execPath, ["scripts/audit-tier-a-money-pages.mjs"]);
-  // GO5 runs only after every truth sanitizer and product-specific V2 audit so
-  // structured data and crawlable internal links are projected from the final
-  // governed public artifacts, never from raw legacy catalog fallbacks.
   run(process.execPath, ["scripts/apply-tier-a-seo-layer.mjs"]);
   run(process.execPath, ["scripts/audit-tier-a-seo-layer.mjs"]);
   run(process.execPath, ["scripts/audit-support-clusters.mjs"]);

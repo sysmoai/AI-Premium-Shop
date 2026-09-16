@@ -63,6 +63,7 @@ try {
   run(process.execPath, ["scripts/prerender-products.mjs"]);
   run(process.execPath, ["scripts/sanitize-brand-prerender.mjs"]);
   run(process.execPath, ["scripts/enhance-chatgpt-money-prerender.mjs"]);
+  run(process.execPath, ["scripts/sanitize-chatgpt-business-pricing-unit.mjs"]);
   run(process.execPath, ["scripts/enhance-tier-a-money-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-category-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-product-prerender.mjs"]);

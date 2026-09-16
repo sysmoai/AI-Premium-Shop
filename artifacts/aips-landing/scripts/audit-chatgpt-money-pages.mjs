@@ -65,7 +65,8 @@ if (!/BDT\s+[0-9,]+\/month/.test(plus)) fail(`Plus page missing governed local B
 const business = read("chatgpt-business-bangladesh");
 auditCommon("chatgpt-business-bangladesh", business);
 if (!business.includes("bKash") || !business.includes("Nagad")) fail(`Business page missing approved AI Premium Shop payment references`);
-if (!/BDT\s+[0-9,]+\/month/.test(business)) fail(`Business page missing governed local BDT listing`);
+if (!/BDT\s+[0-9,]+\/user\/month/.test(business)) fail(`Business page missing governed per-user local BDT listing`);
+if (!business.includes("Team / Workspace access")) fail(`Business page missing provider-aligned Team / Workspace access label`);
 if (!business.includes("Standard: $25/user monthly") || !business.includes("Premium: $125/user monthly")) fail(`Business page missing current OpenAI Standard/Premium monthly references`);
 if (!business.toLowerCase().includes("at least two paid seats")) fail(`Business page missing current two-seat minimum`);
 if (!business.toLowerCase().includes("api usage is separate")) fail(`Business page missing separate API billing caveat`);

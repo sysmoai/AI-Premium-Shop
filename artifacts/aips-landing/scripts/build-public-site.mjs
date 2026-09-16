@@ -56,6 +56,7 @@ try {
   run(process.execPath, ["scripts/generate-plan-catalog.mjs"]);
   run(process.execPath, ["scripts/generate-media-catalog.mjs"]);
   run(process.execPath, ["scripts/generate-homepage-v2-view.mjs"]);
+  run(process.execPath, ["scripts/apply-approved-homepage-positioning.mjs"]);
 
   const viteBin = join(APP, "node_modules/vite/bin/vite.js");
   run(process.execPath, [viteBin, "build", "--config", "vite.config.ts"]);

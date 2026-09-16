@@ -83,6 +83,7 @@ try {
   run(process.execPath, ["scripts/sanitize-editorial-index-prerender.mjs"]);
   run(process.execPath, ["scripts/sanitize-info-prerender.mjs"]);
   run(process.execPath, ["scripts/prerender-homepage-v2-preview.mjs"]);
+  run(process.execPath, ["scripts/sanitize-homepage-positioning.mjs"]);
   run(process.execPath, ["scripts/normalize-public-brand-name.mjs"]);
   run(process.execPath, ["scripts/validate-public-brand-name.mjs"]);
   run(process.execPath, ["scripts/audit-chatgpt-money-pages.mjs"]);

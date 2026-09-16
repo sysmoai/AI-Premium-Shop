@@ -1,42 +1,51 @@
 /**
- * Pricing Safety Layer (Phase 1)
+ * Pricing Safety Layer — Master Pricing v2 (approved 2026-09-17)
  *
- * Centralizes exchange-rate math WITHOUT changing any displayed price.
- * Each product keeps its existing `price` (BDT, FINAL, CEO-set) — the site
- * continues to display `price` exactly as before.
+ * Public prices are governed by ops/ssot/pricing-v2.json and injected by the
+ * governed public projection at build time. UI components must not invent or
+ * silently recalculate a live selling price from this helper alone.
  *
- * The ONLY approved new use of this formula is an optional strike-through
- * comparison, e.g.:
- *   "Direct abroad: BDT {formulaPrice(officialUSD)} + international card needed"
- *
- * Never use formulaPrice() to overwrite or auto-suggest a live `price`.
- * Discrepancies belong in /data/price-review.json for manual approval.
+ * This module is for cost sanity checks and comparison math only.
  */
 
-export const EXCHANGE_RATE = 130;
+export const EXCHANGE_RATE = 124;
 export const VAT = 0.15;
+export const MINIMUM_PROFIT_BDT = 500;
+export const PROFIT_PER_OFFICIAL_USD_BDT = 25;
+
+/** Estimated Bangladesh landed subscription cost before AIPS profit. */
+export function landedCostBDT(officialUSD: number): number {
+  return Math.round((officialUSD * EXCHANGE_RATE * (100 + VAT * 100)) / 100);
+}
 
 /**
- * Estimated cost of buying directly from abroad, in BDT:
- * round(usd * 130 * 1.15)
- *
- * Verified anchors:
- *   20 -> 2990, 8 -> 1196, 30 -> 4485, 10 -> 1495,
- *   12 -> 1794, 5 -> 748, 200 -> 29900
+ * Required true net profit under the approved proportional rule.
+ * $20 -> at least BDT 500 target threshold; $40 -> BDT 1,000; $100 -> BDT 2,500.
+ * Final governed prices are rounded upward so estimated profit exceeds the
+ * threshold rather than merely touching it.
  */
+export function requiredNetProfitBDT(officialUSD: number): number {
+  return Math.max(MINIMUM_PROFIT_BDT, officialUSD * PROFIT_PER_OFFICIAL_USD_BDT);
+}
+
+/** Minimum unrounded customer-price floor before commercial upward rounding. */
+export function minimumSellingFloorBDT(officialUSD: number): number {
+  return landedCostBDT(officialUSD) + requiredNetProfitBDT(officialUSD);
+}
+
+/** Backward-compatible alias for existing direct-cost comparison surfaces. */
 export function formulaPrice(usd: number): number {
-  // Integer math avoids floating-point drift (e.g. 5 * 130 * 1.15 = 747.4999…).
-  return Math.round((usd * EXCHANGE_RATE * (100 + VAT * 100)) / 100);
+  return landedCostBDT(usd);
 }
 
-/** Same as formulaPrice but rounded to the nearest 10 BDT (for display-friendly anchors). */
+/** Same as landedCostBDT but rounded to the nearest 10 BDT for explanatory display. */
 export function formulaPriceNearest10(usd: number): number {
-  return Math.round(formulaPrice(usd) / 10) * 10;
+  return Math.round(landedCostBDT(usd) / 10) * 10;
 }
 
-/** Savings vs buying direct abroad. Returns null when we cannot compute a meaningful saving. */
+/** Savings vs estimated direct landed cost. Null means no supported saving claim. */
 export function savingsVsDirect(priceBDT: number, officialUSD?: number): number | null {
   if (!officialUSD || officialUSD <= 0) return null;
-  const direct = formulaPrice(officialUSD);
+  const direct = landedCostBDT(officialUSD);
   return direct > priceBDT ? direct - priceBDT : null;
 }

@@ -2,6 +2,7 @@ export const dynamic = "force-static";
 
 import type { MetadataRoute } from "next";
 import { getProductGroups, getCategories } from "@/lib/data/products";
+import { getServiceOffers } from "@/lib/data/services";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aipremiumshop.com";
@@ -30,6 +31,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         languages: {
           "en-BD": `${siteUrl}/products`,
           "x-default": `${siteUrl}/products`,
+        },
+      },
+    },
+    {
+      url: `${siteUrl}/services`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+      alternates: {
+        languages: {
+          "en-BD": `${siteUrl}/services`,
+          "x-default": `${siteUrl}/services`,
         },
       },
     },
@@ -110,6 +123,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
+  // Service pages
+  const serviceEntries: MetadataRoute.Sitemap = getServiceOffers().map((offer) => ({
+    url: `${siteUrl}/services/${offer.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.82,
+  }));
+
   // Category pages
   const categories = getCategories();
   const categoryEntries: MetadataRoute.Sitemap = categories.map((slug) => ({
@@ -166,5 +187,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.75,
   }));
 
-  return [...staticPages, ...categoryEntries, ...productEntries, ...comparisonEntries, ...blogEntries, ...segmentEntries, ...budgetEntries, ...cityEntries];
+  return [...staticPages, ...serviceEntries, ...categoryEntries, ...productEntries, ...comparisonEntries, ...blogEntries, ...segmentEntries, ...budgetEntries, ...cityEntries];
 }

@@ -19,6 +19,8 @@ const AboutPage = lazy(() => import("@/pages/AboutPage"));
 const ContactPage = lazy(() => import("@/pages/ContactPage"));
 const FAQPage = lazy(() => import("@/pages/FAQPage"));
 const PricingPage = lazy(() => import("@/pages/PricingPage"));
+const ServicesPage = lazy(() => import("@/pages/ServicesPage"));
+const ServiceDetailPage = lazy(() => import("@/pages/ServiceDetailPage"));
 const RefundPolicyPage = lazy(() => import("@/pages/RefundPolicyPage"));
 const TermsPage = lazy(() => import("@/pages/TermsPage"));
 const PrivacyPolicyPage = lazy(() => import("@/pages/PrivacyPolicyPage"));
@@ -205,6 +207,10 @@ function Router() {
       <Route path="/product/:slug">
         {(params) => INFORMATIONAL_PRODUCT_SLUGS.has(params.slug) ? <ProviderRestrictedPage productSlug={params.slug} /> : <ProductPage productSlug={params.slug} />}
       </Route>
+
+      {/* Services */}
+      <Route path="/services" component={ServicesPage} />
+      <Route path="/services/:slug">{(params) => <ServiceDetailPage serviceSlug={params.slug} />}</Route>
 
       {/* Info pages */}
       <Route path="/about" component={AboutPage} />

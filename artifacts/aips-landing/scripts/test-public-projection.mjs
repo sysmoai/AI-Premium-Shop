@@ -135,13 +135,20 @@ function expectedApprovedPricing(source) {
         priceSource: pricing.revision,
       };
     }
+
+    return {
+      excluded: false,
+      price: null,
+      requestPrice: true,
+      priceSource: "price-review-required",
+    };
   }
 
   return {
     excluded: false,
     price: null,
     requestPrice: true,
-    priceSource: "price-review-required",
+    priceSource: "unmapped-current-price",
   };
 }
 

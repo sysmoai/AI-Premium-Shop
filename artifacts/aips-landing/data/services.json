@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "last_verified": "2026-09-28",
+  "services": [
+    {
+      "slug": "deepseek-api-credit",
+      "name": "DeepSeek API $10 Credit",
+      "priceBdt": 1990,
+      "priceSuffix": "usage",
+      "duration": "Until purchased API balance is consumed",
+      "summary": "API usage balance with activation and basic setup support.",
+      "features": [
+        "$10 API usage balance",
+        "Activation and basic setup support",
+        "Basic API connection guidance",
+        "BDT payment support"
+      ],
+      "limitations": [
+        "Token usage is metered by the provider; this is not unlimited.",
+        "Provider model availability, token pricing and limits can change.",
+        "Current provider pricing and limits must be reconfirmed before payment."
+      ]
+    },
+    {
+      "slug": "developer-full-setup",
+      "name": "Developer Full Setup",
+      "priceBdt": 3490,
+      "priceSuffix": "one-time",
+      "duration": "One-time environment setup; paid AI/provider usage is separate",
+      "summary": "AI-assisted development environment configured on the customer's own computer.",
+      "features": [
+        "AI coding workflow setup",
+        "VS Code + Git configuration",
+        "GitHub private repository setup",
+        "Cloudflare deployment workflow",
+        "Domain + DNS + SSL/CDN setup",
+        "PC configuration + video-call handover"
+      ],
+      "limitations": [
+        "Paid AI subscriptions/API credits are not unlimited and are not automatically included.",
+        "Domain registration and paid third-party plans are separate unless quoted.",
+        "Full website development is a separate service unless added."
+      ]
+    },
+    {
+      "slug": "complete-website-starter",
+      "name": "Complete Website Starter",
+      "priceBdt": 6990,
+      "priceSuffix": "from",
+      "duration": "Project-based delivery",
+      "summary": "Responsive business website built, deployed and handed over with SEO, speed and security foundations.",
+      "features": [
+        "Responsive website development",
+        "Cloud deployment",
+        "Domain + DNS + SSL/CDN setup",
+        "Basic technical SEO",
+        "Speed optimization",
+        "Security baseline",
+        "Contact/WhatsApp CTA"
+      ],
+      "limitations": [
+        "Final price depends on pages, design complexity and integrations.",
+        "Domain and paid third-party services are separate unless quoted.",
+        "Advanced e-commerce, login, dashboard, database and gateway work are separate scopes."
+      ]
+    },
+    {
+      "slug": "business-website-pro",
+      "name": "Business Website Pro",
+      "priceBdt": 9990,
+      "priceSuffix": "from",
+      "duration": "Project-based delivery",
+      "summary": "Business website focused on lead generation, analytics and SEO-ready launch.",
+      "features": [
+        "5-8 core business pages",
+        "Lead/contact form",
+        "WhatsApp conversion CTA",
+        "Analytics setup",
+        "Google Search Console setup",
+        "Technical SEO foundation",
+        "Performance and security optimization"
+      ],
+      "limitations": [
+        "Custom booking, CRM, large content and paid integrations are separately scoped.",
+        "SEO setup does not guarantee rankings, leads or sales."
+      ]
+    },
+    {
+      "slug": "landing-page-lead-funnel",
+      "name": "Landing Page + Lead Funnel",
+      "priceBdt": 4990,
+      "priceSuffix": "from",
+      "duration": "Project-based delivery",
+      "summary": "Focused landing page designed to turn campaign traffic into WhatsApp conversations or qualified leads.",
+      "features": [
+        "Conversion-focused landing page",
+        "Lead form",
+        "WhatsApp CTA",
+        "Basic analytics/event tracking",
+        "Mobile optimization",
+        "Speed optimization",
+        "Confirmation flow"
+      ],
+      "limitations": [
+        "Ad spend, ad management, CRM subscriptions and external automation fees are separate.",
+        "Lead volume and conversion rate are not guaranteed."
+      ]
+    },
+    {
+      "slug": "ecommerce-starter",
+      "name": "E-commerce Starter",
+      "priceBdt": 14990,
+      "priceSuffix": "from",
+      "duration": "Project-based delivery",
+      "summary": "Starter online store with product catalog, order flow and scalable architecture.",
+      "features": [
+        "Responsive storefront",
+        "Product catalog",
+        "Cart/order flow",
+        "Basic admin/data setup",
+        "Domain + deployment",
+        "SSL/CDN",
+        "Basic analytics and SEO setup"
+      ],
+      "limitations": [
+        "Gateway onboarding/fees, advanced inventory, logistics, ERP and custom dashboards are separate.",
+        "Final scope depends on product count and workflow."
+      ]
+    },
+    {
+      "slug": "ai-customer-support-assistant",
+      "name": "AI Customer Support Assistant",
+      "priceBdt": 6990,
+      "priceSuffix": "setup from",
+      "duration": "Initial setup; ongoing AI/provider usage is separate",
+      "summary": "Website AI assistant configured around approved business information to answer common questions and collect leads.",
+      "features": [
+        "Website chat assistant setup",
+        "Business FAQ/knowledge setup",
+        "Lead capture",
+        "Human escalation path",
+        "Basic guardrails",
+        "Testing and handover"
+      ],
+      "limitations": [
+        "AI/API usage charges are separate.",
+        "AI should not make high-impact payment/refund/legal decisions without human approval.",
+        "Quality depends on the supplied knowledge base."
+      ]
+    },
+    {
+      "slug": "lead-automation-setup",
+      "name": "Lead Automation Setup",
+      "priceBdt": 7990,
+      "priceSuffix": "from",
+      "duration": "Project-based setup",
+      "summary": "Connect website inquiries to notifications, structured lead tracking and follow-up workflows.",
+      "features": [
+        "Lead form workflow",
+        "Email/notification routing",
+        "Google Sheet or supported CRM logging",
+        "Lead status structure",
+        "Follow-up workflow design",
+        "Testing and documentation"
+      ],
+      "limitations": [
+        "Third-party CRM, email, WhatsApp or automation fees are separate.",
+        "Advanced enterprise routing requires a separate scope."
+      ]
+    },
+    {
+      "slug": "google-business-local-seo",
+      "name": "Google Business + Local SEO",
+      "priceBdt": 4990,
+      "priceSuffix": "one-time",
+      "duration": "Initial optimization project",
+      "summary": "Improve local search readiness through profile, website and local SEO foundations.",
+      "features": [
+        "Google Business Profile optimization guidance",
+        "Business information consistency check",
+        "Local keyword/page recommendations",
+        "Local SEO website foundation",
+        "Search Console connection where applicable",
+        "Review/local trust recommendations"
+      ],
+      "limitations": [
+        "Google controls profile verification and ranking.",
+        "No map-pack position, ranking, calls or leads are guaranteed.",
+        "Ongoing citation/content campaigns are separate."
+      ]
+    },
+    {
+      "slug": "seo-launch-pack",
+      "name": "SEO Launch Pack",
+      "priceBdt": 5990,
+      "priceSuffix": "one-time",
+      "duration": "Initial technical SEO project",
+      "summary": "Prepare a website for search engines with technical, indexing and measurement foundations.",
+      "features": [
+        "Technical SEO review",
+        "Metadata foundation",
+        "Sitemap + robots review/setup",
+        "Google Search Console setup",
+        "Analytics setup",
+        "Indexing/crawl checks",
+        "On-page structure recommendations"
+      ],
+      "limitations": [
+        "This is a launch/foundation package, not an ongoing SEO campaign.",
+        "Rankings, traffic, customers and revenue are not guaranteed.",
+        "Content production and backlink campaigns are separate."
+      ]
+    },
+    {
+      "slug": "website-speed-security-fix",
+      "name": "Website Speed + Security Fix",
+      "priceBdt": 3990,
+      "priceSuffix": "from",
+      "duration": "Audit and remediation project",
+      "summary": "Find and fix practical performance, HTTPS, deployment and baseline security issues.",
+      "features": [
+        "Performance audit",
+        "Asset/loading optimization",
+        "CDN/cache review",
+        "SSL/HTTPS review",
+        "Security configuration review",
+        "Basic technical remediation",
+        "Before/after notes"
+      ],
+      "limitations": [
+        "Final price depends on stack and issue severity.",
+        "Malware cleanup, compromised servers and complex backend incidents require separate scoping."
+      ]
+    },
+    {
+      "slug": "wordpress-rescue-modern-migration",
+      "name": "WordPress Rescue / Modern Migration",
+      "priceBdt": 7990,
+      "priceSuffix": "from",
+      "duration": "Project-based delivery",
+      "summary": "Fix an existing WordPress site or migrate an appropriate site to a modern coded architecture.",
+      "features": [
+        "Current-site audit",
+        "Plugin/theme dependency review",
+        "Performance/update-risk review",
+        "Rescue or migration plan",
+        "Modern deployment option",
+        "DNS/SSL migration support",
+        "SEO-preserving checklist"
+      ],
+      "limitations": [
+        "WordPress is not inherently slow; performance depends on hosting, theme, plugins, media and configuration.",
+        "Premium licenses and paid services are separate.",
+        "Complex stores/memberships need detailed scoping."
+      ]
+    },
+    {
+      "slug": "website-care-plan",
+      "name": "Website Care Plan",
+      "priceBdt": 1990,
+      "priceSuffix": "per month from",
+      "duration": "Monthly recurring service",
+      "summary": "Ongoing website care for routine checks, small changes and maintenance.",
+      "features": [
+        "Routine website checks",
+        "Small content updates within allowance",
+        "Backup/deployment checks where applicable",
+        "Basic uptime/technical review",
+        "Minor bug fixes",
+        "Monthly maintenance notes"
+      ],
+      "limitations": [
+        "Major redesigns, new features, large content projects and incidents are quoted separately.",
+        "Third-party subscriptions are separate."
+      ]
+    },
+    {
+      "slug": "ai-content-starter",
+      "name": "AI Content Starter",
+      "priceBdt": 4990,
+      "priceSuffix": "per month from",
+      "duration": "Monthly content service",
+      "summary": "AI-assisted content workflow with human review for social and business content.",
+      "features": [
+        "Content planning",
+        "AI-assisted captions/copy",
+        "Branded visual concepts",
+        "Basic content calendar",
+        "Human review before delivery",
+        "Reusable content workflow"
+      ],
+      "limitations": [
+        "Exact post count/media type is defined in quotation.",
+        "Ad spend, influencer work, photography and media licenses are separate.",
+        "Virality, reach and sales are not guaranteed."
+      ]
+    },
+    {
+      "slug": "ai-video-content-pack",
+      "name": "AI Video Content Pack",
+      "priceBdt": 5990,
+      "priceSuffix": "per month from",
+      "duration": "Monthly video content service",
+      "summary": "AI-assisted short-form video production for social and promotional use.",
+      "features": [
+        "Short-form video concepts",
+        "AI-assisted production",
+        "Captions/subtitles",
+        "Platform-ready aspect ratios",
+        "Basic brand consistency",
+        "Human review before delivery"
+      ],
+      "limitations": [
+        "Exact video count, duration and production complexity are defined in quotation.",
+        "Custom filming, licensed media and ad spend are separate.",
+        "Views, reach and sales are not guaranteed."
+      ]
+    }
+  ]
+}

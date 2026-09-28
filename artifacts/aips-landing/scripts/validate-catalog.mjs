@@ -29,6 +29,8 @@ const products = catalog.products;
 const appSrc = read("src/App.tsx");
 const routesSrc = read("src/lib/productRoutes.ts");
 const sitemap = read("public/sitemap.xml");
+const serviceCatalog = JSON.parse(read("data/services.json"));
+const services = serviceCatalog.services ?? [];
 
 // ---------- 1. catalog structure ----------
 const REQUIRED_FIELDS = ["id", "name", "slug", "brand", "provider", "category", "price", "whatsappMsg", "status", "accessType"];
@@ -107,6 +109,22 @@ if (!/BRAND_PAGE_SLUGS\.map/.test(appSrc)) {
 }
 const staticRoutes = new Set([...appSrc.matchAll(/<Route path="\/([^":]+)"/g)].map((m) => m[1]));
 const productSlugs = new Set(products.map((p) => p.slug));
+const serviceSlugs = new Set();
+for (const service of services) {
+  if (!service?.slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(service.slug)) {
+    failures.push(`service catalog contains invalid slug "${service?.slug ?? "missing"}"`);
+    continue;
+  }
+  if (serviceSlugs.has(service.slug)) failures.push(`duplicate service slug "${service.slug}"`);
+  serviceSlugs.add(service.slug);
+  if (!service.name || !service.summary || !service.duration) failures.push(`service ${service.slug}: missing name, summary or duration`);
+  if (!Number.isFinite(Number(service.priceBdt)) || Number(service.priceBdt) <= 0) failures.push(`service ${service.slug}: priceBdt must be a positive number`);
+  if (!Array.isArray(service.features) || service.features.length === 0) failures.push(`service ${service.slug}: features must not be empty`);
+  if (!Array.isArray(service.limitations) || service.limitations.length === 0) failures.push(`service ${service.slug}: limitations must not be empty`);
+}
+if (!/<Route path="\/services\/:slug">/.test(appSrc)) {
+  failures.push("App.tsx no longer exposes the dynamic /services/:slug route");
+}
 
 const smPaths = new Set(
   [...sitemap.matchAll(/<loc>https:\/\/aipremiumshop\.com([^<]*)<\/loc>/g)].map((m) =>
@@ -121,6 +139,9 @@ for (const path of smPaths) {
     if (brandSlugs.has(slug)) failures.push(`sitemap lists /product/${slug} which duplicates brand page /${slug}`);
   } else if (path.startsWith("blog/")) {
     // blog posts are routed dynamically; existence is validated at render time
+  } else if (path.startsWith("services/")) {
+    const slug = path.slice("services/".length);
+    if (!serviceSlugs.has(slug)) failures.push(`sitemap lists /services/${slug} but no such service exists`);
   } else if (!staticRoutes.has(path) && !brandSlugs.has(path)) {
     failures.push(`sitemap lists /${path} but no route matches — it renders NotFound with HTTP 200`);
   }
@@ -132,6 +153,10 @@ for (const slug of productSlugs) {
 }
 for (const slug of brandSlugs) {
   if (!smPaths.has(slug)) failures.push(`brand page /${slug} missing from sitemap`);
+}
+if (!smPaths.has("services")) failures.push("service catalog /services missing from sitemap");
+for (const slug of serviceSlugs) {
+  if (!smPaths.has(`services/${slug}`)) failures.push(`service ${slug} missing from sitemap as /services/${slug}`);
 }
 
 // ---------- 2a. rendered-plans price consistency ----------

@@ -9,6 +9,7 @@ const APP = join(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(APP, "../..");
 const sitePath = join(REPO, "ops/ssot/site.json");
 const commercialPath = join(REPO, "ops/ssot/commercial.json");
+const pricingPath = join(REPO, "ops/ssot/pricing-v2.json");
 const rawPath = join(APP, "data/products.json");
 const projectedPath = join(APP, "data/public-products.json");
 const publicationStatePath = join(APP, "src/generated/publicationState.ts");
@@ -16,6 +17,7 @@ const homepageV2Path = join(APP, "src/generated/homepageV2.ts");
 
 const originalSite = readFileSync(sitePath, "utf8");
 const originalCommercial = readFileSync(commercialPath, "utf8");
+const pricing = JSON.parse(readFileSync(pricingPath, "utf8"));
 
 function runScript(script) {
   const result = spawnSync(process.execPath, [script], {
@@ -68,6 +70,87 @@ function assertNeutralizedProtectedFields(product, label) {
 }
 
 const matches = (value, criteria) => Object.entries(criteria ?? {}).every(([key, expected]) => value?.[key] === expected);
+const numeric = (value) => typeof value === "number" && Number.isFinite(value);
+const near = (a, b) => numeric(a) && numeric(b) && Math.abs(a - b) < 0.011;
+const searchable = (...values) => values.filter(Boolean).join(" ").toLowerCase();
+
+const approvedPriceForUsd = (usd) => {
+  if (!numeric(usd)) return null;
+  for (const [key, value] of Object.entries(pricing.approved_price_by_usd ?? {})) {
+    if (near(Number(key), usd)) return Number(value);
+  }
+  return null;
+};
+
+const matchingPricingRule = (text) => (pricing.rules ?? []).find((rule) => {
+  try {
+    return new RegExp(rule.pattern, "i").test(text);
+  } catch {
+    throw new Error(`[public-projection-test] invalid pricing rule regex: ${rule.id}`);
+  }
+}) ?? null;
+
+const mustVerifyPrice = (text) => (pricing.verify_before_fixed_price ?? [])
+  .some((needle) => text.includes(String(needle).toLowerCase()));
+
+function expectedApprovedPricing(source) {
+  const text = searchable(source?.name, source?.tier, source?.brand, source?.provider, source?.slug);
+  const rule = matchingPricingRule(text);
+
+  if (String(source?.accessType ?? "").toLowerCase() === "shared") {
+    return { excluded: true, reason: "shared-access" };
+  }
+
+  if (mustVerifyPrice(text)) {
+    return {
+      excluded: false,
+      price: null,
+      requestPrice: true,
+      priceSource: "verify-before-sale",
+    };
+  }
+
+  if (rule?.fixed_bdt != null) {
+    return {
+      excluded: false,
+      price: Number(rule.fixed_bdt),
+      requestPrice: false,
+      priceSource: pricing.revision,
+    };
+  }
+
+  if (rule) {
+    const usd = numeric(source?.officialUSD) ? source.officialUSD : null;
+    if (Array.isArray(rule.blocked_usd) && usd != null && rule.blocked_usd.some((value) => near(value, usd))) {
+      return { excluded: true, reason: "blocked-usd" };
+    }
+
+    const allowed = Array.isArray(rule.allowed_usd) && usd != null && rule.allowed_usd.some((value) => near(value, usd));
+    const mapped = allowed ? approvedPriceForUsd(usd) : null;
+    if (mapped != null) {
+      return {
+        excluded: false,
+        price: mapped,
+        requestPrice: false,
+        priceSource: pricing.revision,
+      };
+    }
+
+    return {
+      excluded: false,
+      price: null,
+      requestPrice: true,
+      priceSource: "price-review-required",
+    };
+  }
+
+  return {
+    excluded: false,
+    price: null,
+    requestPrice: true,
+    priceSource: "unmapped-current-price",
+  };
+}
 
 try {
   const raw = JSON.parse(readFileSync(rawPath, "utf8"));
@@ -80,7 +163,12 @@ try {
   const excludedSourceRows = rawProducts.filter((record) => controls.some((control) => matches(record, control.match)));
   const excludedIds = new Set(excludedSourceRows.map((record) => record.id));
   const retainedRawProducts = rawProducts.filter((record) => !excludedIds.has(record.id));
-  const expectedApprovedCount = retainedRawProducts.length;
+  const pricingExpectations = new Map(retainedRawProducts.map((record) => [record.id, expectedApprovedPricing(record)]));
+  const pricingExcludedSourceRows = retainedRawProducts.filter((record) => pricingExpectations.get(record.id)?.excluded);
+  const expectedApprovedProducts = retainedRawProducts.filter((record) => !pricingExpectations.get(record.id)?.excluded);
+  const expectedApprovedCount = expectedApprovedProducts.length;
+  const expectedPricingMapped = expectedApprovedProducts.filter((record) => numeric(pricingExpectations.get(record.id)?.price)).length;
+  const expectedPricingReview = expectedApprovedProducts.filter((record) => pricingExpectations.get(record.id)?.requestPrice === true).length;
   const expectedNestedFilters = retainedRawProducts.reduce((total, record) => {
     let count = 0;
     for (const control of controls) {
@@ -95,12 +183,19 @@ try {
   const currentState = runPublicationState();
   const currentHomepage = runHomepageV2();
 
-  assert(current.products.length === expectedApprovedCount, `approved projection count ${current.products.length} does not equal raw ${rawProducts.length} minus controlled exclusions ${excludedSourceRows.length}`);
+  assert(
+    current.products.length === expectedApprovedCount,
+    `approved projection count ${current.products.length} does not equal raw ${rawProducts.length} minus provider exclusions ${excludedSourceRows.length} minus pricing exclusions ${pricingExcludedSourceRows.length}`
+  );
   assert(current.projection.schema_version === 2, "current projection is not schema v2");
   assert(current.projection.approved_mode_policy === "governed-approved-commerce-v2", "approved projection policy revision is missing");
   assert(current.projection.provider_evidence_amendment_schema_version === 1, "effective provider evidence amendment was not recorded in projection metadata");
   assert(current.projection.legacy_commercial_fields_neutralized === true, "approved projection did not record legacy-field neutralization");
   assert(current.projection.unverified_provider_pricing_neutralized === true, "approved projection did not record provider-price neutralization");
+  assert(current.projection.approved_pricing_v2_applied === true, "approved projection did not record approved pricing v2 application");
+  assert(current.projection.pricing_excluded_records === pricingExcludedSourceRows.length, `pricing exclusion metadata ${current.projection.pricing_excluded_records} does not equal expected ${pricingExcludedSourceRows.length}`);
+  assert(current.projection.pricing_mapped_records === expectedPricingMapped, `pricing mapped metadata ${current.projection.pricing_mapped_records} does not equal expected ${expectedPricingMapped}`);
+  assert(current.projection.pricing_review_records === expectedPricingReview, `pricing review metadata ${current.projection.pricing_review_records} does not equal expected ${expectedPricingReview}`);
   assert(current.projection.provider_compliance_controls_applied === true, "approved projection did not apply provider controls");
   assert(current.projection.provider_compliance_control_count === controls.length, "provider control count metadata disagrees with effective provider evidence");
   assert(current.projection.provider_compliance_excluded_records === excludedSourceRows.length, "provider exclusion metadata disagrees with catalog impact");
@@ -115,27 +210,43 @@ try {
     assert(!current.products.some((product) => product.id === excluded.id), `${excluded.id}: provider-controlled excluded source row survived approved projection`);
   }
 
-  let preservedPriceCount = 0;
+  let mappedPriceCount = 0;
+  let reviewPriceCount = 0;
   let preservedAccessCount = 0;
   for (const projected of current.products) {
     const source = rawById.get(projected.id);
     assert(source, `${projected.id}: projected record does not map to a raw source record`);
-    assert(!excludedIds.has(projected.id), `${projected.id}: excluded source record reappeared in approved projection`);
+    assert(!excludedIds.has(projected.id), `${projected.id}: provider-excluded source record reappeared in approved projection`);
+
+    const expectedPricing = pricingExpectations.get(projected.id);
+    assert(expectedPricing && !expectedPricing.excluded, `${projected.id}: pricing-excluded source record reappeared in approved projection`);
+
     assertNeutralizedProtectedFields(projected, projected.slug ?? projected.id);
-    if (typeof source.price === "number" && Number.isFinite(source.price)) {
-      assert(projected.price === source.price, `${projected.slug}: approved AIPS price changed during governance projection`);
-      preservedPriceCount += 1;
+
+    if (numeric(expectedPricing.price)) {
+      assert(projected.price === expectedPricing.price, `${projected.slug}: projected AIPS price ${projected.price} does not match approved pricing v2 ${expectedPricing.price}`);
+      assert(projected.requestPrice === false, `${projected.slug}: mapped approved price must not be requestPrice`);
+      assert(projected.priceSource === pricing.revision, `${projected.slug}: mapped approved price is missing pricing revision provenance`);
+      mappedPriceCount += 1;
+    } else {
+      assert(projected.price == null, `${projected.slug}: unapproved numeric price survived pricing v2 review gate`);
+      assert(projected.requestPrice === true, `${projected.slug}: review-required price did not switch to requestPrice`);
+      assert(projected.priceSource === expectedPricing.priceSource, `${projected.slug}: priceSource ${projected.priceSource} does not match expected ${expectedPricing.priceSource}`);
+      reviewPriceCount += 1;
     }
+
     if (source.accessType != null) {
       assert(projected.accessType === source.accessType, `${projected.slug}: approved catalog access label changed during governance projection`);
       preservedAccessCount += 1;
     }
+
     for (const control of controls) {
       if (projected.provider !== control?.match?.provider || !control?.nested_plan_match) continue;
       assert(!(projected.plans ?? []).some((plan) => matches(plan, control.nested_plan_match)), `${projected.id}: provider-controlled nested plan survived approved projection`);
     }
   }
-  assert(preservedPriceCount > 0, "approved projection preserved no numeric AIPS prices");
+  assert(mappedPriceCount === expectedPricingMapped, `mapped pricing assertions covered ${mappedPriceCount}, expected ${expectedPricingMapped}`);
+  assert(reviewPriceCount === expectedPricingReview, `review pricing assertions covered ${reviewPriceCount}, expected ${expectedPricingReview}`);
   assert(preservedAccessCount > 0, "approved projection preserved no access labels");
 
   const openaiControl = controls.find((control) => control?.match?.provider === "OpenAI" && control?.match?.accessType === "shared");
@@ -199,7 +310,7 @@ try {
     }
   }
 
-  console.log(`[public-projection-test] PASS: raw=${rawProducts.length}; approved=${current.products.length}; provider-excluded=${excludedSourceRows.length}; nested-filtered=${current.projection.provider_compliance_filtered_nested_plans}; effective provider evidence applied; approved prices/access preserved for eligible records; quarantine retains all identities and fails closed`);
+  console.log(`[public-projection-test] PASS: raw=${rawProducts.length}; approved=${current.products.length}; provider-excluded=${excludedSourceRows.length}; pricing-excluded=${pricingExcludedSourceRows.length}; pricing-mapped=${mappedPriceCount}; pricing-review=${reviewPriceCount}; nested-filtered=${current.projection.provider_compliance_filtered_nested_plans}; effective provider evidence + pricing v2 applied; quarantine retains all identities and fails closed`);
 } finally {
   writeFileSync(sitePath, originalSite, "utf8");
   writeFileSync(commercialPath, originalCommercial, "utf8");

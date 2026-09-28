@@ -26,14 +26,39 @@ const priceLabel = (service) => {
   return amount;
 };
 
+function replaceRootContents(html, body) {
+  const openToken = '<div id="root">';
+  const start = html.indexOf(openToken);
+  if (start < 0) throw new Error("[services-prerender] root container missing from template");
+
+  let cursor = start + openToken.length;
+  let depth = 1;
+  const tokenRe = /<div\b[^>]*>|<\/div\s*>/gi;
+  tokenRe.lastIndex = cursor;
+
+  let match;
+  while ((match = tokenRe.exec(html))) {
+    if (/^<\/div/i.test(match[0])) depth -= 1;
+    else depth += 1;
+
+    if (depth === 0) {
+      const end = match.index + match[0].length;
+      return html.slice(0, start) + `<div id="root"><div id="prerender-shell">${body}</div></div>` + html.slice(end);
+    }
+  }
+
+  throw new Error("[services-prerender] could not find closing root container");
+}
+
 const write = (route, title, description, body, jsonLd = []) => {
   const canonical = `${SITE}${route}`;
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(description)}$2`)
     .replace(/\s*<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>(?:\r?\n)?/gi, "\n")
-    .replace(/\s*<meta\s+property="og:(?:title|description|url)"\s+content="[^"]*"\s*\/?>(?:\r?\n)?/gi, "\n")
-    .replace('<div id="root"></div>', `<div id="root"><div id="prerender-shell">${body}</div></div>`);
+    .replace(/\s*<meta\s+property="og:(?:title|description|url)"\s+content="[^"]*"\s*\/?>(?:\r?\n)?/gi, "\n");
+
+  html = replaceRootContents(html, body);
 
   html = html.replace(
     "</head>",

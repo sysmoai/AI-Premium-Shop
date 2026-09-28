@@ -31,6 +31,8 @@ const write = (route, title, description, body, jsonLd = []) => {
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(description)}$2`)
+    .replace(/\s*<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>(?:\r?\n)?/gi, "\n")
+    .replace(/\s*<meta\s+property="og:(?:title|description|url)"\s+content="[^"]*"\s*\/?>(?:\r?\n)?/gi, "\n")
     .replace('<div id="root"></div>', `<div id="root"><div id="prerender-shell">${body}</div></div>`);
 
   html = html.replace(

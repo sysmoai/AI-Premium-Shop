@@ -68,6 +68,16 @@ jobs:
             [ "$code" = "200" ] || FAILURES="$FAILURES\n- \`$f\` returned HTTP $code"
           done
 
+          # Vercel leak guard: if any resolver path still reaches the paused
+          # Vercel deployment (or the deployment is disabled), the site is NOT
+          # converged to Cloudflare for that vantage point. HTTP 402, the
+          # "Deployment Paused" page and the DEPLOYMENT_DISABLED body all
+          # indicate Vercel, never the Cloudflare Worker.
+          vcode=$(curl -sS -o /tmp/aips-vercel-body.txt -w '%{http_code}' --max-time 30 "$SITE/")
+          if [ "$vcode" = "402" ] || grep -qiE 'deployment (is temporarily )?paused|DEPLOYMENT_DISABLED' /tmp/aips-vercel-body.txt; then
+            FAILURES="$FAILURES\n- Vercel leak guard: homepage still served by the paused Vercel deployment (HTTP $vcode)"
+          fi
+
           # Publication state is all-or-nothing in the intended build path. A root
           # verification page beside commercial /products or /pricing is therefore
           # a P0 routing/publication inconsistency even if every route returns 200.

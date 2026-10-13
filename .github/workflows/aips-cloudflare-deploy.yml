@@ -1,0 +1,58 @@
+name: AIPS Cloudflare Deploy
+
+# Deploys the governed build to Cloudflare Workers (static assets) on push to
+# main. Requires two repository secrets (set by the owner):
+#   CLOUDFLARE_API_TOKEN  — Workers Edit scope, account-level
+#   CLOUDFLARE_ACCOUNT_ID — account id (already present per ops/harness)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "artifacts/aips-landing/**"
+      - "functions/**"
+      - "worker/**"
+      - "scripts/prepare-cloudflare.mjs"
+      - "ops/ssot/**"
+      - "wrangler.toml"
+      - "pnpm-lock.yaml"
+      - "package.json"
+      - ".github/workflows/aips-cloudflare-deploy.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4.4.0
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install workspace
+        run: pnpm install --frozen-lockfile
+
+      - name: Build public site (governed pipeline)
+        working-directory: artifacts/aips-landing
+        env:
+          PORT: "3000"
+          BASE_PATH: "/"
+        run: pnpm run build
+
+      - name: Prepare Cloudflare artifact
+        run: node scripts/prepare-cloudflare.mjs
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

@@ -83,7 +83,8 @@ for (const changeSetPath of changeSetPaths) {
     if (!Array.isArray(config.evidence_files) || config.evidence_files.length === 0) fail(`${label}: content-update requires evidence_files`);
     for (const evidenceFile of config.evidence_files ?? []) {
       const evidencePath = resolve(REPO, evidenceFile);
-      if (!evidencePath.startsWith(`${REPO}/`) && evidencePath !== REPO) fail(`${label}: evidence file escapes repository ${evidenceFile}`);
+      const rel = relative(REPO, evidencePath);
+      if (rel === "" || rel.startsWith("..")) fail(`${label}: evidence file escapes repository ${evidenceFile}`);
       else if (!existsSync(evidencePath)) fail(`${label}: evidence file not found ${evidenceFile}`);
     }
   }

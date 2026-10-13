@@ -1,0 +1,24 @@
+# Cross-platform line endings: repo blobs stay LF, Windows checkouts stay LF.
+# The governed build scripts (string-exact replacements with \n) and POSIX
+# shell tooling require LF on every platform.
+* text=auto eol=lf
+
+# Windows batch files keep CRLF on checkout.
+*.bat text eol=crlf
+
+# Binary assets — never touch these.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.mp4 binary
+*.mp3 binary
+*.wav binary
+*.webm binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.pdf binary

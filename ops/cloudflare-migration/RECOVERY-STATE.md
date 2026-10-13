@@ -213,3 +213,49 @@ tier-a-money-pages-v2 (2).
   NVIDIA session. Site launches with the documented WhatsApp fallback
   (LIVE VERIFIED — DEGRADED FUNCTIONALITY) until `NVIDIA_API_KEY` is
   provisioned on the Worker.
+
+## 11. PRODUCTION CUTOVER COMPLETE (2026-10-14)
+
+- **Status: LIVE VERIFIED — DEGRADED FUNCTIONALITY** (storefront + catalog +
+  APIs fully operational; AI Concierge replies need `NVIDIA_API_KEY` and
+  currently return the honest 503 + WhatsApp fallback).
+- Zone `aipremiumshop.com` ACTIVE (id `7a70875ce3b0a08542dd341d825f9a09`,
+  Free plan). NS delegation: `andy.ns.cloudflare.com` +
+  `treasure.ns.cloudflare.com` (switched at Squarespace Domains ~01:48 +06).
+- Worker `ai-premium-shop` (account `4ca6269edabb6ad2906d70ec6845de22`)
+  attached custom domains `aipremiumshop.com` + `www.aipremiumshop.com`
+  via wrangler routes (`custom_domain = true`), deployment version
+  `c4fff6bd-f44d-47fa-b0f7-65cc7d08c4b7` (branch commit `7554982`).
+  Cloudflare created the apex/www DNS records (proxied) and issued the
+  edge certificates automatically.
+- Public verification (independent fetch + 8.8.8.8):
+  - `https://aipremiumshop.com/` → 200, full governed homepage.
+  - `/products` → 200, full catalog ("193 current public plan records").
+  - `/product/higgsfield-ai-bangladesh` → 200, governed truth content,
+    WhatsApp CTA `wa.me/8801865385348`, no Offer schema.
+  - `/chatgpt` → 301 → `/chatgpt-plans-bangladesh` → 200.
+  - `/api/concierge` → 200 JSON `{ok, products:177, keyConfigured:false,
+    policyRevision:commercial-truth-v2.4-2026-09-07}`.
+  - `/sitemap.xml` → 200 (full URL set), `www` apex parity → 200.
+  - MX via Cloudflare NS: `mx.zoho.com` 10 / `mx2` 20 / `mx3` 50 ✓;
+    TXT zoho-verification + SPF preserved ✓. Mail DNS intact.
+  - Genuine 404s → 404 (static page), unknown `/api/*` → 404.
+- Local-ISP resolvers still serve cached Vercel answers for up to the old
+  TTL (A TTL 14400); Vercel now returns 402 DEPLOYMENT_DISABLED, so some
+  Bangladeshi ISPs may show the Vercel 402 page until their cache expires.
+  This is propagation lag, not a Cloudflare fault.
+- TLS: valid Cloudflare edge certificate on both hostnames; HSTS header set
+  (max-age=31536000; includeSubDomains; preload) per `_headers`.
+- Rollback: `npx wrangler rollback` (project `ai-premium-shop`) or
+  redeploy commit `7554982`; DNS rollback = restore Google nameservers at
+  Squarespace Domains (see ROLLBACK.md).
+- Remaining ops items:
+  1. `NVIDIA_API_KEY` secret on the Worker (owner action: Vercel dashboard
+     has no plaintext export; recover from NVIDIA or rotate) — concierge
+     then goes fully live.
+  2. GitHub Actions deploy on merge to `main` requires repo secret
+     `CLOUDFLARE_API_TOKEN` (account id secret already present). Until
+     added, deploys run via `pnpm build:cloudflare && pnpm deploy:cloudflare`.
+  3. media.aipremiumshop.com: R2 bucket `aips-media` exists but is empty
+     and the current build references no media assets — no action needed
+     for the current storefront.

@@ -182,3 +182,34 @@ tier-a-money-pages-v2 (2).
   `C:\Users\emonh\.cloudflare\aips-token.txt`. Then: zone create → record
   mirror → worker custom domains → verify → registrar NS switch (Squarespace
   Domains, owner session) → public verification.
+
+## 10. Phase 2 live-browser execution checkpoint (2026-10-14)
+
+- Cloudflare dashboard (owner session, visible browser): zone
+  `aipremiumshop.com` added to account `4ca6269edabb6ad2906d70ec6845de22`
+  on the **Free** plan. Zone id `7a70875ce3b0a08542dd341d825f9a09`.
+  Cloudflare NS: `andy.ns.cloudflare.com`, `treasure.ns.cloudflare.com`.
+- Quick-scan imported the Google Domains records verbatim: apex A
+  `76.76.21.21`, www CNAME `cname.vercel-dns.com`, Zoho MX 10/20/50,
+  TXT zoho-verification + SPF, and 5 `_vercel` verification TXTs. All mail
+  and verification records kept DNS-only.
+- Worker custom-domain attach initially blocked by the external Vercel
+  A/CNAME (zone pending). Interim fallback restored: A + www CNAME
+  re-added to the Cloudflare zone (proxied) so the NS switch itself cannot
+  cause downtime.
+- Registrar: Squarespace Domains (Google Domains migrated; registrant
+  EMON HOSSAIN). Nameservers switched via the domain-nameservers page:
+  `andy.ns.cloudflare.com` + `treasure.ns.cloudflare.com` saved
+  2026-10-14 ~01:48 (+06). Squarespace confirms the update.
+- Next automatic steps once the zone is `active`: attach
+  `aipremiumshop.com` + `www.aipremiumshop.com` custom domains to Worker
+  `ai-premium-shop` (replacing the interim Vercel-targeted records), then
+  full public verification (TLS, redirects, monitor markers, Zoho mail
+  record parity, worker serving the domain).
+- SEO quality workflow failure reviewed: build + SEO steps pass; only the
+  Playwright step fails with the same 10 pre-existing e2e drift proven
+  identical on a pristine `main` baseline. Not a migration regression.
+- Concierge secrets: still not recoverable without the owner's Vercel or
+  NVIDIA session. Site launches with the documented WhatsApp fallback
+  (LIVE VERIFIED — DEGRADED FUNCTIONALITY) until `NVIDIA_API_KEY` is
+  provisioned on the Worker.

@@ -1,2 +1,18 @@
 name = "ai-premium-shop"
-pages_build_output_dir = "artifacts/aips-landing/dist/public"
+compatibility_date = "2026-05-22"
+main = "worker/index.js"
+
+[assets]
+directory = "./artifacts/aips-landing/dist/public"
+binding = "ASSETS"
+not_found_handling = "404-page"
+html_handling = "drop-trailing-slash"
+run_worker_first = ["/api/*"]
+
+[[routes]]
+pattern = "aipremiumshop.com"
+custom_domain = true
+
+[[routes]]
+pattern = "www.aipremiumshop.com"
+custom_domain = true

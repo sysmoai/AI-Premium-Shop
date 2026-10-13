@@ -338,3 +338,37 @@ The file `C:\Windows\System32\drivers\etc\hosts` contains a marked block
 Remove ONLY that block once the local ISP resolver returns Cloudflare IPs
 (verify: `Resolve-DnsName aipremiumshop.com`). Then `ipconfig /flushdns`.
 Edge IPs are not permanent endpoints and must not remain hardcoded.
+
+## 16. AI Concierge RESTORED (2026-10-14)
+
+- Root cause of the post-migration outage: the concierge's NVIDIA models
+  (`meta/llama-3.1-*`) were retired from integrate.api.nvidia.com
+  (verified via GET /v1/models), so every request failed over to the
+  WhatsApp fallback. Additionally the 9s first-token budget aborted valid
+  models during NIM cold starts.
+- Fix (PR #109, merged): MODELS now
+  `deepseek-ai/deepseek-v4.1-flash`, `google/gemma-3-4b-it`,
+  `meta/llama-3.2-11b-vision-instruct`; FIRST_TOKEN_MS 20s, DEADLINE 50s.
+- Secret: `NVIDIA_API_KEY` provisioned on the Worker (NVIDIA Build key
+  "aips-concierge-prod", 1-year, free tier; created in the owner's
+  authenticated browser session; value never printed or committed).
+- Production verification: `keyConfigured:true`; Banglish question →
+  grounded reply "ChatGPT Plus-er dam BDT 3,390" with a product card
+  (/chatgpt-plus-bangladesh, Personal) and WhatsApp handoff; English
+  budget question → catalog answer (GitHub Copilot Pro BDT 1,990);
+  30-day-warranty question → fail-closed truth guard refusal. Widget
+  verified live in the visible browser with a real Bangla answer.
+- Note: NIM free-tier keys are for API testing/development; monitor
+  rate limits. Anthropic fallback remains configured but keyless.
+
+## 17. Structured metadata reconciliation (2026-10-14)
+
+- `ops/ssot/site.json`: `production_platform` now "Cloudflare Workers with
+  Static Assets" + worker/domains/build-identity fields; legacy Vercel
+  IDs preserved under `legacy_vercel` (RETIRED). Publication flags
+  untouched; validate-ssot passes.
+- `ops/harness/state.json`: reconciliation note + `reconciled_at` added;
+  hosting marked Cloudflare with Vercel legacy; historical upgrade-cycle
+  fields preserved.
+- PRs #107 (architecture/access registry + agent docs) and #108
+  (structured metadata) merged; CI + deploy workflows green.

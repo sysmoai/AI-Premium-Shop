@@ -1,4 +1,4 @@
-﻿{
+{
   "ignoreCommand": "node scripts/vercel-ignore-build.mjs",
   "functions": {
     "api/concierge.js": { "maxDuration": 45 }

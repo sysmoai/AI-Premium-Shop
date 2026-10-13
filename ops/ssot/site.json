@@ -1,15 +1,23 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-10T06:28:00+06:00",
+  "updated_at": "2026-10-14T03:50:00+06:00",
   "identity": {
     "name": "AI Premium Shop",
     "domain": "aipremiumshop.com",
     "market": "Bangladesh",
     "canonical_repository": "sysmoai/AI-Premium-Shop",
-    "production_platform": "Vercel",
-    "production_project_id": "prj_aP4bi30UW8mcHgBvU7E72yyFOPQd",
-    "production_team_id": "team_WCN7gRRsLzPy8C0EdOFtDYrJ",
-    "application_root": "artifacts/aips-landing"
+    "production_platform": "Cloudflare Workers with Static Assets",
+    "production_worker_name": "ai-premium-shop",
+    "production_custom_domains": ["aipremiumshop.com", "www.aipremiumshop.com"],
+    "production_build_identity_url": "https://aipremiumshop.com/.well-known/aips-build.json",
+    "deploy_workflow": ".github/workflows/aips-cloudflare-deploy.yml",
+    "application_root": "artifacts/aips-landing",
+    "legacy_vercel": {
+      "status": "LEGACY_RETIRED_NOT_PRODUCTION",
+      "production_project_id": "prj_aP4bi30UW8mcHgBvU7E72yyFOPQd",
+      "production_team_id": "team_WCN7gRRsLzPy8C0EdOFtDYrJ",
+      "note": "Former production origin until the 2026-10-14 Cloudflare cutover. Kept only as historical evidence; never a deployment target and never to be paid."
+    }
   },
   "authority": {
     "business_ssot": "git",

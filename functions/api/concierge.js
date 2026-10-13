@@ -56,7 +56,11 @@ function assertRuntimeTruth() {
 assertRuntimeTruth();
 
 const NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
-const MODELS = ["meta/llama-3.1-8b-instruct", "meta/llama-3.1-70b-instruct"];
+// Primary + fallback models for the NVIDIA NIM free tier. The original
+// meta/llama-3.1-* models were retired from integrate.api.nvidia.com
+// (verified against GET /v1/models on 2026-10-14), so the concierge uses
+// currently listed instruct/chat models in preference order.
+const MODELS = ["deepseek-ai/deepseek-v4.1-flash", "google/gemma-3-4b-it", "meta/llama-3.2-11b-vision-instruct"];
 const ANTHROPIC_URL = "https://api.anthropic.com/v1/messages";
 const WHATSAPP_NUMBER = String(policy.channel.whatsapp_number_e164 ?? "").replace(/\D/g, "");
 if (!WHATSAPP_NUMBER) throw new Error("concierge runtime refused: WhatsApp order channel missing");
@@ -423,8 +427,10 @@ function throttled(ip, session) {
   return bump(`s:${session}`, 60_000, 15) || bump(`i:${ip}`, 60_000, 200);
 }
 
-const DEADLINE_MS = 38_000;
-const FIRST_TOKEN_MS = 9_000;
+// NIM serverless cold starts routinely exceed 9s; the budgets below were
+// raised after production logs showed first-token aborts on a valid model.
+const DEADLINE_MS = 50_000;
+const FIRST_TOKEN_MS = 20_000;
 
 async function pingModel(key, model, timeoutMs) {
   const start = Date.now();

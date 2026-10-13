@@ -31,14 +31,15 @@ for (const f of ["_policy.json", "_catalog.json"]) {
   console.log(`[cloudflare-prep] copied ${f} -> functions/api/${f}`);
 }
 
-// 2. Redirects: vercel.json parity + committed SPA fallback last.
+// 2. Redirects: vercel.json parity. No SPA splat: not_found_handling =
+// "404-page" serves the static 404.html for unmatched routes, which keeps
+// genuine 404s from resolving to a 200 SPA shell.
 const vercel = JSON.parse(readFileSync(join(APP, "vercel.json"), "utf8"));
 const redirectLines = (vercel.redirects ?? []).map(
   (r) => `${r.source}  ${r.destination}  ${r.permanent ? 301 : 302}`,
 );
-const splat = "/*    /index.html   200";
-writeFileSync(join(DIST, "_redirects"), `${[...redirectLines, splat].join("\n")}\n`, "utf8");
-console.log(`[cloudflare-prep] wrote _redirects (${redirectLines.length} vercel redirects + SPA fallback)`);
+writeFileSync(join(DIST, "_redirects"), `${redirectLines.join("\n")}\n`, "utf8");
+console.log(`[cloudflare-prep] wrote _redirects (${redirectLines.length} vercel redirects)`);
 
 // 3. Headers: vercel.json parity in Pages glob syntax.
 function pagesGlobs(pattern) {
@@ -74,4 +75,4 @@ const headerText =
 writeFileSync(join(DIST, "_headers"), headerText, "utf8");
 console.log("[cloudflare-prep] wrote _headers");
 
-console.log("[cloudflare-prep] done — deploy with: npx wrangler pages deploy artifacts/aips-landing/dist/public");
+console.log("[cloudflare-prep] done — deploy with: npx wrangler deploy");

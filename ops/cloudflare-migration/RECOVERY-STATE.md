@@ -148,3 +148,37 @@ tier-a-money-pages-v2 (2).
 
 - Target: $0 recurring (Workers Free plan: 100k requests/day, 10ms CPU per
   request; static asset bandwidth free). No paid plan activated.
+
+## 9. Phase 2 checkpoint (2026-10-14)
+
+- Wrangler OAuth active: `sysmoai.com@gmail.com`, account
+  `4ca6269edabb6ad2906d70ec6845de22`. Token scopes cover Workers deploy but
+  NOT zone create / DNS edit (verified: POST /zones → error
+  `com.cloudflare.api.account.zone.create`).
+- Staging Worker `ai-premium-shop` deployed (direct upload):
+  https://ai-premium-shop.sysmoai-com.workers.dev
+  Version `1177fc7b-a130-4be5-9e3d-c97781530be7`. 571 assets.
+  Full battery verified against the live staging URL: 12/12 monitor markers,
+  APIs fail closed, redirects, 404s, security headers (CSP/HSTS/nosniff),
+  desktop + mobile browser runs with zero console errors.
+- Cloudflare account zones: aipremium.tools, emonhossain.pro, saveonsub.com
+  (other businesses — do not touch). `aipremiumshop.com` is NOT a zone yet.
+- R2: bucket `aips-media` exists but holds 0 objects; current build's media
+  registry has 0 asset references, so media is a non-blocker. Bucket
+  `aipt-media` belongs to AIPT — do not touch.
+- DNS authoritative snapshot (Google Domains NS, captured 2026-10-14):
+  apex A `76.76.21.21` (Vercel); www CNAME `cname.vercel-dns.com`;
+  MX 10/20/50 Zoho; TXT zoho-verification + SPF `v=spf1 include:zohomail.com ~all`;
+  no AAAA, no CAA, no DS/DNSSEC, no DMARC/DKIM, no subdomains (incl. media).
+- PR #100: OPEN, MERGEABLE, head `58403f77`. GitHub Actions CI on Linux:
+  build/ssot/validate pass; seo-quality workflow fails only in its Playwright
+  step (same 10 pre-existing e2e drift proven identical on pristine main).
+- Secrets: no NVIDIA/Anthropic keys exist in any local AIPS clone. Concierge
+  key recovery needs the Vercel dashboard (owner session) or a fresh NVIDIA
+  key — separate CEO request, after DNS cutover. Site launches with the
+  documented WhatsApp fallback until then.
+- BLOCKER (open): DNS cutover needs an account-scoped API token
+  (zone create + DNS edit + Workers Routes edit) saved by the owner to
+  `C:\Users\emonh\.cloudflare\aips-token.txt`. Then: zone create → record
+  mirror → worker custom domains → verify → registrar NS switch (Squarespace
+  Domains, owner session) → public verification.

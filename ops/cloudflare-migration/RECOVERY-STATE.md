@@ -292,3 +292,49 @@ until `NVIDIA_API_KEY` is added as a Worker secret
 (`npx wrangler secret put NVIDIA_API_KEY`). Everything else — storefront,
 catalog, pricing, product pages, redirects, SEO assets, policies, API
 endpoints — is live and verified.
+
+## 14. Global access forensics + transitional fix (2026-10-14)
+
+Root cause of the remaining Vercel responses on customer networks:
+**stale recursive resolver state, not authoritative misconfiguration.**
+
+- Registry/registrar delegation is CORRECT (Squarespace → Cloudflare NS).
+- The legacy Google/Squarespace authoritative zone (ns-cloud-d1..d4)
+  continued serving the old Vercel records. Any resolver whose cached
+  delegation still pointed there kept receiving Vercel answers (A TTL
+  14400; delegation cache up to 48h). This produced the Android
+  "deployment paused" result.
+- Resolver evidence (2026-10-14):
+  - 8.8.8.8: NS = Cloudflare (updated), A = Vercel (cached) → then FLUSHED
+    via dns.google/cache → now Cloudflare.
+  - 1.1.1.1: NS + A cached old → converges via TTL expiry (≤4h).
+  - 9.9.9.9: Cloudflare ✓.
+  - Local ISP router: cached old → converges via TTL expiry (≤4h).
+- Transitional fix applied (Squarespace Domains DNS settings, legacy zone):
+  - A @ 76.76.21.21 → **104.21.19.189** (Cloudflare edge).
+  - CNAME www cname.vercel-dns.com → **aipremiumshop.com** (apex, which is
+    now Cloudflare). Verified via direct queries to ns-cloud-d1: both
+    apex and www now resolve to Cloudflare IPs.
+  - Zoho MX/SPF/verification TXT and Vercel verification TXTs unchanged.
+  - Effect: every network converges to Cloudflare as its cache expires —
+    worst case ≈4h (A TTL), no 48h delegation wait for old-NS resolvers.
+- Google Public DNS cache flushed for apex + www via the official tool.
+- DMARC added in the Cloudflare zone: `_dmarc TXT "v=DMARC1; p=none;"`
+  (monitoring-only, safe initial policy). DKIM: no record was present in
+  the legacy zone and Zoho's admin panel is not accessible from the
+  authorized sessions — deliberately NOT invented; pending Zoho admin
+  verification.
+- Windows hosts AIPS-TEMP entries: still present for the local machine's
+  browser while the local ISP converges; removal procedure documented in
+  section 15 (must be removed after convergence).
+- live-site-monitor now includes a Vercel leak guard (402 / "Deployment
+  Paused" / DEPLOYMENT_DISABLED) so stale-resolver failures open an issue
+  instead of passing silently.
+
+## 15. Windows hosts cleanup procedure
+
+The file `C:\Windows\System32\drivers\etc\hosts` contains a marked block
+`# AIPS-TEMP-START ... # AIPS-TEMP-END` (apex + www → Cloudflare edge IPs).
+Remove ONLY that block once the local ISP resolver returns Cloudflare IPs
+(verify: `Resolve-DnsName aipremiumshop.com`). Then `ipconfig /flushdns`.
+Edge IPs are not permanent endpoints and must not remain hardcoded.

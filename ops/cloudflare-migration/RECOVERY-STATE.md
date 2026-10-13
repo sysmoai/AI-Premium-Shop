@@ -253,9 +253,42 @@ tier-a-money-pages-v2 (2).
   1. `NVIDIA_API_KEY` secret on the Worker (owner action: Vercel dashboard
      has no plaintext export; recover from NVIDIA or rotate) — concierge
      then goes fully live.
-  2. GitHub Actions deploy on merge to `main` requires repo secret
-     `CLOUDFLARE_API_TOKEN` (account id secret already present). Until
-     added, deploys run via `pnpm build:cloudflare && pnpm deploy:cloudflare`.
+  2. ~~GitHub Actions deploy requires repo secret `CLOUDFLARE_API_TOKEN`~~
+     — RESOLVED: secret provisioned and Git-connected CI/CD verified
+     (see section 12).
   3. media.aipremiumshop.com: R2 bucket `aips-media` exists but is empty
      and the current build references no media assets — no action needed
      for the current storefront.
+
+## 12. Git-connected CI/CD established (2026-10-14)
+
+- PR #100 merged to `main` (merge `934c2ed1de`); PR #101 merged (workflow
+  fix). `main` now contains the complete Workers migration and deploys
+  automatically.
+- GitHub Actions: `aips-cloudflare-deploy.yml` runs the governed build +
+  `prepare-cloudflare` + `npx wrangler@4.92.0 deploy` on every push to
+  `main`. Secrets in repo: `CLOUDFLARE_ACCOUNT_ID` (pre-existing) and
+  `CLOUDFLARE_API_TOKEN` (created via dashboard, scoped "Edit Cloudflare
+  Workers" — Workers Scripts/Routes/KV write etc., token id
+  `b1525d03d64333eb91bda12c1af57c03`, rolled once).
+- First successful CI deploy: run `38461726667` (7m54s) → Worker version
+  `09d4bbc1-af18-43d1-a5b2-d5903edcacb2`, serving `aipremiumshop.com`
+  and `www.aipremiumshop.com`. Public verification repeated after the CI
+  deploy: homepage 200 + `/api/concierge` 200 via independent fetch.
+- CI status on main: CI ✓ (build/ssot/validate), AIPS Cloudflare Deploy ✓.
+  SEO quality workflow fails only in its Playwright step with the same
+  10 pre-existing e2e drift proven on the pristine `main` baseline —
+  a separate tracked defect, not a deployment gate.
+- Rollback: `npx wrangler rollback` (any previous version, e.g. `c4fff6bd`)
+  or revert + merge; DNS rollback in ROLLBACK.md.
+
+## 13. Final status
+
+**LIVE VERIFIED — DEGRADED FUNCTIONALITY** on
+`https://aipremiumshop.com` + `https://www.aipremiumshop.com`.
+
+Degradation: only the AI Concierge chat replies (503 + WhatsApp fallback)
+until `NVIDIA_API_KEY` is added as a Worker secret
+(`npx wrangler secret put NVIDIA_API_KEY`). Everything else — storefront,
+catalog, pricing, product pages, redirects, SEO assets, policies, API
+endpoints — is live and verified.

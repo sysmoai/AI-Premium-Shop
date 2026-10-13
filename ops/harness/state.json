@@ -1,12 +1,15 @@
 {
   "schema_version": 1,
   "updated_at": "2026-08-10T06:51:00+06:00",
+  "reconciled_at": "2026-10-14T03:50:00+06:00",
+  "reconciliation_note": "This harness snapshot predates the 2026-10-14 Cloudflare production cutover. Treat the fields below as HISTORICAL for the retired Vercel upgrade cycle. Current production truth: Cloudflare Workers with Static Assets, Worker ai-premium-shop, custom domains aipremiumshop.com + www.aipremiumshop.com, deploy pipeline .github/workflows/aips-cloudflare-deploy.yml, and the served build identity at https://aipremiumshop.com/.well-known/aips-build.json. See ops/cloudflare-migration/CANONICAL-ARCHITECTURE-AND-ACCESS.md and RECOVERY-STATE.md.",
   "project": "AI Premium Shop",
   "production_domain": "aipremiumshop.com",
   "repository": "sysmoai/AI-Premium-Shop",
   "operational_platforms": {
     "source_control": "GitHub",
-    "hosting": "Vercel",
+    "hosting": "Cloudflare Workers with Static Assets (since 2026-10-14 cutover)",
+    "hosting_legacy": "Vercel (RETIRED 2026-10-14; historical evidence only)",
     "replit": "RETIRED_DO_NOT_USE_OR_REQUEST"
   },
   "production": {

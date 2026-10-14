@@ -46,7 +46,7 @@ test("Google AI Pro V2 keeps legacy canonical but does not equate Shared with fa
   expect(text.toLowerCase()).toContain("legacy gemini advanced");
   expect(text.toLowerCase()).toContain("compute-based");
   expect(text.toLowerCase()).toContain("select ai benefits");
-  expect(text.toLowerCase()).toContain("do not assume");
+  expect(text.toLowerCase()).toContain("must not be assumed");
   expect(text.toLowerCase()).toContain("google family sharing");
   expect(text.toLowerCase()).toContain("provider-authorized resale");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://aipremiumshop.com/gemini-advanced-bangladesh");
@@ -81,7 +81,7 @@ test("Google AI Pro crawler artifact preserves exact canonical and sharing cavea
   expect(html).toContain('rel="canonical" href="https://aipremiumshop.com/gemini-advanced-bangladesh"');
   expect(html).toContain("$19.99/month on the current Google One plan page");
   expect(lower).toContain("legacy gemini advanced");
-  expect(lower).toContain("do not assume");
+  expect(lower).toContain("must not be assumed");
   expect(lower).toContain("google family sharing");
   expect(lower).toContain("provider-authorized resale");
   expect(lower).toContain("compute-based");

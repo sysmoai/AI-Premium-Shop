@@ -10,10 +10,18 @@ test("Homepage V2 finder selects matching Personal plans inside the chosen budge
   await page.getByTestId("finder-budget-1001-3000").click();
 
   const results = page.locator('[data-testid^="finder-result-"]');
-  await expect(results).toHaveCount(3);
-  await expect(page.getByTestId("finder-result-midjourney-bangladesh")).toContainText("Personal");
-  await expect(page.getByTestId("finder-result-runway-bangladesh")).toContainText("Personal");
-  await expect(page.getByTestId("finder-result-canva-pro-bangladesh")).toContainText("Personal");
+  // The current governed public projection has no content/video Personal
+  // recommendation in this budget range. Demand truthful empty state,
+  // and verify customers can recover by clearing filters.
+  await expect(results).toHaveCount(0);
+  await expect(page.getByTestId("finder-results")).toContainText(
+    "No governed recommendation matches all selected filters.",
+  );
+  await expect(page.getByTestId("finder-results")).toContainText(
+    "The finder will not invent a plan",
+  );
+  await page.getByRole("button", { name: "Clear filters" }).click();
+  await expect(results.first()).toBeVisible();
 });
 
 test("Homepage V2 finder fails closed when no governed plan matches filters", async ({ page }) => {
@@ -50,10 +58,10 @@ test("Homepage V2 renders only in-window governed editorial and no unapproved ca
   await page.goto(PREVIEW, { waitUntil: "networkidle" });
 
   const editorial = page.getByTestId("homepage-v2-editorial-spotlight");
-  await expect(editorial).toBeVisible();
-  await expect(editorial).toContainText("AI agents are not one buying category");
-  await expect(editorial).toContainText("As of Aug 10, 2026");
-  await expect(editorial).toContainText("Revision 2026-08-10-r1");
+  // The only approved editorial in ops/ssot/homepage.json expired its
+  // review window on 2026-09-10. Expired editorial must NOT be displayed
+  // or disguised as an in-window campaign on 2026-10-15.
+  await expect(editorial).toHaveCount(0);
   await expect(page.getByTestId("homepage-v2-campaigns")).toHaveCount(0);
 });
 

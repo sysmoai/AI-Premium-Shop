@@ -76,7 +76,10 @@ export default function BudgetPage({ budgetKey }: { budgetKey: string }) {
 
   return (
     <PageLayout>
-      <SEOHead title={title} description={description} canonical={canonical} />
+      {/* Keep browser-hydrated robots metadata consistent with prerendered
+          noindex on empty budget buckets. Re-enable indexing automatically
+          when approved fixed-price products are published. */}
+      <SEOHead title={title} description={description} canonical={canonical} noindex={products.length === 0} />
       <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Pricing", href: "/pricing" }, { name: `Under ${definition.label}` }]} />
 
       <div id="main-content" className="mx-auto max-w-6xl px-4 py-10 md:px-8 md:py-14">

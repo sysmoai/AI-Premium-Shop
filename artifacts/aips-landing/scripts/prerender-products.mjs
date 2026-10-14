@@ -174,7 +174,7 @@ for (const [slug, recs] of bySlug) {
       }
     : {
         title: `${p.name} price in Bangladesh — ${fmtBDT(fromPrice)}/mo | AI Premium Shop`,
-        desc: `${p.name} price in Bangladesh is ${fmtBDT(fromPrice)}/month at AI Premium Shop. Pay with bKash or Nagad. Delivery ${p.deliverySLA ?? "as scheduled"}. 30-day warranty. Trusted by 10,000+ customers since 2022.`,
+        desc: `${p.name} price in Bangladesh is ${fmtBDT(fromPrice)}/month at AI Premium Shop. Pay with bKash or Nagad. Exact price, access, availability and delivery ETA are re-confirmed before payment. Trusted by 10,000+ customers since 2022.`,
       });
   const isHiggsfield = slug === hfOffer.productSlug;
   const title = isHiggsfield ? hfOffer.seo.title : seo.title;
@@ -431,7 +431,7 @@ function aiVideoHubBody() {
 ${jobs.map((j) => `<h3>${esc(j.title)}</h3><p>${esc(j.body)}</p><ul>${j.picks.map((sl) => `<li><a href="${linkFor(sl)}">${esc(nameFor(sl))}</a>${priceFor(sl)}</li>`).join("")}</ul>`).join("")}
 </section>
 <section><h2>Buying these from Bangladesh</h2>
-<h3>Payment</h3><p>Every one of these platforms bills in USD, which most Bangladeshi debit cards cannot complete. We handle that step — you pay in BDT via bKash, Nagad, Rocket or bank transfer.</p>
+<h3>Payment</h3><p>Every one of these platforms bills in USD, which most Bangladeshi debit cards cannot complete. We handle that step — you pay in BDT via bKash or Nagad.</p>
 <h3>Account ownership</h3><p>Check this before buying anywhere, including here. A personal plan means the account is in your name with your own password. Ask explicitly which type you are getting — the answer changes what happens if you want to cancel.</p>
 <h3>How we verify</h3><p>Each product page carries the date we last checked its facts and a link to the provider's own pricing page. Where we have not verified a claim, we say so on the page rather than repeating it.</p>
 </section>`;
@@ -453,9 +453,9 @@ for (const [cat, label] of Object.entries(CATEGORY_LABELS)) {
 const total = distinct.length;
 writeRoute("/products",
   `All ${total} AI Tools — Prices in BDT | AI Premium Shop Bangladesh`,
-  `Browse ${total} AI subscriptions. ChatGPT, Claude, Midjourney & more. Prices in BDT. Local payment. Fast delivery. AI Premium Shop.`,
+  `Browse ${total} AI subscriptions. ChatGPT, Claude, Midjourney & more. Prices in BDT. Local payment. AI Premium Shop.`,
   `<main><h1>All ${total} AI Tools</h1>
-<p>${products.length} premium subscriptions with BDT prices. Pay with bKash, Nagad, Rocket or bank transfer. Delivery via WhatsApp.</p>
+<p>${products.length} premium subscriptions with BDT prices. Pay with bKash or Nagad. Ordering is assisted on WhatsApp.</p>
 ${Object.entries(CATEGORY_LABELS).map(([cat, label]) => {
     const list = distinct.filter((p) => p.category === cat);
     return list.length ? `<h2><a href="/${cat === "bundles" ? "bundles" : cat}">${esc(label)}</a></h2><ul>${list.map(productLi).join("")}</ul>` : "";
@@ -475,7 +475,7 @@ for (const slug of brandSlugs) {
     ? `${p.brand ?? p.name} price in Bangladesh — ${fmtBDT(fromPrice)}/mo | AI Premium Shop`
     : `${p.brand ?? p.name} price in Bangladesh | AI Premium Shop`;
   const desc = fromPrice
-    ? `${p.brand ?? p.name} in Bangladesh from ${fmtBDT(fromPrice)}/month. Pay with bKash or Nagad. Delivery ${p.deliverySLA ?? "via WhatsApp"}. 30-day warranty. AI Premium Shop.`
+    ? `${p.brand ?? p.name} in Bangladesh from ${fmtBDT(fromPrice)}/month. Pay with bKash or Nagad. Exact price, access, availability and delivery ETA are re-confirmed before payment. AI Premium Shop.`
     : `Get ${p.brand ?? p.name} in Bangladesh — current price confirmed on WhatsApp. Pay with bKash or Nagad. AI Premium Shop.`;
   const tiers = recs.filter((r) => typeof r.price === "number")
     .map((r) => `<li>${esc(r.tier ?? r.name)} — ${fmtBDT(r.price)}/month</li>`).join("");
@@ -601,9 +601,9 @@ writeRoute("/best-ai-subscription-2026",
 
 // --- Budget pages: titles/descriptions sourced from BudgetPage.tsx
 const BUDGET_META = {
-  "ai-under-500": { title: "AI Tools Under ৳500 Bangladesh 2026 — From BDT 299/mo", desc: "AI tools under BDT 500 in Bangladesh. ChatGPT Plus BDT 499, Gamma BDT 399. Cheapest premium AI." },
-  "ai-under-1000": { title: "AI Tools Under ৳1,000 Bangladesh 2026 — From BDT 500/mo", desc: "AI tools under BDT 1000 in Bangladesh. Claude, Notion, Perplexity & more. Budget AI tools." },
-  "ai-under-3000": { title: "AI Tools Under ৳3,000 Bangladesh 2026 — From BDT 700/mo", desc: "AI tools under BDT 3000 in Bangladesh. Personal accounts for pros. Mid-range AI subscriptions." },
+  "ai-under-500": { title: "AI Tools Under BDT 500 Bangladesh | AI Premium Shop", desc: "Current AI Premium Shop catalog listings under BDT 500. Exact price, access, availability and delivery ETA are re-confirmed before payment; the eligible catalog changes as provider plans are verified." },
+  "ai-under-1000": { title: "AI Tools Under BDT 1,000 Bangladesh | AI Premium Shop", desc: "Current AI Premium Shop catalog listings under BDT 1,000. Exact price, access, availability and delivery ETA are re-confirmed before payment." },
+  "ai-under-3000": { title: "AI Tools Under BDT 3,000 Bangladesh | AI Premium Shop", desc: "Current AI Premium Shop catalog listings under BDT 3,000. Exact price, access, availability and delivery ETA are re-confirmed before payment." },
 };
 for (const [key, meta] of Object.entries(BUDGET_META)) {
   // The whole point of a budget page is the list — derive it from the
@@ -618,11 +618,22 @@ for (const [key, meta] of Object.entries(BUDGET_META)) {
   writeRoute(`/${key}`, meta.title, meta.desc,
     `<main><h1>${esc(meta.title)}</h1><p>${esc(meta.desc)}</p>
 ${list ? `<h2>Every tool under ${fmtBDT(limit)} right now (${under.length})</h2><ul>${list}</ul>` : ""}
-<p>All prices include WhatsApp delivery and the 30-day replacement warranty. Pay with bKash, Nagad, Rocket or bank transfer.</p>
+<p>Approved public payment references: bKash and Nagad. Exact price, access, availability, delivery ETA and applicable terms are confirmed for the exact order before payment.</p>
 <p><a href="/products">All AI tools</a> · <a href="/pricing">Pricing</a> · <a href="/how-to-order">How to order</a></p></main>`);
+  // Empty budget buckets are thin pages with real search intent but no
+  // eligible listings; keep them out of the index until the catalog has
+  // eligible items again. prune-sitemap-canonicals drops noindex pages.
+  if (under.length === 0) {
+    const file = path.join(DIST, key, "index.html");
+    if (fs.existsSync(file)) {
+      const html = fs.readFileSync(file, "utf8");
+      fs.writeFileSync(file, html.replace("</head>", '<meta name="robots" content="noindex, follow" />\n</head>'), "utf8");
+      console.log(`prerender: ${key} has zero eligible listings — marked noindex,follow`);
+    }
+  }
 }
-writeRoute("/best-ai-budget-bangladesh", BUDGET_META["ai-under-500"].title, BUDGET_META["ai-under-500"].desc,
-  `<main><h1>Best AI Budget Bangladesh</h1><p>Affordable premium AI tools under BDT 500. Pay with bKash or Nagad.</p>
+writeRoute("/best-ai-budget-bangladesh", "Best AI Budget Bangladesh | AI Premium Shop", "Compare current AI Premium Shop catalog options by budget. Exact price, access, availability and delivery ETA are re-confirmed before payment.",
+  `<main><h1>Best AI Budget Bangladesh</h1><p>Compare current catalog options by budget. Approved public payment references: bKash and Nagad.</p>
 <p><a href="/ai-under-500">AI Under 500</a> · <a href="/ai-under-1000">AI Under 1000</a> · <a href="/products">All tools</a></p></main>`);
 
 // --- Comparison pages: full static body parsed directly out of ComparisonPage.tsx's
@@ -1148,7 +1159,7 @@ for (const route of smRoutes) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
   writeRoute(route, `${words} | AI Premium Shop`,
     `${words} — premium AI subscriptions in Bangladesh. Pay with bKash or Nagad. AI Premium Shop.`,
-    `<main><h1>${esc(words)}</h1><p>Premium AI subscriptions for Bangladesh with local payment (bKash, Nagad, Rocket) and fast WhatsApp delivery.</p>
+    `<main><h1>${esc(words)}</h1><p>Premium AI subscriptions for Bangladesh with local payment (bKash, Nagad) and WhatsApp-assisted ordering.</p>
 <p><a href="/products">All AI tools</a> · <a href="/pricing">Pricing</a> · <a href="/guides">Guides</a> · <a href="/how-to-order">How to order</a></p></main>`);
   fallbacks++;
 }
@@ -1237,7 +1248,7 @@ ${cards.map((c) => `<article>
   const body = `<main>
 <h1>What Takes You 3 Hours — AI Does in 15 Minutes.</h1>
 <p><strong>${total} premium AI tools</strong>, ${products.length} plans from ${fmtBDT(minPrice)} to ${fmtBDT(maxPrice)}. ChatGPT, Claude, Midjourney, Notion and more — <strong>no international card needed</strong>.</p>
-<p>Pay with bKash, Nagad, Rocket or bank transfer. Delivery over WhatsApp, typically in 5–30 minutes, with a 30-day replacement warranty. Trusted by 10,000+ customers across Bangladesh since 2022.</p>
+<p>Pay with bKash or Nagad. Ordering is assisted on WhatsApp; exact price, access, availability, delivery ETA and applicable terms are confirmed for the exact order before payment. Trusted by 10,000+ customers across Bangladesh since 2022.</p>
 
 <h2>Most wanted AI subscriptions in Bangladesh</h2>
 <ul>${featuredLi}</ul>

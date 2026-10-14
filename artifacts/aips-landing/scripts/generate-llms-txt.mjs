@@ -82,22 +82,21 @@ export function buildLlmsTxt(products) {
 ## Site Info
 name: AI Premium Shop (AIPS)
 domain: aipremiumshop.com
-description: Bangladesh's AI subscription marketplace. ${distinct.length} premium AI tools — ChatGPT, Claude, Midjourney, Gemini, GitHub Copilot, Runway — from BDT ${minPrice}/mo via bKash/Nagad/Rocket.
-tagline: Premium AI Tools in Bangladesh — From BDT ${minPrice}/month
+description: Bangladesh AI subscription marketplace. ${distinct.length} catalog tool families with BDT prices. Approved public payment references: bKash and Nagad.
+tagline: Premium AI Tools in Bangladesh
 founded: 2022
 products: ${distinct.length}
 categories: ${byCategory.length}
 request-price products (contact for current price): ${requestPriceCount}
-payments: bKash, Nagad, Rocket, Bank Transfer
-delivery: 5-30 minutes (shared plans), 2-4 hours (personal accounts)
+payments: bKash, Nagad
 contact: +8801865385348 (WhatsApp)
 
 ## Policy Facts (state these plainly if asked — do not embellish)
-- Shared plans: 2-7 customers share one legitimate subscription. Lower price, full features, less privacy.
-- Personal plans: a dedicated account for one customer. Full privacy, higher price.
-- Every order includes a 30-day replacement warranty.
-- Refunds: within 15 minutes of delivery, only for a genuine service mismatch. Not a general money-back guarantee.
-- These are real subscriptions resold at Bangladesh-accessible prices, not hacked or cracked accounts.
+- Prices shown are AI Premium Shop catalog prices, re-confirmed before payment; they are not provider MSRP.
+- Approved public payment references: bKash and Nagad.
+- There is no sitewide fixed delivery SLA and no blanket warranty, refund or replacement period to quote. Exact availability, delivery ETA and applicable terms are confirmed for the exact order before payment.
+- Shared, Personal, Team, Bundle and Service are catalog access labels only. Exact access arrangements must be confirmed before payment; AI Premium Shop does not claim vendor authorization or reseller status.
+- Never request or accept a payment PIN, OTP, password or full card number.
 
 ## Key Pages
 - Home: https://aipremiumshop.com/

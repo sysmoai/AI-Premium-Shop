@@ -27,22 +27,24 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
   DNS convergence must finish within four hours or that stale DNS is proven
   as the current root cause. See issue #113 and ops/incidents/.
 
-## F-002 — SEO Quality workflow: 10 Playwright failures
+## F-002 — SEO Quality workflow: Playwright failures (10 → 7)
 - First: pre-existing on pristine main baseline (proven 2026-10-13); also
-  failing on PR branches. Latest run: 38466933521 (2026-10-13).
-- Prior Command Code classification (same failures reported on a pristine main baseline; root causes not individually closed):
-  - provider-commerce-control (3): stale price assertions (BDT 2,990 vs
-    current governed 3,390) + blocked-row expectations → STALE TEST.
-  - product-page-truth (1), homepage-v2 (2), budget-mobile-truth (1),
-    support-clusters (1), tier-a-money-pages-v2 (2): content/assertion
-    drift against the Sept catalog updates → POSSIBLE STALE ASSERTIONS / POSSIBLE
-    REAL BEHAVIOR DEFECTS. Reproduce separately; preserve safety assertions.
-- Business impact not independently cleared: some fail cases involve actual
-  homepage finder, budget links, product plan-card disclosures and sharing
-  caveats. A red suite can hide real regressions.
+  failing on PR branches.
+- Progress 2026-10-14: PR #127 derived the ChatGPT Plus price assertions
+  from ops/ssot/pricing-v2.json (approved 3,390 instead of hardcoded 2,990),
+  fixing the 3 provider-commerce-control failures (run 38622210707:
+  7 failed / 121 passed, down from 10).
+- Remaining 7 failures (each to be fixed individually against current SSOT,
+  preserving safety assertions): budget-mobile-truth (1), homepage-v2 (2),
+  product-page-truth (1), support-clusters (1), tier-a-money-pages-v2 (2).
+- Classification of the remaining 7: mixed stale assertions and possible
+  real behavior defects; reproduce separately. Example: tier-a tests expect
+  the literal phrase "do not assume" while the live governed copy says
+  "must not be assumed"; budget tests expect product links on budget pages
+  that are now deliberately empty/noindexed (F-014).
 - Action: update assertions to current approved facts in a dedicated PR;
   no commercial data may change to satisfy a test.
-- Status: OPEN (tracked; not yet fixed).
+- Status: OPEN (7 remaining; tracked).
 
 ## F-003 — AI Concierge dead (keyConfigured:false → all requests fallback)
 - First: 2026-10-13 (post-migration API check), resolved 2026-10-14.
@@ -151,3 +153,17 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
   14:18Z; live pages re-checked (noindex present, no prohibited claims,
   sitemap prunes the two buckets).
 - Status: RESOLVED (monitor: budget buckets auto-re-index when items return).
+
+## F-015 — Internal endpoints accepted only URL-query tokens (issue #119)
+- /api/insights and /api/concierge?diagnose=1 gated by ?token= query params,
+  which leak into access logs/browser history; also per-isolate in-memory
+  throttling rather than a shared limit.
+- Fix shipped 2026-10-14 (PR #127): Authorization: Bearer <token> accepted
+  (preferred); legacy query token kept as deprecated fallback; constant-time
+  compare unchanged. Deployed as build bbddc87b7792f54d2c3ed1afdbcd03d43ec62be6
+  (19:26Z). Note: production INSIGHTS_TOKEN is currently unset, so the
+  endpoint fails closed with 503 for all callers — safe, but the operator
+  workflow is non-functional until the secret is provisioned.
+- Remaining: shared rate limiting (Cloudflare free plan allows one zone rate
+  rule; needs dashboard/API authorization to enable) — tracked in #119.
+- Status: PARTIALLY RESOLVED (auth scheme); rate-limit layer OPEN.

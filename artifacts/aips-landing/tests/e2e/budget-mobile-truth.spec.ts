@@ -20,7 +20,10 @@ test("budget runtime is a current threshold filter, not a legacy ranking page", 
 
   await expect(page.getByRole("heading", { name: "AI Tools Under BDT 500" })).toBeVisible();
   await expect(page.getByText("Current budget filter")).toBeVisible();
-  await expect(page.getByText("Published AI Premium Shop price").first()).toBeVisible();
+  // The approved public projection currently has no fixed-price records <= BDT 500.
+  // Empty budget routes must honestly show no offer rather than fabricate a price card.
+  await expect(page.getByText("No current fixed-price plans are published within this threshold.")).toBeVisible();
+  await expect(page.locator('a[href$="-bangladesh"], a[href^="/product/"]')).toHaveCount(0);
   await expect(page.getByRole("main")).toHaveCount(1);
 
   const text = (await page.getByRole("main").innerText()).toLowerCase();

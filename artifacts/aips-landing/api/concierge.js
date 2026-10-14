@@ -558,7 +558,7 @@ export default async function handler(req, res) {
   const answerLanguage = languageOf(question);
 
   if (containsCredential(question)) {
-    console.log(JSON.stringify({ event: "concierge_credential_blocked", session: sessionId }));
+    console.log(JSON.stringify({ event: "concierge_credential_blocked", sessionProvided: sid !== ip }));
     return canned(
       res,
       "⚠️ কখনও আপনার bKash/Nagad PIN, OTP, পাসওয়ার্ড বা পুরো কার্ড নম্বর কাউকে দেবেন না। AI Premium Shop-এর কেউ এগুলো চাইবে না। যদি আপনি real credential লিখে থাকেন, সেটি আর শেয়ার করবেন না এবং প্রয়োজন হলে নিরাপদ করুন/পরিবর্তন করুন।\n\nNever share your payment PIN, OTP, password or full card number with anyone, including us. You make the payment yourself after order details are confirmed on WhatsApp.",
@@ -596,17 +596,17 @@ export default async function handler(req, res) {
     }
 
     if (degenerate(full)) {
-      console.error(JSON.stringify({ event: "concierge_degenerate", model, q: lastQuestion }));
+      console.error(JSON.stringify({ event: "concierge_degenerate", model, questionLength: lastQuestion.length }));
       stream.done();
       continue;
     }
     if (leaks(full)) {
-      console.error(JSON.stringify({ event: "concierge_prompt_leak_blocked", model, q: lastQuestion }));
+      console.error(JSON.stringify({ event: "concierge_prompt_leak_blocked", model, questionLength: lastQuestion.length }));
       stream.done();
       return canned(res, answerLanguage === "English" ? "I can't share internal instructions. Ask me about a current product, price or ordering step instead." : "আমি internal instructions শেয়ার করতে পারি না। Current product, price বা ordering step নিয়ে জিজ্ঞেস করুন।", { turnId: null, sessionId });
     }
     if (violatesCommercialTruth(full)) {
-      console.error(JSON.stringify({ event: "concierge_truth_claim_blocked", model, q: lastQuestion }));
+      console.error(JSON.stringify({ event: "concierge_truth_claim_blocked", model, questionLength: lastQuestion.length }));
       stream.done();
       return canned(res, truthGuardMessage(answerLanguage), { turnId: null, sessionId });
     }
@@ -634,7 +634,7 @@ export default async function handler(req, res) {
           break;
         }
         if (violatesCommercialTruth(candidate.slice(-700))) {
-          console.error(JSON.stringify({ event: "concierge_truth_claim_blocked_midstream", model, q: lastQuestion }));
+          console.error(JSON.stringify({ event: "concierge_truth_claim_blocked_midstream", model, questionLength: lastQuestion.length }));
           truthBlocked = true;
           break;
         }
@@ -660,7 +660,7 @@ export default async function handler(req, res) {
     res.end();
 
     const latencyMs = Date.now() - overallStart;
-    console.log(JSON.stringify({ event: "concierge_reply", model, ms: latencyMs, cards: products.length, truthBlocked, q: lastQuestion }));
+    console.log(JSON.stringify({ event: "concierge_reply", model, ms: latencyMs, cards: products.length, truthBlocked, questionLength: lastQuestion.length }));
 
     const q = redact(question);
     const a = redact(truthBlocked ? truthGuardMessage(answerLanguage) : full);
@@ -711,11 +711,11 @@ export default async function handler(req, res) {
             sse(res, { type: "delta", v: text });
             sse(res, { type: "done", products, suggestions: suggestionsFor(products, intent), whatsapp: handoff(products, question), turnId, sessionId });
             res.end();
-            console.log(JSON.stringify({ event: "concierge_claude_fallback", ms: Date.now() - overallStart, cards: products.length, q: lastQuestion }));
+            console.log(JSON.stringify({ event: "concierge_claude_fallback", ms: Date.now() - overallStart, cards: products.length, questionLength: lastQuestion.length }));
             return;
           }
           if (text.trim() && violatesCommercialTruth(text)) {
-            console.error(JSON.stringify({ event: "concierge_truth_claim_blocked_fallback", q: lastQuestion }));
+            console.error(JSON.stringify({ event: "concierge_truth_claim_blocked_fallback", questionLength: lastQuestion.length }));
             return canned(res, truthGuardMessage(answerLanguage), { turnId: null, sessionId });
           }
         }
@@ -726,7 +726,7 @@ export default async function handler(req, res) {
   }
 
   if (!res.writableEnded) {
-    console.error(JSON.stringify({ event: "concierge_all_failed", q: lastQuestion }));
+    console.error(JSON.stringify({ event: "concierge_all_failed", questionLength: lastQuestion.length }));
     return res.status(502).json({ error: "Concierge is busy — message us on WhatsApp for help", whatsapp: WHATSAPP });
   }
 }

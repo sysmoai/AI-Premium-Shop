@@ -570,7 +570,8 @@ export async function onRequest({ request, env, waitUntil }) {
     if (params.get("diagnose") === "1") {
       const token = env.INSIGHTS_TOKEN;
       if (!token) return json(503, { ok: false, error: "INSIGHTS_TOKEN not configured" });
-      if (!tokenMatches(params.get("token") ?? "", token)) return new Response(null, { status: 404 });
+      const headerToken = (request.headers.get("Authorization") ?? "").replace(/^Bearer\s+/i, "");
+      if (!tokenMatches(headerToken, token) && !tokenMatches(params.get("token") ?? "", token)) return new Response(null, { status: 404 });
       if (!key) return json(503, { ok: false, error: "NVIDIA_API_KEY not configured" });
       const results = [];
       for (const model of MODELS) results.push(await pingModel(key, model, 8_000));

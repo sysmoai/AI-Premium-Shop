@@ -521,7 +521,8 @@ export default async function handler(req, res) {
     if (req.query?.diagnose === "1") {
       const token = process.env.INSIGHTS_TOKEN;
       if (!token) return res.status(503).json({ ok: false, error: "INSIGHTS_TOKEN not configured" });
-      if (!tokenMatches(req.query?.token, token)) return res.status(404).end();
+      const headerToken = (req.headers?.authorization ?? "").replace(/^Bearer\s+/i, "");
+      if (!tokenMatches(headerToken, token) && !tokenMatches(req.query?.token, token)) return res.status(404).end();
       if (!key) return res.status(503).json({ ok: false, error: "NVIDIA_API_KEY not configured" });
       const results = [];
       for (const model of MODELS) results.push(await pingModel(key, model, 8_000));

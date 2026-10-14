@@ -32,7 +32,13 @@ export default async function handler(req, res) {
   // Fail closed. An unset token must never mean "open to everyone" — this
   // endpoint returns customer questions.
   if (!expected) return res.status(503).json({ error: "INSIGHTS_TOKEN not configured" });
-  if (!tokenMatches(req.query?.token, expected)) return res.status(404).end();
+  // Preferred: Authorization: Bearer <token>. The legacy ?token= query param
+  // remains accepted as a deprecated fallback so existing operator workflows
+  // keep working; query strings leak into logs/history, so new integrations
+  // must use the header.
+  const headerToken = (req.headers?.authorization ?? "").replace(/^Bearer\s+/i, "");
+  const queryToken = req.query?.token ?? "";
+  if (!tokenMatches(headerToken, expected) && !tokenMatches(queryToken, expected)) return res.status(404).end();
 
   if (!storeEnabled()) {
     return res.status(503).json({

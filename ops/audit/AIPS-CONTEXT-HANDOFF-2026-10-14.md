@@ -93,3 +93,77 @@ I. Continue SEO/UX/monitoring backlog AFTER restoring/validating customer networ
 - Latest monitor PASS: https://github.com/sysmoai/AI-Premium-Shop/actions/runs/38531431024
 - Last confirmed Worker deploy: https://github.com/sysmoai/AI-Premium-Shop/actions/runs/38475130618
 - E2E failure run: https://github.com/sysmoai/AI-Premium-Shop/actions/runs/38466933521
+
+## 10. Addendum — Independently verified 2026-10-15 releases
+This addendum supersedes the historical SHA, deployment and SEO-test statuses
+above where explicitly specified. It does not retroactively rewrite evidence.
+
+**Repo / deploy:** main production feature release
+`a8b283e5a773ae953c7bc031360b9df09a6fcd04` via merged PR #128 and
+Cloudflare deploy run https://github.com/sysmoai/AI-Premium-Shop/actions/runs/38627504974
+(SUCCESS). Independent production
+https://aipremiumshop.com/.well-known/aips-build.json returned that exact SHA,
+`build_time=2026-10-14T19:54:37.642Z`. The `www` homepage also loaded from
+an external network. None of these prove Android mobile-carrier reachability.
+
+**SEO / E2E:** PR #128 browser tests 128/128 PASS; main SEO quality run
+https://github.com/sysmoai/AI-Premium-Shop/actions/runs/38627504846 PASS.
+The previous 10→7 remaining tests were repaired using governed current
+business facts, and a genuine hydration SEO defect was fixed: budget-page
+SEOHead now keeps noindex for zero-priced public buckets after React mounts.
+
+**AI-search commerce truth:** PR #126, deployed
+`8928183abf7fbcc398d112b593c08fcf72f7e4cc`, fixed `llms.txt` generation
+to depend on the governed public projection + final canonical sitemap,
+not raw source products. Production verified ChatGPT Plus BDT 3,390 and Claude
+Pro BDT 3,390 in llms.txt, with no raw BDT 499/599 offers, no CapCut BDT 299,
+and no under-500/under-1000 empty-guide link. Build guard matched 14 approved
+prices and 280 indexable routes. P1 issue #125 was closed.
+
+**Security:** PR #127 added preferred Authorization Bearer header support
+for internal insights and concierge diagnostic paths and fixed 3 stale
+ChatGPT price assertions; query-token fallback still exists, and shared edge
+rate protection is not complete (#119). PR #117 removed raw questions and
+session IDs from operational success/truth logs, but residual provider error
+message leakage remains under review (#116). Current public Concierge GET
+reports `keyConfigured:true`, which is not proof of commercial NVIDIA API
+entitlement (#111). Command Code previously reported `INSIGHTS_TOKEN`
+unset in production; verify actual configuration in Cloudflare before enabling.
+
+**Catalog eligibility count:** external /products says 176 active families,
+193 plans; /api/concierge and llms.txt report 177. Retired
+`replit-bangladesh` is excluded from ProductsPage but not necessarily from
+other catalog scopes. P2 issue #129 opened for verified count/slug reconciliation;
+do not assume Replit's development-hosting retirement blocks its subscription.
+
+**PR coordination:** old PR #94 was reviewed 2026-10-15: mobile WhatsApp
+qualification/attribution could be valuable, but branch is not mergeable and
+its draft link changes break an old mobile E2E href assertion. Check
+analytics/cookie consent before a fresh port. Old PR #95 still contains
+protected ChatGPT Business display-name and Team-per-user semantics; its old
+price-test portion was superseded by PR #127. Neither PR merged in this
+addendum.
+
+**Still OPEN — priority order:**
+- P0 real Android mobile-data report #113: CEO's exact current error and
+  real cellular PASS/FAIL still missing. Green CI and remote site views do not
+  close the incident. No speculative DNS/WAF/SSL/registrar changes.
+- P1 NVIDIA commercial production entitlement #111 and error-log review #116.
+- P1/2 rate-limit design + remaining URL-query-token deprecation #119;
+  Cloudflare Free currently documents one zone-level rate rule but real
+  account availability and carrier CGNAT false-positive risk need checking.
+- P2 Google Search Console `siteUnverifiedUser/permission_denied` until
+  correct owner authorizes; Zoho DKIM/admin state, R2/media #49, analytics,
+  database persistence and 176/177 family-count discrepancy #129.
+- P2 technical SEO keyword universe: 927 generated candidates are NOT verified
+  search demand; URLs and SERP competition require validated GSC/market data.
+- Any Win/WSL2/Command Code browser/hosts state must be revalidated on
+  the owner's actual Windows PC; this chat's cloud connectors do not control
+  that local session.
+
+**Next action for Command Code/Work:** re-read AGENTS.md, this addendum,
+current GitHub `main`, /aips-build.json and issue #113. Do the actual phone
+carrier acceptance test once evidence/device is available; meanwhile continue
+nonconflicting verified account/security/SEO gaps using isolated PRs and
+free-tier approved cost limits. Never insert credentials, customer content or
+sensitive account identifiers into public documents.

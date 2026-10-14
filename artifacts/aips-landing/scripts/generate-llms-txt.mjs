@@ -1,20 +1,14 @@
 #!/usr/bin/env node
-// Generates public/llms.txt — the file written specifically for AI crawlers
+// Generates dist/public/llms.txt from the governed PUBLIC commerce projection, not the raw catalog.
 // (ChatGPT, Perplexity, Claude, etc.) to read and cite when answering "what
 // does X cost in Bangladesh" style questions.
 //
-// WHY THIS FILE MATTERS MOST OF ALL. Every other price bug fixed this session
-// required JS execution or a specific page to be crawled. This one is a plain
-// .txt file, fetched whole, by exactly the audience most likely to quote a
-// number back to a user verbatim with no context and no correction. It was
-// found hand-typed and 10-for-10 wrong on spot-check: ChatGPT quoted at ৳350
-// (real 499), Claude at ৳1,495 (real 599), product count at 80 (real 87).
-// An LLM citing the old file would confidently underquote GitHub Copilot by
-// 73% and overquote nothing — pure customer-facing liability with no code
-// path to catch it, because nothing in this app ever reads this file back.
+// Production pricing and eligibility are controlled by the approved public
+// projection in data/public-products.json. The raw data/products.json MUST NOT
+// be used as publication authority. This generator runs at the end of the
+// Cloudflare build, after final sitemap canonical/noindex pruning.
+// Do not run it against ungoverned raw data or commit generated offer prices.
 //
-// Run after editing data/products.json:
-//   node scripts/generate-llms-txt.mjs
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
@@ -38,42 +32,62 @@ const CATEGORY_ORDER = Object.keys(CATEGORY_LABELS);
 // /product/:slug fallback route.
 const BRAND_ROUTE_SUFFIX = "-bangladesh";
 
-export function buildLlmsTxt(products) {
+export function buildLlmsTxt(products, { indexablePaths, publicationAllowed } = {}) {
+  if (!(indexablePaths instanceof Set) || indexablePaths.size === 0) {
+    throw new Error("[llms-public] final indexable sitemap routes are required");
+  }
+  if (typeof publicationAllowed !== "boolean") {
+    throw new Error("[llms-public] explicit approved publication state is required");
+  }
+
+  // Fail closed: exclude informational, shared-credential and blocked commerce
+  // records even if a future projection accidentally passes one through.
+  const publicProducts = products.filter((p) =>
+    p && typeof p.slug === "string" && p.slug &&
+    p.informationalOnly !== true && p.commerceEligible !== false &&
+    String(p.accessType ?? "").toLowerCase() !== "shared"
+  );
   const bySlug = new Map();
-  for (const p of products) {
+  for (const p of publicProducts) {
     if (!bySlug.has(p.slug)) bySlug.set(p.slug, []);
     bySlug.get(p.slug).push(p);
   }
   const distinct = [...bySlug.entries()].map(([slug, recs]) => {
-    const paid = recs.filter((r) => !r.requestPrice && typeof r.price === "number");
+    const paid = publicationAllowed ? recs.filter((r) => !r.requestPrice && Number.isFinite(r.price) && r.price >= 0) : [];
     const cheapest = paid.length ? Math.min(...paid.map((r) => r.price)) : null;
     return { slug, name: recs[0].name.split(" — ")[0], category: recs[0].category, cheapest, recs };
   });
 
-  const categories = new Set(products.map((p) => p.category));
-  const byCategory = CATEGORY_ORDER.filter((c) => categories.has(c)).map((cat) => {
+  const categories = new Set(publicProducts.map((p) => p.category));
+  const byCategory = CATEGORY_ORDER.filter((c) => categories.has(c) && indexablePaths.has(`/${c}`)).map((cat) => {
     const items = distinct.filter((d) => d.category === cat);
     const names = [...new Set(items.map((d) => d.name))].slice(0, 4).join(", ");
     return `- ${CATEGORY_LABELS[cat]} (${items.length}): https://aipremiumshop.com/${cat} — ${names}`;
   });
 
-  // Every distinct SKU with its real cheapest price, sorted by price so a
-  // skimming crawler sees the entry point first — matches how the site's own
-  // pricing page orders things.
+  // List only prices approved by the projection AND destinations included in
+  // the canonical/indexable final sitemap. Never send crawlers to a noindex,
+  // informational-only or retired product route as an active offer.
   const productLines = distinct
     .filter((d) => d.cheapest != null)
     .sort((a, b) => a.cheapest - b.cheapest)
     .map((d) => {
-      const path = d.slug.endsWith(BRAND_ROUTE_SUFFIX) ? `/${d.slug}` : `/product/${d.slug}`;
+      const path = [`/${d.slug}`, `/product/${d.slug}`]
+        .find((candidate) => indexablePaths.has(candidate));
+      if (!path) return null;
       return `- ${d.name} (from BDT ${d.cheapest.toLocaleString()}/mo): https://aipremiumshop.com${path}`;
-    });
+    }).filter(Boolean);
 
   const requestPriceCount = distinct.filter((d) => d.cheapest == null).length;
-  const allPrices = distinct.flatMap((d) => d.recs.map((r) => r.price)).filter((n) => typeof n === "number");
-  const minPrice = Math.min(...allPrices);
+  const budgetGuides = [
+    ["/ai-under-500", "Under BDT 500"],
+    ["/ai-under-1000", "Under BDT 1,000"],
+    ["/ai-under-3000", "Under BDT 3,000"],
+  ].filter(([route]) => indexablePaths.has(route))
+    .map(([route, name]) => `- ${name}: https://aipremiumshop.com${route}`);
 
   return `# AI Premium Shop — llms.txt
-# Machine-generated from data/products.json — do not hand-edit.
+# Build-generated from governed data/public-products.json and the pruned sitemap — not raw products.
 # Regenerate with: node scripts/generate-llms-txt.mjs
 # Helps LLMs and AI crawlers understand this site for discovery and citation.
 # Format: llms.txt standard (https://llmstxt.org)
@@ -82,10 +96,10 @@ export function buildLlmsTxt(products) {
 ## Site Info
 name: AI Premium Shop (AIPS)
 domain: aipremiumshop.com
-description: Bangladesh AI subscription marketplace. ${distinct.length} catalog tool families with BDT prices. Approved public payment references: bKash and Nagad.
+description: Bangladesh AI tools discovery site. ${distinct.length} governed public catalog tool families. Fixed prices, where approved, are confirmed before payment. Approved public payment references: bKash and Nagad.
 tagline: Premium AI Tools in Bangladesh
 founded: 2022
-products: ${distinct.length}
+public catalog tool families: ${distinct.length}
 categories: ${byCategory.length}
 request-price products (contact for current price): ${requestPriceCount}
 payments: bKash, Nagad
@@ -136,16 +150,27 @@ ${productLines.join("\n")}
 - Small Business: https://aipremiumshop.com/smb-bn
 - Educators: https://aipremiumshop.com/educators-bn
 
-## Budget Guides
-- Under BDT 500: https://aipremiumshop.com/ai-under-500
-- Under BDT 1,000: https://aipremiumshop.com/ai-under-1000
-- Under BDT 3,000: https://aipremiumshop.com/ai-under-3000
+## Current Indexable Budget Guides
+${budgetGuides.join("\n")}
 `;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const products = JSON.parse(readFileSync(join(ROOT, "data/products.json"), "utf8")).products;
-  const out = buildLlmsTxt(products);
-  writeFileSync(join(ROOT, "public/llms.txt"), out);
-  console.log(`public/llms.txt: ${(out.length / 1024).toFixed(1)} KB, regenerated from data/products.json`);
+  const projection = JSON.parse(readFileSync(join(ROOT, "data/public-products.json"), "utf8"));
+  if (projection?.projection?.schema_version !== 2 ||
+      projection.projection.approved_mode_policy !== "governed-approved-commerce-v2" ||
+      !Array.isArray(projection.products)) {
+    throw new Error("[llms-public] valid governed approved public projection is required");
+  }
+  const sitemap = readFileSync(join(ROOT, "dist/public/sitemap.xml"), "utf8");
+  const paths = new Set([...sitemap.matchAll(/<loc>([^<]+)<\\/loc>/g)].map((match) => {
+    const link = new URL(match[1].replaceAll("&amp;", "&"));
+    return link.protocol === "https:" && link.hostname === "aipremiumshop.com" ? link.pathname : null;
+  }).filter(Boolean));
+  const publicationAllowed = Boolean(
+    projection.projection.publication_allowed && !projection.projection.quarantine
+  );
+  const out = buildLlmsTxt(projection.products, { indexablePaths: paths, publicationAllowed });
+  writeFileSync(join(ROOT, "dist/public/llms.txt"), out, "utf8");
+  console.log(`[llms-public] dist/public/llms.txt generated safely from ${projection.products.length} governed records and ${paths.size} indexable sitemap routes`);
 }

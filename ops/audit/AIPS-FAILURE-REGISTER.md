@@ -27,14 +27,14 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
   DNS convergence must finish within four hours or that stale DNS is proven
   as the current root cause. See issue #113 and ops/incidents/.
 
-## F-002 — SEO Quality workflow: Playwright failures (10 → 7)
+## F-002 — SEO Quality workflow: Playwright failures (10 → 7 → 0)
 - First: pre-existing on pristine main baseline (proven 2026-10-13); also
   failing on PR branches.
 - Progress 2026-10-14: PR #127 derived the ChatGPT Plus price assertions
   from ops/ssot/pricing-v2.json (approved 3,390 instead of hardcoded 2,990),
   fixing the 3 provider-commerce-control failures (run 38622210707:
   7 failed / 121 passed, down from 10).
-- Remaining 7 failures (each to be fixed individually against current SSOT,
+- Previously remaining 7 failures (reproduced and addressed against current SSOT,
   preserving safety assertions): budget-mobile-truth (1), homepage-v2 (2),
   product-page-truth (1), support-clusters (1), tier-a-money-pages-v2 (2).
 - Classification of the remaining 7: mixed stale assertions and possible
@@ -44,7 +44,11 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
   that are now deliberately empty/noindexed (F-014).
 - Action: update assertions to current approved facts in a dedicated PR;
   no commercial data may change to satisfy a test.
-- Status: OPEN (7 remaining; tracked).
+- Status UPDATE (2026-10-15): RESOLVED. PR #128 repaired stale E2E
+  expectations and fixed the genuine budget SEO hydration bug (F-017).
+  CI/SSOT/SEO green. Playwright **128 passed / 0 failed** on both
+  PR branch run 38627181831 and main run 38627504846.
+  Keep regression coverage; reopen on any independently verified recurrence.
 
 ## F-003 — AI Concierge dead (keyConfigured:false → all requests fallback)
 - First: 2026-10-13 (post-migration API check), resolved 2026-10-14.
@@ -152,7 +156,9 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
   identity aa129a4d2e1cff36df182a52f19e2899eb21fff9 verified 2026-10-14
   14:18Z; live pages re-checked (noindex present, no prohibited claims,
   sitemap prunes the two buckets).
-- Status: RESOLVED (monitor: budget buckets auto-re-index when items return).
+- Status: RESOLVED for blanket payment/warranty/ETA claims; additional raw
+  LLM-price leak found later and resolved separately in F-016.
+  Empty-budget hydration metadata issue is handled in F-017.
 
 ## F-015 — Internal endpoints accepted only URL-query tokens (issue #119)
 - /api/insights and /api/concierge?diagnose=1 gated by ?token= query params,
@@ -167,3 +173,52 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 - Remaining: shared rate limiting (Cloudflare free plan allows one zone rate
   rule; needs dashboard/API authorization to enable) — tracked in #119.
 - Status: PARTIALLY RESOLVED (auth scheme); rate-limit layer OPEN.
+
+## F-016 — Raw catalog prices leaked into `/llms.txt` (P1; issue #125)
+- 2026-10-15 verification: the earlier static `public/llms.txt` was generated
+  directly from ungoverned raw `data/products.json` with BDT 499 ChatGPT Plus,
+  BDT 599 Claude Pro and BDT 299 CapCut Pro. Current approved product pages
+  offered ChatGPT Plus and Claude Pro at BDT 3,390; CapCut's current page stated
+  no purchasable plan. This was distinct from F-014's banned policy-text cleanup.
+- Root cause: the standalone llms generator bypassed the public projection,
+  and the governed Cloudflare build did not regenerate the tracked output.
+- Fix: PR #126 changes the build to generate `dist/public/llms.txt` from
+  `data/public-products.json` after final sitemap pruning; tracks a safe
+  price-free source fallback; adds `validate-llms-public-truth.mjs` fail-closed
+  price, provider and URL consistency guard.
+- Verified: build 8928183abf7fbcc398d112b593c08fcf72f7e4cc, CI and
+  Cloudflare deploy green. Build guard PASS: 14 prices / 280 canonical routes.
+  Live llms.txt now lists both ChatGPT Plus and Claude Pro from BDT 3,390;
+  no CapCut BDT 299 offer; no links to the empty noindex budget pages.
+- GitHub issue #125 closed with independent production acceptance evidence.
+- Status: RESOLVED; monitor governed-projection parity on each build.
+
+## F-017 — Client-side SEOHead reindexed empty budget pages after hydration
+- First reproduction: PR #128 first browser run 38626740118
+  (127 passed / 1 failed) observed React `meta[name=robots]` = `index, follow`
+  on /ai-under-1000, despite prerendered HTML being noindex. This was a REAL
+  crawler/runtime indexing mismatch, not a harmless stale test.
+- Root cause: `BudgetPage.tsx` called SEOHead without `noindex`;
+  useEffect set index,follow after React mounted.
+- Fix: PR #128 passes `noindex={products.length === 0}` to SEOHead and
+  updates seven stale E2E cases against approved public pricing, empty budgets,
+  request-price products and expired editorial. Indexing can return when
+  approved catalog records legitimately repopulate the threshold.
+- Verified: branch SEO Quality 38627181831 PASS (128/128); main SEO Quality
+  38627504846 PASS; Cloudflare deploy run 38627504974 PASS; public build SHA
+  a8b283e5a773ae953c7bc031360b9df09a6fcd04 verified remotely.
+- Status: RESOLVED on external build and browser E2E. This is NOT Android
+  cellular acceptance; P0 incident #113 remains OPEN.
+
+## F-018 — Storefront / Concierge / LLM product-family count mismatch
+- Current /products: 176 active families and 193 public plan records.
+  Current /api/concierge: products=177; new governed /llms.txt: 177 families.
+- ProductsPage excludes `replit-bangladesh` from visible retail catalog,
+  while the other catalog generators apply different eligibility scopes.
+  This could explain one additional family; verify an exact slug-level diff.
+- The Replit entry in ops/platforms/retired.json is a DEVELOPMENT/HOSTING
+  retirement statement, not automatic proof that resale/product availability
+  must be blocked. No commercial publication changed.
+- Tracker: https://github.com/sysmoai/AI-Premium-Shop/issues/129
+- Status: P2 OPEN — reconcile canonical metric definitions and access scope
+  under approved commercial/provider SSOT before editing public claims.

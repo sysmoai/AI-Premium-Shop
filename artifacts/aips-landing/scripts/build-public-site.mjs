@@ -94,6 +94,10 @@ try {
   run(process.execPath, ["scripts/audit-plan-pages.mjs"]);
   run(process.execPath, ["scripts/audit-prerender.mjs"]);
   run(process.execPath, ["scripts/apply-commerce-quarantine.mjs"]);
+  // The shipped llms.txt MUST follow the final governed commerce projection
+  // and canonical/noindex sitemap, never the raw source-controlled catalog.
+  run(process.execPath, ["scripts/generate-llms-txt.mjs"]);
+  run(process.execPath, ["scripts/validate-llms-public-truth.mjs"]);
   run(process.execPath, ["scripts/write-build-identity.mjs"]);
 } finally {
   writeFileSync(productsPath, originalProducts, "utf8");

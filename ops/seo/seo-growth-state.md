@@ -59,3 +59,24 @@ traffic baseline = UNKNOWN until GSC access is restored.
 3. Verify Cloudflare Web Analytics collection and consent behavior.
 4. Re-run `scripts/build-keyword-universe.mjs` and re-rank clusters with
    measured demand.
+
+## 7. 2026-10-14 quality and production-access amendment
+
+- Current P0 customer problem: Android mobile-data access FAIL reported by CEO,
+  even while the remote Cloudflare site and daily GitHub monitoring succeed.
+  Incident: ops/incidents/AIPS-MOBILE-DATA-2026-10-14.md (issue #113).
+  Do not treat affected cellular market as accessible until verified.
+- The 927 keyword rows are **machine-generated candidates**, not measured
+  search demand, approved content topics or necessarily valid canonical URLs.
+  All demand_evidence values remain UNKNOWN. Example overly generic query:
+  'google price in bd'. Example provisional mapping: ChatGPT price keyword
+  points to /product/chatgpt-plus-bangladesh, while the live canonical money
+  page is /chatgpt-plus-bangladesh. Validate route registry against live
+  canonical and redirect behavior before generating pages.
+- Data source priority: CURRENT governed public projection for eligibility,
+  provider-policy evidence for access, and authoritative current GSC for
+  demand. Raw 239 products do not imply 239 authorized public offers.
+- A separate authorized ChatGPT Gmail connector was able to inspect historic
+  AIPS Search Console emails; the prior Command Code session lacked that
+  connector. GSC direct query is still permission_denied for this account.
+- Full execution handoff: ops/audit/AIPS-CONTEXT-HANDOFF-2026-10-14.md.

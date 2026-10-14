@@ -1,5 +1,8 @@
 # AGENTS.md — AI Premium Shop (aipremiumshop.com)
 
+## P0 CURRENT CUSTOMER-ACCESS INCIDENT (2026-10-14)
+The CEO reports that https://aipremiumshop.com DOES NOT LOAD on an actual Android phone using mobile carrier data on 2026-10-14 evening. A new screenshot is pending; do NOT assume the previous Vercel-paused image reflects the current error. The 2026-10-14 GitHub Live site monitor passed from one hosted runner, but that does not verify mobile carrier access. Read issue #113, ops/incidents/AIPS-MOBILE-DATA-2026-10-14.md and ops/audit/AIPS-CONTEXT-HANDOFF-2026-10-14.md before any site/DNS change. Treat production reachability as P0 until actual affected mobile-data acceptance is verified. Do not change Cloudflare DNS, WAF, SSL, Worker or nameservers speculatively.
+
 ## Live authority (updated 2026-10-14)
 - Canonical repository: `sysmoai/AI-Premium-Shop`; app: `artifacts/aips-landing`.
 - Stack: React + TypeScript + Vite, pnpm monorepo; frontend is governed/prerendered for search.

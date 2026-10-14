@@ -84,7 +84,7 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 
 ## F-008 — Raw-catalog audit debt (validate-catalog warnings)
 - 239 records missing commercialStatus/verificationDate, 14 missing
-  sourceUrl, 153 missing officialUSD, 44 raw shared records reviewed at the provider-family evidence level but
+  sourceUrl, 159 missing officialUSD (per 2026-08-14 catalog snapshot), 44 raw shared records reviewed at the provider-family evidence level but
   not necessarily authorized at the exact SKU/fulfillment level, 9
   unverified trust fields, legacy claim occurrences.
 - Impact: pre-push hook failure requiring --no-verify (documented); public

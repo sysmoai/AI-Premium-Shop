@@ -615,7 +615,7 @@ export async function onRequest({ request, env, waitUntil }) {
   const answerLanguage = languageOf(question);
 
   if (containsCredential(question)) {
-    console.log(JSON.stringify({ event: "concierge_credential_blocked", session: sessionId }));
+    console.log(JSON.stringify({ event: "concierge_credential_blocked", sessionProvided: sid !== ip }));
     return sseResponse((sse) => {
       canned(
         sse,
@@ -655,19 +655,19 @@ export async function onRequest({ request, env, waitUntil }) {
     }
 
     if (degenerate(full)) {
-      console.error(JSON.stringify({ event: "concierge_degenerate", model, q: lastQuestion }));
+      console.error(JSON.stringify({ event: "concierge_degenerate", model, questionLength: lastQuestion.length }));
       stream.done();
       continue;
     }
     if (leaks(full)) {
-      console.error(JSON.stringify({ event: "concierge_prompt_leak_blocked", model, q: lastQuestion }));
+      console.error(JSON.stringify({ event: "concierge_prompt_leak_blocked", model, questionLength: lastQuestion.length }));
       stream.done();
       return sseResponse((sse) => {
         canned(sse, answerLanguage === "English" ? "I can't share internal instructions. Ask me about a current product, price or ordering step instead." : "আমি internal instructions শেয়ার করতে পারি না। Current product, price বা ordering step নিয়ে জিজ্ঞেস করুন।", { turnId: null, sessionId });
       });
     }
     if (violatesCommercialTruth(full)) {
-      console.error(JSON.stringify({ event: "concierge_truth_claim_blocked", model, q: lastQuestion }));
+      console.error(JSON.stringify({ event: "concierge_truth_claim_blocked", model, questionLength: lastQuestion.length }));
       stream.done();
       return sseResponse((sse) => {
         canned(sse, truthGuardMessage(answerLanguage), { turnId: null, sessionId });
@@ -694,7 +694,7 @@ export async function onRequest({ request, env, waitUntil }) {
             break;
           }
           if (violatesCommercialTruth(candidate.slice(-700))) {
-            console.error(JSON.stringify({ event: "concierge_truth_claim_blocked_midstream", model, q: lastQuestion }));
+            console.error(JSON.stringify({ event: "concierge_truth_claim_blocked_midstream", model, questionLength: lastQuestion.length }));
             truthBlocked = true;
             break;
           }
@@ -719,7 +719,7 @@ export async function onRequest({ request, env, waitUntil }) {
       });
 
       const latencyMs = Date.now() - overallStart;
-      console.log(JSON.stringify({ event: "concierge_reply", model, ms: latencyMs, cards: products.length, truthBlocked, q: lastQuestion }));
+      console.log(JSON.stringify({ event: "concierge_reply", model, ms: latencyMs, cards: products.length, truthBlocked, questionLength: lastQuestion.length }));
 
       const q = redact(question);
       const a = redact(truthBlocked ? truthGuardMessage(answerLanguage) : full);
@@ -771,11 +771,11 @@ export async function onRequest({ request, env, waitUntil }) {
             return sseResponse(async (sse) => {
               sse({ type: "delta", v: text });
               sse({ type: "done", products, suggestions: suggestionsFor(products, intent), whatsapp: handoff(products, question), turnId, sessionId });
-              console.log(JSON.stringify({ event: "concierge_claude_fallback", ms: Date.now() - overallStart, cards: products.length, q: lastQuestion }));
+              console.log(JSON.stringify({ event: "concierge_claude_fallback", ms: Date.now() - overallStart, cards: products.length, questionLength: lastQuestion.length }));
             });
           }
           if (text.trim() && violatesCommercialTruth(text)) {
-            console.error(JSON.stringify({ event: "concierge_truth_claim_blocked_fallback", q: lastQuestion }));
+            console.error(JSON.stringify({ event: "concierge_truth_claim_blocked_fallback", questionLength: lastQuestion.length }));
             return sseResponse((sse) => {
               canned(sse, truthGuardMessage(answerLanguage), { turnId: null, sessionId });
             });
@@ -787,6 +787,6 @@ export async function onRequest({ request, env, waitUntil }) {
     }
   }
 
-  console.error(JSON.stringify({ event: "concierge_all_failed", q: lastQuestion }));
+  console.error(JSON.stringify({ event: "concierge_all_failed", questionLength: lastQuestion.length }));
   return json(502, { error: "Concierge is busy — message us on WhatsApp for help", whatsapp: WHATSAPP });
 }

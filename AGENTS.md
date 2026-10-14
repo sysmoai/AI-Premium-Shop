@@ -1,39 +1,40 @@
 # AGENTS.md — AI Premium Shop (aipremiumshop.com)
 
-## Canonical project
-- Domain: `aipremiumshop.com`
-- Repository: `sysmoai/AI-Premium-Shop`
-- Production application: `artifacts/aips-landing`
-- Stack: React + TypeScript + Vite in a pnpm workspace
-- Production platform: Vercel
-- Durable business/operating SSOT: `ops/ssot/`
-- Primary operator: ChatGPT
-- Notion is not an authority.
+## Current comprehensive website audit (2026-10-14)
+Read `ops/audit/AIPS-FULL-STACK-AUDIT-2026-10-14.md` before scoping SEO, security, conversion, API, Cloudflare, mobile/global access, CI or infrastructure tasks. This audit is date-stamped evidence, not an automatically refreshing status dashboard. It distinguishes real tested results from unverified customer/carrier/account access. New changes need a fresh live state check and must not replace commercial SSOT.
 
-## Authority and truth
-Read `ops/ssot/` before changing public output. Current SSOT outranks historical docs, old pull requests, archived implementations and stale pages.
+## P0 CURRENT CUSTOMER-ACCESS INCIDENT (2026-10-14)
+The CEO reports that https://aipremiumshop.com DOES NOT LOAD on an actual Android phone using mobile carrier data on 2026-10-14 evening. A new screenshot is pending; do NOT assume the previous Vercel-paused image reflects the current error. The 2026-10-14 GitHub Live site monitor passed from one hosted runner, but that does not verify mobile carrier access. Read issue #113, ops/incidents/AIPS-MOBILE-DATA-2026-10-14.md and ops/audit/AIPS-CONTEXT-HANDOFF-2026-10-14.md before any site/DNS change. Treat production reachability as P0 until actual affected mobile-data acceptance is verified. Do not change Cloudflare DNS, WAF, SSL, Worker or nameservers speculatively.
 
-Protected facts must never be guessed: prices, product availability, access models, provider authorization, payment/delivery facts, warranty/refund terms, customer counts/social proof, and legal/compliance claims.
+## Live authority (updated 2026-10-14)
+- Canonical repository: `sysmoai/AI-Premium-Shop`; app: `artifacts/aips-landing`.
+- Stack: React + TypeScript + Vite, pnpm monorepo; frontend is governed/prerendered for search.
+- **Production platform: Cloudflare Workers with Static Assets**, Worker `ai-premium-shop`, custom domains `aipremiumshop.com` and `www.aipremiumshop.com`. Source: `wrangler.toml`, `worker/index.js`, `functions/api/`.
+- **Release: `.github/workflows/aips-cloudflare-deploy.yml` on selected `main` path changes.** Confirm actual deployed git_sha via `https://aipremiumshop.com/.well-known/aips-build.json`.
+- Vercel is LEGACY/paused hosting evidence only. Do not pay Vercel or perform Vercel preview/deploy as a required production gate.
+- Registrar: Squarespace Domains; primary authoritative DNS: Cloudflare. The old Google/Squarespace zone is transitional and must be kept separate from current DNS authority.
+- Commercial source of truth: `ops/ssot/`. Brand/business boundaries: AIPS is isolated from SaveOnSub, AIPT, AITP and all other tenants.
+- Current architecture/access register: `ops/cloudflare-migration/CANONICAL-ARCHITECTURE-AND-ACCESS.md`. Incident history: `ops/cloudflare-migration/RECOVERY-STATE.md`.
+- Historic documents (`ops/harness/state.json`, `ops/ssot/site.json`, `README.md`, old runbooks) may still contain Vercel-only information. When facts conflict, verify with live provider evidence and reconcile stale references through a tested PR. Do not follow outdated Vercel instructions as production truth.
 
-When a protected fact is unknown or unapproved, fail closed instead of projecting old content.
+## Authority and protected commercial facts
+Read `ops/ssot/` before editing public content. No prices, availability, provider authorization, access model, delivery, payments, warranty/refund terms, reviews/social proof, or legal claims may be inferred from old catalog rows. Fail closed on unknown claims. Do not present the site's internal `AIPS` abbreviation as a new public brand without approved SSOT.
 
-## Autonomous release model
-GREEN work may be executed autonomously: technical SEO, accessibility, performance, responsive visual media, non-commercial informational content, internal links, tests, monitoring and reversible implementation fixes.
-
-Protected commercial changes require explicit approved facts in the GitHub SSOT before publication.
-
-Prohibited: passwords/OTPs, unapproved shared-seat or family-splitting delivery, fabricated testimonials/reviews/statistics/badges, or invented commercial facts.
+## Autonomous execution and safety
+Safe reversible technical/SEO/accessibility/performance/monitoring improvements can proceed with a scoped change. Protected commercial changes require approved evidence in the canonical Git SSOT. Do not request/store customer payment PINs, passwords, OTPs, cookies or API tokens in source/chat; never enable unauthorized seat sharing.
 
 ## Required release gates
-1. Read SSOT and current production state.
-2. Work on a branch.
-3. Run applicable SSOT, truth, catalog, type, SEO and browser checks.
-4. Verify Vercel preview.
-5. Merge only when required gates pass.
-6. Verify the exact Vercel production deployment and representative live routes.
-7. Record evidence and unresolved gaps.
+1. Read Git business truth and current Cloudflare production build identity; verify live DNS/network evidence without local hosts overrides.
+2. Work on a branch, document baseline, preserve redirects/canonicals/publications, and keep rollback.
+3. Run applicable SSOT/truth/catalog, type/lint, build/prerender, SEO, security and browser checks. Classify existing E2E failures without suppressing genuine regressions.
+4. Verify an appropriate Cloudflare preview/staging deployment when applicable. No Vercel preview requirement.
+5. Merge only after release gates and acceptable risk disposition, then confirm the actual Cloudflare Worker deployment and production build identity.
+6. Verify representative external customer paths (including Android Wi-Fi/mobile data when the owner/authorized device provides evidence), API behavior, conversion links, email DNS, TLS, and 402 leak guard.
+7. Update the architecture register, recovery evidence, issues and next actions. Production is not verified merely because GitHub is green.
 
-A merge is not proof of a live fix. Search indexing is not considered recovered until external crawl/index evidence exists.
-
-## Current publication state
-Read the current publication flags in `ops/ssot/site.json` and `ops/ssot/commercial.json` rather than assuming a historical quarantine state. As checked on 2026-09-07, publication is allowed and quarantine is false. Provider-specific publication controls and unknown protected facts still apply; do not re-enable blocked legacy offers by inference.
+## Current known degraded/open state (snapshot 2026-10-14)
+- AI Concierge `keyConfigured:false`; WhatsApp fallback does not equal live AI replies.
+- Real Android customer-network reachability remains to be rechecked following DNS transition.
+- Windows temporary `AIPS-TEMP` hosts overrides must be safely removed when appropriate.
+- SEO Quality's Playwright failures and stale Vercel-era registry/harness files require tracked reconciliation.
+- Refer to current provider state before deciding whether any finding is still open.

@@ -1,5 +1,8 @@
 # AI Premium Shop
 
+> **CURRENT PRODUCTION NOTICE — 2026-10-14:** This repo's live AIPS app is `artifacts/aips-landing` (React/Vite/TypeScript). Production hosting is **Cloudflare Workers with Static Assets** via `wrangler.toml` and GitHub Actions `.github/workflows/aips-cloudflare-deploy.yml`. **Vercel is legacy/paused and must not be used for new AIPS deployment.** The older general feature/architecture/development descriptions below have not been audited for current production and must not be interpreted as proof that cart, checkout, payments, auth, or an Express backend are operational. Read `AGENTS.md`, `ops/ssot/` and `ops/cloudflare-migration/CANONICAL-ARCHITECTURE-AND-ACCESS.md` first.
+
+
 **Bangladesh's premier AI tools and automation subscription marketplace.**
 
 Premium AI tools, templates, and automation workflows delivered via WhatsApp with bKash/Nagad payment support.

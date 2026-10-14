@@ -6,14 +6,14 @@ This document is the mandatory execution protocol for every future website enhan
 
 Before changing code:
 
-1. Read `ops/harness/state.json`.
+1. Read `ops/harness/state.json` **as a historical snapshot until reconciled**, plus `ops/cloudflare-migration/CANONICAL-ARCHITECTURE-AND-ACCESS.md` and current provider evidence.
 2. Read `ops/ssot/site.json` and `ops/ssot/commercial.json`.
-3. Verify the actual Vercel production deployment and its Git SHA.
+3. Verify the actual Cloudflare Workers custom-domain production deployment and its served build identity (`/.well-known/aips-build.json`).
 4. Compare the intended development branch against the verified live SHA.
 5. Read current blockers and unresolved release gates.
 6. If repository documentation conflicts with live deployment metadata, live deployment + canonical SSOT wins and the stale documentation must be corrected.
 
-Never assume `main` is production. Never assume the newest branch is production. Never use Replit.
+Never assume `main` equals the deployed production SHA; Cloudflare deploy uses path-filtered triggers. Never assume the newest branch is production. Never use Replit.
 
 ## 2. Preserve before improving
 
@@ -38,7 +38,7 @@ Every change must be classified before implementation:
 - `COMMERCIAL_HIGH_RISK`: price, access, payment, delivery, warranty, availability, provider terms, offer schema, price-bearing media
 - `ROUTING_SEO_HIGH_RISK`: canonical, sitemap, redirect, index policy, structured data
 - `DATA_MIGRATION_HIGH_RISK`: schema or persistent data changes
-- `PRODUCTION_INFRA_HIGH_RISK`: domains, Vercel project/settings, environment variables, storage, DNS
+- `PRODUCTION_INFRA_HIGH_RISK`: domains, Cloudflare Worker/zone/settings, environment variables, storage, DNS
 
 High-risk work must have explicit rollback and verification artifacts before production promotion.
 
@@ -112,7 +112,7 @@ Run the applicable ladder:
 10. Playwright/browser tests for changed and critical journeys
 11. visual desktop/mobile check for UI changes
 12. performance budget check for media/UI changes
-13. Vercel preview deployment
+13. Cloudflare preview/staging deployment
 14. preview smoke tests
 15. production promotion only after all required gates pass
 16. production smoke + build identity + runtime error check
@@ -157,7 +157,7 @@ Owner input is required only when the work needs a fact or authority that engine
 - supplying credentials or access that are not connected
 - authorizing a destructive or irreversible production action when no safe reversible path exists
 
-Do not ask for information that can be obtained from GitHub, Vercel, the canonical SSOT, existing connected systems, tests, or source code.
+Do not ask for information that can be obtained from GitHub, Cloudflare, the canonical SSOT, existing connected systems, tests, or source code.
 
 ## 12. Enhancement loop
 

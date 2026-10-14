@@ -16,6 +16,8 @@ jobs:
           package-manager-cache: false
       - name: Validate canonical GitHub SSOT
         run: node scripts/validate-ssot.mjs
+      - name: Guard customer privacy in concierge logs
+        run: node scripts/validate-concierge-log-privacy.mjs
 
   build:
     runs-on: ubuntu-latest

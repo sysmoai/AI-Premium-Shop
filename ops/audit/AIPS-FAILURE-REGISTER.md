@@ -133,3 +133,21 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
   or current traffic. Verify current URL-level Search Console state and actual
   visible commerce offers before adding schema (never invent reviews/shipping).
 - Status: P2 ACCESS-BLOCKED: current GSC integration reports permission_denied.
+
+## F-014 — SSOT-violating commercial claims in prerendered pages + llms.txt
+- Found 2026-10-14 while reviewing the empty-budget-page audit finding.
+- Budget pages, products hub, product meta descriptions, fallback sweep and
+  llms.txt carried prohibited claims: blanket "30-day replacement warranty",
+  unlisted payments (Rocket / bank transfer), fixed delivery wording
+  ("5-30 minutes"), reseller/seat claims and stale prices (BDT 299/mo,
+  ChatGPT Plus BDT 499) that no longer exist in the public projection.
+- Fix: SSOT-compliant confirm-before-payment copy everywhere; llms.txt Policy
+  Facts rewritten to approved statements; empty budget buckets
+  (/ai-under-500, /ai-under-1000) are now noindex,follow until the catalog
+  regains eligible listings (public projection min price = BDT 1,299).
+  Approved "Trusted by 10,000+ customers since 2022" retained.
+- Evidence: PRs #121, #122, #123 merged; deploy workflow green; production
+  identity aa129a4d2e1cff36df182a52f19e2899eb21fff9 verified 2026-10-14
+  14:18Z; live pages re-checked (noindex present, no prohibited claims,
+  sitemap prunes the two buckets).
+- Status: RESOLVED (monitor: budget buckets auto-re-index when items return).

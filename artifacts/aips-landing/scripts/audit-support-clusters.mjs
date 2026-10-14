@@ -71,7 +71,12 @@ for (const owner of owners) {
   const lower = html.toLowerCase();
   const canonical = getCanonical(html);
   if (canonical.count !== 1 || canonical.value !== `${SITE}${route}`) throw new Error(`[support-cluster-audit] ${route} canonical mismatch: count=${canonical.count}, value=${canonical.value}`);
-  if (/name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)) throw new Error(`[support-cluster-audit] ${route} is unexpectedly noindex`);
+  // Deliberate, data-driven noindex: a budget bucket with zero eligible
+  // listings is thin content; prerender-products.mjs marks it noindex,follow
+  // automatically and removes the marker again when the catalog regains
+  // eligible items. These are intentional exceptions, not regressions.
+  const deliberatelyNoindexed = new Set(["/ai-under-500", "/ai-under-1000"]);
+  if (!deliberatelyNoindexed.has(route) && /name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)) throw new Error(`[support-cluster-audit] ${route} is unexpectedly noindex`);
   if ((html.match(/<h1\b/gi) ?? []).length !== 1) throw new Error(`[support-cluster-audit] ${route} must have exactly one H1`);
   if (!lower.includes(`data-go6-support-links="${route.toLowerCase()}"`)) throw new Error(`[support-cluster-audit] ${route} missing GO6 canonical link graph`);
   const title = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim();

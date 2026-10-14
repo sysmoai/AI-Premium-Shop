@@ -163,7 +163,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     throw new Error("[llms-public] valid governed approved public projection is required");
   }
   const sitemap = readFileSync(join(ROOT, "dist/public/sitemap.xml"), "utf8");
-  const paths = new Set([...sitemap.matchAll(/<loc>([^<]+)<\\/loc>/g)].map((match) => {
+  const paths = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => {
     const link = new URL(match[1].replaceAll("&amp;", "&"));
     return link.protocol === "https:" && link.hostname === "aipremiumshop.com" ? link.pathname : null;
   }).filter(Boolean));

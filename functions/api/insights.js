@@ -24,7 +24,13 @@ export async function onRequest({ request, env }) {
   // Fail closed. An unset token must never mean "open to everyone" — this
   // endpoint returns customer questions.
   if (!expected) return json(503, { error: "INSIGHTS_TOKEN not configured" });
-  if (!tokenMatches(url.searchParams.get("token") ?? "", expected)) return new Response(null, { status: 404 });
+  // Preferred: Authorization: Bearer <token>. The legacy ?token= query param
+  // remains accepted as a deprecated fallback so existing operator workflows
+  // keep working; query strings leak into logs/history, so new integrations
+  // must use the header.
+  const headerToken = (request.headers.get("Authorization") ?? "").replace(/^Bearer\s+/i, "");
+  const queryToken = url.searchParams.get("token") ?? "";
+  if (!tokenMatches(headerToken, expected) && !tokenMatches(queryToken, expected)) return new Response(null, { status: 404 });
 
   if (!storeEnabled()) {
     return json(503, {

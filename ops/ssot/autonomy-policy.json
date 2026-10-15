@@ -35,9 +35,9 @@
     "make changes on a branch",
     "run SSOT, truth, catalog, type and SEO checks that apply",
     "run browser tests",
-    "verify Vercel preview",
+    "verify a Cloudflare preview/staging deployment where applicable (Vercel preview is retired and NOT a production gate)",
     "merge only when required checks pass",
-    "verify exact production deployment",
+    "verify exact production deployment via /.well-known/aips-build.json",
     "verify representative live routes",
     "record evidence and unresolved gaps"
   ],

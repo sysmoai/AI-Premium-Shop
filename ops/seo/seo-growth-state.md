@@ -99,3 +99,31 @@ traffic baseline = UNKNOWN until GSC access is restored.
   invalid merchant listings and 1 invalid breadcrumb, then validate the
   keyword universe against the 820 real queries before any new content.
 
+## 28-day segment (2026-09-16 → 2026-10-13, live GSC 2026-10-16)
+
+- 183 clicks / 1,695 impressions / 10.8% CTR / avg position 7.8 (~6.5
+  clicks/day). Position and CTR are improving versus the 3-month window
+  (11.1 / 8.7%).
+- Countries: Bangladesh 160 clicks / 1,471 impressions (87%); US 1/66;
+  India 2/14; 49 countries total. Market concentration is healthy.
+- Queries (28d, 276 rows): still brand-led — "ai premium shop" 11, "all
+  premium shop" 3, "premium shop bd" 2/42 imp, "ai shop bd" 0/19 imp,
+  "premium shop" 0/18 imp. Zero-click impression opportunities exist on the
+  brand-misspell variants; low absolute non-brand volume.
+
+## Keyword-universe validation against real GSC queries (2026-10-16)
+
+- Real queries (820 over 3 months) are ~overwhelmingly brand/directory
+  intent ("ai premium shop", "ai store bd", "buy ai tools") plus one
+  product-price query ("heygen ai price in bangladesh", 2 clicks).
+- The 927 candidate rows include 102 brand-family terms (notion 15,
+  chatgpt 11, claude 9, gemini 4, midjourney 7, cursor 7, heygen 5, ...).
+  Classification: these 102 are PARTIALLY CORROBORATED — the brand family
+  has proven search presence, but the specific price-intent variants remain
+  UNMEASURED. The other 825 candidates remain UNKNOWN (no evidence).
+- Next validation lever: after the 404/4xx re-validation clears, Google's
+  re-indexing of the 143-indexed + newly eligible canonicals should surface
+  product-price queries in GSC; re-run this check before creating content.
+  Do NOT generate 927 pages.
+
+

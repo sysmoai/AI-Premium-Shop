@@ -50,7 +50,10 @@ test("budget hub is a current catalog filter, not a ranking page", async ({ page
   await page.goto("/ai-under-1000");
   await expect(page.getByRole("heading", { level: 1, name: "AI Tools Under BDT 1,000" })).toBeVisible();
   await expect(page.getByText("Current budget filter")).toBeVisible();
-  expect(await page.locator('a[href$="-bangladesh"], a[href^="/product/"]').count()).toBeGreaterThan(0);
+  // An empty approved bucket must not invent product links or be indexed as an offer list.
+  await expect(page.getByText("No current fixed-price plans are published within this threshold.")).toBeVisible();
+  await expect(page.locator('a[href$="-bangladesh"], a[href^="/product/"]')).toHaveCount(0);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/i);
   await expect(page.locator('a[href="/best-ai-budget-bangladesh"]')).toHaveCount(0);
   const body = await page.locator("body").innerText();
   expect(body).not.toMatch(/cheapest in Bangladesh|best value|biggest savings|% off/i);

@@ -17,7 +17,9 @@ jobs:
       - name: Validate canonical GitHub SSOT
         run: node scripts/validate-ssot.mjs
       - name: Guard customer privacy in concierge logs
-        run: node scripts/validate-concierge-log-privacy.mjs
+        run: |
+          node scripts/validate-concierge-log-privacy.mjs
+          node --test scripts/validate-concierge-log-privacy.test.mjs
 
   build:
     runs-on: ubuntu-latest

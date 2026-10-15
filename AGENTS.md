@@ -1,5 +1,13 @@
 # AGENTS.md — AI Premium Shop (aipremiumshop.com)
 
+## Latest verified checkpoint — 2026-10-15
+- **Live Cloudflare build:** `a8b283e5a773ae953c7bc031360b9df09a6fcd04` from PR #128, independently fetched via `/.well-known/aips-build.json`; verify fresh on each new session.
+- **Full browser suite GREEN:** SEO Quality main run `38627504846`, 128/128 tests passed after fixing real budget-page hydrated robots/noindex mismatch and stale assertions (PR #128).
+- **Governed `llms.txt` fixed:** PR #126 generates from approved public projection and final canonical sitemap; excludes old raw shared/CapCut/ChatGPT price claims; P1 issue #125 closed with production evidence.
+- **Current Concierge:** public GET `keyConfigured:true` (not licensing entitlement, issue #111). Previous `keyConfigured:false` below is HISTORICAL and superseded.
+- **Open P0 #113:** real Android cellular reachability NOT verified; do not change DNS/WAF/SSL on stale assumptions. Open #119 rate-limiting/operator security, #116 residual error logging, #129 176 vs 177 metric, GSC permission gap.
+- Full dated release/architecture addendum: `ops/audit/AIPS-CONTEXT-HANDOFF-2026-10-14.md` section 10. Failure details: `ops/audit/AIPS-FAILURE-REGISTER.md` F-016–F-018.
+
 ## Current comprehensive website audit (2026-10-14)
 Read `ops/audit/AIPS-FULL-STACK-AUDIT-2026-10-14.md` before scoping SEO, security, conversion, API, Cloudflare, mobile/global access, CI or infrastructure tasks. This audit is date-stamped evidence, not an automatically refreshing status dashboard. It distinguishes real tested results from unverified customer/carrier/account access. New changes need a fresh live state check and must not replace commercial SSOT.
 
@@ -32,7 +40,7 @@ Safe reversible technical/SEO/accessibility/performance/monitoring improvements 
 6. Verify representative external customer paths (including Android Wi-Fi/mobile data when the owner/authorized device provides evidence), API behavior, conversion links, email DNS, TLS, and 402 leak guard.
 7. Update the architecture register, recovery evidence, issues and next actions. Production is not verified merely because GitHub is green.
 
-## Current known degraded/open state (snapshot 2026-10-14)
+## Historical degraded/open state (snapshot 2026-10-14; superseded by 2026-10-15 checkpoint above)
 - AI Concierge `keyConfigured:false`; WhatsApp fallback does not equal live AI replies.
 - Real Android customer-network reachability remains to be rechecked following DNS transition.
 - Windows temporary `AIPS-TEMP` hosts overrides must be safely removed when appropriate.

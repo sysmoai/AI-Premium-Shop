@@ -27,22 +27,28 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
   DNS convergence must finish within four hours or that stale DNS is proven
   as the current root cause. See issue #113 and ops/incidents/.
 
-## F-002 — SEO Quality workflow: 10 Playwright failures
+## F-002 — SEO Quality workflow: Playwright failures (10 → 7 → 0)
 - First: pre-existing on pristine main baseline (proven 2026-10-13); also
-  failing on PR branches. Latest run: 38466933521 (2026-10-13).
-- Prior Command Code classification (same failures reported on a pristine main baseline; root causes not individually closed):
-  - provider-commerce-control (3): stale price assertions (BDT 2,990 vs
-    current governed 3,390) + blocked-row expectations → STALE TEST.
-  - product-page-truth (1), homepage-v2 (2), budget-mobile-truth (1),
-    support-clusters (1), tier-a-money-pages-v2 (2): content/assertion
-    drift against the Sept catalog updates → POSSIBLE STALE ASSERTIONS / POSSIBLE
-    REAL BEHAVIOR DEFECTS. Reproduce separately; preserve safety assertions.
-- Business impact not independently cleared: some fail cases involve actual
-  homepage finder, budget links, product plan-card disclosures and sharing
-  caveats. A red suite can hide real regressions.
+  failing on PR branches.
+- Progress 2026-10-14: PR #127 derived the ChatGPT Plus price assertions
+  from ops/ssot/pricing-v2.json (approved 3,390 instead of hardcoded 2,990),
+  fixing the 3 provider-commerce-control failures (run 38622210707:
+  7 failed / 121 passed, down from 10).
+- Previously remaining 7 failures (reproduced and addressed against current SSOT,
+  preserving safety assertions): budget-mobile-truth (1), homepage-v2 (2),
+  product-page-truth (1), support-clusters (1), tier-a-money-pages-v2 (2).
+- Classification of the remaining 7: mixed stale assertions and possible
+  real behavior defects; reproduce separately. Example: tier-a tests expect
+  the literal phrase "do not assume" while the live governed copy says
+  "must not be assumed"; budget tests expect product links on budget pages
+  that are now deliberately empty/noindexed (F-014).
 - Action: update assertions to current approved facts in a dedicated PR;
   no commercial data may change to satisfy a test.
-- Status: OPEN (tracked; not yet fixed).
+- Status UPDATE (2026-10-15): RESOLVED. PR #128 repaired stale E2E
+  expectations and fixed the genuine budget SEO hydration bug (F-017).
+  CI/SSOT/SEO green. Playwright **128 passed / 0 failed** on both
+  PR branch run 38627181831 and main run 38627504846.
+  Keep regression coverage; reopen on any independently verified recurrence.
 
 ## F-003 — AI Concierge dead (keyConfigured:false → all requests fallback)
 - First: 2026-10-13 (post-migration API check), resolved 2026-10-14.
@@ -92,9 +98,25 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 - Status: OPEN (business-data debt; owner decisions required for shared
   classification).
 
-## F-009 — Search Console access gap
-- `siteUnverifiedUser` / `permission_denied`.
-- Status: BLOCKED — requires owner Google account authorization.
+## F-009 — Search Console access gap → RESOLVED 2026-10-16
+- Historical: `siteUnverifiedUser` / `permission_denied`.
+- Root cause: wrong Google account was being used. The AIPS Search Console
+  property was successfully accessed in Command Code's visible browser using
+  **aipremiumshopbd@gmail.com** ("AI Premium Shop" Google account), NOT
+  by the older sysmoai.com@gmail.com session. The account is designated by
+  the CEO as owner; formal **Owner** permission level remains unverified until
+  Search Console Settings → Users and permissions is inspected.
+- Evidence: visible-browser session 2026-10-16 00:35+06 — property
+  https://aipremiumshop.com/ opens with full reports. Baseline read:
+  550 clicks/3mo; 143 indexed / 367 not-indexed; CWV no field data;
+  HTTPS 30 valid; product snippets 4 valid; merchant listings 2 invalid;
+  breadcrumbs 20 valid / 1 invalid.
+- Recorded in ops/ssot/site.json (search_console section, PR #132).
+- Status: RESOLVED for the authorized **Command Code visible-browser session**.
+  The separate connected ChatGPT/SMEPost GSC integration still returns
+  `siteUnverifiedUser` and requires correct account authorization independently.
+  Next: indexing-reason triage, Merchant listing/breadcrumb source errors,
+  permission-level verification and measured query/page exports.
 
 ## F-010 — NVIDIA diagnostic key hygiene (issue #111)
 - Previous Command Code operator REPORTS that unused diagnostic key
@@ -124,6 +146,8 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 - Action: validate live canonical ownership + public-projection eligibility,
   deduplicate/search-intent review and genuine volume before publishing pages.
 - Status: P2 OPEN; do NOT create 927 SEO pages automatically.
+  UPDATE 2026-10-16: Search Console is now accessible — the keyword universe
+  can be validated against REAL query/impression data instead of guesses.
 
 ## F-013 — Historical GSC indexing/schema notifications (April–May 2026)
 - Connected SYSmoAI Gmail surfaced April 2026 reports of 404, robots.txt,
@@ -132,7 +156,9 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 - These are HISTORICAL, not evidence of current Cloudflare production defects
   or current traffic. Verify current URL-level Search Console state and actual
   visible commerce offers before adding schema (never invent reviews/shipping).
-- Status: P2 ACCESS-BLOCKED: current GSC integration reports permission_denied.
+- Status UPDATE 2026-10-16: live GSC now accessible; current reports show
+  143 indexed / 367 not-indexed, 2 invalid merchant listings and 1 invalid
+  breadcrumb — triage these CURRENT numbers, do not reopen 2026-04/05 items.
 
 ## F-014 — SSOT-violating commercial claims in prerendered pages + llms.txt
 - Found 2026-10-14 while reviewing the empty-budget-page audit finding.
@@ -150,4 +176,78 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
   identity aa129a4d2e1cff36df182a52f19e2899eb21fff9 verified 2026-10-14
   14:18Z; live pages re-checked (noindex present, no prohibited claims,
   sitemap prunes the two buckets).
-- Status: RESOLVED (monitor: budget buckets auto-re-index when items return).
+- Status: RESOLVED for blanket payment/warranty/ETA claims; additional raw
+  LLM-price leak found later and resolved separately in F-016.
+  Empty-budget hydration metadata issue is handled in F-017.
+
+## F-015 — Internal endpoints accepted only URL-query tokens (issue #119)
+- /api/insights and /api/concierge?diagnose=1 gated by ?token= query params,
+  which leak into access logs/browser history; also per-isolate in-memory
+  throttling rather than a shared limit.
+- Fix shipped 2026-10-14 (PR #127): Authorization: Bearer <token> accepted
+  (preferred); legacy query token kept as deprecated fallback; constant-time
+  compare unchanged. Deployed as build bbddc87b7792f54d2c3ed1afdbcd03d43ec62be6
+  (19:26Z). Note: production INSIGHTS_TOKEN is currently unset, so the
+  endpoint fails closed with 503 for all callers — safe, but the operator
+  workflow is non-functional until the secret is provisioned.
+- Remaining: shared rate limiting (Cloudflare free plan allows one zone rate
+  rule; needs dashboard/API authorization to enable) — tracked in #119.
+- Status: PARTIALLY RESOLVED (auth scheme); rate-limit layer OPEN.
+
+## F-016 — Raw catalog prices leaked into `/llms.txt` (P1; issue #125)
+- 2026-10-15 verification: the earlier static `public/llms.txt` was generated
+  directly from ungoverned raw `data/products.json` with BDT 499 ChatGPT Plus,
+  BDT 599 Claude Pro and BDT 299 CapCut Pro. Current approved product pages
+  offered ChatGPT Plus and Claude Pro at BDT 3,390; CapCut's current page stated
+  no purchasable plan. This was distinct from F-014's banned policy-text cleanup.
+- Root cause: the standalone llms generator bypassed the public projection,
+  and the governed Cloudflare build did not regenerate the tracked output.
+- Fix: PR #126 changes the build to generate `dist/public/llms.txt` from
+  `data/public-products.json` after final sitemap pruning; tracks a safe
+  price-free source fallback; adds `validate-llms-public-truth.mjs` fail-closed
+  price, provider and URL consistency guard.
+- Verified: build 8928183abf7fbcc398d112b593c08fcf72f7e4cc, CI and
+  Cloudflare deploy green. Build guard PASS: 14 prices / 280 canonical routes.
+  Live llms.txt now lists both ChatGPT Plus and Claude Pro from BDT 3,390;
+  no CapCut BDT 299 offer; no links to the empty noindex budget pages.
+- GitHub issue #125 closed with independent production acceptance evidence.
+- Status: RESOLVED; monitor governed-projection parity on each build.
+
+## F-017 — Client-side SEOHead reindexed empty budget pages after hydration
+- First reproduction: PR #128 first browser run 38626740118
+  (127 passed / 1 failed) observed React `meta[name=robots]` = `index, follow`
+  on /ai-under-1000, despite prerendered HTML being noindex. This was a REAL
+  crawler/runtime indexing mismatch, not a harmless stale test.
+- Root cause: `BudgetPage.tsx` called SEOHead without `noindex`;
+  useEffect set index,follow after React mounted.
+- Fix: PR #128 passes `noindex={products.length === 0}` to SEOHead and
+  updates seven stale E2E cases against approved public pricing, empty budgets,
+  request-price products and expired editorial. Indexing can return when
+  approved catalog records legitimately repopulate the threshold.
+- Verified: branch SEO Quality 38627181831 PASS (128/128); main SEO Quality
+  38627504846 PASS; Cloudflare deploy run 38627504974 PASS; public build SHA
+  a8b283e5a773ae953c7bc031360b9df09a6fcd04 verified remotely.
+- Status: RESOLVED on external build and browser E2E. This is NOT Android
+  cellular acceptance; P0 incident #113 remains OPEN.
+
+## F-018 — Storefront / Concierge / LLM product-family count mismatch
+- Current /products: 176 active families and 193 public plan records.
+  Current /api/concierge: products=177; new governed /llms.txt: 177 families.
+- ProductsPage excludes `replit-bangladesh` from visible retail catalog,
+  while the other catalog generators apply different eligibility scopes.
+  This could explain one additional family; verify an exact slug-level diff.
+- The Replit entry in ops/platforms/retired.json is a DEVELOPMENT/HOSTING
+  retirement statement, not automatic proof that resale/product availability
+  must be blocked. No commercial publication changed.
+- Tracker: https://github.com/sysmoai/AI-Premium-Shop/issues/129
+- Status: P2 OPEN — reconcile canonical metric definitions and access scope
+  under approved commercial/provider SSOT before editing public claims.
+  UPDATE 2026-10-16 (Command Code): exact slug-level evidence recorded on the
+  issue — projection has 177 unique slugs including replit-bangladesh (Active,
+  BDT 3,390); the storefront RETIRED set in sanitize-product-prerender.mjs
+  subtracts exactly this one family; both /replit-bangladesh and
+  /product/replit-bangladesh 308 to /products. A live Concierge probe answers
+  the Replit price from catalog knowledge but returns no product card. Two
+  options posted for owner decision: (A) retire the raw record (product
+  removal, needs CEO authorization), or (B) keep WhatsApp-only sales and
+  scope the Concierge wording.

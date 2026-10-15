@@ -59,13 +59,16 @@ test("generic active product generated HTML removes stale FAQ, stock and univers
   expect(html).not.toContain('http-equiv="last-modified"');
 });
 
-test("generic active product plan cards expose price and access without synthetic seats or SLA", async ({ page }) => {
+test("generic request-price product never invents fixed-price Personal cards or SLA", async ({ page }) => {
   await page.goto(COMMERCE_PRODUCT_ROUTE, { waitUntil: "networkidle" });
-  const plan = page.getByRole("button", { name: /Personal/i }).first();
-  await expect(plan).toBeVisible();
-  const text = (await plan.innerText()).toLowerCase();
-  expect(text).toContain("personal access");
-  expect(text).toContain("confirm before payment");
+  // Copy.ai currently remains in the governed public catalog as request-price.
+  await expect(page.getByRole("heading", { name: "Current plan details are confirmed on request" })).toBeVisible();
+  await expect(page.getByText("Confirm on WhatsApp", { exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Confirm current plan" })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Personal|Shared|Team/i })).toHaveCount(0);
+  const text = (await page.getByRole("main").innerText()).toLowerCase();
+  expect(text).toContain("this listing does not publish a fixed plan price");
+  expect(text).toContain("before payment");
   expect(text).not.toMatch(/\b8 seats?\b/);
   expect(text).not.toMatch(/\b[0-9]+\s*[–-]\s*[0-9]+\s*(min|hrs?)/);
 });

@@ -14,7 +14,7 @@ import { dirname, join } from "node:path";
 import { readdirSync, statSync } from "node:fs";
 import { buildCatalog } from "./generate-concierge-catalog.mjs";
 import { buildPages } from "./generate-catalog-lite.mjs";
-import { buildLlmsTxt } from "./generate-llms-txt.mjs";
+// Deployed llms.txt is validated from the governed projection during the public build.
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const strict = process.argv.includes("--strict");
@@ -225,23 +225,23 @@ for (const [slug, recs] of bySlug) {
   }
 }
 
-// ---------- 2a-iii. llms.txt sync ----------
-// This is the file most directly at risk of an LLM citing a wrong price
-// verbatim to a user — it was found hand-typed and 10-for-10 wrong on
-// spot-check (ChatGPT ৳350 vs real ৳499, product count 80 vs real 87). The
-// "Generated: <date>" line is excluded from comparison since it legitimately
-// changes every run; everything else must match the generator exactly.
+// ---------- 2a-iii. llms.txt source fallback safety ----------
+// The source-controlled public/llms.txt is only a conservative fallback.
+// The real deployment file MUST be generated from the governed approved
+// projection after Vite output and sitemap pruning; build-public-site.mjs
+// runs validate-llms-public-truth.mjs on the final dist/public/llms.txt.
 {
-  const strip = (t) => t.replace(/^# Generated: .*$/m, "");
-  const expected = strip(buildLlmsTxt(products));
-  let actual;
+  let fallback;
   try {
-    actual = strip(read("public/llms.txt"));
+    fallback = read("public/llms.txt");
   } catch {
-    actual = null;
+    fallback = null;
   }
-  if (actual !== expected) {
-    failures.push("public/llms.txt is out of sync with data/products.json — run: node scripts/generate-llms-txt.mjs");
+  if (!fallback ||
+      !fallback.includes("safe fallback ONLY") ||
+      /\bfrom BDT\s*[\d,]+\s*\/\s*(?:mo|month)/i.test(fallback) ||
+      /30.day replacement warranty|Rocket or bank transfer|5.30 minutes delivery/i.test(fallback)) {
+    failures.push("public/llms.txt fallback must be price-free and commercial-truth safe; production llms.txt is built from approved projection");
   }
 }
 

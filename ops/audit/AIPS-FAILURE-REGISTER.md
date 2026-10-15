@@ -101,16 +101,22 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 ## F-009 — Search Console access gap → RESOLVED 2026-10-16
 - Historical: `siteUnverifiedUser` / `permission_denied`.
 - Root cause: wrong Google account was being used. The AIPS Search Console
-  property is owned by **aipremiumshopbd@gmail.com** ("AI Premium Shop"
-  Google account), NOT by sysmoai.com@gmail.com.
+  property was successfully accessed in Command Code's visible browser using
+  **aipremiumshopbd@gmail.com** ("AI Premium Shop" Google account), NOT
+  by the older sysmoai.com@gmail.com session. The account is designated by
+  the CEO as owner; formal **Owner** permission level remains unverified until
+  Search Console Settings → Users and permissions is inspected.
 - Evidence: visible-browser session 2026-10-16 00:35+06 — property
   https://aipremiumshop.com/ opens with full reports. Baseline read:
   550 clicks/3mo; 143 indexed / 367 not-indexed; CWV no field data;
   HTTPS 30 valid; product snippets 4 valid; merchant listings 2 invalid;
   breadcrumbs 20 valid / 1 invalid.
 - Recorded in ops/ssot/site.json (search_console section, PR #132).
-- Status: RESOLVED for access; next actions are data-driven SEO work
-  (indexing-reason triage, merchant-listing repairs, CWV measurement).
+- Status: RESOLVED for the authorized **Command Code visible-browser session**.
+  The separate connected ChatGPT/SMEPost GSC integration still returns
+  `siteUnverifiedUser` and requires correct account authorization independently.
+  Next: indexing-reason triage, Merchant listing/breadcrumb source errors,
+  permission-level verification and measured query/page exports.
 
 ## F-010 — NVIDIA diagnostic key hygiene (issue #111)
 - Previous Command Code operator REPORTS that unused diagnostic key

@@ -70,3 +70,7 @@ functions/api/_catalog.json
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Approved media intake (source files are never published directly)
+artifacts/aips-landing/media-intake/
+

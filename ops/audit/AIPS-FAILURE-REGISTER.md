@@ -280,3 +280,40 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 - Verified by API read-back (contexts: ssot+build; automated fixes enabled).
 - Status: RESOLVED. Monitor: first PR merge after this change must pass
   both required contexts (already the case for all recent PRs).
+
+## F-021 — Exposed R2 upload token still active despite revocation report
+- Prior Command Code output exposed the access/secret values of the R2 token
+  `aips-media-upload`; the operator reported it revoked and replaced by
+  `aips-media-upload-v2`.
+- 2026-10-16 independent verification in the owner's Cloudflare dashboard
+  (R2 > API Tokens) found `aips-media-upload` still ACTIVE, contradicting the
+  operator report. Any holder of the printed values retained full Object
+  Read & Write access to bucket `aips-media`.
+- Fix: `aips-media-upload` DELETED in the dashboard 2026-10-16 ~04:53
+  Asia/Dhaka (deletion challenge confirmed). Values are now permanently
+  invalid; no roll was performed, so no new secret values were displayed.
+- Verified after deletion:
+  - Token table now contains only `aips-media-upload-v2` (bucket
+    `aips-media`, Object Read & Write), `saveonsub-store build token`
+    (All buckets, Admin Read & Write — sibling tenant, OUT OF SCOPE),
+    `Cloudflare Agent Token` (All buckets, Admin Read only), and account
+    token `aips-github-actions-deploy` (R2 Admin Read & Write, account-wide).
+  - Local `.env.r2-local` credentials (gitignored) still authenticate
+    against `aips-media` after the deletion — proving the file holds the v2
+    replacement, not the deleted exposed pair. S3 ListObjectsV2 on
+    `aips-media` = 200 (2 objects: `aips-infra-check.txt`, `probe/1x1.png`).
+  - Tenant isolation deny-test: the same credentials listing sibling bucket
+    `aipt-media` → HTTP 403 AccessDenied.
+  - Public media domain: `https://media.aipremiumshop.com/probe/1x1.png`
+    → HTTP 200 (70 bytes).
+- Also verified this session: `main` branch protection currently requires
+  [ssot, build, validate] (F-020's [ssot, build] read-back predates the
+  validate addition); `enforce_admins` remains false; the obsolete Vercel
+  commit status still reports failure on main but is not a required context.
+- Residual risks: (1) `aips-github-actions-deploy` is account-wide R2 Admin
+  Read & Write — hardening candidate to bucket scope; (2) `.env.r2-local` is
+  plaintext on disk (ACL: owner + Administrators) — DPAPI/CI-secret migration
+  candidate; (3) sibling-tenant tokens share this account and are not in
+  AIPS scope.
+- Status: RESOLVED (exposure closed with evidence). Hardening items tracked
+  under issue #49.

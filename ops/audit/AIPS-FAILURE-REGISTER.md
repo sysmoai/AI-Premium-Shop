@@ -98,9 +98,19 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 - Status: OPEN (business-data debt; owner decisions required for shared
   classification).
 
-## F-009 — Search Console access gap
-- `siteUnverifiedUser` / `permission_denied`.
-- Status: BLOCKED — requires owner Google account authorization.
+## F-009 — Search Console access gap → RESOLVED 2026-10-16
+- Historical: `siteUnverifiedUser` / `permission_denied`.
+- Root cause: wrong Google account was being used. The AIPS Search Console
+  property is owned by **aipremiumshopbd@gmail.com** ("AI Premium Shop"
+  Google account), NOT by sysmoai.com@gmail.com.
+- Evidence: visible-browser session 2026-10-16 00:35+06 — property
+  https://aipremiumshop.com/ opens with full reports. Baseline read:
+  550 clicks/3mo; 143 indexed / 367 not-indexed; CWV no field data;
+  HTTPS 30 valid; product snippets 4 valid; merchant listings 2 invalid;
+  breadcrumbs 20 valid / 1 invalid.
+- Recorded in ops/ssot/site.json (search_console section, PR #132).
+- Status: RESOLVED for access; next actions are data-driven SEO work
+  (indexing-reason triage, merchant-listing repairs, CWV measurement).
 
 ## F-010 — NVIDIA diagnostic key hygiene (issue #111)
 - Previous Command Code operator REPORTS that unused diagnostic key
@@ -130,6 +140,8 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 - Action: validate live canonical ownership + public-projection eligibility,
   deduplicate/search-intent review and genuine volume before publishing pages.
 - Status: P2 OPEN; do NOT create 927 SEO pages automatically.
+  UPDATE 2026-10-16: Search Console is now accessible — the keyword universe
+  can be validated against REAL query/impression data instead of guesses.
 
 ## F-013 — Historical GSC indexing/schema notifications (April–May 2026)
 - Connected SYSmoAI Gmail surfaced April 2026 reports of 404, robots.txt,
@@ -138,7 +150,9 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 - These are HISTORICAL, not evidence of current Cloudflare production defects
   or current traffic. Verify current URL-level Search Console state and actual
   visible commerce offers before adding schema (never invent reviews/shipping).
-- Status: P2 ACCESS-BLOCKED: current GSC integration reports permission_denied.
+- Status UPDATE 2026-10-16: live GSC now accessible; current reports show
+  143 indexed / 367 not-indexed, 2 invalid merchant listings and 1 invalid
+  breadcrumb — triage these CURRENT numbers, do not reopen 2026-04/05 items.
 
 ## F-014 — SSOT-violating commercial claims in prerendered pages + llms.txt
 - Found 2026-10-14 while reviewing the empty-budget-page audit finding.
@@ -222,3 +236,12 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 - Tracker: https://github.com/sysmoai/AI-Premium-Shop/issues/129
 - Status: P2 OPEN — reconcile canonical metric definitions and access scope
   under approved commercial/provider SSOT before editing public claims.
+  UPDATE 2026-10-16 (Command Code): exact slug-level evidence recorded on the
+  issue — projection has 177 unique slugs including replit-bangladesh (Active,
+  BDT 3,390); the storefront RETIRED set in sanitize-product-prerender.mjs
+  subtracts exactly this one family; both /replit-bangladesh and
+  /product/replit-bangladesh 308 to /products. A live Concierge probe answers
+  the Replit price from catalog knowledge but returns no product card. Two
+  options posted for owner decision: (A) retire the raw record (product
+  removal, needs CEO authorization), or (B) keep WhatsApp-only sales and
+  scope the Concierge wording.

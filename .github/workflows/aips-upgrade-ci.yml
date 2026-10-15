@@ -5,16 +5,11 @@ on:
     branches:
       - upgrade/ecommerce-media-foundation-2026-08-10
   pull_request:
-    paths:
-      - "artifacts/aips-landing/**"
-      - "lib/**"
-      - "ops/**"
-      - "scripts/**"
-      - ".github/workflows/aips-upgrade-ci.yml"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "pnpm-workspace.yaml"
-      - "tsconfig*.json"
+  # No path filter: `validate` is a required branch-protection context on
+  # `main`. Filtering it out for docs-only PRs left non-admin merges
+  # deadlocked (required check never reported), while admins could bypass
+  # protection. Run it on every PR; it validates repository state and
+  # stays green on clean checkouts.
 
 permissions:
   contents: read

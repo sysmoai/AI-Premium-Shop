@@ -1,7 +1,10 @@
 # AGENTS.md — AI Premium Shop (aipremiumshop.com)
 
 ## Latest verified checkpoint — 2026-10-16 (Asia/Dhaka)
-- **Live Cloudflare build:** `dc955dbdaded930ca16808c45c179b4554a8d8c7` (PR #136 breadcrumb fix; verified via `/.well-known/aips-build.json` 2026-10-16). Verify fresh each session — docs-only commits may not deploy.
+- **Live Cloudflare build:** `a70ddafa95f26464a5bdb657bf10efcdbb977d9d` (build_time 2026-10-15T22:09:17Z; the PR #140 sharp deploy) verified via `/.well-known/aips-build.json` 2026-10-16 ~04:49 +06. `main` is `671256c…` (docs-only PR #141 merge) — docs-only commits do not deploy.
+- **R2 exposed-token incident CLOSED:** previously exposed `aips-media-upload` was found still Active and was deleted 2026-10-16 ~04:53 +06; only `aips-media-upload-v2` (bucket `aips-media`, Object Read & Write) remains for media uploads; tenant deny-test passed. Evidence: `ops/audit/AIPS-FAILURE-REGISTER.md` F-021 (PR #141).
+- **Worker production settings (verified 2026-10-16):** secrets = NVIDIA_API_KEY only (no DATABASE_URL/POSTGRES_URL/INSIGHTS_TOKEN); no bindings → conversation store is inert and insights fail closed by design. Commerce discovery: WhatsApp-assisted, human-operated; no order/customer database exists — see `ops/commerce/COMMERCE-OS-DISCOVERY-2026-10-16.md` (#142).
+- **GitHub release control (verified 2026-10-16):** required contexts [ssot, build, validate]; enforce_admins false (admin bypass possible); `validate` previously path-filtered → docs-only PRs could deadlock non-admin merges; fixed by running it on every PR (PR for this change pending). E2E/SEO-quality checks are advisory, not merge gates.
 - **Full browser suite GREEN:** 128/128 baseline from PR #128 (SEO Quality run `38627504846`); keep regression coverage.
 - **Search Console recovered:** property `https://aipremiumshop.com/`, owner account `aipremiumshopbd@gmail.com` (verified Owner under Settings → Ownership verification, 2026-10-16). 28-day baseline: 183 clicks / 1,695 impressions / 10.8% CTR / avg position 7.8; Bangladesh 87% of clicks. Recorded in `ops/ssot/site.json` and `ops/seo/seo-growth-state.md`.
 - **GSC validations started (not yet passed):** 404 (192), other-4xx (106 — migration-day Vercel 402 artifact; sampled URLs now 200 on Cloudflare), breadcrumbs (1 — `/bn` fixed in PR #136). Check outcomes in GSC before claiming closure.

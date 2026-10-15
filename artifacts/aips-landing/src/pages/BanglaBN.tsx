@@ -72,7 +72,7 @@ export default function BanglaBN() {
         canonical={bn.canonical}
         lang={bn.lang}
         hreflang={{ "bn-BD": "/bn", "en-BD": "/", "x-default": "/" }}
-        jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema([{ name: "বাংলা" }, { name: "হোম" }]), faqJsonLd] as any}
+        jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA, breadcrumbSchema([{ name: "AI Premium Shop", href: "/" }, { name: "বাংলা", href: "/bn" }]), faqJsonLd] as any}
       />
 
       <div className="bn-atmosphere">

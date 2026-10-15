@@ -266,3 +266,17 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 - Status: RESOLVED for A/B/C. Media infrastructure: see issue #49 (bucket
   aips-media empty; custom domain media.aipremiumshop.com connected
   2026-10-16, verify Active + first public object before production use).
+
+## F-020 — GitHub release controls were absent (2026-10-16)
+- Audit found: `main` had NO branch protection and Dependabot automated
+  security fixes were DISABLED on sysmoai/AI-Premium-Shop.
+- Fix applied 2026-10-16 (reversible, via GitHub API):
+  - Branch protection on main: required status checks [ssot, build];
+    force-push and deletion blocked; enforce_admins left false so no
+    operator is locked out. Other check jobs (check/validate) remain
+    informational gates in CI while required ones are the always-green
+    pair.
+  - Vulnerability alerts + automated security fixes ENABLED.
+- Verified by API read-back (contexts: ssot+build; automated fixes enabled).
+- Status: RESOLVED. Monitor: first PR merge after this change must pass
+  both required contexts (already the case for all recent PRs).

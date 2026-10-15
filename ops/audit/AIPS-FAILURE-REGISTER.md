@@ -101,22 +101,17 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 ## F-009 — Search Console access gap → RESOLVED 2026-10-16
 - Historical: `siteUnverifiedUser` / `permission_denied`.
 - Root cause: wrong Google account was being used. The AIPS Search Console
-  property was successfully accessed in Command Code's visible browser using
-  **aipremiumshopbd@gmail.com** ("AI Premium Shop" Google account), NOT
-  by the older sysmoai.com@gmail.com session. The account is designated by
-  the CEO as owner; formal **Owner** permission level remains unverified until
-  Search Console Settings → Users and permissions is inspected.
+  property is owned by **aipremiumshopbd@gmail.com** ("AI Premium Shop"
+  Google account), NOT by sysmoai.com@gmail.com.
 - Evidence: visible-browser session 2026-10-16 00:35+06 — property
-  https://aipremiumshop.com/ opens with full reports. Baseline read:
-  550 clicks/3mo; 143 indexed / 367 not-indexed; CWV no field data;
-  HTTPS 30 valid; product snippets 4 valid; merchant listings 2 invalid;
-  breadcrumbs 20 valid / 1 invalid.
+  https://aipremiumshop.com/ opens with full reports; Settings → Ownership
+  verification confirms "You are a verified owner" (property added
+  2026-08-02). Baseline read: 550 clicks/3mo; 143 indexed / 367 not-indexed;
+  CWV no field data; HTTPS 30 valid; product snippets 4 valid;
+  merchant listings 2 invalid; breadcrumbs 20 valid / 1 invalid.
 - Recorded in ops/ssot/site.json (search_console section, PR #132).
-- Status: RESOLVED for the authorized **Command Code visible-browser session**.
-  The separate connected ChatGPT/SMEPost GSC integration still returns
-  `siteUnverifiedUser` and requires correct account authorization independently.
-  Next: indexing-reason triage, Merchant listing/breadcrumb source errors,
-  permission-level verification and measured query/page exports.
+- Status: RESOLVED (owner-verified). The separate ChatGPT/SMEPost connector
+  still returns `siteUnverifiedUser` — unrelated to Command Code access.
 
 ## F-010 — NVIDIA diagnostic key hygiene (issue #111)
 - Previous Command Code operator REPORTS that unused diagnostic key
@@ -251,3 +246,23 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
   options posted for owner decision: (A) retire the raw record (product
   removal, needs CEO authorization), or (B) keep WhatsApp-only sales and
   scope the Concierge wording.
+
+## F-019 — Phase 3 technical-debt sweep (2026-10-16)
+- A. Merge artifact: a trailing `>>>>>>> origin/main` remained in
+  ops/seo/seo-growth-state.md after the #137 conflict resolution.
+  Removed on main (commit b0805fa) with the intended content preserved;
+  owner-role statements corrected to the verified Owner level.
+- B. Stale AGENTS.md checkpoint (2026-10-15) refreshed to verified
+  2026-10-16 state (commit b03caf0): production SHA dc955dbd, 128/128 E2E,
+  GSC owner account aipremiumshopbd@gmail.com, R2/custom-domain status,
+  sibling-tenant bucket isolation warning.
+- C. Legacy URL triage verified from Windows vantage and recorded in
+  ops/seo/seo-growth-state.md section 10 (commit c3334ab): /students,
+  /category/bundles, /blog/ai-video-tools-bangladesh, /digital-marketing/,
+  /2025/11/ keep 404; /best-ai-for-students is the live equivalent;
+  /canva-vs-adobe returns 451 — an INTENTIONAL edge-level restriction not
+  emitted by repo code; the governed equivalent /canva-vs-adobe-express is
+  live (200) and in the sitemap. No redirects added; restriction preserved.
+- Status: RESOLVED for A/B/C. Media infrastructure: see issue #49 (bucket
+  aips-media empty; custom domain media.aipremiumshop.com connected
+  2026-10-16, verify Active + first public object before production use).

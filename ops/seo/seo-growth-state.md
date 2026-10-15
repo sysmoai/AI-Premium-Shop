@@ -54,7 +54,7 @@ Non-branded organic clicks and conversions remain unmeasured separately.
 
 ## 6. Next measurement actions
 
-1. DONE for the Command Code visible-browser session: access `https://aipremiumshop.com/` using CEO-designated Google account `aipremiumshopbd@gmail.com` (2026-10-16). Verify its actual permission level under Search Console Settings → Users and permissions before calling it a verified Owner role. The separate ChatGPT/SMEPost connector remains `siteUnverifiedUser` until explicitly reauthorized.
+1. DONE for the Command Code visible-browser session: access `https://aipremiumshop.com/` using CEO-designated Google account `aipremiumshopbd@gmail.com` (2026-10-16). Owner role VERIFIED on 2026-10-16 via Search Console Settings → Ownership verification ("You are a verified owner"; property added 2026-08-02). The separate ChatGPT/SMEPost connector remains `siteUnverifiedUser` until explicitly reauthorized.
 2. Pull last-finalized 28-day and comparison-period query/page/country/device exports and populate demand evidence; first three-month snapshot appears below.
 3. Verify Cloudflare Web Analytics collection and consent behavior.
 4. Re-run `scripts/build-keyword-universe.mjs` and re-rank clusters with
@@ -86,9 +86,8 @@ Non-branded organic clicks and conversions remain unmeasured separately.
 ## VERIFIED GSC baseline — 2026-10-16 (live dashboard, 3 months to 2026-10-13)
 
 - Property: https://aipremiumshop.com/ — CEO-designated account
-  aipremiumshopbd@gmail.com (recorded in ops/ssot/site.json). Access to
-  reports observed through the visible browser; exact Search Console
-  **Owner** permission level still requires checking Settings → Users and permissions.
+  aipremiumshopbd@gmail.com (recorded in ops/ssot/site.json). Verified owner
+  role confirmed in Search Console Settings (2026-10-16 00:35+06).
 - Web search: 550 clicks, 6,304 impressions, 8.7% CTR, avg position 11.1.
   820 query rows reported in the visible interface; specific low-volume
   queries may be withheld/anonymized by Search Console. Among observed top
@@ -144,5 +143,4 @@ Non-branded organic clicks and conversions remain unmeasured separately.
 2. Export available query and page data using the authorized owner's browser or supported Search Console API OAuth `webmasters.readonly`. Record rows, country/device, CTR and average position; do not claim all queries are available. Deduplicate the 927 generated candidate terms against verified intent and real canonical destinations. Never assume a Search Console property can be accessed through an unrelated ChatGPT connector just because the browser session is logged in.
 3. In Page indexing, group all 367 excluded URLs by actual reason, sample affected URLs, distinguish expected `noindex`, redirects, duplicate/canonical and genuine errors. Check live Cloudflare HTML and hydrated DOM before changing robots/canonical. Never request indexing for intentionally excluded pages.
 4. Open the two invalid Merchant listings and one invalid Breadcrumb report, record exact affected example URLs and errors, then validate on current live pages and Google Rich Results Test. Merchant-listing eligibility requires real merchant checkout/sale functionality; inquiry-only or request-price services may warrant accurate Product snippet data or no Offer markup, rather than invented prices, returns or shipping.
-5. Current owner-role level still needs confirmation under Settings → Users and permissions. Correct any public statement of formal ownership only after that read. Do not store Google login sessions or verification tokens in the public repository.
->>>>>>> origin/main
+5. Owner-role level VERIFIED under Settings → Ownership verification (2026-10-16). Do not store Google login sessions or verification tokens in the public repository.

@@ -144,3 +144,19 @@ Non-branded organic clicks and conversions remain unmeasured separately.
 3. In Page indexing, group all 367 excluded URLs by actual reason, sample affected URLs, distinguish expected `noindex`, redirects, duplicate/canonical and genuine errors. Check live Cloudflare HTML and hydrated DOM before changing robots/canonical. Never request indexing for intentionally excluded pages.
 4. Open the two invalid Merchant listings and one invalid Breadcrumb report, record exact affected example URLs and errors, then validate on current live pages and Google Rich Results Test. Merchant-listing eligibility requires real merchant checkout/sale functionality; inquiry-only or request-price services may warrant accurate Product snippet data or no Offer markup, rather than invented prices, returns or shipping.
 5. Owner-role level VERIFIED under Settings → Ownership verification (2026-10-16). Do not store Google login sessions or verification tokens in the public repository.
+
+## 10. Legacy URL triage — 2026-10-16 (verified from Windows vantage)
+
+| URL | Response | Decision |
+|---|---|---|
+| /students | 404 | KEEP 404 — pre-migration path; current equivalent is /best-ai-for-students (200), which is properly canonicalized. No redirect needed. |
+| /category/bundles | 404 | KEEP 404 — retired category URL pattern (/ai-* is current). |
+| /blog/ai-video-tools-bangladesh | 404 | KEEP 404 — old blog slug, no current equivalent page. |
+| /digital-marketing/ | 404 | KEEP 404 — WordPress-era path. |
+| /2025/11/ | 404 | KEEP 404 — WordPress archive path. |
+| /canva-vs-adobe | 451 | KEEP 451 — intentional edge-level legal/commercial restriction (not emitted by repo code); the current governed comparison is /canva-vs-adobe-express (200, in sitemap). Do NOT redirect or circumvent. |
+| /best-ai-for-students | 200 | CURRENT — no action. |
+
+No blanket homepage redirects are added: each legacy path either has a
+governed current equivalent (users find it via internal links) or is
+correctly dead. The GSC 404/4xx validations already cover re-crawl.

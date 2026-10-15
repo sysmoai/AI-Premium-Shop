@@ -160,3 +160,15 @@ Non-branded organic clicks and conversions remain unmeasured separately.
 No blanket homepage redirects are added: each legacy path either has a
 governed current equivalent (users find it via internal links) or is
 correctly dead. The GSC 404/4xx validations already cover re-crawl.
+
+## 11. Crawled/Discovered-not-indexed triage — 2026-10-16
+
+- Crawled - currently not indexed (23): sampled URLs are legacy patterns
+  from July 2026 crawls (`/products/<brand-slug>`, `/buy/netflix-bangladesh`,
+  old nested paths) plus the homepage (last crawled Oct 14, the migration
+  day). No code defect — the homepage entry should resolve on the next
+  crawl; legacy patterns correctly 404/redirect today.
+- Discovered - currently not indexed (6): low-priority legacy discoveries;
+  monitor after the running 404/4xx validations complete.
+- No "request indexing" actions for these — they are either legacy or
+  Google crawl-scheduling decisions, not blocked important pages.

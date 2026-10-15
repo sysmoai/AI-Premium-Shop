@@ -400,8 +400,8 @@ function sseResponse(run) {
       };
       try {
         await run(sse);
-      } catch (e) {
-        console.error(JSON.stringify({ event: "concierge_sse_failure", error: String(e.message || e).slice(0, 150) }));
+      } catch {
+        console.error(JSON.stringify({ event: "concierge_sse_failure", errorCategory: "transport", errorCode: "SSE_FAILURE" }));
       } finally {
         try {
           controller.close();
@@ -639,8 +639,8 @@ export async function onRequest({ request, env, waitUntil }) {
     let stream;
     try {
       stream = await openStream(key, model, system, messages, Math.min(FIRST_TOKEN_MS, remaining), remaining);
-    } catch (e) {
-      console.error(JSON.stringify({ event: "concierge_model_fail", model, error: String(e.message || e).slice(0, 150) }));
+    } catch {
+      console.error(JSON.stringify({ event: "concierge_model_fail", model, errorCategory: "provider", errorCode: "MODEL_FAILURE" }));
       continue;
     }
 
@@ -702,8 +702,8 @@ export async function onRequest({ request, env, waitUntil }) {
           full = candidate;
           sse({ type: "delta", v: chunk });
         }
-      } catch (e) {
-        console.error(JSON.stringify({ event: "concierge_stream_break", model, error: String(e.message || e).slice(0, 150) }));
+      } catch {
+        console.error(JSON.stringify({ event: "concierge_stream_break", model, errorCategory: "stream", errorCode: "STREAM_INTERRUPTED" }));
       } finally {
         stream.done();
       }
@@ -783,8 +783,8 @@ export async function onRequest({ request, env, waitUntil }) {
           }
         }
       }
-    } catch (e) {
-      console.error(JSON.stringify({ event: "concierge_claude_fallback_fail", error: String(e.message || e).slice(0, 150) }));
+    } catch {
+      console.error(JSON.stringify({ event: "concierge_claude_fallback_fail", errorCategory: "provider", errorCode: "FALLBACK_FAILURE" }));
     }
   }
 

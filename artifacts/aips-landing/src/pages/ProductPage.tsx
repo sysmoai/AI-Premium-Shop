@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
+import ProductMedia from "@/components/ProductMedia";
 import { formatBDT } from "@/lib/format";
 import { productPath } from "@/lib/productRoutes";
 import { breadcrumbSchema, schemaJson } from "@/utils/schemas";
@@ -290,6 +291,8 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
             </div>
             <p className="max-w-3xl leading-7 text-slate-300">{description}</p>
             {descriptionBN && <p className="mt-4 max-w-3xl leading-7 text-white/85">{descriptionBN}</p>}
+
+            <ProductMedia slug={product.slug} />
 
             <div className="mt-6 flex flex-wrap gap-2">
               {decisionPoints.map((point) => (

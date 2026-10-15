@@ -154,7 +154,7 @@ Non-branded organic clicks and conversions remain unmeasured separately.
 | /blog/ai-video-tools-bangladesh | 404 | KEEP 404 — old blog slug, no current equivalent page. |
 | /digital-marketing/ | 404 | KEEP 404 — WordPress-era path. |
 | /2025/11/ | 404 | KEEP 404 — WordPress archive path. |
-| /canva-vs-adobe | 451 | KEEP 451 — intentional edge-level legal/commercial restriction (not emitted by repo code); the current governed comparison is /canva-vs-adobe-express (200, in sitemap). Do NOT redirect or circumvent. |
+| /canva-vs-adobe | 451 | PRESERVE — restriction observed, but the emitting source is NOT yet identified: no 451 in repo code/redirects, Cloudflare account "Blocked content" is EMPTY (checked 2026-10-16), and the zone has no WAF custom rules. Do NOT relabel as intentional without the emitting rule; do NOT circumvent. Current governed equivalent /canva-vs-adobe-express is live (200, in sitemap). |
 | /best-ai-for-students | 200 | CURRENT — no action. |
 
 No blanket homepage redirects are added: each legacy path either has a
@@ -165,9 +165,10 @@ correctly dead. The GSC 404/4xx validations already cover re-crawl.
 
 - Crawled - currently not indexed (23): sampled URLs are legacy patterns
   from July 2026 crawls (`/products/<brand-slug>`, `/buy/netflix-bangladesh`,
-  old nested paths) plus the homepage (last crawled Oct 14, the migration
-  day). No code defect — the homepage entry should resolve on the next
-  crawl; legacy patterns correctly 404/redirect today.
+  old nested paths) plus a homepage entry from the migration-day crawl.
+- HOMEPAGE RESOLVED: Google URL Inspection for `https://aipremiumshop.com/`
+  run 2026-10-16 02:40 Dhaka reports **"Page is indexed"** with HTTPS OK —
+  the transitional crawl entry was not a real indexing defect.
 - Discovered - currently not indexed (6): low-priority legacy discoveries;
   monitor after the running 404/4xx validations complete.
 - No "request indexing" actions for these — they are either legacy or

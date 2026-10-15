@@ -1,12 +1,14 @@
 # AGENTS.md — AI Premium Shop (aipremiumshop.com)
 
-## Latest verified checkpoint — 2026-10-15
-- **Live Cloudflare build:** `a8b283e5a773ae953c7bc031360b9df09a6fcd04` from PR #128, independently fetched via `/.well-known/aips-build.json`; verify fresh on each new session.
-- **Full browser suite GREEN:** SEO Quality main run `38627504846`, 128/128 tests passed after fixing real budget-page hydrated robots/noindex mismatch and stale assertions (PR #128).
-- **Governed `llms.txt` fixed:** PR #126 generates from approved public projection and final canonical sitemap; excludes old raw shared/CapCut/ChatGPT price claims; P1 issue #125 closed with production evidence.
-- **Current Concierge:** public GET `keyConfigured:true` (not licensing entitlement, issue #111). Previous `keyConfigured:false` below is HISTORICAL and superseded.
-- **Open P0 #113:** real Android cellular reachability NOT verified; do not change DNS/WAF/SSL on stale assumptions. Open #119 rate-limiting/operator security, #116 residual error logging, #129 176 vs 177 metric, GSC permission gap.
-- Full dated release/architecture addendum: `ops/audit/AIPS-CONTEXT-HANDOFF-2026-10-14.md` section 10. Failure details: `ops/audit/AIPS-FAILURE-REGISTER.md` F-016–F-018.
+## Latest verified checkpoint — 2026-10-16 (Asia/Dhaka)
+- **Live Cloudflare build:** `dc955dbdaded930ca16808c45c179b4554a8d8c7` (PR #136 breadcrumb fix; verified via `/.well-known/aips-build.json` 2026-10-16). Verify fresh each session — docs-only commits may not deploy.
+- **Full browser suite GREEN:** 128/128 baseline from PR #128 (SEO Quality run `38627504846`); keep regression coverage.
+- **Search Console recovered:** property `https://aipremiumshop.com/`, owner account `aipremiumshopbd@gmail.com` (verified Owner under Settings → Ownership verification, 2026-10-16). 28-day baseline: 183 clicks / 1,695 impressions / 10.8% CTR / avg position 7.8; Bangladesh 87% of clicks. Recorded in `ops/ssot/site.json` and `ops/seo/seo-growth-state.md`.
+- **GSC validations started (not yet passed):** 404 (192), other-4xx (106 — migration-day Vercel 402 artifact; sampled URLs now 200 on Cloudflare), breadcrumbs (1 — `/bn` fixed in PR #136). Check outcomes in GSC before claiming closure.
+- **Merchant listings (2 invalid):** `/chatgpt-plus-bangladesh`, `/gemini-advanced-bangladesh` — missing `image`; blocked on approved product imagery (#49). Warnings (shipping/returns/availability) are deliberately absent per SSOT — do not invent.
+- **R2 media:** bucket `aips-media` exists (APAC, public access enabled, empty). Custom domain `media.aipremiumshop.com` connected 2026-10-16 (was "Initializing" — re-verify Active before publishing). Sibling buckets `aipt-media`/`redwanmart-assets` are OTHER tenants — never touch.
+- **Open P0 #113:** real Android cellular reachability NOT verified; do not change DNS/WAF/SSL on stale assumptions. Open #119, #111, #129, #94, #95.
+- Full dated release/architecture addendum: `ops/audit/AIPS-CONTEXT-HANDOFF-2026-10-14.md` section 10. Failure details: `ops/audit/AIPS-FAILURE-REGISTER.md`.
 
 ## Current comprehensive website audit (2026-10-14)
 Read `ops/audit/AIPS-FULL-STACK-AUDIT-2026-10-14.md` before scoping SEO, security, conversion, API, Cloudflare, mobile/global access, CI or infrastructure tasks. This audit is date-stamped evidence, not an automatically refreshing status dashboard. It distinguishes real tested results from unverified customer/carrier/account access. New changes need a fresh live state check and must not replace commercial SSOT.
@@ -14,10 +16,11 @@ Read `ops/audit/AIPS-FULL-STACK-AUDIT-2026-10-14.md` before scoping SEO, securit
 ## P0 CURRENT CUSTOMER-ACCESS INCIDENT (2026-10-14)
 The CEO reports that https://aipremiumshop.com DOES NOT LOAD on an actual Android phone using mobile carrier data on 2026-10-14 evening. A new screenshot is pending; do NOT assume the previous Vercel-paused image reflects the current error. The 2026-10-14 GitHub Live site monitor passed from one hosted runner, but that does not verify mobile carrier access. Read issue #113, ops/incidents/AIPS-MOBILE-DATA-2026-10-14.md and ops/audit/AIPS-CONTEXT-HANDOFF-2026-10-14.md before any site/DNS change. Treat production reachability as P0 until actual affected mobile-data acceptance is verified. Do not change Cloudflare DNS, WAF, SSL, Worker or nameservers speculatively.
 
-## Live authority (updated 2026-10-14)
+## Live authority (updated 2026-10-16)
 - Canonical repository: `sysmoai/AI-Premium-Shop`; app: `artifacts/aips-landing`.
 - Stack: React + TypeScript + Vite, pnpm monorepo; frontend is governed/prerendered for search.
 - **Production platform: Cloudflare Workers with Static Assets**, Worker `ai-premium-shop`, custom domains `aipremiumshop.com` and `www.aipremiumshop.com`. Source: `wrangler.toml`, `worker/index.js`, `functions/api/`.
+- **Media origin:** Cloudflare R2 bucket `aips-media`, custom domain `media.aipremiumshop.com` (CNAME `media → aips-media` created 2026-10-16; verify Active before use). Public dev URL exists but is not for production.
 - **Release: `.github/workflows/aips-cloudflare-deploy.yml` on selected `main` path changes.** Confirm actual deployed git_sha via `https://aipremiumshop.com/.well-known/aips-build.json`.
 - Vercel is LEGACY/paused hosting evidence only. Do not pay Vercel or perform Vercel preview/deploy as a required production gate.
 - Registrar: Squarespace Domains; primary authoritative DNS: Cloudflare. The old Google/Squarespace zone is transitional and must be kept separate from current DNS authority.
@@ -40,9 +43,8 @@ Safe reversible technical/SEO/accessibility/performance/monitoring improvements 
 6. Verify representative external customer paths (including Android Wi-Fi/mobile data when the owner/authorized device provides evidence), API behavior, conversion links, email DNS, TLS, and 402 leak guard.
 7. Update the architecture register, recovery evidence, issues and next actions. Production is not verified merely because GitHub is green.
 
-## Historical degraded/open state (snapshot 2026-10-14; superseded by 2026-10-15 checkpoint above)
-- AI Concierge `keyConfigured:false`; WhatsApp fallback does not equal live AI replies.
+## Historical degraded/open state (snapshot 2026-10-14; superseded by the 2026-10-16 checkpoint above)
+- AI Concierge `keyConfigured:false`; WhatsApp fallback does not equal live AI replies. (Superseded: synthetic probes get grounded replies with correct SSOT prices.)
 - Real Android customer-network reachability remains to be rechecked following DNS transition.
-- Windows temporary `AIPS-TEMP` hosts overrides must be safely removed when appropriate.
-- SEO Quality's Playwright failures and stale Vercel-era registry/harness files require tracked reconciliation.
-- Refer to current provider state before deciding whether any finding is still open.
+- Windows temporary `AIPS-TEMP` hosts overrides must be safely removed when appropriate. (Verified removed 2026-10-15; hosts file has no AIPS entries.)
+- SEO Quality's Playwright failures and stale Vercel-era registry/harness files require tracked reconciliation. (Superseded: 128/128 green via PR #128; remaining items tracked in the failure register.)

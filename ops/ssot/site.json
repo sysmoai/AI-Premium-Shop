@@ -36,5 +36,25 @@
     "organic_visits_monthly_target": 50000,
     "target_horizon_weeks": 12,
     "guaranteed": false
+  },
+  "search_console": {
+    "property": "https://aipremiumshop.com/",
+    "owner_account_email": "aipremiumshopbd@gmail.com",
+    "owner_account_label": "AI Premium Shop (Google)",
+    "access_verified": "2026-10-16T00:35:00+06:00",
+    "verification_method": "visible-browser-session",
+    "baseline_2026_10_16": {
+      "clicks_3mo": 550,
+      "indexed_pages": 143,
+      "not_indexed_pages": 367,
+      "core_web_vitals": "no_data",
+      "https_valid": 30,
+      "product_snippets_valid": 4,
+      "merchant_listings_invalid": 2,
+      "breadcrumbs_valid": 20,
+      "breadcrumbs_invalid": 1,
+      "note": "Not-indexed majority is expected during migration/cleanup; verify current reasons before acting. CWV has no field data yet."
+    },
+    "note": "Previously blocked siteUnverifiedUser/permission_denied — resolved by using THIS account (not the sysmoai.com@gmail.com account). Future sessions must use aipremiumshopbd@gmail.com for Search Console."
   }
 }

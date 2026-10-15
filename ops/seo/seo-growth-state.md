@@ -80,3 +80,22 @@ traffic baseline = UNKNOWN until GSC access is restored.
   AIPS Search Console emails; the prior Command Code session lacked that
   connector. GSC direct query is still permission_denied for this account.
 - Full execution handoff: ops/audit/AIPS-CONTEXT-HANDOFF-2026-10-14.md.
+
+## VERIFIED GSC baseline — 2026-10-16 (live dashboard, 3 months to 2026-10-13)
+
+- Property: https://aipremiumshop.com/ — owner account aipremiumshopbd@gmail.com
+  (recorded in ops/ssot/site.json). Access verified via visible browser.
+- Web search: 550 clicks, 6,304 impressions, 8.7% CTR, avg position 11.1.
+  820 queries recorded; demand is currently brand-heavy.
+- Top queries (clicks/impressions): ai premium shop 50/78, premium shop bd
+  6/193, ai store bd 5/52, all premium shop 5/27, ai premium subscription
+  4/28, ai shop 2/39, ai premium tools 2/32, ai buy bd 2/16, ai tools buy
+  2/6, heygen ai price in bangladesh 2/2.
+- Indexing: 143 indexed / 367 not-indexed; CWV no field data; HTTPS 30 valid;
+  product snippets 4 valid; merchant listings 2 invalid; breadcrumbs 20/1.
+- Interpretation: ~18 clicks/day, ~11th avg position — the 50,000
+  monthly-visit target is a long-term ambition, not a near-term projection.
+  Next measured steps: triage the 367 not-indexed reasons, repair the 2
+  invalid merchant listings and 1 invalid breadcrumb, then validate the
+  keyword universe against the 820 real queries before any new content.
+

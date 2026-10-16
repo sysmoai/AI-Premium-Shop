@@ -52,8 +52,17 @@ function parseArgs(argv) {
 }
 
 const args = parseArgs(process.argv.slice(2));
-if (!args.file || !args.slug) fail("Usage: node scripts/prepare-media-image.mjs --file <source> --slug <page-slug> [--alt-en ...] [--alt-bn ...] [--caption-en ...] [--caption-bn ...] [--max-width 960] [--force]");
+if (!args.file || !args.slug) fail("Usage: node scripts/prepare-media-image.mjs --file <source> --slug <page-slug> [--alt-en ...] [--alt-bn ...] [--caption-en ...] [--caption-bn ...] [--max-width 960] [--source-type OWNER_SUPPLIED|GENERATED_EDITORIAL|FIRST_PARTY_CAPTURE|AUTHORIZED_PROVIDER_ASSET] [--license-status OWNED|AUTHORIZED|LICENSED] [--generator ...] [--generation-note ...] [--ai-disclosure ...] [--force]");
 if (!/^[a-z0-9][a-z0-9-]*$/.test(args.slug)) fail("--slug must be a safe lowercase page slug (letters, digits, hyphens)");
+
+const ALLOWED_SOURCE_TYPES = new Set(["OWNER_SUPPLIED", "GENERATED_EDITORIAL", "FIRST_PARTY_CAPTURE", "AUTHORIZED_PROVIDER_ASSET"]);
+const ALLOWED_LICENSE_STATUS = new Set(["OWNED", "AUTHORIZED", "LICENSED"]);
+const sourceType = args["source-type"] ?? "OWNER_SUPPLIED";
+const licenseStatus = args["license-status"] ?? (sourceType === "GENERATED_EDITORIAL" ? "OWNED" : "OWNED");
+if (!ALLOWED_SOURCE_TYPES.has(sourceType)) fail(`--source-type must be one of: ${[...ALLOWED_SOURCE_TYPES].join(", ")}`);
+if (!ALLOWED_LICENSE_STATUS.has(licenseStatus)) fail(`--license-status must be one of: ${[...ALLOWED_LICENSE_STATUS].join(", ")}`);
+if (sourceType === "AUTHORIZED_PROVIDER_ASSET" && licenseStatus === "OWNED") fail("AUTHORIZED_PROVIDER_ASSET media cannot claim OWNED license status; use AUTHORIZED or LICENSED");
+if (sourceType !== "GENERATED_EDITORIAL" && args["ai-disclosure"]) fail("--ai-disclosure is only valid for GENERATED_EDITORIAL media");
 
 const sourcePath = resolve(process.cwd(), args.file);
 const sourceStat = statSync(sourcePath, { throwIfNoEntry: false });
@@ -141,8 +150,11 @@ const summary = {
     captionEn: args["caption-en"] ?? "",
     captionBn: args["caption-bn"] ?? "",
     decorative: false,
-    sourceType: "OWNER_SUPPLIED",
-    licenseStatus: "OWNED",
+    sourceType,
+    licenseStatus,
+    generator: args.generator ?? null,
+    generationNote: args["generation-note"] ?? null,
+    aiDisclosure: sourceType === "GENERATED_EDITORIAL" ? (args["ai-disclosure"] ?? "AI-generated editorial illustration; no provider UI, logos, screenshots or endorsements reproduced") : null,
     approvedAt: null,
     approvedBy: null,
   },

@@ -3,14 +3,20 @@
 // Never labels the fixture as an approved product asset; writes into the
 // gitignored media-intake/derived/ tree.
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const script = join(fileURLToPath(new URL(".", import.meta.url)), "prepare-media-image.mjs");
+const scriptDir = fileURLToPath(new URL(".", import.meta.url)); // ends with scripts/
+const script = join(scriptDir, "prepare-media-image.mjs");
+const APP = dirname(scriptDir); // artifacts/aips-landing
 const temp = mkdtempSync(join(tmpdir(), "aips-media-prep-"));
 const { default: sharp } = await import("sharp");
+
+// Clean any leftover derived fixture from previous runs (idempotent).
+const fixtureDerived = join(APP, "media-intake", "derived", "synthetic-fixture");
+if (existsSync(fixtureDerived)) rmSync(fixtureDerived, { recursive: true, force: true });
 
 function run(args) {
   return execFileSync(process.execPath, [script, ...args], { encoding: "utf8" });
@@ -45,7 +51,32 @@ try {
   const combined = `${out}`;
   assert(!combined.includes("sensitive") && !combined.includes("secret"), "Output must not contain credential material");
 
-  console.log("[media-prep-test] PASS: synthetic fixture -> WebP/AVIF derivatives, draft manifest entry, no credentials");
+  // Provenance path: generated editorial media must classify truthfully.
+  const genOut = run([
+    "--file", fixture, "--slug", "synthetic-fixture", "--force",
+    "--source-type", "GENERATED_EDITORIAL",
+    "--generator", "aips-svg-compose/1.0",
+    "--generation-note", "deterministic brand-palette composition; no provider UI reproduced",
+    "--alt-en", "Synthetic generated-editorial fixture",
+  ]);
+  const gen = JSON.parse(genOut);
+  assert(gen.draftManifestEntry.sourceType === "GENERATED_EDITORIAL", "Generated editorial sourceType must be recorded");
+  assert(gen.draftManifestEntry.licenseStatus === "OWNED", "First-party generated media may claim OWNED");
+  assert(gen.draftManifestEntry.generator === "aips-svg-compose/1.0", "Generator reference must be recorded");
+  assert(/no provider UI/.test(gen.draftManifestEntry.generationNote), "Generation note must be recorded");
+  assert(gen.draftManifestEntry.aiDisclosure && gen.draftManifestEntry.aiDisclosure.length > 20, "AI disclosure must be recorded for generated media");
+
+  // Negative: AUTHORIZED_PROVIDER_ASSET must not claim OWNED.
+  let rejected = false;
+  try {
+    run(["--file", fixture, "--slug", "synthetic-fixture", "--force", "--source-type", "AUTHORIZED_PROVIDER_ASSET"]);
+  } catch {
+    rejected = true;
+  }
+  assert(rejected, "AUTHORIZED_PROVIDER_ASSET + OWNED must fail closed");
+
+  console.log("[media-prep-test] PASS: synthetic fixture -> WebP/AVIF derivatives, draft manifest entry, no credentials, truthful generated-media provenance");
 } finally {
   rmSync(temp, { recursive: true, force: true });
+  if (existsSync(fixtureDerived)) rmSync(fixtureDerived, { recursive: true, force: true });
 }

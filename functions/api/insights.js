@@ -24,13 +24,12 @@ export async function onRequest({ request, env }) {
   // Fail closed. An unset token must never mean "open to everyone" — this
   // endpoint returns customer questions.
   if (!expected) return json(503, { error: "INSIGHTS_TOKEN not configured" });
-  // Preferred: Authorization: Bearer <token>. The legacy ?token= query param
-  // remains accepted as a deprecated fallback so existing operator workflows
-  // keep working; query strings leak into logs/history, so new integrations
-  // must use the header.
+  // Header-only: Authorization: Bearer <token>. The legacy ?token= query
+  // param was removed 2026-10-16 — query strings leak into logs/history
+  // (issue #119). No production caller depends on it: INSIGHTS_TOKEN is
+  // not configured on the Worker, so this endpoint fails closed either way.
   const headerToken = (request.headers.get("Authorization") ?? "").replace(/^Bearer\s+/i, "");
-  const queryToken = url.searchParams.get("token") ?? "";
-  if (!tokenMatches(headerToken, expected) && !tokenMatches(queryToken, expected)) return new Response(null, { status: 404 });
+  if (!tokenMatches(headerToken, expected)) return new Response(null, { status: 404 });
 
   if (!storeEnabled()) {
     return json(503, {

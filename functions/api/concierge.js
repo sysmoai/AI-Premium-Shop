@@ -571,7 +571,7 @@ export async function onRequest({ request, env, waitUntil }) {
       const token = env.INSIGHTS_TOKEN;
       if (!token) return json(503, { ok: false, error: "INSIGHTS_TOKEN not configured" });
       const headerToken = (request.headers.get("Authorization") ?? "").replace(/^Bearer\s+/i, "");
-      if (!tokenMatches(headerToken, token) && !tokenMatches(params.get("token") ?? "", token)) return new Response(null, { status: 404 });
+      if (!tokenMatches(headerToken, token)) return new Response(null, { status: 404 });
       if (!key) return json(503, { ok: false, error: "NVIDIA_API_KEY not configured" });
       const results = [];
       for (const model of MODELS) results.push(await pingModel(key, model, 8_000));
@@ -597,7 +597,12 @@ export async function onRequest({ request, env, waitUntil }) {
 
   const ip = (request.headers.get("cf-connecting-ip") || request.headers.get("x-forwarded-for") || "?").split(",")[0].trim();
   const sid = (typeof body?.sessionId === "string" ? body.sessionId : "").slice(0, 64) || ip;
-  if (throttled(ip, sid)) return json(429, { error: "Too many messages — please continue on WhatsApp", whatsapp: WHATSAPP });
+  if (throttled(ip, sid)) {
+    return new Response(JSON.stringify({ error: "Too many messages — please continue on WhatsApp", whatsapp: WHATSAPP }), {
+      status: 429,
+      headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", "Retry-After": "60" },
+    });
+  }
 
   const key = env.NVIDIA_API_KEY;
   if (!key) return json(503, { error: "Concierge offline — message us on WhatsApp", whatsapp: WHATSAPP });

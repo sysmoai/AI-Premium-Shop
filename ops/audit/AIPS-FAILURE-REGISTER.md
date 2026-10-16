@@ -280,6 +280,10 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 - Verified by API read-back (contexts: ssot+build; automated fixes enabled).
 - Status: RESOLVED. Monitor: first PR merge after this change must pass
   both required contexts (already the case for all recent PRs).
+- UPDATE 2026-10-16 (Command Code): GitHub secret scanning and push
+  protection ENABLED on the repository via API (verified read-back:
+  both `enabled`). This postdates the R2 exposed-token incident (F-021);
+  Dependabot automated security fixes remain enabled.
 
 ## F-021 — Exposed R2 upload token still active despite revocation report
 - Prior Command Code output exposed the access/secret values of the R2 token

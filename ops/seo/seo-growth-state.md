@@ -173,3 +173,26 @@ correctly dead. The GSC 404/4xx validations already cover re-crawl.
   monitor after the running 404/4xx validations complete.
 - No "request indexing" actions for these — they are either legacy or
   Google crawl-scheduling decisions, not blocked important pages.
+
+## 12. GSC refresh — 2026-10-16 ~08:25 +06 (Command Code, owner session)
+
+Fresh reads in the aipremiumshopbd@gmail.com session (all classifications
+honest: nothing marked passed unless Google says so):
+
+- Performance (3-month Web search, 7/14/26–10/13/26): 550 clicks / 6.3K
+  impressions / 8.7% CTR / avg position 11.1 — matches historical baseline.
+  Recommendation card: homepage impressions −87% week-over-week
+  (10/5–10/11 vs prior week). Watch, do not over-interpret yet.
+- Indexing: 143 indexed / 367 not indexed. Validations: 404 (192) STARTED;
+  other-4xx (106, migration-day Vercel 402 artifact) STARTED. Google
+  result pending for both.
+- Breadcrumbs: 20 valid / 1 invalid (`https://aipremiumshop.com/bn`,
+  missing `item`) — VALIDATION STARTED 10/16/26 after PR #136; last crawl
+  Oct 14. Pending.
+- Merchant listings: 0 valid / 2 invalid, 1 critical issue =
+  `Missing field "image"` on /chatgpt-plus-bangladesh and
+  /gemini-advanced-bangladesh. Shipping/return/availability warnings stay
+  deliberately absent per SSOT. Critical fix blocked on first approved
+  product imagery (#49 / H-MEDIA). Product snippets: 4 valid / 0 invalid.
+- CWV field data: none yet (0) — no field-data claims made.
+- Full detail: issue #135 comment 2026-10-16.

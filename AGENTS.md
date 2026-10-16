@@ -1,7 +1,7 @@
 # AGENTS.md — AI Premium Shop (aipremiumshop.com)
 
 ## Latest verified checkpoint — 2026-10-16 (Asia/Dhaka)
-- **Live Cloudflare build:** `1515200b71cdf99133f9d1ba79b91547bac2a9a0` (build_time 2026-10-16T01:17:02Z; PR #143 merge deploy) verified via `/.well-known/aips-build.json` 2026-10-16 ~07:20 +06; `main` = same SHA (deploy triggered by aips-landing/lockfile paths).
+- **Live Cloudflare build:** `edbde2c42a0f5c6df817efa715a27d8f1ba15213` (build_time 2026-10-16T01:21:10Z; PR #144 merge deploy) verified via `/.well-known/aips-build.json` 2026-10-16 ~07:25 +06; `main` = same SHA.
 - **R2 exposed-token incident CLOSED:** previously exposed `aips-media-upload` was found still Active and was deleted 2026-10-16 ~04:53 +06; only `aips-media-upload-v2` (bucket `aips-media`, Object Read & Write) remains for media uploads; tenant deny-test passed. Evidence: `ops/audit/AIPS-FAILURE-REGISTER.md` F-021 (PR #141).
 - **Worker production settings (verified 2026-10-16):** secrets = NVIDIA_API_KEY only (no DATABASE_URL/POSTGRES_URL/INSIGHTS_TOKEN); no bindings → conversation store is inert and insights fail closed by design. Commerce discovery: WhatsApp-assisted, human-operated; no order/customer database exists — see `ops/commerce/COMMERCE-OS-DISCOVERY-2026-10-16.md` (#142).
 - **GitHub release control (verified 2026-10-16):** required contexts [ssot, build, validate]; enforce_admins false (admin bypass possible); `validate` runs on EVERY PR (PR #143) so docs-only PRs no longer deadlock non-admin merges. E2E/SEO-quality checks are advisory, not merge gates.

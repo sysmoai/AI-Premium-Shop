@@ -54,6 +54,23 @@
 - Any root cause is documented as confirmed evidence or explicitly unresolved; monitoring limitations are honest.
 - No unapproved hosting payment, sweeping security disablement, DNS rollback or unrelated business modification.
 
+## 7. CLOSEOUT — 2026-10-16 ~09:00 +06
+- CEO reported `Done H-113 — PASS`: the previously affected Android phone
+  now loads https://aipremiumshop.com on mobile data with Wi-Fi off.
+  Classification: OPERATOR-REPORTED verbal PASS (no screenshot; carrier
+  name not captured — noted as a record gap, not a blocker).
+- Corroborating evidence (Command Code, same window):
+  - CEO's Windows PC on the local Bangladesh ISP resolves
+    aipremiumshop.com to Cloudflare (104.21.19.189 / 172.67.188.143) and
+    loads the full site (products, concierge, build identity).
+  - Cloudflare Security Events, 24h: zero Bangladeshi-IP blocks; only
+    scanner traffic blocked (NL/AU/US/UK/Tor).
+  - Hosts file verified clean (no AIPS-TEMP entries).
+  - Live build edbde2c verified; GitHub live-site-monitor last run PASS.
+- Issue #113 closed as completed on this acceptance. Residual note:
+  single-device, single-carrier evidence — not a multi-carrier guarantee;
+  the daily live-site-monitor remains the automated net.
+
 ## 6. Evidence and handoff
 - GitHub history: PR #100–#112; main bb855bb; Worker app a3ae5a6.
 - Automated monitor pass: https://github.com/sysmoai/AI-Premium-Shop/actions/runs/38531431024

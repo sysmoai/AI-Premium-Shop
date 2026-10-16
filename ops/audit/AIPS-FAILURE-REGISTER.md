@@ -131,6 +131,14 @@ Legend: OPEN / MONITORING / RESOLVED / OBSOLETE / UNVERIFIED
 - Tracker: https://github.com/sysmoai/AI-Premium-Shop/issues/113
 - Canonical incident: ops/incidents/AIPS-MOBILE-DATA-2026-10-14.md
 - Status: P0 OPEN pending screenshot, carrier-path diagnosis and mobile test.
+- UPDATE 2026-10-16 ~09:00 +06: CLOSED on real-device acceptance.
+  CEO reported `Done H-113 — PASS` — the previously affected Android phone
+  loads the site over mobile data with Wi-Fi off. Corroboration: local BD
+  ISP DNS → Cloudflare IPs and full site loads from this PC; Cloudflare
+  Security Events show zero BD blocks (24h); hosts file clean; live build
+  edbde2c; live-site-monitor PASS. Classification: OPERATOR-REPORTED
+  verbal PASS (no screenshot/carrier name) + remote corroboration.
+  Issue #113 closed; single-device/single-carrier residual noted.
 
 ## F-012 — Keyword candidate versus canonical URL ownership drift (2026-10-14)
 - Generator from PR #112 yields 927 proposed, ALL UNMEASURED search phrases.

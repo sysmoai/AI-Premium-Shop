@@ -11,14 +11,19 @@
 - **GSC validations started (not yet passed):** 404 (192), other-4xx (106 — migration-day Vercel 402 artifact; sampled URLs now 200 on Cloudflare), breadcrumbs (1 — `/bn` fixed in PR #136). Check outcomes in GSC before claiming closure.
 - **Merchant listings (2 invalid):** `/chatgpt-plus-bangladesh`, `/gemini-advanced-bangladesh` — missing `image`; blocked on approved product imagery (#49). Warnings (shipping/returns/availability) are deliberately absent per SSOT — do not invent.
 - **R2 media:** bucket `aips-media` exists (APAC, public access enabled, empty). Custom domain `media.aipremiumshop.com` connected 2026-10-16 (was "Initializing" — re-verify Active before publishing). Sibling buckets `aipt-media`/`redwanmart-assets` are OTHER tenants — never touch.
-- **Open P0 #113:** real Android cellular reachability NOT verified; do not change DNS/WAF/SSL on stale assumptions. Open #119, #111, #129, #94, #95.
+- **Open P0 #113 CLOSED 2026-10-16 ~09:00 +06:** CEO reported `Done H-113 — PASS` on the previously affected Android phone (mobile data, Wi-Fi off); corroborated by local-BD-ISP DNS→Cloudflare, zero BD edge blocks (24h), clean hosts file, live monitor PASS. Residual: single-device/single-carrier evidence. Open #119, #111, #129, #94, #95.
 - Full dated release/architecture addendum: `ops/audit/AIPS-CONTEXT-HANDOFF-2026-10-14.md` section 10. Failure details: `ops/audit/AIPS-FAILURE-REGISTER.md`.
 
 ## Current comprehensive website audit (2026-10-14)
 Read `ops/audit/AIPS-FULL-STACK-AUDIT-2026-10-14.md` before scoping SEO, security, conversion, API, Cloudflare, mobile/global access, CI or infrastructure tasks. This audit is date-stamped evidence, not an automatically refreshing status dashboard. It distinguishes real tested results from unverified customer/carrier/account access. New changes need a fresh live state check and must not replace commercial SSOT.
 
-## P0 CURRENT CUSTOMER-ACCESS INCIDENT (2026-10-14)
-The CEO reports that https://aipremiumshop.com DOES NOT LOAD on an actual Android phone using mobile carrier data on 2026-10-14 evening. A new screenshot is pending; do NOT assume the previous Vercel-paused image reflects the current error. The 2026-10-14 GitHub Live site monitor passed from one hosted runner, but that does not verify mobile carrier access. Read issue #113, ops/incidents/AIPS-MOBILE-DATA-2026-10-14.md and ops/audit/AIPS-CONTEXT-HANDOFF-2026-10-14.md before any site/DNS change. Treat production reachability as P0 until actual affected mobile-data acceptance is verified. Do not change Cloudflare DNS, WAF, SSL, Worker or nameservers speculatively.
+## P0 CUSTOMER-ACCESS INCIDENT (2026-10-14) — CLOSED 2026-10-16
+The CEO reported that https://aipremiumshop.com did not load on an actual
+Android phone on mobile carrier data on 2026-10-14 evening. After the
+Cloudflare cutover and DNS convergence, the CEO accepted the fixed path
+(`Done H-113 — PASS`, 2026-10-16 ~09:00 +06) and issue #113 was closed with
+corroborating evidence. Do not treat this closure as a multi-carrier
+guarantee; the daily live-site-monitor remains the automated net.
 
 ## Live authority (updated 2026-10-16)
 - Canonical repository: `sysmoai/AI-Premium-Shop`; app: `artifacts/aips-landing`.

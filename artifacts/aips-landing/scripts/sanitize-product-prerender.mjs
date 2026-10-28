@@ -43,16 +43,16 @@ const fmtBDT = (value) => `BDT ${Number(value).toLocaleString("en-BD")}`;
 const cleanName = (value) => String(value ?? "AI tool").split(/—\s*/)[0].split(/\s+-\s+/)[0].trim();
 const accessLabel = (value) => value === "shared" ? "Shared access" : value === "team" ? "Team access" : value === "bundle" ? "Bundle" : value === "setup-service" ? "Setup / service" : "Personal access";
 
-// Search engines decide how to display long titles/snippets. Writing a literal
-// ellipsis into <title> or meta description removes meaningful terms from the
-// source itself and can cut product names mid-word.
+// Search engines decide display truncation. Do not insert a literal ellipsis
+// into the source <title>, which can cut product names and intent mid-word.
+// The existing 158-character description constraint remains intact.
 function fitTitle(value) {
   if (value.length <= 70) return value;
   return value.replace(" Price in Bangladesh | AI Premium Shop", " in Bangladesh | AI Premium Shop");
 }
 
 function fitDescription(value) {
-  return value;
+  return value.length <= 158 ? value : `${value.slice(0, 157).trimEnd()}…`;
 }
 
 function unsafe(value) {

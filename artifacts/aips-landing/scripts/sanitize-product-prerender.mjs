@@ -48,7 +48,22 @@ const accessLabel = (value) => value === "shared" ? "Shared access" : value === 
 // The existing 158-character description constraint remains intact.
 function fitTitle(value) {
   if (value.length <= 70) return value;
-  return value.replace(" Price in Bangladesh | AI Premium Shop", " in Bangladesh | AI Premium Shop");
+  const suffix = " | AI Premium Shop";
+  const stem = value.endsWith(suffix) ? value.slice(0, -suffix.length) : value;
+  const productName = stem.replace(/ Price in Bangladesh$/, "");
+  // Prefer shortening descriptive boilerplate over cutting the product name.
+  // Each candidate is checked against the build's 70-character title contract.
+  const candidates = [
+    `${productName} in Bangladesh${suffix}`,
+    `${productName}${suffix}`,
+    `${productName} in Bangladesh`,
+    productName,
+  ];
+  const matching = candidates.find((candidate) => candidate.length <= 70);
+  if (matching) return matching;
+  // Rare very long approved product names: preserve the full name in the H1,
+  // and abbreviate only the HTML title at the nearest whole-word boundary.
+  return productName.slice(0, 70).replace(/\s+\S*$/, "").trimEnd();
 }
 
 function fitDescription(value) {

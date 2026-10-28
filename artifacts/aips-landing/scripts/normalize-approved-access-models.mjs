@@ -14,6 +14,11 @@ for (const product of products) {
     product.accessType = "team";
     product.billingUnit = "user";
     product.billingCycle = product.billingCycle ?? "monthly";
+    // Correct the public label only after the governed projection has retained
+    // the eligible Business record. This label does not guarantee a provider
+    // workspace, seat count, or vendor authorization for an exact order.
+    product.name = "ChatGPT Business — Team / Workspace Access (per user)";
+    product.tier = "Team / Workspace (per user)";
     changed += 1;
   }
   if (["chatgpt-go-bangladesh", "chatgpt-plus-bangladesh"].includes(product?.slug)) {

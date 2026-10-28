@@ -72,6 +72,24 @@ test("ChatGPT Plus crawler artifact excludes provider-blocked options and keeps 
   expect(html).toContain('rel="canonical" href="https://aipremiumshop.com/chatgpt-plus-bangladesh"');
 });
 
+test("ChatGPT Business catalog uses governed Team / Workspace per-user label", async ({ page }) => {
+  const businessRules = pricing.rules.filter((rule) => rule.id === "chatgpt-business");
+  expect(businessRules).toHaveLength(1);
+  const approvedPrice = businessRules[0].fixed_bdt;
+  expect(approvedPrice).toBeDefined();
+  expect(approvedPrice).toBeGreaterThan(0);
+
+  await page.goto("/products", { waitUntil: "networkidle" });
+  const businessLink = page.locator('article a[href="/chatgpt-business-bangladesh"]').first();
+  await expect(businessLink).toBeVisible();
+  await expect(businessLink).toHaveText("ChatGPT Business — Team / Workspace Access (per user)");
+
+  const card = businessLink.locator("xpath=ancestor::article");
+  await expect(card.getByText("team", { exact: true })).toBeVisible();
+  await expect(card).not.toContainText("ChatGPT Business — Personal");
+  await expect(card).toContainText(`BDT ${new Intl.NumberFormat("en-US").format(approvedPrice!)}`);
+});
+
 test("pricing surface does not re-expose blocked ChatGPT Plus rows", async ({ page }) => {
   await page.goto("/pricing", { waitUntil: "networkidle" });
   const main = page.getByRole("main");

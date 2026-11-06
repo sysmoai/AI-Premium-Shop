@@ -20,5 +20,10 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.111.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "systeminformation": "5.33.16"
+    }
   }
 }

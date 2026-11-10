@@ -82,7 +82,7 @@ function higgsfieldBody() {
 <main>
 <h1>${esc(hfOffer.seo.h1)}</h1>
 <p>${esc(p.summary)}</p>
-<p><strong>Indicative price: ${fmtBDT(off.priceBDT)} for ${off.durationMonths} month.</strong> ${esc(off.priceNote)}</p>
+<p><strong>${off.priceBDT != null ? `Indicative price: ${fmtBDT(off.priceBDT)} for ${off.durationMonths} month.` : "Price: confirmed on WhatsApp before payment."}</strong> ${esc(off.priceNote)}</p>
 <p>${esc(hfOffer.compliance.disclaimer)}</p>
 
 <section><h2>Who owns the account</h2>
@@ -144,7 +144,7 @@ ${hfOffer.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}
 </section>
 
 <p><a href="https://wa.me/8801865385348?text=${encodeURIComponent(`Hi, I'm asking about ${hfOffer.platform.vendor} AI via AI Premium Shop.
-Plan: ${off.durationMonths} month · Indicative: ${fmtBDT(off.priceBDT)}
+Plan: ${off.durationMonths} month · ${off.priceBDT != null ? `Indicative: ${fmtBDT(off.priceBDT)}` : "Please confirm the current price"}
 Page: ${hfOffer.canonical}
 What I want to make: `)}" rel="noopener">Check the current price on WhatsApp</a></p>
 <p><a href="/products">Browse all AI tools</a> · <a href="/pricing">Pricing</a> · <a href="/how-to-order">How to order</a></p>
@@ -1255,7 +1255,7 @@ ${cards.map((c) => `<article>
 
 <h2>AI Video — make video ads, reels and avatars, paid for in taka</h2>
 <p>${new Set(products.filter((x) => x.category === "ai-video").map((x) => x.slug)).size} AI video tools, covering five different jobs: generating footage from a prompt, animating a product photo, talking avatars, UGC-style ads, and editing what you already shot. They are not interchangeable — <a href="/ai-video">the category page walks you through which one fits your work</a>.</p>
-<p><strong>${esc(hfOffer.platform.vendor)} AI</strong> — ${esc(hfOffer.platform.summary)} Indicative ${fmtBDT(hfOffer.offer.priceBDT)} for ${hfOffer.offer.durationMonths} month, enquiry only: ${hfOffer.pendingVerification.items.length} supplied claims about this plan are still unverified and are <a href="/product/${esc(hfOffer.productSlug)}">listed openly on the product page</a> rather than sold as features.</p>
+<p><strong>${esc(hfOffer.platform.vendor)} AI</strong> — ${esc(hfOffer.platform.summary)} ${hfOffer.offer.priceBDT != null ? `Indicative ${fmtBDT(hfOffer.offer.priceBDT)} for ${hfOffer.offer.durationMonths} month, enquiry only` : "Price confirmed on WhatsApp, enquiry only"}: ${hfOffer.pendingVerification.items.length} supplied claims about this plan are still unverified and are <a href="/product/${esc(hfOffer.productSlug)}">listed openly on the product page</a> rather than sold as features.</p>
 <p>How we handle claims: product pages carry the date we last checked their facts, each links to the provider's own pricing page so you can check us, and where a claim is not verified we publish that instead of repeating it.</p>
 
 <h2>Trending AI tools right now</h2>

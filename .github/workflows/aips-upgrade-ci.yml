@@ -40,6 +40,9 @@ jobs:
       - name: Validate canonical GitHub SSOT
         run: node scripts/validate-ssot.mjs
 
+      - name: Validate brand visual integrity (locked logo + palette)
+        run: node scripts/validate-brand-visual.mjs
+
       - name: Validate provider evidence registry
         run: node scripts/validate-provider-sources.mjs
 

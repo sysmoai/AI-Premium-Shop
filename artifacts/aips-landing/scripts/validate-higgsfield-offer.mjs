@@ -172,7 +172,7 @@ if (fs.existsSync(pagePath)) {
   const src = fs.readFileSync(pagePath, "utf8");
   // Strip the import line and comments before scanning for literals.
   const scan = src.replace(/^\s*(\/\/.*|\/\*[\s\S]*?\*\/)$/gm, "");
-  if (String(o.priceBDT) && new RegExp(`\\b${o.priceBDT}\\b`).test(scan)) {
+  if (o.priceBDT != null && new RegExp(`\\b${o.priceBDT}\\b`).test(scan)) {
     fail(`HiggsfieldPage.tsx hardcodes the price ${o.priceBDT} — read it from higgsfield-offer.json instead`);
   }
   if (/\b1,?200\s*credits\b/i.test(scan)) {

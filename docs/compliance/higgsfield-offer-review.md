@@ -142,3 +142,13 @@ Do not edit the page to enable a CTA. The sequence is:
 4. Set real future `offerStart` / `offerEnd` dates if running a dated promotion.
 5. `pnpm run build` — the gate re-checks all of the above and fails if any step
    was skipped.
+
+## 2026-11-10 — published price withdrawn
+
+The owner-attested indicative price (BDT 1,199, attested 2026-08-05) passed the
+90-day re-verification limit enforced by `validate-higgsfield-offer.mjs` on
+2026-11-03, which blocked every build and deploy. The owner chose to withdraw the
+published price rather than re-attest it (decision card, 2026-11-10). The page
+stays inquiry-only (category F) and now shows "Confirmed on WhatsApp" instead of a
+number. To publish a price again, set `offer.priceBDT`, `priceStatus`,
+`priceSource` and a fresh `priceVerifiedOn` in `data/higgsfield-offer.json`.

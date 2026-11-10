@@ -57,6 +57,8 @@ ${plan.limitations?.length ? `<h2>Plan limitations</h2><ul>${plan.limitations.ma
   let html = template.replace('<div id="root"></div>', `<div id="root">${body}</div>`);
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`);
   html = html.replace(/<meta name="description" content="[^"]*"\s*\/>/, `<meta name="description" content="${esc(description)}" />`);
+  // Plan pages have no Bangla equivalent: drop index.html's homepage hreflang pair.
+  html = html.replace(/\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>\n?/g, "");
   html = replaceOrAppendHead(html, `<meta name="robots" content="${robots}" />`);
   html = replaceOrAppendHead(html, `<link rel="canonical" href="${esc(canonical)}" />`);
   html = replaceOrAppendHead(html, `<meta property="og:title" content="${esc(title)}" />`);

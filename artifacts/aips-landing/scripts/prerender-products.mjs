@@ -232,6 +232,11 @@ ${faqs.length ? `<section><h2>Frequently asked questions</h2>${faqs.map((f) => `
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
     .replace('<div id="root"></div>', `<div id="root">${shell(body)}</div>`);
+  // Strip index.html's static hreflang block, as writeRoute() does below. No
+  // /product/<slug> page has a Bangla equivalent, so it gets no hreflang at
+  // all — otherwise every product page claims the homepage pair (/ and /bn)
+  // as its own alternates (Semrush Site Audit, 28 Oct 2026: 40 conflicts).
+  html = html.replace(/\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>\n?/g, "");
   // canonical + og overrides appended to <head> (last one wins for crawlers
   // that respect a single canonical; SEOHead replaces them on hydration).
   const headExtra = `<link rel="canonical" href="${canonical}" />

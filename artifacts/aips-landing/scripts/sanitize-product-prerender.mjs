@@ -43,12 +43,27 @@ const fmtBDT = (value) => `BDT ${Number(value).toLocaleString("en-BD")}`;
 const cleanName = (value) => String(value ?? "AI tool").split(/—\s*/)[0].split(/\s+-\s+/)[0].trim();
 const accessLabel = (value) => value === "shared" ? "Shared access" : value === "team" ? "Team access" : value === "bundle" ? "Bundle" : value === "setup-service" ? "Setup / service" : "Personal access";
 
+// Search engines decide display truncation. Do not insert a literal ellipsis
+// into the source <title>, which can cut product names and intent mid-word.
+// The existing 158-character description constraint remains intact.
 function fitTitle(value) {
   if (value.length <= 70) return value;
   const suffix = " | AI Premium Shop";
   const stem = value.endsWith(suffix) ? value.slice(0, -suffix.length) : value;
-  const available = 69 - suffix.length;
-  return `${stem.slice(0, Math.max(24, available)).trimEnd()}…${suffix}`;
+  const productName = stem.replace(/ Price in Bangladesh$/, "");
+  // Prefer shortening descriptive boilerplate over cutting the product name.
+  // Each candidate is checked against the build's 70-character title contract.
+  const candidates = [
+    `${productName} in Bangladesh${suffix}`,
+    `${productName}${suffix}`,
+    `${productName} in Bangladesh`,
+    productName,
+  ];
+  const matching = candidates.find((candidate) => candidate.length <= 70);
+  if (matching) return matching;
+  // Rare very long approved product names: preserve the full name in the H1,
+  // and abbreviate only the HTML title at the nearest whole-word boundary.
+  return productName.slice(0, 70).replace(/\s+\S*$/, "").trimEnd();
 }
 
 function fitDescription(value) {

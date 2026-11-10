@@ -93,6 +93,7 @@ try {
   run(process.execPath, ["scripts/audit-homepage-v2-preview.mjs"]);
   run(process.execPath, ["scripts/audit-plan-pages.mjs"]);
   run(process.execPath, ["scripts/audit-prerender.mjs"]);
+  run(process.execPath, ["scripts/audit-metadata-contract.mjs"]);
   run(process.execPath, ["scripts/apply-commerce-quarantine.mjs"]);
   // The shipped llms.txt MUST follow the final governed commerce projection
   // and canonical/noindex sitemap, never the raw source-controlled catalog.

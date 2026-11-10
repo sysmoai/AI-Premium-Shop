@@ -58,7 +58,11 @@ function currentFamily(slug) {
   const fixed = rows.filter((row) => !row.requestPrice && typeof row.price === "number" && Number.isFinite(row.price) && row.price > 0).map((row) => Number(row.price));
   return {
     slug,
-    name: baseName(rows[0]?.brand || rows[0]?.name || slug),
+    // The governed comparison owner is Google AI Pro/Gemini Advanced, not
+    // every Google service. A bare vendor name loses the buyer's intent.
+    name: slug === "gemini-advanced-bangladesh"
+      ? "Google AI Pro (Gemini)"
+      : baseName(rows[0]?.brand || rows[0]?.name || slug),
     planCount: rows.length,
     minPrice: fixed.length ? Math.min(...fixed) : null,
     maxPrice: fixed.length ? Math.max(...fixed) : null,

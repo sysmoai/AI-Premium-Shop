@@ -29,8 +29,12 @@ const esc = (value) => String(value ?? "")
   .replace(/"/g, "&quot;");
 const routeFor = (slug) => brandSlugs.has(slug) ? `/${slug}` : `/product/${slug}`;
 const categoryPath = (category) => category === "bundles" ? "/bundles" : `/${category}`;
-const fitTitle = (value) => value.length <= 68 ? value : `${value.slice(0, 47).trimEnd()}… | AI Premium Shop`;
-const fitDescription = (value) => value.length <= 158 ? value : `${value.slice(0, 157).trimEnd()}…`;
+// Keep the listing status explicit without inserting a literal mid-title
+// ellipsis; search engines can truncate the displayed snippet themselves.
+const fitTitle = (value) => value.length <= 68
+  ? value
+  : value.replace(" in Bangladesh — Current Listing Status", " — Listing Status");
+const fitDescription = (value) => value;
 const shell = (body) => `<div id="prerender-shell">${body}</div>`;
 const evidenceDate = String(providerSources?.updated_at ?? new Date().toISOString()).slice(0, 10);
 

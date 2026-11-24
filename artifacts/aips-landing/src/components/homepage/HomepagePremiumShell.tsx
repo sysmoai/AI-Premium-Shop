@@ -313,7 +313,7 @@ function ProductMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
           </div>
 
           <div className="mt-3 flex flex-wrap items-center gap-2" aria-label={`${current.label} subcategories`}>
-            <span className="mr-1 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-600">Explore tasks</span>
+            <span className="mr-1 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">Explore tasks</span>
             {subcategories.map((subcategory) => (
               <a
                 key={subcategory.href}
@@ -598,7 +598,7 @@ function MobileMenu({ close }: { close: () => void }) {
                               <div className="flex items-stretch gap-1">
                                 <a href={category.href} onClick={close} className="flex min-w-0 flex-1 items-center justify-between rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-300 hover:bg-white/[0.05] hover:text-white">
                                   <span className="truncate">{category.label}</span>
-                                  <span className="ml-3 shrink-0 text-xs text-slate-600">{activeCategoryStats(category.id).productCount}</span>
+                                  <span className="ml-3 shrink-0 text-xs text-slate-400">{activeCategoryStats(category.id).productCount}</span>
                                 </a>
                                 <button
                                   type="button"
@@ -850,7 +850,7 @@ function PremiumFooter() {
           <div><h2 className="text-sm font-bold">Best AI for</h2><div className="mt-3 space-y-2">{SOLUTIONS.map((link) => <a key={link.href} href={link.href} className="block text-sm text-slate-400 hover:text-white">{link.label}</a>)}</div></div>
           <div><h2 className="text-sm font-bold">Explore</h2><div className="mt-3 space-y-2"><a href="/blog" className="block text-sm text-slate-400 hover:text-white">Blog</a><a href="/guides" className="block text-sm text-slate-400 hover:text-white">Guides</a><a href="/pricing" className="block text-sm text-slate-400 hover:text-white">Pricing</a><a href="/support" className="block text-sm text-slate-400 hover:text-white">Support</a><a href="/how-to-order" className="block text-sm text-slate-400 hover:text-white">How to order</a><a href="/faq" className="block text-sm text-slate-400 hover:text-white">FAQ</a><a href="/bn" className="block text-sm text-slate-400 hover:text-white">বাংলা</a></div></div>
         </div>
-        <div className="mt-9 flex flex-col gap-3 border-t border-white/8 pt-5 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between"><p>© 2026 AI Premium Shop</p><nav aria-label="Legal" className="flex flex-wrap gap-4"><a href="/privacy-policy" className="hover:text-white">Privacy</a><a href="/terms" className="hover:text-white">Terms</a><a href="/refund-policy" className="hover:text-white">Refund policy</a><a href="/contact" className="hover:text-white">Contact</a></nav></div>
+        <div className="mt-9 flex flex-col gap-3 border-t border-white/8 pt-5 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between"><p>© 2026 AI Premium Shop</p><nav aria-label="Legal" className="flex flex-wrap gap-4"><a href="/privacy-policy" className="hover:text-white">Privacy</a><a href="/terms" className="hover:text-white">Terms</a><a href="/refund-policy" className="hover:text-white">Refund policy</a><a href="/contact" className="hover:text-white">Contact</a></nav></div>
       </div>
     </footer>
   );

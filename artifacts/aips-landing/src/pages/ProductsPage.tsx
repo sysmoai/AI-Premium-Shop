@@ -115,7 +115,7 @@ function ProductCard({ product }: { product: Product }) {
 
         <div className="mt-4 flex flex-wrap gap-1.5">
           {(product.capabilities ?? []).slice(0, 3).map((capability) => (
-            <span key={capability} className="rounded-full bg-white/[0.04] px-2 py-1 text-[10px] text-slate-500">
+            <span key={capability} className="rounded-full bg-white/[0.04] px-2 py-1 text-[10px] text-slate-400">
               {capability.replaceAll("-", " ")}
             </span>
           ))}
@@ -246,7 +246,7 @@ export default function ProductsPage() {
           </div>
 
           <div className="relative mb-4">
-            <Search aria-hidden="true" className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
+            <Search aria-hidden="true" className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input
               type="search"
               value={query}
@@ -256,7 +256,7 @@ export default function ProductsPage() {
               className="w-full rounded-xl border border-white/10 bg-[#0a0e27] py-3 pl-11 pr-10 text-sm text-white outline-none placeholder:text-slate-600 focus:border-[#f4b942]/50"
             />
             {query && (
-              <button type="button" onClick={() => setQuery("")} aria-label="Clear search" className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-slate-500 hover:bg-white/10 hover:text-white">
+              <button type="button" onClick={() => setQuery("")} aria-label="Clear search" className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-slate-400 hover:bg-white/10 hover:text-white">
                 <X className="h-4 w-4" />
               </button>
             )}
@@ -286,7 +286,7 @@ export default function ProductsPage() {
             </select>
 
             <div className="flex items-center gap-2 sm:ml-auto">
-              <ArrowUpDown aria-hidden="true" className="h-4 w-4 text-slate-500" />
+              <ArrowUpDown aria-hidden="true" className="h-4 w-4 text-slate-400" />
               <select
                 aria-label="Sort products"
                 value={sort}
@@ -301,7 +301,7 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        <div className="mt-5 flex items-center justify-between gap-4 text-sm text-slate-500">
+        <div className="mt-5 flex items-center justify-between gap-4 text-sm text-slate-400">
           <p>{filtered.length} matching plan record{filtered.length === 1 ? "" : "s"}</p>
           {(categoryFilter !== "all" || accessFilter !== "all" || persona !== "all" || query) && (
             <button

@@ -126,7 +126,7 @@ function ClaudePage({ products }: { products: Product[] }) {
             <div><strong className="text-white">Max — {facts.max.official_reference}.</strong> {facts.max.positioning}</div>
             <div><strong className="text-white">Team — {facts.team.official_reference}.</strong> {facts.team.positioning}</div>
           </div>
-          <p className="mt-4 text-xs leading-5 text-slate-500">Anthropic controls exact models, limits, features, taxes and plan changes. Verify the current provider pages for the exact tier you need.</p>
+          <p className="mt-4 text-xs leading-5 text-slate-400">Anthropic controls exact models, limits, features, taxes and plan changes. Verify the current provider pages for the exact tier you need.</p>
         </div>
         <aside className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
           <h2 className="text-lg font-bold text-white">Before ordering Claude</h2>

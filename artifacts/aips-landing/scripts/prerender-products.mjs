@@ -49,12 +49,7 @@ if (!template.includes('<div id="root"></div>')) {
 // to a human — see the comment in index.html and
 // docs/performance/page-load-flash.md. Crawlers that cannot execute JS still
 // receive it as ordinary visible HTML.
-// The hydrated header carries an "Ask AI Premium Shop" WhatsApp link on every
-// page; without this the pre-JS document (crawlers, no-JS and slow-network
-// visitors) had no contact path at all on 278 of 280 routes. Plain contact
-// link only — no price, availability or offer wording.
-const STATIC_CONTACT = `<p><a href="https://wa.me/8801865385348" rel="noopener noreferrer">Ask AI Premium Shop on WhatsApp</a></p>`;
-const shell = (body) => `<div id="prerender-shell">${body}${STATIC_CONTACT}</div>`;
+const shell = (body) => `<div id="prerender-shell">${body}</div>`;
 
 const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const fmtBDT = (n) => `৳${n.toLocaleString("en-US")}`;

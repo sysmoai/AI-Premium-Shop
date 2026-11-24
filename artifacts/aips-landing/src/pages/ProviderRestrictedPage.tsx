@@ -125,7 +125,7 @@ export default function ProviderRestrictedPage({ productSlug }: { productSlug: s
           </div>
         </section>
 
-        <p className="mt-8 text-center text-xs leading-5 text-slate-500">Product names and trademarks belong to their respective owners. This informational page does not represent an offer for sale or imply provider authorization.</p>
+        <p className="mt-8 text-center text-xs leading-5 text-slate-400">Product names and trademarks belong to their respective owners. This informational page does not represent an offer for sale or imply provider authorization.</p>
       </main>
     </PageLayout>
   );

@@ -90,7 +90,7 @@ export function Navbar() {
   return <>
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0a0e27]/95 backdrop-blur-xl">
       <div className="mx-auto flex min-h-16 max-w-7xl items-center gap-3 px-4 md:px-8">
-        <Link href="/" className="shrink-0"><PrimaryBrandLogo /></Link>
+        <Link href="/" className="shrink-0"><PrimaryBrandLogo decorative /></Link>
         <nav aria-label="Primary" className="ml-auto hidden items-center gap-1 lg:flex">
           <div className="relative" onMouseEnter={() => setMenu("products")} onMouseLeave={() => setMenu(null)}><button type="button" onClick={() => setMenu("products")} aria-expanded={menu === "products"} className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-slate-300 hover:text-white">Products <ChevronDown className="h-3.5 w-3.5" /></button>{menu === "products" && <DesktopProductsMenu />}</div>
           <div className="relative" onMouseEnter={() => setMenu("guides")} onMouseLeave={() => setMenu(null)}><button type="button" onClick={() => setMenu("guides")} aria-expanded={menu === "guides"} className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-slate-300 hover:text-white">Guides <ChevronDown className="h-3.5 w-3.5" /></button>{menu === "guides" && <DesktopGuidesMenu />}</div>

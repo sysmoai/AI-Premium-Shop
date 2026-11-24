@@ -45,7 +45,7 @@ export function PageFooter() {
       <div className="mx-auto max-w-7xl px-4 py-12 md:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr]">
           <div>
-            <PrimaryBrandLogo />
+            <PrimaryBrandLogo decorative />
             <p className="mt-4 max-w-sm text-sm leading-6 text-slate-400">Compare current AI catalog families, published AIPS BDT prices and stated access models. Confirm availability, provider-controlled limits, delivery ETA, payment instructions and applicable terms for the exact order before payment.</p>
             <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#008236] px-4 py-3 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Confirm current details</a>
           </div>

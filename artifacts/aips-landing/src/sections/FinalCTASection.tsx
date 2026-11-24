@@ -127,7 +127,7 @@ export function FinalCTASection() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
             <div className="col-span-2 md:col-span-1">
               <div className="mb-3">
-                <PrimaryBrandLogo size="small" layout="horizontal" />
+                <PrimaryBrandLogo size="small" layout="horizontal" decorative />
               </div>
               <p className="text-xs leading-relaxed max-w-xs" style={{ color: "#c9ceda" }}>
                 Premium AI subscriptions in Bangladesh. Fast delivery. Local payment. Real support.

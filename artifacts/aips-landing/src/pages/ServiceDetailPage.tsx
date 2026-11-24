@@ -47,11 +47,11 @@ export default function ServiceDetailPage({ serviceSlug }: { serviceSlug: string
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <div className="rounded-xl border border-white/10 bg-[#151b3d] p-5">
-                <div className="text-xs uppercase tracking-[0.12em] text-slate-500">Starting price</div>
+                <div className="text-xs uppercase tracking-[0.12em] text-slate-400">Starting price</div>
                 <div className="mt-2 text-2xl font-bold text-[#f4b942]">{priceLabel(service)}</div>
               </div>
               <div className="rounded-xl border border-white/10 bg-[#151b3d] p-5">
-                <div className="text-xs uppercase tracking-[0.12em] text-slate-500">Duration</div>
+                <div className="text-xs uppercase tracking-[0.12em] text-slate-400">Duration</div>
                 <div className="mt-2 text-sm leading-6 font-semibold text-white">{service.duration}</div>
               </div>
             </div>

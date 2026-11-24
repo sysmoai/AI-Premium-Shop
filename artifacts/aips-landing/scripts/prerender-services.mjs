@@ -56,7 +56,9 @@ const write = (route, title, description, body, jsonLd = []) => {
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(description)}$2`)
     .replace(/\s*<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>(?:\r?\n)?/gi, "\n")
-    .replace(/\s*<meta\s+property="og:(?:title|description|url)"\s+content="[^"]*"\s*\/?>(?:\r?\n)?/gi, "\n");
+    .replace(/\s*<meta\s+property="og:(?:title|description|url)"\s+content="[^"]*"\s*\/?>(?:\r?\n)?/gi, "\n")
+    // Service pages have no Bangla equivalent: drop index.html's homepage hreflang pair.
+    .replace(/\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>\n?/g, "");
 
   html = replaceRootContents(html, body);
 

@@ -85,8 +85,11 @@ export function PrimaryBrandLogo({
 
   const textNode = variant === "full-color" ? (
     <div style={{ ...baseTextStyle, display: "flex", gap: config.wordGap, alignItems: "center" }}>
-      <span style={{ color: GOLD_500, ...glassStyle }}>AI</span>
-      <span style={{ color: WHITE_100, ...glassStyle }}>PREMIUM</span>
+      {/* The {" "} nodes are not rendered inside a flex row (spacing stays
+          config.wordGap) but make the text content "AI PREMIUM SHOP" instead
+          of "AIPREMIUMSHOP" for assistive tech and label matching. */}
+      <span style={{ color: GOLD_500, ...glassStyle }}>AI</span>{" "}
+      <span style={{ color: WHITE_100, ...glassStyle }}>PREMIUM</span>{" "}
       <span style={{ color: GOLD_500, ...glassStyle }}>SHOP</span>
     </div>
   ) : (

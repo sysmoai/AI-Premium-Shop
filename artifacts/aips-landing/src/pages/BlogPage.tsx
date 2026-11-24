@@ -50,7 +50,7 @@ export default function BlogPage() {
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Verification-first editorial</div>
           <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl">{active ? `${active.emoji} ${active.label}` : "AI Guides for Bangladesh"}</h1>
           <p className="mt-3 max-w-3xl text-base leading-7 text-slate-300">{active ? active.description : "Practical guides for choosing AI tools, comparing access models, checking current AIPS prices and verifying provider-controlled details before you commit."}</p>
-          <p className="mt-4 inline-flex items-center gap-2 text-xs text-slate-500"><CalendarDays className="h-3.5 w-3.5" /> Editorial definitions reviewed 14 Aug 2026</p>
+          <p className="mt-4 inline-flex items-center gap-2 text-xs text-slate-400"><CalendarDays className="h-3.5 w-3.5" /> Editorial definitions reviewed 14 Aug 2026</p>
         </motion.header>
 
         <section aria-label="Blog categories" className="mb-9 flex gap-2 overflow-x-auto pb-2">
@@ -64,7 +64,7 @@ export default function BlogPage() {
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {filtered.map((post, index) => (
                 <motion.article key={post.slug} initial={reducedMotion ? false : { opacity: 0, y: 12 }} whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.3, delay: Math.min(index * 0.025, 0.12) }} className="flex flex-col rounded-2xl border border-white/10 bg-[#151b3d] p-5">
-                  <div className="mb-4 flex items-center justify-between gap-3"><span className="rounded-full border border-white/10 px-2.5 py-1 text-[11px] font-semibold text-[#f4b942]">{post.categoryLabel}</span><BookOpen className="h-4 w-4 text-slate-500" /></div>
+                  <div className="mb-4 flex items-center justify-between gap-3"><span className="rounded-full border border-white/10 px-2.5 py-1 text-[11px] font-semibold text-[#f4b942]">{post.categoryLabel}</span><BookOpen className="h-4 w-4 text-slate-400" /></div>
                   <h3 className="text-lg font-bold leading-7 text-white"><Link href={`/blog/${post.slug}`} className="hover:text-[#f4b942]">{post.title}</Link></h3>
                   <p className="mt-3 flex-1 text-sm leading-6 text-slate-400">{post.description}</p>
                   <Link href={`/blog/${post.slug}`} className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-white">Read decision guide <ArrowRight className="h-4 w-4" /></Link>

@@ -253,7 +253,7 @@ export default function ProductsPage() {
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search by tool, brand or capability — e.g. video, research, code..."
               aria-label="Search products"
-              className="w-full rounded-xl border border-white/10 bg-[#0a0e27] py-3 pl-11 pr-10 text-sm text-white outline-none placeholder:text-slate-600 focus:border-[#f4b942]/50"
+              className="w-full rounded-xl border border-white/10 bg-[#0a0e27] py-3 pl-11 pr-10 text-sm text-white outline-none placeholder:text-slate-400 focus:border-[#f4b942]/50"
             />
             {query && (
               <button type="button" onClick={() => setQuery("")} aria-label="Clear search" className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-slate-400 hover:bg-white/10 hover:text-white">

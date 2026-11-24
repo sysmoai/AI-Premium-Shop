@@ -76,7 +76,7 @@ const BANGLA = [
 
 function Card({ item }: { item: string[] }) {
   const [name, description, href] = item;
-  return <Link href={href} className="group block rounded-xl border border-white/10 bg-[#151b3d] p-4 transition hover:border-[#f4b942]/35"><div className="flex items-start justify-between gap-3"><div><h3 className="font-semibold text-white group-hover:text-[#f4b942]">{name}</h3><p className="mt-1 text-sm leading-6 text-slate-400">{description}</p></div><ArrowRight className="mt-1 h-4 w-4 shrink-0 text-slate-600 group-hover:text-[#f4b942]" /></div></Link>;
+  return <Link href={href} className="group block rounded-xl border border-white/10 bg-[#151b3d] p-4 transition hover:border-[#f4b942]/35"><div className="flex items-start justify-between gap-3"><div><h3 className="font-semibold text-white group-hover:text-[#f4b942]">{name}</h3><p className="mt-1 text-sm leading-6 text-slate-400">{description}</p></div><ArrowRight className="mt-1 h-4 w-4 shrink-0 text-slate-400 group-hover:text-[#f4b942]" /></div></Link>;
 }
 
 export default function GuidesIndexPage() {

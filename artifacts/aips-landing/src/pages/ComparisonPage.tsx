@@ -291,7 +291,7 @@ function ProductColumn({ config, items }: { config: CompConfig["productA"]; item
         <div className="mt-5 border-t border-white/10 pt-5">
           <p className="mb-2 text-xs font-semibold text-white">Catalog discovery tags</p>
           <div className="flex flex-wrap gap-1.5">{tags.map((tag) => <span key={tag} className="rounded-full border border-white/10 px-2 py-1 text-xs capitalize text-slate-300">{String(tag).replaceAll("-", " ")}</span>)}</div>
-          <p className="mt-3 text-[11px] leading-5 text-slate-500">Discovery tags help narrow the catalog; they are not a promise that every plan includes every provider feature.</p>
+          <p className="mt-3 text-[11px] leading-5 text-slate-400">Discovery tags help narrow the catalog; they are not a promise that every plan includes every provider feature.</p>
         </div>
       )}
 

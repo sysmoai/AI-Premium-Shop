@@ -103,7 +103,7 @@ export default function EducatorsGuide() {
                 <motion.article key={item.slug} initial={reducedMotion ? false : { opacity: 0, y: 12 }} whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.15) }} className="rounded-2xl border border-white/10 bg-[#151b3d] p-5">
                   <div className="mb-4 flex items-start gap-3"><div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10" style={{ backgroundColor: `${item.first.brandColor || "#f4b942"}16` }}><BrandIcon brand={item.first.brand ?? baseName(item.first.name)} color={item.first.brandColor || "#f4b942"} size={26} /></div><div><h3 className="font-bold text-white">{baseName(item.first.name)}</h3><p className="mt-1 text-xs text-slate-400">{item.access.join(", ")}</p></div></div>
                   <p className="text-sm font-bold text-[#f4b942]">{item.price ? `From ${formatBDT(item.price)}` : "Check current price"}</p>
-                  <p className="mt-3 text-xs leading-5 text-slate-500">Verify the exact provider features, limits, retention/privacy settings and availability for the plan you intend to use.</p>
+                  <p className="mt-3 text-xs leading-5 text-slate-400">Verify the exact provider features, limits, retention/privacy settings and availability for the plan you intend to use.</p>
                   <Link href={productPath(item.slug)} className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white">View current details <ArrowRight className="h-4 w-4" /></Link>
                 </motion.article>
               ))}

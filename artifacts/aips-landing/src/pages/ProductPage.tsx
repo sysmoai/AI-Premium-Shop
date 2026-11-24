@@ -408,7 +408,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#008236] px-6 py-3 font-bold text-white"><MessageCircle className="h-5 w-5" /> Ask AIPS to confirm</a>
         </section>
 
-        <p className="mb-4 text-center text-xs text-slate-600">Product names and trademarks belong to their respective owners. AIPS does not imply provider authorization unless a current source explicitly documents it.</p>
+        <p className="mb-4 text-center text-xs text-slate-400">Product names and trademarks belong to their respective owners. AIPS does not imply provider authorization unless a current source explicitly documents it.</p>
       </div>
     </PageLayout>
   );

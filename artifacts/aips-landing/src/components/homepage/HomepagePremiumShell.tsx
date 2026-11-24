@@ -136,7 +136,7 @@ const SEO_DEEP_LINKS = [
   { label: "AI tools under BDT 500", href: "/ai-under-500" },
   { label: "AI tools under BDT 1,000", href: "/ai-under-1000" },
   { label: "AI tools under BDT 3,000", href: "/ai-under-3000" },
-  { label: "ChatGPT vs Claude", href: "/chatgpt-vs-claude-bangladesh" },
+  { label: "ChatGPT vs Claude", href: "/chatgpt-vs-claude" },
   { label: "ChatGPT vs Gemini", href: "/chatgpt-vs-gemini" },
   { label: "Copilot vs Cursor", href: "/copilot-vs-cursor" },
   { label: "Midjourney vs Ideogram", href: "/midjourney-vs-ideogram" },

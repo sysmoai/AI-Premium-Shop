@@ -62,9 +62,28 @@ const headerBlocks = [
     },
   },
 ];
+// Cloudflare applies EVERY matching _headers rule and joins same-name values
+// with a comma (Vercel used last-match-wins). Emitting vercel.json verbatim
+// therefore sent "/assets/*" two contradictory Cache-Control values
+// ("max-age=0, must-revalidate, ..., immutable") and duplicate CSP/nosniff.
+// So: the catch-all carries the shared headers once; specific rules carry
+// only what differs; and the catch-all's Cache-Control is omitted because it
+// equals the Static Assets default, which a specific rule then replaces.
+const CF_DEFAULT_CACHE_CONTROL = "public, max-age=0, must-revalidate";
+const toObj = (block) => Object.fromEntries((block.headers ?? []).map((h) => [h.key, h.value]));
+const catchAllSrc = (vercel.headers ?? []).find((b) => b.source === "/(.*)");
+const catchAll = catchAllSrc ? toObj(catchAllSrc) : {};
+if (catchAll["Cache-Control"] && catchAll["Cache-Control"] !== CF_DEFAULT_CACHE_CONTROL) {
+  fail(`catch-all Cache-Control "${catchAll["Cache-Control"]}" differs from the Cloudflare default; it would be comma-joined onto /assets/* — handle it explicitly`);
+}
 for (const block of vercel.headers ?? []) {
+  const isCatchAll = block === catchAllSrc;
   const asObj = {};
-  for (const h of block.headers ?? []) asObj[h.key] = h.value;
+  for (const [key, value] of Object.entries(toObj(block))) {
+    if (isCatchAll ? key === "Cache-Control" : catchAll[key] === value) continue;
+    if (!isCatchAll && key !== "Cache-Control" && key in catchAll) fail(`header "${key}" on ${block.source} conflicts with the catch-all value and would be comma-joined`);
+    asObj[key] = value;
+  }
   for (const glob of pagesGlobs(block.source)) headerBlocks.push({ path: glob, headers: asObj });
 }
 

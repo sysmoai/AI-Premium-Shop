@@ -356,6 +356,9 @@ const writeRoute = (route, title, desc, body, extraLd = [], lang = null) => {
   // Bangla pages were serving Bangla prose inside an English document — wrong
   // for crawlers, for hreflang consistency and for screen readers.
   if (lang) html = html.replace(/<html lang="[^"]*"/, `<html lang="${lang}"`);
+  // index.html also hardcodes og:locale en_BD; keep it consistent with the
+  // document language (SEOHead does the same after hydration).
+  if (lang === "bn-BD") html = html.replace(/(<meta property="og:locale" content=")[^"]*(")/, "$1bn_BD$2");
   // Strip index.html's static hreflang block (correct only for "/" and "/bn"
   // themselves) — replaced below with the route-correct set, or nothing.
   html = html.replace(/\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>\n?/g, "");

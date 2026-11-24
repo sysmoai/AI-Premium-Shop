@@ -56,10 +56,10 @@ export function PageFooter() {
 
         <div className="mt-10 border-t border-white/10 pt-8">
           <h2 className="text-sm font-bold text-white">Editorial topics</h2>
-          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">{BLOG_CATEGORIES.map((category) => <Link key={category.key} href={category.href} className="text-xs text-slate-500 hover:text-slate-300">{category.label}</Link>)}</div>
+          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">{BLOG_CATEGORIES.map((category) => <Link key={category.key} href={category.href} className="text-xs text-slate-400 hover:text-slate-300">{category.label}</Link>)}</div>
         </div>
 
-        <div className="mt-8 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} AI Premium Shop. Product names and trademarks belong to their respective owners.</p>
           <p>Payment instructions and order terms are confirmed for the exact order.</p>
         </div>

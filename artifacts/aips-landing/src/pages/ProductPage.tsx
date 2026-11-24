@@ -373,7 +373,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
               <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
                 <h2 className="mb-4 text-lg font-bold text-white">Catalog discovery tags</h2>
                 {safeList(selectedPlan.whatsIncluded).length ? <div className="flex flex-wrap gap-2">{safeList(selectedPlan.whatsIncluded).map((tag) => <span key={tag} className="rounded-full border border-white/10 px-2.5 py-1.5 text-xs text-slate-300">{tag}</span>)}</div> : <p className="text-sm text-slate-300">No plan-specific feature list is published here. Confirm provider entitlements before payment.</p>}
-                <p className="mt-4 text-xs leading-5 text-slate-500">These catalog tags aid discovery and are not a promise that every provider feature is included in every plan.</p>
+                <p className="mt-4 text-xs leading-5 text-slate-400">These catalog tags aid discovery and are not a promise that every provider feature is included in every plan.</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-[#151b3d] p-6">
                 <h2 className="mb-4 text-lg font-bold text-white">Limits and conditions</h2>

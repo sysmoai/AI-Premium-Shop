@@ -265,7 +265,7 @@ function ProductMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
   return (
     <div data-testid="mega-products" onMouseEnter={onKeepOpen} className="mx-auto grid max-h-[calc(100dvh-5rem)] max-w-7xl grid-cols-[280px_minmax(0,1fr)_260px] gap-6 overflow-y-auto overscroll-contain px-6 py-6">
       <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-2">
-        <div className="px-3 pb-2 pt-2 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-500">Browse categories</div>
+        <div className="px-3 pb-2 pt-2 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Browse categories</div>
         {CATEGORY_DEFS.map((category) => {
           const Icon = category.icon;
           const categoryInfo = activeCategoryStats(category.id);
@@ -279,12 +279,12 @@ function ProductMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
               onFocus={() => setActiveCategory(category.id)}
               className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 transition ${active ? "bg-[#f4b942]/10 text-white" : "text-slate-300 hover:bg-white/[0.05] hover:text-white"}`}
             >
-              <span className={`flex h-8 w-8 items-center justify-center rounded-lg border ${active ? "border-[#f4b942]/30 bg-[#f4b942]/10 text-[#ffd26f]" : "border-white/8 bg-white/[0.03] text-slate-500 group-hover:text-slate-300"}`}>
+              <span className={`flex h-8 w-8 items-center justify-center rounded-lg border ${active ? "border-[#f4b942]/30 bg-[#f4b942]/10 text-[#ffd26f]" : "border-white/8 bg-white/[0.03] text-slate-400 group-hover:text-slate-300"}`}>
                 <Icon className="h-4 w-4" />
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-sm font-semibold">{category.label}</span>
-                <span className="block text-[11px] text-slate-500">{categoryInfo.productCount} tools</span>
+                <span className="block text-[11px] text-slate-400">{categoryInfo.productCount} tools</span>
               </span>
               <ChevronRight className={`h-4 w-4 ${active ? "text-[#f4b942]" : "text-slate-600"}`} />
             </a>
@@ -313,7 +313,7 @@ function ProductMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
           </div>
 
           <div className="mt-3 flex flex-wrap items-center gap-2" aria-label={`${current.label} subcategories`}>
-            <span className="mr-1 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-600">Explore tasks</span>
+            <span className="mr-1 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">Explore tasks</span>
             {subcategories.map((subcategory) => (
               <a
                 key={subcategory.href}
@@ -334,10 +334,10 @@ function ProductMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
                 href={productPath(product.slug)}
                 className="group rounded-xl border border-white/8 bg-white/[0.025] p-3 transition hover:-translate-y-0.5 hover:border-[#f4b942]/30 hover:bg-[#f4b942]/[0.055]"
               >
-                <p className="truncate text-[11px] font-semibold uppercase tracking-wide text-slate-500">{product.brand}</p>
+                <p className="truncate text-[11px] font-semibold uppercase tracking-wide text-slate-400">{product.brand}</p>
                 <p className="mt-1 line-clamp-2 text-sm font-semibold leading-5 text-white">{product.name}</p>
                 <div className="mt-3 flex items-center justify-between gap-2 text-xs">
-                  <span className="truncate text-slate-500">{product.tier ?? "Plan"}</span>
+                  <span className="truncate text-slate-400">{product.tier ?? "Plan"}</span>
                   <span className="shrink-0 font-bold text-[#f4b942]">{formatPrice(product)}</span>
                 </div>
               </a>
@@ -360,7 +360,7 @@ function ProductMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
             const Icon = solution.icon;
             return (
               <a key={solution.href} href={solution.href} className="group flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-sm font-semibold text-slate-300 transition hover:bg-white/[0.055] hover:text-white">
-                <Icon className="h-4 w-4 text-slate-500 group-hover:text-[#f4b942]" />
+                <Icon className="h-4 w-4 text-slate-400 group-hover:text-[#f4b942]" />
                 {solution.label}
                 <ChevronRight className="ml-auto h-3.5 w-3.5 text-slate-600" />
               </a>
@@ -386,7 +386,7 @@ function BundlesMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
       <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
         {bundles.map((bundle) => (
           <a key={bundle.slug} href={productPath(bundle.slug)} className="rounded-2xl border border-white/10 bg-white/[0.025] p-4 transition hover:-translate-y-0.5 hover:border-[#f4b942]/30 hover:bg-white/[0.045]">
-            <p className="text-xs font-bold uppercase tracking-wide text-slate-500">{bundle.brand}</p>
+            <p className="text-xs font-bold uppercase tracking-wide text-slate-400">{bundle.brand}</p>
             <p className="mt-1 text-sm font-semibold text-white">{bundle.name}</p>
             <p className="mt-4 text-sm font-extrabold text-[#f4b942]">{formatPrice(bundle)}</p>
           </a>
@@ -425,7 +425,7 @@ function LearnMegaMenu({ onKeepOpen }: { onKeepOpen: () => void }) {
             const Icon = item.icon;
             return (
               <a key={item.href} href={item.href} className="group rounded-2xl border border-white/10 bg-white/[0.025] p-4 transition hover:border-[#f4b942]/30 hover:bg-white/[0.045]">
-                <Icon className="h-4 w-4 text-slate-500 group-hover:text-[#f4b942]" />
+                <Icon className="h-4 w-4 text-slate-400 group-hover:text-[#f4b942]" />
                 <p className="mt-2 text-sm font-bold text-white">{item.label}</p>
                 <p className="mt-1 text-xs leading-5 text-slate-400">{item.note}</p>
               </a>
@@ -508,7 +508,7 @@ function SearchOverlay({ onClose }: { onClose: () => void }) {
         <h2 id="premium-search-title" className="sr-only">Search AI Premium Shop</h2>
         <p id="premium-search-description" className="sr-only">Search the current public AI tool catalog by product, brand, category or task.</p>
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500" />
+          <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
           <input
             autoFocus
             type="search"
@@ -535,7 +535,7 @@ function SearchOverlay({ onClose }: { onClose: () => void }) {
           ) : results.length ? (
             results.map((product) => (
               <a key={product.slug} href={productPath(product.slug)} className="flex items-center gap-4 border-b border-white/8 px-5 py-3.5 last:border-0 hover:bg-white/[0.04]">
-                <div className="min-w-0 flex-1"><p className="truncate text-sm font-bold text-white">{product.name}</p><p className="mt-0.5 text-xs text-slate-500">{product.brand} · {product.category}</p></div>
+                <div className="min-w-0 flex-1"><p className="truncate text-sm font-bold text-white">{product.name}</p><p className="mt-0.5 text-xs text-slate-400">{product.brand} · {product.category}</p></div>
                 <span className="shrink-0 text-sm font-extrabold text-[#f4b942]">{formatPrice(product)}</span>
                 <ChevronRight className="h-4 w-4 shrink-0 text-slate-600" />
               </a>
@@ -577,7 +577,7 @@ function MobileMenu({ close }: { close: () => void }) {
                   animate={reduced ? undefined : { rotate: section === item.id ? 180 : 0 }}
                   style={reduced ? { transform: section === item.id ? "rotate(180deg)" : "rotate(0deg)" } : undefined}
                 >
-                  <ChevronDown className="h-4 w-4 text-slate-500" />
+                  <ChevronDown className="h-4 w-4 text-slate-400" />
                 </motion.span>
               </button>
               <AnimatePresence initial={false}>
@@ -598,7 +598,7 @@ function MobileMenu({ close }: { close: () => void }) {
                               <div className="flex items-stretch gap-1">
                                 <a href={category.href} onClick={close} className="flex min-w-0 flex-1 items-center justify-between rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-300 hover:bg-white/[0.05] hover:text-white">
                                   <span className="truncate">{category.label}</span>
-                                  <span className="ml-3 shrink-0 text-xs text-slate-600">{activeCategoryStats(category.id).productCount}</span>
+                                  <span className="ml-3 shrink-0 text-xs text-slate-400">{activeCategoryStats(category.id).productCount}</span>
                                 </a>
                                 <button
                                   type="button"
@@ -606,7 +606,7 @@ function MobileMenu({ close }: { close: () => void }) {
                                   aria-expanded={open}
                                   aria-controls={panelId}
                                   onClick={() => setProductCategory(open ? null : category.id)}
-                                  className="flex w-11 shrink-0 items-center justify-center rounded-xl text-slate-500 hover:bg-white/[0.05] hover:text-white"
+                                  className="flex w-11 shrink-0 items-center justify-center rounded-xl text-slate-400 hover:bg-white/[0.05] hover:text-white"
                                 >
                                   <motion.span
                                     animate={reduced ? undefined : { rotate: open ? 180 : 0 }}
@@ -788,9 +788,9 @@ function CategoryArchitecture() {
               return (
                 <motion.a key={category.id} href={category.href} initial={reduced ? false : { opacity: 0, y: 18 }} whileInView={reduced ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, margin: "-70px" }} transition={{ duration: 0.45, delay: Math.min(index * 0.035, 0.2) }} whileHover={reduced ? undefined : { y: -4 }} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-5">
                   <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#f4b942]/0 blur-3xl transition duration-500 group-hover:bg-[#f4b942]/10" />
-                  <div className="relative flex items-start gap-4"><div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400 transition group-hover:border-[#f4b942]/30 group-hover:text-[#f4b942]"><Icon className="h-5 w-5" /></div><div className="min-w-0"><h3 className="font-bold text-white">{category.label}</h3><p className="mt-1 text-xs leading-5 text-slate-500">{category.note}</p></div><ChevronRight className="ml-auto h-4 w-4 shrink-0 text-slate-700 transition group-hover:translate-x-0.5 group-hover:text-[#f4b942]" /></div>
-                  <div className="relative mt-4 flex flex-wrap gap-2 text-[11px] text-slate-500"><span className="rounded-full border border-white/8 px-2.5 py-1">{stats.productCount} tools</span>{stats.fromPrice != null && <span className="rounded-full border border-white/8 px-2.5 py-1">from {taka(stats.fromPrice)}</span>}</div>
-                  <div className="relative mt-4 border-t border-white/8 pt-3 text-xs text-slate-500">{preview.map((item) => item.brand).filter((brand, i, arr) => arr.indexOf(brand) === i).join(" · ")}</div>
+                  <div className="relative flex items-start gap-4"><div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400 transition group-hover:border-[#f4b942]/30 group-hover:text-[#f4b942]"><Icon className="h-5 w-5" /></div><div className="min-w-0"><h3 className="font-bold text-white">{category.label}</h3><p className="mt-1 text-xs leading-5 text-slate-400">{category.note}</p></div><ChevronRight className="ml-auto h-4 w-4 shrink-0 text-slate-700 transition group-hover:translate-x-0.5 group-hover:text-[#f4b942]" /></div>
+                  <div className="relative mt-4 flex flex-wrap gap-2 text-[11px] text-slate-400"><span className="rounded-full border border-white/8 px-2.5 py-1">{stats.productCount} tools</span>{stats.fromPrice != null && <span className="rounded-full border border-white/8 px-2.5 py-1">from {taka(stats.fromPrice)}</span>}</div>
+                  <div className="relative mt-4 border-t border-white/8 pt-3 text-xs text-slate-400">{preview.map((item) => item.brand).filter((brand, i, arr) => arr.indexOf(brand) === i).join(" · ")}</div>
                 </motion.a>
               );
             })}
@@ -839,18 +839,18 @@ function PremiumFooter() {
         <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <PrimaryBrandLogo size="small" layout="horizontal" decorative />
-            <p className="mt-4 max-w-sm text-sm leading-6 text-slate-500">AI tool discovery, comparison and local buying guidance for Bangladesh. Check the relevant product page for current access and commercial details before purchase.</p>
+            <p className="mt-4 max-w-sm text-sm leading-6 text-slate-400">AI tool discovery, comparison and local buying guidance for Bangladesh. Check the relevant product page for current access and commercial details before purchase.</p>
             {PAYMENT_LABELS.length > 0 && (
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold" aria-label="Current payment methods">
                 {PAYMENT_LABELS.map((label) => <span key={label} className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-slate-300">{label}</span>)}
               </div>
             )}
           </div>
-          <div><h2 className="text-sm font-bold">Popular products</h2><div className="mt-3 space-y-2">{FOOTER_PRODUCT_LINKS.map((link) => <a key={link.href} href={link.href} className="block text-sm text-slate-500 hover:text-white">{link.label}</a>)}</div></div>
-          <div><h2 className="text-sm font-bold">Best AI for</h2><div className="mt-3 space-y-2">{SOLUTIONS.map((link) => <a key={link.href} href={link.href} className="block text-sm text-slate-500 hover:text-white">{link.label}</a>)}</div></div>
-          <div><h2 className="text-sm font-bold">Explore</h2><div className="mt-3 space-y-2"><a href="/blog" className="block text-sm text-slate-500 hover:text-white">Blog</a><a href="/guides" className="block text-sm text-slate-500 hover:text-white">Guides</a><a href="/pricing" className="block text-sm text-slate-500 hover:text-white">Pricing</a><a href="/support" className="block text-sm text-slate-500 hover:text-white">Support</a><a href="/how-to-order" className="block text-sm text-slate-500 hover:text-white">How to order</a><a href="/faq" className="block text-sm text-slate-500 hover:text-white">FAQ</a><a href="/bn" className="block text-sm text-slate-500 hover:text-white">বাংলা</a></div></div>
+          <div><h2 className="text-sm font-bold">Popular products</h2><div className="mt-3 space-y-2">{FOOTER_PRODUCT_LINKS.map((link) => <a key={link.href} href={link.href} className="block text-sm text-slate-400 hover:text-white">{link.label}</a>)}</div></div>
+          <div><h2 className="text-sm font-bold">Best AI for</h2><div className="mt-3 space-y-2">{SOLUTIONS.map((link) => <a key={link.href} href={link.href} className="block text-sm text-slate-400 hover:text-white">{link.label}</a>)}</div></div>
+          <div><h2 className="text-sm font-bold">Explore</h2><div className="mt-3 space-y-2"><a href="/blog" className="block text-sm text-slate-400 hover:text-white">Blog</a><a href="/guides" className="block text-sm text-slate-400 hover:text-white">Guides</a><a href="/pricing" className="block text-sm text-slate-400 hover:text-white">Pricing</a><a href="/support" className="block text-sm text-slate-400 hover:text-white">Support</a><a href="/how-to-order" className="block text-sm text-slate-400 hover:text-white">How to order</a><a href="/faq" className="block text-sm text-slate-400 hover:text-white">FAQ</a><a href="/bn" className="block text-sm text-slate-400 hover:text-white">বাংলা</a></div></div>
         </div>
-        <div className="mt-9 flex flex-col gap-3 border-t border-white/8 pt-5 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between"><p>© 2026 AI Premium Shop</p><nav aria-label="Legal" className="flex flex-wrap gap-4"><a href="/privacy-policy" className="hover:text-white">Privacy</a><a href="/terms" className="hover:text-white">Terms</a><a href="/refund-policy" className="hover:text-white">Refund policy</a><a href="/contact" className="hover:text-white">Contact</a></nav></div>
+        <div className="mt-9 flex flex-col gap-3 border-t border-white/8 pt-5 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between"><p>© 2026 AI Premium Shop</p><nav aria-label="Legal" className="flex flex-wrap gap-4"><a href="/privacy-policy" className="hover:text-white">Privacy</a><a href="/terms" className="hover:text-white">Terms</a><a href="/refund-policy" className="hover:text-white">Refund policy</a><a href="/contact" className="hover:text-white">Contact</a></nav></div>
       </div>
     </footer>
   );

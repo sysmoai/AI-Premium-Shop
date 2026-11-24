@@ -162,7 +162,7 @@ export default function PricingPage() {
                   <th className="text-left px-4 py-4 font-semibold text-white hidden lg:table-cell">Access</th>
                   <th className="text-left px-4 py-4 font-semibold" style={{ color: "#f4b942" }}>Published BDT Price</th>
                   <th className="text-left px-4 py-4 font-semibold text-white hidden lg:table-cell">Delivery</th>
-                  <th className="px-4 py-4" />
+                  <th className="px-4 py-4"><span className="sr-only">Action</span></th>
                 </tr>
               </thead>
               <tbody>

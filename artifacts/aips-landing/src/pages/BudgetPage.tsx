@@ -113,7 +113,7 @@ export default function BudgetPage({ budgetKey }: { budgetKey: string }) {
                   <p className="mb-5 text-sm leading-relaxed text-slate-300">Use the product page to confirm the exact access arrangement, current availability, provider limits and delivery details before purchase.</p>
                   <div className="flex items-end justify-between gap-3 border-t border-white/10 pt-4">
                     <div><div className="text-[11px] text-slate-400">Published AIPS price</div><div className="font-bold text-[#f4b942]">{formatBDT(Number(product.price))}</div></div>
-                    <div className="flex gap-2"><Link href={productPath(product.slug)} className="rounded-lg border border-white/10 px-3 py-2 text-xs font-semibold text-white">Details</Link><a href={wa} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-[#008236] px-3 py-2 text-xs font-semibold text-white"><MessageCircle className="h-3.5 w-3.5" /> Confirm</a></div>
+                    <div className="flex gap-2"><Link href={productPath(product.slug)} className="inline-flex min-h-[44px] items-center rounded-lg border border-white/10 px-3 py-2 text-xs font-semibold text-white">Details</Link><a href={wa} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg bg-[#008236] px-3 py-2 text-xs font-semibold text-white"><MessageCircle className="h-3.5 w-3.5" /> Confirm</a></div>
                   </div>
                 </motion.article>
               );

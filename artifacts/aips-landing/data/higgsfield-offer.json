@@ -39,12 +39,14 @@
 
   "offer": {
     "displayName": "Higgsfield AI — purchase and setup assistance",
-    "priceBDT": 1199,
+    "priceBDT": null,
     "priceCurrency": "BDT",
-    "priceStatus": "indicative",
+    "priceStatus": "withdrawn",
     "priceSource": "owner-attested",
-    "priceVerifiedOn": "2026-08-05",
-    "priceNote": "Indicative price for AI Premium Shop's assistance with a 1-month Higgsfield Plus subscription. Not an enabled checkout — confirmed on WhatsApp before any payment, because the vendor's own plan pricing and entitlements change and have not been re-verified for this offer.",
+    "priceVerifiedOn": null,
+    "priceWithdrawnOn": "2026-11-10",
+    "priceWithdrawnReason": "Owner-attested BDT 1,199 (2026-08-05) passed the 90-day re-verification limit; owner chose to withdraw the published price until re-confirmed (decision 2026-11-10).",
+    "priceNote": "No price is published for this offer right now. AI Premium Shop confirms its current service fee on WhatsApp before any payment, because the vendor's own plan pricing and entitlements change and have not been re-verified for this offer.",
     "durationMonths": 1,
     "accountOwnership": "customer",
     "accountOwnershipNote": "You create and control your own Higgsfield account with your own email, password and recovery access. AI Premium Shop never holds your login and never places you in a shared workspace.",
@@ -116,7 +118,7 @@
     "_note": "Claims supplied as business inputs that are NOT yet backed by current vendor documentation or written authorization. These render as open questions on the page. Move an item into platform.capabilities or offer.* only with a sourceUrl and a verifiedOn date.",
     "items": [
       { "claim": "1,200 monthly credits on the Plus plan", "why": "Credit allocations change with vendor pricing revisions. Not re-checked against higgsfield.ai/pricing for this offer." },
-      { "claim": "Unlimited access to eligible models", "why": "The general platform scope is now verified (see platformVerifiedFacts) — but whether THIS offer's specific proposed plan (1,200 credits, BDT 1,199/mo) actually includes the unlimited toggle at all is still unconfirmed. Unlimited is bundled with Plus/Max/Ultra or sold separately as a Marketplace bundle; which one (if any) the proposed BDT 1,199 price maps to has not been checked against the vendor's current (client-rendered, not fetchable by automated tooling) pricing page." },
+      { "claim": "Unlimited access to eligible models", "why": "The general platform scope is now verified (see platformVerifiedFacts) — but whether THIS offer's specific proposed plan (1,200 credits per month) actually includes the unlimited toggle at all is still unconfirmed. Unlimited is bundled with Plus/Max/Ultra or sold separately as a Marketplace bundle; which one (if any) the proposed plan maps to has not been checked against the vendor's current (client-rendered, not fetchable by automated tooling) pricing page." },
       { "claim": "Seedance access under an \"Unlimited\" model scope", "why": "Model availability varies by plan, account and region. Needs confirmation in the actual account UI." },
       { "claim": "Supercomputer access", "why": "Now verified that Supercomputer NEVER falls under 'unlimited' and always spends credits regardless of plan (see platformVerifiedFacts) — what remains unconfirmed is only whether the proposed offer's plan tier grants Supercomputer access at all, and the exact vendor-cost-per-credit rate needed for docs/higgsfield/unit-economics.md's calculation." },
       { "claim": "Specific model line-up (Seedance, Kling, Veo, Sora, WAN)", "why": "Model rosters on aggregator platforms change without notice. Publishing a stale list misleads buyers; version numbers especially must not be guessed." },

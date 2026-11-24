@@ -36,19 +36,19 @@ export function CookieBanner({ onConsent }: CookieBannerProps) {
       style={{
         backgroundColor: "#151b3d",
         borderTop: "1px solid rgba(255,255,255,0.1)",
-        height: "52px",
+        minHeight: "56px",
       }}
     >
       <span className="text-xs flex-1 truncate" style={{ color: "#c9ceda" }}>
         {t("We use cookies to improve your experience.", "আপনার অভিজ্ঞতা উন্নত করতে আমরা কুকি ব্যবহার করি।")}
       </span>
       <div className="flex items-center gap-3 flex-shrink-0">
-        <Link href="/privacy-policy" className="text-xs hover:text-white transition-colors" style={{ color: "#c9ceda" }}>
+        <Link href="/privacy-policy" className="inline-flex min-h-[44px] items-center text-xs hover:text-white transition-colors" style={{ color: "#c9ceda" }}>
           {t("Privacy Policy", "প্রাইভেসি পলিসি")}
         </Link>
         <button
           onClick={accept}
-          className="px-4 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity"
+          className="min-h-[44px] px-4 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity"
           style={{ backgroundColor: "#f4b942", color: "#0a0e27" }}
         >
           {t("Accept", "ঠিক আছে")}

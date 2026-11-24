@@ -64,11 +64,15 @@ export function AIVideoFeatureSection() {
             </div>
             <p className="text-sm leading-relaxed mb-4" style={MUTED}>{hfOffer.platform.summary}</p>
             <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4 text-sm">
-              <div>
-                <span style={MUTED}>Indicative </span>
-                <span className="font-bold text-white">{formatBDT(o.priceBDT)}</span>
-                <span style={MUTED}> / {o.durationMonths} month</span>
-              </div>
+              {o.priceBDT != null ? (
+                <div>
+                  <span style={MUTED}>Indicative </span>
+                  <span className="font-bold text-white">{formatBDT(o.priceBDT)}</span>
+                  <span style={MUTED}> / {o.durationMonths} month</span>
+                </div>
+              ) : (
+                <div style={MUTED}>Price confirmed on WhatsApp</div>
+              )}
               <div style={MUTED}>Account stays in your name</div>
             </div>
             <p className="text-xs leading-relaxed mb-4" style={{ color: "#8b93a8" }}>

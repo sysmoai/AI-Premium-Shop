@@ -12,7 +12,7 @@ export function PageLayout({ children }: PageLayoutProps) {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0a0e27", color: "#fff" }}>
       <Navbar />
-      <main className="pt-20 pb-16 lg:pb-0">
+      <main className="pb-16 lg:pb-0">
         {children}
       </main>
       <TierASeoLayer />

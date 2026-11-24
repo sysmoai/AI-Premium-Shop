@@ -59,7 +59,7 @@ export default function HiggsfieldPage() {
   // the page URL — no personal data, per spec section 18.
   const waText =
     `Hi, I'm asking about ${platform.vendor} AI via AI Premium Shop.\n` +
-    `Plan: 1 month · Indicative: ${formatBDT(o.priceBDT)}\n` +
+    `Plan: 1 month · ${o.priceBDT != null ? `Indicative: ${formatBDT(o.priceBDT)}` : "Please confirm the current price"}\n` +
     `Page: ${offer.canonical}\n` +
     `What I want to make: `;
   const waLink = `${WHATSAPP}?text=${encodeURIComponent(waText)}`;
@@ -102,7 +102,7 @@ export default function HiggsfieldPage() {
       applicationCategory: "AI video generation",
       operatingSystem: "Web",
       brand: { "@type": "Brand", name: platform.vendor },
-      dateModified: o.priceVerifiedOn,
+      dateModified: o.priceVerifiedOn ?? platform.verifiedOn,
     },
     {
       "@context": "https://schema.org",
@@ -158,8 +158,8 @@ export default function HiggsfieldPage() {
           {/* Inquiry box. Deliberately not a checkout — compliance category F. */}
           <div className="lg:sticky lg:top-24 rounded-2xl border p-6"
             style={{ ...CARD, borderColor: "rgba(244,185,66,0.3)" }}>
-            <div className="text-sm mb-1" style={MUTED}>Indicative price · 1 month</div>
-            <div className="text-3xl font-bold text-white mb-1">{formatBDT(o.priceBDT)}</div>
+            <div className="text-sm mb-1" style={MUTED}>{o.priceBDT != null ? "Indicative price · 1 month" : "Price · 1 month"}</div>
+            <div className="text-3xl font-bold text-white mb-1">{o.priceBDT != null ? formatBDT(o.priceBDT) : "Confirmed on WhatsApp"}</div>
             <div className="text-xs mb-4 leading-relaxed" style={MUTED}>{o.priceNote}</div>
 
             <a href={waLink} target="_blank" rel="noopener noreferrer"
@@ -351,7 +351,7 @@ export default function HiggsfieldPage() {
           </div>
           <ul className="space-y-1.5" style={MUTED}>
             <li>Platform capabilities verified {platform.verifiedOn} against <a href={platform.sourceUrl} target="_blank" rel="noopener noreferrer nofollow" className="underline hover:text-white">{platform.sourceUrl}</a>.</li>
-            <li>Service price attested by AI Premium Shop on {o.priceVerifiedOn}. It is our fee, not the vendor's list price.</li>
+            <li>{o.priceVerifiedOn ? <>Service price attested by AI Premium Shop on {o.priceVerifiedOn}. It is our fee, not the vendor's list price.</> : <>No service price is published; it is confirmed on WhatsApp before payment.</>}</li>
             <li>{pending.length} supplied claims remain unverified and are listed above rather than presented as features.</li>
             <li>Offer status: <span className="text-white font-medium">{compliance.status}</span> — no checkout is enabled on this page.</li>
           </ul>

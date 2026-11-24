@@ -21,7 +21,7 @@ const LEARNING_LINKS = [
     icon: BookOpen,
   },
   {
-    href: "/chatgpt-vs-claude-bangladesh",
+    href: "/chatgpt-vs-claude",
     eyebrow: "Comparison",
     title: "ChatGPT vs Claude",
     description: "Compare two major AI assistants before choosing a plan.",

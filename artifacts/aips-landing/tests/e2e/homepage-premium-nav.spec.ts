@@ -93,7 +93,7 @@ test("homepage raw prerender exposes category, budget and comparison architectur
     "/ai-under-500",
     "/ai-under-1000",
     "/ai-under-3000",
-    "/chatgpt-vs-claude-bangladesh",
+    "/chatgpt-vs-claude",
     "/copilot-vs-cursor",
     "/midjourney-vs-ideogram",
   ]) {

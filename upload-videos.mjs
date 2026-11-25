@@ -1,9 +1,18 @@
 import { createClient } from '@supabase/supabase-js';
 import { readFileSync } from 'fs';
 
+// Credentials come from the environment only; never commit them.
+// Use a Supabase secret API key (sb_secret_...), not a legacy service_role JWT.
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_SECRET_KEY = process.env.SUPABASE_SECRET_KEY;
+if (!SUPABASE_URL || !SUPABASE_SECRET_KEY) {
+  console.error("SUPABASE_URL and SUPABASE_SECRET_KEY must be set in the environment.");
+  process.exit(1);
+}
+
 const supabase = createClient(
-  'https://fjpkhgecnothqjfhxrhx.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqcGtoZ2Vjbm90aHFqZmh4cmh4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NTA4MjAyMiwiZXhwIjoyMTAwNjU4MDIyfQ.OHbzkW_5833oLwZT8qN1JSvr0cJgSQMgfkJug55w1nM',
+  SUPABASE_URL,
+  SUPABASE_SECRET_KEY,
   { auth: { persistSession: false } }
 );
 
@@ -32,7 +41,7 @@ async function upload() {
     if (error) {
       console.log(`❌ Error: ${error.message}`);
     } else {
-      const url = `https://fjpkhgecnothqjfhxrhx.supabase.co/storage/v1/object/public/videos/${name}`;
+      const url = `${SUPABASE_URL}/storage/v1/object/public/videos/${name}`;
       console.log(`✅ ${name}`);
       console.log(`   CDN: ${url}\n`);
     }

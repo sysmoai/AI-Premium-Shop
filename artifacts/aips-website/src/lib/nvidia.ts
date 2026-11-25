@@ -1,7 +1,7 @@
 /**
  * NVIDIA NIM API Integration
  * For autonomous AI operations on AI Premium Shop
- * API Key: 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
+ * API Key: read from process.env.NVIDIA_API_KEY (never hardcode)
  * Rate Limit: 40 RPM (free tier)
  */
 

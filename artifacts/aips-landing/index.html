@@ -122,11 +122,34 @@
     <link rel="preconnect" href="https://wa.me" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- Bangla. Inter has NO Bengali glyphs, so every Bangla character on /bn and
-         the -bn routes was falling back to whatever the OS happened to pick.
-         Anek Bangla is scoped in index.css to html[lang^="bn"]. -->
-    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300..800&display=swap" rel="stylesheet" />
+    <!-- The two Google Fonts stylesheets are loaded WITHOUT blocking render.
+         As plain <link rel="stylesheet"> they held first paint and the module
+         script's execution behind a third-party request (Lighthouse mobile,
+         2026-11-25: ~1.0 s for Inter + ~0.2 s for Anek Bangla on every page).
+         A script-inserted stylesheet is not render-blocking; both families use
+         display=swap, so text paints in the fallback font and swaps in.
+         Bangla: Inter has NO Bengali glyphs, so every Bangla character on /bn
+         and the -bn routes was falling back to whatever the OS happened to
+         pick. Anek Bangla is scoped in index.css to html[lang^="bn"]. -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+    <script>
+      (function () {
+        var hrefs = [
+          "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+          "https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300..800&display=swap",
+        ];
+        for (var i = 0; i < hrefs.length; i++) {
+          var link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = hrefs[i];
+          document.head.appendChild(link);
+        }
+      })();
+    </script>
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300..800&display=swap" rel="stylesheet" />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>

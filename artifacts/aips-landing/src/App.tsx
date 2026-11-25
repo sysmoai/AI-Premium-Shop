@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { CookieBanner } from "@/components/CookieBanner";
 import { BRAND_PAGE_SLUGS, productPath } from "@/lib/productRoutes";
 import { ConciergeWidget } from "@/components/ConciergeWidget";
+import { CONCIERGE_AI_ENABLED } from "@/lib/conciergeAvailability";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { FacebookPixel } from "@/components/FacebookPixel";
@@ -256,7 +257,7 @@ function App() {
             <Router />
           </Suspense>
           <MobileOrderBar />
-          <ConciergeWidget />
+          {CONCIERGE_AI_ENABLED && <ConciergeWidget />}
           <CookieBanner onConsent={() => setCookieConsent(true)} />
         </WouterRouter>
         <GoogleAnalytics enabled={cookieConsent} />

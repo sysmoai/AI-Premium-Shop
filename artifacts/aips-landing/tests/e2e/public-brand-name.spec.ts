@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { CONCIERGE_AI_ENABLED } from "../../src/lib/conciergeAvailability";
 
 const PUBLIC_ACRONYM = /\bAIPS\b/;
 const ROUTES = [
@@ -37,6 +38,7 @@ for (const route of ROUTES) {
 }
 
 test("AI assistant cannot leak the internal acronym after client rendering", async ({ page }) => {
+  test.skip(!CONCIERGE_AI_ENABLED, "AI assistant is switched off (WhatsApp only)");
   await page.goto("/");
   await page.getByRole("button", { name: /Open AI assistant/ }).click();
   const dialog = page.getByRole("dialog");

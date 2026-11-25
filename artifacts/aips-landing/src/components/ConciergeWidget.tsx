@@ -597,7 +597,7 @@ export function ConciergeWidget() {
                 <a href={whatsapp} target="_blank" rel="noopener noreferrer" onClick={() => track("chatbot_whatsapp_click", { location: "error_fallback" })} className="underline font-semibold" style={{ color: "#25d366" }}>
                   WhatsApp-এ মেসেজ করুন
                 </a>
-                , সাথে সাথে রিপ্লাই পাবেন।
+                ।
                 {lastFailedText && (
                   <>
                     {" "}

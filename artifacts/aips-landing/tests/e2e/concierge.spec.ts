@@ -112,7 +112,7 @@ test.describe("WhatsApp only", () => {
       const button = page.getByTestId("floating-whatsapp");
       await expect(button).toHaveCount(1);
       await expect(button).toBeVisible();
-      await expect(button).toHaveAttribute("href", /^https://wa.me/8801865385348?text=/);
+      await expect(button).toHaveAttribute("href", /^https:\/\/wa\.me\/8801865385348\?text=/);
       await expect(page.locator('[aria-controls="concierge-panel"]')).toHaveCount(0);
       await page.keyboard.press("/");
       await expect(page.locator("#concierge-panel")).toHaveCount(0);

@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Router as WouterRouter } from "wouter";
 import { ConciergeWidget } from "./components/ConciergeWidget";
+import { CONCIERGE_AI_ENABLED } from "./lib/conciergeAvailability";
 import HomepageSkipLink from "./components/homepage/HomepageSkipLink";
 import SafeQuarantineApp from "./SafeQuarantineApp";
 import { PUBLICATION_STATE } from "./generated/publicationState";
@@ -8,6 +9,8 @@ import { PUBLICATION_STATE } from "./generated/publicationState";
 const App = lazy(() => import("./App"));
 const HomeV2 = lazy(() => import("./pages/HomeV2"));
 const HomepagePremiumShell = lazy(() => import("./components/homepage/HomepagePremiumShell"));
+// The homepage does not use PageLayout, so it had no floating WhatsApp button.
+const FloatingWhatsApp = lazy(() => import("./components/FloatingWhatsApp").then((m) => ({ default: m.FloatingWhatsApp })));
 const PlanPage = lazy(() => import("./pages/PlanPage"));
 
 const HOMEPAGE_V2_PREVIEW_PATH = "/__preview/homepage-v2";
@@ -43,7 +46,13 @@ export default function RootApp() {
             <HomeV2 />
           </HomepagePremiumShell>
         </Suspense>
-        <ConciergeWidget />
+        {CONCIERGE_AI_ENABLED ? (
+          <ConciergeWidget />
+        ) : (
+          <Suspense fallback={null}>
+            <FloatingWhatsApp />
+          </Suspense>
+        )}
       </WouterRouter>
     );
   }

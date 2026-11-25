@@ -1,4 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
+import { CONCIERGE_AI_ENABLED } from "../../src/lib/conciergeAvailability";
 
 // Covers the AI Concierge widget's client-side contract: accessibility
 // (dialog semantics, focus management, keyboard), the always-visible
@@ -22,6 +23,9 @@ function collectPageErrors(page: Page) {
   });
   return errors;
 }
+
+test.describe("AI assistant offered", () => {
+test.skip(!CONCIERGE_AI_ENABLED, "AI assistant is switched off (WhatsApp only)");
 
 test("launcher is visible and closed by default, with an accessible name", async ({ page }) => {
   const errors = collectPageErrors(page);
@@ -93,4 +97,27 @@ test("a failed backend call degrades gracefully: no crash, a WhatsApp fallback a
   // still be zero.
   const unexpected = errors.filter((e) => !/Failed to load resource.*404/.test(e));
   expect(unexpected, `unexpected console/page errors after a failed concierge call:\n${unexpected.join("\n")}`).toEqual([]);
+});
+});
+
+test.describe("WhatsApp only", () => {
+  test.skip(CONCIERGE_AI_ENABLED, "AI assistant is on");
+
+  for (const route of ["/", "/pricing", "/products", "/bn", "/students-bn", "/chatgpt-plus-bangladesh", "/blog"]) {
+    test(`${route} offers one floating WhatsApp button and no AI assistant`, async ({ page }) => {
+      const errors = collectPageErrors(page);
+      const calls: string[] = [];
+      page.on("request", (r) => { if (r.url().includes("/api/concierge")) calls.push(r.url()); });
+      await page.goto(route, { waitUntil: "networkidle" });
+      const button = page.getByTestId("floating-whatsapp");
+      await expect(button).toHaveCount(1);
+      await expect(button).toBeVisible();
+      await expect(button).toHaveAttribute("href", /^https:\/\/wa\.me\/8801865385348\?text=/);
+      await expect(page.locator('[aria-controls="concierge-panel"]')).toHaveCount(0);
+      await page.keyboard.press("/");
+      await expect(page.locator("#concierge-panel")).toHaveCount(0);
+      expect(calls).toEqual([]);
+      expect(errors).toEqual([]);
+    });
+  }
 });

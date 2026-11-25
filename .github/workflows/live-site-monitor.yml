@@ -18,12 +18,13 @@ on:
 
 permissions:
   contents: read
-  issues: write
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    outputs:
+      failures: ${{ steps.check.outputs.failures }}
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
@@ -135,14 +136,50 @@ jobs:
           fi
           echo "All live checks passed."
 
+  # What a customer's browser shows. curl cannot see a page that fails to render.
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      failures: ${{ steps.check.outputs.failures }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --filter ./artifacts/aips-landing --frozen-lockfile
+
+      - name: Install Playwright browser
+        working-directory: artifacts/aips-landing
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Check pages in a real browser
+        id: check
+        run: node scripts/monitor-live-browser.mjs
+
+  # Separate job so that only this one holds a token that can write issues.
+  report:
+    needs: [monitor, browser]
+    if: always() && (needs.monitor.result != 'success' || needs.browser.result != 'success')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    steps:
       - name: Open an issue on failure
-        if: failure()
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          MONITOR_FAILURES: ${{ steps.check.outputs.failures }}
+          MONITOR_FAILURES: ${{ needs.monitor.outputs.failures }}
+          BROWSER_FAILURES: ${{ needs.browser.outputs.failures }}
         with:
           script: |
-            const failures = process.env.MONITOR_FAILURES || '(see the workflow log)';
+            const failures = [process.env.MONITOR_FAILURES, process.env.BROWSER_FAILURES].filter(Boolean).join('\n') || '(see the workflow log)';
             const body = `Automated live-site check failed on ${new Date().toISOString()}.
 
             ${failures}

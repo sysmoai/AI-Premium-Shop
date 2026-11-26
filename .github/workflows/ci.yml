@@ -36,5 +36,5 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm run typecheck:libs
-      - run: pnpm --filter='!aips-website' --filter='!@workspace/api-server' -r --if-present typecheck
-      - run: pnpm --filter='!aips-website' --filter='!@workspace/api-server' -r --if-present lint
+      - run: pnpm --filter='!@workspace/api-server' -r --if-present typecheck
+      - run: pnpm --filter='!@workspace/api-server' -r --if-present lint

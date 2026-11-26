@@ -24,14 +24,14 @@ echo "== pre-push: workspace typecheck + lint =="
 # BLOCKERS.md B13) caught it for real on a truly fresh checkout.
 pnpm run typecheck:libs
 
-# aips-website: DEPRECATED Next.js rebuild, never promoted, not deployed.
 # @workspace/api-server: unreferenced by aips-landing (the live site),
 # last touched 2026-05-03 (3+ months before this hook), has its own real
 # pre-existing typecheck errors (unbuilt lib/db reference + implicit-anys)
-# discovered 2026-08-07 while writing this hook — same category as
-# aips-website, just missing the DEPRECATED.md marker. See BACKLOG.md.
-pnpm --filter='!aips-website' --filter='!@workspace/api-server' -r --if-present typecheck
-pnpm --filter='!aips-website' --filter='!@workspace/api-server' -r --if-present lint
+# discovered 2026-08-07 while writing this hook. See BACKLOG.md.
+# (The deprecated aips-website Next.js rebuild that used to be excluded
+# here was removed from the repository on 2026-11-26.)
+pnpm --filter='!@workspace/api-server' -r --if-present typecheck
+pnpm --filter='!@workspace/api-server' -r --if-present lint
 
 echo "== pre-push: aips-landing gates (claims, build, seo) =="
 cd artifacts/aips-landing

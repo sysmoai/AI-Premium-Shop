@@ -73,6 +73,9 @@ onlyBuiltDependencies:
   - msw
   - unrs-resolver
 
+# NOTE: pnpm 9 does not read `overrides` from this file, so this block has no
+# effect with the pinned pnpm 9.15.9. The overrides that apply are in the root
+# package.json under "pnpm.overrides".
 overrides:
   # replit uses linux-x64 only, we can exclude all other platforms
   "esbuild>@esbuild/darwin-x64": "-"

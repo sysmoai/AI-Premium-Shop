@@ -615,13 +615,6 @@ importers:
       hls.js:
         specifier: ^1.5.20
         version: 1.6.16
-    optionalDependencies:
-      sharp:
-        specifier: ^0.35.5
-        version: 0.35.5(@types/node@25.3.5)
-      svgo:
-        specifier: ^3.3.5
-        version: 3.3.5
     devDependencies:
       '@types/react':
         specifier: ^19.0.0
@@ -629,6 +622,13 @@ importers:
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
+    optionalDependencies:
+      sharp:
+        specifier: ^0.35.5
+        version: 0.35.5(@types/node@25.3.5)
+      svgo:
+        specifier: ^3.3.5
+        version: 3.3.5
 
   scripts:
     devDependencies:

@@ -46,9 +46,21 @@ test("student guide stays informational and routes users to current canonical pr
   expect(body).not.toMatch(/#1|number one|guaranteed earnings|30-day warranty/i);
 });
 
-test("budget hub is a current catalog filter, not a ranking page", async ({ page }) => {
+test("budget hub lists a real plan once one is published under the threshold", async ({ page }) => {
+  // Cartesia Pro (BDT 990) is the first published fixed-price plan under BDT 1,000.
   await page.goto("/ai-under-1000");
   await expect(page.getByRole("heading", { level: 1, name: "AI Tools Under BDT 1,000" })).toBeVisible();
+  await expect(page.getByText("Current budget filter")).toBeVisible();
+  await expect(page.getByText("No current fixed-price plans are published within this threshold.")).toHaveCount(0);
+  await expect(page.locator('#main-content a[href="/product/cartesia-bangladesh"]').first()).toBeVisible();
+  expect(await page.locator('meta[name="robots"][content*="noindex" i]').count()).toBe(0);
+  const body = await page.locator("body").innerText();
+  expect(body).not.toMatch(/cheapest in Bangladesh|best value|biggest savings|% off/i);
+});
+
+test("budget hub is a current catalog filter, not a ranking page", async ({ page }) => {
+  await page.goto("/ai-under-500");
+  await expect(page.getByRole("heading", { level: 1, name: "AI Tools Under BDT 500" })).toBeVisible();
   await expect(page.getByText("Current budget filter")).toBeVisible();
   // An empty approved bucket must not invent product links or be indexed as an offer list.
   await expect(page.getByText("No current fixed-price plans are published within this threshold.")).toBeVisible();

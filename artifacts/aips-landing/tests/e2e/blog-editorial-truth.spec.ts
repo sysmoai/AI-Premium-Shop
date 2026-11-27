@@ -38,8 +38,9 @@ const publicTitle = (sourceTitle: string) => {
 };
 
 test("all governed blog definitions are unique, concise and free of legacy claim phrases", async () => {
-  expect(definitions.posts).toHaveLength(19);
-  expect(new Set(definitions.posts.map((post: { slug: string }) => post.slug)).size).toBe(19);
+  // 19 short decision guides + 5 long-form Cartesia articles (2026-11-27).
+  expect(definitions.posts).toHaveLength(24);
+  expect(new Set(definitions.posts.map((post: { slug: string }) => post.slug)).size).toBe(24);
   for (const post of definitions.posts) {
     expect(post.title.length, `${post.slug} title length`).toBeLessThanOrEqual(70);
     expect(post.description.length, `${post.slug} description length`).toBeLessThanOrEqual(170);
@@ -82,7 +83,27 @@ test("guide index uses decision language and includes educators", async ({ page 
   expect(text).toContain("confirm current price");
 });
 
-test("all 19 blog crawler pages are self-canonical and sanitized", async ({ request }) => {
+test("long-form article shows its sections, FAQ and a link to the product page", async ({ page, request }) => {
+  const post = definitions.posts.find((item: { slug: string }) => item.slug === "cartesia-voiceover-freelancing-bangladesh");
+  await page.goto(`/blog/${post.slug}`, { waitUntil: "networkidle" });
+  await expect(page.getByRole("heading", { level: 1, name: post.h1 })).toBeVisible();
+  await expect(page.getByText("Updated 27 Nov 2026")).toBeVisible();
+  const article = page.getByTestId("blog-article");
+  for (const section of post.sections) await expect(article.getByRole("heading", { level: 2, name: section.heading })).toBeVisible();
+  await expect(article.locator('a[href="/product/cartesia-bangladesh"]')).toBeVisible();
+  await expect(page.locator("details")).toHaveCount(post.faq.length);
+  const text = (await page.locator("#main-content").innerText()).toLowerCase();
+  expect(text).toContain("no income promises");
+  expect(text).not.toMatch(/guarantee|warranty|rocket|bank transfer/);
+
+  const html = await (await request.get(`/blog/${post.slug}/index.html`)).text();
+  expect(html).toContain('"@type":"FAQPage"');
+  expect(html).toContain("2026-11-27");
+  expect(html).toContain(`<h2>${post.sections[1].heading.replace(/&/g, "&amp;")}</h2>`);
+  expect(html).toContain('href="/product/cartesia-bangladesh"');
+});
+
+test("all 24 blog crawler pages are self-canonical and sanitized", async ({ request }) => {
   for (const post of definitions.posts) {
     const response = await request.get(`/blog/${post.slug}/index.html`);
     expect(response.ok(), post.slug).toBeTruthy();

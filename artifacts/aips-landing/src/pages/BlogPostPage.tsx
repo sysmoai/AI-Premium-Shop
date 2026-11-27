@@ -36,6 +36,15 @@ interface BlogDefinition {
   checks: string[];
   categories: string[];
   focusSlugs: string[];
+  // Long-form articles only (validated by scripts/validate-blog-articles.mjs).
+  updatedOn?: string;
+  productSlug?: string;
+  sections?: { heading: string; paragraphs?: string[]; bullets?: string[] }[];
+  faq?: { q: string; a: string }[];
+}
+
+function formatDate(iso: string) {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 }
 
 interface Family {
@@ -146,16 +155,22 @@ export default function BlogPostPage({ postSlug }: { postSlug: string }) {
     "@type": "BlogPosting",
     headline: definition.title,
     description: definition.description,
-    dateModified: blogGuides.updatedOn,
+    dateModified: definition.updatedOn ?? blogGuides.updatedOn,
     mainEntityOfPage: canonical,
     author: { "@type": "Organization", name: "AI Premium Shop", url: SITE },
     publisher: { "@type": "Organization", name: "AI Premium Shop", url: SITE },
   };
+  const sections = definition.sections ?? [];
+  const faq = definition.faq ?? [];
+  const faqJsonLd = faq.length
+    ? { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })) }
+    : null;
+  const productHref = definition.productSlug ? productPath(definition.productSlug) : null;
   const askUrl = `${WHATSAPP}?text=${encodeURIComponent(`Hi, I read the AIPS guide: ${definition.h1}. Please help me compare current catalog price and access, then confirm availability, provider-controlled limits, delivery ETA and applicable terms before payment. Page: ${canonical}`)}`;
 
   return (
     <PageLayout>
-      <SEOHead title={definition.title} description={definition.description} canonical={canonical} jsonLd={[jsonLd]} />
+      <SEOHead title={definition.title} description={definition.description} canonical={canonical} jsonLd={faqJsonLd ? [jsonLd, faqJsonLd] : [jsonLd]} />
       <article id="main-content" className="mx-auto max-w-6xl px-4 py-10 md:px-8 md:py-14">
         <nav aria-label="breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-xs text-slate-400">
           <Link href="/">Home</Link><ChevronRight className="h-3.5 w-3.5" /><Link href="/blog">Blog</Link><ChevronRight className="h-3.5 w-3.5" /><span className="text-white">{definition.categoryLabel}</span>
@@ -164,7 +179,7 @@ export default function BlogPostPage({ postSlug }: { postSlug: string }) {
         <motion.header initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-10 max-w-4xl">
           <div className="mb-4 flex flex-wrap gap-2">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#f4b942]/[0.08] px-3 py-1.5 text-xs font-semibold text-[#f4b942]"><ShieldCheck className="h-3.5 w-3.5" /> Verification-first editorial</span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-xs text-slate-400"><CalendarDays className="h-3.5 w-3.5" /> Updated 14 Aug 2026</span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-xs text-slate-400"><CalendarDays className="h-3.5 w-3.5" /> Updated {formatDate(definition.updatedOn ?? blogGuides.updatedOn)}</span>
           </div>
           <h1 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-5xl">{definition.h1}</h1>
           <p className="text-base leading-7 text-slate-300 md:text-lg">{definition.intro}</p>
@@ -177,6 +192,49 @@ export default function BlogPostPage({ postSlug }: { postSlug: string }) {
             {definition.checks.map((check, index) => <div key={check} className="rounded-xl border border-white/10 bg-[#0a0e27] p-4"><div className="mb-3 flex h-7 w-7 items-center justify-center rounded-full bg-[#f4b942]/15 text-xs font-bold text-[#f4b942]">{index + 1}</div><p className="text-sm leading-6 text-slate-300">{check}</p></div>)}
           </div>
         </section>
+
+        {sections.length > 0 && (
+          <div className="mb-12 max-w-4xl" data-testid="blog-article">
+            {sections.map((section) => (
+              <section key={section.heading} className="mb-10">
+                <h2 className="mb-4 text-2xl font-bold text-white">{section.heading}</h2>
+                {section.paragraphs?.map((paragraph) => <p key={paragraph} className="mb-4 leading-7 text-slate-300">{paragraph}</p>)}
+                {section.bullets && (
+                  <ul className="space-y-3">
+                    {section.bullets.map((bullet) => <li key={bullet} className="flex gap-3 leading-7 text-slate-300"><CheckCircle2 className="mt-1.5 h-4 w-4 shrink-0 text-[#f4b942]" aria-hidden="true" />{bullet}</li>)}
+                  </ul>
+                )}
+              </section>
+            ))}
+            {productHref && (
+              <div className="rounded-2xl border border-[#f4b942]/30 bg-[#151b3d] p-6">
+                <h2 className="text-xl font-bold text-white">See current plans and prices</h2>
+                <p className="mt-2 text-sm leading-6 text-slate-300">Published Taka prices, plan details and the full question list are on the product page. Confirm the plan on WhatsApp before you pay.</p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Link href={productHref} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#f4b942] px-5 py-2.5 text-sm font-bold text-[#0a0e27]">View plans and prices <ArrowRight className="h-4 w-4" /></Link>
+                  <a href={askUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#008236] px-5 py-2.5 text-sm font-bold text-white"><MessageCircle className="h-4 w-4" /> Ask on WhatsApp</a>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {faq.length > 0 && (
+          <section className="mb-12 max-w-4xl" aria-labelledby="blog-faq">
+            <h2 id="blog-faq" className="mb-5 text-2xl font-bold text-white">Questions and answers</h2>
+            <div className="space-y-3">
+              {faq.map((item) => (
+                <details key={item.q} className="group rounded-xl border border-white/10 bg-[#151b3d] open:border-white/20">
+                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-white [&::-webkit-details-marker]:hidden">
+                    <h3 className="text-base font-semibold">{item.q}</h3>
+                    <ChevronRight className="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-90" aria-hidden="true" />
+                  </summary>
+                  <p className="px-5 pb-5 leading-7 text-slate-300">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
 
         {shortlist.length > 0 && (
           <section className="mb-12">

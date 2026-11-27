@@ -128,8 +128,8 @@ for (const entry of fs.readdirSync(PRODUCT_DIR, { withFileTypes: true })) {
 
   const planRows = fixed.map((record) => `<li><strong>${esc(record.tier ?? record.name ?? "Plan")}</strong> — ${fmtBDT(record.price)} · ${esc(accessLabel(record.accessType))}</li>`).join("");
   const body = `<main>
-<nav aria-label="breadcrumb"><a href="/">Home</a> › <a href="/${esc(main.category)}">${esc(main.category)}</a> › ${esc(name)}</nav>
-<h1>${esc(name)}</h1>
+<nav aria-label="breadcrumb"><a href="/">Home</a> › <a href="/${esc(main.category)}">${esc(main.category)}</a> › ${esc(guide ? guide.provider : name)}</nav>
+<h1>${esc(guide ? guide.provider : name)}</h1>
 <p>${esc(safeDescription)}</p>
 <p>${fromPrice ? `Published AIPS plan prices start from <strong>${fmtBDT(fromPrice)}</strong>.` : "This listing does not publish a fixed price."}</p>
 ${planRows ? `<h2>Current public plans</h2><ul>${planRows}</ul>` : `<h2>Current plan details</h2><p>Confirm the current price and plan details before payment.</p>`}

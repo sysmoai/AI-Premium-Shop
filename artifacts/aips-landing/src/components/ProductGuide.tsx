@@ -20,6 +20,8 @@ export interface ProductGuideData {
   sources: { label: string; url: string }[];
   categoryLabel?: string;
   relatedGuides?: { title: string; href: string }[];
+  comparison?: { heading: string; intro: string; columns: string[]; rows: { label: string; values: string[] }[]; note: string };
+  alternatives?: { heading: string; intro: string; items: { name: string; href: string; note: string }[] };
 }
 
 const guides = (guidesData as { guides?: Record<string, ProductGuideData> }).guides ?? {};
@@ -88,6 +90,33 @@ export default function ProductGuide({ guide, prices, whatsappLink, canonical }:
         </section>
       )}
 
+      {guide.comparison && (
+        <section className="mb-14" aria-labelledby="guide-comparison">
+          <h2 id="guide-comparison" className="mb-3 text-2xl font-bold text-white">{guide.comparison.heading}</h2>
+          <p className="mb-5 max-w-4xl leading-7 text-slate-300">{guide.comparison.intro}</p>
+          {/* Wide table: scrolls sideways inside its own box on small screens, with the first column pinned. */}
+          <div role="region" aria-label="Plan comparison table, scrolls sideways" tabIndex={0} data-testid="guide-comparison-scroll" className="overflow-x-auto rounded-2xl border border-white/10 bg-[#151b3d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f4b942]">
+            <table className="w-full min-w-[640px] border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b border-white/10">
+                  <th scope="col" className="sticky left-0 z-10 bg-[#151b3d] px-4 py-3 font-semibold text-slate-300">Feature</th>
+                  {guide.comparison.columns.map((column) => <th key={column} scope="col" className="px-4 py-3 font-bold text-white">{column}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {guide.comparison.rows.map((row, index) => (
+                  <tr key={row.label} className={index === 0 ? "border-b border-white/10 bg-[#f4b942]/[0.06]" : "border-b border-white/5 last:border-0"}>
+                    <th scope="row" className="sticky left-0 z-10 bg-[#151b3d] px-4 py-3 font-medium text-slate-200">{row.label}</th>
+                    {row.values.map((value, column) => <td key={`${row.label}-${column}`} className={`px-4 py-3 ${index === 0 ? "font-bold text-[#f4b942]" : "text-slate-300"}`}>{value}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 max-w-4xl text-sm leading-6 text-slate-400">{guide.comparison.note}</p>
+        </section>
+      )}
+
       {guide.sections.map((section) => (
         <section key={section.heading} className="mb-12">
           <h2 className="mb-4 text-2xl font-bold text-white">{section.heading}</h2>
@@ -127,6 +156,21 @@ export default function ProductGuide({ guide, prices, whatsappLink, canonical }:
         </div>
         <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-xl bg-[#008236] px-6 py-3 font-bold text-white">Ask a question on WhatsApp</a>
       </section>
+
+      {guide.alternatives && guide.alternatives.items.length > 0 && (
+        <section className="mb-14" aria-labelledby="guide-alternatives">
+          <h2 id="guide-alternatives" className="mb-3 text-2xl font-bold text-white">{guide.alternatives.heading}</h2>
+          <p className="mb-5 max-w-4xl leading-7 text-slate-300">{guide.alternatives.intro}</p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {guide.alternatives.items.map((item) => (
+              <Link key={item.href} href={item.href} className="rounded-xl border border-white/10 bg-[#151b3d] p-4 transition hover:border-[#f4b942]/40">
+                <span className="flex items-center justify-between gap-3 font-semibold text-white">{item.name}<ArrowRight className="h-4 w-4 flex-shrink-0 text-[#f4b942]" aria-hidden="true" /></span>
+                <span className="mt-1 block text-sm leading-6 text-slate-300">{item.note}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {guide.relatedGuides && guide.relatedGuides.length > 0 && (
         <section className="mb-14" aria-labelledby="guide-related">

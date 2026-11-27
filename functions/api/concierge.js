@@ -559,6 +559,10 @@ function truthGuardMessage(lang) {
   return "I don't have verified evidence to state a fixed delivery/refund/warranty period, privacy or sharing mechanics, or provider authorization for that claim. Please confirm the exact current price, access, availability, delivery ETA and applicable terms on WhatsApp before payment.";
 }
 
+function assistantEnabled(env) {
+  return String(env?.CONCIERGE_AI_ENABLED ?? "").trim().toLowerCase() === "true";
+}
+
 export async function onRequest({ request, env, waitUntil }) {
   bindStore(env);
   const ANTHROPIC_KEY = env.ANTHROPIC_API_KEY;
@@ -584,9 +588,15 @@ export async function onRequest({ request, env, waitUntil }) {
       const r = retrieve(q, intent);
       return json(200, { ok: true, intent, products: r.products.map((p) => p.name), unmatched: r.unmatched });
     }
-    return json(200, { ok: true, products: catalog.length, keyConfigured: !!key, policyRevision: policy.commercial_policy_revision });
+    return json(200, { ok: true, products: catalog.length, keyConfigured: !!key, aiEnabled: assistantEnabled(env), policyRevision: policy.commercial_policy_revision });
   }
   if (request.method !== "POST") return json(405, { error: "POST only" });
+
+  // Server-side switch, off unless the Worker variable CONCIERGE_AI_ENABLED is
+  // exactly "true". The site hides the assistant while it is off, but this
+  // endpoint is public: without this check anyone could still POST here and
+  // make it call the model providers, including the paid fallback.
+  if (!assistantEnabled(env)) return json(503, { error: "Concierge offline — message us on WhatsApp", whatsapp: WHATSAPP });
 
   let body = {};
   try {

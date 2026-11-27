@@ -38,7 +38,7 @@ for (const path of files) {
       // Catch logging must not even read a hostile provider message getter.
       Object.defineProperty(error, 'message', { get() { throw new Error('message was read'); } });
       const answer = 'Please describe your writing and coding needs so I can help choose a current subscription. Confirm the available plan and price with our team before making a payment. Thank you for asking.';
-      const env = { NVIDIA_API_KEY: 'test-key', ANTHROPIC_API_KEY: 'test-fallback' };
+      const env = { NVIDIA_API_KEY: 'test-key', ANTHROPIC_API_KEY: 'test-fallback', CONCIERGE_AI_ENABLED: 'true' };
       const context = vm.createContext({
         console: { log: (s) => logs.push(JSON.parse(s)), error: (s) => logs.push(JSON.parse(s)) },
         // Synthetic public-safe catalog: no build output or provider required.
@@ -101,5 +101,34 @@ for (const path of files) {
         assert.equal(logs.at(-1).errorCode, 'SSE_FAILURE');
       }
     });
+  }
+
+  if (path.startsWith('functions/')) {
+    for (const flag of [undefined, '', 'false', '1', 'yes']) {
+      test(`${path}: POST makes no provider call while CONCIERGE_AI_ENABLED is ${JSON.stringify(flag)}`, async () => {
+        let providerCalls = 0;
+        const env = { NVIDIA_API_KEY: 'test-key', ANTHROPIC_API_KEY: 'test-fallback' };
+        if (flag !== undefined) env.CONCIERGE_AI_ENABLED = flag;
+        const context = vm.createContext({
+          console: { log() {}, error() {} },
+          catalog: [{ name: 'Test Writing', path: '/product/test-writing', category: 'writing', tiers: [] }],
+          policy: JSON.parse(readFileSync('artifacts/aips-landing/api/_policy.json')),
+          process: { env }, crypto: { randomUUID: () => 'test-turn' }, randomUUID: () => 'test-turn',
+          Response, Request, URL, ReadableStream, TextEncoder, AbortSignal,
+          bindStore() {}, containsCredential: () => false,
+          redact: (text) => ({ text, hits: [] }), logTurn: async () => {}, knowledgeFor: () => '', tokenMatches: () => false,
+          fetch: async () => { providerCalls++; throw new Error('provider must not be called'); },
+          mockStream: async () => { providerCalls++; throw new Error('provider must not be called'); },
+        });
+        vm.runInContext(source.replace(/^import .*;\n/gm, '').replace('export default ', '').replace('export async ', 'async ') + '\nopenStream = mockStream;', context);
+        const body = { sessionId: 's', messages: [{ role: 'user', content: 'Help with writing' }] };
+        const response = await context.onRequest({ request: new Request('https://test.invalid/api/concierge', { method: 'POST', body: JSON.stringify(body) }), env });
+        assert.equal(response.status, 503);
+        assert.match(await response.text(), /Concierge offline/);
+        assert.equal(providerCalls, 0);
+        const status = await context.onRequest({ request: new Request('https://test.invalid/api/concierge'), env });
+        assert.equal((await status.json()).aiEnabled, false);
+      });
+    }
   }
 }

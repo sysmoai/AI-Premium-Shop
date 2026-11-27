@@ -15,6 +15,35 @@ const BLOCKED = [
   "authentic subscription", "no international card", "best value", "trusted by", "rocket", "bank transfer", "upay",
 ];
 
+const LOGO_URI = "https://media.aipremiumshop.com/brands/cartesia/cartesia-logo-white-v1.svg";
+const STUB_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="579" height="83" viewBox="0 0 579 83"><rect width="579" height="83" fill="#FEFEFE"/></svg>';
+
+test("registered provider logo is shown from the media registry, unaltered in proportion", async ({ page, request }) => {
+  // The media origin is stubbed so the test does not depend on the network.
+  await page.route("https://media.aipremiumshop.com/**", (route) => route.fulfill({ status: 200, contentType: "image/svg+xml", body: STUB_SVG }));
+  await page.goto(ROUTE, { waitUntil: "networkidle" });
+  const logo = page.getByTestId("product-brand-logo");
+  await expect(logo).toBeVisible();
+  await expect(logo).toHaveAttribute("src", LOGO_URI);
+  await expect(logo).toHaveAttribute("alt", "Cartesia logo");
+  const box = await logo.boundingBox();
+  expect(Math.round(box!.height)).toBe(28);
+  expect(Math.abs(box!.width / box!.height - 579 / 83)).toBeLessThan(0.1);
+  await expect(page.getByRole("heading", { level: 1, name: "Cartesia", exact: true })).toBeVisible();
+
+  const html = await (await request.get(`${ROUTE}/index.html`)).text();
+  expect(html).toContain(`<img src="${LOGO_URI}" alt="Cartesia logo"`);
+});
+
+test("a logo that fails to load falls back to the brand tile, never a broken image", async ({ page }) => {
+  await page.route("https://media.aipremiumshop.com/**", (route) => route.abort());
+  await page.goto(ROUTE, { waitUntil: "networkidle" });
+  await expect(page.getByTestId("product-brand-logo")).toHaveCount(0);
+  await expect(page.getByRole("heading", { level: 1, name: "Cartesia", exact: true })).toBeVisible();
+  const broken = await page.locator("#main-content img").evaluateAll((images) => images.filter((image) => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth === 0).length);
+  expect(broken).toBe(0);
+});
+
 test("guided product page shows plans, prices, guide sections and FAQ", async ({ page }) => {
   await page.goto(ROUTE, { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { level: 1, name: "Cartesia", exact: true })).toBeVisible();

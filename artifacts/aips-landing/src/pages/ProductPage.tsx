@@ -16,6 +16,17 @@ import { SEOHead } from "@/components/SEOHead";
 import ProductMedia from "@/components/ProductMedia";
 import ProductGuide, { productGuideFor } from "@/components/ProductGuide";
 import { BrandIcon } from "@/components/BrandIcon";
+import ProductBrandLogo from "@/components/ProductBrandLogo";
+import mediaManifest from "../../data/media/manifest.json";
+
+type ManifestAsset = { id: string; publicationStatus: string };
+type ManifestLink = { mediaId: string; entityType: string; entityKey: string; placement: string };
+const approvedMediaIds = new Set((mediaManifest.assets as ManifestAsset[]).filter((asset) => asset.publicationStatus === "APPROVED").map((asset) => asset.id));
+const REGISTERED_LOGO_SLUGS = new Set(
+  (mediaManifest.links as ManifestLink[])
+    .filter((link) => link.entityType === "product" && link.placement === "logo" && approvedMediaIds.has(link.mediaId))
+    .map((link) => link.entityKey),
+);
 import { formatBDT } from "@/lib/format";
 import { productPath } from "@/lib/productRoutes";
 import { breadcrumbSchema, schemaJson } from "@/utils/schemas";
@@ -255,6 +266,8 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
   ];
   // A guided page covers every plan, so it is headed by the product family, not the first tier.
   const displayName = guide?.provider ?? product.name;
+  // Only products with an approved logo link in the media registry reserve the logo slot.
+  const hasRegisteredLogo = REGISTERED_LOGO_SLUGS.has(product.slug);
 
   const description = sanitizeProse(product.description, `${product.name} is listed in the current AI Premium Shop catalog. Review the current plan, access model and provider terms before purchase.`);
   const descriptionBN = sanitizeProse(product.descriptionBN, "");
@@ -288,9 +301,14 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
 
         <section className="mb-12 grid items-start gap-8 lg:grid-cols-[1fr_390px]">
           <motion.div initial={reducedMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+            {hasRegisteredLogo && (
+              <div className="mb-3 flex min-h-7 items-center">
+                <ProductBrandLogo slug={product.slug} fallback={<BrandIcon brand={displayName} color={product.brandColor} size={28} />} />
+              </div>
+            )}
             <div className="mb-4 flex items-center gap-3">
               {product.logo && <img src={product.logo} alt={`${product.name} logo`} width={56} height={56} className="rounded-xl object-contain" />}
-              {!product.logo && guide && <BrandIcon brand={guide.provider} color={product.brandColor} size={52} />}
+              {!product.logo && guide && !hasRegisteredLogo && <BrandIcon brand={guide.provider} color={product.brandColor} size={52} />}
               <div>
                 <h1 className="text-3xl font-bold leading-tight text-white md:text-4xl">{displayName}</h1>
                 {product.tagline && !isUnsafeClaim(product.tagline) && <p className="mt-1 text-sm text-[#f4b942]">{product.tagline}</p>}

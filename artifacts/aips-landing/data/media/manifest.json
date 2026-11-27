@@ -4,6 +4,37 @@
     "mode": "registry-first",
     "notes": "Media files may remain in existing static/CDN storage. Product and plan pages must reference approved assets through this registry rather than infer commerce state from filenames."
   },
-  "assets": [],
-  "links": []
+  "assets": [
+    {
+      "id": "cartesia-logo-white-v1",
+      "mediaKey": "cartesia-logo-white-v1",
+      "kind": "LOGO",
+      "publicationStatus": "APPROVED",
+      "publicUri": "https://media.aipremiumshop.com/brands/cartesia/cartesia-logo-white-v1.svg",
+      "objectKey": "brands/cartesia/cartesia-logo-white-v1.svg",
+      "mimeType": "image/svg+xml",
+      "sha256": "75a5ffab36960139ceac64f08ef6ba36e7cf2e815915112d054cbfc15f885f9a",
+      "byteSize": 3959,
+      "width": 579,
+      "height": 83,
+      "sourceType": "AUTHORIZED_PROVIDER_ASSET",
+      "licenseStatus": "AUTHORIZED",
+      "approvedAt": "2026-11-27T00:00:00+06:00",
+      "approvedBy": "Emon Hossain",
+      "altEn": "Cartesia logo",
+      "altBn": "Cartesia লোগো",
+      "sourceUrl": "https://www.cartesia.ai/brand/cartesia-logo-white.svg",
+      "licenseNote": "Cartesia's full white monochrome logo, downloaded unaltered from cartesia.ai/brand on 2026-11-27 and used under Cartesia's published brand guidelines (white logo on dark, non-black backgrounds; no alteration, effects or busy backgrounds). The owner authorized this use on 2026-11-27. It identifies the provider's product only; AI Premium Shop is independent and not affiliated with or endorsed by Cartesia. Remove on request from Cartesia."
+    }
+  ],
+  "links": [
+    {
+      "mediaId": "cartesia-logo-white-v1",
+      "entityType": "product",
+      "entityKey": "cartesia-bangladesh",
+      "placement": "logo",
+      "isPrimary": false,
+      "sortOrder": 0
+    }
+  ]
 }

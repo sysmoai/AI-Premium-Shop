@@ -14,6 +14,7 @@ import {
 import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import ProductMedia from "@/components/ProductMedia";
+import ProductGuide, { productGuideFor } from "@/components/ProductGuide";
 import { formatBDT } from "@/lib/format";
 import { productPath } from "@/lib/productRoutes";
 import { breadcrumbSchema, schemaJson } from "@/utils/schemas";
@@ -241,8 +242,10 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
 
   const selectedPrice = selectedPlan?.durationOptions?.find((duration) => duration.months === selectedDuration)?.priceBDT ?? selectedPlan?.priceBDT ?? fromPrice;
   const priceText = product.requestPrice || fromPrice <= 0 ? "Current price on request" : `From ${formatBDT(fromPrice)}/month`;
-  const seoTitle = fitTitle(`${product.name} Price in Bangladesh | AI Premium Shop`);
-  const seoDescription = fitDescription(`${priceText}. Compare current AIPS access options for ${product.name} and confirm availability, provider limits, delivery ETA and terms before payment.`);
+  const planPrices = new Map(product.requestPrice ? [] : plans.map((plan) => [plan.planName, plan.priceBDT] as [string, number]));
+  const guide = productGuideFor(product.slug, planPrices);
+  const seoTitle = guide?.seoTitle ?? fitTitle(`${product.name} Price in Bangladesh | AI Premium Shop`);
+  const seoDescription = guide?.seoDescription ?? fitDescription(`${priceText}. Compare current AIPS access options for ${product.name} and confirm availability, provider limits, delivery ETA and terms before payment.`);
   const canonical = `${SITE}${productPath(product.slug)}`;
   const breadcrumbs = [
     { name: "Home", href: "/" },
@@ -382,6 +385,8 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
             </motion.section>
           )}
         </AnimatePresence>
+
+        {guide && <ProductGuide guide={guide} prices={planPrices} whatsappLink={whatsappLink} />}
 
         {useCases.length > 0 && (
           <section className="mb-14">

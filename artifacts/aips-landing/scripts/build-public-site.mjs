@@ -23,6 +23,7 @@ try {
   run(process.execPath, ["scripts/validate-blog-prices.mjs"]);
   run(process.execPath, ["scripts/validate-higgsfield-offer.mjs"]);
   run(process.execPath, ["scripts/validate-higgsfield-payment-truth.mjs"]);
+  run(process.execPath, ["scripts/validate-product-guides.mjs"]);
   run(process.execPath, ["scripts/validate-media-registry.mjs"]);
   run(process.execPath, ["scripts/validate-legacy-url-registry.mjs"]);
   run(process.execPath, ["scripts/validate-indexnow-config.mjs"]);

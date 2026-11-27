@@ -30,6 +30,14 @@ export function guideTexts(guide) {
   for (const section of guide.sections ?? []) out.push(section.heading, ...(section.paragraphs ?? []), ...(section.bullets ?? []), ...(section.steps ?? []));
   for (const item of guide.faq ?? []) out.push(item.q, item.a);
   for (const source of guide.sources ?? []) out.push(source.label);
+  if (guide.comparison) {
+    out.push(guide.comparison.heading, guide.comparison.intro, guide.comparison.note, ...(guide.comparison.columns ?? []));
+    for (const row of guide.comparison.rows ?? []) out.push(row.label, ...(row.values ?? []));
+  }
+  if (guide.alternatives) {
+    out.push(guide.alternatives.heading, guide.alternatives.intro);
+    for (const item of guide.alternatives.items ?? []) out.push(item.name, item.note);
+  }
   return out.filter((value) => typeof value === "string" && value.trim());
 }
 
@@ -86,6 +94,18 @@ export function validateGuide(slug, guide, records) {
   for (const related of guide.relatedGuides ?? []) {
     const match = /^\/blog\/([a-z0-9-]+)$/.exec(related.href ?? "");
     if (!related.title?.trim() || !match || !blogSlugs.has(match[1])) fail(`relatedGuides entry does not point to an existing blog post: ${related.href}`);
+  }
+
+  // The comparison table must be rectangular, and alternatives must be real catalog pages.
+  if (guide.comparison) {
+    const columns = guide.comparison.columns ?? [];
+    if (columns.length < 2 || !(guide.comparison.rows ?? []).length) fail("comparison needs at least 2 columns and 1 row");
+    for (const row of guide.comparison.rows ?? []) if (!row.label?.trim() || row.values?.length !== columns.length) fail(`comparison row does not match the columns: ${row.label}`);
+  }
+  const catalogSlugs = new Set(JSON.parse(fs.readFileSync(path.join(APP, "data/products.json"), "utf8")).products.map((record) => record.slug));
+  for (const item of guide.alternatives?.items ?? []) {
+    const match = /^\/(?:product\/)?([a-z0-9-]+)$/.exec(item.href ?? "");
+    if (!item.name?.trim() || !item.note?.trim() || !match || !catalogSlugs.has(match[1]) || match[1] === slug) fail(`alternatives entry is not another catalog product page: ${item.href}`);
   }
 
   // Prices are never typed twice: every BDT figure in guide prose must be a current catalog price.
@@ -168,7 +188,13 @@ export function guideHtml(guide, records) {
   const related = (guide.relatedGuides ?? []).length
     ? `<h2>${esc(guide.provider)} guides</h2><ul>${guide.relatedGuides.map((item) => `<li><a href="${esc(item.href)}">${esc(item.title)}</a></li>`).join("")}</ul>`
     : "";
-  return `<p>${esc(guide.summary)}</p>${guide.summaryBN ? `<p lang="bn">${esc(guide.summaryBN)}</p>` : ""}${planHtml}${sections}${faq}${related}${sources}`;
+  const comparison = guide.comparison
+    ? `<h2>${esc(guide.comparison.heading)}</h2><p>${esc(guide.comparison.intro)}</p><table><thead><tr><th scope="col">Feature</th>${guide.comparison.columns.map((column) => `<th scope="col">${esc(column)}</th>`).join("")}</tr></thead><tbody>${guide.comparison.rows.map((row) => `<tr><th scope="row">${esc(row.label)}</th>${row.values.map((value) => `<td>${esc(value)}</td>`).join("")}</tr>`).join("")}</tbody></table><p>${esc(guide.comparison.note)}</p>`
+    : "";
+  const alternatives = (guide.alternatives?.items ?? []).length
+    ? `<h2>${esc(guide.alternatives.heading)}</h2><p>${esc(guide.alternatives.intro)}</p><ul>${guide.alternatives.items.map((item) => `<li><a href="${esc(item.href)}">${esc(item.name)}</a>: ${esc(item.note)}</li>`).join("")}</ul>`
+    : "";
+  return `<p>${esc(guide.summary)}</p>${guide.summaryBN ? `<p lang="bn">${esc(guide.summaryBN)}</p>` : ""}${planHtml}${comparison}${sections}${faq}${alternatives}${related}${sources}`;
 }
 
 // Product structured data for a guided page. Same shape as the approved Tier-A layer

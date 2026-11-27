@@ -7,11 +7,26 @@
       "categoryLabel": "AI Voice & Music",
       "sourceCheckedOn": "2026-11-27",
       "relatedGuides": [
-        { "title": "Cartesia in Bangladesh: plans, price and how to buy", "href": "/blog/cartesia-ai-bangladesh-guide" },
-        { "title": "Cartesia vs ElevenLabs: how to choose", "href": "/blog/cartesia-vs-elevenlabs-bangladesh" },
-        { "title": "Using Cartesia for voiceover work", "href": "/blog/cartesia-voiceover-freelancing-bangladesh" },
-        { "title": "Bangla text to speech with Cartesia", "href": "/blog/cartesia-bangla-text-to-speech-guide" },
-        { "title": "Cartesia voice agents for business", "href": "/blog/cartesia-voice-agent-business-bangladesh" }
+        {
+          "title": "Cartesia in Bangladesh: plans, price and how to buy",
+          "href": "/blog/cartesia-ai-bangladesh-guide"
+        },
+        {
+          "title": "Cartesia vs ElevenLabs: how to choose",
+          "href": "/blog/cartesia-vs-elevenlabs-bangladesh"
+        },
+        {
+          "title": "Using Cartesia for voiceover work",
+          "href": "/blog/cartesia-voiceover-freelancing-bangladesh"
+        },
+        {
+          "title": "Bangla text to speech with Cartesia",
+          "href": "/blog/cartesia-bangla-text-to-speech-guide"
+        },
+        {
+          "title": "Cartesia voice agents for business",
+          "href": "/blog/cartesia-voice-agent-business-bangladesh"
+        }
       ],
       "seoTitle": "Cartesia Price in Bangladesh: Pro, Startup, Scale in BDT",
       "seoDescription": "Cartesia Pro from BDT 990/month in Bangladesh. Pay in Taka with bKash or Nagad for a plan on your own Cartesia account. Plans, credits, Bangla support, FAQ.",
@@ -73,6 +88,20 @@
           ]
         },
         {
+          "heading": "Cartesia models: Sonic, Ink and voice agents",
+          "paragraphs": [
+            "Cartesia names its models, and the names appear in the playground and the API. These are the current ones according to Cartesia's documentation."
+          ],
+          "bullets": [
+            "Sonic 3.6 is the current text-to-speech model. Cartesia states that it starts speaking in under 90 milliseconds. Independent measurements quoted on Cartesia's own comparison pages are higher, at roughly 270 to 350 milliseconds, so measure from your own location if speed matters to you.",
+            "Sonic can follow emotion and laughter cues written in the text, and lets you adjust speed and volume and add a pronunciation dictionary for names and brands.",
+            "Ink-2 is the standard speech-to-text model. It covers English, French, Hindi, Japanese and Spanish.",
+            "Ink-preview is a preview speech-to-text model that lists 44 languages, including Bengali. Cartesia says preview models can change without notice.",
+            "Managed agents join Ink, a language model and Sonic so software can hold a spoken conversation. Agent time is billed per minute from the plan's prepaid agent balance.",
+            "Cartesia lists SOC 2 Type II, HIPAA, GDPR and PCI on its site. Data processing agreements and business associate agreements are listed under the Enterprise plan."
+          ]
+        },
+        {
           "heading": "How Cartesia credits work",
           "paragraphs": [
             "Every plan gives one shared pool of credits each month. Cartesia's documentation gives these rates, which we repeat here as a guide and not as a promise:"
@@ -96,6 +125,29 @@
             "Voice agent phone numbers supplied by Cartesia are US numbers, and outbound calls go to US numbers. Calling Bangladeshi phone numbers needs your own telephony setup.",
             "Commercial use needs Pro or higher. The Free plan is not licensed for commercial work.",
             "You may only clone your own voice or a voice whose owner has given clear permission. Impersonating another person is against Cartesia's rules."
+          ]
+        },
+        {
+          "heading": "Languages Cartesia supports",
+          "paragraphs": [
+            "Cartesia's documentation lists 44 languages for Sonic text to speech:"
+          ],
+          "bullets": [
+            "South Asian: Bengali, Hindi, Urdu, Tamil, Telugu, Gujarati, Kannada, Malayalam, Marathi, Punjabi and Odia.",
+            "European: English, French, German, Spanish, Portuguese, Italian, Dutch, Polish, Russian, Swedish, Bulgarian, Romanian, Czech, Greek, Finnish, Croatian, Slovak, Danish, Ukrainian, Hungarian and Norwegian.",
+            "East and South-East Asian: Chinese, Japanese, Korean, Vietnamese, Thai, Indonesian, Malay and Tagalog.",
+            "Middle Eastern and others: Arabic, Hebrew, Turkish and Georgian.",
+            "Listed support does not tell you how natural a given voice sounds in your language. Test before you rely on it."
+          ]
+        },
+        {
+          "heading": "Voice cloning: what you need",
+          "bullets": [
+            "Instant voice cloning (from Pro): Cartesia says 10 seconds of clean audio is enough, and it uses up to 60 seconds. One speaker only, with no background noise, music or echo. The file can be up to 16 MB.",
+            "Pro voice cloning (from Startup): at least 30 minutes of clean, single-speaker, studio-quality audio. Cartesia says training takes up to 3 hours and is free; speech made with the clone uses credits as usual.",
+            "Startup includes 2 Pro voice clone slots and Scale includes 4.",
+            "A clone is tied to one language. Cartesia provides a way to add other languages to it.",
+            "You may clone only your own voice or a voice whose owner has clearly agreed. A subscription does not give you rights to someone else's voice."
           ]
         },
         {
@@ -126,6 +178,17 @@
           ]
         },
         {
+          "heading": "After activation: your first 15 minutes",
+          "steps": [
+            "Log in at cartesia.ai with your own email and open the playground.",
+            "Paste a short paragraph, choose a language and try three or four voices.",
+            "Open the usage page to see how many credits that test used, so you can plan the month.",
+            "If you are a developer, create an API key in the dashboard and keep it private. Do not share it with anyone, including us.",
+            "Leave extra usage (overage) switched off unless you really need it.",
+            "Message us on WhatsApp if anything on the account does not match the plan you ordered."
+          ]
+        },
+        {
           "heading": "Things to know before you pay",
           "bullets": [
             "The BDT price is a monthly price. It covers the plan cost, currency conversion, payment handling and our setup and usage support.",
@@ -134,6 +197,15 @@
             "Cartesia sets and can change plan contents, prices, limits and rules. If something has changed since this page was checked, we tell you before you pay.",
             "AI Premium Shop is an independent service. We are not affiliated with or endorsed by Cartesia, and we are not an official partner or reseller of Cartesia.",
             "We never ask for your bKash or Nagad PIN or OTP."
+          ]
+        },
+        {
+          "heading": "Your data and privacy",
+          "bullets": [
+            "The account is yours. AI Premium Shop does not need your Cartesia password or API keys to support you.",
+            "Cartesia's terms give Cartesia a licence to use what you upload and generate, including to improve its models, unless you opt out. Read Cartesia's terms before uploading confidential or client audio.",
+            "Cartesia processes payments in US dollars through Stripe. When you order through us, you pay us in Taka and never enter card details on our site.",
+            "Do not upload recordings of other people without their permission."
           ]
         }
       ],
@@ -209,16 +281,264 @@
         {
           "q": "Cartesia Pro-এর দাম কত টাকা?",
           "a": "AI Premium Shop-এ Cartesia Pro মাসে ৯৯০ টাকা, Startup মাসে ৮,২৯০ টাকা এবং Scale মাসে ৫০,১৯০ টাকা। পেমেন্টের আগে WhatsApp-এ দাম আবার নিশ্চিত করা হয়।"
+        },
+        {
+          "q": "Is there a free Cartesia plan, and should I start there?",
+          "a": "Yes. Cartesia's Free plan has 20K credits a month, which is roughly 25 minutes of speech, and no commercial use licence. It is the sensible way to test voices in your language before paying. You open it yourself at cartesia.ai."
+        },
+        {
+          "q": "What is the difference between instant and Pro voice cloning?",
+          "a": "Instant cloning needs about 10 seconds of clean audio and is listed from the Pro plan. Pro voice cloning needs at least 30 minutes of studio-quality audio, gives a closer match, and is listed from the Startup plan with 2 slots (4 on Scale)."
+        },
+        {
+          "q": "Can I use the Cartesia API with this plan?",
+          "a": "Yes. Paid plans work in the browser playground and through the API. You create your own API key in the Cartesia dashboard and keep it private."
+        },
+        {
+          "q": "How many requests can I run at the same time?",
+          "a": "Cartesia lists 3 text-to-speech requests at once on Pro, 5 on Startup and 15 on Scale. Speech-to-text and agent limits are higher and are shown in the comparison table on this page."
+        },
+        {
+          "q": "Does my team get separate logins?",
+          "a": "Cartesia lists organizations, which let you invite team members, from the Startup plan. The Free plan allows one member. Cartesia does not state team membership for Pro, so plan on a single user there."
+        },
+        {
+          "q": "Will I be charged extra if I go over my credits?",
+          "a": "Not by default. Extra usage is switched off unless you turn it on in Cartesia and add a payment method there. With it off, requests stop when the credits are used."
+        },
+        {
+          "q": "Is my audio kept private?",
+          "a": "The account and its data are under your control, and we do not need your password. Cartesia's terms let Cartesia use uploads and outputs, including to improve its models, unless you opt out, so read them before uploading confidential audio."
+        },
+        {
+          "q": "What do I need to give you to place an order?",
+          "a": "The plan you want and the email address of your Cartesia account. We never ask for your bKash or Nagad PIN or OTP, and we do not need your Cartesia API keys."
+        },
+        {
+          "q": "Cartesia দিয়ে কি বাংলায় ভয়েসওভার বানানো যায়?",
+          "a": "Cartesia তাদের Sonic text-to-speech মডেলের ভাষার তালিকায় বাংলা রেখেছে। মান আপনার স্ক্রিপ্ট ও পছন্দের ওপর নির্ভর করে, তাই plan কেনার আগে Cartesia-র Free plan-এ নিজের লেখা দিয়ে পরীক্ষা করে নিন।"
+        },
+        {
+          "q": "Cartesia Pro-তে মাসে কত মিনিট অডিও পাওয়া যায়?",
+          "a": "Pro-তে মাসে 100K credit থাকে। Cartesia-র হিসাবে প্রতি মিনিট অডিওতে প্রায় ৭৫০ থেকে ৮০০ credit লাগে, তাই আনুমানিক দুই ঘণ্টার মতো। এটা একটা আনুমানিক হিসাব, বাংলা লেখায় কিছুটা কমবেশি হতে পারে।"
+        },
+        {
+          "q": "পেমেন্ট কীভাবে করব, আর অ্যাকাউন্ট কার নামে থাকবে?",
+          "a": "আপনি bKash বা Nagad দিয়ে টাকায় পেমেন্ট করবেন। Plan চালু হবে আপনার নিজের ইমেইলের Cartesia অ্যাকাউন্টে, তাই অ্যাকাউন্ট, ভয়েস আর ব্যবহার সবই আপনার নিয়ন্ত্রণে থাকবে। আমরা কখনো আপনার PIN বা OTP চাই না।"
+        },
+        {
+          "q": "Cartesia-র অডিও কি ক্লায়েন্টের কাজে বা ইউটিউবে ব্যবহার করা যাবে?",
+          "a": "Cartesia তাদের Pro ও তার ওপরের plan-এ commercial use licence দেয়। Free plan-এ এটা নেই। তবে Cartesia-র শর্ত মানা এবং যে কণ্ঠ ক্লোন করছেন তার অনুমতি থাকা আপনার দায়িত্ব।"
         }
       ],
       "sources": [
-        { "label": "Cartesia pricing", "url": "https://www.cartesia.ai/pricing" },
-        { "label": "Cartesia documentation: pricing and credits", "url": "https://docs.cartesia.ai/pricing" },
-        { "label": "Cartesia documentation: text-to-speech models and languages", "url": "https://docs.cartesia.ai/build-with-cartesia/tts-models/latest" },
-        { "label": "Cartesia documentation: speech-to-text languages", "url": "https://docs.cartesia.ai/use-the-api/stt/languages" },
-        { "label": "Cartesia terms of service", "url": "https://www.cartesia.ai/legal/terms" },
-        { "label": "Cartesia acceptable use policy", "url": "https://www.cartesia.ai/legal/acceptable-use" }
-      ]
+        {
+          "label": "Cartesia pricing",
+          "url": "https://www.cartesia.ai/pricing"
+        },
+        {
+          "label": "Cartesia documentation: pricing and credits",
+          "url": "https://docs.cartesia.ai/pricing"
+        },
+        {
+          "label": "Cartesia documentation: text-to-speech models and languages",
+          "url": "https://docs.cartesia.ai/build-with-cartesia/tts-models/latest"
+        },
+        {
+          "label": "Cartesia documentation: speech-to-text languages",
+          "url": "https://docs.cartesia.ai/use-the-api/stt/languages"
+        },
+        {
+          "label": "Cartesia terms of service",
+          "url": "https://www.cartesia.ai/legal/terms"
+        },
+        {
+          "label": "Cartesia acceptable use policy",
+          "url": "https://www.cartesia.ai/legal/acceptable-use"
+        },
+        {
+          "label": "Cartesia documentation: voice cloning",
+          "url": "https://docs.cartesia.ai/build-with-cartesia/capability-guides/clone-voices"
+        },
+        {
+          "label": "Cartesia documentation: voice agents",
+          "url": "https://docs.cartesia.ai/agents/introduction"
+        }
+      ],
+      "comparison": {
+        "heading": "Cartesia plans compared",
+        "intro": "Side-by-side figures from Cartesia's pricing page, read on 27 Nov 2026. The Free plan is included so you can see what paying adds; you open Free yourself at cartesia.ai.",
+        "columns": [
+          "Free",
+          "Pro",
+          "Startup",
+          "Scale"
+        ],
+        "rows": [
+          {
+            "label": "AI Premium Shop price per month",
+            "values": [
+              "Open it yourself",
+              "BDT 990",
+              "BDT 8,290",
+              "BDT 50,190"
+            ]
+          },
+          {
+            "label": "Cartesia list price per month",
+            "values": [
+              "$0",
+              "$5",
+              "$49",
+              "$299"
+            ]
+          },
+          {
+            "label": "Credits per month",
+            "values": [
+              "20K",
+              "100K",
+              "1.25M",
+              "8M"
+            ]
+          },
+          {
+            "label": "Speech from those credits (estimate)",
+            "values": [
+              "about 25 minutes",
+              "about 2 hours",
+              "about 26 hours",
+              "about 166 hours"
+            ]
+          },
+          {
+            "label": "Prepaid agent usage per month",
+            "values": [
+              "$1",
+              "$5",
+              "$49",
+              "$299"
+            ]
+          },
+          {
+            "label": "Commercial use licence",
+            "values": [
+              "No",
+              "Yes",
+              "Yes",
+              "Yes"
+            ]
+          },
+          {
+            "label": "Instant voice cloning",
+            "values": [
+              "No",
+              "Yes",
+              "Yes",
+              "Yes"
+            ]
+          },
+          {
+            "label": "Pro voice cloning slots",
+            "values": [
+              "None",
+              "None",
+              "2",
+              "4"
+            ]
+          },
+          {
+            "label": "Text-to-speech requests at once",
+            "values": [
+              "2",
+              "3",
+              "5",
+              "15"
+            ]
+          },
+          {
+            "label": "Speech-to-text requests at once",
+            "values": [
+              "8",
+              "12",
+              "20",
+              "60"
+            ]
+          },
+          {
+            "label": "Agent calls at once",
+            "values": [
+              "8",
+              "12",
+              "20",
+              "60"
+            ]
+          },
+          {
+            "label": "Cartesia phone numbers",
+            "values": [
+              "1",
+              "3",
+              "5",
+              "10"
+            ]
+          },
+          {
+            "label": "Team members (organizations)",
+            "values": [
+              "One member",
+              "Not stated by Cartesia",
+              "Yes",
+              "Yes"
+            ]
+          },
+          {
+            "label": "Extra credits beyond the plan, per 1M",
+            "values": [
+              "Not available",
+              "$65",
+              "$45",
+              "$38"
+            ]
+          },
+          {
+            "label": "Priority support from Cartesia",
+            "values": [
+              "No",
+              "No",
+              "No",
+              "Yes"
+            ]
+          }
+        ],
+        "note": "Speech estimates use Cartesia's stated 750 to 800 credits per minute and are rounded down. Extra credits are switched off by default and are billed by Cartesia in US dollars only if you turn them on."
+      },
+      "alternatives": {
+        "heading": "Cartesia alternatives in our catalog",
+        "intro": "If Cartesia is not the right fit, these voice and speech tools are also listed. Each has its own plans, limits and price.",
+        "items": [
+          {
+            "name": "ElevenLabs",
+            "href": "/elevenlabs-bangladesh",
+            "note": "Voice generation, cloning and dubbing, widely used for narration."
+          },
+          {
+            "name": "Murf",
+            "href": "/murf-ai-bangladesh",
+            "note": "A browser studio for voiceover with a library of ready voices."
+          },
+          {
+            "name": "Deepgram",
+            "href": "/product/deepgram-bangladesh",
+            "note": "Speech-to-text and voice APIs for developers."
+          },
+          {
+            "name": "AssemblyAI",
+            "href": "/product/assemblyai-bangladesh",
+            "note": "Speech-to-text APIs for transcription and audio analysis."
+          }
+        ]
+      }
     }
   }
 }

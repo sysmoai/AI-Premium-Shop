@@ -44,6 +44,21 @@ test("a logo that fails to load falls back to the brand tile, never a broken ima
   expect(broken).toBe(0);
 });
 
+test("guided product page fits a phone: the wide table scrolls inside its box, the page does not", async ({ page, request }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(ROUTE, { waitUntil: "networkidle" });
+  const region = page.getByTestId("guide-comparison-scroll");
+  await region.scrollIntoViewIfNeeded();
+  await expect(region).toBeVisible();
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  expect(overflow).toBeLessThanOrEqual(1);
+  const scrolls = await region.evaluate((element) => element.scrollWidth > element.clientWidth);
+  expect(scrolls).toBe(true);
+
+  // Every alternative points at a page that exists.
+  for (const item of guide.alternatives.items) expect((await request.get(`${item.href}/index.html`)).ok(), item.href).toBeTruthy();
+});
+
 test("guided product page shows plans, prices, guide sections and FAQ", async ({ page }) => {
   await page.goto(ROUTE, { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { level: 1, name: "Cartesia", exact: true })).toBeVisible();
@@ -52,6 +67,12 @@ test("guided product page shows plans, prices, guide sections and FAQ", async ({
 
   for (const price of ["৳990", "৳8,290", "৳50,190"]) await expect(guideRoot.getByText(price).first()).toBeVisible();
   for (const section of guide.sections) await expect(guideRoot.getByRole("heading", { level: 2, name: section.heading })).toBeVisible();
+
+  // Plan comparison table: one row per registered feature, prices in the first row.
+  const table = guideRoot.getByRole("table");
+  await expect(table.locator("tbody tr")).toHaveCount(guide.comparison.rows.length);
+  await expect(table.locator("tbody tr").first()).toContainText("BDT 990");
+  for (const item of guide.alternatives.items) await expect(guideRoot.locator(`a[href="${item.href}"]`)).toBeVisible();
 
   const first = guideRoot.locator("details").first();
   await expect(guideRoot.locator("details")).toHaveCount(guide.faq.length);

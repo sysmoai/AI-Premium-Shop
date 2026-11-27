@@ -2,6 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { faqSchema, guideHtml, loadGuides, validateGuide } from "./lib/product-guides.mjs";
 
 const APP = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = path.join(APP, "dist/public");
@@ -10,6 +11,8 @@ const SITE = "https://aipremiumshop.com";
 const RETIRED = new Set(["replit-bangladesh"]);
 const SPECIAL_COMPLIANCE = new Set(["higgsfield-ai-bangladesh"]);
 const { products } = JSON.parse(fs.readFileSync(path.join(APP, "data/products.json"), "utf8"));
+// Slugs with a validated guide (data/product-guides.json) get long-form content and FAQ schema.
+const guides = loadGuides();
 
 const BLOCKED = [
   "30-day warranty",
@@ -113,8 +116,12 @@ for (const entry of fs.readdirSync(PRODUCT_DIR, { withFileTypes: true })) {
     .sort((a, b) => a.price - b.price || String(a.tier ?? a.name).localeCompare(String(b.tier ?? b.name)));
   const fromPrice = fixed[0]?.price ?? null;
   const canonical = `${SITE}/product/${slug}`;
-  const title = fitTitle(`${name} Price in Bangladesh | AI Premium Shop`);
-  const description = fitDescription(fromPrice
+  // A guide is only used when it still passes validation against the projected (public) catalog,
+  // so a price that fell back to request-price can never be quoted from guide prose.
+  const guide = guides[slug] && fromPrice && validateGuide(slug, guides[slug], records).length === 0 ? guides[slug] : null;
+  if (guides[slug] && !guide) console.warn(`[product-truth] ${slug}: guide skipped because it does not match the public catalog`);
+  const title = guide ? guide.seoTitle : fitTitle(`${name} Price in Bangladesh | AI Premium Shop`);
+  const description = guide ? guide.seoDescription : fitDescription(fromPrice
     ? `${name} AIPS plans start from ${fmtBDT(fromPrice)}. Compare access and confirm availability, provider limits, delivery ETA and terms before payment.`
     : `${name} current AIPS price is confirmed on request. Compare access and confirm availability, provider limits, delivery ETA and terms before payment.`);
   const safeDescription = sanitizeProse(main.description, `${name} is listed in the current AI Premium Shop catalog. Review current plan and access details before purchase.`);
@@ -126,6 +133,7 @@ for (const entry of fs.readdirSync(PRODUCT_DIR, { withFileTypes: true })) {
 <p>${esc(safeDescription)}</p>
 <p>${fromPrice ? `Published AIPS plan prices start from <strong>${fmtBDT(fromPrice)}</strong>.` : "This listing does not publish a fixed price."}</p>
 ${planRows ? `<h2>Current public plans</h2><ul>${planRows}</ul>` : `<h2>Current plan details</h2><p>Confirm the current price and plan details before payment.</p>`}
+${guide ? guideHtml(guide, records) : ""}
 <h2>Provider-controlled details</h2>
 <p>Models, credits, quotas, storage, export quality, integrations, licensing and other provider-controlled entitlements can change by plan or account. Verify the exact current entitlements for the plan you intend to use instead of inferring them from the product name or price.</p>
 <h2>Before payment</h2>
@@ -137,6 +145,7 @@ ${planRows ? `<h2>Current public plans</h2><ul>${planRows}</ul>` : `<h2>Current 
   html = replaceMeta(html, title, description, canonical);
   html = removeUnsafeStructuredData(html);
   html = html.replace(/<div id="root">[\s\S]*?<\/div>\s*<\/div>\s*<\/body>/i, `<div id="root"><div id="prerender-shell">${body}</div></div>\n  </body>`);
+  if (guide) html = html.replace(/<\/head>/i, `  <script type="application/ld+json">${JSON.stringify(faqSchema(guide)).replace(/</g, "\\u003c")}</script>\n  </head>`);
 
   const lower = html.toLowerCase();
   for (const phrase of BLOCKED) {
@@ -144,7 +153,7 @@ ${planRows ? `<h2>Current public plans</h2><ul>${planRows}</ul>` : `<h2>Current 
   }
   if (unsafeUnlimited.test(html) && !unlimitedScope.test(html)) throw new Error(`[product-truth] ${slug} still contains unscoped unlimited`);
   if (/"availability"\s*:\s*"https:\/\/schema\.org\/instock"/i.test(html)) throw new Error(`[product-truth] ${slug} still contains synthetic InStock schema`);
-  if (/"@type"\s*:\s*"FAQPage"/i.test(html)) throw new Error(`[product-truth] ${slug} still contains FAQPage schema`);
+  if (!guide && /"@type"\s*:\s*"FAQPage"/i.test(html)) throw new Error(`[product-truth] ${slug} still contains FAQPage schema`);
   if (title.length > 70) throw new Error(`[product-truth] ${slug} title exceeds 70 chars`);
   if (description.length > 158) throw new Error(`[product-truth] ${slug} description exceeds 158 chars`);
 

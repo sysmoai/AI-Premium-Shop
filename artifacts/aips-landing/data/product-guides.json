@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "guides": {
+    "cartesia-bangladesh": {
+      "provider": "Cartesia",
+      "providerSite": "https://www.cartesia.ai",
+      "sourceCheckedOn": "2026-11-27",
+      "seoTitle": "Cartesia Price in Bangladesh: Pro, Startup, Scale in BDT",
+      "seoDescription": "Cartesia Pro from BDT 990/month in Bangladesh. Pay in Taka with bKash or Nagad for a plan on your own Cartesia account. Plans, credits, Bangla support, FAQ.",
+      "summary": "Cartesia is a voice AI platform: Sonic turns text into natural speech, Ink turns speech into text, and its agent tools combine both for real-time voice assistants. AI Premium Shop arranges a paid Cartesia plan on your own Cartesia account and takes payment in Taka.",
+      "summaryBN": "Cartesia একটি ভয়েস AI প্ল্যাটফর্ম। Sonic লেখা থেকে স্বাভাবিক কণ্ঠ তৈরি করে, Ink কথা থেকে লেখা তৈরি করে, আর agent টুল দিয়ে রিয়েল-টাইম ভয়েস অ্যাসিস্ট্যান্ট বানানো যায়। AI Premium Shop আপনার নিজের ইমেইলের Cartesia অ্যাকাউন্টে paid plan চালু করার ব্যবস্থা করে, আর আপনি টাকায় bKash বা Nagad দিয়ে পেমেন্ট করেন।",
+      "plans": [
+        {
+          "tier": "Pro",
+          "providerUSD": 5,
+          "points": [
+            "100K credits per month",
+            "$5 of prepaid agent usage per month",
+            "Commercial use licence",
+            "Instant voice cloning",
+            "Up to 3 text-to-speech requests at the same time"
+          ],
+          "fit": "Creators, students and freelancers who need a few hours of voiceover a month or want to start building with the API."
+        },
+        {
+          "tier": "Startup",
+          "providerUSD": 49,
+          "points": [
+            "1.25M credits per month",
+            "$49 of prepaid agent usage per month",
+            "Everything in Pro",
+            "Pro voice cloning (2 slots)",
+            "Organizations: invite team members",
+            "Up to 5 text-to-speech requests at the same time"
+          ],
+          "fit": "Agencies, studios and small product teams with regular production work or a voice product in testing."
+        },
+        {
+          "tier": "Scale",
+          "providerUSD": 299,
+          "points": [
+            "8M credits per month",
+            "$299 of prepaid agent usage per month",
+            "Everything in Startup",
+            "Pro voice cloning (4 slots)",
+            "Priority support from Cartesia",
+            "Up to 15 text-to-speech requests at the same time"
+          ],
+          "fit": "Companies running voice features or voice agents in production at volume."
+        }
+      ],
+      "planNote": "Plan contents are set by Cartesia and were read from cartesia.ai/pricing on 27 Nov 2026. Cartesia can change them at any time, so we reconfirm the plan with you before you pay. Cartesia also has a Free plan (20K credits, no commercial use licence) that you can open yourself to test voices first, and an Enterprise plan sold directly by Cartesia.",
+      "sections": [
+        {
+          "heading": "What Cartesia is used for",
+          "paragraphs": [
+            "Cartesia sits in the voice AI category. It is built for speech that has to sound natural and arrive quickly, which is why developers use it inside live voice assistants as well as for ordinary voiceover work."
+          ],
+          "bullets": [
+            "Sonic (text to speech): type or send text and receive spoken audio. Cartesia lists 44 languages for its current Sonic model, including Bengali, Hindi and English.",
+            "Ink (speech to text): turn recorded or live speech into text.",
+            "Voice cloning: create a voice from a short sample (instant cloning, from Pro) or a longer studio-quality sample (Pro voice cloning, from Startup).",
+            "Voice agents: connect speech to text, a language model and text to speech to hold a spoken conversation.",
+            "API and playground: use it in the browser playground or call it from your own app."
+          ]
+        },
+        {
+          "heading": "How Cartesia credits work",
+          "paragraphs": [
+            "Every plan gives one shared pool of credits each month. Cartesia's documentation gives these rates, which we repeat here as a guide and not as a promise:"
+          ],
+          "bullets": [
+            "Text to speech uses about 1 credit per character. Cartesia states this is roughly 750 to 800 credits per minute of audio.",
+            "On that basis 100K credits (Pro) is roughly 125 to 133 minutes of generated speech. This is an estimate for English-like text; Bangla text can differ.",
+            "Speech to text on the standard Ink model uses 3 credits per second of audio, so 100K credits is roughly 9 hours of transcription if used only for that.",
+            "Credits are one pool. Minutes of speech and hours of transcription are either/or, not both.",
+            "Unused credits roll over, up to twice the plan's monthly credits.",
+            "Extra usage beyond the plan (overage) is switched off by default. With it off, requests stop when credits run out, so there is no surprise bill.",
+            "Voice agents are billed in US dollars per minute from the plan's prepaid agent balance. Telephony and language-model costs are charged separately by Cartesia."
+          ]
+        },
+        {
+          "heading": "Bangla and local use",
+          "paragraphs": [
+            "Bengali is on Cartesia's language list for Sonic text to speech. For speech to text, Bengali is currently listed only on Cartesia's preview Ink model, which Cartesia says can change without notice. We have not graded the quality of Bangla voices ourselves, so open a Free account at cartesia.ai and test your own script before paying for a plan."
+          ],
+          "bullets": [
+            "Voice agent phone numbers supplied by Cartesia are US numbers, and outbound calls go to US numbers. Calling Bangladeshi phone numbers needs your own telephony setup.",
+            "Commercial use needs Pro or higher. The Free plan is not licensed for commercial work.",
+            "You may only clone your own voice or a voice whose owner has given clear permission. Impersonating another person is against Cartesia's rules."
+          ]
+        },
+        {
+          "heading": "Who Cartesia suits in Bangladesh",
+          "paragraphs": [
+            "These are common ways people put a voice AI plan to work. They are examples of use, not income promises: what you earn depends on your own skills, clients and effort."
+          ],
+          "bullets": [
+            "Content creators: narration for YouTube, Facebook and short-form video without booking a studio.",
+            "Freelancers: voiceover, audio ads, explainer videos and e-learning narration for clients, using the commercial use licence that starts at Pro.",
+            "Course makers and teachers: turn written lessons into audio in English or Bangla.",
+            "Developers and startups: add spoken replies to an app, or prototype a voice assistant for support, bookings or lead follow-up.",
+            "Agencies and studios: produce voiceover in several languages for the same script.",
+            "Businesses: test voice responses for customer service before committing to a larger build."
+          ]
+        },
+        {
+          "heading": "How ordering works with AI Premium Shop",
+          "paragraphs": [
+            "You pay in Bangladeshi Taka and the plan is arranged on a Cartesia account under your own email, so the account, voices and usage stay with you."
+          ],
+          "steps": [
+            "Choose Pro, Startup or Scale. If you are unsure, tell us what you want to make and how many minutes a month you expect.",
+            "Message us on WhatsApp. We confirm the current plan contents, the BDT price, availability and the delivery ETA for your order.",
+            "Pay in Taka with bKash or Nagad after those details are confirmed.",
+            "We arrange the paid plan on the Cartesia account registered to your email and confirm when it is active.",
+            "Log in to Cartesia with your own email and start using your credits. Ask us on WhatsApp if you need help getting started."
+          ]
+        },
+        {
+          "heading": "Things to know before you pay",
+          "bullets": [
+            "The BDT price is a monthly price. It covers the plan cost, currency conversion, payment handling and our setup and usage support.",
+            "Cartesia plans renew monthly. Tell us before your renewal date if you want to continue, change plan or stop.",
+            "Cartesia's terms say subscription payments are non-refundable. Any order-specific resolution is agreed with us on WhatsApp before payment.",
+            "Cartesia sets and can change plan contents, prices, limits and rules. If something has changed since this page was checked, we tell you before you pay.",
+            "AI Premium Shop is an independent service. We are not affiliated with or endorsed by Cartesia, and we are not an official partner or reseller of Cartesia.",
+            "We never ask for your bKash or Nagad PIN or OTP."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is the price of Cartesia in Bangladesh?",
+          "a": "At AI Premium Shop the published monthly prices are BDT 990 for Cartesia Pro, BDT 8,290 for Startup and BDT 50,190 for Scale. We reconfirm the price and plan contents on WhatsApp before you pay."
+        },
+        {
+          "q": "How can I pay for Cartesia from Bangladesh?",
+          "a": "You pay us in Taka with bKash or Nagad. You do not need to pay Cartesia in US dollars yourself. The exact payment instruction is given on WhatsApp once your order is confirmed."
+        },
+        {
+          "q": "Is the subscription on my own account?",
+          "a": "Yes. The paid plan is arranged on a Cartesia account registered to your own email, so you log in yourself and your voices, API keys and usage stay under your control."
+        },
+        {
+          "q": "Which Cartesia plan should I choose?",
+          "a": "Pro suits individuals who need roughly two hours of speech a month or want to try the API with a commercial use licence. Startup suits teams and regular production, and adds Pro voice cloning and team members. Scale is for products running at volume. Tell us your monthly usage and we will suggest the lowest plan that covers it."
+        },
+        {
+          "q": "How much audio do I get with Cartesia Pro?",
+          "a": "Pro includes 100K credits a month. Cartesia states text to speech uses about 750 to 800 credits per minute, so that is roughly 125 to 133 minutes of speech if you use the credits only for that. Treat it as an estimate, especially for Bangla text."
+        },
+        {
+          "q": "Does Cartesia support Bangla?",
+          "a": "Cartesia lists Bengali among the 44 languages of its current Sonic text-to-speech model. For speech to text, Bengali is currently listed only on a preview model. Test your own script on Cartesia's Free plan first to judge the quality for your work."
+        },
+        {
+          "q": "Can I use Cartesia audio for client work, YouTube or ads?",
+          "a": "Cartesia lists a commercial use licence on Pro and higher plans. The Free plan does not include it. You are still responsible for following Cartesia's terms and for having the right to use any voice you clone."
+        },
+        {
+          "q": "Can I clone my own voice?",
+          "a": "Instant voice cloning is listed from Pro and works from a short, clean sample of one speaker. Pro voice cloning, which uses at least 30 minutes of studio-quality audio, starts at Startup. You may only clone your own voice or a voice whose owner has clearly agreed."
+        },
+        {
+          "q": "What happens if I use all my credits?",
+          "a": "Overage is off by default, so requests stop until the next renewal or until you move to a higher plan. Unused credits roll over, up to twice your plan's monthly amount."
+        },
+        {
+          "q": "Can I build a voice agent or call bot with it?",
+          "a": "Yes, Cartesia provides agent tools and each plan includes a prepaid agent balance. Phone numbers supplied by Cartesia are US numbers, and telephony and language-model costs are billed separately by Cartesia, so check this before planning a Bangladesh phone line."
+        },
+        {
+          "q": "How long does activation take?",
+          "a": "We confirm the delivery ETA for your exact order on WhatsApp before you pay, because it depends on the plan and on provider checkout at that time."
+        },
+        {
+          "q": "How do I renew next month?",
+          "a": "Message us before your renewal date and pay the monthly BDT price again. If you do not want to continue, tell us and the plan is not renewed."
+        },
+        {
+          "q": "Can I upgrade from Pro to Startup later?",
+          "a": "Yes. Tell us on WhatsApp and we confirm the current price for the higher plan. Cartesia states that the new plan's credits are added when you upgrade."
+        },
+        {
+          "q": "Is there a refund?",
+          "a": "Cartesia's terms say subscription payments are non-refundable. That is why we confirm the plan, price and your account email with you before payment. If something goes wrong with an order, contact us on WhatsApp and we work out a resolution for that order."
+        },
+        {
+          "q": "Is AI Premium Shop an official Cartesia partner?",
+          "a": "No. We are an independent service based in Bangladesh and are not an official partner or reseller of Cartesia. We help customers here pay in Taka for a plan on their own Cartesia account."
+        },
+        {
+          "q": "Is Cartesia better than ElevenLabs?",
+          "a": "They overlap, and the right choice depends on the job. Cartesia focuses on fast, real-time speech and developer use, while many creators already know ElevenLabs for narration. Both have free tiers, so test the same script on each before choosing. We list ElevenLabs separately in our voice and music category."
+        },
+        {
+          "q": "Cartesia কি বাংলাদেশ থেকে টাকায় কেনা যায়?",
+          "a": "হ্যাঁ। AI Premium Shop-এ আপনি bKash বা Nagad দিয়ে টাকায় পেমেন্ট করেন, আর plan চালু হয় আপনার নিজের ইমেইলের Cartesia অ্যাকাউন্টে। পেমেন্টের আগে WhatsApp-এ বর্তমান দাম, plan আর সময় নিশ্চিত করা হয়।"
+        },
+        {
+          "q": "Cartesia Pro-এর দাম কত টাকা?",
+          "a": "AI Premium Shop-এ Cartesia Pro মাসে ৯৯০ টাকা, Startup মাসে ৮,২৯০ টাকা এবং Scale মাসে ৫০,১৯০ টাকা। পেমেন্টের আগে WhatsApp-এ দাম আবার নিশ্চিত করা হয়।"
+        }
+      ],
+      "sources": [
+        { "label": "Cartesia pricing", "url": "https://www.cartesia.ai/pricing" },
+        { "label": "Cartesia documentation: pricing and credits", "url": "https://docs.cartesia.ai/pricing" },
+        { "label": "Cartesia documentation: text-to-speech models and languages", "url": "https://docs.cartesia.ai/build-with-cartesia/tts-models/latest" },
+        { "label": "Cartesia documentation: speech-to-text languages", "url": "https://docs.cartesia.ai/use-the-api/stt/languages" },
+        { "label": "Cartesia terms of service", "url": "https://www.cartesia.ai/legal/terms" },
+        { "label": "Cartesia acceptable use policy", "url": "https://www.cartesia.ai/legal/acceptable-use" }
+      ]
+    }
+  }
+}

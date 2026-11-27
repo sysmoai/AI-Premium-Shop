@@ -11052,52 +11052,121 @@
       "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
     },
     {
-      "id": "cartesia-request",
-      "name": "Cartesia",
+      "id": "cartesia-pro-personal",
+      "name": "Cartesia Pro",
       "slug": "cartesia-bangladesh",
       "brand": "Cartesia",
       "brandSlug": "cartesia-bangladesh",
       "provider": "Cartesia",
       "brandColor": "#0f172a",
       "category": "ai-voice-music",
-      "price": null,
-      "requestPrice": true,
-      "tier": "All Plans",
+      "price": 990,
+      "officialUSD": 5,
+      "tier": "Pro",
       "accessType": "personal",
-      "description": "Real-time voice AI platform — ultra-low-latency text-to-speech and voice cloning built for live agents, games and interactive applications.",
-      "descriptionBN": "রিয়েল-টাইম ভয়েস AI প্ল্যাটফর্ম — লাইভ এজেন্ট ও ইন্টার‌্যাক্টিভ অ্যাপের জন্য আল্ট্রা-লো-লেটেন্সি TTS ও ভয়েস ক্লোনিং।",
+      "description": "Cartesia Pro: real-time voice AI with 100K credits a month, a commercial use licence and instant voice cloning. Use Sonic text to speech, Ink speech to text and the voice agent tools from the playground or the API.",
+      "descriptionBN": "রিয়েল-টাইম ভয়েস AI প্ল্যাটফর্ম — লেখা থেকে স্বাভাবিক কণ্ঠ (TTS), কথা থেকে লেখা (STT), ভয়েস ক্লোনিং ও ভয়েস এজেন্ট। আপনার নিজের ইমেইলের Cartesia অ্যাকাউন্টে plan, পেমেন্ট টাকায়।",
       "capabilities": [
         "tts",
+        "stt",
         "voice-clone",
         "realtime",
         "api"
       ],
       "deliverySLA": "Confirmed on WhatsApp",
       "featured": false,
-      "whatsappMsg": "Hi, I want Cartesia from AI Premium Shop. Please share the current price, plans and next steps.",
+      "whatsappMsg": "Hi, I want Cartesia Pro (৳990/mo) from AI Premium Shop. Please confirm the current plan, availability and next steps.",
       "status": "Active",
-      "sourceUrl": "https://cartesia.ai",
-      "lastVerifiedDate": "2026-08-02",
+      "sourceUrl": "https://www.cartesia.ai/pricing",
+      "lastVerifiedDate": "2026-11-27",
       "uniqueSellingPoints": [
-        "Pay with bKash or Nagad — no international card needed",
-        "Current price and plan options confirmed on WhatsApp",
-        "Real human support, not a bot"
+        "Pay in Taka with bKash or Nagad",
+        "Plan arranged on your own Cartesia account",
+        "Commercial use licence listed by Cartesia from Pro",
+        "Bengali listed for Sonic text to speech",
+        "Human support on WhatsApp"
       ],
-      "faq": [
-        {
-          "q": "How much does Cartesia cost in Bangladesh?",
-          "a": "Plan pricing for Cartesia is set by the provider and changes periodically, so we confirm the current price on WhatsApp before you order rather than publishing a figure that may be out of date."
-        },
-        {
-          "q": "How do I pay for Cartesia?",
-          "a": "bKash, Nagad, Rocket or bank transfer. No international credit card is required."
-        },
-        {
-          "q": "How is Cartesia delivered?",
-          "a": "Delivery method and timeline are confirmed on WhatsApp when we quote the current price, since it depends on the plan and access model."
-        }
+      "useCasesBD": [
+        "Voiceover for YouTube and Facebook video",
+        "Client voiceover and audio ads",
+        "E-learning and course narration",
+        "Bangla and English text to speech",
+        "Voice agents and call assistants",
+        "Speech to text transcription",
+        "Voice cloning with consent",
+        "Dubbing and localization",
+        "Apps and games with spoken replies"
       ],
-      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02)"
+      "deliveryModel": "customer-owned-account-purchase-assistance",
+      "accountOwnership": "customer",
+      "offerDataSource": "data/product-guides.json",
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02); priced tiers CEO-approved 2026-11-27"
+    },
+    {
+      "id": "cartesia-startup-personal",
+      "name": "Cartesia Startup",
+      "slug": "cartesia-bangladesh",
+      "brand": "Cartesia",
+      "brandSlug": "cartesia-bangladesh",
+      "provider": "Cartesia",
+      "brandColor": "#0f172a",
+      "category": "ai-voice-music",
+      "price": 8290,
+      "officialUSD": 49,
+      "tier": "Startup",
+      "accessType": "personal",
+      "description": "Cartesia Startup: 1.25M credits a month, Pro voice cloning, team organizations and higher concurrency for regular production work and voice products in testing.",
+      "descriptionBN": "রিয়েল-টাইম ভয়েস AI প্ল্যাটফর্ম — লেখা থেকে স্বাভাবিক কণ্ঠ (TTS), কথা থেকে লেখা (STT), ভয়েস ক্লোনিং ও ভয়েস এজেন্ট। আপনার নিজের ইমেইলের Cartesia অ্যাকাউন্টে plan, পেমেন্ট টাকায়।",
+      "capabilities": [
+        "tts",
+        "stt",
+        "voice-clone",
+        "realtime",
+        "api"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Cartesia Startup (৳8290/mo) from AI Premium Shop. Please confirm the current plan, availability and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.cartesia.ai/pricing",
+      "lastVerifiedDate": "2026-11-27",
+      "deliveryModel": "customer-owned-account-purchase-assistance",
+      "accountOwnership": "customer",
+      "offerDataSource": "data/product-guides.json",
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02); priced tiers CEO-approved 2026-11-27"
+    },
+    {
+      "id": "cartesia-scale-personal",
+      "name": "Cartesia Scale",
+      "slug": "cartesia-bangladesh",
+      "brand": "Cartesia",
+      "brandSlug": "cartesia-bangladesh",
+      "provider": "Cartesia",
+      "brandColor": "#0f172a",
+      "category": "ai-voice-music",
+      "price": 50190,
+      "officialUSD": 299,
+      "tier": "Scale",
+      "accessType": "personal",
+      "description": "Cartesia Scale: 8M credits a month, priority support from Cartesia and high concurrency limits for voice features and voice agents running in production.",
+      "descriptionBN": "রিয়েল-টাইম ভয়েস AI প্ল্যাটফর্ম — লেখা থেকে স্বাভাবিক কণ্ঠ (TTS), কথা থেকে লেখা (STT), ভয়েস ক্লোনিং ও ভয়েস এজেন্ট। আপনার নিজের ইমেইলের Cartesia অ্যাকাউন্টে plan, পেমেন্ট টাকায়।",
+      "capabilities": [
+        "tts",
+        "stt",
+        "voice-clone",
+        "realtime",
+        "api"
+      ],
+      "deliverySLA": "Confirmed on WhatsApp",
+      "featured": false,
+      "whatsappMsg": "Hi, I want Cartesia Scale (৳50190/mo) from AI Premium Shop. Please confirm the current plan, availability and next steps.",
+      "status": "Active",
+      "sourceUrl": "https://www.cartesia.ai/pricing",
+      "lastVerifiedDate": "2026-11-27",
+      "deliveryModel": "customer-owned-account-purchase-assistance",
+      "accountOwnership": "customer",
+      "offerDataSource": "data/product-guides.json",
+      "atlas_source": "ATLAS canonical gap list, CEO-approved option B (2026-08-02); priced tiers CEO-approved 2026-11-27"
     },
     {
       "id": "ahrefs-request",

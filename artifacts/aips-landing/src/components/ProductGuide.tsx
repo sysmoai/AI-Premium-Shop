@@ -1,4 +1,5 @@
-import { Check, ChevronDown, ExternalLink } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, ExternalLink } from "lucide-react";
+import { Link } from "wouter";
 import { formatBDT } from "@/lib/format";
 import { schemaJson } from "@/utils/schemas";
 import guidesData from "../../data/product-guides.json";
@@ -17,6 +18,8 @@ export interface ProductGuideData {
   sections: { heading: string; paragraphs?: string[]; bullets?: string[]; steps?: string[] }[];
   faq: { q: string; a: string }[];
   sources: { label: string; url: string }[];
+  categoryLabel?: string;
+  relatedGuides?: { title: string; href: string }[];
 }
 
 const guides = (guidesData as { guides?: Record<string, ProductGuideData> }).guides ?? {};
@@ -31,7 +34,21 @@ export function productGuideFor(slug: string, prices: Map<string, number>): Prod
 
 const card = "rounded-2xl border border-white/10 bg-[#151b3d] p-6";
 
-export default function ProductGuide({ guide, prices, whatsappLink }: { guide: ProductGuideData; prices: Map<string, number>; whatsappLink: string }) {
+export default function ProductGuide({ guide, prices, whatsappLink, canonical }: { guide: ProductGuideData; prices: Map<string, number>; whatsappLink: string; canonical: string }) {
+  // Same shape as the approved Tier-A product schema: published BDT prices only, and
+  // deliberately no availability, shipping, return policy, rating or review fields.
+  const priced = [...prices.values()];
+  const seller = { "@type": "Organization", name: "AI Premium Shop", url: "https://aipremiumshop.com" };
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: guide.provider,
+    url: canonical,
+    ...(guide.categoryLabel ? { category: guide.categoryLabel } : {}),
+    offers: priced.length === 1
+      ? { "@type": "Offer", url: canonical, price: priced[0], priceCurrency: "BDT", seller }
+      : { "@type": "AggregateOffer", url: canonical, lowPrice: Math.min(...priced), highPrice: Math.max(...priced), offerCount: priced.length, priceCurrency: "BDT", seller },
+  };
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -42,6 +59,7 @@ export default function ProductGuide({ guide, prices, whatsappLink }: { guide: P
   return (
     <div data-testid="product-guide">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson(productSchema) }} />
 
       <section className={`mb-12 ${card}`} aria-labelledby="guide-overview">
         <h2 id="guide-overview" className="mb-3 text-2xl font-bold text-white">{guide.provider} in Bangladesh at a glance</h2>
@@ -109,6 +127,20 @@ export default function ProductGuide({ guide, prices, whatsappLink }: { guide: P
         </div>
         <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-xl bg-[#008236] px-6 py-3 font-bold text-white">Ask a question on WhatsApp</a>
       </section>
+
+      {guide.relatedGuides && guide.relatedGuides.length > 0 && (
+        <section className="mb-14" aria-labelledby="guide-related">
+          <h2 id="guide-related" className="mb-5 text-2xl font-bold text-white">{guide.provider} guides</h2>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {guide.relatedGuides.map((item) => (
+              <Link key={item.href} href={item.href} className="flex min-h-12 items-center justify-between gap-3 rounded-xl border border-white/10 bg-[#151b3d] p-4 font-semibold text-white transition hover:border-[#f4b942]/40">
+                {item.title}
+                <ArrowRight className="h-4 w-4 flex-shrink-0 text-[#f4b942]" aria-hidden="true" />
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className={`mb-14 ${card}`} aria-labelledby="guide-sources">
         <h2 id="guide-sources" className="mb-2 text-lg font-bold text-white">Sources</h2>

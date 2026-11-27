@@ -2,7 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { faqSchema, guideHtml, loadGuides, validateGuide } from "./lib/product-guides.mjs";
+import { faqSchema, guideHtml, loadGuides, productSchema, validateGuide } from "./lib/product-guides.mjs";
 
 const APP = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = path.join(APP, "dist/public");
@@ -145,7 +145,10 @@ ${guide ? guideHtml(guide, records) : ""}
   html = replaceMeta(html, title, description, canonical);
   html = removeUnsafeStructuredData(html);
   html = html.replace(/<div id="root">[\s\S]*?<\/div>\s*<\/div>\s*<\/body>/i, `<div id="root"><div id="prerender-shell">${body}</div></div>\n  </body>`);
-  if (guide) html = html.replace(/<\/head>/i, `  <script type="application/ld+json">${JSON.stringify(faqSchema(guide)).replace(/</g, "\\u003c")}</script>\n  </head>`);
+  if (guide) {
+    const blocks = [faqSchema(guide), productSchema(guide, records, canonical)].filter(Boolean);
+    html = html.replace(/<\/head>/i, `${blocks.map((block) => `  <script type="application/ld+json">${JSON.stringify(block).replace(/</g, "\\u003c")}</script>\n`).join("")}  </head>`);
+  }
 
   const lower = html.toLowerCase();
   for (const phrase of BLOCKED) {

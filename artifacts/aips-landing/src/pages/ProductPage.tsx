@@ -15,6 +15,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { SEOHead } from "@/components/SEOHead";
 import ProductMedia from "@/components/ProductMedia";
 import ProductGuide, { productGuideFor } from "@/components/ProductGuide";
+import { BrandIcon } from "@/components/BrandIcon";
 import { formatBDT } from "@/lib/format";
 import { productPath } from "@/lib/productRoutes";
 import { breadcrumbSchema, schemaJson } from "@/utils/schemas";
@@ -289,6 +290,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
           <motion.div initial={reducedMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
             <div className="mb-4 flex items-center gap-3">
               {product.logo && <img src={product.logo} alt={`${product.name} logo`} width={56} height={56} className="rounded-xl object-contain" />}
+              {!product.logo && guide && <BrandIcon brand={guide.provider} color={product.brandColor} size={52} />}
               <div>
                 <h1 className="text-3xl font-bold leading-tight text-white md:text-4xl">{displayName}</h1>
                 {product.tagline && !isUnsafeClaim(product.tagline) && <p className="mt-1 text-sm text-[#f4b942]">{product.tagline}</p>}
@@ -388,7 +390,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
           )}
         </AnimatePresence>
 
-        {guide && <ProductGuide guide={guide} prices={planPrices} whatsappLink={whatsappLink} />}
+        {guide && <ProductGuide guide={guide} prices={planPrices} whatsappLink={whatsappLink} canonical={canonical} />}
 
         {useCases.length > 0 && (
           <section className="mb-14">

@@ -4,7 +4,15 @@
     "cartesia-bangladesh": {
       "provider": "Cartesia",
       "providerSite": "https://www.cartesia.ai",
+      "categoryLabel": "AI Voice & Music",
       "sourceCheckedOn": "2026-11-27",
+      "relatedGuides": [
+        { "title": "Cartesia in Bangladesh: plans, price and how to buy", "href": "/blog/cartesia-ai-bangladesh-guide" },
+        { "title": "Cartesia vs ElevenLabs: how to choose", "href": "/blog/cartesia-vs-elevenlabs-bangladesh" },
+        { "title": "Using Cartesia for voiceover work", "href": "/blog/cartesia-voiceover-freelancing-bangladesh" },
+        { "title": "Bangla text to speech with Cartesia", "href": "/blog/cartesia-bangla-text-to-speech-guide" },
+        { "title": "Cartesia voice agents for business", "href": "/blog/cartesia-voice-agent-business-bangladesh" }
+      ],
       "seoTitle": "Cartesia Price in Bangladesh: Pro, Startup, Scale in BDT",
       "seoDescription": "Cartesia Pro from BDT 990/month in Bangladesh. Pay in Taka with bKash or Nagad for a plan on your own Cartesia account. Plans, credits, Bangla support, FAQ.",
       "summary": "Cartesia is a voice AI platform: Sonic turns text into natural speech, Ink turns speech into text, and its agent tools combine both for real-time voice assistants. AI Premium Shop arranges a paid Cartesia plan on your own Cartesia account and takes payment in Taka.",

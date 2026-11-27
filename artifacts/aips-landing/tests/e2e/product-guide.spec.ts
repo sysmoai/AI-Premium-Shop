@@ -53,6 +53,19 @@ test("guided product crawler HTML carries the guide, FAQ schema and no blocked c
   expect(faq).toBeTruthy();
   expect(faq.mainEntity).toHaveLength(guide.faq.length);
   expect(faq.mainEntity[0].name).toBe(guide.faq[0].q);
+
+  // Product schema: published BDT prices only, in the approved Tier-A shape.
+  const product = blocks.find((block) => block["@type"] === "Product");
+  expect(product).toBeTruthy();
+  expect(product.name).toBe("Cartesia");
+  expect(product.offers).toMatchObject({ "@type": "AggregateOffer", lowPrice: 990, highPrice: 50190, offerCount: 3, priceCurrency: "BDT" });
+  expect(JSON.stringify(product)).not.toMatch(/"availability"|"shippingDetails"|"hasMerchantReturnPolicy"|"priceValidUntil"|"aggregateRating"|"review"|"image"/i);
+
+  // Every related guide link points at a page that exists.
+  for (const related of guide.relatedGuides) {
+    expect(raw).toContain(`href="${related.href}"`);
+    expect((await request.get(`${related.href}/index.html`)).ok(), related.href).toBeTruthy();
+  }
   expect(html).not.toContain('"availability":"https://schema.org/instock"');
   expect(html).not.toContain("aggregaterating");
   for (const phrase of BLOCKED) expect(html, phrase).not.toContain(phrase);

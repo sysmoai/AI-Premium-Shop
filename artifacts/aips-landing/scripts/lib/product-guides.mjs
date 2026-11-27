@@ -25,7 +25,7 @@ export function approvedPaymentMethods() {
 
 // Every string a visitor or crawler can read from a guide.
 export function guideTexts(guide) {
-  const out = [guide.seoTitle, guide.seoDescription, guide.summary, guide.summaryBN, guide.planNote];
+  const out = [guide.seoTitle, guide.seoDescription, guide.summary, guide.summaryBN, guide.planNote, ...(guide.relatedGuides ?? []).map((item) => item.title)];
   for (const plan of guide.plans ?? []) out.push(plan.tier, plan.fit, ...(plan.points ?? []));
   for (const section of guide.sections ?? []) out.push(section.heading, ...(section.paragraphs ?? []), ...(section.bullets ?? []), ...(section.steps ?? []));
   for (const item of guide.faq ?? []) out.push(item.q, item.a);
@@ -80,6 +80,13 @@ export function validateGuide(slug, guide, records) {
     if (!host || !(host === providerHost || host.endsWith(`.${providerHost}`))) fail(`source is not an https page on ${providerHost}: ${source.url}`);
   }
   if (!(guide.sources ?? []).length) fail("at least one provider source required");
+
+  // Related guides must be real blog posts, so the page never links to a missing article.
+  const blogSlugs = new Set(JSON.parse(fs.readFileSync(path.join(APP, "data/blog-guides.json"), "utf8")).posts.map((post) => post.slug));
+  for (const related of guide.relatedGuides ?? []) {
+    const match = /^\/blog\/([a-z0-9-]+)$/.exec(related.href ?? "");
+    if (!related.title?.trim() || !match || !blogSlugs.has(match[1])) fail(`relatedGuides entry does not point to an existing blog post: ${related.href}`);
+  }
 
   // Prices are never typed twice: every BDT figure in guide prose must be a current catalog price.
   const prices = new Map(records.filter((r) => typeof r.price === "number" && !r.requestPrice).map((r) => [r.tier, r.price]));
@@ -158,7 +165,23 @@ export function guideHtml(guide, records) {
   const sections = (guide.sections ?? []).map((section) => `<h2>${esc(section.heading)}</h2>${(section.paragraphs ?? []).map((p) => `<p>${esc(p)}</p>`).join("")}${list(section.bullets)}${list(section.steps, "ol")}`).join("");
   const faq = `<h2>${esc(guide.provider)} in Bangladesh: questions and answers</h2>${(guide.faq ?? []).map((item) => `<h3>${esc(item.q)}</h3><p>${esc(item.a)}</p>`).join("")}`;
   const sources = `<h2>Sources</h2><p>Provider facts on this page were checked against these ${esc(guide.provider)} pages on ${esc(guide.sourceCheckedOn)}.</p><ul>${(guide.sources ?? []).map((s) => `<li><a href="${esc(s.url)}" rel="nofollow noopener">${esc(s.label)}</a></li>`).join("")}</ul>`;
-  return `<p>${esc(guide.summary)}</p>${guide.summaryBN ? `<p lang="bn">${esc(guide.summaryBN)}</p>` : ""}${planHtml}${sections}${faq}${sources}`;
+  const related = (guide.relatedGuides ?? []).length
+    ? `<h2>${esc(guide.provider)} guides</h2><ul>${guide.relatedGuides.map((item) => `<li><a href="${esc(item.href)}">${esc(item.title)}</a></li>`).join("")}</ul>`
+    : "";
+  return `<p>${esc(guide.summary)}</p>${guide.summaryBN ? `<p lang="bn">${esc(guide.summaryBN)}</p>` : ""}${planHtml}${sections}${faq}${related}${sources}`;
+}
+
+// Product structured data for a guided page. Same shape as the approved Tier-A layer
+// (scripts/apply-tier-a-seo-layer.mjs): published BDT prices only, and deliberately no
+// availability, shipping, return policy, rating or review fields.
+export function productSchema(guide, records, canonical) {
+  const priced = records.filter((r) => typeof r.price === "number" && r.price > 0 && !r.requestPrice).map((r) => Number(r.price));
+  if (!priced.length) return null;
+  const seller = { "@type": "Organization", name: "AI Premium Shop", url: "https://aipremiumshop.com" };
+  const offers = priced.length === 1
+    ? { "@type": "Offer", url: canonical, price: priced[0], priceCurrency: "BDT", seller }
+    : { "@type": "AggregateOffer", url: canonical, lowPrice: Math.min(...priced), highPrice: Math.max(...priced), offerCount: priced.length, priceCurrency: "BDT", seller };
+  return { "@context": "https://schema.org", "@type": "Product", name: guide.provider, url: canonical, ...(guide.categoryLabel ? { category: guide.categoryLabel } : {}), offers };
 }
 
 export function faqSchema(guide) {

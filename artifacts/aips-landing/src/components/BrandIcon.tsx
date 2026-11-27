@@ -9,6 +9,8 @@ const BRAND_MAP: Record<string, { bg: string; initial: string }> = {
   github:     { bg: "#6e40c9", initial: "G" },
   cursor:     { bg: "#111827", initial: "C" },
   elevenlabs: { bg: "#111827", initial: "E" },
+  // Cartesia's published brand green ("Verdant"). An initial tile, not the Cartesia logo.
+  cartesia:   { bg: "#309d4b", initial: "C" },
   suno:       { bg: "#7c3aed", initial: "S" },
   runway:     { bg: "#111827", initial: "R" },
   notion:     { bg: "#111827", initial: "N" },

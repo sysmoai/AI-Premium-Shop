@@ -106,13 +106,13 @@
     "quarantine_behavior": "Fail closed by stripping all protected commercial fields, prices and access models while retaining raw catalog identity records."
   },
   "catalog_snapshot": {
-    "as_of": "2026-08-14",
-    "record_count": 239,
+    "as_of": "2026-11-27",
+    "record_count": 241,
     "shared_access_records": 44,
-    "records_missing_commercialStatus": 239,
-    "records_missing_verificationDate": 239,
+    "records_missing_commercialStatus": 241,
+    "records_missing_verificationDate": 241,
     "records_missing_sourceUrl": 14,
-    "records_missing_officialUSD": 159,
+    "records_missing_officialUSD": 158,
     "records_with_unverified_trust_rating_or_reviewCount": 9,
     "status": "open-audit-debt",
     "note": "This snapshot describes the raw canonical catalog, not the current public projection. Missing-evidence counts treat both absent and null values as unknown. Do not populate synthetic values merely to make validator warnings disappear."

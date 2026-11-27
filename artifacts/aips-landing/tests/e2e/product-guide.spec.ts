@@ -12,7 +12,7 @@ const approvedMethods: string[] = commercial.public_claim_policy.payment.approve
 
 const BLOCKED = [
   "warranty", "guarantee", "instant delivery", "instant access", "official reseller", "authorized reseller",
-  "authentic subscription", "no international card", "best value", "trusted by", "rocket", "bank transfer", "upay",
+  "authentic subscription", "no international card", "best value", "trusted by", "usdt", "crypto", "credit card", "debit card",
 ];
 
 const LOGO_URI = "https://media.aipremiumshop.com/brands/cartesia/cartesia-logo-white-v1.svg";

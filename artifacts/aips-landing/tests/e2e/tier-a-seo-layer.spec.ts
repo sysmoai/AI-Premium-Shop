@@ -70,9 +70,9 @@ test("Higgsfield remains inquiry-only and publishes only SSOT-approved payment m
   await expect(page.locator('script[data-tier-a-runtime="true"]')).toHaveCount(0);
 
   const bodyText = await page.locator("body").innerText();
-  expect(bodyText).toMatch(/bKash/i);
-  expect(bodyText).toMatch(/Nagad/i);
-  expect(bodyText).not.toMatch(/\bRocket\b|bank transfer/i);
+  // Every SSOT-approved method is named (owner decision 2026-11-27 added Rocket, Upay and bank transfer).
+  for (const method of [/bKash/i, /Nagad/i, /Rocket/i, /Upay/i, /bank transfer/i]) expect(bodyText).toMatch(method);
+  expect(bodyText).not.toMatch(/\bUSDT\b|crypto/i);
 
   const nodes = await jsonLd(page);
   const products = nodes.filter((node) => types(node).includes("Product"));
@@ -83,7 +83,7 @@ test("Higgsfield remains inquiry-only and publishes only SSOT-approved payment m
   expect(products[0].offers).toBeUndefined();
   const schemaText = JSON.stringify(nodes);
   expect(schemaText).not.toMatch(/"availability"|"aggregateRating"|"review"/i);
-  expect(schemaText).not.toMatch(/\bRocket\b|bank transfer/i);
+  expect(schemaText).not.toMatch(/\bUSDT\b|crypto/i);
   expect(faqPages).toHaveLength(1);
   expect(schemaText).toMatch(/bKash/i);
   expect(schemaText).toMatch(/Nagad/i);

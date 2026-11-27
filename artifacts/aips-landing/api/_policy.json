@@ -5,7 +5,10 @@
   "payment": {
     "approved_public_methods": [
       "bKash",
-      "Nagad"
+      "Nagad",
+      "Rocket",
+      "Upay",
+      "Bank transfer"
     ],
     "unlisted_method_claim_allowed": false,
     "credentials_may_be_requested": false,

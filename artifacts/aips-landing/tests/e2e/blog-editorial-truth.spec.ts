@@ -94,7 +94,7 @@ test("long-form article shows its sections, FAQ and a link to the product page",
   await expect(page.locator("details")).toHaveCount(post.faq.length);
   const text = (await page.locator("#main-content").innerText()).toLowerCase();
   expect(text).toContain("no income promises");
-  expect(text).not.toMatch(/guarantee|warranty|rocket|bank transfer/);
+  expect(text).not.toMatch(/guarantee|warranty|usdt|crypto|credit card/);
 
   const html = await (await request.get(`/blog/${post.slug}/index.html`)).text();
   expect(html).toContain('"@type":"FAQPage"');

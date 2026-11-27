@@ -256,11 +256,8 @@ const accessModels = [
   },
 ];
 
-const approvedPaymentText = String(commercial?.commercial_facts?.approved_payment_facts ?? "");
-const payments = [
-  approvedPaymentText.toLowerCase().includes("bkash") ? { id: "bkash", label: "bKash" } : null,
-  approvedPaymentText.toLowerCase().includes("nagad") ? { id: "nagad", label: "Nagad" } : null,
-].filter(Boolean);
+// One chip per approved public payment method, straight from the SSOT list.
+const payments = (commercial?.public_claim_policy?.payment?.approved_public_methods ?? []).map((label) => ({ id: String(label).toLowerCase().replace(/[^a-z0-9]+/g, "-"), label: String(label) }));
 
 const trustFacts = [];
 const socialProof = commercial?.commercial_facts?.approved_social_proof;

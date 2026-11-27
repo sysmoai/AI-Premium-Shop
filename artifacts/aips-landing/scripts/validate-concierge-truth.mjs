@@ -25,7 +25,7 @@ const delivery = commercial?.public_claim_policy?.delivery ?? {};
 const resolution = commercial?.public_claim_policy?.warranty_refund ?? {};
 
 if (commercial?.schema_version !== 2) fail("commercial SSOT schema v2 is required");
-if (JSON.stringify(payment.approved_public_methods) !== JSON.stringify(["bKash", "Nagad"])) fail("commercial approved_public_methods must be exactly bKash + Nagad until owner/evidence changes them");
+if (JSON.stringify(payment.approved_public_methods) !== JSON.stringify(["bKash", "Nagad", "Rocket", "Upay", "Bank transfer"])) fail("commercial approved_public_methods must be exactly bKash, Nagad, Rocket, Upay and Bank transfer (owner decision 2026-11-27) until owner/evidence changes them");
 if (payment.unlisted_payment_method_claim_allowed !== false) fail("unlisted payment methods must remain blocked");
 if (payment.payment_credentials_may_be_requested !== false) fail("payment credential requests must remain prohibited");
 if (payment.exact_payment_instruction_requires_order_confirmation !== true) fail("exact payment instructions must require order confirmation");

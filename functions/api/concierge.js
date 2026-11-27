@@ -31,7 +31,7 @@ function assertRuntimeTruth() {
   if (policy?.schema_version !== 1 || policy?.generated_from !== "ops/ssot/commercial.json") {
     throw new Error("concierge runtime refused: governed policy projection is missing");
   }
-  if (JSON.stringify(policy?.payment?.approved_public_methods) !== JSON.stringify(["bKash", "Nagad"])) {
+  if (JSON.stringify(policy?.payment?.approved_public_methods) !== JSON.stringify(["bKash", "Nagad", "Rocket", "Upay", "Bank transfer"])) {
     throw new Error("concierge runtime refused: approved public payment methods drifted");
   }
   if (policy?.payment?.unlisted_method_claim_allowed !== false || policy?.payment?.credentials_may_be_requested !== false) {

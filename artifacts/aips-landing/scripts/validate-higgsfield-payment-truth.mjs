@@ -39,7 +39,7 @@ if (!paymentFaq?.a) {
     }
   }
 
-  const explicitlyBlocked = ["Rocket", "Bank transfer", "bank transfer", "card payment", "credit card", "debit card", "USDT", "crypto"];
+  const explicitlyBlocked = ["card payment", "credit card", "debit card", "USDT", "crypto"];
   for (const term of explicitlyBlocked) {
     if (answer.toLowerCase().includes(term.toLowerCase())) {
       fail(`Higgsfield payment FAQ mentions unapproved public payment method/reference "${term}"`);
@@ -48,7 +48,7 @@ if (!paymentFaq?.a) {
 }
 
 const paymentSurface = JSON.stringify({ payment: offer.payment, faq: paymentFaq ?? null });
-for (const term of ["Rocket", "Bank transfer", "bank transfer", "USDT", "crypto"]) {
+for (const term of ["USDT", "crypto"]) {
   if (paymentSurface.toLowerCase().includes(term.toLowerCase())) {
     fail(`Higgsfield payment surface still contains unapproved public payment reference "${term}"`);
   }

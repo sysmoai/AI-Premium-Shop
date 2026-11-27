@@ -13,6 +13,17 @@ const SPECIAL_COMPLIANCE = new Set(["higgsfield-ai-bangladesh"]);
 const { products } = JSON.parse(fs.readFileSync(path.join(APP, "data/products.json"), "utf8"));
 // Slugs with a validated guide (data/product-guides.json) get long-form content and FAQ schema.
 const guides = loadGuides();
+// Approved provider logos come only from the media registry (validated by validate-media-registry.mjs).
+const media = JSON.parse(fs.readFileSync(path.join(APP, "data/media/manifest.json"), "utf8"));
+const approvedMedia = new Map((media.assets ?? []).filter((asset) => asset.publicationStatus === "APPROVED").map((asset) => [asset.id, asset]));
+function logoFor(slug) {
+  const link = (media.links ?? []).find((entry) => entry.entityType === "product" && entry.entityKey === slug && entry.placement === "logo");
+  const asset = link ? approvedMedia.get(link.mediaId) : null;
+  if (!asset || !asset.width || !asset.height) return "";
+  const height = 28;
+  const width = Math.round((height * asset.width) / asset.height);
+  return `<p><img src="${esc(asset.publicUri)}" alt="${esc(asset.altEn)}" width="${width}" height="${height}" decoding="async"></p>`;
+}
 
 const BLOCKED = [
   "30-day warranty",
@@ -129,6 +140,7 @@ for (const entry of fs.readdirSync(PRODUCT_DIR, { withFileTypes: true })) {
   const planRows = fixed.map((record) => `<li><strong>${esc(record.tier ?? record.name ?? "Plan")}</strong> — ${fmtBDT(record.price)} · ${esc(accessLabel(record.accessType))}</li>`).join("");
   const body = `<main>
 <nav aria-label="breadcrumb"><a href="/">Home</a> › <a href="/${esc(main.category)}">${esc(main.category)}</a> › ${esc(guide ? guide.provider : name)}</nav>
+${logoFor(slug)}
 <h1>${esc(guide ? guide.provider : name)}</h1>
 <p>${esc(safeDescription)}</p>
 <p>${fromPrice ? `Published AIPS plan prices start from <strong>${fmtBDT(fromPrice)}</strong>.` : "This listing does not publish a fixed price."}</p>

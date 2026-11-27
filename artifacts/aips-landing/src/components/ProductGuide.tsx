@@ -96,17 +96,17 @@ export default function ProductGuide({ guide, prices, whatsappLink, canonical }:
           <p className="mb-5 max-w-4xl leading-7 text-slate-300">{guide.comparison.intro}</p>
           {/* Wide table: scrolls sideways inside its own box on small screens, with the first column pinned. */}
           <div role="region" aria-label="Plan comparison table, scrolls sideways" tabIndex={0} data-testid="guide-comparison-scroll" className="overflow-x-auto rounded-2xl border border-white/10 bg-[#151b3d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f4b942]">
-            <table className="w-full min-w-[640px] border-collapse text-left text-sm">
+            <table className="w-full min-w-[520px] border-collapse text-left text-sm sm:min-w-[640px]">
               <thead>
                 <tr className="border-b border-white/10">
-                  <th scope="col" className="sticky left-0 z-10 bg-[#151b3d] px-4 py-3 font-semibold text-slate-300">Feature</th>
+                  <th scope="col" className="sticky left-0 z-10 w-32 min-w-32 max-w-32 bg-[#151b3d] px-3 py-3 font-semibold text-slate-300 sm:w-auto sm:min-w-0 sm:max-w-none sm:px-4">Feature</th>
                   {guide.comparison.columns.map((column) => <th key={column} scope="col" className="px-4 py-3 font-bold text-white">{column}</th>)}
                 </tr>
               </thead>
               <tbody>
                 {guide.comparison.rows.map((row, index) => (
                   <tr key={row.label} className={index === 0 ? "border-b border-white/10 bg-[#f4b942]/[0.06]" : "border-b border-white/5 last:border-0"}>
-                    <th scope="row" className="sticky left-0 z-10 bg-[#151b3d] px-4 py-3 font-medium text-slate-200">{row.label}</th>
+                    <th scope="row" className="sticky left-0 z-10 w-32 min-w-32 max-w-32 bg-[#151b3d] px-3 py-3 font-medium text-slate-200 sm:w-auto sm:min-w-0 sm:max-w-none sm:px-4">{row.label}</th>
                     {row.values.map((value, column) => <td key={`${row.label}-${column}`} className={`px-4 py-3 ${index === 0 ? "font-bold text-[#f4b942]" : "text-slate-300"}`}>{value}</td>)}
                   </tr>
                 ))}

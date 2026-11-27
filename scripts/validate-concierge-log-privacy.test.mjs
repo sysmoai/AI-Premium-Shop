@@ -103,7 +103,7 @@ for (const path of files) {
     });
   }
 
-  if (path.startsWith('functions/')) {
+  {
     for (const flag of [undefined, '', 'false', '1', 'yes']) {
       test(`${path}: POST makes no provider call while CONCIERGE_AI_ENABLED is ${JSON.stringify(flag)}`, async () => {
         let providerCalls = 0;
@@ -122,12 +122,23 @@ for (const path of files) {
         });
         vm.runInContext(source.replace(/^import .*;\n/gm, '').replace('export default ', '').replace('export async ', 'async ') + '\nopenStream = mockStream;', context);
         const body = { sessionId: 's', messages: [{ role: 'user', content: 'Help with writing' }] };
-        const response = await context.onRequest({ request: new Request('https://test.invalid/api/concierge', { method: 'POST', body: JSON.stringify(body) }), env });
-        assert.equal(response.status, 503);
-        assert.match(await response.text(), /Concierge offline/);
+        // Both handlers share one contract: 503 "offline", zero provider calls, aiEnabled false.
+        const call = async (method) => {
+          if (path.startsWith('functions/')) {
+            const init = method === 'POST' ? { method, body: JSON.stringify(body) } : undefined;
+            const response = await context.onRequest({ request: new Request('https://test.invalid/api/concierge', init), env });
+            return { status: response.status, text: await response.text() };
+          }
+          const out = {};
+          const res = { status(n) { out.status = n; return this; }, json(o) { out.text = JSON.stringify(o); return this; }, end() { return this; } };
+          await context.handler({ method, headers: {}, query: {}, body }, res);
+          return out;
+        };
+        const post = await call('POST');
+        assert.equal(post.status, 503);
+        assert.match(post.text, /Concierge offline/);
         assert.equal(providerCalls, 0);
-        const status = await context.onRequest({ request: new Request('https://test.invalid/api/concierge'), env });
-        assert.equal((await status.json()).aiEnabled, false);
+        assert.equal(JSON.parse((await call('GET')).text).aiEnabled, false);
       });
     }
   }

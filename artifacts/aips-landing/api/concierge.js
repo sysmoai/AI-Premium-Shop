@@ -515,6 +515,10 @@ function truthGuardMessage(lang) {
   return "I don't have verified evidence to state a fixed delivery/refund/warranty period, privacy or sharing mechanics, or provider authorization for that claim. Please confirm the exact current price, access, availability, delivery ETA and applicable terms on WhatsApp before payment.";
 }
 
+function assistantEnabled() {
+  return String(process.env.CONCIERGE_AI_ENABLED ?? "").trim().toLowerCase() === "true";
+}
+
 export default async function handler(req, res) {
   if (req.method === "GET") {
     const key = process.env.NVIDIA_API_KEY;
@@ -534,9 +538,14 @@ export default async function handler(req, res) {
       const r = retrieve(q, intent);
       return res.status(200).json({ ok: true, intent, products: r.products.map((p) => p.name), unmatched: r.unmatched });
     }
-    return res.status(200).json({ ok: true, products: catalog.length, keyConfigured: !!key, policyRevision: policy.commercial_policy_revision });
+    return res.status(200).json({ ok: true, products: catalog.length, keyConfigured: !!key, aiEnabled: assistantEnabled(), policyRevision: policy.commercial_policy_revision });
   }
   if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
+
+  // Server-side switch, off unless CONCIERGE_AI_ENABLED is exactly "true".
+  // Mirrors functions/api/concierge.js: hiding the assistant in the site does
+  // not stop direct POSTs here from calling the model providers.
+  if (!assistantEnabled()) return res.status(503).json({ error: "Concierge offline — message us on WhatsApp", whatsapp: WHATSAPP });
 
   const ip = (req.headers["x-forwarded-for"] || "?").split(",")[0].trim();
   const sid = (typeof req.body?.sessionId === "string" ? req.body.sessionId : "").slice(0, 64) || ip;

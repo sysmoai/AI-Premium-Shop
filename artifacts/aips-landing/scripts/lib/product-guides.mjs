@@ -87,20 +87,61 @@ export function validateGuide(slug, guide, records) {
   const allowed = new Set(prices.values());
   const approved = approvedPaymentMethods();
   const texts = guideTexts(guide);
-  for (const text of texts) {
-    const lower = text.toLowerCase();
-    for (const phrase of BLOCKED_PHRASES) if (lower.includes(phrase)) fail(`blocked phrase "${phrase}" in: ${text.slice(0, 80)}`);
-    for (const [pattern, label] of HARD_BANS) if (pattern.test(text)) fail(`${label} in: ${text.slice(0, 80)}`);
-    if (UNAPPROVED_PAYMENT.test(text)) fail(`payment method outside the approved list in: ${text.slice(0, 80)}`);
-    for (const method of KNOWN_LOCAL_METHODS) if (new RegExp(`\\b${method}\\b`, "i").test(text) && !approved.includes(method)) fail(`${method} is not an approved public payment method`);
-    for (const sentence of text.split(/(?<=[.!?।])\s+/)) if (!sentence.trim().endsWith("?") && NEEDS_NEGATION.test(sentence) && !NEGATION.test(sentence)) fail(`authorization wording without a negation in: ${sentence.slice(0, 80)}`);
-    const normal = bnDigits(text);
-    for (const match of normal.matchAll(/(?:BDT|৳)\s*([\d,]+)/g)) if (!allowed.has(Number(match[1].replace(/,/g, "")))) fail(`BDT figure ${match[1]} is not a current catalog price`);
-    for (const match of normal.matchAll(/([\d,]+)\s*টাকা/g)) if (!allowed.has(Number(match[1].replace(/,/g, "")))) fail(`Taka figure ${match[1]} is not a current catalog price`);
-  }
+  for (const text of texts) for (const problem of proseErrors(text, allowed, approved)) fail(problem);
   const joined = bnDigits(texts.join(" ")).replace(/,/g, "");
   for (const price of allowed) if (!joined.includes(String(price))) fail(`catalog price ${price} is never stated in the guide`);
   return errors;
+}
+
+// Claim, payment and price rules for one piece of published prose. Shared by product
+// guides and long-form blog articles. `allowedPrices` is the set of BDT figures the
+// text may quote; `approved` is the SSOT list of public payment methods.
+export function proseErrors(text, allowedPrices, approved) {
+  const problems = [];
+  const lower = text.toLowerCase();
+  for (const phrase of BLOCKED_PHRASES) if (lower.includes(phrase)) problems.push(`blocked phrase "${phrase}" in: ${text.slice(0, 80)}`);
+  for (const [pattern, label] of HARD_BANS) if (pattern.test(text)) problems.push(`${label} in: ${text.slice(0, 80)}`);
+  if (UNAPPROVED_PAYMENT.test(text)) problems.push(`payment method outside the approved list in: ${text.slice(0, 80)}`);
+  for (const method of KNOWN_LOCAL_METHODS) if (new RegExp(`\\b${method}\\b`, "i").test(text) && !approved.includes(method)) problems.push(`${method} is not an approved public payment method`);
+  for (const sentence of text.split(/(?<=[.!?।])\s+/)) if (!sentence.trim().endsWith("?") && NEEDS_NEGATION.test(sentence) && !NEGATION.test(sentence)) problems.push(`authorization wording without a negation in: ${sentence.slice(0, 80)}`);
+  const normal = bnDigits(text);
+  for (const match of normal.matchAll(/(?:BDT|৳)\s*(\d[\d,]*)/g)) if (!allowedPrices.has(Number(match[1].replace(/,/g, "")))) problems.push(`BDT figure ${match[1]} is not a current catalog price`);
+  for (const match of normal.matchAll(/(\d[\d,]*)\s*টাকা/g)) if (!allowedPrices.has(Number(match[1].replace(/,/g, "")))) problems.push(`Taka figure ${match[1]} is not a current catalog price`);
+  return problems;
+}
+
+// Long-form blog article fields (optional on a blog definition): sections, faq, productSlug, updatedOn.
+export function articleTexts(post) {
+  const out = [post.title, post.description, post.h1, post.intro, ...(post.checks ?? [])];
+  for (const section of post.sections ?? []) out.push(section.heading, ...(section.paragraphs ?? []), ...(section.bullets ?? []));
+  for (const item of post.faq ?? []) out.push(item.q, item.a);
+  return out.filter((value) => typeof value === "string" && value.trim());
+}
+
+export function validateArticle(post, products) {
+  const errors = [];
+  const fail = (message) => errors.push(`${post.slug}: ${message}`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(post.updatedOn ?? "")) fail("updatedOn must be YYYY-MM-DD on a long-form article");
+  if (!Array.isArray(post.sections) || post.sections.length < 3) fail("a long-form article needs at least 3 sections");
+  for (const section of post.sections ?? []) if (!section.heading?.trim() || !((section.paragraphs?.length ?? 0) + (section.bullets?.length ?? 0))) fail(`empty section: ${section.heading}`);
+  const faq = post.faq ?? [];
+  if (new Set(faq.map((item) => item.q)).size !== faq.length) fail("duplicate faq question");
+  for (const item of faq) if (!item.q?.trim() || !item.a?.trim() || item.a.length > 700) fail(`faq entry invalid: ${item.q}`);
+  const records = products.filter((record) => record.slug === post.productSlug);
+  if (post.productSlug && !records.length) fail(`productSlug ${post.productSlug} is not in the catalog`);
+  const allowed = new Set(records.filter((r) => typeof r.price === "number" && !r.requestPrice).map((r) => r.price));
+  const approved = approvedPaymentMethods();
+  for (const text of articleTexts(post)) for (const problem of proseErrors(text, allowed, approved)) fail(problem);
+  return errors;
+}
+
+const list2 = (items) => (items?.length ? `<ul>${items.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>` : "");
+
+// Crawler HTML for an article body. Mirrors the sections/FAQ block in src/pages/BlogPostPage.tsx.
+export function articleHtml(post) {
+  const sections = (post.sections ?? []).map((section) => `<h2>${esc(section.heading)}</h2>${(section.paragraphs ?? []).map((p) => `<p>${esc(p)}</p>`).join("")}${list2(section.bullets)}`).join("");
+  const faq = (post.faq ?? []).length ? `<h2>Questions and answers</h2>${post.faq.map((item) => `<h3>${esc(item.q)}</h3><p>${esc(item.a)}</p>`).join("")}` : "";
+  return `${sections}${faq}`;
 }
 
 const esc = (value) => String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");

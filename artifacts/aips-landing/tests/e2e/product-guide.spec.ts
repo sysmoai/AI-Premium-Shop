@@ -17,7 +17,7 @@ const BLOCKED = [
 
 test("guided product page shows plans, prices, guide sections and FAQ", async ({ page }) => {
   await page.goto(ROUTE, { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { level: 1, name: "Cartesia" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Cartesia", exact: true })).toBeVisible();
   const guideRoot = page.getByTestId("product-guide");
   await expect(guideRoot).toBeVisible();
 

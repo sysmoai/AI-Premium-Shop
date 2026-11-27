@@ -58,13 +58,15 @@ function upsert(route, lastmod) {
   added += 1;
 }
 
-upsert("/blog", updatedOn);
+// A long-form article may carry its own updatedOn; the index uses the newest date.
+const postDate = (post) => (/^\d{4}-\d{2}-\d{2}$/.test(String(post?.updatedOn ?? "")) ? post.updatedOn : updatedOn);
+upsert("/blog", editorial.posts.map(postDate).concat(updatedOn).sort().at(-1));
 for (const post of editorial.posts) {
   const slug = String(post?.slug ?? "");
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
     throw new Error(`[editorial-sitemap] invalid blog slug: ${slug || "missing"}`);
   }
-  upsert(`/blog/${slug}`, updatedOn);
+  upsert(`/blog/${slug}`, postDate(post));
 }
 
 for (const absolute of expected) {

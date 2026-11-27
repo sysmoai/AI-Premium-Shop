@@ -250,8 +250,10 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
   const breadcrumbs = [
     { name: "Home", href: "/" },
     { name: product.category, href: `/${product.category}` },
-    { name: product.name },
+    { name: guide?.provider ?? product.name },
   ];
+  // A guided page covers every plan, so it is headed by the product family, not the first tier.
+  const displayName = guide?.provider ?? product.name;
 
   const description = sanitizeProse(product.description, `${product.name} is listed in the current AI Premium Shop catalog. Review the current plan, access model and provider terms before purchase.`);
   const descriptionBN = sanitizeProse(product.descriptionBN, "");
@@ -264,7 +266,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
 
   const whatsappText = product.requestPrice
     ? `Hi, I want ${product.name}. Please confirm the current AIPS price, access model, availability, provider limits, delivery ETA and applicable terms before payment.`
-    : `Hi, I want ${product.name}${selectedPlan ? ` (${selectedPlan.planName})` : ""}. Published AIPS price: ${formatBDT(selectedPrice)}. Please confirm the current access model, availability, provider limits, delivery ETA and applicable terms before payment.`;
+    : `Hi, I want ${displayName}${selectedPlan ? ` (${selectedPlan.planName})` : ""}. Published AIPS price: ${formatBDT(selectedPrice)}. Please confirm the current access model, availability, provider limits, delivery ETA and applicable terms before payment.`;
   const whatsappLink = `${WHATSAPP}?text=${encodeURIComponent(whatsappText)}`;
 
   return (
@@ -288,7 +290,7 @@ export default function ProductPage({ productSlug }: { productSlug: string }) {
             <div className="mb-4 flex items-center gap-3">
               {product.logo && <img src={product.logo} alt={`${product.name} logo`} width={56} height={56} className="rounded-xl object-contain" />}
               <div>
-                <h1 className="text-3xl font-bold leading-tight text-white md:text-4xl">{product.name}</h1>
+                <h1 className="text-3xl font-bold leading-tight text-white md:text-4xl">{displayName}</h1>
                 {product.tagline && !isUnsafeClaim(product.tagline) && <p className="mt-1 text-sm text-[#f4b942]">{product.tagline}</p>}
               </div>
             </div>

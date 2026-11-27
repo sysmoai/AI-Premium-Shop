@@ -2,6 +2,464 @@
   "updatedOn": "2026-08-14",
   "posts": [
     {
+      "slug": "cartesia-ai-bangladesh-guide",
+      "title": "Cartesia AI in Bangladesh: Price in BDT, Plans and How to Buy",
+      "description": "Cartesia Pro, Startup and Scale explained for Bangladesh: BDT prices, what credits buy, Bangla support, and how to pay in Taka with bKash or Nagad.",
+      "h1": "Cartesia AI in Bangladesh: Plans, Price and How to Buy",
+      "categoryKey": "voice-music",
+      "categoryLabel": "Voice & Music AI",
+      "intro": "Cartesia is a voice AI platform for natural, fast speech. This guide explains what it does, what each plan includes, what it costs in Taka at AI Premium Shop, and what to check before you pay.",
+      "checks": [
+        "Decide what you need: voiceover, transcription, voice cloning or a live voice agent.",
+        "Estimate your monthly minutes, then match them to a plan's credits.",
+        "Test your own script on Cartesia's Free plan before paying for a higher plan."
+      ],
+      "categories": [
+        "ai-voice-music"
+      ],
+      "focusSlugs": [
+        "cartesia-bangladesh",
+        "elevenlabs-bangladesh",
+        "murf-ai-bangladesh"
+      ],
+      "productSlug": "cartesia-bangladesh",
+      "updatedOn": "2026-11-27",
+      "sections": [
+        {
+          "heading": "What Cartesia is",
+          "paragraphs": [
+            "Cartesia builds voice models. Sonic turns text into speech, Ink turns speech into text, and its agent tools join the two with a language model so software can hold a spoken conversation. You can use it in a browser playground or call it from your own app through the API.",
+            "It belongs in the voice AI category alongside tools such as ElevenLabs and Murf. Its focus is speech that sounds natural and starts playing quickly, which matters most for live assistants and also helps ordinary voiceover work."
+          ]
+        },
+        {
+          "heading": "Cartesia plans and what they cost in Taka",
+          "paragraphs": [
+            "Cartesia sells its plans in US dollars. AI Premium Shop publishes a monthly Taka price for the three paid self-serve plans:"
+          ],
+          "bullets": [
+            "Cartesia Pro: BDT 990 per month. 100K credits, a commercial use licence and instant voice cloning.",
+            "Cartesia Startup: BDT 8,290 per month. 1.25M credits, Pro voice cloning and team organizations.",
+            "Cartesia Scale: BDT 50,190 per month. 8M credits, priority support from Cartesia and high concurrency limits.",
+            "Cartesia also has a Free plan with 20K credits and no commercial use licence, which you can open yourself to test voices.",
+            "Enterprise plans are arranged directly with Cartesia."
+          ]
+        },
+        {
+          "heading": "What the credits actually buy",
+          "paragraphs": [
+            "Cartesia states that text to speech uses about 1 credit per character, or roughly 750 to 800 credits for a minute of audio. Using that rate, these are rough estimates and not promises:"
+          ],
+          "bullets": [
+            "Pro, 100K credits: about 125 to 133 minutes of speech, a little over two hours.",
+            "Startup, 1.25M credits: about 26 to 27 hours of speech.",
+            "Scale, 8M credits: about 167 to 177 hours of speech.",
+            "Transcription on the standard Ink model uses 3 credits per second, so the same credits stretch much further for speech to text.",
+            "Credits are one shared pool, unused credits roll over up to twice the monthly amount, and extra usage is switched off by default so requests simply stop when credits run out."
+          ]
+        },
+        {
+          "heading": "Does it work for Bangla?",
+          "paragraphs": [
+            "Cartesia lists Bengali among the 44 languages of its current Sonic text-to-speech model. For speech to text, Bengali is listed only on a preview model at the moment. Quality is a matter of taste and of your script, so run a real paragraph of your own Bangla text through the Free plan before you commit."
+          ]
+        },
+        {
+          "heading": "How to buy Cartesia from Bangladesh",
+          "paragraphs": [
+            "Paying a US-dollar subscription from Bangladesh is the usual obstacle. With AI Premium Shop you pay in Taka and the plan is arranged on a Cartesia account under your own email."
+          ],
+          "bullets": [
+            "Pick a plan, or tell us your monthly usage and we suggest the lowest plan that covers it.",
+            "Message us on WhatsApp. We confirm the current plan contents, price, availability and delivery ETA.",
+            "Pay in Taka with bKash or Nagad once those details are confirmed.",
+            "We arrange the plan on your account and tell you when it is active. You log in with your own email."
+          ]
+        },
+        {
+          "heading": "What to check before paying",
+          "bullets": [
+            "Cartesia's terms say subscription payments are non-refundable, so confirm the plan and your account email first.",
+            "Plans renew monthly. Tell us before the renewal date whether you want to continue.",
+            "Cartesia can change plan contents and rules. We reconfirm them with you before payment.",
+            "AI Premium Shop is an independent service and is not affiliated with or endorsed by Cartesia."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is the price of Cartesia Pro in Bangladesh?",
+          "a": "AI Premium Shop publishes Cartesia Pro at BDT 990 per month. The price and plan contents are reconfirmed on WhatsApp before you pay."
+        },
+        {
+          "q": "Can I pay for Cartesia with bKash?",
+          "a": "Yes. You pay AI Premium Shop in Taka with bKash or Nagad, and the plan is arranged on your own Cartesia account."
+        },
+        {
+          "q": "Is there a free Cartesia plan?",
+          "a": "Yes. Cartesia offers a Free plan with 20K credits and no commercial use licence. It is a sensible way to test voices before paying."
+        },
+        {
+          "q": "Which plan is enough for a YouTube channel?",
+          "a": "It depends on how many minutes you publish. Pro covers roughly two hours of generated speech a month by Cartesia's stated rate. Heavier schedules need Startup."
+        }
+      ]
+    },
+    {
+      "slug": "cartesia-vs-elevenlabs-bangladesh",
+      "title": "Cartesia vs ElevenLabs in Bangladesh: Which Voice AI to Choose",
+      "description": "Cartesia or ElevenLabs? A practical comparison for Bangladesh: what each is built for, how to test them fairly, BDT pricing and how to decide.",
+      "h1": "Cartesia vs ElevenLabs: How to Choose in Bangladesh",
+      "categoryKey": "strategy",
+      "categoryLabel": "Strategy & Comparisons",
+      "intro": "Both tools turn text into lifelike speech, and both can clone a voice. They are built with different users in mind, so the better choice depends on the work you actually do.",
+      "checks": [
+        "Write down the job first: narration, client voiceover, an app feature or a live voice agent.",
+        "Run the same script through both tools' free tiers and listen on a phone speaker and headphones.",
+        "Compare plans by the minutes you need each month, not by the plan name."
+      ],
+      "categories": [
+        "ai-voice-music"
+      ],
+      "focusSlugs": [
+        "cartesia-bangladesh",
+        "elevenlabs-bangladesh"
+      ],
+      "productSlug": "cartesia-bangladesh",
+      "updatedOn": "2026-11-27",
+      "sections": [
+        {
+          "heading": "The short version",
+          "bullets": [
+            "Choose Cartesia if speed of response matters, if you are building software that speaks, or if you want speech to text and voice agents from the same provider.",
+            "Choose ElevenLabs if your work is mostly narration and you already rely on its voice library and editing tools.",
+            "If you are unsure, test both with your own script. Your ear and your use case decide this better than any chart."
+          ]
+        },
+        {
+          "heading": "What Cartesia is built for",
+          "paragraphs": [
+            "Cartesia's products are aimed at real-time use. Its Sonic model is designed to begin speaking very quickly, its Ink model transcribes speech, and its agent tools connect both to a language model. Cartesia lists 44 languages for Sonic, including Bengali, Hindi and English.",
+            "That makes it a natural fit for developers, startups and anyone prototyping a voice assistant, and it still works well for plain voiceover."
+          ]
+        },
+        {
+          "heading": "What ElevenLabs is known for",
+          "paragraphs": [
+            "ElevenLabs is widely used by creators for narration, dubbing and voice cloning, with a large voice library and browser tools built around producing finished audio. Many freelancers already have a workflow built on it.",
+            "We list ElevenLabs separately in our voice and music category, with its own plans and prices."
+          ]
+        },
+        {
+          "heading": "How to compare them fairly",
+          "bullets": [
+            "Use one real script of at least 200 words, in the language you will publish in.",
+            "Listen for pronunciation of names, numbers and mixed Bangla-English sentences.",
+            "Check how easy it is to fix a mispronounced word.",
+            "Check commercial use rights on the exact plan you would buy.",
+            "Estimate your monthly minutes and see which plan on each side covers them.",
+            "If you are building an app, measure response time from your own location instead of relying on published figures."
+          ]
+        },
+        {
+          "heading": "Price in Bangladesh",
+          "paragraphs": [
+            "At AI Premium Shop, Cartesia Pro is BDT 990 per month, Cartesia Startup is BDT 8,290 and Cartesia Scale is BDT 50,190. ElevenLabs plans and prices are shown on the ElevenLabs page. In both cases you pay in Taka with bKash or Nagad, and we confirm the current plan and price before payment."
+          ]
+        },
+        {
+          "heading": "A note on benchmarks",
+          "paragraphs": [
+            "Each company publishes comparisons that favour its own product. Treat vendor charts as a starting point. Speed and quality depend on your script, your language and your internet connection, so your own test is the evidence that counts."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Is Cartesia cheaper than ElevenLabs?",
+          "a": "It depends on the plan and how you use it. Compare the monthly Taka price against the minutes you actually need on each side. Cartesia Pro is BDT 990 per month at AI Premium Shop."
+        },
+        {
+          "q": "Which one is better for Bangla voiceover?",
+          "a": "Test both. Cartesia lists Bengali for its Sonic text-to-speech model. Run your own Bangla script through the free tier of each and choose the one that sounds right to you."
+        },
+        {
+          "q": "Can I use both?",
+          "a": "Yes. Some teams use one for narration and the other inside an app. Start with one plan and add the second only if a real job needs it."
+        }
+      ]
+    },
+    {
+      "slug": "cartesia-voiceover-freelancing-bangladesh",
+      "title": "Using Cartesia for Voiceover Work: A Guide for BD Freelancers",
+      "description": "How freelancers and creators in Bangladesh can use Cartesia for voiceover: a worked credit example, a client workflow, licensing checks and BDT pricing.",
+      "h1": "Using Cartesia for Voiceover Work in Bangladesh",
+      "categoryKey": "freelancers",
+      "categoryLabel": "For Freelancers",
+      "intro": "Voiceover is one of the most practical uses of a voice AI plan. This guide shows how to plan the work, with a worked example of how far a plan's credits go. It makes no income promises: results depend on your skill, your clients and your effort.",
+      "checks": [
+        "Confirm the plan you buy includes a commercial use licence. Cartesia lists this from Pro upward.",
+        "Tell clients when a voice is AI-generated if their platform or contract requires it.",
+        "Never clone a voice without the clear permission of the person it belongs to."
+      ],
+      "categories": [
+        "ai-voice-music"
+      ],
+      "focusSlugs": [
+        "cartesia-bangladesh",
+        "elevenlabs-bangladesh",
+        "murf-ai-bangladesh"
+      ],
+      "productSlug": "cartesia-bangladesh",
+      "updatedOn": "2026-11-27",
+      "sections": [
+        {
+          "heading": "Where voice AI fits in freelance work",
+          "bullets": [
+            "Explainer and product videos that need a clear narrator.",
+            "E-learning modules and course lessons.",
+            "Short audio ads and social media clips.",
+            "YouTube and Facebook narration for your own channel.",
+            "Draft voice tracks so a client can approve the script before final recording.",
+            "Voice replies inside an app or chatbot you are building for a client."
+          ]
+        },
+        {
+          "heading": "A worked example: how far does Cartesia Pro go?",
+          "paragraphs": [
+            "Cartesia states that text to speech uses roughly 750 to 800 credits per minute of audio. Cartesia Pro includes 100K credits a month and costs BDT 990 at AI Premium Shop. On those figures, as an estimate:"
+          ],
+          "bullets": [
+            "A 1-minute social clip uses about 750 to 800 credits, so Pro covers roughly 125 to 133 of them.",
+            "A 5-minute explainer uses about 3,750 to 4,000 credits, so Pro covers roughly 25 to 26.",
+            "A 10-minute lesson uses about 7,500 to 8,000 credits, so Pro covers roughly 12 to 13.",
+            "Retakes use credits too. If you regenerate each script twice while editing, plan for about a third of those numbers.",
+            "Put simply, the plan cost works out to under eight Taka per finished minute before retakes. Compare that with what your own time and a recording setup would cost for the same job."
+          ]
+        },
+        {
+          "heading": "A simple client workflow",
+          "bullets": [
+            "Agree the script in writing first. Changes after generation cost credits and time.",
+            "Pick two or three voices and send the client a 20-second sample of each.",
+            "Generate in short paragraphs so one mistake does not mean redoing the whole track.",
+            "Fix pronunciation of names, brands and numbers before the full run.",
+            "Export, then clean up levels and add music in your audio or video editor.",
+            "Deliver the file with a note of which voice and settings you used, so revisions match."
+          ]
+        },
+        {
+          "heading": "When to move up to Startup",
+          "paragraphs": [
+            "Move to Cartesia Startup at BDT 8,290 per month when you regularly run out of credits on Pro, when you need Pro voice cloning for a client's own approved voice, or when a team needs to share one organization. Until then, Pro is the sensible place to begin."
+          ]
+        },
+        {
+          "heading": "Stay on the right side of the rules",
+          "bullets": [
+            "The Free plan is not licensed for commercial work.",
+            "Clone only your own voice or one whose owner has clearly agreed. Impersonating a real person is against Cartesia's rules.",
+            "Some marketplaces and ad platforms have their own rules on AI voices. Check them for each job.",
+            "You remain responsible for the script: do not use AI audio to mislead people."
+          ]
+        },
+        {
+          "heading": "Getting the plan in Bangladesh",
+          "paragraphs": [
+            "You pay AI Premium Shop in Taka with bKash or Nagad, and the plan is arranged on a Cartesia account under your own email, so your voices and files stay with you. We confirm the plan, price and delivery ETA on WhatsApp before you pay."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Can I sell voiceovers made with Cartesia?",
+          "a": "Cartesia lists a commercial use licence on Pro and higher plans. You must still follow Cartesia's terms and the rules of the platform where you sell."
+        },
+        {
+          "q": "How many videos can I make on Pro?",
+          "a": "By Cartesia's stated rate, roughly 12 to 13 ten-minute narrations a month, or about 125 to 133 one-minute clips, before retakes. Treat these as estimates."
+        },
+        {
+          "q": "Do I need recording equipment?",
+          "a": "Not for generated speech. You need a script, a browser and an audio or video editor to finish the file."
+        }
+      ]
+    },
+    {
+      "slug": "cartesia-bangla-text-to-speech-guide",
+      "title": "Bangla Text to Speech with Cartesia: What Works and What to Test",
+      "description": "A practical guide to Bangla text to speech with Cartesia: language support, how to write scripts that read well, what to test first and BDT pricing.",
+      "h1": "Bangla Text to Speech with Cartesia",
+      "categoryKey": "voice-music",
+      "categoryLabel": "Voice & Music AI",
+      "intro": "Cartesia lists Bengali among the languages of its Sonic text-to-speech model. This guide covers what that means in practice, how to prepare a Bangla script so it reads well, and what to test before relying on it for real work.",
+      "checks": [
+        "Test a real paragraph of your own Bangla text on Cartesia's Free plan first.",
+        "Check numbers, dates, English brand names and mixed Bangla-English sentences.",
+        "Listen on a phone speaker, because that is where most of your audience will hear it."
+      ],
+      "categories": [
+        "ai-voice-music"
+      ],
+      "focusSlugs": [
+        "cartesia-bangladesh",
+        "elevenlabs-bangladesh"
+      ],
+      "productSlug": "cartesia-bangladesh",
+      "updatedOn": "2026-11-27",
+      "sections": [
+        {
+          "heading": "What Cartesia supports for Bangla",
+          "bullets": [
+            "Text to speech: Bengali is on the language list for Cartesia's current Sonic model.",
+            "Speech to text: Bengali is listed only on Cartesia's preview Ink model, which Cartesia says can change without notice.",
+            "Voice cloning: a cloned voice is tied to one language, and Cartesia provides a way to add other languages to it.",
+            "We have not graded Bangla voice quality ourselves. Your own test is the reliable check."
+          ]
+        },
+        {
+          "heading": "Writing a Bangla script that reads well",
+          "bullets": [
+            "Write in Bangla script, not in English letters. Romanised Bangla is often mispronounced.",
+            "Keep sentences short and use the dari (।) so the voice pauses in the right place.",
+            "Spell out numbers, dates and amounts in words when the pronunciation matters.",
+            "For English brand names inside a Bangla sentence, test both the English spelling and a Bangla spelling and keep the one that sounds right.",
+            "Generate paragraph by paragraph so you can fix one line without redoing everything."
+          ]
+        },
+        {
+          "heading": "A five-minute test before you buy",
+          "bullets": [
+            "Open a Free account at cartesia.ai.",
+            "Paste 150 to 200 words of the kind of text you will really publish.",
+            "Try at least three voices and note which handle conjunct letters and names correctly.",
+            "Include one sentence with a phone number, one with a price and one with an English product name.",
+            "If the result is good enough for your audience, a paid plan is worth it. If not, you have lost nothing."
+          ]
+        },
+        {
+          "heading": "Good uses for Bangla voice",
+          "bullets": [
+            "Narration for educational and explainer videos.",
+            "Audio versions of articles and lessons.",
+            "Announcements and product walkthroughs.",
+            "Spoken replies in an app or support assistant.",
+            "Draft voice tracks for scripts that will later be recorded by a person."
+          ]
+        },
+        {
+          "heading": "Plans and price in Taka",
+          "paragraphs": [
+            "Commercial use needs Cartesia Pro or higher. At AI Premium Shop, Cartesia Pro is BDT 990 per month, Startup is BDT 8,290 and Scale is BDT 50,190. Pro includes 100K credits, which Cartesia's stated rate puts at roughly two hours of generated speech; Bangla text may use credits at a slightly different rate than English.",
+            "You pay in Taka with bKash or Nagad and the plan is arranged on your own Cartesia account."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Does Cartesia have Bangla voices?",
+          "a": "Cartesia lists Bengali as a supported language for its Sonic text-to-speech model. Test the available voices on the Free plan to judge them for your work."
+        },
+        {
+          "q": "Can Cartesia transcribe Bangla audio?",
+          "a": "Bengali speech to text is currently listed only on a preview model. Test it carefully before relying on it."
+        },
+        {
+          "q": "Can I mix Bangla and English in one script?",
+          "a": "You can, and results vary by voice. Test mixed sentences and adjust the spelling of English words until they are pronounced correctly."
+        }
+      ]
+    },
+    {
+      "slug": "cartesia-voice-agent-business-bangladesh",
+      "title": "Cartesia Voice Agents for Business in Bangladesh: A Practical Guide",
+      "description": "What a Cartesia voice agent can do for a Bangladeshi business, what it costs, the limits to know about, and how to start small with a prototype.",
+      "h1": "Cartesia Voice Agents for Business in Bangladesh",
+      "categoryKey": "agents",
+      "categoryLabel": "AI Agents",
+      "intro": "A voice agent listens, thinks and replies out loud. Cartesia provides the listening and speaking parts and tools to connect them to a language model. This guide explains what is realistic for a business in Bangladesh today and where the limits are.",
+      "checks": [
+        "Start with one narrow task, such as answering opening hours or taking a booking request.",
+        "Decide where the agent will live: a website, an app or a phone line.",
+        "Check telephony limits before promising a phone number to anyone."
+      ],
+      "categories": [
+        "ai-voice-music"
+      ],
+      "focusSlugs": [
+        "cartesia-bangladesh"
+      ],
+      "productSlug": "cartesia-bangladesh",
+      "updatedOn": "2026-11-27",
+      "sections": [
+        {
+          "heading": "How a voice agent works",
+          "bullets": [
+            "Speech to text turns what the caller says into text.",
+            "A language model decides what to answer.",
+            "Text to speech speaks the answer.",
+            "Speed matters at every step: a slow reply feels like a broken call."
+          ]
+        },
+        {
+          "heading": "Tasks that suit a first project",
+          "bullets": [
+            "Answering common questions about hours, location, prices and order status.",
+            "Collecting a name, phone number and request, then passing it to staff.",
+            "Booking or confirming appointments.",
+            "A spoken helper inside your own app or website.",
+            "Internal training and role-play for sales or support teams."
+          ]
+        },
+        {
+          "heading": "Limits to know before you build",
+          "bullets": [
+            "Phone numbers supplied by Cartesia are US numbers, and outbound calls go to US numbers. A Bangladesh phone line needs your own telephony provider.",
+            "Bengali speech to text is listed only on a preview model, so test Bangla conversations carefully. English and Hindi are on the standard model.",
+            "Agent usage is billed in US dollars per minute from the plan's prepaid agent balance. Telephony and language-model costs are charged separately by Cartesia.",
+            "An agent can make mistakes. Keep a human handover for anything involving money, health or complaints.",
+            "Tell callers they are speaking with an AI assistant."
+          ]
+        },
+        {
+          "heading": "Which plan to start with",
+          "paragraphs": [
+            "Cartesia Pro at BDT 990 per month is enough to build and test a prototype: it includes 100K credits and a small prepaid agent balance. Cartesia Startup at BDT 8,290 adds far more credits, team organizations and higher concurrency for a pilot with real users. Cartesia Scale at BDT 50,190 is for services already handling steady volume."
+          ]
+        },
+        {
+          "heading": "A sensible way to start",
+          "bullets": [
+            "Write the ten questions your customers ask most.",
+            "Build a web-based prototype that answers only those.",
+            "Test it with staff, then with a few friendly customers.",
+            "Measure how often it answers correctly and how often it needs a human.",
+            "Expand only after the narrow version is reliable."
+          ]
+        },
+        {
+          "heading": "Getting set up from Bangladesh",
+          "paragraphs": [
+            "AI Premium Shop arranges the Cartesia plan on an account under your own email and takes payment in Taka with bKash or Nagad. We help you get the account active and answer usage questions on WhatsApp. Building the agent itself is development work that you or your developer carry out."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Can a Cartesia agent answer calls on a Bangladeshi number?",
+          "a": "Not with numbers supplied by Cartesia, which are US numbers. You would need to connect your own telephony provider. A website or app assistant has no such limit."
+        },
+        {
+          "q": "Can the agent speak Bangla?",
+          "a": "Cartesia lists Bengali for text to speech. Understanding spoken Bangla depends on a preview speech-to-text model today, so test before you rely on it."
+        },
+        {
+          "q": "Do I need a developer?",
+          "a": "For anything beyond a simple test, yes. Cartesia provides the tools, but connecting them to your business information is development work."
+        }
+      ]
+    },
+    {
       "slug": "ai-voice-music-tools-bangladesh",
       "title": "AI Voice & Music Tools in Bangladesh: 2026 Guide",
       "description": "Compare current AI voice and music catalog options in Bangladesh by AIPS price and access model. Verify provider credits, rights and limits before use.",

@@ -2,6 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { articleHtml, validateArticle } from "./lib/product-guides.mjs";
 
 const APP = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = path.join(APP, "dist/public");
@@ -106,7 +107,7 @@ function blogSchema(definition, canonical) {
     "@type": "BlogPosting",
     headline: definition.title,
     description: definition.description,
-    dateModified: definitions.updatedOn,
+    dateModified: definition.updatedOn ?? definitions.updatedOn,
     mainEntityOfPage: canonical,
     author: { "@type": "Organization", name: "AI Premium Shop", url: SITE },
     publisher: { "@type": "Organization", name: "AI Premium Shop", url: SITE },
@@ -126,11 +127,24 @@ for (const definition of definitions.posts) {
     return `<li><a href="${esc(hrefFor(item.slug))}">${esc(label)}</a> — ${esc(price)} · ${esc(item.access.join(", "))} · ${item.records.length} ${item.records.length === 1 ? "plan record" : "plan records"}</li>`;
   }).join("")}</ul>` : "";
   const checks = (definition.checks ?? []).map((check) => `<li>${esc(check)}</li>`).join("");
-  const body = `<article><nav aria-label="breadcrumb"><a href="/">Home</a> › <a href="/blog">Blog</a> › ${esc(definition.categoryLabel)}</nav><h1>${esc(definition.h1)}</h1><p><strong>Updated ${esc(definitions.updatedOn)}.</strong> Verification-first editorial.</p><p>${esc(definition.intro)}</p><h2>What to verify first</h2><ol>${checks}</ol>${catalogList}<h2>Separate provider facts from AIPS commercial facts</h2><p>AIPS catalog fields can establish the public product identity, published BDT price and stated access model. Provider-controlled models, credits, quotas, storage, exports, integrations, licensing and other entitlements can change and must be verified for the exact plan. Availability and delivery ETA are order-specific; confirm them with applicable terms before payment.</p><h2>Before using the tool</h2><p>Choose an access model appropriate for the data and workflow. Verify important generated facts and outputs before relying on them. For privacy-sensitive or client work, review the provider's current data controls and your own contractual or organizational requirements.</p><p><a href="/products">Current catalog</a> · <a href="/pricing">Current pricing</a> · <a href="/blog">All decision guides</a></p></article>`;
+  // Long-form articles are re-validated here against the projected (public) catalog, so an
+  // article can never quote a price the public site no longer publishes.
+  const isArticle = Array.isArray(definition.sections);
+  if (isArticle) {
+    const problems = validateArticle(definition, products);
+    if (problems.length) throw new Error(`[blog-truth] ${route} article does not match the public catalog: ${problems.join("; ")}`);
+  }
+  const article = isArticle ? articleHtml(definition) : "";
+  const productLink = isArticle && definition.productSlug ? `<p><a href="${esc(hrefFor(definition.productSlug))}">View current plans and prices</a></p>` : "";
+  const updated = definition.updatedOn ?? definitions.updatedOn;
+  const body = `<article><nav aria-label="breadcrumb"><a href="/">Home</a> › <a href="/blog">Blog</a> › ${esc(definition.categoryLabel)}</nav><h1>${esc(definition.h1)}</h1><p><strong>Updated ${esc(updated)}.</strong> Verification-first editorial.</p><p>${esc(definition.intro)}</p><h2>What to verify first</h2><ol>${checks}</ol>${article}${productLink}${catalogList}<h2>Separate provider facts from AIPS commercial facts</h2><p>AIPS catalog fields can establish the public product identity, published BDT price and stated access model. Provider-controlled models, credits, quotas, storage, exports, integrations, licensing and other entitlements can change and must be verified for the exact plan. Availability and delivery ETA are order-specific; confirm them with applicable terms before payment.</p><h2>Before using the tool</h2><p>Choose an access model appropriate for the data and workflow. Verify important generated facts and outputs before relying on them. For privacy-sensitive or client work, review the provider's current data controls and your own contractual or organizational requirements.</p><p><a href="/products">Current catalog</a> · <a href="/pricing">Current pricing</a> · <a href="/blog">All decision guides</a></p></article>`;
 
   let html = fs.readFileSync(file, "utf8");
   html = cleanJsonLd(setMeta(html, definition.title, definition.description, canonical));
-  html = html.replace(/<\/head>/i, `${blogSchema(definition, canonical)}\n</head>`);
+  const faqSchema = isArticle && (definition.faq ?? []).length
+    ? `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: definition.faq.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })) }).replace(/</g, "\\u003c")}</script>\n`
+    : "";
+  html = html.replace(/<\/head>/i, `${blogSchema(definition, canonical)}\n${faqSchema}</head>`);
   html = replaceRoot(html, body);
   const lower = html.toLowerCase();
   for (const phrase of BLOCKED) if (lower.includes(phrase.toLowerCase())) throw new Error(`[blog-truth] ${route} contains blocked phrase: ${phrase}`);

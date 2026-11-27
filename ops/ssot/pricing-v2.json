@@ -95,7 +95,7 @@
     {"id":"make","pattern":"make.com|make automation|make pro|make core|make teams","allowed_usd":[12,21,38]},
     {"id":"consensus","pattern":"consensus","allowed_usd":[20,65]},
     {"id":"grammarly","pattern":"grammarly","allowed_usd":[30]},
-    {"id":"cartesia-pro","pattern":"^cartesia pro\\b","fixed_bdt":990,"approval_note":"CEO-set price 2026-11-27 for the $5 Cartesia Pro plan. Below the standard profit_rule floor at the working FX rate; accepted by the owner as an entry price. Recheck at checkout per checkout_rule."},
+    {"id":"cartesia-pro","pattern":"^cartesia pro\\b","fixed_bdt":990,"approval_note":"Owner decision 2026-11-27 (Emon Hossain): BDT 990 is the intended standing price for the $5 Cartesia Pro plan because it is a low-price subscription. The general profit_rule minimum of BDT 500 is deliberately not applied to this plan; this is the owner's pricing decision, not a pending review item. Reconfirm provider checkout cost before each order as usual."},
     {"id":"cartesia","pattern":"cartesia","allowed_usd":[49,299],"approval_note":"Startup ($49) and Scale ($299) use the existing approved_price_by_usd table; owner delegated the choice 2026-11-27."}
   ],
   "verify_before_fixed_price": ["canva","n8n","kling","pika","luma","krea","gamma","mistral","elicit","scite","zapier","x premium"],

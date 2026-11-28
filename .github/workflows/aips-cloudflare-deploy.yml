@@ -45,6 +45,12 @@ jobs:
         env:
           PORT: "3000"
           BASE_PATH: "/"
+          # Public measurement IDs (not secrets), set by the owner under
+          # Settings > Secrets and variables > Actions > Variables. When a
+          # variable is unset the value is empty and that tag never loads.
+          # Both tags stay behind the visitor's cookie consent in the app.
+          VITE_GA_ID: ${{ vars.VITE_GA_ID }}
+          VITE_FB_PIXEL_ID: ${{ vars.VITE_FB_PIXEL_ID }}
         run: pnpm run build
 
       - name: Prepare Cloudflare artifact

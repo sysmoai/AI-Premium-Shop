@@ -18,6 +18,9 @@
   "logo": {
     "production_asset": "/images/brand/aips-logo.png",
     "repository_asset": "artifacts/aips-landing/public/images/brand/aips-logo.png",
+    "sha256": "95FA7E02F38D389FB00C1248D2AF61149F590D321843384BCBC99FB5B2BC4C25",
+    "byte_size": 52994,
+    "locked_since": "2026-10-16",
     "rules": [
       "preserve the approved logo exactly",
       "do not redraw, recolor, crop, distort, duplicate or replace the approved logo",

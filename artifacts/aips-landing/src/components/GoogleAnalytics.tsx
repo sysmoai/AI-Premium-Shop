@@ -25,9 +25,14 @@ export function GoogleAnalytics({ enabled }: { enabled: boolean }) {
     }
 
     window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function (...args: unknown[]) {
-      window.dataLayer.push(args);
-    };
+    // gtag.js only processes the `arguments` object. A rest-parameter array is
+    // silently ignored, so config and events would never be sent.
+    window.gtag =
+      window.gtag ||
+      function gtag() {
+        // eslint-disable-next-line prefer-rest-params
+        window.dataLayer.push(arguments);
+      };
     window.gtag("js", new Date());
     window.gtag("config", gaId, { send_page_view: false });
     initialized.current = true;

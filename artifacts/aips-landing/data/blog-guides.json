@@ -4,7 +4,7 @@
     {
       "slug": "cartesia-ai-bangladesh-guide",
       "title": "Cartesia in Bangladesh: Price in BDT, Plans and How to Buy",
-      "description": "Cartesia Pro, Startup and Scale explained for Bangladesh: BDT prices, what credits buy, Bangla support, and how to pay in Taka with bKash or Nagad.",
+      "description": "Cartesia Pro, Startup and Scale for Bangladesh: BDT prices, what credits buy, Bangla support, and paying in Taka by bKash, Nagad, Rocket, Upay or bank.",
       "h1": "Cartesia in Bangladesh: Plans, Price and How to Buy",
       "categoryKey": "voice-music",
       "categoryLabel": "Voice & Music AI",
@@ -72,7 +72,7 @@
           "bullets": [
             "Pick a plan, or tell us your monthly usage and we suggest the lowest plan that covers it.",
             "Message us on WhatsApp. We confirm the current plan contents, price, availability and delivery ETA.",
-            "Pay in Taka with bKash or Nagad once those details are confirmed.",
+            "Pay in Taka with bKash, Nagad, Rocket, Upay or bank transfer once those details are confirmed.",
             "We arrange the plan on your account and tell you when it is active. You log in with your own email."
           ]
         },
@@ -93,7 +93,7 @@
         },
         {
           "q": "Can I pay for Cartesia with bKash?",
-          "a": "Yes. You pay AI Premium Shop in Taka with bKash or Nagad, and the plan is arranged on your own Cartesia account."
+          "a": "Yes. You pay AI Premium Shop in Taka with bKash, Nagad, Rocket, Upay or bank transfer, and the plan is arranged on your own Cartesia account."
         },
         {
           "q": "Is there a free Cartesia plan?",
@@ -164,7 +164,7 @@
         {
           "heading": "Price in Bangladesh",
           "paragraphs": [
-            "At AI Premium Shop, Cartesia Pro is BDT 990 per month, Cartesia Startup is BDT 8,290 and Cartesia Scale is BDT 50,190. ElevenLabs plans and prices are shown on the ElevenLabs page. In both cases you pay in Taka with bKash or Nagad, and we confirm the current plan and price before payment."
+            "At AI Premium Shop, Cartesia Pro is BDT 990 per month, Cartesia Startup is BDT 8,290 and Cartesia Scale is BDT 50,190. ElevenLabs plans and prices are shown on the ElevenLabs page. In both cases you pay in Taka with bKash, Nagad, Rocket, Upay or bank transfer, and we confirm the current plan and price before payment."
           ]
         },
         {
@@ -266,7 +266,7 @@
         {
           "heading": "Getting the plan in Bangladesh",
           "paragraphs": [
-            "You pay AI Premium Shop in Taka with bKash or Nagad, and the plan is arranged on a Cartesia account under your own email, so your voices and files stay with you. We confirm the plan, price and delivery ETA on WhatsApp before you pay."
+            "You pay AI Premium Shop in Taka with bKash, Nagad, Rocket, Upay or bank transfer, and the plan is arranged on a Cartesia account under your own email, so your voices and files stay with you. We confirm the plan, price and delivery ETA on WhatsApp before you pay."
           ]
         }
       ],
@@ -351,7 +351,7 @@
           "heading": "Plans and price in Taka",
           "paragraphs": [
             "Commercial use needs Cartesia Pro or higher. At AI Premium Shop, Cartesia Pro is BDT 990 per month, Startup is BDT 8,290 and Scale is BDT 50,190. Pro includes 100K credits, which Cartesia's stated rate puts at roughly two hours of generated speech; Bangla text may use credits at a slightly different rate than English.",
-            "You pay in Taka with bKash or Nagad and the plan is arranged on your own Cartesia account."
+            "You pay in Taka with bKash, Nagad, Rocket, Upay or bank transfer and the plan is arranged on your own Cartesia account."
           ]
         }
       ],
@@ -440,7 +440,7 @@
         {
           "heading": "Getting set up from Bangladesh",
           "paragraphs": [
-            "AI Premium Shop arranges the Cartesia plan on an account under your own email and takes payment in Taka with bKash or Nagad. We help you get the account active and answer usage questions on WhatsApp. Building the agent itself is development work that you or your developer carry out."
+            "AI Premium Shop arranges the Cartesia plan on an account under your own email and takes payment in Taka with bKash, Nagad, Rocket, Upay or bank transfer. We help you get the account active and answer usage questions on WhatsApp. Building the agent itself is development work that you or your developer carry out."
           ]
         }
       ],

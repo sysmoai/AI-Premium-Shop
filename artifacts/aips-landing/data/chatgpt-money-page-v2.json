@@ -73,7 +73,10 @@
   "local_payment": {
     "methods": [
       "bKash",
-      "Nagad"
+      "Nagad",
+      "Rocket",
+      "Upay",
+      "Bank transfer"
     ],
     "rule": "These are AI Premium Shop public payment references, not a claim about payment methods accepted directly by OpenAI."
   },

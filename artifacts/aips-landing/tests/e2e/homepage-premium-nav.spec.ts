@@ -120,7 +120,7 @@ test("SPA return from catalog always reboots into the governed homepage", async 
     "30-day warranty",
     "5-30 min delivery",
     "4 payment methods",
-    "rocket",
+    "usdt",
     "all brands, all features, all working",
   ]) {
     expect(bodyText).not.toContain(prohibited);

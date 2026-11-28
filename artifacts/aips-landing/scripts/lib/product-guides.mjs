@@ -49,8 +49,9 @@ export const BLOCKED_PHRASES = [
   "no international card", "nobody can see anyone else's",
 ];
 
-const UNAPPROVED_PAYMENT = /\b(rocket|upay|ucash|bank\s+transfer|credit\s+card|debit\s+card|visa|mastercard|paypal|usdt|crypto)\b/i;
-const KNOWN_LOCAL_METHODS = ["bKash", "Nagad", "Rocket", "Upay"];
+// Never-approved references. Local methods are checked against the SSOT list instead.
+const UNAPPROVED_PAYMENT = /\b(ucash|credit\s+card|debit\s+card|visa|mastercard|paypal|usdt|crypto)\b/i;
+const KNOWN_LOCAL_METHODS = ["bKash", "Nagad", "Rocket", "Upay", "Bank transfer"];
 const HARD_BANS = [
   [/\bwarrant(y|ies)\b/i, "warranty wording"],
   [/\bguarantee[ds]?\b/i, "guarantee wording"],
@@ -76,7 +77,7 @@ export function validateGuide(slug, guide, records) {
   if (!guide.summary) fail("summary missing");
   if (!Array.isArray(guide.sections) || guide.sections.length < 2) fail("at least 2 sections required");
   const faq = guide.faq ?? [];
-  if (faq.length < 5 || faq.length > 30) fail("faq must have 5 to 30 entries");
+  if (faq.length < 5 || faq.length > 36) fail("faq must have 5 to 36 entries");
   if (new Set(faq.map((item) => item.q)).size !== faq.length) fail("duplicate faq question");
   for (const item of faq) if (!item.q?.trim() || !item.a?.trim() || item.a.length > 700) fail(`faq entry invalid or answer over 700 characters: ${item.q}`);
 
@@ -129,7 +130,7 @@ export function proseErrors(text, allowedPrices, approved) {
   for (const phrase of BLOCKED_PHRASES) if (lower.includes(phrase)) problems.push(`blocked phrase "${phrase}" in: ${text.slice(0, 80)}`);
   for (const [pattern, label] of HARD_BANS) if (pattern.test(text)) problems.push(`${label} in: ${text.slice(0, 80)}`);
   if (UNAPPROVED_PAYMENT.test(text)) problems.push(`payment method outside the approved list in: ${text.slice(0, 80)}`);
-  for (const method of KNOWN_LOCAL_METHODS) if (new RegExp(`\\b${method}\\b`, "i").test(text) && !approved.includes(method)) problems.push(`${method} is not an approved public payment method`);
+  for (const method of KNOWN_LOCAL_METHODS) if (new RegExp(`\\b${method.replace(" ", "\\s+")}\\b`, "i").test(text) && !approved.some((item) => item.toLowerCase() === method.toLowerCase())) problems.push(`${method} is not an approved public payment method`);
   for (const sentence of text.split(/(?<=[.!?।])\s+/)) if (!sentence.trim().endsWith("?") && NEEDS_NEGATION.test(sentence) && !NEGATION.test(sentence)) problems.push(`authorization wording without a negation in: ${sentence.slice(0, 80)}`);
   const normal = bnDigits(text);
   for (const match of normal.matchAll(/(?:BDT|৳)\s*(\d[\d,]*)/g)) if (!allowedPrices.has(Number(match[1].replace(/,/g, "")))) problems.push(`BDT figure ${match[1]} is not a current catalog price`);

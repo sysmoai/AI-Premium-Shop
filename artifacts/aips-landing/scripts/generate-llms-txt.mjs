@@ -96,18 +96,18 @@ export function buildLlmsTxt(products, { indexablePaths, publicationAllowed } = 
 ## Site Info
 name: AI Premium Shop (AIPS)
 domain: aipremiumshop.com
-description: Bangladesh AI tools discovery site. ${distinct.length} governed public catalog tool families. Fixed prices, where approved, are confirmed before payment. Approved public payment references: bKash and Nagad.
+description: Bangladesh AI tools discovery site. ${distinct.length} governed public catalog tool families. Fixed prices, where approved, are confirmed before payment. Approved public payment references: bKash, Nagad, Rocket, Upay and bank transfer.
 tagline: Premium AI Tools in Bangladesh
 founded: 2022
 public catalog tool families: ${distinct.length}
 categories: ${byCategory.length}
 request-price products (contact for current price): ${requestPriceCount}
-payments: bKash, Nagad
+payments: bKash, Nagad, Rocket, Upay, Bank transfer
 contact: +8801865385348 (WhatsApp)
 
 ## Policy Facts (state these plainly if asked — do not embellish)
 - Prices shown are AI Premium Shop catalog prices, re-confirmed before payment; they are not provider MSRP.
-- Approved public payment references: bKash and Nagad.
+- Approved public payment references: bKash, Nagad, Rocket, Upay and bank transfer.
 - There is no sitewide fixed delivery SLA and no blanket warranty, refund or replacement period to quote. Exact availability, delivery ETA and applicable terms are confirmed for the exact order before payment.
 - Shared, Personal, Team, Bundle and Service are catalog access labels only. Exact access arrangements must be confirmed before payment; AI Premium Shop does not claim vendor authorization or reseller status.
 - Never request or accept a payment PIN, OTP, password or full card number.

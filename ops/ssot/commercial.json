@@ -8,7 +8,7 @@
     "approved_public_skus": "The raw 239-record catalog remains the canonical audit source. Current public eligibility is determined by the governed projection, including ENFORCED provider-specific controls from the historical provider registry plus current evidence amendments governed below.",
     "approved_public_prices": "AI Premium Shop-owned BDT catalog prices in data/products.json may be displayed for records that remain eligible in the governed public projection. They are not represented as current provider MSRP or discounts. Exact order price is re-confirmed before payment; per-record verificationDate coverage is still incomplete and remains audit debt.",
     "approved_access_models": "Catalog access labels may be shown only when the record remains eligible under current effective provider evidence. The 2026-08-10 broad owner approval remains historical authority. The 2026-09-03 base review classified all 37 providers represented by the 44 raw shared-access records and contained ENFORCED publication blocks for 26 providers. The 2026-09-07 Anthropic amendment adds a narrower current-source-backed block, making 27 providers effectively blocked for matching shared access. No surviving offer may be represented as vendor-authorized without explicit evidence, and exact access arrangements must be confirmed before payment.",
-    "approved_payment_facts": "bKash and Nagad are approved public payment references. Do not infer blanket support for every local/international payment method and never request passwords, PINs or OTPs.",
+    "approved_payment_facts": "bKash, Nagad, Rocket, Upay and bank transfer (in Taka) are approved public payment references by owner decision of 2026-11-27. Do not infer support for any other local or international payment method and never request passwords, PINs or OTPs.",
     "approved_delivery_facts": "Confirm current availability and delivery ETA for the exact order before payment. Legacy deliverySLA, estimatedDeliveryTime, deliveryMethod and stock fields are deprecated as public commercial facts until re-verified.",
     "approved_warranty_refund_facts": "No blanket warranty, refund, replacement period or guaranteed resolution outcome is approved site-wide. Resolution is order-specific under the current Refund & Resolution Policy and the terms confirmed for the exact order.",
     "approved_social_proof": "10,000+ customers since 2022 is CEO-attested. Product ratings, review counts and fabricated review/aggregate-rating structured data are not verified and must not be rendered."
@@ -25,8 +25,12 @@
       "mode": "approved-public-references-order-specific",
       "approved_public_methods": [
         "bKash",
-        "Nagad"
+        "Nagad",
+        "Rocket",
+        "Upay",
+        "Bank transfer"
       ],
+      "approved_public_methods_decision": "Owner decision 2026-11-27 (Emon Hossain): customers may pay in Taka by bKash, Nagad, Rocket, Upay or bank transfer. Exact account details are still given only after the order is confirmed.",
       "unlisted_payment_method_claim_allowed": false,
       "payment_credentials_may_be_requested": false,
       "exact_payment_instruction_requires_order_confirmation": true

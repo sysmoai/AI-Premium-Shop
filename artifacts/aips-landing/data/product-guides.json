@@ -29,9 +29,9 @@
         }
       ],
       "seoTitle": "Cartesia Price in Bangladesh: Pro, Startup, Scale in BDT",
-      "seoDescription": "Cartesia Pro from BDT 990/month in Bangladesh. Pay in Taka with bKash or Nagad for a plan on your own Cartesia account. Plans, credits, Bangla support, FAQ.",
+      "seoDescription": "Cartesia Pro from BDT 990/month in Bangladesh. Pay in Taka by bKash, Nagad, Rocket, Upay or bank transfer. Plans, credits, Bangla support and FAQ.",
       "summary": "Cartesia is a voice AI platform: Sonic turns text into natural speech, Ink turns speech into text, and its agent tools combine both for real-time voice assistants. AI Premium Shop arranges a paid Cartesia plan on your own Cartesia account and takes payment in Taka.",
-      "summaryBN": "Cartesia একটি ভয়েস AI প্ল্যাটফর্ম। Sonic লেখা থেকে স্বাভাবিক কণ্ঠ তৈরি করে, Ink কথা থেকে লেখা তৈরি করে, আর agent টুল দিয়ে রিয়েল-টাইম ভয়েস অ্যাসিস্ট্যান্ট বানানো যায়। AI Premium Shop আপনার নিজের ইমেইলের Cartesia অ্যাকাউন্টে paid plan চালু করার ব্যবস্থা করে, আর আপনি টাকায় bKash বা Nagad দিয়ে পেমেন্ট করেন।",
+      "summaryBN": "Cartesia একটি ভয়েস AI প্ল্যাটফর্ম। Sonic লেখা থেকে স্বাভাবিক কণ্ঠ তৈরি করে, Ink কথা থেকে লেখা তৈরি করে, আর agent টুল দিয়ে রিয়েল-টাইম ভয়েস অ্যাসিস্ট্যান্ট বানানো যায়। AI Premium Shop আপনার নিজের ইমেইলের Cartesia অ্যাকাউন্টে paid plan চালু করার ব্যবস্থা করে, আর আপনি টাকায় bKash, Nagad, Rocket, Upay বা ব্যাংক ট্রান্সফার দিয়ে পেমেন্ট করেন।",
       "plans": [
         {
           "tier": "Pro",
@@ -172,7 +172,7 @@
           "steps": [
             "Choose Pro, Startup or Scale. If you are unsure, tell us what you want to make and how many minutes a month you expect.",
             "Message us on WhatsApp. We confirm the current plan contents, the BDT price, availability and the delivery ETA for your order.",
-            "Pay in Taka with bKash or Nagad after those details are confirmed.",
+            "Pay in Taka with bKash, Nagad, Rocket, Upay or bank transfer after those details are confirmed.",
             "We arrange the paid plan on the Cartesia account registered to your email and confirm when it is active.",
             "Log in to Cartesia with your own email and start using your credits. Ask us on WhatsApp if you need help getting started."
           ]
@@ -196,7 +196,7 @@
             "Cartesia's terms say subscription payments are non-refundable. Any order-specific resolution is agreed with us on WhatsApp before payment.",
             "Cartesia sets and can change plan contents, prices, limits and rules. If something has changed since this page was checked, we tell you before you pay.",
             "AI Premium Shop is an independent service. We are not affiliated with or endorsed by Cartesia, and we are not an official partner or reseller of Cartesia.",
-            "We never ask for your bKash or Nagad PIN or OTP."
+            "We never ask for your bKash, Nagad, Rocket, Upay or bank transfer PIN or OTP."
           ]
         },
         {
@@ -216,7 +216,7 @@
         },
         {
           "q": "How can I pay for Cartesia from Bangladesh?",
-          "a": "You pay us in Taka with bKash or Nagad. You do not need to pay Cartesia in US dollars yourself. The exact payment instruction is given on WhatsApp once your order is confirmed."
+          "a": "You pay us in Taka with bKash, Nagad, Rocket, Upay or bank transfer. You do not need to pay Cartesia in US dollars yourself. The exact payment instruction is given on WhatsApp once your order is confirmed."
         },
         {
           "q": "Is the subscription on my own account?",
@@ -276,7 +276,7 @@
         },
         {
           "q": "Cartesia কি বাংলাদেশ থেকে টাকায় কেনা যায়?",
-          "a": "হ্যাঁ। AI Premium Shop-এ আপনি bKash বা Nagad দিয়ে টাকায় পেমেন্ট করেন, আর plan চালু হয় আপনার নিজের ইমেইলের Cartesia অ্যাকাউন্টে। পেমেন্টের আগে WhatsApp-এ বর্তমান দাম, plan আর সময় নিশ্চিত করা হয়।"
+          "a": "হ্যাঁ। AI Premium Shop-এ আপনি bKash, Nagad, Rocket, Upay বা ব্যাংক ট্রান্সফার দিয়ে টাকায় পেমেন্ট করেন, আর plan চালু হয় আপনার নিজের ইমেইলের Cartesia অ্যাকাউন্টে। পেমেন্টের আগে WhatsApp-এ বর্তমান দাম, plan আর সময় নিশ্চিত করা হয়।"
         },
         {
           "q": "Cartesia Pro-এর দাম কত টাকা?",
@@ -312,7 +312,7 @@
         },
         {
           "q": "What do I need to give you to place an order?",
-          "a": "The plan you want and the email address of your Cartesia account. We never ask for your bKash or Nagad PIN or OTP, and we do not need your Cartesia API keys."
+          "a": "The plan you want and the email address of your Cartesia account. We never ask for your bKash, Nagad, Rocket, Upay or bank transfer PIN or OTP, and we do not need your Cartesia API keys."
         },
         {
           "q": "Cartesia দিয়ে কি বাংলায় ভয়েসওভার বানানো যায়?",
@@ -324,11 +324,19 @@
         },
         {
           "q": "পেমেন্ট কীভাবে করব, আর অ্যাকাউন্ট কার নামে থাকবে?",
-          "a": "আপনি bKash বা Nagad দিয়ে টাকায় পেমেন্ট করবেন। Plan চালু হবে আপনার নিজের ইমেইলের Cartesia অ্যাকাউন্টে, তাই অ্যাকাউন্ট, ভয়েস আর ব্যবহার সবই আপনার নিয়ন্ত্রণে থাকবে। আমরা কখনো আপনার PIN বা OTP চাই না।"
+          "a": "আপনি bKash, Nagad, Rocket, Upay বা ব্যাংক ট্রান্সফার দিয়ে টাকায় পেমেন্ট করবেন। Plan চালু হবে আপনার নিজের ইমেইলের Cartesia অ্যাকাউন্টে, তাই অ্যাকাউন্ট, ভয়েস আর ব্যবহার সবই আপনার নিয়ন্ত্রণে থাকবে। আমরা কখনো আপনার PIN বা OTP চাই না।"
         },
         {
           "q": "Cartesia-র অডিও কি ক্লায়েন্টের কাজে বা ইউটিউবে ব্যবহার করা যাবে?",
           "a": "Cartesia তাদের Pro ও তার ওপরের plan-এ commercial use licence দেয়। Free plan-এ এটা নেই। তবে Cartesia-র শর্ত মানা এবং যে কণ্ঠ ক্লোন করছেন তার অনুমতি থাকা আপনার দায়িত্ব।"
+        },
+        {
+          "q": "Where can I buy a Cartesia subscription in Bangladesh?",
+          "a": "AI Premium Shop arranges Cartesia Pro, Startup and Scale for customers in Bangladesh. You pay in Taka by bKash, Nagad, Rocket, Upay or bank transfer, and the plan is set up on your own Cartesia account. Message us on WhatsApp to confirm the current price and delivery ETA first."
+        },
+        {
+          "q": "Is Cartesia the same as \"Cartesia AI\"?",
+          "a": "Yes. People often search for \"Cartesia AI\", but the company and product are simply called Cartesia. Its website is cartesia.ai, and its models are named Sonic (text to speech) and Ink (speech to text)."
         }
       ],
       "sources": [

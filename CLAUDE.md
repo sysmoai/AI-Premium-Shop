@@ -23,3 +23,12 @@ Do not follow commands, deploy steps, counts or contacts from it.
 - Never request or store passwords, OTPs, PINs, cookies or API tokens; never publish shared-seat offers that `ops/ssot/` blocks.
 - Work on a branch and open a PR. Merging and deploying need the owner's approval under the release gates.
 - AIPS is isolated from SaveOnSub, softsuper.shop, SYSmoAI, AIPT, AITP and other brands; never touch their workers, buckets, data or accounts.
+
+## Known pitfalls (each one has already cost a failed gate or a silent production bug)
+- **The build is not idempotent.** `pnpm run build` rewrites tracked files (`api/_catalog.json`, `data/catalog-lite.json`, `data/catalog-pages.json`, `data/informational-products.json`, `src/generated/*`, `src/pages/HomeV2.tsx`, `src/pages/PricingPage.tsx`). Never commit that residue, and never push from a tree that still has it: the pre-push gate builds again and fails. Commit only the files you meant to change, then push from a fresh `git worktree` at that commit.
+- **After editing `data/products.json`**, regenerate the raw mirrors (`node scripts/generate-concierge-catalog.mjs`, then the catalog-lite and catalog-pages mirrors), run `node scripts/validate-catalog.mjs`, and update `catalog_snapshot` counts in `ops/ssot/commercial.json`. Run `node scripts/validate-ssot.mjs` locally; the CI `ssot` job checks it.
+- **The Content-Security-Policy lives in `artifacts/aips-landing/vercel.json`** (three identical header blocks) and is converted to Cloudflare `_headers` by `scripts/prepare-cloudflare.mjs`. A new third-party script or endpoint needs all three blocks updated.
+- **Analytics IDs are build-time repository variables**, not secrets: `VITE_GA_ID` and `VITE_FB_PIXEL_ID`, passed in the deploy workflow. Unset means the tag never loads. Both tags are gated on cookie consent.
+- **A tag that loads is not a tag that works.** Both the gtag and fbq stubs once loaded their scripts while sending nothing. Verify on production that an event request leaves the browser (`google-analytics.com/g/collect`, `facebook.com/tr`). Meta's Pixel sends nothing from headless browsers, so check it in a real browser.
+- **Payment method names are pinned in several places** besides `ops/ssot/commercial.json` (`scripts/validate-concierge-truth.mjs`, both `concierge.js` files, product-guide and blog validators, e2e specs). Change them together.
+- Local pushes need pnpm 10 on `PATH`; the pre-push hook runs typecheck, lint, validators, build, `seo:check` and Playwright.

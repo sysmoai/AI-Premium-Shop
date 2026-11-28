@@ -17,13 +17,26 @@ export function FacebookPixel({ enabled }: { enabled: boolean }) {
     if (!enabled || !pixelId || initialized.current) return;
 
     if (!window.fbq) {
-      const fbq = function (...args: unknown[]) {
-        (fbq as unknown as { q: unknown[] }).q = (fbq as unknown as { q: unknown[] }).q || [];
-        (fbq as unknown as { q: unknown[] }).q.push(args);
+      // Mirrors Meta's base snippet: fbevents.js drains `queue` and then
+      // installs `callMethod`. A stub that queues anywhere else loads the
+      // script but never sends init or events.
+      type FbqStub = {
+        (...args: unknown[]): void;
+        callMethod?: (...args: unknown[]) => void;
+        queue: unknown[];
+        push: FbqStub;
+        loaded: boolean;
+        version: string;
       };
-      (fbq as unknown as { version: string }).version = "2.0";
-      (fbq as unknown as { queue: unknown[] }).queue = [];
-      window.fbq = fbq as (...args: unknown[]) => void;
+      const fbq = function (...args: unknown[]) {
+        if (fbq.callMethod) fbq.callMethod(...args);
+        else fbq.queue.push(args);
+      } as FbqStub;
+      fbq.push = fbq;
+      fbq.loaded = true;
+      fbq.version = "2.0";
+      fbq.queue = [];
+      window.fbq = fbq;
       window._fbq = fbq;
 
       const script = document.createElement("script");
